@@ -14,7 +14,7 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 4. Ne jamais laisser de travail non commite : l agent suivant ne saurait pas d ou il vient.
 
 ## Plan de build (option securisee, decidee le 13.10.2026)
-- [ ] E1. Importer Atelier Ko (copie unique, MIT, commit 348433f du 17.08.2026), retirer panier et paiement, bouton "Demander un devis".
+- [x] E1. Importer Atelier Ko (copie unique, MIT, commit 348433f du 17.08.2026), retirer panier et paiement, bouton "Demander un devis".
 - [ ] E2. Adapter le schema produit : granit, type de monument, style, tradition. 3 modeles fictifs.
 - [ ] E3. `src/config/entreprise.ts` et `src/data/tarifs.json` a null, affichage "prix sur demande".
 - [ ] E4. Pages : accueil, catalogue, fiche, Nos granits, contact/devis (formulaire sans envoi reel).
@@ -23,17 +23,16 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
-- 13.10.2026, Claude (2e session) : tentative d E1, BLOQUEE des le point 1 (import).
-  Le dossier source `/home/kumo/atelier/tmp/atelier-ko` est inaccessible depuis cette session :
-  tous les acces (bash `ls`/`find`, outil de lecture, connecteur Vps-proxy) sont refuses avec
-  "Claude Code may only list files in the allowed working directories for this session:
-  /home/kumo/atelier/repos/pierretombale-site". La session n est pas interactive, donc aucune
-  autorisation ne peut etre accordee en cours de route.
-  Aucun fichier du theme n a donc ete copie. Rien d autre n a ete modifie : pas de retrait de
-  panier, pas de page devis, pas de `npm ci` ni de build (il n y a pas de `package.json`).
-  Etat du depot inchange a part ce fichier : AGENTS.md, CLAUDE.md, ETAT.md, analyses/, docs/.
-  Il n y a pas encore de `.gitignore` a la racine : a creer lors de l import reussi
-  (au minimum `node_modules/`, `dist/`, `.astro/`).
+- 13.10.2026, E1 TERMINEE. L import d Atelier Ko (MIT, commit 348433f) a ete fait par Claude chat
+  via le connecteur VPS, l agent Claude Code n ayant pas acces a `/home/kumo/atelier/tmp/atelier-ko`.
+  Panier retire entierement (CartDrawer, page cart, bloc localStorage, references) : `grep -riE
+  "cart|checkout|AtelierCart" src public` ne renvoie plus rien. Fiche produit : bouton d achat
+  remplace par un lien vers `/devis?modele=<slug>`, page `src/pages/devis.astro` provisoire (noindex).
+  Verifie le 13.10.2026 : `npm ci` 316 paquets (9 vulnerabilites signalees, non traitees),
+  `npm run build` OK, 11 pages generees (accueil, about, catalog, devis, 6 fiches produit, 404,
+  robots.txt, sitemap), aucun avertissement ; `npx astro check` : 16 fichiers, 0 erreur, 0 avertissement, 0 hint.
+  Permissions de l agent fixees dans `.claude/settings.json` (git local, npm, lecture autorises ;
+  push, pull, fetch, changement de branche, reset interdits) et confiance du dossier accordee.
 - 13.10.2026, Claude (1re session) : creation du relais (AGENTS.md commun, CLAUDE.md pointe dessus,
   ce fichier).
   Inspection d Atelier Ko : panier = `src/components/CartDrawer.astro`, `src/pages/cart.astro`,
@@ -41,20 +40,10 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E1, a reprendre du debut. Prerequis a regler par Thomas avant de relancer un agent :
-donner a la session l acces en lecture a `/home/kumo/atelier/tmp/atelier-ko`, par exemple en
-lancant Claude Code depuis `/home/kumo/atelier` (les deux chemins sont alors dans le perimetre),
-ou en ajoutant ce dossier aux repertoires autorises de la session.
+E2. Adapter le schema produit (`src/content.config.ts` et les entrees de `src/content/`) aux champs
+metier : granit, type de monument, style, tradition ; puis remplacer les 6 meubles par 3 modeles fictifs.
 
-Rappels pour E1 quand l acces sera ouvert :
-- Copier le contenu d Atelier Ko a la racine SANS `.git`, `.github`, `preview.webp`, `node_modules`.
-- Ne pas ecraser nos fichiers : `AGENTS.md`, `CLAUDE.md`, `ETAT.md`, `docs/`, `analyses/`.
-  Leurs `AGENTS.md`, `README.md`, `CUSTOMIZATION.md`, `CHANGELOG.md` vont dans `docs/atelier-ko/`.
-  Leur `LICENSE` va a la racine sous le nom `LICENSE-atelier-ko` (obligation MIT).
-- Retirer le panier (fichiers et references listes dans la 1re session), verifier par
-  `grep -riE "cart|checkout|AtelierCart" src`.
-- Fiche produit : bouton d achat remplace par un lien "Demander un devis" vers `/devis?modele=<slug>`,
-  et page `src/pages/devis.astro` minimale (titre, "Formulaire en preparation", noindex).
-- Ne rien traduire ni adapter d autre (c est E2 a E4).
-- Verifier `npm ci` puis `npm run build`, noter le resultat de `npx astro check` s il existe.
-- `node_modules/` et `dist/` ne doivent pas etre commites.
+Rappels pour E2 :
+- Les 6 fiches actuelles (oken-stool, arvid-chair, low-plinth-table, monolith-bench, halla-shelf,
+  tora-desk) et leurs images disparaissent : verifier que catalogue, accueil et sitemap suivent.
+- Prix : rien en dur dans les fiches, tout passera par `src/data/tarifs.json` a l etape E3.
