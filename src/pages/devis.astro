@@ -1,0 +1,15 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { pageTitle } from "@/config/site";
+
+// Placeholder pour l etape E4 : le formulaire de devis (et son envoi vers n8n
+// en E6) n existe pas encore. La page repond deja a /devis?modele=<slug> pour
+// que le lien des fiches produit ne casse pas, et reste hors des index.
+---
+
+<BaseLayout title={pageTitle("Demander un devis")} description="Demande de devis." noindex={true}>
+  <main id="main-content" class="shell flex min-h-[70vh] flex-col justify-center py-24">
+    <h1 class="type-hero max-w-[18ch]">Demander un devis</h1>
+    <p class="type-lead mt-8 max-w-[46ch]">Formulaire en preparation</p>
+  </main>
+</BaseLayout>
