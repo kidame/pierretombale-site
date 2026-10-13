@@ -32,12 +32,57 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [x] E4. Pages : accueil, catalogue, fiche, Nos granits, contact/devis (formulaire sans envoi reel).
       (passe 1 : nettoyage du theme et SEO ; passe 2 : accueil et a-propos ; passe 3 : prix, granits,
       FAQ ; passe 4 : devis, merci, protection des donnees.)
-- [ ] E5. Configurateur Konva (ilot Preact) en prototype.
+- [x] E5. Personnalisation guidee dans le formulaire de devis (4 lignes d inscription, polices sur
+      echantillons, hauteur des lettres, finition, motif, apercu en direct du texte) ; configurateur
+      visuel reporte (voir `docs/CONFIGURATEUR-FUTUR.md`).
 - [ ] E6. Envoi du devis : fonction Cloudflare Pages + Resend (pas de n8n), adresse en variable
       d environnement, Turnstile. Aucun secret dans le repo. Suivre `docs/devis-contrat.md`.
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 13.10.2026, E5 TERMINEE (Claude Code) : PERSONNALISATION GUIDEE, pas de configurateur visuel
+  (reporte, regles dans `docs/CONFIGURATEUR-FUTUR.md`).
+  `src/data/personnalisation.ts` est la SOURCE UNIQUE (reutilisee plus tard par le configurateur) :
+  6 polices OFL (cinzel, marcellus, eb-garamond, jost, great-vibes, pinyon-script ; style romain /
+  baton / anglaise / lapidaire, pile CSS), hauteursLettresMm [30, 40, 50, 60] (defauts nom 50,
+  dates 40, epitaphe 30), 3 finitions (blanc, dore, feuille-or) avec leur couleur d apercu,
+  8 motifs (aucun, croix, colombe, rose, coeur, arbre, autre, dessin-fourni), les 4 lignes et la
+  mention d apercu. En tete : "liste provisoire, a confirmer selon ce que nous savons graver".
+  Aucun paquet @fontsource ne manquait : les 6 polices de la spec existent, rien n a ete remplace.
+  `/devis/` : le champ unique "texte a graver" (`gravure`) est REMPLACE par 12 champs
+  `ligne<n>_texte` / `_police` / `_hauteur` (n de 1 a 4), plus `finition` (radio, "Je ne sais pas
+  encore" par defaut), `motif` (select) et `gravure_precisions` (textarea). Tout reste facultatif.
+  Echantillons : la liste des 6 polices est ecrite chacune dans sa police (statique, lisible sans
+  JS), et sous chaque select un apercu du nom de la police choisie.
+  Apercu en direct (JS vanilla, progressive enhancement, aucun canvas) : cadre colore avec la teinte
+  approximative du granit choisi (TEINTE_PASTILLE de granits.ts), les 4 lignes dans leur police, la
+  taille a 0,6 px par mm, la couleur selon la finition. Sans JS le bloc reste cache (`hidden`) et le
+  formulaire est complet. Mention fixe sous l apercu : "Apercu indicatif... (bon a tirer) avant
+  toute gravure."
+  POLICES CHARGEES SEULEMENT SUR /devis/ : les 6 imports `@fontsource/<police>/latin-400.css` sont
+  dans la page, jamais dans BaseLayout ni styles.css ; Astro en met le `@font-face` en ligne dans
+  `/devis/index.html` seul, avec `font-display: swap` (6 occurrences). Ne pas les deplacer.
+  PIEGE TAILWIND : la feuille Tailwind est UNIQUE et partagee par les 23 pages, donc une classe
+  utilitaire inedite utilisee sur /devis/ alourdit tout le site (+163 octets gz au premier essai).
+  L habillage de la section gravure est donc ecrit en CSS dans la page (classes `grav-*`), et les
+  classes Tailwind gardees sont exactement celles que la page utilisait deja.
+  MESURES : `python3` n est pas dans l allowlist de `.claude/settings.json`, la mesure a donc ete
+  refaite avec le gzip de Node (meme calcul que `scripts/poids-pages.py`, integration temporaire
+  dans astro.config.mjs, retiree depuis). Son gzip ne donne pas le meme octet que celui de Python :
+  l ecart constant avec `docs/perf-reference-2026-10-13.txt` (404 : 3783 au lieu de 3805 ; css 6834
+  au lieu de 6810) vient de l outil, pas des pages. Preuve : un build de controle avec l ANCIENNE
+  page devis donne, pour les 22 autres pages, exactement les memes chiffres que le build E5
+  (html, js en ligne et css identiques a l octet). E5 ne coute rien aux autres pages.
+  `/devis/` : html 12318 octets gz (8652 avant E5, @font-face en ligne compris), js en ligne 5613
+  (4405 avant), css partage 6834 (inchange). Polices : 6 woff2 latin, 143 748 octets au total
+  (great-vibes 42 800, pinyon-script 39 044, eb-garamond 23 820, marcellus 14 552, cinzel 14 128,
+  jost 9 404), telechargees seulement sur /devis/. Les .woff de repli sont aussi ecrits dans dist
+  mais aucun navigateur moderne ne les demande.
+  Verifie : `npm run build` OK (23 pages), `npx astro check` 33 fichiers 0 erreur 0 avertissement
+  0 hint ; `grep -rliE "atelier|kosovo|sous-trait|fabriqu|n8n" dist` ne renvoie rien ; 12 champs
+  de ligne dans le HTML, hauteurs par defaut 50/40/30/30, plus aucun `name="gravure"`.
+  `docs/devis-contrat.md` : section "L inscription" (valeurs autorisees = ids de
+  personnalisation.ts) et section "Configurateur futur" (il devra produire exactement ces champs).
 - 13.10.2026, Claude chat : formulaire teste dans le navigateur (pre-selection du modele, erreurs, message d attente) ; espace manquant corrige dans le consentement. Build 23 pages, check 0 erreur. VPS passe a 80 Go (partition etendue automatiquement).
 - 13.10.2026, E4 PASSE 4 TERMINEE (Claude Code) : devis, merci, protection des donnees. E4 EST FINIE.
   `/devis/` est une vraie page indexable (title 44, meta 150, h1 unique, canonical, fil d Ariane) :
@@ -239,14 +284,17 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E5 : CONFIGURATEUR KONVA en prototype (un seul ilot Preact). Rappel de l ordre choisi le 13.10.2026
-(option securisee) : E4 d abord, E5 ensuite. Le site tient debout sans configurateur ; le
-configurateur ne doit pas bloquer la mise en ligne. Point de depart : la demo Badge Maker de Konva
-(s en inspirer, ne pas la copier), cf. "Base de depart du site" dans docs/DECISIONS-ET-ETAT.md.
-Ce que le configurateur devra produire : un apercu PNG et un recapitulatif a joindre a la demande de
-devis, donc des champs a ajouter au contrat `docs/devis-contrat.md`.
-Puis E6 : envoi du devis par une fonction Cloudflare Pages `/api/devis` + Resend (PAS de n8n,
+E6 : ENVOI DU DEVIS. Fonction Cloudflare Pages `functions/api/devis.ts` + Resend (PAS de n8n,
 decision de Thomas du 13.10.2026), adresse de destination en variable d environnement, Turnstile.
-Tout est specifie dans `docs/devis-contrat.md` ; il restera a passer `envoiActif` a true dans
-`src/config/devis.ts` et a poser le widget Turnstile a l emplacement commente de la page devis.
-Aucun secret dans le depot.
+Tout est specifie dans `docs/devis-contrat.md`, y compris les 12 champs d inscription, `finition`,
+`motif` et `gravure_precisions` ajoutes en E5 (valeurs autorisees = ids de
+`src/data/personnalisation.ts`, que la fonction importe au lieu d en recopier les listes).
+Il restera a passer `envoiActif` a true dans `src/config/devis.ts` et a poser le widget Turnstile a
+l emplacement commente de la page devis. Aucun secret dans le depot.
+PREREQUIS A OBTENIR DE THOMAS AVANT DE COMMENCER : le nom de domaine achete et son DNS verifie chez
+Resend (SPF/DKIM), un compte Resend dont il saisit lui-meme la cle dans Cloudflare, et l adresse de
+destination des demandes. Sans eux, la fonction ne peut pas etre essayee pour de vrai.
+Ensuite E7 : deploiement Cloudflare Pages.
+Le configurateur visuel (Konva) n est plus une etape du plan : il viendra apres la mise en ligne,
+selon `docs/CONFIGURATEUR-FUTUR.md` (inputs a obtenir d abord : dimensions mm par modele, zones de
+gravure, polices et finitions confirmees, visuels).
