@@ -4,6 +4,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import handsImg from "@/assets/atelier-hands.jpg";
 import workshopImg from "@/assets/atelier-workshop.jpg";
 import { siteConfig, pageTitle } from "@/config/site";
+import { familleUrl } from "@/data/products";
 
 const principles = [
   {
@@ -144,7 +145,7 @@ const facts = [
           <h2 class="type-h2 max-w-[16ch]">Visit the workshop, or begin with a piece</h2>
         </div>
         <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
-          <a href="/catalog" class="btn btn-primary">See the catalogue</a>
+          <a href={familleUrl("monument")} class="btn btn-primary">Monuments funéraires</a>
           <a href={`mailto:${siteConfig.email}`} class="btn btn-outline">Write to us</a>
         </div>
       </div>

@@ -1,0 +1,49 @@
+---
+import ListeModeles from "@/components/ListeModeles.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { FAMILLE_LABELS, familleUrl, type Famille, type Product } from "@/data/products";
+import { breadcrumbSchema } from "@/data/seo";
+
+/**
+ * Page liste d une famille : en-tete, texte d introduction (passe en slot) et
+ * liste filtrable. Les deux familles partagent ce composant pour ne pas
+ * dupliquer l en-tete, les donnees structurees ni la liste.
+ */
+interface Props {
+  famille: Famille;
+  /** <title> complet, 60 caracteres au plus. */
+  title: string;
+  /** Meta description, 155 caracteres au plus. */
+  description: string;
+  /** Seul h1 de la page. */
+  h1: string;
+  products: Product[];
+}
+
+const { famille, title, description, h1, products } = Astro.props;
+
+const origin = Astro.site ?? new URL(Astro.url.origin);
+
+const filAriane = breadcrumbSchema(
+  [
+    { name: "Accueil", path: "/" },
+    { name: FAMILLE_LABELS[famille], path: familleUrl(famille) },
+  ],
+  origin,
+);
+---
+
+<BaseLayout title={title} description={description}>
+  <main id="main-content">
+    <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
+      <h1 class="type-h1 hero-in max-w-[22ch]">{h1}</h1>
+      <div class="type-lead hero-in mt-8 max-w-[56ch]" style="--reveal-delay:120ms">
+        <slot />
+      </div>
+    </section>
+
+    <ListeModeles products={products} />
+  </main>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
+</BaseLayout>

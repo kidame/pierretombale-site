@@ -32,9 +32,10 @@ export function productUrl(product: Pick<Product, "famille" | "slug">): string {
   return `${FAMILLE_PATHS[product.famille]}/${product.slug}/`;
 }
 
+/** Nom de la famille, tel qu il apparait dans le menu et le fil d Ariane. */
 export const FAMILLE_LABELS: Record<Famille, string> = {
-  monument: "Monuments",
-  cineraire: "Cinéraires et cavurnes",
+  monument: "Monuments funéraires",
+  cineraire: "Monuments cinéraires et cavurnes",
 };
 
 /** Au singulier, pour les phrases et les textes alternatifs. */

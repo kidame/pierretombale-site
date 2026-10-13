@@ -1,0 +1,25 @@
+---
+import PageFamille from "@/components/PageFamille.astro";
+import { pageTitle } from "@/config/site";
+import { getProductsByFamille } from "@/data/products";
+
+/* Titre et description raccourcis depuis docs/production-spec-pierretombalech.json
+   (page "monuments-funeraires") : le marbre, les prix affiches et le telephone
+   du production-spec sont ecartes, l atelier ne travaille que le granit et les
+   tarifs ne sont pas connus (etape E3). */
+const products = await getProductsByFamille("monument");
+---
+
+<PageFamille
+  famille="monument"
+  title={pageTitle("Monuments funéraires en granit")}
+  description="Catalogue de monuments funéraires en granit : sépultures simples ou doubles, stèles classiques et contemporaines, pour toute la Suisse romande."
+  h1="Monuments funéraires en granit pour la Suisse romande"
+  products={products}
+>
+  <p>
+    Notre catalogue de monuments funéraires couvre les sépultures simples et doubles, dans des styles
+    classiques ou contemporains. Chaque monument est taillé dans le granit massif, puis gravé et posé dans
+    le cimetière de votre commune : conseil, gravure et pose sont comprises dans le devis.
+  </p>
+</PageFamille>

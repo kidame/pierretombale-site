@@ -1,0 +1,114 @@
+---
+import ProductCard from "@/components/ProductCard.astro";
+import { GAMMES, GAMME_LABELS, type Product } from "@/data/products";
+
+/**
+ * La liste de modeles d une page famille : filtre par gamme, tri, compteur et
+ * grille. Le filtre famille n existe plus : chaque famille a sa propre page,
+ * donc une seule liste par page (les selecteurs du script le supposent).
+ */
+interface Props {
+  products: Product[];
+}
+
+const { products } = Astro.props;
+---
+
+<div class="shell pb-32">
+  <section class="border-t border-line pb-10 pt-7" aria-label="Filtrer et trier les modèles">
+    <div class="flex flex-col gap-7 lg:flex-row lg:items-start lg:justify-between">
+      <div data-filter-group="gamme">
+        <p class="label mb-2.5" id="filter-gamme">Gamme</p>
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-labelledby="filter-gamme">
+          <button class="chip" type="button" data-filter-value="all" aria-pressed="true">
+            Toutes les gammes
+          </button>
+          {
+            GAMMES.map((gamme) => (
+              <button class="chip" type="button" data-filter-value={gamme} aria-pressed="false">
+                {GAMME_LABELS[gamme]}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="shrink-0">
+        <label class="label mb-2.5 block" for="liste-sort">Trier par</label>
+        <select id="liste-sort" class="field mono w-full text-[0.8125rem] lg:w-52" data-liste-sort>
+          <option value="ordre">Ordre du catalogue</option>
+          <option value="nom">Nom (A à Z)</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <p class="mono border-t border-line py-4 text-[0.6875rem] uppercase tracking-[0.05em] text-muted" aria-live="polite">
+    <span data-liste-count>{String(products.length).padStart(2, "0")}</span>&#32;<span data-liste-count-label
+      >modèles affichés</span
+    >
+  </p>
+
+  <p class="type-h3 hidden py-32 text-center text-muted" data-liste-empty>
+    Aucun modèle ne correspond à cette gamme.
+  </p>
+
+  <ul class="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3" data-liste-grid>
+    {
+      products.map((product, index) => (
+        <li data-liste-item data-gamme={product.gamme} data-name={product.name} data-index={index}>
+          <ProductCard product={product} eager={index < 3} index={index} revealDelay={(index % 3) * 110} />
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script is:inline>
+  (() => {
+    const grid = document.querySelector("[data-liste-grid]");
+    const items = Array.from(document.querySelectorAll("[data-liste-item]"));
+    const countNode = document.querySelector("[data-liste-count]");
+    const countLabel = document.querySelector("[data-liste-count-label]");
+    const empty = document.querySelector("[data-liste-empty]");
+    const sort = document.querySelector("[data-liste-sort]");
+    let gamme = "all";
+
+    if (!grid || !sort) return;
+
+    function applyFilters() {
+      const visible = items.filter((item) => gamme === "all" || item.dataset.gamme === gamme);
+
+      visible.sort((a, b) => {
+        if (sort.value === "nom") return a.dataset.name.localeCompare(b.dataset.name, "fr");
+        return Number(a.dataset.index) - Number(b.dataset.index);
+      });
+
+      items.forEach((item) => (item.hidden = true));
+      visible.forEach((item) => {
+        item.hidden = false;
+        grid.appendChild(item);
+      });
+
+      countNode.textContent = String(visible.length).padStart(2, "0");
+      countLabel.textContent = visible.length === 1 ? "modèle affiché" : "modèles affichés";
+      empty.classList.toggle("hidden", visible.length > 0);
+      grid.classList.toggle("hidden", visible.length === 0);
+    }
+
+    document.querySelectorAll("[data-filter-group]").forEach((group) => {
+      group.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-filter-value]");
+        if (!button) return;
+
+        gamme = button.dataset.filterValue;
+        group.querySelectorAll("button").forEach((chip) => {
+          chip.setAttribute("aria-pressed", String(chip === button));
+        });
+        applyFilters();
+      });
+    });
+
+    sort.addEventListener("change", applyFilters);
+  })();
+</script>

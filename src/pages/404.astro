@@ -1,22 +1,24 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { pageTitle } from "@/config/site";
+import { FAMILLE_LABELS, familleUrl } from "@/data/products";
 ---
 
 <BaseLayout
-  title={pageTitle("Page not found")}
-  description="The page you're looking for doesn't exist or has been moved."
+  title={pageTitle("Page introuvable")}
+  description="Cette page n'existe pas ou a été déplacée."
   noindex={true}
 >
   <main id="main-content" class="shell flex min-h-[70vh] flex-col justify-center py-24">
-    <p class="mono hero-in text-[0.6875rem] uppercase tracking-[0.05em] text-accent">Error 404</p>
-    <h1 class="type-hero hero-in mt-6 max-w-[14ch]" style="--reveal-delay:90ms">This page isn't in the catalogue</h1>
+    <p class="mono hero-in text-[0.6875rem] uppercase tracking-[0.05em] text-accent">Erreur 404</p>
+    <h1 class="type-hero hero-in mt-6 max-w-[16ch]" style="--reveal-delay:90ms">Cette page n'existe pas</h1>
     <p class="type-lead hero-in mt-8 max-w-[46ch]" style="--reveal-delay:180ms">
-      The page you're looking for doesn't exist, or it has been moved. The six pieces we do make are all here.
+      L'adresse demandée n'existe pas, ou elle a été déplacée. Nos modèles sont rangés en deux familles.
     </p>
     <div class="hero-in mt-10 flex flex-wrap gap-3" style="--reveal-delay:260ms">
-      <a href="/catalog" class="btn btn-primary">Back to the catalogue</a>
-      <a href="/" class="btn btn-outline">Home</a>
+      <a href={familleUrl("monument")} class="btn btn-primary">{FAMILLE_LABELS.monument}</a>
+      <a href={familleUrl("cineraire")} class="btn btn-outline">{FAMILLE_LABELS.cineraire}</a>
+      <a href="/" class="btn btn-outline">Accueil</a>
     </div>
   </main>
 </BaseLayout>

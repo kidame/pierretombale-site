@@ -59,11 +59,16 @@ export const siteConfig = {
     alt: "Atelier Kō — hand-carved furniture from the northern woods",
   },
 
-  /** Primary navigation, in order. Also drives the mobile menu. */
+  /**
+   * Primary navigation, in order. Also drives the mobile menu.
+   * The two family paths must stay in step with `FAMILLE_PATHS` in
+   * src/data/products.ts, which is what every model link is built from.
+   */
   navigation: [
-    { label: "Index", href: "/" },
-    { label: "Catalogue", href: "/catalog" },
-    { label: "Studio", href: "/about" },
+    { label: "Monuments funéraires", href: "/monuments-funeraires/" },
+    { label: "Monuments cinéraires", href: "/monuments-cineraires-cavurnes/" },
+    { label: "L'atelier", href: "/about" },
+    { label: "Demander un devis", href: "/devis" },
   ] satisfies NavItem[],
 
   /** Short paragraph in the first footer column. */
@@ -75,8 +80,9 @@ export const siteConfig = {
     {
       heading: "Catalogue",
       links: [
-        { label: "All pieces", href: "/catalog" },
-        { label: "The studio", href: "/about" },
+        { label: "Monuments funéraires", href: "/monuments-funeraires/" },
+        { label: "Monuments cinéraires et cavurnes", href: "/monuments-cineraires-cavurnes/" },
+        { label: "L'atelier", href: "/about" },
       ],
     },
     {

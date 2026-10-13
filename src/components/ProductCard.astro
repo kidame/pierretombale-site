@@ -1,6 +1,6 @@
 ---
 import ProductImage from "@/components/ProductImage.astro";
-import { PRIX_SUR_DEMANDE, type Product } from "@/data/products";
+import { PRIX_SUR_DEMANDE, productUrl, type Product } from "@/data/products";
 
 interface Props {
   product: Product;
@@ -20,7 +20,7 @@ const reference = index === undefined ? undefined : String(index + 1).padStart(2
 ---
 
 <a
-  href={`/products/${product.slug}`}
+  href={productUrl(product)}
   class="product-card group block"
   data-product-card
   data-reveal
