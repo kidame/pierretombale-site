@@ -23,6 +23,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 13.10.2026, Claude chat : inventaire des 27 captures produits de l associe (toutes de
+  granitsmaffre.com) dans `docs/references/2026-10-13-captures-maffre-produits.md`. Images
+  hors depot. Ne jamais publier les images ni les noms Maffre. 4 questions ouvertes aux associes.
 - 13.10.2026, E1 TERMINEE. L import d Atelier Ko (MIT, commit 348433f) a ete fait par Claude chat
   via le connecteur VPS, l agent Claude Code n ayant pas acces a `/home/kumo/atelier/tmp/atelier-ko`.
   Panier retire entierement (CartDrawer, page cart, bloc localStorage, references) : `grep -riE
@@ -40,10 +43,11 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E2. Adapter le schema produit (`src/content.config.ts` et les entrees de `src/content/`) aux champs
-metier : granit, type de monument, style, tradition ; puis remplacer les 6 meubles par 3 modeles fictifs.
-
-Rappels pour E2 :
-- Les 6 fiches actuelles (oken-stool, arvid-chair, low-plinth-table, monolith-bench, halla-shelf,
-  tora-desk) et leurs images disparaissent : verifier que catalogue, accueil et sitemap suivent.
-- Prix : rien en dur dans les fiches, tout passera par `src/data/tarifs.json` a l etape E3.
+E2, mais attendre d abord la reponse des associes aux 4 questions de
+`docs/references/2026-10-13-captures-maffre-produits.md` (gamme reelle, formes sculptees,
+granits, piste revendeur Maffre). Decider aussi les adresses (slugs) avant de creer les fiches :
+le production-spec prevoit /monuments-funeraires/ et /monuments-cineraires-cavurnes/, Atelier Ko
+utilise /catalog et /products/<slug>.
+Rappels E2 : schema produit = famille (monument 100x200, cineraire 60x60), gamme (classique,
+affinite, prestige, musulmane, noms a nous), style, lignes, stele oui/non, bicolore, motif, granit.
+Prix : rien en dur, tout via `src/data/tarifs.json` en E3.
