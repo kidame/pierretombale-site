@@ -29,12 +29,44 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [x] E2. Adapter le schema produit : granit, type de monument, style, tradition. 3 modeles fictifs.
       (passe A : schema metier et 12 fiches ; passe B : adresses SEO par famille.)
 - [x] E3. `src/config/entreprise.ts` et `src/data/tarifs.json` a null, affichage "prix sur demande".
-- [ ] E4. Pages : accueil, catalogue, fiche, Nos granits, contact/devis (formulaire sans envoi reel).
+- [x] E4. Pages : accueil, catalogue, fiche, Nos granits, contact/devis (formulaire sans envoi reel).
+      (passe 1 : nettoyage du theme et SEO ; passe 2 : accueil et a-propos ; passe 3 : prix, granits,
+      FAQ ; passe 4 : devis, merci, protection des donnees.)
 - [ ] E5. Configurateur Konva (ilot Preact) en prototype.
-- [ ] E6. Envoi du devis vers webhook n8n + Turnstile (aucun secret dans le repo).
+- [ ] E6. Envoi du devis : fonction Cloudflare Pages + Resend (pas de n8n), adresse en variable
+      d environnement, Turnstile. Aucun secret dans le repo. Suivre `docs/devis-contrat.md`.
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 13.10.2026, E4 PASSE 4 TERMINEE (Claude Code) : devis, merci, protection des donnees. E4 EST FINIE.
+  `/devis/` est une vraie page indexable (title 44, meta 150, h1 unique, canonical, fil d Ariane) :
+  formulaire `method="post" action="/api/devis" enctype="multipart/form-data"`, 4 sections
+  (coordonnees, monument, gravure et personnalisation, message), consentement obligatoire avec lien
+  vers /protection-des-donnees/, select modele genere depuis les 12 fiches (2 optgroups) et select
+  granit depuis granits.json. Pre-selection depuis `?modele=<slug>` en JS (remplit aussi la famille,
+  via `famillesParModele`) ; sans JS la page reste utilisable et poste nativement.
+  ENVOI INACTIF : `src/config/devis.ts` ({ envoiActif: false, endpoint: "/api/devis" }, limites de
+  fichiers, delai anti-robot, messages). Tant que `envoiActif` est false, le JS valide puis affiche
+  "L envoi en ligne sera bientot disponible" et ne poste RIEN. A true : fetch multipart, "Envoi en
+  cours", puis /devis/merci/ ou message d erreur (les `erreurs` de la reponse s affichent sous le
+  champ concerne). Validation maison en francais (`form.noValidate = true` cote JS seulement) :
+  message sous chaque champ, resume en role="alert", focus sur le premier champ fautif.
+  Fichiers : 3 au maximum, 8 Mo au total, JPEG/PNG/WEBP/PDF, verifies en JS et A REVERIFIER EN E6.
+  Anti-spam : piege `societe` (hors parcours clavier) et `horodatage` pose par le JS (vide sans JS,
+  c est normal) ; emplacement commente pour Turnstile, aucune cle dans le depot.
+  `docs/devis-contrat.md` : le contrat que E6 doit implementer (chaque champ, les limites, les
+  reponses 200/400/413/429/500, les deux chemins avec et sans JS).
+  `/devis/merci/` en noindex, hors sitemap, aucun delai chiffre. `/protection-des-donnees/` courte et
+  prudente (LPD), responsable lu dans entreprise.ts donc rien d affiche aujourd hui, commentaire
+  "A faire relire : texte provisoire, pas un avis juridique" en tete du fichier ; liee depuis la
+  ligne basse du pied de page (`siteConfig.footerLegal`).
+  Tous les liens internes passent a `/devis/` (et `/devis/?modele=<slug>` sur les fiches) : la page
+  etant indexable, son canonical est /devis/ et les liens ne doivent plus passer par une redirection.
+  Le filtre du sitemap n exclut plus que `/devis/merci`.
+  Verifie : `npm run build` OK (23 pages), `npx astro check` 32 fichiers 0 erreur 0 avertissement
+  0 hint ; sitemap 21 adresses dont /devis/ et /protection-des-donnees/, sans /devis/merci/ ;
+  le select modele contient les 12 slugs ; `grep -rniE "atelier|kosovo|sous-trait|fabriqu|n8n" dist`
+  ne renvoie rien ; titles 44, 41 et 34 signes, metas 150, 136 et 39.
 - 13.10.2026, E4 PASSE 3 TERMINEE (Claude Code) : page prix, Nos granits, FAQ.
   3 pages nouvelles : `/prix-pierre-tombale-suisse/` (ce que comprend l estimation, ce qui fait varier
   le prix, tableau par famille, "Prix indicatifs, estimation gratuite et sans engagement sur devis" et
@@ -206,9 +238,14 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E4 PASSE 4 : page `/devis`. Formulaire complet SANS ENVOI REEL (coordonnees de la famille, cimetiere,
-modele pre-rempli par `?modele=<slug>`, granit, texte de gravure, et l ajout d un dessin par la
-famille, cf. "Prix et personnalisation" dans docs/DECISIONS-ET-ETAT.md). L envoi vers le webhook n8n
-et Turnstile sont branches en E6 : ne rien poster, ne poser aucun secret dans le depot.
-La page reste en noindex et hors sitemap.
-Source : docs/production-spec-pierretombalech.json (page contact, conversion_spec) et analyses/.
+E5 : CONFIGURATEUR KONVA en prototype (un seul ilot Preact). Rappel de l ordre choisi le 13.10.2026
+(option securisee) : E4 d abord, E5 ensuite. Le site tient debout sans configurateur ; le
+configurateur ne doit pas bloquer la mise en ligne. Point de depart : la demo Badge Maker de Konva
+(s en inspirer, ne pas la copier), cf. "Base de depart du site" dans docs/DECISIONS-ET-ETAT.md.
+Ce que le configurateur devra produire : un apercu PNG et un recapitulatif a joindre a la demande de
+devis, donc des champs a ajouter au contrat `docs/devis-contrat.md`.
+Puis E6 : envoi du devis par une fonction Cloudflare Pages `/api/devis` + Resend (PAS de n8n,
+decision de Thomas du 13.10.2026), adresse de destination en variable d environnement, Turnstile.
+Tout est specifie dans `docs/devis-contrat.md` ; il restera a passer `envoiActif` a true dans
+`src/config/devis.ts` et a poser le widget Turnstile a l emplacement commente de la page devis.
+Aucun secret dans le depot.
