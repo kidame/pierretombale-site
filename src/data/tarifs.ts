@@ -144,6 +144,29 @@ export function prixEstProvisoire(slug: string): boolean {
 }
 
 /**
+ * L'estimation affichée pour un ensemble de modèles : la page prix en montre
+ * une par famille. Les bornes sont agrégées ici plutôt que recopiées dans la
+ * page, pour que `src/data/tarifs.json` reste la seule source des montants.
+ * Si un seul modèle du lot n'a qu'un prix plancher (« dès »), le lot n'a pas de
+ * plafond connu et s'affiche lui aussi en « Dès n CHF ».
+ */
+export function fourchetteAffichee(slugs: readonly string[]): string {
+  const prix = slugs.map(prixRetenu).filter((valeur): valeur is PrixOuProvisoire => valeur !== null);
+  if (prix.length === 0) return PRIX_SUR_DEMANDE;
+
+  const bas = Math.min(...prix.map((valeur) => ("des" in valeur ? valeur.des : valeur.min)));
+  if (prix.some((valeur) => "des" in valeur)) return texte({ des: bas });
+
+  const haut = Math.max(...prix.map((valeur) => ("des" in valeur ? valeur.des : valeur.max)));
+  return texte({ min: bas, max: haut });
+}
+
+/** Vrai si l'un des modèles du lot n'a qu'un prix indicatif. */
+export function fourchetteEstProvisoire(slugs: readonly string[]): boolean {
+  return slugs.some((slug) => prixEstProvisoire(slug));
+}
+
+/**
  * L'offre à publier dans les données structurées, ou `null` : tant qu'un prix
  * est provisoire (ou inconnu), on ne chiffre rien pour Google. Un prix « dès »
  * donne une Offer, une fourchette donne un AggregateOffer.

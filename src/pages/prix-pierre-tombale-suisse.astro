@@ -1,0 +1,234 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { pageTitle } from "@/config/site";
+import { FAMILLES, FAMILLE_LABELS, familleUrl, getProductsByFamille } from "@/data/products";
+import { breadcrumbSchema } from "@/data/seo";
+import { fourchetteAffichee, fourchetteEstProvisoire } from "@/data/tarifs";
+
+/* Page prix. Deux regles de docs/DECISIONS-ET-ETAT.md commandent cette page :
+   - "Prix et personnalisation" : les prix affiches sont des ESTIMATIONS ; elles
+     couvrent granit, gravure, pose et personnalisation, et les eventuelles
+     taxes communales de cimetiere ne sont pas comprises ;
+   - "Regles de communication du site" : aucun chiffre sans source. D ou
+     l absence de comparaison chiffree avec la concurrence et de chiffre de
+     marche sur cette page.
+   Aucun montant n est ecrit ici : tout vient de src/data/tarifs.json par
+   `fourchetteAffichee`, pour qu un prix corrige dans le JSON corrige la page. */
+
+const origin = Astro.site ?? new URL(Astro.url.origin);
+
+const produitsParFamille = await Promise.all(FAMILLES.map((famille) => getProductsByFamille(famille)));
+
+const lignes = FAMILLES.map((famille, index) => {
+  const products = produitsParFamille[index];
+  const slugs = products.map((product) => product.slug);
+
+  return {
+    libelle: FAMILLE_LABELS[famille],
+    url: familleUrl(famille),
+    nombre: products.length,
+    estimation: fourchetteAffichee(slugs),
+  };
+});
+
+/* La mention "prix indicatifs" s affiche tant qu une seule des estimations
+   n est pas ferme dans src/data/tarifs.json. */
+const mentionIndicative = fourchetteEstProvisoire(produitsParFamille.flat().map((product) => product.slug));
+
+const comprend = [
+  {
+    titre: "Le granit",
+    texte:
+      "La pierre du monument, massive, dans la teinte choisie parmi les granits disponibles. Pas de pierre reconstituée, pas de placage.",
+  },
+  {
+    titre: "La gravure",
+    texte:
+      "Les noms, les dates et le texte souhaité, soumis à la famille en bon à tirer. Rien n'est gravé avant votre accord.",
+  },
+  {
+    titre: "La pose au cimetière",
+    texte:
+      "La pose du monument sur la sépulture, par nos soins, au jour convenu avec la famille et selon le règlement du cimetière.",
+  },
+  {
+    titre: "La personnalisation",
+    texte:
+      "Le choix du modèle et des finitions, un motif, et jusqu'au dessin que la famille nous fournit pour le faire graver.",
+  },
+];
+
+const variations = [
+  {
+    titre: "La famille de monument",
+    texte:
+      "Un monument funéraire et un monument cinéraire ou une cavurne n'ont ni les mêmes dimensions ni le même volume de granit.",
+  },
+  {
+    titre: "Le modèle",
+    texte:
+      "La forme de la stèle, le soubassement, la présence d'une jardinière ou d'un couvre-tombe changent la quantité de pierre travaillée.",
+  },
+  {
+    titre: "Le granit",
+    texte: "Toutes les teintes n'ont pas le même prix, et une même teinte varie selon le granit retenu.",
+  },
+  {
+    titre: "La gravure",
+    texte:
+      "Le nombre de lettres, leur taille et leur finition : gravure simple, lettres peintes, dorées ou en relief.",
+  },
+  {
+    titre: "Le motif, ou votre propre dessin",
+    texte:
+      "Un motif du catalogue, ou un dessin que la famille nous fournit et que nous reprenons pour la gravure. Le travail dépend alors du dessin.",
+  },
+  {
+    titre: "Les options",
+    texte: "Vase, lanterne, plaque, jardinière : chaque pièce ajoutée au monument compte dans l'estimation.",
+  },
+];
+
+const filAriane = breadcrumbSchema(
+  [
+    { name: "Accueil", path: "/" },
+    { name: "Prix", path: "/prix-pierre-tombale-suisse/" },
+  ],
+  origin,
+);
+---
+
+<BaseLayout
+  title={pageTitle("Prix d'une pierre tombale en Suisse")}
+  description="Combien coûte une pierre tombale en Suisse romande ? Nos estimations par famille de monument, ce qu'elles comprennent et ce qui fait varier le prix."
+>
+  <main id="main-content">
+    <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
+      <h1 class="type-h1 hero-in max-w-[22ch]">Prix d'une pierre tombale en Suisse romande</h1>
+      <p class="type-lead hero-in mt-8 max-w-[58ch]" style="--reveal-delay:120ms">
+        Les montants affichés sur ce site sont des estimations : elles donnent un ordre de grandeur avant le
+        premier rendez-vous. Le prix d'un monument se fixe sur devis, une fois le modèle, le granit et la
+        gravure choisis.
+      </p>
+    </section>
+
+    {/* --------------------------------------- Ce que comprend l estimation */}
+    <section class="shell mt-16 md:mt-24">
+      <div class="rule" data-reveal="line"></div>
+      <h2 class="type-h2 mt-8 max-w-[20ch]" data-reveal>Ce que comprend l'estimation</h2>
+      <p class="type-body mt-6 max-w-[52ch]" data-reveal>
+        Une estimation couvre le monument posé, pas seulement la pierre : il n'y a pas de poste à ajouter
+        après coup pour la gravure ou pour la pose.
+      </p>
+
+      <ol class="mt-12 grid gap-x-8 gap-y-12 md:mt-14 md:grid-cols-4">
+        {
+          comprend.map((poste, index) => (
+            <li class="border-t border-line pt-6" data-reveal style={`--reveal-delay:${index * 110}ms`}>
+              <h3 class="type-h3">{poste.titre}</h3>
+              <p class="type-body mt-4 text-[0.9375rem]">{poste.texte}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    {/* -------------------------------------------- Le tableau par famille */}
+    <section class="shell mt-24 md:mt-36">
+      <div class="rule" data-reveal="line"></div>
+      <h2 class="type-h2 mt-8 max-w-[20ch]" data-reveal>Estimations par famille de monument</h2>
+      <p class="type-body mt-6 max-w-[52ch]" data-reveal>
+        Les deux familles du catalogue, avec l'estimation qui couvre leurs modèles. Chaque fiche indique
+        ensuite son propre ordre de prix.
+      </p>
+
+      <div class="mt-12 overflow-x-auto" data-reveal>
+        <table class="w-full border-collapse text-left">
+          <thead>
+            <tr class="border-y border-line">
+              <th scope="col" class="label py-4 pr-6 font-normal">Famille</th>
+              <th scope="col" class="label py-4 pr-6 font-normal">Modèles</th>
+              <th scope="col" class="label py-4 font-normal">Estimation</th>
+            </tr>
+          </thead>
+          <tbody class="mono text-[0.9375rem]">
+            {
+              lignes.map((ligne) => (
+                <tr class="border-b border-line">
+                  <th scope="row" class="py-5 pr-6 font-normal">
+                    <a href={ligne.url} class="link">
+                      {ligne.libelle}
+                    </a>
+                  </th>
+                  <td class="py-5 pr-6 text-muted">{ligne.nombre}</td>
+                  <td class="py-5">{ligne.estimation}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      {
+        mentionIndicative && (
+          <p class="mono mt-6 text-[0.6875rem] uppercase tracking-[0.05em] text-muted" data-reveal>
+            Prix indicatifs, estimation gratuite et sans engagement sur devis
+          </p>
+        )
+      }
+      <p class="type-body mt-4 max-w-[52ch] text-[0.9375rem] text-muted" data-reveal>
+        Les éventuelles taxes communales de cimetière ne sont pas comprises.
+      </p>
+    </section>
+
+    {/* ------------------------------------------- Ce qui fait varier le prix */}
+    <section class="shell mt-24 md:mt-36">
+      <div class="rule" data-reveal="line"></div>
+      <h2 class="type-h2 mt-8 max-w-[20ch]" data-reveal>Ce qui fait varier le prix</h2>
+      <p class="type-body mt-6 max-w-[52ch]" data-reveal>
+        Deux monuments de la même famille peuvent se trouver aux deux bouts de la fourchette. Voici ce qui
+        joue, du plus au moins déterminant.
+      </p>
+
+      <dl class="mt-12 border-t border-line">
+        {
+          variations.map((variation, index) => (
+            <div
+              class="grid gap-x-8 gap-y-2 border-b border-line py-6 md:grid-cols-12"
+              data-reveal
+              style={`--reveal-delay:${index * 80}ms`}
+            >
+              <dt class="type-h3 md:col-span-5">{variation.titre}</dt>
+              <dd class="type-body max-w-[52ch] text-[0.9375rem] md:col-span-7">{variation.texte}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    {/* ------------------------------------------------------------- Appel */}
+    <section class="shell mt-24 md:mt-36">
+      <div class="grid items-end gap-8 md:grid-cols-12" data-reveal>
+        <div class="md:col-span-7">
+          <h2 class="type-h2 max-w-[20ch]">Une estimation pour votre projet</h2>
+          <p class="type-body mt-6 max-w-[52ch]">
+            Dites-nous le cimetière, la sépulture et ce que vous imaginez : nous établissons un devis détaillé,
+            gratuit et sans engagement. Si vous avez un dessin, joignez-le.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
+          <a href="/devis" class="btn btn-primary">Demander un devis</a>
+          {
+            lignes.map((ligne) => (
+              <a href={ligne.url} class="btn btn-outline">
+                {ligne.libelle}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
+</BaseLayout>
