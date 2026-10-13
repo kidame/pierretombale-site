@@ -1,17 +1,21 @@
 /**
- * Central theme configuration.
+ * Configuration centrale du site.
  *
- * Everything a new site normally needs to change lives here: the studio name,
- * navigation, footer, and which products are promoted on the homepage and in
- * the mobile menu. Components read from this file rather than hardcoding copy,
- * so renaming or re-scoping the theme does not mean editing markup.
+ * Tout ce qui se reecrit quand le site change de nom ou de perimetre vit ici :
+ * le nom affiche, la navigation, le pied de page et les modeles mis en avant
+ * sur l accueil et dans le menu mobile. Les composants lisent ce fichier au
+ * lieu d ecrire les textes en dur.
+ *
+ * ATTENTION : "PierreTombale.ch" est un nom PROVISOIRE (decision de Thomas du
+ * 13.10.2026, le nom de l entreprise et le domaine ne sont pas tranches, cf.
+ * `docs/DECISIONS-ET-ETAT.md`). Quand le nom sera choisi, deux endroits a
+ * changer : `name` ci-dessous et `site` dans astro.config.mjs.
  *
  * Deux choses ne sont PAS ici, pour qu'elles n'aient qu'une seule source :
  * - le domaine canonique : `site` dans astro.config.mjs ;
  * - les coordonnées de l'entreprise (téléphone, courriel, adresse) :
  *   `src/config/entreprise.ts`, à `null` tant que les associés ne les ont pas
- *   fournies. Les valeurs d'Atelier Kō ont été retirées d'ici (étape E3) ;
- *   le nom, la tagline et les descriptions anglaises restent à reprendre (E4).
+ *   fournies.
  */
 
 export interface NavItem {
@@ -25,41 +29,33 @@ export interface FooterColumn {
 }
 
 export const siteConfig = {
-  /** Studio name. Used in the wordmark, metadata, JSON-LD and the footer. */
-  name: "Atelier Kō",
+  /** Nom affiché : signature, métadonnées, JSON-LD et pied de page. Provisoire. */
+  name: "PierreTombale.ch",
 
-  /**
-   * One-line positioning statement. Plus émise dans les données structurées
-   * depuis E3 : le texte est celui d'Atelier Kō, il sera réécrit en E4.
-   */
-  tagline: "Furniture, made by hand",
+  /** Positionnement en une ligne. N'est plus émis dans les données structurées. */
+  tagline: "Monuments funéraires et cinéraires en granit, Suisse romande",
 
-  /** Default meta description for pages that do not set their own. */
+  /** Meta description par défaut, pour une page qui n'en fournit pas. */
   description:
-    "A small Swedish atelier crafting solid oak, ash and walnut furniture by hand. Made to order in Småland.",
+    "Monuments funéraires et monuments cinéraires en granit massif, réalisés sur mesure pour la Suisse romande. Conseil, gravure et pose compris dans le devis.",
 
-  /** Default <title> for pages that do not set their own. */
-  defaultTitle: "Atelier Kō — Hand-made furniture from the northern woods",
+  /** <title> par défaut, pour une page qui n'en fournit pas. */
+  defaultTitle: "Pierres tombales et monuments en granit | PierreTombale.ch",
 
-  /** Browser theme colour. Keep in step with `--canvas` in src/styles.css. */
+  /** Couleur de thème du navigateur. À garder en phase avec `--canvas` dans src/styles.css. */
   themeColor: "#f4f4f2",
 
-  /**
-   * Fallback social share card, served from public/. Used by any page that
-   * does not pass its own `image` — product pages pass their photography, so
-   * this covers the homepage, catalogue, studio, devis and 404.
-   */
-  socialImage: {
-    src: "/og-image.png",
-    width: 1200,
-    height: 630,
-    alt: "Monuments funéraires et monuments cinéraires en granit massif",
-  },
+  /* Pas de `socialImage` : la carte de partage du thème (public/og-image.png,
+     un visuel de meubles) a été retirée en E4 passe 1 et rien ne la remplace
+     encore. Il faut un PNG ou un JPEG de 1200x630 : les réseaux sociaux ne
+     lisent pas les SVG. Tant qu'il n'existe pas, BaseLayout n'émet aucune
+     balise og:image, plutôt qu'une balise qui pointe sur un fichier absent.
+     Une fiche qui a une photographie, elle, emporte déjà son propre aperçu. */
 
   /**
-   * Primary navigation, in order. Also drives the mobile menu.
-   * The two family paths must stay in step with `FAMILLE_PATHS` in
-   * src/data/products.ts, which is what every model link is built from.
+   * Navigation principale, dans l'ordre. Pilote aussi le menu mobile.
+   * Les deux chemins de famille doivent rester en phase avec `FAMILLE_PATHS`
+   * dans src/data/products.ts, d'où vient chaque lien de modèle.
    */
   navigation: [
     { label: "Monuments funéraires", href: "/monuments-funeraires/" },
@@ -68,44 +64,42 @@ export const siteConfig = {
     { label: "Demander un devis", href: "/devis" },
   ] satisfies NavItem[],
 
-  /** Short paragraph in the first footer column. */
+  /** Court paragraphe de la première colonne du pied de page. */
   footerBlurb:
     "Monuments funéraires et monuments cinéraires en granit massif, réalisés sur mesure pour la Suisse romande. Conseil, gravure et pose.",
 
-  /** Footer link columns. Add or remove columns freely. */
+  /**
+   * Colonnes de liens du pied de page. Seules des pages qui existent : pas de
+   * lien mort ni de page annoncée mais pas écrite.
+   */
   footerColumns: [
     {
       heading: "Catalogue",
       links: [
         { label: "Monuments funéraires", href: "/monuments-funeraires/" },
         { label: "Monuments cinéraires et cavurnes", href: "/monuments-cineraires-cavurnes/" },
-        { label: "L'atelier", href: "/about" },
       ],
     },
     {
-      heading: "Enquiries",
+      heading: "Informations",
       links: [
-        { label: "Custom orders", href: "/about#studio" },
-        { label: "Trade portal", href: "/about#studio" },
-        { label: "Studio visits", href: "/about#studio" },
+        { label: "L'atelier", href: "/about" },
+        { label: "Demander un devis", href: "/devis" },
       ],
     },
-    /* Pas de colonne "Elsewhere" : le compte Instagram d'Atelier Kō pointait
-       sur la racine du site, c'est-à-dire sur rien. Les réseaux de
-       l'entreprise viendront quand ils existeront. */
   ] satisfies FooterColumn[],
 
   /**
-   * Which products the theme promotes. Each value is a filename in
-   * src/content/products without the .md extension. A slug that does not
-   * resolve fails the build rather than rendering an empty section.
+   * Les modèles mis en avant. Chaque valeur est un nom de fichier de
+   * src/content/products sans l'extension .md. Un slug qui ne se résout pas
+   * fait échouer le build plutôt que d'afficher une section vide.
    */
   featured: {
-    /** Three cards in the homepage "in the workshop" grid. */
+    /** Les trois cartes de la grille de l'accueil. */
     homepageGrid: ["stele-doucine-classique", "stele-arrondie", "stele-cineraire-droite"],
-    /** The single large piece given its own homepage section. */
+    /** Le modèle qui a sa propre section sur l'accueil. */
     homepageSolo: "monument-avec-jardiniere",
-    /** The piece shown at the foot of the mobile menu. */
+    /** Le modèle montré au bas du menu mobile. */
     mobileMenu: "stele-coeur",
   },
 } as const;
@@ -113,9 +107,27 @@ export const siteConfig = {
 export type SiteConfig = typeof siteConfig;
 
 /**
- * Builds a page <title> in the theme's house format: "Page — Studio Name".
- * Change the separator here to restyle every title at once.
+ * Titre de page au format maison : "Page | PierreTombale.ch". Changer le
+ * séparateur ici change tous les titres d'un coup.
  */
 export function pageTitle(page: string): string {
-  return `${page} — ${siteConfig.name}`;
+  return `${page} | ${siteConfig.name}`;
+}
+
+/**
+ * Titre d'une fiche modèle : "<Nom> - <nature> en granit | PierreTombale.ch",
+ * où la nature est "pierre tombale" ou "monument cinéraire".
+ *
+ * Google tronque au-delà de 60 signes, et le nom du modèle doit rester
+ * lisible : passé cette limite on retire le nom du site, puis, si le nom du
+ * modèle répète déjà la nature ("Stèle cinéraire courbe avec vase"), on ne la
+ * redit pas.
+ */
+export function titreFiche(nom: string, nature: string): string {
+  const base = `${nom} - ${nature} en granit`;
+  const avecSite = `${base} | ${siteConfig.name}`;
+
+  if (avecSite.length <= 60) return avecSite;
+  if (base.length <= 60) return base;
+  return `${nom} en granit`;
 }
