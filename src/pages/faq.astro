@@ -59,7 +59,7 @@ const questions: Question[] = [
     question: "Peut-on faire graver un dessin que la famille fournit ?",
     reponse:
       "Oui. Au-delà des motifs du catalogue, vous pouvez nous transmettre votre propre dessin pour le faire graver : un croquis, un symbole, un signe qui comptait pour le défunt. Nous vous disons ce que la gravure permet, puis le dessin repris vous est soumis en bon à tirer avant toute gravure.",
-    lien: { href: "/devis", label: "Joindre un dessin à votre demande" },
+    lien: { href: "/devis/", label: "Joindre un dessin à votre demande" },
   },
   {
     question: "Comment choisir le granit ?",
@@ -71,7 +71,7 @@ const questions: Question[] = [
     question: "Peut-on ajouter un nom ou une inscription sur un monument déjà posé ?",
     reponse:
       "Oui, une inscription complémentaire s'ajoute sur un monument en place : un nom, des dates, une épitaphe. Envoyez-nous une photo du monument et le texte souhaité pour recevoir un devis.",
-    lien: { href: "/devis", label: "Demander un devis" },
+    lien: { href: "/devis/", label: "Demander un devis" },
   },
 ];
 
@@ -145,7 +145,7 @@ const filAriane = breadcrumbSchema(
           </p>
         </div>
         <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
-          <a href="/devis" class="btn btn-primary">Demander un devis</a>
+          <a href="/devis/" class="btn btn-primary">Demander un devis</a>
           <a href="/prix-pierre-tombale-suisse/" class="btn btn-outline">Prix</a>
           <a href={familleUrl("monument")} class="btn btn-outline">Monuments funéraires</a>
         </div>
