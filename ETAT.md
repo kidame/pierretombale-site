@@ -35,6 +35,28 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 13.10.2026, E4 PASSE 3 TERMINEE (Claude Code) : page prix, Nos granits, FAQ.
+  3 pages nouvelles : `/prix-pierre-tombale-suisse/` (ce que comprend l estimation, ce qui fait varier
+  le prix, tableau par famille, "Prix indicatifs, estimation gratuite et sans engagement sur devis" et
+  "les eventuelles taxes communales de cimetiere ne sont pas comprises"), `/nos-granits/` (granits
+  disponibles par teinte, pastille de couleur approximative, aucune origine geographique) et `/faq/`
+  (8 questions, JSON-LD FAQPage).
+  AUCUN MONTANT DANS LES PAGES : `fourchetteAffichee(slugs)` et `fourchetteEstProvisoire(slugs)` dans
+  `src/data/tarifs.ts` agregent les prix de tarifs.json (aujourd hui "De 1'400 a 6'000 CHF" pour les
+  2 familles). `TEINTE_PLURIEL`, `TEINTE_PASTILLE` et `granitsParTeinte()` passent dans
+  `src/data/granits.ts` : l accueil et /nos-granits/ lisent la meme source.
+  FAQ : le delai "environ un an apres l inhumation" du production-spec est ECARTE, comme toute
+  affirmation reglementaire ; les 2 questions concernees repondent "les regles dependent de chaque
+  commune : nous verifions pour vous le reglement du cimetiere concerne". Une question porte sur le
+  dessin fourni par la famille.
+  Menu : Prix ajoute. Pied de page : Nos granits (Catalogue), Prix et Questions frequentes
+  (Informations). Accueil : la liste des granits faisait doublon, remplacee par un lien vers
+  /nos-granits/, plus un lien Prix dans l en-tete de la section des modeles. Fiches modele : lien
+  discret "Comment est calcule le prix ?" sous le prix.
+  Verifie : `npm run build` OK (21 pages), `npx astro check` 29 fichiers 0 erreur 0 avertissement
+  0 hint ; sitemap 19 adresses dont les 3 nouvelles ; `grep -rniE
+  "atelier|kosovo|sous-trait|fabriqu|swiss ?made|artisan" dist` ne renvoie rien ; titles 30, 53 et 59
+  signes, meta 145, 148 et 153.
 - 13.10.2026, Claude chat : carte de partage public/og-image.png (1200x630, gris, "PierreTombale.ch",
   generee par script PIL) branchee par defaut via siteConfig.socialImage. A regenerer avec le nom definitif.
   Build 18 pages et astro check 0 erreur. Apercu Netlify republie.
@@ -184,9 +206,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E4 PASSE 3 : page `prix-pierre-tombale-suisse` et page "Nos granits" construite depuis
-`src/data/granits.json`, plus la FAQ du production-spec (en ecartant toute reponse qui avance un
-chiffre sans source, cf. la statistique de cremation retiree en passe 2).
-Ensuite, toujours en passes courtes (l agent consomme vite ses 80 tours) :
-- passe 4 : contact/devis (formulaire sans envoi reel, E6 branchera n8n).
-Source : docs/production-spec-pierretombalech.json (pages, meta, FAQ, maillage) et analyses/ (section 5).
+E4 PASSE 4 : page `/devis`. Formulaire complet SANS ENVOI REEL (coordonnees de la famille, cimetiere,
+modele pre-rempli par `?modele=<slug>`, granit, texte de gravure, et l ajout d un dessin par la
+famille, cf. "Prix et personnalisation" dans docs/DECISIONS-ET-ETAT.md). L envoi vers le webhook n8n
+et Turnstile sont branches en E6 : ne rien poster, ne poser aucun secret dans le depot.
+La page reste en noindex et hors sitemap.
+Source : docs/production-spec-pierretombalech.json (page contact, conversion_spec) et analyses/.
