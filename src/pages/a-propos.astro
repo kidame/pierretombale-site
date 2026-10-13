@@ -1,0 +1,187 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import visuelProvisoire from "@/assets/visuel-provisoire.svg";
+import { pageTitle } from "@/config/site";
+import { familleUrl } from "@/data/products";
+
+/* Page "Qui sommes-nous". L adresse est /a-propos/ (slug du production-spec) ;
+   le libelle affiche dans le menu et le pied de page est "Qui sommes-nous".
+   Ce qui ne doit jamais revenir ici : un courriel ou un siege invente, un nom
+   de personne, une annee d experience, un temoignage, un chiffre sans source.
+   Les coordonnees viennent de src/config/entreprise.ts, et de nulle part
+   ailleurs. Voir aussi "Regles de communication du site" dans
+   docs/DECISIONS-ET-ETAT.md : on parle de nos monuments, realises sur mesure,
+   et de la pose que nous faisons nous-memes. */
+
+const etapes = [
+  {
+    titre: "Conseil et choix",
+    texte:
+      "Un rendez-vous pour parler de la sépulture, du règlement du cimetière et de ce qui est possible. Nous aidons au choix du modèle, du granit, de la gravure et des accessoires, sans rien presser.",
+  },
+  {
+    titre: "Devis détaillé",
+    texte:
+      "Un devis écrit, poste par poste : le monument, le granit, la gravure, les accessoires et la pose. Vous savez ce qui est compris avant de décider.",
+  },
+  {
+    titre: "Bon à tirer de la gravure",
+    texte:
+      "Le texte, les dates et les motifs vous sont soumis en épreuve. Rien n'est gravé avant que la famille ait validé ce bon à tirer.",
+  },
+  {
+    titre: "Pose au cimetière",
+    texte:
+      "Nous posons le monument nous-mêmes, au jour convenu avec la famille et dans le respect du règlement du cimetière.",
+  },
+  {
+    titre: "Suivi après la pose",
+    texte:
+      "Une inscription complémentaire à ajouter plus tard, un nettoyage, une remise en état : nous restons joignables après la pose.",
+  },
+];
+
+/* Des reperes, pas des chiffres : aucune statistique, aucune annee
+   d experience, rien qui ne soit verifiable. */
+const reperes = [
+  { label: "Zone d'intervention", valeur: "Suisse romande" },
+  { label: "Matière", valeur: "Granit massif" },
+  { label: "Pose", valeur: "Par nos soins" },
+];
+---
+
+<BaseLayout
+  title={pageTitle("Qui sommes-nous")}
+  description="Une entreprise de Suisse romande qui accompagne les familles de A à Z : conseil, devis détaillé, bon à tirer de la gravure, pose au cimetière et suivi."
+>
+  <main id="main-content">
+    <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
+      <h1 class="type-h1 hero-in max-w-[14ch]">Qui sommes-nous</h1>
+      <p class="type-lead hero-in mt-8 max-w-[58ch]" style="--reveal-delay:120ms">
+        Nous sommes une entreprise de Suisse romande qui réalise des monuments funéraires et cinéraires en
+        granit, et qui accompagne les familles de A à Z : le conseil, le devis, la gravure, la pose au
+        cimetière et le suivi des années suivantes.
+      </p>
+    </section>
+
+    <figure class="hero-in" style="--reveal-delay:260ms">
+      <div class="overflow-hidden bg-surface">
+        <img
+          src={visuelProvisoire.src}
+          alt=""
+          width={1920}
+          height={1080}
+          loading="eager"
+          decoding="sync"
+          class="h-[40vh] w-full object-cover md:h-[56vh]"
+        />
+      </div>
+      <figcaption
+        class="shell mono mt-3 flex justify-between gap-4 text-[0.625rem] uppercase tracking-[0.05em] text-muted"
+      >
+        <span>Visuel provisoire</span>
+        <span>Photographies de nos réalisations à venir</span>
+      </figcaption>
+    </figure>
+
+    {/* ----------------------------------------------- De A a Z : les etapes */}
+    <section class="shell mt-24 md:mt-36">
+      <div class="rule" data-reveal="line"></div>
+      <h2 class="type-h2 mt-8 max-w-[20ch]" data-reveal>De la première question à la pose</h2>
+      <p class="type-body mt-6 max-w-[52ch]" data-reveal>
+        Une famille n'a qu'un seul interlocuteur, du premier rendez-vous jusqu'aux années qui suivent la pose.
+      </p>
+
+      <ol class="mt-12 border-t border-line">
+        {
+          etapes.map((etape, index) => (
+            <li
+              class="grid gap-x-8 gap-y-2 border-b border-line py-6 md:grid-cols-12"
+              data-reveal
+              style={`--reveal-delay:${index * 90}ms`}
+            >
+              <p class="label md:col-span-2">Étape {index + 1}</p>
+              <h3 class="type-h3 md:col-span-4">{etape.titre}</h3>
+              <p class="type-body max-w-[52ch] text-[0.9375rem] md:col-span-6">{etape.texte}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    {/* ------------------------------------------------- Zone d intervention */}
+    <section class="shell mt-24 grid gap-8 md:mt-36 md:grid-cols-12">
+      <div class="md:col-span-5" data-reveal>
+        <h2 class="type-h2 max-w-[14ch]">Où nous intervenons</h2>
+      </div>
+      <div class="md:col-span-6 md:col-start-7" data-reveal style="--reveal-delay:120ms">
+        <p class="type-body">
+          Au Val-de-Travers d'abord, où nous connaissons les cimetières et leurs règlements. Ensuite dans tout
+          le canton de Neuchâtel, et plus largement en Suisse romande.
+        </p>
+        <p class="type-body mt-5">
+          Pour un cimetière plus éloigné, demandez-nous : nous vous dirons franchement si nous pouvons assurer
+          la pose et le suivi.
+        </p>
+      </div>
+    </section>
+
+    {/* ------------------------------------------------------------- Matières */}
+    <section class="shell mt-24 grid items-center gap-10 md:mt-36 md:grid-cols-12 md:gap-12">
+      <div class="md:col-span-5">
+        <div class="overflow-hidden bg-surface" data-reveal="mask">
+          <div>
+            <img
+              src={visuelProvisoire.src}
+              alt=""
+              width={1080}
+              height={1440}
+              loading="lazy"
+              decoding="async"
+              class="aspect-[3/4] w-full object-cover"
+            />
+          </div>
+        </div>
+        <p class="mono mt-3 text-[0.625rem] uppercase tracking-[0.05em] text-muted">Visuel provisoire</p>
+      </div>
+
+      <div class="md:col-span-6 md:col-start-7" data-reveal style="--reveal-delay:140ms">
+        <p class="type-h3 max-w-[26ch] text-[clamp(1.5rem,2.8vw,2.25rem)] leading-[1.15]">
+          Du granit massif, choisi pour le monument qu'il deviendra.
+        </p>
+        <p class="type-body mt-8 max-w-[48ch] border-t border-line pt-6 text-[0.9375rem]">
+          Pas de pierre reconstituée, pas de placage : la même pierre de part en part. Le catalogue est
+          volontairement court, et chaque modèle se décline selon les granits disponibles.
+        </p>
+      </div>
+    </section>
+
+    {/* -------------------------------------------------------------- Repères */}
+    <section class="mt-24 border-y border-line md:mt-36" aria-label="En bref">
+      <dl class="shell grid grid-cols-2 md:grid-cols-3">
+        {
+          reperes.map((repere, index) => (
+            <div class="fact" data-reveal style={`--reveal-delay:${index * 70}ms`}>
+              <dt class="label">{repere.label}</dt>
+              <dd class="mt-2.5 text-2xl font-medium tracking-[-0.03em] md:text-3xl">{repere.valeur}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    {/* ------------------------------------------------------------- Appel */}
+    <section class="shell mt-24 md:mt-36">
+      <div class="grid items-end gap-8 md:grid-cols-12" data-reveal>
+        <div class="md:col-span-7">
+          <h2 class="type-h2 max-w-[18ch]">Commencer par vos questions, ou par un modèle</h2>
+        </div>
+        <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
+          <a href="/devis" class="btn btn-primary">Demander un devis</a>
+          <a href={familleUrl("monument")} class="btn btn-outline">Monuments funéraires</a>
+          <a href={familleUrl("cineraire")} class="btn btn-outline">Monuments cinéraires</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

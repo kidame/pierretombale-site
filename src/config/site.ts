@@ -60,7 +60,7 @@ export const siteConfig = {
   navigation: [
     { label: "Monuments funéraires", href: "/monuments-funeraires/" },
     { label: "Monuments cinéraires", href: "/monuments-cineraires-cavurnes/" },
-    { label: "L'atelier", href: "/about" },
+    { label: "Qui sommes-nous", href: "/a-propos/" },
     { label: "Demander un devis", href: "/devis" },
   ] satisfies NavItem[],
 
@@ -83,7 +83,7 @@ export const siteConfig = {
     {
       heading: "Informations",
       links: [
-        { label: "L'atelier", href: "/about" },
+        { label: "Qui sommes-nous", href: "/a-propos/" },
         { label: "Demander un devis", href: "/devis" },
       ],
     },
