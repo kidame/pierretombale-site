@@ -23,6 +23,21 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 13.10.2026, E2 passe A TERMINEE (Claude Code). Les trois derniers fichiers qui utilisaient les
+  anciens champs d Atelier Ko (price, material, category, formatPrice) sont passes au schema metier :
+  `SiteHeader.astro` (plus de prix : "Prix sur demande", visuel via ProductImage),
+  `index.astro` (chiffres du catalogue, modele mis en avant par famille/gamme/granit presente,
+  section granits regroupes par teinte, textes en francais), `catalog.astro` (filtres famille et
+  gamme, tri ordre du catalogue ou nom, data-attributes et script adaptes).
+  `getProductFilters` remplace par les listes fixes `FAMILLES` et `GAMMES` dans `src/data/products.ts`
+  (une gamme sans modele reste proposee) ; `formatPrice` avait deja disparu en passe A precedente.
+  `siteConfig.featured` pointait encore sur les modeles supprimes d Atelier Ko : remis sur
+  stele-doucine-classique, stele-arrondie, stele-cineraire-droite (grille), monument-avec-jardiniere
+  (solo), stele-coeur (menu mobile), sinon le build echouait.
+  Verifie : `npm run build` OK, 17 pages (accueil, about, catalog, devis, 12 fiches produit, 404,
+  robots.txt, sitemap) ; `npx astro check` : 18 fichiers, 0 erreur, 0 avertissement, 1 hint
+  (interface `Props` de `products/[slug].astro`, utilisee par Astro : faux positif).
+  L adresse /catalog est inchangee, les adresses SEO sont la passe B.
 - 13.10.2026, Claude chat : inventaire des 27 captures produits de l associe (toutes de
   granitsmaffre.com) dans `docs/references/2026-10-13-captures-maffre-produits.md`. Images
   hors depot. Ne jamais publier les images ni les noms Maffre. 4 questions ouvertes aux associes.
@@ -43,11 +58,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E2, mais attendre d abord la reponse des associes aux 4 questions de
-`docs/references/2026-10-13-captures-maffre-produits.md` (gamme reelle, formes sculptees,
-granits, piste revendeur Maffre). Decider aussi les adresses (slugs) avant de creer les fiches :
-le production-spec prevoit /monuments-funeraires/ et /monuments-cineraires-cavurnes/, Atelier Ko
-utilise /catalog et /products/<slug>.
-Rappels E2 : schema produit = famille (monument 100x200, cineraire 60x60), gamme (classique,
-affinite, prestige, musulmane, noms a nous), style, lignes, stele oui/non, bicolore, motif, granit.
-Prix : rien en dur, tout via `src/data/tarifs.json` en E3.
+E2 passe B : les adresses SEO decidees dans `docs/DECISIONS-ET-ETAT.md`.
+- Fiches a `/monuments-funeraires/<slug>` (famille monument) et
+  `/monuments-cineraires-cavurnes/<slug>` (famille cineraire), a la place de `/products/<slug>`.
+- Une page liste par famille : `/monuments-funeraires/` et `/monuments-cineraires-cavurnes/`,
+  avec les filtres gamme (le filtre famille n a plus de sens une fois la liste par famille).
+- Menu (`siteConfig.navigation`), liens internes (accueil, fiches, fil d Ariane, ProductCard,
+  SiteHeader, devis) et sitemap a reprendre ; supprimer `/catalog` et `/products/`.
+- Verifier qu aucun lien ne pointe plus vers les anciennes adresses, puis build et astro check.
+Rappels : prix nulle part en dur, tout via `src/data/tarifs.json` en E3 ; la gamme prestige n a
+encore aucun modele (filtre propose, liste vide).
