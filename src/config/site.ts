@@ -59,7 +59,7 @@ export const siteConfig = {
     { label: "Monuments cinéraires", href: "/monuments-cineraires-cavurnes/" },
     { label: "Prix", href: "/prix-pierre-tombale-suisse/" },
     { label: "Qui sommes-nous", href: "/a-propos/" },
-    { label: "Demander un devis", href: "/devis" },
+    { label: "Demander un devis", href: "/devis/" },
   ] satisfies NavItem[],
 
   /** Court paragraphe de la première colonne du pied de page. */
@@ -85,10 +85,17 @@ export const siteConfig = {
         { label: "Prix", href: "/prix-pierre-tombale-suisse/" },
         { label: "Questions fréquentes", href: "/faq/" },
         { label: "Qui sommes-nous", href: "/a-propos/" },
-        { label: "Demander un devis", href: "/devis" },
+        { label: "Demander un devis", href: "/devis/" },
       ],
     },
   ] satisfies FooterColumn[],
+
+  /**
+   * Liens de bas de page, sur la ligne de la mention de copyright : ce qui est
+   * attendu là et nulle part ailleurs. Les mentions légales viendront s'y
+   * ajouter quand les coordonnées de l'entreprise seront connues.
+   */
+  footerLegal: [{ label: "Protection des données", href: "/protection-des-donnees/" }] satisfies NavItem[],
 
   /**
    * Les modèles mis en avant. Chaque valeur est un nom de fichier de

@@ -1,0 +1,141 @@
+---
+/* A FAIRE RELIRE : TEXTE PROVISOIRE, PAS UN AVIS JURIDIQUE.
+   Ecrit pour accompagner le formulaire de devis (etape E4), en restant au plus
+   pres de ce que le site fait reellement : un formulaire qui envoie une
+   demande par courriel, rien d autre. Il ne promet rien qui ne soit pas
+   verifiable dans le code.
+   A revoir avec les associes, et a completer des que : les coordonnees de
+   l entreprise existent (src/config/entreprise.ts), la fonction d envoi est en
+   place (etape E6, Cloudflare Pages + Resend) et Cloudflare Turnstile est
+   branche (il depose des cookies : cette page devra le dire). */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { pageTitle } from "@/config/site";
+import { aucuneCoordonnee, entreprise, renseigne } from "@/config/entreprise";
+import { breadcrumbSchema } from "@/data/seo";
+
+const origin = Astro.site ?? new URL(Astro.url.origin);
+
+/* Le responsable du traitement, c est l entreprise. Tant que ses coordonnees
+   valent `null`, on n affiche RIEN a leur place : ni faux nom, ni adresse
+   d attente (cf. src/config/entreprise.ts). */
+const lignesResponsable = [
+  entreprise.nom,
+  entreprise.rue,
+  [entreprise.npa, entreprise.localite].filter(renseigne).join(" "),
+].filter(renseigne);
+
+const filAriane = breadcrumbSchema(
+  [
+    { name: "Accueil", path: "/" },
+    { name: "Protection des données", path: "/protection-des-donnees/" },
+  ],
+  origin,
+);
+---
+
+<BaseLayout
+  title={pageTitle("Protection des données")}
+  description="Quelles données le formulaire de devis collecte, pourquoi, combien de temps elles sont conservées, et comment demander leur suppression."
+>
+  <main id="main-content">
+    <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
+      <h1 class="type-h1 hero-in max-w-[20ch]">Protection des données</h1>
+      <p class="type-lead hero-in mt-8 max-w-[56ch]" style="--reveal-delay:120ms">
+        Cette page explique ce que devient ce que vous nous écrivez. Elle vaut pour le formulaire de
+        demande de devis, qui est la seule chose que ce site collecte.
+      </p>
+    </section>
+
+    <section class="shell">
+      <div class="rule" data-reveal="line"></div>
+
+      <div class="mt-12 max-w-[64ch] space-y-12">
+        {
+          lignesResponsable.length > 0 && (
+            <div data-reveal>
+              <h2 class="type-h3">Qui est responsable</h2>
+              <address class="type-body mt-4 not-italic">
+                {lignesResponsable.map((ligne) => (
+                  <span class="block">{ligne}</span>
+                ))}
+              </address>
+            </div>
+          )
+        }
+
+        <div data-reveal>
+          <h2 class="type-h3">Quelles données nous recevons</h2>
+          <p class="type-body mt-4">
+            Uniquement ce que vous inscrivez dans le formulaire de demande de devis :
+          </p>
+          <ul class="type-body mt-4 space-y-2 pl-5 [list-style:disc]">
+            <li>vos coordonnées : nom et prénom, adresse e-mail, téléphone si vous le donnez, localité ;</li>
+            <li>
+              votre projet : type de demande, famille de monument, modèle, granit souhaité, cimetière et
+              commune ;
+            </li>
+            <li>le texte à graver, votre message, et les fichiers que vous joignez (dessin, photo, esquisse).</li>
+          </ul>
+          <p class="type-body mt-4">
+            Le formulaire ne demande rien d'autre. Nous vous recommandons de n'y écrire aucune information
+            sensible dont nous n'avons pas besoin pour établir le devis.
+          </p>
+        </div>
+
+        <div data-reveal>
+          <h2 class="type-h3">À quoi elles servent</h2>
+          <p class="type-body mt-4">
+            À traiter votre demande de devis : comprendre votre projet, vous répondre, et préparer
+            l'estimation puis le monument si vous nous le confiez. À rien d'autre.
+          </p>
+          <p class="type-body mt-4">
+            Vos données ne sont ni vendues, ni louées, ni transmises à des tiers à des fins commerciales.
+            Vous ne recevrez pas de courrier publicitaire de notre part. Seuls nos prestataires techniques
+            (hébergement du site, acheminement des messages) les traitent, sur nos instructions et pour ce
+            seul usage.
+          </p>
+        </div>
+
+        <div data-reveal>
+          <h2 class="type-h3">Combien de temps elles sont gardées</h2>
+          <p class="type-body mt-4">
+            Le temps nécessaire au traitement de la demande, puis le temps imposé par nos obligations
+            légales lorsqu'une commande a suivi. Ensuite, elles sont supprimées.
+          </p>
+        </div>
+
+        <div data-reveal>
+          <h2 class="type-h3">Vos droits</h2>
+          <p class="type-body mt-4">
+            Conformément à la loi fédérale suisse sur la protection des données, vous pouvez à tout moment
+            savoir quelles données nous détenons sur vous, les faire corriger ou en demander la suppression,
+            en nous écrivant. Nous répondons dans un délai raisonnable, sans frais.
+          </p>
+        </div>
+
+        <div data-reveal>
+          <h2 class="type-h3">Mesure d'audience et cookies</h2>
+          <p class="type-body mt-4">
+            Ce site n'utilise aujourd'hui aucun outil de mesure d'audience, de publicité ni de réseau
+            social, et ne dépose pas de cookie à ces fins. Cette page sera mise à jour si cela change.
+          </p>
+        </div>
+
+        {
+          aucuneCoordonnee() && (
+            <p class="type-body text-[0.9375rem] text-muted" data-reveal>
+              Nos coordonnées complètes seront publiées sur le site dès l'ouverture ; elles figureront aussi
+              sur chaque devis.
+            </p>
+          )
+        }
+      </div>
+
+      <p class="mt-16" data-reveal>
+        <a href="/devis/" class="link link-mono text-muted">Revenir au formulaire de devis</a>
+      </p>
+    </section>
+  </main>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
+</BaseLayout>
