@@ -1,0 +1,93 @@
+[
+  {
+    "id": "regal-black",
+    "nom": "Regal Black",
+    "teinte": "noir",
+    "disponible": true,
+    "photo": null
+  },
+  {
+    "id": "noir-afrique",
+    "nom": "Noir Afrique",
+    "teinte": "noir",
+    "disponible": true,
+    "photo": null
+  },
+  {
+    "id": "noir-estrella",
+    "nom": "Noir Estrella",
+    "teinte": "noir",
+    "disponible": true,
+    "photo": null
+  },
+  {
+    "id": "steel-grey",
+    "nom": "Steel Grey",
+    "teinte": "gris",
+    "disponible": true,
+    "photo": null
+  },
+  {
+    "id": "mystic-grey",
+    "nom": "Mystic Grey",
+    "teinte": "gris",
+    "disponible": true,
+    "photo": null
+  },
+  {
+    "id": "tarn",
+    "nom": "Tarn",
+    "teinte": "gris",
+    "disponible": true,
+    "photo": null
+  },
+  {
+    "id": "blanc-ivoire",
+    "nom": "Blanc Ivoire",
+    "teinte": "blanc",
+    "disponible": true,
+    "photo": null
+  },
+  {
+    "id": "viscount-white",
+    "nom": "Viscount White",
+    "teinte": "blanc",
+    "disponible": true,
+    "photo": null
+  },
+  {
+    "id": "azul-noche",
+    "nom": "Azul Noche",
+    "teinte": "bleu",
+    "disponible": true,
+    "photo": null
+  },
+  {
+    "id": "himalaya-mountain-blue",
+    "nom": "Himalaya Mountain Blue",
+    "teinte": "bleu",
+    "disponible": true,
+    "photo": null
+  },
+  {
+    "id": "labrador-bleu",
+    "nom": "Labrador Bleu",
+    "teinte": "bleu",
+    "disponible": true,
+    "photo": null
+  },
+  {
+    "id": "virgin-blue",
+    "nom": "Virgin Blue",
+    "teinte": "bleu",
+    "disponible": true,
+    "photo": null
+  },
+  {
+    "id": "rose-perle",
+    "nom": "Rose Perle",
+    "teinte": "rose",
+    "disponible": true,
+    "photo": null
+  }
+]
