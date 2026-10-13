@@ -4,6 +4,7 @@ import ProductCard from "@/components/ProductCard.astro";
 import ProductImage from "@/components/ProductImage.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import heroImg from "@/assets/atelier-hero.jpg";
+import { adressePostaleJsonLd, entreprise, renseigne } from "@/config/entreprise";
 import { siteConfig } from "@/config/site";
 import { TEINTES, granitsDisponibles, nomGranit, type Teinte } from "@/data/granits";
 import {
@@ -57,18 +58,20 @@ const soloSpecs: Array<[string, string]> = [
   ["Prix", PRIX_SUR_DEMANDE],
 ];
 
+/* Organization : seules les coordonnées connues sont publiées. Tant que
+   src/config/entreprise.ts est à `null`, la fiche se limite au nom et à
+   l'adresse du site. Une adresse ou un téléphone inventés dans les données
+   structurées se retrouveraient dans la fiche Google de l'entreprise. */
+const adressePostale = adressePostaleJsonLd();
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: siteConfig.name,
   url: siteUrl,
-  slogan: siteConfig.tagline,
-  email: siteConfig.email,
-  address: {
-    "@type": "PostalAddress",
-    addressRegion: siteConfig.location.region,
-    addressCountry: siteConfig.location.country,
-  },
+  ...(renseigne(entreprise.email) ? { email: entreprise.email } : {}),
+  ...(renseigne(entreprise.telephone) ? { telephone: entreprise.telephone } : {}),
+  ...(adressePostale ? { address: adressePostale } : {}),
 };
 ---
 

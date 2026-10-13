@@ -1,15 +1,27 @@
 ---
+import { entreprise, renseigne } from "@/config/entreprise";
 import { siteConfig } from "@/config/site";
 
 const year = new Date().getFullYear();
 
-// The contact address is appended to the last column so it is configured in
-// one place rather than duplicated into the footer link list.
-const columns = siteConfig.footerColumns.map((column, index) =>
-  index === siteConfig.footerColumns.length - 1
-    ? { ...column, links: [...column.links, { label: siteConfig.email, href: `mailto:${siteConfig.email}` }] }
-    : column,
-);
+const columns = siteConfig.footerColumns;
+
+/* Les coordonnées viennent de src/config/entreprise.ts et sont toutes à `null`
+   au départ : on n'affiche que celles qui existent, et le bloc entier
+   disparaît tant qu'on n'en connaît aucune. Jamais de faux numéro ni de lien
+   mort dans le pied de page. */
+const lignesContact = [
+  renseigne(entreprise.telephone)
+    ? { label: entreprise.telephone, href: `tel:${entreprise.telephone.replace(/\s+/g, "")}` }
+    : null,
+  renseigne(entreprise.email) ? { label: entreprise.email, href: `mailto:${entreprise.email}` } : null,
+].filter((ligne): ligne is { label: string; href: string } => ligne !== null);
+
+const adresse = [
+  entreprise.rue,
+  [entreprise.npa, entreprise.localite].filter(renseigne).join(" "),
+  entreprise.canton,
+].filter(renseigne);
 ---
 
 <footer id="studio" class="mt-24 border-t border-line md:mt-36">
@@ -42,6 +54,21 @@ const columns = siteConfig.footerColumns.map((column, index) =>
       <div class="md:col-span-5">
         <p class="text-[0.9375rem] font-semibold uppercase tracking-[-0.01em]">{siteConfig.name}</p>
         <p class="type-body mt-4 max-w-[34ch] text-[0.9375rem]">{siteConfig.footerBlurb}</p>
+
+        {
+          (lignesContact.length > 0 || adresse.length > 0) && (
+            <address class="mt-5 space-y-1 text-[0.9375rem] not-italic text-muted">
+              {adresse.length > 0 && <p>{adresse.join(", ")}</p>}
+              {lignesContact.map((ligne) => (
+                <p>
+                  <a href={ligne.href} class="link">
+                    {ligne.label}
+                  </a>
+                </p>
+              ))}
+            </address>
+          )
+        }
       </div>
 
       {

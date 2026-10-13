@@ -3,8 +3,14 @@ import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import handsImg from "@/assets/atelier-hands.jpg";
 import workshopImg from "@/assets/atelier-workshop.jpg";
-import { siteConfig, pageTitle } from "@/config/site";
+import { pageTitle } from "@/config/site";
 import { familleUrl } from "@/data/products";
+
+/* Page encore en anglais, héritée d'Atelier Kō : le texte français est à
+   écrire à l'étape E4. Ce qui a été retiré en E3 : le courriel inventé, le
+   siège (Småland, Växjö), le fondateur (Erik Lindgren) et les provenances de
+   bois. Aucune coordonnée ni aucun nom de personne inventés ne doivent
+   revenir ici : ils viendront de src/config/entreprise.ts. */
 
 const principles = [
   {
@@ -22,24 +28,23 @@ const principles = [
 ];
 
 const facts = [
-  { value: "2018", label: "Founded" },
-  { value: "02", label: "Makers" },
-  { value: "03", label: "Timbers" },
-  { value: "4–10", label: "Weeks lead time" },
+  { value: "03", label: "Makers" },
+  { value: "02", label: "Families of monument" },
+  { value: "Suisse romande", label: "Service area" },
 ];
 ---
 
 <BaseLayout
   title={pageTitle("The Studio")}
-  description="A small workshop in Småland, Sweden, building furniture by hand from solid oak, ash and walnut. Slow, signed, and made to be repaired."
+  description="A small workshop building monuments by hand from solid granite. Slow, signed, and made to last."
   image={workshopImg}
 >
   <main id="main-content">
     <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
       <h1 class="type-h1 hero-in max-w-[11ch]">A small workshop, made slowly</h1>
       <p class="type-lead hero-in mt-8 max-w-[58ch]" style="--reveal-delay:120ms">
-        Atelier Kō is a two-person furniture workshop in Småland, Sweden. We design and build a small catalogue of
-        seating, tables and storage — by hand, to order, in solid wood. No factory, no veneers, no rush.
+        We design and build a small catalogue of funerary and cinerary monuments — by hand, to order, in solid
+        granite. No factory, no imitation stone, no rush.
       </p>
     </section>
 
@@ -59,17 +64,15 @@ const facts = [
     {/* -------------------------------------------------------------- Origin */}
     <section class="shell mt-24 grid gap-8 md:mt-36 md:grid-cols-12">
       <div class="md:col-span-5" data-reveal>
-        <h2 class="type-h2 max-w-[12ch]">We started with one chair</h2>
+        <h2 class="type-h2 max-w-[12ch]">A short catalogue, worked by hand</h2>
       </div>
       <div class="md:col-span-6 md:col-start-7" data-reveal style="--reveal-delay:120ms">
         <p class="type-body">
-          Atelier Kō began in a borrowed barn outside Växjö, with a single steam-bent ash chair — the piece that
-          became the Arvid. Seven years later, we still work in solid wood only, still build to order, and still
-          sign every piece on the underside before it leaves.
+          We work in solid granite only, build to order, and never send a stone to engraving before the family has
+          approved the proof.
         </p>
         <p class="type-body mt-5">
-          The catalogue is intentionally small. Six pieces, three timbers. We'd rather know a few things well than
-          offer a hundred we don't.
+          The catalogue is intentionally small. We'd rather know a few models well than offer a hundred we don't.
         </p>
       </div>
     </section>
@@ -110,23 +113,19 @@ const facts = [
       </div>
 
       <div class="md:col-span-6 md:col-start-7" data-reveal style="--reveal-delay:140ms">
-        <blockquote>
-          <p class="type-h3 max-w-[26ch] text-[clamp(1.5rem,2.8vw,2.25rem)] leading-[1.15]">
-            "We don't buy lumber by the pallet. Every board is chosen for the piece it will become — sometimes
-            months before it is cut."
-          </p>
-          <footer class="label mt-6">Erik Lindgren — founder</footer>
-        </blockquote>
+        <p class="type-h3 max-w-[26ch] text-[clamp(1.5rem,2.8vw,2.25rem)] leading-[1.15]">
+          Every block is chosen for the monument it will become.
+        </p>
         <p class="type-body mt-8 max-w-[48ch] border-t border-line pt-6 text-[0.9375rem]">
-          European oak from managed Swedish forests. Curved ash from a small reserve on the south coast. American
-          walnut from a family mill in Pennsylvania. Three woods. No more.
+          Granite only, in the colours of our range. The list of stones lives in one file, and grows with what the
+          workshop can actually supply.
         </p>
       </div>
     </section>
 
     {/* --------------------------------------------------------------- Facts */}
     <section class="mt-24 border-y border-line md:mt-36" aria-label="Studio at a glance">
-      <dl class="shell grid grid-cols-2 md:grid-cols-4">
+      <dl class="shell grid grid-cols-2 md:grid-cols-3">
         {
           facts.map((fact, index) => (
             <div class="fact" data-reveal style={`--reveal-delay:${index * 70}ms`}>
@@ -146,7 +145,7 @@ const facts = [
         </div>
         <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
           <a href={familleUrl("monument")} class="btn btn-primary">Monuments funéraires</a>
-          <a href={`mailto:${siteConfig.email}`} class="btn btn-outline">Write to us</a>
+          <a href="/devis" class="btn btn-outline">Demander un devis</a>
         </div>
       </div>
     </section>
