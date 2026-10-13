@@ -40,6 +40,15 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
 - Adresses retenues (plan SEO) : /monuments-funeraires/<modele> et /monuments-cineraires-cavurnes/<modele>.
 - Prix provisoire affiche : fourchette 1'400 - 6'000 CHF pour tous les modeles (decision de Thomas, 13.10.2026), a remplacer par modele dans `src/data/tarifs.json`.
 
+## Regles de communication du site (Thomas, 13.10.2026)
+- La pose est faite par l entreprise elle-meme.
+- Ne JAMAIS mentionner sur le site la sous-traitance, l atelier de fabrication ni le Kosovo.
+- Ne jamais pretendre non plus le contraire : pas de "notre atelier", pas de "fabrique en Suisse",
+  "Swiss made" ou "artisan local" (fausse origine suisse = interdite, Swissness et LCD). On parle de
+  "nos monuments", "realises sur mesure", "nous posons".
+- Zone d intervention, par ordre : Val-de-Travers, canton de Neuchatel, Suisse romande au mieux.
+- Aucun chiffre, temoignage, annee d experience ou statistique sans source verifiable.
+
 ## Où retrouver quoi
 - `docs/SPEC-BUILD-SITE.md` : la spec de build, avec l'avertissement sur les valeurs provisoires du production-spec.
 - `analyses/2026-08-17-niche-pierre-tombale-ne.md` : l'analyse de marché complète, sections 1 à 15. Les données sont dans `analyses/data/`.
