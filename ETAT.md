@@ -17,13 +17,24 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [x] E1. Importer Atelier Ko (copie unique, MIT, commit 348433f du 17.08.2026), retirer panier et paiement, bouton "Demander un devis".
 - [x] E2. Adapter le schema produit : granit, type de monument, style, tradition. 3 modeles fictifs.
       (passe A : schema metier et 12 fiches ; passe B : adresses SEO par famille.)
-- [ ] E3. `src/config/entreprise.ts` et `src/data/tarifs.json` a null, affichage "prix sur demande".
+- [x] E3. `src/config/entreprise.ts` et `src/data/tarifs.json` a null, affichage "prix sur demande".
 - [ ] E4. Pages : accueil, catalogue, fiche, Nos granits, contact/devis (formulaire sans envoi reel).
 - [ ] E5. Configurateur Konva (ilot Preact) en prototype.
 - [ ] E6. Envoi du devis vers webhook n8n + Turnstile (aucun secret dans le repo).
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 13.10.2026, E3 TERMINEE (Claude Code, docs finies par Claude chat : l agent a atteint 80 tours).
+  `src/config/entreprise.ts` : coordonnees toutes a null, rien d affiche tant qu elles manquent.
+  `src/data/tarifs.json` + `src/data/tarifs.ts` : fourchette par defaut 1'400 - 6'000 CHF (provisoire),
+  affichee via prixAffiche(slug) avec "Prix indicatif, devis personnalise gratuit" ; pas d offre chiffree
+  dans le JSON-LD tant que c est provisoire ; un slug inconnu dans tarifs.json fait echouer le build.
+  Verifie dans dist : fiches et listes affichent la fourchette, aucune Offer, aucune coordonnee inventee.
+  Restes du theme reperes pour E4 : nom "Atelier Ko" partout ; formulaire newsletter en anglais dans
+  `src/components/SiteFooter.astro` (factice, n envoie rien) a supprimer.
+  Changer un prix : dans `src/data/tarifs.json`, remplacer `null` du modele par {"des": 2400} ou
+  {"min": 2400, "max": 3100}. Changer la fourchette generale : `fourchetteParDefaut`.
+  Changer une coordonnee : remplir le champ dans `src/config/entreprise.ts`. Puis rebuild.
 - 13.10.2026, E2 passe B TERMINEE (Claude Code) : les adresses SEO.
   Nouvelles adresses : `/monuments-funeraires/` et `/monuments-cineraires-cavurnes/` (une page liste
   par famille, filtre gamme seulement, tri ordre du catalogue ou nom), `/monuments-funeraires/<slug>/`
@@ -94,16 +105,10 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E3 : coordonnees et prix dans un seul fichier chacun.
-- `src/config/entreprise.ts` : nom, telephone, adresse, NPA, email, horaires a `null` tant que les
-  associes ne les ont pas fournis. Les valeurs du production-spec sont provisoires : ne pas les
-  recopier. L affichage doit se taire proprement quand une valeur est `null`.
-- `src/data/tarifs.json` : un prix par modele (cle = slug de la fiche), `null` partout au depart.
-- L affichage "prix sur demande" doit etre pilote par `tarifs.json` : prix si connu, sinon
-  `PRIX_SUR_DEMANDE` (aujourd hui en dur dans `src/data/products.ts`, utilise par ProductCard, les
-  fiches, le menu mobile et l accueil). Aucun prix ailleurs dans le code.
-- `src/config/site.ts` garde encore le nom, la tagline et les textes d Atelier Ko (en anglais) :
-  c est la que `entreprise.ts` prendra le relais ; les titres de pages passent par `pageTitle`.
-Rappels : la gamme prestige n a encore aucun modele (filtre propose, liste vide) ; le domaine
-`https://www.pierretombale.ch` dans `astro.config.mjs` est provisoire, nom non definitif ; la page
-`about` est encore le texte anglais d Atelier Ko (E4).
+E4, pages et SEO, a decouper en passes courtes (l agent consomme vite ses 80 tours) :
+- passe 1 : nom et titres (retirer "Atelier Ko", titres de fiches avec "pierre tombale"/"monument cineraire",
+  supprimer la newsletter factice du footer, footer en francais) ;
+- passe 2 : accueil et page "L atelier" (service complet : conseil, commande, pose, apres-vente) ;
+- passe 3 : page prix-pierre-tombale-suisse et page Nos granits (depuis granits.json) ;
+- passe 4 : contact/devis (formulaire sans envoi reel, E6 branchera n8n).
+Source : docs/production-spec-pierretombalech.json (pages, meta, FAQ, maillage) et analyses/ (section 5).

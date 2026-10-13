@@ -38,6 +38,7 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
 - Pas de piste revendeur Maffre. Modele : service complet (conseil, commande, pose, apres-vente) ; seules la fabrication et la gravure sont sous-traitees a l atelier.
 - Consequence : ni images ni noms Maffre sur le site. Nos modeles portent des noms descriptifs a nous ; visuels provisoires en attendant photos ou rendus de l atelier.
 - Adresses retenues (plan SEO) : /monuments-funeraires/<modele> et /monuments-cineraires-cavurnes/<modele>.
+- Prix provisoire affiche : fourchette 1'400 - 6'000 CHF pour tous les modeles (decision de Thomas, 13.10.2026), a remplacer par modele dans `src/data/tarifs.json`.
 
 ## Où retrouver quoi
 - `docs/SPEC-BUILD-SITE.md` : la spec de build, avec l'avertissement sur les valeurs provisoires du production-spec.
