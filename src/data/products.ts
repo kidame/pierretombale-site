@@ -1,8 +1,34 @@
 import { getCollection, type CollectionEntry } from "astro:content";
-import { siteConfig } from "@/config/site";
+import { nomGranit } from "@/data/granits";
+import placeholderMonument from "@/assets/placeholder-monument.svg";
+import placeholderCineraire from "@/assets/placeholder-cineraire.svg";
 
 type ProductEntry = CollectionEntry<"products">;
 export type Product = ProductEntry["data"] & { slug: string; description: string };
+
+export type Famille = Product["famille"];
+export type Gamme = Product["gamme"];
+
+/** Aucun prix n est affiche tant que les tarifs ne sont pas connus (etape E3). */
+export const PRIX_SUR_DEMANDE = "Prix sur demande";
+
+export const FAMILLE_LABELS: Record<Famille, string> = {
+  monument: "Monuments",
+  cineraire: "Cinéraires et cavurnes",
+};
+
+/** Au singulier, pour les phrases et les textes alternatifs. */
+export const FAMILLE_SINGULIER: Record<Famille, string> = {
+  monument: "monument funéraire",
+  cineraire: "monument cinéraire",
+};
+
+export const GAMME_LABELS: Record<Gamme, string> = {
+  classique: "Classique",
+  contemporain: "Contemporain",
+  prestige: "Prestige",
+  musulman: "Musulman",
+};
 
 function slugFromEntry(entry: ProductEntry): string {
   return entry.id.replace(/\.(md|mdx)$/, "");
@@ -13,7 +39,7 @@ function descriptionFromEntry(entry: ProductEntry): string {
 }
 
 function byOrderThenName(a: Product, b: Product): number {
-  return a.order - b.order || a.name.localeCompare(b.name);
+  return a.order - b.order || a.name.localeCompare(b.name, "fr");
 }
 
 export async function getProducts(): Promise<Product[]> {
@@ -39,32 +65,46 @@ export function getRelated(products: Product[], slug: string, limit = 3): Produc
   return products
     .filter((product) => product.slug !== slug)
     .sort((a, b) => {
-      const aScore = a.category === current.category ? -1 : 1;
-      const bScore = b.category === current.category ? -1 : 1;
+      const aScore = a.famille === current.famille ? -1 : 1;
+      const bScore = b.famille === current.famille ? -1 : 1;
       return aScore - bScore || byOrderThenName(a, b);
     })
     .slice(0, limit);
 }
 
 export function getProductFilters(products: Product[]): {
-  categories: string[];
-  materials: string[];
+  familles: Famille[];
+  gammes: Gamme[];
 } {
   return {
-    categories: [...new Set(products.map((product) => product.category))],
-    materials: [...new Set(products.map((product) => product.material))],
+    familles: [...new Set(products.map((product) => product.famille))],
+    gammes: [...new Set(products.map((product) => product.gamme))],
   };
 }
 
-export function formatPrice(value: number): string {
-  return new Intl.NumberFormat(siteConfig.commerce.locale, {
-    style: "currency",
-    currency: siteConfig.commerce.currency,
-    maximumFractionDigits: 0,
-  }).format(value);
+/**
+ * Visuel a afficher pour un modele : sa premiere image si elle existe, sinon
+ * le visuel provisoire de sa famille. Les placeholders sont des SVG, que l on
+ * sert tels quels plutot que de les passer au pipeline d images.
+ */
+export function productVisuel(product: Product): {
+  image: ImageMetadata;
+  provisoire: boolean;
+  alt: string;
+} {
+  const image = product.images[0];
+  if (image) {
+    return { image, provisoire: false, alt: `${product.name} — ${product.shortDescription}` };
+  }
+
+  return {
+    image: product.famille === "cineraire" ? placeholderCineraire : placeholderMonument,
+    provisoire: true,
+    alt: `Visuel à venir : ${product.name}, ${FAMILLE_SINGULIER[product.famille]} en granit ${nomGranit(product.granitPresente)}`,
+  };
 }
 
-/** Resolves a configured slug, failing the build when it does not exist. */
+/** Resout un slug de configuration, en faisant echouer le build s il n existe pas. */
 export function requireProduct(products: Product[], slug: string): Product {
   const product = products.find((entry) => entry.slug === slug);
   if (!product) {
@@ -79,14 +119,18 @@ export function productForJson(product: Product) {
   return {
     slug: product.slug,
     name: product.name,
-    collection: product.collection,
-    category: product.category,
-    material: product.material,
-    price: product.price,
+    famille: product.famille,
+    gamme: product.gamme,
     shortDescription: product.shortDescription,
     description: product.description,
     dimensions: product.dimensions,
-    finish: product.finish,
-    leadTime: product.leadTime,
+    stele: product.stele,
+    bicolore: product.bicolore,
+    lignes: product.lignes,
+    motifs: product.motifs,
+    options: product.options,
+    granitPresente: product.granitPresente,
+    granitsPossibles: product.granitsPossibles,
+    prix: PRIX_SUR_DEMANDE,
   };
 }

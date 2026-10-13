@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import { productVisuel, type Product } from "@/data/products";
+
+/**
+ * Le visuel d un modele : sa premiere image, ou le visuel provisoire de sa
+ * famille tant que l atelier n a pas fourni de photo. Le provisoire est un SVG,
+ * servi tel quel ; les photos passent par le pipeline d images d Astro.
+ */
+interface Props {
+  product: Product;
+  width: number;
+  height: number;
+  class?: string;
+  loading?: "eager" | "lazy";
+  decoding?: "sync" | "async";
+  /** Remplace le texte alternatif par defaut (image decorative : passer ""). */
+  alt?: string;
+}
+
+const {
+  product,
+  width,
+  height,
+  class: className,
+  loading = "lazy",
+  decoding = "async",
+  alt,
+} = Astro.props;
+
+const visuel = productVisuel(product);
+const texte = alt ?? visuel.alt;
+---
+
+{
+  visuel.provisoire ? (
+    <img
+      src={visuel.image.src}
+      alt={texte}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding={decoding}
+      class={className}
+    />
+  ) : (
+    <Image
+      src={visuel.image}
+      alt={texte}
+      width={width}
+      height={height}
+      format="webp"
+      loading={loading}
+      decoding={decoding}
+      class={className}
+    />
+  )
+}

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Visuel a venir">
+  <rect width="800" height="1000" fill="#f4f4f2"/>
+  <g fill="none" stroke="#b9b7b0" stroke-width="3">
+    <!-- Petite stele cineraire sur son socle -->
+    <path d="M330 400h140v200H330z"/>
+    <path d="M300 600h200v36H300z"/>
+    <!-- Dalle carree 60 x 60, vue de face -->
+    <path d="M260 636h280l40 90H220z"/>
+  </g>
+  <line x1="160" y1="726" x2="640" y2="726" stroke="#d6d4cd" stroke-width="3"/>
+  <text x="400" y="810" text-anchor="middle" fill="#8a8880" font-family="Georgia, 'Times New Roman', serif" font-size="34" letter-spacing="1">Visuel à venir</text>
+</svg>

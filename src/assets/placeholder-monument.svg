@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Visuel a venir">
+  <rect width="800" height="1000" fill="#f4f4f2"/>
+  <g fill="none" stroke="#b9b7b0" stroke-width="3">
+    <!-- Stele sur sa base, vue de face -->
+    <path d="M300 300h200v300H300z"/>
+    <path d="M270 600h260v40H270z"/>
+    <!-- Tombale posee au sol, en perspective tres simple -->
+    <path d="M210 640h380l60 120H150z"/>
+  </g>
+  <line x1="120" y1="760" x2="680" y2="760" stroke="#d6d4cd" stroke-width="3"/>
+  <text x="400" y="840" text-anchor="middle" fill="#8a8880" font-family="Georgia, 'Times New Roman', serif" font-size="34" letter-spacing="1">Visuel à venir</text>
+</svg>
