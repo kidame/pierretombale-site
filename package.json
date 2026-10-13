@@ -12,6 +12,12 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
+    "@fontsource/cinzel": "^5.0.0",
+    "@fontsource/eb-garamond": "^5.0.0",
+    "@fontsource/great-vibes": "^5.0.0",
+    "@fontsource/jost": "^5.0.0",
+    "@fontsource/marcellus": "^5.0.0",
+    "@fontsource/pinyon-script": "^5.0.0",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.2.2",
     "tailwindcss": "^4.1.17"
