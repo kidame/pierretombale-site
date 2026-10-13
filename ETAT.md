@@ -35,6 +35,33 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 13.10.2026, E4 PASSE 2 TERMINEE (Claude Code) : accueil et page de presentation.
+  `src/pages/about.astro` devient `src/pages/a-propos.astro` (adresse /a-propos/, slug du
+  production-spec), libelle "Qui sommes-nous" dans le menu et le pied de page (les deux viennent de
+  `siteConfig`, seule source des liens). Contenu : service complet de A a Z en 5 etapes (conseil,
+  devis detaille, bon a tirer, pose au cimetiere par nos soins, suivi apres la pose), zone
+  Val-de-Travers > canton de Neuchatel > Suisse romande. Les anciens "chiffres" (03 associes) sont
+  remplaces par des reperes sans chiffre : zone, matiere, pose.
+  Accueil : promesse "realises sur mesure et poses par nos soins", bloc "Comment ca se passe" en
+  4 etapes (tableau `etapes` dans le frontmatter), section "Ou nous intervenons" en bas, bouton
+  principal = /devis partout (les 2 familles restent en boutons secondaires).
+  Mentions d atelier et de fabrication retirees du texte visible : legendes de visuels ->
+  "Photographies de nos realisations a venir", granits -> "selon les granits disponibles"
+  (accueil, a-propos, FicheModele, fiche stele-bicolore). Repli de `robots.txt.js` remis sur le
+  domaine du projet (c etait la demo du theme). Restent des COMMENTAIRES de code qui parlent de
+  l atelier (granits.ts:11, products.ts:126, ProductImage.astro:7, monuments-funeraires/index.astro:8) :
+  invisibles sur le site, a reecrire a l occasion.
+  STATISTIQUE RETIREE : "plus de 90% de cremations en Suisse" (et 97% a Neuchatel) sur
+  /monuments-cineraires-cavurnes/ (intro + meta). Aucune source verifiable : le dossier aux associes
+  l attribue a "RTS et l association suisse des services funeraires" sans document ni date, et
+  `analyses/2026-08-17-niche-pierre-tombale-ne.md` dit que la part inhumation/cremation reste a
+  chiffrer via OFS. Texte actuel : "la grande majorite des defunts sont aujourd hui incineres".
+  Le motif est note en commentaire dans la page ; a remettre avec la reference exacte si les
+  associes fournissent la statistique de l OFS.
+  Verifie : `npm run build` OK (18 pages), `npx astro check` 26 fichiers 0 erreur 0 avertissement
+  0 hint ; plus de /about dans dist, /a-propos/ dans le sitemap (16 adresses, /devis toujours
+  exclu) ; `grep -rniE "atelier|kosovo|sous-trait|fabriqu|swiss ?made|artisan" dist` ne renvoie
+  rien ; plus aucun "90%" ni "97%" dans dist ; meta descriptions 151 et 145 signes.
 - 13.10.2026, E4 PASSE 1 TERMINEE (Claude Code) : nettoyage du theme, nom, titres.
   Nom PROVISOIRE "PierreTombale.ch" dans `src/config/site.ts` (name, tagline, description,
   defaultTitle, commentaires en francais). `pageTitle()` passe au separateur " | " :
@@ -154,9 +181,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E4 PASSE 2 : accueil et page "L atelier" (service complet : conseil, commande, pose,
-apres-vente). La page L atelier est aujourd hui une traduction du theme, pas le vrai contenu.
+E4 PASSE 3 : page `prix-pierre-tombale-suisse` et page "Nos granits" construite depuis
+`src/data/granits.json`, plus la FAQ du production-spec (en ecartant toute reponse qui avance un
+chiffre sans source, cf. la statistique de cremation retiree en passe 2).
 Ensuite, toujours en passes courtes (l agent consomme vite ses 80 tours) :
-- passe 3 : page prix-pierre-tombale-suisse et page Nos granits (depuis granits.json) ;
 - passe 4 : contact/devis (formulaire sans envoi reel, E6 branchera n8n).
 Source : docs/production-spec-pierretombalech.json (pages, meta, FAQ, maillage) et analyses/ (section 5).
