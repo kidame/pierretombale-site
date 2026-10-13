@@ -1,0 +1,33 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { pageTitle } from "@/config/site";
+
+/* Page d arrivee apres l envoi du formulaire de devis. Le JavaScript y amene
+   la famille quand la fonction `/api/devis` a repondu `{ok:true}` ; la
+   fonction E6 y renverra aussi les envois faits sans JavaScript.
+   En noindex et hors sitemap : une page de confirmation n a rien a faire dans
+   les resultats de recherche.
+   Aucun delai chiffre ("sous 48 heures", "dans la journee") : rien n est
+   garanti tant que les associes ne l ont pas decide. */
+---
+
+<BaseLayout
+  title={pageTitle("Demande envoyée")}
+  description="Votre demande de devis a été transmise."
+  noindex={true}
+>
+  <main id="main-content" class="shell flex min-h-[60vh] flex-col justify-center py-20">
+    <p class="label">Demande de devis</p>
+    <h1 class="type-h1 mt-6 max-w-[22ch]">Votre demande est partie</h1>
+    <p class="type-lead mt-8 max-w-[52ch]">
+      Merci. Nous vous répondrons rapidement, à l'adresse que vous nous avez indiquée.
+    </p>
+    <p class="type-body mt-6 max-w-[52ch] text-muted">
+      Si vous souhaitez ajouter un document ou corriger une information, écrivez-nous simplement en
+      réponse à notre message.
+    </p>
+    <p class="mt-12">
+      <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+    </p>
+  </main>
+</BaseLayout>
