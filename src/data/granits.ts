@@ -7,8 +7,9 @@
  * produit référence un granit par son `id` ; un `id` inconnu fait échouer le
  * build au lieu de passer inaperçu.
  *
- * Les noms sont des noms commerciaux courants du granit importé, à confronter
- * avec ce que l'atelier sait réellement fournir (liste définitive à venir).
+ * Les noms sont des noms commerciaux courants, à confronter avec ce qui peut
+ * réellement être fourni (liste définitive à venir). Aucune origine
+ * géographique n'est publiée sur le site.
  */
 import granitsData from "./granits.json";
 
@@ -69,4 +70,56 @@ export function nomGranit(id: string): string {
 
 export function granitsDisponibles(): Granit[] {
   return granits.filter((granit) => granit.disponible);
+}
+
+/** Titre d'un groupe de granits de même teinte. */
+export const TEINTE_PLURIEL: Record<Teinte, string> = {
+  noir: "Granits noirs",
+  gris: "Granits gris",
+  blanc: "Granits blancs",
+  bleu: "Granits bleus",
+  rose: "Granits rosés",
+  rouge: "Granits rouges",
+  vert: "Granits verts",
+  beige: "Granits beiges",
+};
+
+/**
+ * Couleur de la pastille affichée à côté d'un groupe : un repère APPROXIMATIF
+ * de la teinte, pas un échantillon. Les vraies nuances ne se voient que sur
+ * une photo ou sur la pierre, ce que la page doit dire.
+ */
+export const TEINTE_PASTILLE: Record<Teinte, string> = {
+  noir: "#1c1c1b",
+  gris: "#8b8b86",
+  blanc: "#e7e5df",
+  bleu: "#4a5a6e",
+  rose: "#c7a79d",
+  rouge: "#8d3c33",
+  vert: "#4b5a46",
+  beige: "#cabda4",
+};
+
+/** Groupe de granits d'une même teinte, prêt à afficher. */
+export interface GroupeTeinte {
+  teinte: Teinte;
+  titre: string;
+  pastille: string;
+  granits: Granit[];
+}
+
+/**
+ * Les granits disponibles regroupés par teinte, dans l'ordre de `TEINTES`.
+ * Les teintes sans granit disponible sont omises : la page "Nos granits" et
+ * l'accueil se construisent ainsi depuis `src/data/granits.json` seul.
+ */
+export function granitsParTeinte(): GroupeTeinte[] {
+  const disponibles = granitsDisponibles();
+
+  return TEINTES.map((teinte) => ({
+    teinte,
+    titre: TEINTE_PLURIEL[teinte],
+    pastille: TEINTE_PASTILLE[teinte],
+    granits: disponibles.filter((granit) => granit.teinte === teinte),
+  })).filter((groupe) => groupe.granits.length > 0);
 }
