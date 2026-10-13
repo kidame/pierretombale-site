@@ -1,0 +1,22 @@
+{
+  "devise": "CHF",
+  "fourchetteParDefaut": {
+    "min": 1400,
+    "max": 6000,
+    "provisoire": true
+  },
+  "modeles": {
+    "dalle-funeraire-simple": null,
+    "monument-4-pieces-sans-stele": null,
+    "stele-doucine-classique": null,
+    "monument-avec-jardiniere": null,
+    "stele-arrondie": null,
+    "stele-coeur": null,
+    "stele-bicolore": null,
+    "monument-musulman": null,
+    "dalle-cineraire": null,
+    "stele-cineraire-courbe-avec-vase": null,
+    "stele-cineraire-droite": null,
+    "stele-cineraire-coeur": null
+  }
+}

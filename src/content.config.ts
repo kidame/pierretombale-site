@@ -5,8 +5,8 @@ import { granitIds } from "./data/granits";
 
 /**
  * Un fichier Markdown par modele dans src/content/products.
- * Le nom du fichier sert de slug. Aucun prix dans les fiches : l affichage est
- * toujours "Prix sur demande" (tarifs reels en E3).
+ * Le nom du fichier sert de slug. Aucun prix dans les fiches : les prix vivent
+ * dans src/data/tarifs.json, par slug, et s affichent via `prixAffiche`.
  */
 const products = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/products" }),
