@@ -12,6 +12,26 @@ export type Gamme = Product["gamme"];
 /** Aucun prix n est affiche tant que les tarifs ne sont pas connus (etape E3). */
 export const PRIX_SUR_DEMANDE = "Prix sur demande";
 
+/**
+ * Adresse de la page liste de chaque famille, sans barre oblique finale.
+ * Un modele n existe qu a l adresse de sa famille : il n a donc qu une seule
+ * URL, et c est `productUrl` qui la donne.
+ */
+export const FAMILLE_PATHS: Record<Famille, string> = {
+  monument: "/monuments-funeraires",
+  cineraire: "/monuments-cineraires-cavurnes",
+};
+
+/** Adresse de la page liste d une famille. */
+export function familleUrl(famille: Famille): string {
+  return `${FAMILLE_PATHS[famille]}/`;
+}
+
+/** Seule source des liens vers une fiche modele. */
+export function productUrl(product: Pick<Product, "famille" | "slug">): string {
+  return `${FAMILLE_PATHS[product.famille]}/${product.slug}/`;
+}
+
 export const FAMILLE_LABELS: Record<Famille, string> = {
   monument: "Monuments",
   cineraire: "Cinéraires et cavurnes",
@@ -56,6 +76,24 @@ export async function getProducts(): Promise<Product[]> {
 export async function getProduct(slug: string): Promise<Product | undefined> {
   const products = await getProducts();
   return products.find((product) => product.slug === slug);
+}
+
+/** Les modeles d une famille, dans l ordre du catalogue. */
+export async function getProductsByFamille(famille: Famille): Promise<Product[]> {
+  const products = await getProducts();
+  return products.filter((product) => product.famille === famille);
+}
+
+/**
+ * Coupe un texte sur un mot entier, pour tenir dans une meta description
+ * (155 caracteres) sans finir au milieu d un mot.
+ */
+export function tronque(texte: string, max: number): string {
+  if (texte.length <= max) return texte;
+
+  const coupe = texte.slice(0, max - 1);
+  const espace = coupe.lastIndexOf(" ");
+  return `${(espace > 0 ? coupe.slice(0, espace) : coupe).replace(/[\s,;:.–-]+$/, "")}…`;
 }
 
 export function getRelated(products: Product[], slug: string, limit = 3): Product[] {
