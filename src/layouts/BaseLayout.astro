@@ -30,14 +30,12 @@ const {
 const origin = Astro.site ?? Astro.url.origin;
 const canonicalUrl = new URL(Astro.url.pathname, origin);
 
-// Visuel de partage : seule une page qui en fournit un en emet un. Il n y a
-// plus de carte par defaut dans public/ (le visuel du theme a ete retire en E4
-// passe 1, et les reseaux sociaux ne lisent pas les SVG). Une balise og:image
-// qui pointe sur un fichier absent casse l apercu : mieux vaut pas de balise.
-// Les fiches retrouveront leur apercu des que les modeles auront des photos.
+// Visuel de partage : celui de la page s il existe (photo de fiche), sinon la
+// carte par defaut siteConfig.socialImage (public/og-image.png, 1200x630, nom
+// provisoire : a regenerer quand le nom definitif sera choisi).
 const social =
   image === undefined
-    ? null
+    ? { src: siteConfig.socialImage, width: 1200, height: 630, alt: siteConfig.name }
     : typeof image === "string"
       ? { src: image, width: undefined, height: undefined, alt: undefined }
       : { src: image.src, width: image.width, height: image.height, alt: undefined };

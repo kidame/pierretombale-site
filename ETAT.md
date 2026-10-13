@@ -35,6 +35,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 13.10.2026, Claude chat : carte de partage public/og-image.png (1200x630, gris, "PierreTombale.ch",
+  generee par script PIL) branchee par defaut via siteConfig.socialImage. A regenerer avec le nom definitif.
+  Build 18 pages et astro check 0 erreur. Apercu Netlify republie.
 - 13.10.2026, E4 PASSE 2 TERMINEE (Claude Code) : accueil et page de presentation.
   `src/pages/about.astro` devient `src/pages/a-propos.astro` (adresse /a-propos/, slug du
   production-spec), libelle "Qui sommes-nous" dans le menu et le pied de page (les deux viennent de

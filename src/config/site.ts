@@ -45,12 +45,9 @@ export const siteConfig = {
   /** Couleur de thème du navigateur. À garder en phase avec `--canvas` dans src/styles.css. */
   themeColor: "#f4f4f2",
 
-  /* Pas de `socialImage` : la carte de partage du thème (public/og-image.png,
-     un visuel de meubles) a été retirée en E4 passe 1 et rien ne la remplace
-     encore. Il faut un PNG ou un JPEG de 1200x630 : les réseaux sociaux ne
-     lisent pas les SVG. Tant qu'il n'existe pas, BaseLayout n'émet aucune
-     balise og:image, plutôt qu'une balise qui pointe sur un fichier absent.
-     Une fiche qui a une photographie, elle, emporte déjà son propre aperçu. */
+  /** Carte de partage par defaut (reseaux sociaux), PNG 1200x630 dans public/.
+   *  Porte le nom provisoire "PierreTombale.ch" : a regenerer avec le nom definitif. */
+  socialImage: "/og-image.png",
 
   /**
    * Navigation principale, dans l'ordre. Pilote aussi le menu mobile.
