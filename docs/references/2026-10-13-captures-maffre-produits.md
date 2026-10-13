@@ -64,7 +64,7 @@ le depot : elles restent chez Thomas. Ce fichier en est l inventaire.
   importe ; a confronter avec ce que l atelier du Kosovo sait fournir.
 - Aucun prix visible sur les captures.
 
-## Questions ouvertes pour les associes
+## Questions aux associes (repondues le 13.10.2026, voir docs/DECISIONS-ET-ETAT.md)
 1. Ces 27 modeles : la gamme qu on veut produire (version atelier), ou juste une inspiration ?
 2. L atelier du Kosovo peut-il produire les formes sculptees (montagne, voile, arbre) ou
    seulement les formes taillees simples ?

@@ -31,6 +31,14 @@ La spec et le dossier des associés visent une mise en ligne avant la Toussaint.
 
 Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale.html`) contient encore l'ancien calendrier aux points 7 et 8.
 
+## Reponses des associes sur la gamme (13.10.2026, via Thomas)
+- Les 27 captures Maffre (`docs/references/2026-10-13-captures-maffre-produits.md`) servent a la fois de gamme cible et d inspiration.
+- L atelier du Kosovo sait tout produire, formes sculptees comprises.
+- Granits : tous ceux des captures. Thomas fournira la liste definitive plus tard : la liste doit vivre dans un seul fichier facile a corriger (`src/data/granits.json`).
+- Pas de piste revendeur Maffre. Modele : service complet (conseil, commande, pose, apres-vente) ; seules la fabrication et la gravure sont sous-traitees a l atelier.
+- Consequence : ni images ni noms Maffre sur le site. Nos modeles portent des noms descriptifs a nous ; visuels provisoires en attendant photos ou rendus de l atelier.
+- Adresses retenues (plan SEO) : /monuments-funeraires/<modele> et /monuments-cineraires-cavurnes/<modele>.
+
 ## Où retrouver quoi
 - `docs/SPEC-BUILD-SITE.md` : la spec de build, avec l'avertissement sur les valeurs provisoires du production-spec.
 - `analyses/2026-08-17-niche-pierre-tombale-ne.md` : l'analyse de marché complète, sections 1 à 15. Les données sont dans `analyses/data/`.
