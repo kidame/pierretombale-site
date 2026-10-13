@@ -6,13 +6,13 @@ import SiteHeader from "@/components/SiteHeader.astro";
 import { siteConfig } from "@/config/site";
 
 interface Props {
-  /** Full <title> for the page. Should be unique per route. */
+  /** Le <title> complet de la page. Doit etre unique par adresse. */
   title?: string;
-  /** Meta description and social description. Keep under ~160 characters. */
+  /** Meta description, reprise aussi par les reseaux. A garder sous 160 signes. */
   description?: string;
-  /** Social share image. Accepts an imported asset or an absolute-from-root path. */
+  /** Visuel de partage : un asset importe, ou un chemin absolu depuis la racine. */
   image?: ImageMetadata | string;
-  /** Excludes the page from search indexes (devis, 404, previews). */
+  /** Sort la page des index de recherche (devis, 404, apercus). */
   noindex?: boolean;
   includeHeader?: boolean;
   includeFooter?: boolean;
@@ -30,17 +30,19 @@ const {
 const origin = Astro.site ?? Astro.url.origin;
 const canonicalUrl = new URL(Astro.url.pathname, origin);
 
-// Pages that supply their own artwork win; everything else falls back to the
-// designed share card in public/. Dimensions are emitted either way so social
-// previews reserve the right space instead of reflowing.
+// Visuel de partage : seule une page qui en fournit un en emet un. Il n y a
+// plus de carte par defaut dans public/ (le visuel du theme a ete retire en E4
+// passe 1, et les reseaux sociaux ne lisent pas les SVG). Une balise og:image
+// qui pointe sur un fichier absent casse l apercu : mieux vaut pas de balise.
+// Les fiches retrouveront leur apercu des que les modeles auront des photos.
 const social =
   image === undefined
-    ? siteConfig.socialImage
+    ? null
     : typeof image === "string"
       ? { src: image, width: undefined, height: undefined, alt: undefined }
       : { src: image.src, width: image.width, height: image.height, alt: undefined };
 
-const ogImage = new URL(social.src, origin).href;
+const ogImage = social ? new URL(social.src, origin).href : null;
 ---
 
 <!doctype html>
@@ -63,20 +65,20 @@ const ogImage = new URL(social.src, origin).href;
     <meta property="og:site_name" content={siteConfig.name} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl.href} />
-    <meta property="og:image" content={ogImage} />
-    {social.width && <meta property="og:image:width" content={String(social.width)} />}
-    {social.height && <meta property="og:image:height" content={String(social.height)} />}
-    {social.alt && <meta property="og:image:alt" content={social.alt} />}
-    <meta name="twitter:card" content="summary_large_image" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {social?.width && <meta property="og:image:width" content={String(social.width)} />}
+    {social?.height && <meta property="og:image:height" content={String(social.height)} />}
+    {social?.alt && <meta property="og:image:alt" content={social.alt} />}
+    <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-    {social.alt && <meta name="twitter:image:alt" content={social.alt} />}
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    {social?.alt && <meta name="twitter:image:alt" content={social.alt} />}
 
     <script is:inline>
-      // Opt in to scroll motion before first paint, so revealed elements are
-      // never briefly visible. Without this flag every [data-reveal] target
-      // renders in its final state.
+      // On active l animation au defilement avant le premier rendu, pour qu un
+      // element a devoiler ne soit jamais visible une fraction de seconde.
+      // Sans ce drapeau, chaque cible [data-reveal] s affiche telle quelle.
       if (
         window.matchMedia("(prefers-reduced-motion: reduce)").matches === false &&
         "IntersectionObserver" in window
@@ -97,8 +99,8 @@ const ogImage = new URL(social.src, origin).href;
     {includeFooter && <SiteFooter />}
 
     <script is:inline>
-      // Scroll reveals. Each target unobserves itself after firing once, so the
-      // observer costs nothing after the first pass down the page.
+      // Devoilement au defilement. Chaque cible cesse d etre observee des
+      // qu elle est apparue : l observateur ne coute plus rien ensuite.
       (() => {
         if (document.documentElement.dataset.motion !== "on") return;
 

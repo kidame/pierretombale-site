@@ -1,11 +1,10 @@
 ---
-import { Image } from "astro:assets";
 import ProductCard from "@/components/ProductCard.astro";
 import ProductImage from "@/components/ProductImage.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import heroImg from "@/assets/atelier-hero.jpg";
+import visuelProvisoire from "@/assets/visuel-provisoire.svg";
 import { adressePostaleJsonLd, entreprise, renseigne } from "@/config/entreprise";
-import { siteConfig } from "@/config/site";
+import { pageTitle, siteConfig } from "@/config/site";
 import { TEINTES, granitsDisponibles, nomGranit, type Teinte } from "@/data/granits";
 import {
   FAMILLE_LABELS,
@@ -81,8 +80,8 @@ const organizationSchema = {
 ---
 
 <BaseLayout
-  title={`Monuments funéraires et cinéraires — ${siteConfig.name}`}
-  description="Monuments funéraires et monuments cinéraires en granit massif, réalisés sur mesure pour la Suisse romande. Conseil, gravure et pose comprises dans le devis."
+  title={pageTitle("Monuments funéraires et cinéraires")}
+  description="Monuments funéraires et monuments cinéraires en granit massif, réalisés sur mesure pour la Suisse romande. Conseil, gravure et pose compris dans le devis."
 >
   <main id="main-content">
     {/* ---------------------------------------------------------------- Hero */}
@@ -91,7 +90,7 @@ const organizationSchema = {
         <h1 class="type-hero">Monuments funéraires et cinéraires en granit</h1>
         <p class="type-lead mt-7 max-w-[42ch]">
           Un catalogue court de monuments et de monuments cinéraires, taillés dans le granit massif. Chaque
-          sépulture est réalisée sur mesure : conseil, gravure et pose comprises.
+          sépulture est réalisée sur mesure : conseil, gravure et pose compris.
         </p>
         <div class="mt-9 flex flex-wrap gap-3">
           <a href={familleUrl("monument")} class="btn btn-primary">Monuments funéraires</a>
@@ -102,20 +101,19 @@ const organizationSchema = {
 
       <figure class="hero-in md:col-span-7" style="--reveal-delay:120ms">
         <div class="overflow-hidden bg-surface">
-          <Image
-            src={heroImg}
+          <img
+            src={visuelProvisoire.src}
             alt=""
             width={1600}
             height={1400}
-            format="webp"
             loading="eager"
             decoding="sync"
-            class="parallax aspect-[4/3] w-full object-cover object-right md:aspect-[8/7]"
+            class="aspect-[4/3] w-full object-cover md:aspect-[8/7]"
           />
         </div>
         <figcaption class="mono mt-3 flex justify-between gap-4 text-[0.625rem] uppercase tracking-[0.05em] text-muted">
           <span>Visuel provisoire</span>
-          <span>Photographies de l'atelier à venir</span>
+          <span>Visuels de l'atelier à venir</span>
         </figcaption>
       </figure>
     </section>
@@ -166,7 +164,7 @@ const organizationSchema = {
       }
     </section>
 
-    {/* ------------------------------------------------------------- The solo */}
+    {/* ------------------------------------------------ Le modele mis en avant */}
     <section class="mt-24 md:mt-36">
       <div class="shell grid items-center gap-10 md:grid-cols-12 md:gap-12">
         <div class="md:col-span-7 lg:col-span-8">
@@ -176,8 +174,9 @@ const organizationSchema = {
             data-reveal="mask"
             aria-label={`${solo.name} — ${solo.shortDescription}`}
           >
-            {/* Wrapper carries the unmask clip so the image keeps its own
-                hover transition — see the mask notes in src/styles.css. */}
+            {/* L enveloppe porte le decoupage du devoilement, pour que l image
+                garde sa propre transition au survol (cf. les notes sur les
+                masques dans src/styles.css). */}
             <div>
               <ProductImage
                 product={solo}
