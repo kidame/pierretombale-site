@@ -36,3 +36,20 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
 - `analyses/2026-08-17-niche-pierre-tombale-ne.md` : l'analyse de marché complète, sections 1 à 15. Les données sont dans `analyses/data/`.
 - `analyses/2026-08-17-dossier-opportunite-pierretombale.html` : le dossier présenté aux associés.
 - `docs/historique/` : les deux handovers de la préparation.
+
+## Base de départ du site : recherche du 13.10.2026
+Question posée : existe-t-il un dépôt GitHub pour ne pas partir de zéro, avec un site de type Granits Maffre (catalogue, choix du style et de la matière, choix d'image, sur-mesure), où le bouton « acheter » devient une demande de devis par email ?
+
+**Résultat : aucun dépôt ne fait tout.** Les recherches n'ont trouvé aucun configurateur open source de pierre tombale. La solution est un assemblage de trois pièces.
+
+1. **Catalogue : fork d'Atelier Kō** (`github.com/xocothemes/atelier-ko`, licence MIT, démo `atelier-ko-topaz.vercel.app`). Astro 7, Tailwind 4, TypeScript strict, HTML statique avec un peu de JavaScript. Un fichier Markdown par produit dans `src/content/products`, validé par un schéma (`src/content.config.ts`). Réglages centralisés dans `src/config/site.ts`. Filtres par catégorie et par matériau, tri par prix, fiche produit avec galerie et tableau de caractéristiques, données structurées Google, sitemap, robots.txt. Fournit aussi `CUSTOMIZATION.md` et `AGENTS.md`. Jeune (11 étoiles, 24 commits au 13.10.2026) : on le copie une fois, on ne dépend pas de ses mises à jour.
+   - À adapter : bois devient granit, catégorie devient type de monument. Ajouter les filtres style (moderne, classique) et tradition (chrétienne, musulmane, israélite). Ajouter la page « Nos granits ».
+   - À retirer : panier, page panier, aperçu de paiement. Le bouton d'achat devient « Demander un devis ». La difficulté du retrait n'a pas pu être vérifiée (code non lisible depuis cette session) : à regarder le premier jour.
+   - Manque : formulaire de devis, CMS, multilingue. Le multilingue n'est pas nécessaire en v1.
+   - Remplace ScrewFast comme point de départ cité dans la spec (§1). ScrewFast reste utile en phase 2 pour le câblage du multilingue.
+2. **Configurateur : à écrire, avec la démo officielle Konva comme point de départ** (`konvajs.org/docs/sandbox/Badge_Maker.html`). Elle fournit : saisie du texte par un champ superposé, déplacement, redimensionnement, export PNG (`pixelRatio` 3, poignées retirées avant l'export). Elle ne fournit pas : choix de police (Arial en dur), textures de granit, prix. Licence du code de la démo non précisée : s'en inspirer, ne pas copier tel quel. Pour une éventuelle phase 3 en 3D, référence : `github.com/iosorin/cup-demo` (Nuxt, Three.js, Fabric.js, 89 étoiles, démo en ligne, licence non vérifiée).
+3. **Devis par email : le pipeline de la spec (§5)**. Le bouton envoie la configuration, l'aperçu PNG et les coordonnées de la famille au webhook n8n, qui envoie le courriel aux associés et un accusé de réception à la famille.
+
+**Granits Maffre, ce que le site fait réellement** (observé le 13.10.2026) : menu « Configurateur », « Notre catalogue » (par type, par collection, par catégorie, par tradition), « Nos granits », « Où acheter ? ». Catalogue en grille de 23 pages avec photo, mots-clés, dimensions et « À partir de X € ». Chaque monument a un bouton « Configurez » qui renvoie vers un simulateur externe. Pas de panier, pas de formulaire de devis sur les pages vues : le sur-mesure passe par la page Contact. C'est un fabricant qui vend à des professionnels ; notre site est pour les familles, donc plus court (une quinzaine de modèles au départ) et avec un devis direct.
+
+**Écartés** : le modèle Astro + Decap CMS + Cloudflare (`jshuntley/astro-decap-cloudflare-starter`, 6 étoiles, sans licence, version de Decap non fixée) ; les thèmes Astro e-commerce avec panier (Eclipse, Vortexwear, ShopVerse, Proxima), payants ou centrés sur le paiement. Pour que les associés modifient les prix sans toucher au code, un simple fichier de prix modifiable depuis GitHub suffit au départ.
