@@ -49,6 +49,13 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
 - Zone d intervention, par ordre : Val-de-Travers, canton de Neuchatel, Suisse romande au mieux.
 - Aucun chiffre, temoignage, annee d experience ou statistique sans source verifiable.
 
+## Prix et personnalisation (Thomas, 13.10.2026)
+- Les prix affiches sont des ESTIMATIONS, pour convenir a tous les budgets ; ils seront revus plus tard.
+- L estimation couvre : matiere (granit), gravure, pose, et la personnalisation.
+- Personnalisation possible au-dela du catalogue : la famille peut fournir son propre dessin a faire graver.
+- Taxes et autorisations communales de cimetiere : non tranche. Ecrire "les eventuelles taxes communales
+  ne sont pas comprises" en attendant confirmation.
+
 ## Où retrouver quoi
 - `docs/SPEC-BUILD-SITE.md` : la spec de build, avec l'avertissement sur les valeurs provisoires du production-spec.
 - `analyses/2026-08-17-niche-pierre-tombale-ne.md` : l'analyse de marché complète, sections 1 à 15. Les données sont dans `analyses/data/`.
