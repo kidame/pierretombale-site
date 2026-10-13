@@ -13,6 +13,17 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 3. Fin : remplir "Derniere session" et "Prochaine etape", commit local.
 4. Ne jamais laisser de travail non commite : l agent suivant ne saurait pas d ou il vient.
 
+## Apercu en ligne (demande de Thomas, 13.10.2026)
+- Lien : https://pt-apercu-k7q2.netlify.app (projet Netlify "pt-apercu-k7q2", compte Netlify de Thomas,
+  site id 4b456177-ffd3-42a8-bd14-bcc87aff0cb7). Public pour qui a le lien, non indexe.
+- Ce n est PAS la production (prevue sur Cloudflare Pages en E7). On y publie une COPIE de dist :
+  /home/kumo/atelier/tmp/apercu, a laquelle on ajoute `_headers` (X-Robots-Tag: noindex, nofollow),
+  un robots.txt "Disallow: /" et un netlify.toml (publish = ".", pas de build). Ces 3 fichiers ne
+  doivent jamais entrer dans le depot : ils bloqueraient l indexation du vrai site.
+- Republier : build a jour, recopier dist dans tmp/apercu (+ les 3 fichiers), puis l outil Netlify
+  "deploy-site" (connecteur Netlify) donne une commande npx a usage unique a lancer dans tmp/apercu.
+  Ne jamais ecrire cette commande (elle contient un jeton temporaire) dans un fichier du depot.
+
 ## Plan de build (option securisee, decidee le 13.10.2026)
 - [x] E1. Importer Atelier Ko (copie unique, MIT, commit 348433f du 17.08.2026), retirer panier et paiement, bouton "Demander un devis".
 - [x] E2. Adapter le schema produit : granit, type de monument, style, tradition. 3 modeles fictifs.
