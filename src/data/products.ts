@@ -1,5 +1,6 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import { nomGranit } from "@/data/granits";
+import { prixAffiche, verifieSlugsTarifs } from "@/data/tarifs";
 import placeholderMonument from "@/assets/placeholder-monument.svg";
 import placeholderCineraire from "@/assets/placeholder-cineraire.svg";
 
@@ -8,9 +9,6 @@ export type Product = ProductEntry["data"] & { slug: string; description: string
 
 export type Famille = Product["famille"];
 export type Gamme = Product["gamme"];
-
-/** Aucun prix n est affiche tant que les tarifs ne sont pas connus (etape E3). */
-export const PRIX_SUR_DEMANDE = "Prix sur demande";
 
 /**
  * Adresse de la page liste de chaque famille, sans barre oblique finale.
@@ -63,15 +61,26 @@ function byOrderThenName(a: Product, b: Product): number {
   return a.order - b.order || a.name.localeCompare(b.name, "fr");
 }
 
+/* Les tarifs ne sont verifies qu une fois : c est le premier appel qui connait
+   la liste des fiches, et toutes les pages passent par `getProducts`. */
+let tarifsVerifies = false;
+
 export async function getProducts(): Promise<Product[]> {
   const entries = await getCollection("products");
-  return entries
+  const products = entries
     .map((entry: ProductEntry) => ({
       slug: slugFromEntry(entry),
       description: descriptionFromEntry(entry),
       ...entry.data,
     }))
     .sort(byOrderThenName);
+
+  if (!tarifsVerifies) {
+    verifieSlugsTarifs(products.map((product) => product.slug));
+    tarifsVerifies = true;
+  }
+
+  return products;
 }
 
 export async function getProduct(slug: string): Promise<Product | undefined> {
@@ -169,6 +178,6 @@ export function productForJson(product: Product) {
     options: product.options,
     granitPresente: product.granitPresente,
     granitsPossibles: product.granitsPossibles,
-    prix: PRIX_SUR_DEMANDE,
+    prix: prixAffiche(product.slug),
   };
 }

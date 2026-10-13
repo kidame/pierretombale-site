@@ -1,6 +1,7 @@
 ---
 import ProductImage from "@/components/ProductImage.astro";
-import { PRIX_SUR_DEMANDE, productUrl, type Product } from "@/data/products";
+import { productUrl, type Product } from "@/data/products";
+import { prixAffiche } from "@/data/tarifs";
 
 interface Props {
   product: Product;
@@ -45,7 +46,7 @@ const reference = index === undefined ? undefined : String(index + 1).padStart(2
         <p class="mt-1 truncate text-[0.8125rem] text-muted">{product.shortDescription}</p>
       </div>
     </div>
-    <span class="mono shrink-0 text-[0.8125rem]">{PRIX_SUR_DEMANDE}</span>
+    <span class="mono shrink-0 text-[0.8125rem]">{prixAffiche(product.slug)}</span>
   </div>
 </a>
 

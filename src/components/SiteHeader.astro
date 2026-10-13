@@ -1,7 +1,8 @@
 ---
 import ProductImage from "@/components/ProductImage.astro";
 import { siteConfig } from "@/config/site";
-import { PRIX_SUR_DEMANDE, getProducts, productUrl, requireProduct } from "@/data/products";
+import { getProducts, productUrl, requireProduct } from "@/data/products";
+import { prixAffiche } from "@/data/tarifs";
 
 interface Props {
   /** Current pathname, used to mark the active nav item. */
@@ -122,7 +123,7 @@ const featuredProduct = requireProduct(await getProducts(), siteConfig.featured.
       </div>
       <div class="mt-3 flex items-baseline justify-between gap-4">
         <p class="label">Au catalogue — {featuredProduct.name}</p>
-        <p class="mono text-[0.6875rem]">{PRIX_SUR_DEMANDE}</p>
+        <p class="mono shrink-0 text-[0.6875rem]">{prixAffiche(featuredProduct.slug)}</p>
       </div>
     </a>
   </div>

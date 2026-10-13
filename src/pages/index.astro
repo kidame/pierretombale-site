@@ -11,12 +11,12 @@ import {
   FAMILLE_LABELS,
   GAMMES,
   GAMME_LABELS,
-  PRIX_SUR_DEMANDE,
   familleUrl,
   getProducts,
   productUrl,
   requireProduct,
 } from "@/data/products";
+import { MENTION_PRIX_PROVISOIRE, prixAffiche, prixEstProvisoire } from "@/data/tarifs";
 
 const products = await getProducts();
 const featured = siteConfig.featured.homepageGrid.map((slug) => requireProduct(products, slug));
@@ -55,8 +55,13 @@ const soloSpecs: Array<[string, string]> = [
   ["Dimensions", solo.dimensions],
   ["Famille", FAMILLE_LABELS[solo.famille]],
   ["Granit présenté", nomGranit(solo.granitPresente)],
-  ["Prix", PRIX_SUR_DEMANDE],
+  ["Prix", prixAffiche(solo.slug)],
 ];
+
+/* La grille de modeles et le modele mis en avant affichent des prix : la
+   mention n apparait qu une fois par section, pas sur chaque carte. */
+const mentionGrille = featured.some((product) => prixEstProvisoire(product.slug));
+const mentionSolo = prixEstProvisoire(solo.slug);
 
 /* Organization : seules les coordonnées connues sont publiées. Tant que
    src/config/entreprise.ts est à `null`, la fiche se limite au nom et à
@@ -77,7 +82,7 @@ const organizationSchema = {
 
 <BaseLayout
   title={`Monuments funéraires et cinéraires — ${siteConfig.name}`}
-  description="Monuments funéraires et monuments cinéraires en granit massif, réalisés sur mesure pour la Suisse romande. Conseil, gravure et pose. Prix sur demande."
+  description="Monuments funéraires et monuments cinéraires en granit massif, réalisés sur mesure pour la Suisse romande. Conseil, gravure et pose comprises dans le devis."
 >
   <main id="main-content">
     {/* ---------------------------------------------------------------- Hero */}
@@ -151,6 +156,14 @@ const organizationSchema = {
           ))
         }
       </div>
+
+      {
+        mentionGrille && (
+          <p class="mono mt-8 text-[0.6875rem] uppercase tracking-[0.05em] text-muted" data-reveal>
+            {MENTION_PRIX_PROVISOIRE}
+          </p>
+        )
+      }
     </section>
 
     {/* ------------------------------------------------------------- The solo */}
@@ -192,6 +205,14 @@ const organizationSchema = {
               ))
             }
           </dl>
+
+          {
+            mentionSolo && (
+              <p class="mono mt-4 text-[0.6875rem] uppercase tracking-[0.05em] text-muted">
+                {MENTION_PRIX_PROVISOIRE}
+              </p>
+            )
+          }
 
           <a href={productUrl(solo)} class="btn btn-primary mt-9">Voir ce modèle</a>
         </div>
