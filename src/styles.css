@@ -448,38 +448,6 @@
     }
   }
 
-  /* ---- Newsletter band --------------------------------------------------- */
-
-  .newsletter-field {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    border-bottom: 1px solid var(--line-strong);
-    transition: border-color 240ms ease;
-  }
-
-  .newsletter-field:focus-within {
-    border-bottom-color: var(--accent);
-  }
-
-  .newsletter-field input {
-    flex: 1;
-    min-width: 0;
-    padding-block: 0.875rem;
-    background: transparent;
-    text-align: center;
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-  }
-
-  .newsletter-field input:focus {
-    outline: none;
-  }
-
-  .newsletter-field input::placeholder {
-    color: color-mix(in oklab, var(--muted) 55%, transparent);
-  }
-
   /* Page shell + full-bleed hairline used as section divider. */
   .shell {
     width: 100%;
