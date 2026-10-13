@@ -56,6 +56,14 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
 - Taxes et autorisations communales de cimetiere : non tranche. Ecrire "les eventuelles taxes communales
   ne sont pas comprises" en attendant confirmation.
 
+## Envoi des demandes de devis (Thomas, 13.10.2026)
+- PAS de n8n : le formulaire doit etre autonome (independant du VPS).
+- Option retenue (securisee) : fonction Cloudflare Pages /api/devis + Resend, mail vers une adresse
+  choisie par les associes et definie en variable d environnement (jamais dans le depot), accuse de
+  reception a la famille, Cloudflare Turnstile. Contrat des champs : docs/devis-contrat.md.
+- Prerequis : nom de domaine achete et DNS verifie chez Resend (SPF/DKIM), compte Resend dont Thomas
+  saisit lui-meme la cle dans Cloudflare. Remplace le pipeline n8n de la spec (section 5).
+
 ## Où retrouver quoi
 - `docs/SPEC-BUILD-SITE.md` : la spec de build, avec l'avertissement sur les valeurs provisoires du production-spec.
 - `analyses/2026-08-17-niche-pierre-tombale-ne.md` : l'analyse de marché complète, sections 1 à 15. Les données sont dans `analyses/data/`.

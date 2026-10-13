@@ -38,6 +38,7 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 13.10.2026, Claude chat : formulaire teste dans le navigateur (pre-selection du modele, erreurs, message d attente) ; espace manquant corrige dans le consentement. Build 23 pages, check 0 erreur. VPS passe a 80 Go (partition etendue automatiquement).
 - 13.10.2026, E4 PASSE 4 TERMINEE (Claude Code) : devis, merci, protection des donnees. E4 EST FINIE.
   `/devis/` est une vraie page indexable (title 44, meta 150, h1 unique, canonical, fil d Ariane) :
   formulaire `method="post" action="/api/devis" enctype="multipart/form-data"`, 4 sections
