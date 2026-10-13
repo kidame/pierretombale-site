@@ -1,0 +1,25 @@
+# Poids des pages au 13.10.2026 (avant E5), mesure par scripts/poids-pages.py dist (octets gzip).
+page | html gz | js externe gz | js inline gz | css gz (octets)
+404.html | 3805 | 0 | 1502 | 6810
+a-propos/index.html | 5258 | 0 | 1502 | 6810
+devis/index.html | 8672 | 0 | 4445 | 6810
+devis/merci/index.html | 3832 | 0 | 1502 | 6810
+faq/index.html | 5574 | 0 | 2846 | 6810
+index.html | 6013 | 0 | 1615 | 6810
+monuments-cineraires-cavurnes/dalle-cineraire/index.html | 5630 | 0 | 2421 | 6810
+monuments-cineraires-cavurnes/index.html | 5657 | 0 | 2369 | 6810
+monuments-cineraires-cavurnes/stele-cineraire-coeur/index.html | 5627 | 0 | 2453 | 6810
+monuments-cineraires-cavurnes/stele-cineraire-courbe-avec-vase/index.html | 5637 | 0 | 2463 | 6810
+monuments-cineraires-cavurnes/stele-cineraire-droite/index.html | 5599 | 0 | 2432 | 6810
+monuments-funeraires/dalle-funeraire-simple/index.html | 5643 | 0 | 2419 | 6810
+monuments-funeraires/index.html | 5963 | 0 | 2358 | 6810
+monuments-funeraires/monument-4-pieces-sans-stele/index.html | 5652 | 0 | 2466 | 6810
+monuments-funeraires/monument-avec-jardiniere/index.html | 5644 | 0 | 2438 | 6810
+monuments-funeraires/monument-musulman/index.html | 5652 | 0 | 2441 | 6810
+monuments-funeraires/stele-arrondie/index.html | 5678 | 0 | 2420 | 6810
+monuments-funeraires/stele-bicolore/index.html | 5648 | 0 | 2395 | 6810
+monuments-funeraires/stele-coeur/index.html | 5667 | 0 | 2457 | 6810
+monuments-funeraires/stele-doucine-classique/index.html | 5666 | 0 | 2456 | 6810
+nos-granits/index.html | 4583 | 0 | 1674 | 6810
+prix-pierre-tombale-suisse/index.html | 5503 | 0 | 1675 | 6810
+protection-des-donnees/index.html | 4920 | 0 | 1689 | 6810
