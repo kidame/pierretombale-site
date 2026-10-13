@@ -35,6 +35,44 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 13.10.2026, E4 PASSE 1 TERMINEE (Claude Code) : nettoyage du theme, nom, titres.
+  Nom PROVISOIRE "PierreTombale.ch" dans `src/config/site.ts` (name, tagline, description,
+  defaultTitle, commentaires en francais). `pageTitle()` passe au separateur " | " :
+  "Page | PierreTombale.ch". A changer quand le nom sera tranche : `name` ici et `site` dans
+  astro.config.mjs.
+  Fiches : `titreFiche(nom, nature)` dans site.ts donne "<Nom> - pierre tombale en granit |
+  PierreTombale.ch" (ou "monument cineraire" pour un cineraire), retire le nom du site au-dela
+  de 60 signes, et si le nom du modele repete deja la nature ("Stele cineraire courbe avec
+  vase") ne la redit pas. Meta description = shortDescription + " Prix indicatif et devis
+  gratuit.", tronquee a 155. h1 inchange. Verifie : 18 titres uniques, aucun au-dela de 60.
+  Pied de page : newsletter supprimee entierement (section, script, styles `.newsletter-field`
+  de src/styles.css) ; colonnes Catalogue (les 2 familles) et Informations (L atelier, Demander
+  un devis), aucun faux lien ; mention basse "(c) 2026 PierreTombale.ch" ; `id="studio"` retire
+  du pied de page, il doublait celui de la page L atelier.
+  Visuels : `git rm` des 3 photos de meubles et de public/og-image.png. Remplacees par
+  `src/assets/visuel-provisoire.svg` (aplat de granit gris, grain en filtre SVG) avec la legende
+  "Visuel provisoire" sur l accueil et sur L atelier. `public/favicon.svg` : monogramme "PT"
+  en rectangles, pas de police embarquee.
+  PAS D OG:IMAGE pour l instant : le PNG 1200x630 n a pas pu etre genere dans la session,
+  `node` n est pas dans l allowlist de `.claude/settings.json` et ni ce fichier ni
+  /home/kumo/atelier/tmp ne sont ouverts en ecriture a l agent. `socialImage` a donc disparu de
+  site.ts, et BaseLayout n emet og:image / twitter:image que si la page fournit son propre
+  visuel (les fiches le feront des qu elles auront des photos).
+  A FAIRE : creer `public/og-image.png` (1200x630, fond gris pierre, texte "PierreTombale.ch")
+  puis remettre `socialImage` dans site.ts. Un SVG ne suffit pas : les reseaux ne le lisent pas.
+  Anglais : `src/pages/about.astro` entierement traduite (principes, chiffres, appel a l action,
+  aria-label) ; commentaires de site.ts, SiteFooter, BaseLayout et index.astro passes au
+  francais. Restent 4 commentaires anglais NON visibles, a traduire a l occasion :
+  SiteHeader.astro:8, ProductCard.astro:8, 12 et 54. Corrige au passage sur l accueil :
+  "conseil, gravure et pose comprises" -> "compris".
+  `.parallax` (src/styles.css) n est plus utilise : les visuels provisoires sont des aplats.
+  A remettre sur les vraies photos, ou a supprimer.
+  Verifie : `npm run build` OK (18 pages), `npx astro check` 26 fichiers, 0 erreur,
+  0 avertissement, 0 hint ; `grep -rli "Atelier K" dist` vide ; aucun renvoi vers
+  atelier-hero / atelier-hands / atelier-workshop / og-image dans dist.
+  Piege de session : les 4 suppressions de fichiers avaient ete indexees avant le premier
+  commit, elles sont donc dans "nom provisoire et format des titres" et pas dans le commit des
+  visuels (git reset est interdit par les permissions, l historique n a pas ete repris).
 - 13.10.2026, E3 TERMINEE (Claude Code, docs finies par Claude chat : l agent a atteint 80 tours).
   `src/config/entreprise.ts` : coordonnees toutes a null, rien d affiche tant qu elles manquent.
   `src/data/tarifs.json` + `src/data/tarifs.ts` : fourchette par defaut 1'400 - 6'000 CHF (provisoire),
@@ -116,10 +154,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E4, pages et SEO, a decouper en passes courtes (l agent consomme vite ses 80 tours) :
-- passe 1 : nom et titres (retirer "Atelier Ko", titres de fiches avec "pierre tombale"/"monument cineraire",
-  supprimer la newsletter factice du footer, footer en francais) ;
-- passe 2 : accueil et page "L atelier" (service complet : conseil, commande, pose, apres-vente) ;
+E4 PASSE 2 : accueil et page "L atelier" (service complet : conseil, commande, pose,
+apres-vente). La page L atelier est aujourd hui une traduction du theme, pas le vrai contenu.
+Ensuite, toujours en passes courtes (l agent consomme vite ses 80 tours) :
 - passe 3 : page prix-pierre-tombale-suisse et page Nos granits (depuis granits.json) ;
 - passe 4 : contact/devis (formulaire sans envoi reel, E6 branchera n8n).
 Source : docs/production-spec-pierretombalech.json (pages, meta, FAQ, maillage) et analyses/ (section 5).
