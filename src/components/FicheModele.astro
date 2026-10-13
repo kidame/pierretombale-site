@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import ProductCard from "@/components/ProductCard.astro";
 import ProductImage from "@/components/ProductImage.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { siteConfig, pageTitle } from "@/config/site";
+import { siteConfig, titreFiche } from "@/config/site";
 import { nomGranit } from "@/data/granits";
 import {
   FAMILLE_LABELS,
@@ -51,6 +51,14 @@ const specs: Array<[string, string]> = [
   ["Granits possibles", granitsPossibles],
 ];
 
+/* Titre et meta description de la fiche. Le mot que les familles tapent passe
+   avant le nom du modele : "pierre tombale" pour un monument funeraire,
+   "monument cineraire" pour un cineraire (cf. la regle de vocabulaire dans
+   AGENTS.md). Le h1 de la page, lui, reste le nom du modele. */
+const nature = product.famille === "cineraire" ? "monument cinéraire" : "pierre tombale";
+const titre = titreFiche(product.name, nature);
+const metaDescription = tronque(`${product.shortDescription} Prix indicatif et devis gratuit.`, 155);
+
 const prix = prixAffiche(product.slug);
 const prixProvisoire = prixEstProvisoire(product.slug);
 
@@ -85,8 +93,8 @@ const filAriane = breadcrumbSchema(
 ---
 
 <BaseLayout
-  title={pageTitle(product.name)}
-  description={tronque(product.description, 155)}
+  title={titre}
+  description={metaDescription}
   image={product.images[0]}
 >
   <main id="main-content" class="shell">
