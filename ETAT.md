@@ -1,14 +1,16 @@
 # ETAT.md : relais entre sessions
 
 Ce fichier permet de reprendre le travail avec Claude ou avec ChatGPT/Codex, sans perte.
-Regle : chaque session le lit en premier et le met a jour en dernier, puis commit et push.
+Regle : chaque session le lit en premier et le met a jour en dernier, puis commit local.
 `docs/DECISIONS-ET-ETAT.md` garde les decisions business ; ce fichier garde l avancement du build.
 
 ## Protocole de relais
-1. Debut : `git pull`, lire `AGENTS.md`, ce fichier, puis la section "Prochaine etape".
-2. Travail : un commit par etape, message en francais, ASCII.
-3. Fin : remplir "Derniere session" et "Prochaine etape", commit, push.
-4. Ne jamais laisser de travail non commite : l autre agent ne le verra pas.
+Le travail se fait dans la copie locale du VPS : /home/kumo/atelier/repos/pierretombale-site.
+GitHub n intervient pas dans le developpement ni dans le relais.
+1. Debut : lire `AGENTS.md`, ce fichier, puis `git log --oneline -10` et `git status`.
+2. Travail : un commit local par etape, message en francais, ASCII.
+3. Fin : remplir "Derniere session" et "Prochaine etape", commit local.
+4. Ne jamais laisser de travail non commite : l agent suivant ne saurait pas d ou il vient.
 
 ## Plan de build (option securisee, decidee le 13.10.2026)
 - [ ] E1. Importer Atelier Ko (copie unique, MIT, commit 348433f du 17.08.2026), retirer panier et paiement, bouton "Demander un devis".
