@@ -1,0 +1,158 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { pageTitle } from "@/config/site";
+import { FAMILLE_LABELS, familleUrl } from "@/data/products";
+import { breadcrumbSchema } from "@/data/seo";
+
+/* FAQ. Les questions viennent de `faq_globale` et de la page "faq" du
+   production-spec, mais les reponses ont ete reecrites. REGLE STRICTE : aucune
+   affirmation juridique ou reglementaire precise (delai de pose, dimensions
+   autorisees, obligations). Le production-spec annoncait "environ un an apres
+   l inhumation dans le canton de Neuchatel" : rien ne le verifie, et cela
+   change d une commune a l autre. On renvoie donc au reglement du cimetiere
+   concerne, que nous verifions pour la famille.
+   Pas davantage de statistique sans source (la part de cremation a ete retiree
+   du site en passe 2), ni de mention de fabrication.
+   Chaque reponse est du texte simple : c est le meme texte qui part dans le
+   JSON-LD FAQPage et qui s affiche. Les liens vivent dans `lien`, a part, pour
+   que les deux versions restent identiques. */
+
+const origin = Astro.site ?? new URL(Astro.url.origin);
+
+const REGLE_COMMUNE =
+  "Les règles dépendent de chaque commune : nous vérifions pour vous le règlement du cimetière concerné.";
+
+interface Question {
+  question: string;
+  reponse: string;
+  lien?: { href: string; label: string };
+}
+
+const questions: Question[] = [
+  {
+    question: "Combien coûte un monument funéraire ?",
+    reponse:
+      "Les montants affichés sur ce site sont des estimations. Le prix d'un monument dépend de la famille de monument, du modèle, du granit, de la gravure et des options choisies ; il se fixe sur devis, gratuit et sans engagement.",
+    lien: { href: "/prix-pierre-tombale-suisse/", label: "Comment est calculé le prix ?" },
+  },
+  {
+    question: "Que comprend l'estimation affichée ?",
+    reponse:
+      "Le granit, la gravure, la pose au cimetière par nos soins et la personnalisation du monument. Les éventuelles taxes communales de cimetière ne sont pas comprises.",
+    lien: { href: "/prix-pierre-tombale-suisse/", label: "Le détail de l'estimation" },
+  },
+  {
+    question: "Quand le monument peut-il être posé ?",
+    reponse: `Après une inhumation, le terrain doit d'abord se stabiliser, et le moment de la pose se décide avec le cimetière. ${REGLE_COMMUNE}`,
+  },
+  {
+    question: "Quelles dimensions et quels modèles sont admis au cimetière ?",
+    reponse: `Un cimetière peut encadrer les dimensions du monument, sa forme ou ses matériaux, et ces cadres diffèrent d'un emplacement à l'autre. ${REGLE_COMMUNE} Nous vous proposons ensuite les modèles compatibles.`,
+  },
+  {
+    question: "Quelle différence entre un monument funéraire et un monument cinéraire ?",
+    reponse:
+      "Un monument funéraire est posé sur une tombe d'inhumation. Un monument cinéraire, dont la cavurne fait partie, est destiné à une ou plusieurs urnes après crémation : il est plus compact, et se décline en stèle, plaque ou petit caveau.",
+    lien: { href: familleUrl("cineraire"), label: FAMILLE_LABELS.cineraire },
+  },
+  {
+    question: "Peut-on faire graver un dessin que la famille fournit ?",
+    reponse:
+      "Oui. Au-delà des motifs du catalogue, vous pouvez nous transmettre votre propre dessin pour le faire graver : un croquis, un symbole, un signe qui comptait pour le défunt. Nous vous disons ce que la gravure permet, puis le dessin repris vous est soumis en bon à tirer avant toute gravure.",
+    lien: { href: "/devis", label: "Joindre un dessin à votre demande" },
+  },
+  {
+    question: "Comment choisir le granit ?",
+    reponse:
+      "Le granit montré sur une fiche n'est qu'un exemple : chaque modèle se réalise dans les granits disponibles. Nous présentons les teintes au rendez-vous, car une couleur se juge sur la pierre et non sur un écran.",
+    lien: { href: "/nos-granits/", label: "Nos granits" },
+  },
+  {
+    question: "Peut-on ajouter un nom ou une inscription sur un monument déjà posé ?",
+    reponse:
+      "Oui, une inscription complémentaire s'ajoute sur un monument en place : un nom, des dates, une épitaphe. Envoyez-nous une photo du monument et le texte souhaité pour recevoir un devis.",
+    lien: { href: "/devis", label: "Demander un devis" },
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: questions.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.reponse },
+  })),
+};
+
+const filAriane = breadcrumbSchema(
+  [
+    { name: "Accueil", path: "/" },
+    { name: "Questions fréquentes", path: "/faq/" },
+  ],
+  origin,
+);
+---
+
+<BaseLayout
+  title={pageTitle("FAQ : pierres tombales en Suisse romande")}
+  description="Questions fréquentes des familles : prix et estimations, pose au cimetière, dimensions admises, granits, gravure d'un dessin fourni, inscription ajoutée."
+>
+  <main id="main-content">
+    <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
+      <h1 class="type-h1 hero-in max-w-[22ch]">Questions fréquentes</h1>
+      <p class="type-lead hero-in mt-8 max-w-[58ch]" style="--reveal-delay:120ms">
+        Les questions que les familles nous posent le plus souvent, sur les prix, la pose au cimetière, les
+        granits et la gravure. Si la vôtre n'y est pas, posez-la nous.
+      </p>
+    </section>
+
+    <section class="shell mt-8 md:mt-12">
+      <div class="rule" data-reveal="line"></div>
+      <dl class="mt-8 border-t border-line">
+        {
+          questions.map((item, index) => (
+            <div
+              class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-12"
+              data-reveal
+              style={`--reveal-delay:${index * 70}ms`}
+            >
+              <dt class="type-h3 max-w-[26ch] md:col-span-5">{item.question}</dt>
+              <dd class="md:col-span-7">
+                <p class="type-body max-w-[56ch] text-[0.9375rem]">{item.reponse}</p>
+                {item.lien && (
+                  <p class="mt-4">
+                    <a href={item.lien.href} class="link link-mono text-muted">
+                      {item.lien.label}
+                    </a>
+                  </p>
+                )}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    {/* ------------------------------------------------------------- Appel */}
+    <section class="shell mt-24 md:mt-36">
+      <div class="grid items-end gap-8 md:grid-cols-12" data-reveal>
+        <div class="md:col-span-7">
+          <h2 class="type-h2 max-w-[20ch]">Votre question n'est pas là ?</h2>
+          <p class="type-body mt-6 max-w-[52ch]">
+            Écrivez-nous votre situation, même en quelques lignes : le cimetière, la sépulture, ce que vous
+            imaginez. Nous répondons et nous établissons un devis détaillé, gratuit.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
+          <a href="/devis" class="btn btn-primary">Demander un devis</a>
+          <a href="/prix-pierre-tombale-suisse/" class="btn btn-outline">Prix</a>
+          <a href={familleUrl("monument")} class="btn btn-outline">Monuments funéraires</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
+</BaseLayout>
