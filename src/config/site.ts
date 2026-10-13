@@ -57,6 +57,7 @@ export const siteConfig = {
   navigation: [
     { label: "Monuments funéraires", href: "/monuments-funeraires/" },
     { label: "Monuments cinéraires", href: "/monuments-cineraires-cavurnes/" },
+    { label: "Prix", href: "/prix-pierre-tombale-suisse/" },
     { label: "Qui sommes-nous", href: "/a-propos/" },
     { label: "Demander un devis", href: "/devis" },
   ] satisfies NavItem[],
@@ -75,11 +76,14 @@ export const siteConfig = {
       links: [
         { label: "Monuments funéraires", href: "/monuments-funeraires/" },
         { label: "Monuments cinéraires et cavurnes", href: "/monuments-cineraires-cavurnes/" },
+        { label: "Nos granits", href: "/nos-granits/" },
       ],
     },
     {
       heading: "Informations",
       links: [
+        { label: "Prix", href: "/prix-pierre-tombale-suisse/" },
+        { label: "Questions fréquentes", href: "/faq/" },
         { label: "Qui sommes-nous", href: "/a-propos/" },
         { label: "Demander un devis", href: "/devis" },
       ],

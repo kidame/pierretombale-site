@@ -5,7 +5,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import visuelProvisoire from "@/assets/visuel-provisoire.svg";
 import { adressePostaleJsonLd, entreprise, renseigne } from "@/config/entreprise";
 import { pageTitle, siteConfig } from "@/config/site";
-import { TEINTES, granitsDisponibles, nomGranit, type Teinte } from "@/data/granits";
+import { granitsDisponibles, nomGranit } from "@/data/granits";
 import {
   FAMILLE_LABELS,
   GAMMES,
@@ -58,23 +58,9 @@ const etapes = [
   },
 ];
 
-/* La liste des granits vit dans src/data/granits.json : on la regroupe par
-   teinte pour l affichage, sans la recopier ici. */
-const TEINTE_PLURIEL: Record<Teinte, string> = {
-  noir: "Granits noirs",
-  gris: "Granits gris",
-  blanc: "Granits blancs",
-  bleu: "Granits bleus",
-  rose: "Granits rosés",
-  rouge: "Granits rouges",
-  vert: "Granits verts",
-  beige: "Granits beiges",
-};
-
-const groupesGranits = TEINTES.map((teinte) => ({
-  teinte,
-  granits: granits.filter((granit) => granit.teinte === teinte),
-})).filter((groupe) => groupe.granits.length > 0);
+/* La liste des granits ne s affiche plus ici : elle a sa page, /nos-granits/,
+   construite depuis src/data/granits.json. L accueil n en garde que le nombre
+   (dans les reperes) et le lien. */
 
 const soloSpecs: Array<[string, string]> = [
   ["Dimensions", solo.dimensions],
@@ -196,6 +182,7 @@ const organizationSchema = {
           <a href={familleUrl("cineraire")} class="link link-mono pb-1.5 text-muted">
             {FAMILLE_LABELS.cineraire}
           </a>
+          <a href="/prix-pierre-tombale-suisse/" class="link link-mono pb-1.5 text-muted">Prix</a>
         </div>
       </div>
 
@@ -278,24 +265,9 @@ const organizationSchema = {
         Le granit présenté sur un visuel n'est qu'un exemple : le même modèle se taille dans les autres teintes.
         La liste évolue selon les granits disponibles.
       </p>
-
-      <div class="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-3">
-        {
-          groupesGranits.map((groupe, index) => (
-            <div class="border-t border-line pt-6" data-reveal style={`--reveal-delay:${index * 110}ms`}>
-              <h3 class="type-h3">{TEINTE_PLURIEL[groupe.teinte]}</h3>
-              <p class="label mt-3">
-                {groupe.granits.length === 1 ? "1 granit" : `${groupe.granits.length} granits`}
-              </p>
-              <ul class="type-body mt-4 text-[0.9375rem]">
-                {groupe.granits.map((granit) => (
-                  <li>{granit.nom}</li>
-                ))}
-              </ul>
-            </div>
-          ))
-        }
-      </div>
+      <p class="mt-8" data-reveal>
+        <a href="/nos-granits/" class="link link-mono text-muted">Nos granits, par teinte</a>
+      </p>
     </section>
 
     {/* --------------------------------------------- Zone d intervention */}
