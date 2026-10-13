@@ -64,6 +64,17 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
 - Prerequis : nom de domaine achete et DNS verifie chez Resend (SPF/DKIM), compte Resend dont Thomas
   saisit lui-meme la cle dans Cloudflare. Remplace le pipeline n8n de la spec (section 5).
 
+## Personnalisation et configurateur (Thomas, 13.10.2026)
+- Etude des concurrents le 13.10.2026 : les fabricants FR (GPG Granit, Granits Maffre) ont un configurateur 3D
+  qui sert a capter et structurer des demandes pour leurs reseaux de marbriers (vente conclue en agence, pas de
+  prix en direct chez GPG) ; France Tombale n affiche un prix en direct que pour les plaques ; aucun concurrent
+  romand verifie (lespierrestombales.ch, marbrier-geneve.ch, oudinmarbrerie.ch) n a de configurateur ni de prix.
+- E5 retenu (securisee) : personnalisation GUIDEE dans le formulaire de devis (lignes de texte, police sur
+  echantillons, hauteur, finition, motif, dessin fourni) avec un apercu simple du texte. Pas de canvas.
+- Plus tard : vrai configurateur visuel (Konva), d abord pour cineraires et plaques, quand prix et visuels existent.
+  Il devra reutiliser les memes donnees (src/data/personnalisation.ts) et le meme contrat (docs/devis-contrat.md),
+  et ne charger son code que sur sa propre page, sans alourdir les autres pages ni nuire au SEO.
+
 ## Où retrouver quoi
 - `docs/SPEC-BUILD-SITE.md` : la spec de build, avec l'avertissement sur les valeurs provisoires du production-spec.
 - `analyses/2026-08-17-niche-pierre-tombale-ne.md` : l'analyse de marché complète, sections 1 à 15. Les données sont dans `analyses/data/`.
