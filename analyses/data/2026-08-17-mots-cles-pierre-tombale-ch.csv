@@ -1,0 +1,62 @@
+mot_cle,volume_mensuel_ch,cpc_chf,concurrence_ads,kd,intention_principale,note
+pierre tombale,320,3.26,HIGH,2,informational*,"*SERP réelle = pack local + marbriers + prix ; CPC Labs jusqu'à 9.27 ; tendance annuelle -19%"
+marbrerie,320,4.68,LOW,5,informational,"cluster commun avec marbrier ; mixte funéraire/plans de travail"
+marbrier,320,4.68,LOW,12,informational,"cluster commun avec marbrerie"
+columbarium,320,2.21,LOW,,informational,"familles en amont ; diversification cinéraire"
+urne funéraire,170,0.58,HIGH,,transactional,"e-commerce"
+pompes funèbres neuchâtel,140,5.02,MEDIUM,11,local,"écosystème / prescripteurs"
+prix pierre tombale suisse,70,5.60,MEDIUM,37,commercial (0.93),"la requête reine ; variante 'pierre tombale prix suisse' identique (70)"
+plaque funéraire,70,3.30,HIGH,61,transactional,"dominé par e-commerce FR"
+catalogue pierre tombale prix,50,3.04,,,commercial,"source Labs"
+monument funéraire,50,8.62,MEDIUM,41,informational/commercial,
+pierre tombale vaud,50,1.51,,,local,"source Labs"
+pompes funèbres la chaux-de-fonds,50,5.88,MEDIUM,,local,"écosystème"
+prix pierre tombale,40,3.48,MEDIUM,,commercial (0.83),"= pierre tombale prix"
+marbrerie funéraire,40,7.91,MEDIUM,,commercial (0.51),"= marbrier funéraire"
+stèle funéraire,30,7.52,HIGH,43,informational/transactional,
+pierre tombale genève,30,6.29,,,local,"source Labs"
+monuments funéraires,20,,HIGH,,,
+plaque tombale,20,2.54,HIGH,,,
+marbrerie la chaux-de-fonds,20,2.42,LOW,,local,"seule requête locale NE mesurée"
+pierre tombale lausanne,20,8.63,,,local,"source Labs"
+pierre tombale valais,20,5.75,,,local,"source Labs"
+prix pierre tombale simple,20,2.15,,,commercial,"source Labs"
+pierres tombales,10,7.34,MEDIUM,,,
+monument funéraire prix,10,9.12,HIGH,,commercial,"CPC le plus élevé de l'univers"
+pierre tombale pas cher,10,0.36,HIGH,,commercial,
+pierre tombale granit,10,9.03,LOW,,commercial,"source Labs pour CPC"
+pierre tombale moderne,10,0.27,HIGH,38,informational/transactional,
+pierre tombale musulmane,10,,MEDIUM,,informational,"segment communautaire — page dédiée recommandée"
+pierre tombale double,10,,,,commercial,
+pierre tombale suisse,10,2.56,HIGH,,commercial,
+prix d'une pierre tombale en granit suisse,10,,,,commercial,"source Labs"
+gravure pierre tombale,10,1.91,HIGH,,informational/transactional,"CPC Labs 8.85"
+gravure funéraire,10,,LOW,,,
+inscription pierre tombale,10,,MEDIUM,,,
+lettrage pierre tombale,10,2.37,,,transactional,"source Labs"
+entretien tombe,10,,LOW,,informational,"prestation récurrente sans concurrence"
+entretien pierre tombale,10,,LOW,,,
+nettoyage pierre tombale,10,0.07,HIGH,,informational/commercial,
+rénovation pierre tombale,10,,,,,"volume irrégulier"
+plaque columbarium,10,2.03,HIGH,,,
+caveau funéraire,10,,LOW,,,
+tombe,480,0.34,LOW,,informational,"intent flou (contexte) — ne pas cibler"
+pompes funèbres,1300,3.14,LOW,,local,"écosystème ; pic janvier 3600"
+pompes funèbres prix,10,,LOW,,commercial,"écosystème"
+enterrement prix,10,2.93,MEDIUM,,commercial,"écosystème"
+pierre tombale neuchâtel,<10,,,,local,"sous seuil de mesure Google Ads"
+pierre tombale la chaux-de-fonds,<10,,,,local,"sous seuil"
+pierre tombale val-de-travers,<10,,,,local,"sous seuil"
+pierre tombale fleurier,<10,,,,local,"sous seuil"
+pierre tombale le locle,<10,,,,local,"sous seuil"
+marbrerie neuchâtel,<10,,,,local,"sous seuil (mais SERP active : annuaires top 5)"
+marbrier neuchâtel,<10,,,,local,"sous seuil"
+monument funéraire neuchâtel,<10,,,,local,"sous seuil"
+monument funéraire la chaux-de-fonds,<10,,,,local,"sous seuil"
+pompes funèbres val-de-travers,<10,,,,local,"sous seuil"
+pompes funèbres fleurier,<10,,,,local,"sous seuil"
+pompes funèbres couvet,<10,,,,local,"sous seuil"
+entretien tombe neuchâtel,<10,,,,local,"sous seuil"
+restauration pierre tombale,<10,,,,,"sous seuil"
+pierre tombale enfant,<10,,,,,"sous seuil"
+monument funéraire suisse,<10,,,,,"sous seuil"

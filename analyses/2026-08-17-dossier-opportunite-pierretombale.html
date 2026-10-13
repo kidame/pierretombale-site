@@ -1,0 +1,248 @@
+<meta charset="utf-8">
+<title>Le projet PierreTombale.ch</title>
+<style>
+  :root {
+    --ground: #faf9f6;
+    --ink: #262420;
+    --stone: #5b574e;
+    --line: #e6e2d8;
+    --bronze: #8a6b2d;
+    --bronze-ink: #6f5523;
+    --wash: #f2f0e9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #1c1b18;
+      --ink: #eae7de;
+      --stone: #a8a294;
+      --line: #3a382f;
+      --bronze: #c9a55a;
+      --bronze-ink: #d4b264;
+      --wash: #242320;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #1c1b18;
+    --ink: #eae7de;
+    --stone: #a8a294;
+    --line: #3a382f;
+    --bronze: #c9a55a;
+    --bronze-ink: #d4b264;
+    --wash: #242320;
+  }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Palatino Linotype", Palatino, "Book Antiqua", "Iowan Old Style", Georgia, serif;
+    line-height: 1.65;
+    margin: 0;
+    padding: 3.5rem 1.25rem 5rem;
+  }
+  main { max-width: 42rem; margin: 0 auto; }
+  .eyebrow {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+  h1 {
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    line-height: 1.15;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin: 0.4rem 0 0.8rem;
+    text-wrap: balance;
+  }
+  .lede { font-size: 1.1rem; color: var(--stone); margin: 0 0 0.4rem; }
+  header { border-bottom: 3px double var(--line); padding-bottom: 1.6rem; margin-bottom: 0.6rem; }
+  section { margin-top: 2.6rem; }
+  h2 {
+    font-size: 1.28rem;
+    font-weight: 600;
+    margin: 0 0 0.7rem;
+    text-wrap: balance;
+  }
+  h2 .no {
+    color: var(--bronze);
+    font-variant-numeric: tabular-nums;
+    margin-right: 0.45rem;
+  }
+  p { margin: 0.7rem 0; }
+  .big { font-size: 1.05em; }
+  strong { font-weight: 600; }
+  .fig { color: var(--bronze-ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .keybox {
+    background: var(--wash);
+    border-left: 3px solid var(--bronze);
+    padding: 0.9rem 1.1rem;
+    margin: 1.1rem 0;
+  }
+  .keybox p { margin: 0.35rem 0; }
+  .tablewrap { overflow-x: auto; margin: 1.1rem 0; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.95rem;
+  }
+  caption {
+    text-align: left;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--stone);
+    padding-bottom: 0.5rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.5rem 0.75rem 0.5rem 0;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--stone);
+  }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; padding-right: 0; padding-left: 0.75rem; }
+  .muted { color: var(--stone); font-size: 0.9rem; }
+  .sig { margin-top: 2.4rem; font-size: 1.05rem; }
+  .footnote {
+    margin-top: 2.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    color: var(--stone);
+    font-size: 0.85rem;
+  }
+  ul { padding-left: 1.2rem; margin: 0.7rem 0; }
+  li { margin: 0.35rem 0; }
+  .steps { list-style: none; padding: 0; margin: 1.1rem 0; }
+  .steps li {
+    padding: 0.55rem 0 0.55rem 2.1rem;
+    position: relative;
+    border-bottom: 1px solid var(--line);
+  }
+  .steps li:last-child { border-bottom: none; }
+  .steps .k {
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    color: var(--bronze);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+</style>
+<main>
+<header>
+  <p class="eyebrow">Notes de Thomas pour notre projet · 17 août 2026</p>
+  <h1>Le projet PierreTombale.ch</h1>
+  <p class="lede">J'ai passé la journée à mesurer ce marché avec mes outils de travail. Voilà ce que j'ai trouvé, ce que je propose de construire, et ce que ça peut rapporter. Tous les chiffres sont mesurés. Quand c'est une hypothèse, je l'écris noir sur blanc.</p>
+</header>
+
+<section>
+  <h2><span class="no">1.</span>Pourquoi je vous dis d'y aller maintenant</h2>
+  <p class="big">Le marbrier du Vallon part à la retraite, ça vous le savez mieux que moi. Ce que j'ai vérifié de mon côté : sa fiche Google n'a même pas de site, et un seul avis. Quand quelqu'un du Vallon cherche « pierre tombale », Google lui propose des entreprises vaudoises, à 40 minutes de route. Et j'ai regardé toute la Suisse romande : pas un seul vendeur n'affiche ses prix en ligne.</p>
+  <p>Trois places se libèrent en même temps. La place locale. La place du canton. Et la place du vendeur qui dit ses prix. Avec votre granit acheté en direct, on peut prendre les trois avec un seul site.</p>
+</section>
+
+<section>
+  <h2><span class="no">2.</span>Le marché, sans se raconter d'histoires</h2>
+  <p>Je suis allé chercher les vrais chiffres. Le Vallon, c'est environ <span class="fig">130 décès par an</span> (141 en 2023, 126 en 2024, les chiffres de la commune). Le canton de Neuchâtel, environ <span class="fig">1'600 par an</span>. C'est un marché de petits nombres et de gros montants : les vendeurs suisses publient des fourchettes de <span class="fig">2'000 à 15'000 francs</span> par monument.</p>
+  <p>Et il faut qu'on se dise la vérité sur la crémation : aujourd'hui, <span class="fig">9 décès sur 10</span> partent en crémation (97 % en ville de Neuchâtel, le record d'Europe). Le métier ne meurt pas, il change de forme. Les familles achètent des monuments plus petits pour les urnes, des plaques, des gravures sur les tombes de famille, de l'entretien. Je construis donc le catalogue avec le cinéraire au centre, pas en option.</p>
+  <div class="keybox">
+    <p><strong>La preuve que les prix affichés gagnent :</strong> en France, ceux qui dominent Google affichent tous leurs prix, de 799 à 2'600 euros, parfois pose comprise. Chez nous, personne ne le fait encore. J'ai bien entendu la crainte que la production voie nos marges : on peut afficher « dès tant de francs, tout compris » plutôt que le prix au franc près, et surtout bloquer la grille de production par écrit avant la mise en ligne. On en reparle ensemble, mais cette place, je ne veux pas la laisser au suivant.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="no">3.</span>Mon métier là-dedans : comment Google amène des clients</h2>
+  <p>C'est mon travail de tous les jours, alors je vous l'explique sans jargon. Chaque mois, des gens tapent des recherches précises dans Google : « pierre tombale prix suisse », « marbrier », « urne funéraire ». Google affiche une liste de sites. Les trois premiers reçoivent l'essentiel des visites, gratuitement, mois après mois. Tout mon travail consiste à faire de notre site la meilleure réponse sur les recherches qui comptent pour nous.</p>
+  <p>En pratique, je construis une page par recherche importante : une page de prix (la plus stratégique), une page par type de monument, une page par ville du canton, et un espace de conseils pour les familles en deuil. S'ajoute la fiche Google avec la carte : pour « marbrier » près de chez soi, c'est souvent elle qui déclenche l'appel, et elle se gagne avec quelques avis clients. Le sortant de Couvet en a un seul.</p>
+</section>
+
+<section>
+  <h2><span class="no">4.</span>Combien de personnes cherchent, chaque mois</h2>
+  <p>Voilà ce que les gens tapent vraiment dans Google en Suisse romande. Je l'ai mesuré moi-même le 17 août (chiffres arrondis par Google) :</p>
+  <div class="tablewrap">
+  <table>
+    <caption>Recherches par mois, Suisse francophone</caption>
+    <tr><th>Ce que cherchent les gens</th><th class="n">Recherches / mois</th></tr>
+    <tr><td>Acheter un monument (pierre tombale, prix, catalogue, marbrier, stèle...)</td><td class="n">≈ 1'000</td></tr>
+    <tr><td>Le cinéraire et les accessoires (urne, columbarium, plaques, cavurne...)</td><td class="n">≈ 850</td></tr>
+    <tr><td>Les familles en deuil (messages de condoléances, épitaphes, textes d'hommage...)</td><td class="n">≈ 4'100</td></tr>
+    <tr><td>Les avis de décès (le point d'entrée du secteur, capturable en partie seulement)</td><td class="n">≈ 21'000</td></tr>
+  </table>
+  </div>
+  <p>Les deux premières lignes, ce sont des acheteurs. La troisième, ce sont les proches. Ils ne commandent rien aujourd'hui, mais dans 6 à 18 mois une partie de ces familles achètera un monument : dans le canton, on pose la pierre environ un an après l'inhumation. Le site qui les a aidés pendant le deuil part avec une longueur d'avance. C'est la méthode du leader français, et j'ai vérifié : chez nous, ces recherches sont quasi sans concurrence.</p>
+</section>
+
+<section>
+  <h2><span class="no">5.</span>Des recherches aux ventes : mon calcul, étape par étape</h2>
+  <p>Personne ne peut promettre une position dans Google, et je ne vais pas commencer à vous mentir. Ce que je peux faire : un calcul prudent, avec mes hypothèses posées sur la table, et une mesure chaque mois pour vérifier où on en est.</p>
+  <ol class="steps">
+    <li><span class="k">1</span>Des recherches aux <strong>visites</strong> : être dans le trio de tête sur une partie des recherches ci-dessus. Selon le scénario, ça donne de 300 à 1'500 visites par mois au bout d'un an.</li>
+    <li><span class="k">2</span>Des visites aux <strong>demandes</strong> : sur les pages d'achat, je retiens que 2 à 5 visiteurs sur 100 laissent une demande ou appellent. Les prix affichés servent exactement à ça.</li>
+    <li><span class="k">3</span>Des demandes aux <strong>ventes</strong> : en artisanat, avec un vrai avantage de prix, on conclut entre 1 devis sur 3 et 1 sur 2.</li>
+    <li><span class="k">4</span>S'ajoutent les ventes hors site : la carte Google, les pompes funèbres qui recommandent, le bouche-à-oreille. Je ne les compte pas dans le tableau, elles viennent en plus.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="no">6.</span>Ce que ça donne en francs</h2>
+  <p>Je vous ai fait trois scénarios à 12 mois, ventes venues du site uniquement. Les paniers reprennent les fourchettes du marché suisse, avec nous en dessous. La grille définitive dépendra de votre coût de production.</p>
+  <div class="tablewrap">
+  <table>
+    <caption>Mes trois scénarios à 12 mois (site seul, hors carte Google et recommandations)</caption>
+    <tr><th></th><th class="n">Prudent</th><th class="n">Réaliste</th><th class="n">Bon</th></tr>
+    <tr><td>Visites par mois</td><td class="n">300 à 500</td><td class="n">600 à 1'000</td><td class="n">1'200 à 1'500</td></tr>
+    <tr><td>Demandes par mois</td><td class="n">2 à 4</td><td class="n">4 à 8</td><td class="n">8 à 14</td></tr>
+    <tr><td>Ventes par mois</td><td class="n">1 à 2</td><td class="n">2 à 3</td><td class="n">3 à 6</td></tr>
+    <tr><td>Panier moyen retenu</td><td class="n">3'000 CHF</td><td class="n">3'500 CHF</td><td class="n">4'000 CHF</td></tr>
+    <tr><td><strong>Chiffre d'affaires par an</strong></td><td class="n"><strong>36'000 à 72'000</strong></td><td class="n"><strong>84'000 à 126'000</strong></td><td class="n"><strong>144'000 à 288'000</strong></td></tr>
+  </table>
+  </div>
+  <p>Un repère simple pour se projeter : <strong>une seule vente à 3'500 francs par mois, c'est déjà 42'000 francs de chiffre d'affaires par an</strong>. La marge, c'est votre partie : elle dépend du coût du granit au Kosovo, et c'est justement là qu'on est plus forts que les autres.</p>
+  <p class="muted">Ces montants sortent de mon calcul, pas d'une boule de cristal. Le premier semestre sera plus bas, un site neuf met des mois à monter dans Google. La carte Google, elle, peut amener des appels dès les premières semaines.</p>
+</section>
+
+<section>
+  <h2><span class="no">7.</span>Mon plan, en trois temps</h2>
+  <ul>
+    <li><strong>D'ici la Toussaint</strong> (le pic de recherches de l'année) : je mets le site en ligne avec les prix, le catalogue avec le cinéraire au centre, les pages par ville, la fiche Google, et on récolte les premiers avis.</li>
+    <li><strong>L'hiver</strong> : je construis l'espace pour les familles (modèles de condoléances, épitaphes, textes d'hommage, remerciements). C'est lui qui fait passer le site de quelques centaines à plus d'un millier de visites par mois, et qui installe le nom.</li>
+    <li><strong>Ensuite, si les chiffres suivent</strong> : la même chose en allemand. Le marché alémanique pèse 4 fois le nôtre sur ces recherches, et vous y avez le réseau. Et un partenariat avec les pompes funèbres de la région, jusqu'à publier les avis de décès locaux, la plus grosse porte d'entrée du secteur.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="no">8.</span>Ce que je mets, ce qu'il me faut de vous</h2>
+  <p>Moi, je mets le site, les textes et tout le travail Google. Je ne facture rien, on partage les bénéfices en trois. De votre côté, il me faut :</p>
+  <ul>
+    <li>votre feu vert, et l'accord sur le nom (PierreTombale.ch est libre, je le réserve pour une dizaine de francs par an, avec pierre-tombale.ch en secours) ;</li>
+    <li>l'adresse du siège et un numéro de téléphone ;</li>
+    <li>la grille de prix, dès que le coût de production est connu ;</li>
+    <li>des photos d'atelier et de réalisations, même prises au téléphone ;</li>
+    <li>votre réseau : la pose, et le contact avec les pompes funèbres du coin.</li>
+  </ul>
+  <p><strong>Le calendrier compte :</strong> pour être en ligne avant la Toussaint, il me faut ces décisions d'ici la mi-septembre. Sinon, la fenêtre suivante est le printemps.</p>
+</section>
+
+<section>
+  <h2><span class="no">9.</span>Les risques, je ne vous les cache pas</h2>
+  <ul>
+    <li>Le monument classique recule d'environ 19 % par an sur Google, la crémation passe par là. Ma réponse : le cinéraire au centre du catalogue dès le départ.</li>
+    <li>Le Vallon seul est trop petit : si 9 décès sur 10 partent en crémation, ça fait environ 13 inhumations par an. Ma réponse : viser le canton et la Suisse romande dès le premier jour, votre granit le permet.</li>
+    <li>Google met des mois à faire monter un site neuf. Ma réponse : la carte Google et les pompes funèbres font les premiers mois, le site prend le relais.</li>
+    <li>Aucune position n'est garantie, je préfère l'écrire. Ce qui se mesure : la concurrence actuelle est faible (le premier site suisse est tout jeune et personne n'affiche ses prix), et je vous montrerai les positions chaque mois, chiffres en main.</li>
+  </ul>
+  <p class="sig">Si vous êtes partants, on cale les décisions du point 8 d'ici la mi-septembre et je lance la machine.<br>Thomas</p>
+</section>
+
+<p class="footnote">D'où viennent mes chiffres : volumes de recherche et concurrence mesurés le 17 août 2026 avec mes outils de travail (données Google, relevé en français et en allemand) ; décès du Val-de-Travers : recensements communaux 2023 et 2024 ; taux de crémation : RTS et l'association suisse des services funéraires ; noms de domaine : registre officiel nic.ch, vérifié le même jour. Les taux du point 5 sont mes hypothèses de travail, pas des mesures.</p>
+</main>

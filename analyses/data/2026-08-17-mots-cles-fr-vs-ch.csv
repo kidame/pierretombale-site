@@ -1,0 +1,66 @@
+mot_cle,volume_fr_mois,cpc_fr_eur,intention,domaines_fr_top20,volume_ch_mois,cpc_ch_chf,concurrence_ads_ch,kd_ch,ratio_fr_ch
+urne,5400,0.63,transactional,france-tombale.fr|silver-plaque.fr,1300,1.55,HIGH,,4
+message de condoléances,33100,0.6,informational,gpggranit.com,1300,1.03,LOW,,25
+texte de condoléances court,18100,1.24,informational,gpggranit.com,880,1.52,LOW,,21
+condoléances touchantes,14800,1.21,informational,gpggranit.com,720,0.24,LOW,,21
+crematorium,27100,2.21,informational,gpggranit.com,590,,LOW,2,46
+epitaphe,14800,0.87,informational,gpggranit.com,480,,LOW,,31
+tombe,14800,0.31,informational,france-tombale.fr,480,0.34,LOW,,31
+toutes mes condoléances,6600,1.62,informational,gpggranit.com,390,0.83,LOW,,17
+pierre tombale,12100,1.08,informational,amgranit.com|france-tombale.fr|gpggranit.com|silver-plaque.fr,320,3.26,HIGH,2,38
+tombe en pierre,12100,1.08,informational,france-tombale.fr|gpggranit.com|silver-plaque.fr,320,3.26,HIGH,,38
+marbrerie,14800,1.76,informational,france-tombale.fr,320,4.68,LOW,5,46
+stèle,4400,2.0,informational,gpggranit.com,170,,LOW,,26
+urne funéraire,6600,0.31,transactional,france-tombale.fr,170,0.58,HIGH,,39
+texte court pour rendre hommage à une personne décédée,4400,1.77,informational,gpggranit.com,110,,LOW,,40
+chanson enterrement,5400,0.01,informational,gpggranit.com,110,,LOW,41,49
+fleurs pour cimetière,2900,0.95,transactional,france-tombale.fr|gpggranit.com,90,0.19,HIGH,42,32
+plaque funéraire,18100,2.02,transactional,france-tombale.fr|silver-plaque.fr,70,3.3,HIGH,61,259
+plaque commémorative,3600,1.21,informational,france-tombale.fr|silver-plaque.fr,70,1.0,HIGH,,51
+musique pour enterrement,3600,0.83,informational,gpggranit.com,70,,LOW,42,51
+catalogue pierre tombale prix,3600,0.99,commercial,amgranit.com|france-tombale.fr|gpggranit.com,50,1.6,HIGH,38,72
+monument funéraire,3600,1.05,informational,france-tombale.fr|gpggranit.com|silver-plaque.fr,50,8.62,MEDIUM,41,72
+urne pour chien,2900,0.55,transactional,france-tombale.fr,50,1.32,HIGH,,58
+remerciement décès,4400,1.91,informational,gpggranit.com,50,5.2,HIGH,43,88
+prix pierre tombale,4400,1.01,informational,amgranit.com|france-tombale.fr|gpggranit.com|silver-plaque.fr,40,3.48,MEDIUM,,110
+marbrier funéraire,2400,2.13,commercial,france-tombale.fr,40,7.91,MEDIUM,36,60
+stèle funéraire,1600,1.12,transactional,france-tombale.fr|silver-plaque.fr,30,7.52,HIGH,43,53
+prix pierre tombale simple,1300,0.8,transactional,amgranit.com|silver-plaque.fr,20,0.45,HIGH,,65
+plaque funéraire personnalisée,4400,2.04,transactional,france-tombale.fr|silver-plaque.fr,20,2.2,HIGH,,220
+plaque pour tombe,3600,1.38,transactional,france-tombale.fr|silver-plaque.fr,20,2.54,HIGH,,180
+plaque tombale,3600,1.38,transactional,france-tombale.fr|silver-plaque.fr,20,2.54,HIGH,,180
+cavurne,5400,0.99,informational,france-tombale.fr,20,,LOW,,270
+vase funéraire,1300,0.24,transactional,silver-plaque.fr,20,0.93,HIGH,,65
+concession cimetière,4400,0.28,commercial,gpggranit.com,20,,LOW,,220
+fleurs artificielles pour cimetière,3600,0.32,transactional,gpggranit.com|silver-plaque.fr,20,1.59,HIGH,,180
+prix pierre tombale avec pose,2400,1.25,transactional,amgranit.com|france-tombale.fr|silver-plaque.fr,10,4.86,LOW,,240
+prix d'une pierre tombale en granit,590,0.78,commercial,amgranit.com,10,,MEDIUM,,59
+pierre tombale en marbre prix,590,0.91,transactional,amgranit.com,10,,LOW,,59
+prix pierre tombale pas cher,480,1.09,transactional,amgranit.com,10,7.65,HIGH,,48
+combien coute une pierre tombale,590,0.98,informational,amgranit.com,10,9.62,MEDIUM,,59
+pierre tombale sans stèle prix,260,1.09,transactional,amgranit.com,10,,,,26
+pierre tombale moderne,720,0.77,transactional,amgranit.com,10,0.27,HIGH,38,72
+pierre tombale granit,590,1.04,transactional,amgranit.com,10,,LOW,,59
+prix d'une tombe,1000,1.09,commercial,amgranit.com|silver-plaque.fr,10,4.83,HIGH,,100
+modèle de tombe moderne,390,0.65,transactional,amgranit.com,10,,HIGH,,39
+semelle ciment tombe prix,260,2.34,transactional,amgranit.com,10,,,,26
+marbre pour tombe prix,480,0.76,transactional,amgranit.com,10,,HIGH,,48
+monument funéraire prix,1000,0.92,transactional,amgranit.com|silver-plaque.fr,10,9.12,HIGH,,100
+monument funéraire moderne,390,0.69,informational,amgranit.com,10,1.35,MEDIUM,,39
+monument cinéraire,320,1.04,informational,amgranit.com,10,,LOW,,32
+stèle funéraire prix,590,1.31,transactional,amgranit.com,10,,HIGH,,59
+stèle funéraire moderne,260,0.88,transactional,amgranit.com,10,,,,26
+plaque cimetière,2400,1.36,informational,france-tombale.fr|silver-plaque.fr,10,2.23,HIGH,,240
+plaque funeraire moderne,2400,1.13,transactional,france-tombale.fr,10,1.21,HIGH,,240
+plaque funeraire avec photo,1900,2.13,transactional,france-tombale.fr|silver-plaque.fr,10,,HIGH,,190
+plaque funéraire originale,1900,0.73,transactional,france-tombale.fr|silver-plaque.fr,10,,HIGH,,190
+plaque mortuaire,1900,1.53,transactional,france-tombale.fr|silver-plaque.fr,10,1.48,HIGH,,190
+plaque deces,1300,1.69,informational,silver-plaque.fr,10,2.82,HIGH,,130
+plaque funeraire pas chere,1300,1.26,transactional,silver-plaque.fr,10,,,,130
+médaillon funéraire,1000,1.73,transactional,silver-plaque.fr,10,,MEDIUM,,100
+cavurne 2 places prix,880,1.3,transactional,silver-plaque.fr,10,,,,88
+chapelle funéraire prix,390,0.85,commercial,amgranit.com,10,,LOW,,39
+marbrerie funéraire prix,170,1.27,commercial,amgranit.com,10,,,,17
+granit du tarn,480,0.09,informational,amgranit.com,10,0.26,MEDIUM,,48
+entourage de tombe en ciment prix,480,0.9,transactional,amgranit.com,,,,,
+prix d'un caveau 2 places en granit,260,1.96,commercial,amgranit.com,,,,,
