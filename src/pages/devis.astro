@@ -1,15 +1,571 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { pageTitle } from "@/config/site";
+import {
+  acceptFichiers,
+  devisConfig,
+  fichiersDevis,
+  messagesDevis,
+  tailleTotaleMaxLisible,
+} from "@/config/devis";
+import { granitsParTeinte } from "@/data/granits";
+import { FAMILLE_LABELS, FAMILLES, getProducts } from "@/data/products";
+import { breadcrumbSchema } from "@/data/seo";
 
-// Placeholder pour l etape E4 : le formulaire de devis (et son envoi vers n8n
-// en E6) n existe pas encore. La page repond deja a /devis?modele=<slug> pour
-// que le lien des fiches produit ne casse pas, et reste hors des index.
+/* Page "Demander un devis".
+   L ENVOI N EXISTE PAS ENCORE : il sera fait en E6 par une fonction Cloudflare
+   Pages `/api/devis` (Resend, adresse en variable d environnement, decision de
+   Thomas du 13.10.2026 : pas de n8n). D ici la, `devisConfig.envoiActif` vaut
+   `false` et le JavaScript affiche un message au lieu de poster.
+   Le contrat des champs est ecrit dans `docs/devis-contrat.md` : renommer un
+   champ ici oblige a le renommer la-bas. Sans JavaScript, le formulaire poste
+   nativement vers `action`, ce qui marchera des que la fonction existera. */
+
+const origin = Astro.site ?? new URL(Astro.url.origin);
+
+const products = await getProducts();
+const modelesParFamille = FAMILLES.map((famille) => ({
+  famille,
+  label: FAMILLE_LABELS[famille],
+  modeles: products.filter((product) => product.famille === famille),
+}));
+
+const groupesGranits = granitsParTeinte();
+
+const filAriane = breadcrumbSchema(
+  [
+    { name: "Accueil", path: "/" },
+    { name: "Demander un devis", path: "/devis/" },
+  ],
+  origin,
+);
+
+/* Tout ce que le script a besoin de savoir, pris dans src/config/devis.ts :
+   aucune de ces valeurs n est ecrite deux fois. */
+const reglages = {
+  envoiActif: devisConfig.envoiActif,
+  endpoint: devisConfig.endpoint,
+  nombreMaxFichiers: fichiersDevis.nombreMax,
+  tailleTotaleMaxOctets: fichiersDevis.tailleTotaleMaxOctets,
+  typesAcceptes: [...fichiersDevis.typesAcceptes],
+  tailleLisible: tailleTotaleMaxLisible,
+  messages: messagesDevis,
+  /** Famille de chaque modele : sert a remplir le select "famille" avec ?modele=. */
+  famillesParModele: Object.fromEntries(products.map((product) => [product.slug, product.famille])),
+};
+
+const classeChamp = "field mt-2";
+const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
 ---
 
-<BaseLayout title={pageTitle("Demander un devis")} description="Demande de devis." noindex={true}>
-  <main id="main-content" class="shell flex min-h-[70vh] flex-col justify-center py-24">
-    <h1 class="type-hero max-w-[18ch]">Demander un devis</h1>
-    <p class="type-lead mt-8 max-w-[46ch]">Formulaire en preparation</p>
+<BaseLayout
+  title={pageTitle("Demander un devis gratuit")}
+  description="Demandez votre devis gratuit : modèle, granit, texte à graver et votre propre dessin si vous en avez un. Nous répondons avec une estimation détaillée."
+>
+  <main id="main-content">
+    <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
+      <h1 class="type-h1 hero-in max-w-[20ch]">Demander un devis</h1>
+      <p class="type-lead hero-in mt-8 max-w-[56ch]" style="--reveal-delay:120ms">
+        Le devis est gratuit et sans engagement. Répondez seulement à ce que vous savez : nous reprenons
+        contact pour le reste, et nous vérifions au besoin le règlement du cimetière concerné.
+      </p>
+      <p class="type-body hero-in mt-6 max-w-[56ch] text-muted" style="--reveal-delay:200ms">
+        Les champs marqués d'une étoile sont nécessaires pour vous répondre. Vous pouvez joindre votre
+        propre dessin à faire graver.
+      </p>
+    </section>
+
+    <section class="shell">
+      <div class="rule" data-reveal="line"></div>
+
+      <form
+        method="post"
+        action={devisConfig.endpoint}
+        enctype="multipart/form-data"
+        class="mt-12 max-w-[62ch]"
+        data-devis
+      >
+        {/* Resume d erreurs, rempli par le script. role="alert" : annonce des qu il est rempli. */}
+        <p
+          class="type-body mb-10 hidden border-l-2 border-[#8d3c33] pl-4 text-[0.9375rem] text-[#8d3c33]"
+          data-devis-resume
+          role="alert"
+        >
+        </p>
+
+        {/* ------------------------------------------------- Vos coordonnees */}
+        <fieldset class="border-t border-line pt-8">
+          <legend class="label">Vos coordonnées</legend>
+
+          <div class="mt-6 grid gap-8 md:grid-cols-2">
+            <div>
+              <label class="field-label" for="nom">Nom et prénom <span aria-hidden="true">*</span></label>
+              <input
+                class={classeChamp}
+                id="nom"
+                name="nom"
+                type="text"
+                required
+                autocomplete="name"
+                aria-describedby="nom-erreur"
+              />
+              <p class={classeErreur} id="nom-erreur" data-erreur="nom"></p>
+            </div>
+
+            <div>
+              <label class="field-label" for="email">Adresse e-mail <span aria-hidden="true">*</span></label>
+              <input
+                class={classeChamp}
+                id="email"
+                name="email"
+                type="email"
+                required
+                autocomplete="email"
+                aria-describedby="email-erreur"
+              />
+              <p class={classeErreur} id="email-erreur" data-erreur="email"></p>
+            </div>
+
+            <div>
+              <label class="field-label" for="telephone">Téléphone (facultatif)</label>
+              <input
+                class={classeChamp}
+                id="telephone"
+                name="telephone"
+                type="tel"
+                autocomplete="tel"
+                aria-describedby="telephone-aide telephone-erreur"
+              />
+              <p class="type-body mt-2 text-[0.8125rem] text-muted" id="telephone-aide">
+                Si vous préférez que nous vous appelions.
+              </p>
+              <p class={classeErreur} id="telephone-erreur" data-erreur="telephone"></p>
+            </div>
+
+            <div>
+              <label class="field-label" for="localite">Localité <span aria-hidden="true">*</span></label>
+              <input
+                class={classeChamp}
+                id="localite"
+                name="localite"
+                type="text"
+                required
+                autocomplete="address-level2"
+                aria-describedby="localite-aide localite-erreur"
+              />
+              <p class="type-body mt-2 text-[0.8125rem] text-muted" id="localite-aide">
+                Votre commune, pour situer le déplacement.
+              </p>
+              <p class={classeErreur} id="localite-erreur" data-erreur="localite"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        {/* ----------------------------------------------------- Le monument */}
+        <fieldset class="mt-16 border-t border-line pt-8">
+          <legend class="label">Le monument</legend>
+
+          <fieldset class="mt-6" aria-describedby="typeDemande-erreur">
+            <legend class="field-label">Type de demande <span aria-hidden="true">*</span></legend>
+            <div class="mt-4 space-y-3">
+              {
+                [
+                  { valeur: "nouveau", label: "Un nouveau monument" },
+                  { valeur: "inscription", label: "Une inscription sur un monument existant" },
+                  { valeur: "autre", label: "Autre demande" },
+                ].map((choix) => (
+                  <label class="flex items-start gap-3 text-[0.9375rem]">
+                    <input
+                      class="mt-1 size-4 shrink-0 accent-[var(--ink)]"
+                      type="radio"
+                      name="typeDemande"
+                      value={choix.valeur}
+                      required
+                    />
+                    <span>{choix.label}</span>
+                  </label>
+                ))
+              }
+            </div>
+            <p class={classeErreur} id="typeDemande-erreur" data-erreur="typeDemande"></p>
+          </fieldset>
+
+          <div class="mt-10 grid gap-8 md:grid-cols-2">
+            <div>
+              <label class="field-label" for="famille">Famille de monument</label>
+              <select class={classeChamp} id="famille" name="famille">
+                <option value="">Je ne sais pas</option>
+                <option value="monument">Monument funéraire</option>
+                <option value="cineraire">Monument cinéraire</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="field-label" for="modele">Modèle du catalogue</label>
+              <select class={classeChamp} id="modele" name="modele">
+                <option value="">Je ne sais pas encore</option>
+                {
+                  modelesParFamille.map((groupe) => (
+                    <optgroup label={groupe.label}>
+                      {groupe.modeles.map((modele) => (
+                        <option value={modele.slug}>{modele.name}</option>
+                      ))}
+                    </optgroup>
+                  ))
+                }
+              </select>
+            </div>
+
+            <div>
+              <label class="field-label" for="granit">Granit souhaité</label>
+              <select class={classeChamp} id="granit" name="granit" aria-describedby="granit-aide">
+                <option value="">Je ne sais pas encore</option>
+                {
+                  groupesGranits.map((groupe) => (
+                    <optgroup label={groupe.titre}>
+                      {groupe.granits.map((granit) => (
+                        <option value={granit.id}>{granit.nom}</option>
+                      ))}
+                    </optgroup>
+                  ))
+                }
+              </select>
+              <p class="type-body mt-2 text-[0.8125rem] text-muted" id="granit-aide">
+                Une teinte se juge sur la pierre : le choix se confirme au rendez-vous.
+              </p>
+            </div>
+
+            <div>
+              <label class="field-label" for="cimetiere">Cimetière (facultatif)</label>
+              <input class={classeChamp} id="cimetiere" name="cimetiere" type="text" autocomplete="off" />
+            </div>
+
+            <div>
+              <label class="field-label" for="communeCimetiere">Commune du cimetière (facultatif)</label>
+              <input
+                class={classeChamp}
+                id="communeCimetiere"
+                name="communeCimetiere"
+                type="text"
+                autocomplete="off"
+                aria-describedby="communeCimetiere-aide"
+              />
+              <p class="type-body mt-2 text-[0.8125rem] text-muted" id="communeCimetiere-aide">
+                Chaque commune a son règlement : nous le vérifions pour vous.
+              </p>
+            </div>
+          </div>
+        </fieldset>
+
+        {/* --------------------------------------- Gravure et personnalisation */}
+        <fieldset class="mt-16 border-t border-line pt-8">
+          <legend class="label">Gravure et personnalisation</legend>
+
+          <div class="mt-6">
+            <label class="field-label" for="gravure">Texte à graver (facultatif)</label>
+            <textarea
+              class={classeChamp}
+              id="gravure"
+              name="gravure"
+              rows="5"
+              aria-describedby="gravure-aide"></textarea>
+            <p class="type-body mt-2 text-[0.8125rem] text-muted" id="gravure-aide">
+              Noms, dates, épitaphe. Rien ne part à la gravure sans votre accord sur un bon à tirer.
+            </p>
+          </div>
+
+          <div class="mt-10">
+            <label class="field-label" for="fichiers">Fichiers à joindre (facultatif)</label>
+            <input
+              class="mt-3 block w-full text-[0.9375rem]"
+              id="fichiers"
+              name="fichiers"
+              type="file"
+              multiple
+              accept={acceptFichiers}
+              aria-describedby="fichiers-aide fichiers-erreur"
+            />
+            <p class="type-body mt-3 text-[0.8125rem] text-muted" id="fichiers-aide">
+              Un dessin à faire graver, une photo du monument existant, une esquisse. JPEG, PNG, WEBP ou
+              PDF, {fichiersDevis.nombreMax} fichiers au maximum et {tailleTotaleMaxLisible} au total.
+            </p>
+            <p class={classeErreur} id="fichiers-erreur" data-erreur="fichiers"></p>
+          </div>
+        </fieldset>
+
+        {/* -------------------------------------------------------- Message */}
+        <fieldset class="mt-16 border-t border-line pt-8">
+          <legend class="label">Votre message</legend>
+          <div class="mt-6">
+            <label class="field-label" for="message">Message (facultatif)</label>
+            <textarea
+              class={classeChamp}
+              id="message"
+              name="message"
+              rows="5"
+              aria-describedby="message-aide"></textarea>
+            <p class="type-body mt-2 text-[0.8125rem] text-muted" id="message-aide">
+              Tout ce qui nous aiderait : délai souhaité, monument voisin, question particulière.
+            </p>
+          </div>
+        </fieldset>
+
+        {/* ----------------------------------------------------- Consentement */}
+        <div class="mt-16 border-t border-line pt-8">
+          <label class="flex items-start gap-3 text-[0.9375rem]" for="consentement">
+            <input
+              class="mt-1 size-4 shrink-0 accent-[var(--ink)]"
+              id="consentement"
+              name="consentement"
+              type="checkbox"
+              value="oui"
+              required
+              aria-describedby="consentement-erreur"
+            />
+            <span>
+              J'accepte que mes données soient utilisées pour traiter ma demande
+              <span aria-hidden="true">*</span>. Voir la
+              <a href="/protection-des-donnees/" class="link">protection des données</a>.
+            </span>
+          </label>
+          <p class={classeErreur} id="consentement-erreur" data-erreur="consentement"></p>
+        </div>
+
+        {/* Anti-spam. Le champ `societe` est un piege : invisible et hors du
+            parcours au clavier, une famille ne le remplit jamais, un robot si.
+            `horodatage` porte l heure d affichage, posee par le script (la page
+            est statique, le serveur ne peut pas la fournir). Les deux ne font
+            que voyager : c est la fonction E6 qui tranche. */}
+        <div
+          aria-hidden="true"
+          style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap"
+        >
+          <label for="societe">Société</label>
+          <input id="societe" name="societe" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <input type="hidden" name="horodatage" value="" />
+
+        {/* Emplacement de Cloudflare Turnstile (etape E6) : le widget viendra
+            ici, juste avant le bouton. Sa cle de site, meme publique, sera
+            lue dans une variable d environnement Cloudflare : aucune cle,
+            publique ou secrete, n entre dans le depot. */}
+
+        <div class="mt-12 flex flex-wrap items-center gap-6">
+          <button type="submit" class="btn btn-primary" data-devis-envoyer>Envoyer ma demande</button>
+          <p class="type-body hidden text-[0.9375rem]" data-devis-statut role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+
+    {/* ------------------------------------------------------------- Reperes */}
+    <section class="shell mt-24 md:mt-36">
+      <div class="rule" data-reveal="line"></div>
+      <div class="mt-8 grid gap-8 md:grid-cols-3" data-reveal>
+        <p class="type-body max-w-[34ch] text-[0.9375rem]">
+          Le devis est gratuit et sans engagement, et détaille ce qui est compris.
+        </p>
+        <p class="type-body max-w-[34ch] text-[0.9375rem]">
+          <a href="/prix-pierre-tombale-suisse/" class="link">Comment est calculé le prix ?</a>
+        </p>
+        <p class="type-body max-w-[34ch] text-[0.9375rem]">
+          <a href="/faq/" class="link">Questions fréquentes</a>
+        </p>
+      </div>
+    </section>
   </main>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
+
+  <script is:inline define:vars={{ reglages }}>
+    (() => {
+      const form = document.querySelector("[data-devis]");
+      if (!form) return;
+
+      /* On prend la main sur la validation : les messages maison sont en
+         francais, places sous le champ et annonces. Sans JavaScript, ce sont
+         les messages du navigateur qui jouent, grace aux attributs `required`
+         du HTML. */
+      form.noValidate = true;
+
+      const resume = form.querySelector("[data-devis-resume]");
+      const statut = form.querySelector("[data-devis-statut]");
+      const bouton = form.querySelector("[data-devis-envoyer]");
+
+      const champ = (nom) => form.elements[nom];
+      const zoneErreur = (nom) => form.querySelector(`[data-erreur="${nom}"]`);
+
+      /* `form.elements.typeDemande` est la liste des trois boutons radio, pas
+         un champ : on prend le premier pour poser l etat et le focus. */
+      function premierControle(nom) {
+        const controle = champ(nom);
+        if (typeof RadioNodeList !== "undefined" && controle instanceof RadioNodeList) {
+          return controle[0];
+        }
+        return controle;
+      }
+
+      function poseErreur(nom, texte) {
+        const zone = zoneErreur(nom);
+        if (!zone) return;
+        zone.textContent = texte;
+        zone.classList.remove("hidden");
+        const controle = premierControle(nom);
+        if (controle && controle.setAttribute) controle.setAttribute("aria-invalid", "true");
+      }
+
+      function videErreurs() {
+        form.querySelectorAll("[data-erreur]").forEach((zone) => {
+          zone.textContent = "";
+          zone.classList.add("hidden");
+          const controle = premierControle(zone.dataset.erreur);
+          if (controle && controle.removeAttribute) controle.removeAttribute("aria-invalid");
+        });
+        resume.textContent = "";
+        resume.classList.add("hidden");
+      }
+
+      function annonce(texte) {
+        statut.textContent = texte;
+        statut.classList.toggle("hidden", texte === "");
+      }
+
+      // Horodatage d affichage : un robot poste en quelques millisecondes.
+      const horodatage = champ("horodatage");
+      if (horodatage) horodatage.value = String(Date.now());
+
+      /* Pre-selection du modele depuis /devis/?modele=<slug>, pose par les
+         fiches. Un slug inconnu est ignore : le select reste sur "Je ne sais
+         pas encore" plutot que d afficher un choix qui n existe pas. */
+      const demande = new URLSearchParams(window.location.search).get("modele");
+      const selectModele = champ("modele");
+      if (demande && selectModele && reglages.famillesParModele[demande]) {
+        selectModele.value = demande;
+        const selectFamille = champ("famille");
+        if (selectFamille && selectFamille.value === "") {
+          selectFamille.value = reglages.famillesParModele[demande];
+        }
+      }
+
+      const REQUIS = [
+        ["nom", "Merci d'indiquer votre nom et votre prénom."],
+        ["email", "Merci d'indiquer une adresse e-mail : c'est par là que nous répondons."],
+        ["localite", "Merci d'indiquer votre localité."],
+        ["typeDemande", "Merci de choisir le type de demande."],
+        ["consentement", "Merci de cocher cette case pour que nous puissions traiter votre demande."],
+      ];
+
+      function estVide(nom) {
+        const controle = champ(nom);
+        if (!controle) return false;
+        if (controle.type === "checkbox") return !controle.checked;
+        return String(controle.value || "").trim() === "";
+      }
+
+      /** Les fichiers joints : nombre, poids total et format. */
+      function erreurFichiers() {
+        const controle = champ("fichiers");
+        if (!controle || !controle.files || controle.files.length === 0) return null;
+
+        const fichiers = Array.from(controle.files);
+        if (fichiers.length > reglages.nombreMaxFichiers) {
+          return `${reglages.nombreMaxFichiers} fichiers au maximum (vous en avez choisi ${fichiers.length}).`;
+        }
+
+        const total = fichiers.reduce((somme, fichier) => somme + fichier.size, 0);
+        if (total > reglages.tailleTotaleMaxOctets) {
+          const poids = (total / (1024 * 1024)).toFixed(1).replace(".", ",");
+          return `${reglages.tailleLisible} au total au maximum (vos fichiers pèsent ${poids} Mo).`;
+        }
+
+        const refuse = fichiers.find((fichier) => !reglages.typesAcceptes.includes(fichier.type));
+        if (refuse) {
+          return `Le fichier « ${refuse.name} » n'est pas dans un format accepté : JPEG, PNG, WEBP ou PDF.`;
+        }
+
+        return null;
+      }
+
+      function valide() {
+        const problemes = [];
+
+        for (const [nom, texte] of REQUIS) {
+          if (estVide(nom)) problemes.push([nom, texte]);
+        }
+
+        const email = champ("email");
+        if (email && email.value.trim() !== "" && email.validity.typeMismatch) {
+          problemes.push(["email", "Cette adresse e-mail semble incomplète (exemple : nom@exemple.ch)."]);
+        }
+
+        const fichiers = erreurFichiers();
+        if (fichiers) problemes.push(["fichiers", fichiers]);
+
+        return problemes;
+      }
+
+      champ("fichiers").addEventListener("change", () => {
+        const zone = zoneErreur("fichiers");
+        const texte = erreurFichiers();
+        zone.textContent = texte || "";
+        zone.classList.toggle("hidden", !texte);
+      });
+
+      async function envoie() {
+        bouton.disabled = true;
+        annonce(reglages.messages.envoiEnCours);
+
+        try {
+          const reponse = await fetch(reglages.endpoint, { method: "POST", body: new FormData(form) });
+          let charge = null;
+          try {
+            charge = await reponse.json();
+          } catch {
+            charge = null;
+          }
+
+          if (reponse.ok && charge && charge.ok === true) {
+            window.location.href = "/devis/merci/";
+            return;
+          }
+
+          if (charge && charge.erreurs) {
+            for (const [nom, texte] of Object.entries(charge.erreurs)) poseErreur(nom, String(texte));
+            resume.textContent = reglages.messages.erreurSaisie;
+            resume.classList.remove("hidden");
+            annonce("");
+          } else {
+            annonce(reglages.messages.erreurReseau);
+          }
+        } catch {
+          annonce(reglages.messages.erreurReseau);
+        }
+
+        bouton.disabled = false;
+      }
+
+      form.addEventListener("submit", (evenement) => {
+        evenement.preventDefault();
+        videErreurs();
+
+        const problemes = valide();
+        if (problemes.length > 0) {
+          for (const [nom, texte] of problemes) poseErreur(nom, texte);
+          resume.textContent = reglages.messages.erreurSaisie;
+          resume.classList.remove("hidden");
+          annonce("");
+          const premier = premierControle(problemes[0][0]);
+          if (premier && premier.focus) premier.focus();
+          return;
+        }
+
+        // Tant que la fonction /api/devis n existe pas, on ne poste rien.
+        if (!reglages.envoiActif) {
+          annonce(reglages.messages.envoiInactif);
+          return;
+        }
+
+        envoie();
+      });
+    })();
+  </script>
 </BaseLayout>
