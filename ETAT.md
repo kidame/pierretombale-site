@@ -6,7 +6,8 @@ Regle : chaque session le lit en premier et le met a jour en dernier, puis commi
 
 ## Protocole de relais
 Le travail se fait dans la copie locale du VPS : /home/kumo/atelier/repos/pierretombale-site.
-GitHub n intervient pas dans le developpement ni dans le relais.
+GitHub n intervient pas dans le developpement ni dans le relais (push seulement comme sauvegarde, sur demande de Thomas).
+Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, meme dossier.
 1. Debut : lire `AGENTS.md`, ce fichier, puis `git log --oneline -10` et `git status`.
 2. Travail : un commit local par etape, message en francais, ASCII.
 3. Fin : remplir "Derniere session" et "Prochaine etape", commit local.
