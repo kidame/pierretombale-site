@@ -3,7 +3,7 @@
     "allow": [
       "Bash(git status:*)", "Bash(git diff:*)", "Bash(git log:*)", "Bash(git show:*)",
       "Bash(git add:*)", "Bash(git commit:*)", "Bash(git rm:*)", "Bash(git mv:*)",
-      "Bash(npm ci)", "Bash(npm install)", "Bash(npm run build)", "Bash(npx prettier --write src:*)",
+      "Bash(npm ci)", "Bash(npm install)", "Bash(npm run build)", "Bash(npx prettier --write src:*)", "Bash(python3 scripts/:*)",
       "Bash(npx astro check)", "Bash(npx astro check:*)",
       "Bash(ls:*)", "Bash(find:*)", "Bash(grep:*)", "Bash(cat:*)", "Bash(head:*)", "Bash(tail:*)",
       "Bash(wc:*)", "Bash(mkdir:*)", "Bash(cp:*)", "Bash(mv:*)"
