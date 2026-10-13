@@ -15,7 +15,8 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Plan de build (option securisee, decidee le 13.10.2026)
 - [x] E1. Importer Atelier Ko (copie unique, MIT, commit 348433f du 17.08.2026), retirer panier et paiement, bouton "Demander un devis".
-- [ ] E2. Adapter le schema produit : granit, type de monument, style, tradition. 3 modeles fictifs.
+- [x] E2. Adapter le schema produit : granit, type de monument, style, tradition. 3 modeles fictifs.
+      (passe A : schema metier et 12 fiches ; passe B : adresses SEO par famille.)
 - [ ] E3. `src/config/entreprise.ts` et `src/data/tarifs.json` a null, affichage "prix sur demande".
 - [ ] E4. Pages : accueil, catalogue, fiche, Nos granits, contact/devis (formulaire sans envoi reel).
 - [ ] E5. Configurateur Konva (ilot Preact) en prototype.
@@ -23,6 +24,37 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 13.10.2026, E2 passe B TERMINEE (Claude Code) : les adresses SEO.
+  Nouvelles adresses : `/monuments-funeraires/` et `/monuments-cineraires-cavurnes/` (une page liste
+  par famille, filtre gamme seulement, tri ordre du catalogue ou nom), `/monuments-funeraires/<slug>/`
+  et `/monuments-cineraires-cavurnes/<slug>/` pour les fiches. Chaque `[slug].astro` ne genere que les
+  modeles de sa famille : un modele n a qu une seule adresse.
+  `src/pages/catalog.astro` et `src/pages/products/` supprimes (site pas en ligne, pas de redirection).
+  Factorisation : `src/components/ListeModeles.astro` (filtre, tri, compteur, grille),
+  `src/components/PageFamille.astro` (en-tete, intro en slot, fil d Ariane, liste) et
+  `src/components/FicheModele.astro` (l ancienne fiche produit). `productUrl(product)` et
+  `familleUrl(famille)` dans `src/data/products.ts` : tous les liens de modele passent par la, y compris
+  ProductCard, SiteHeader, menu mobile, accueil, 404 et about. Le lien devis reste `/devis?modele=<slug>`.
+  `FAMILLE_LABELS` devient "Monuments funeraires" et "Monuments cineraires et cavurnes" (fil d Ariane,
+  pied de page, ligne Famille des fiches). Menu : Monuments funeraires, Monuments cineraires, L atelier,
+  Demander un devis ; libelles accentues, chrome du menu et `lang="fr"` au passage.
+  SEO : title unique par page (47 caracteres au plus) et meta description (154 au plus, coupee sur un mot
+  entier par `tronque`), un seul h1 par page, canonical partout, JSON-LD BreadcrumbList
+  (Accueil > famille > modele) et Product sans offre chiffree sur les fiches, alt sur toutes les images.
+  Titres et descriptions des 2 pages liste raccourcis depuis `docs/production-spec-pierretombalech.json` :
+  le marbre, les prix affiches et le telephone du production-spec sont ecartes (granit seul, tarifs en E3,
+  coordonnees provisoires).
+  `astro.config.mjs` : `site` pointait encore sur la demo d Atelier Ko ; remis sur
+  **https://www.pierretombale.ch, provisoire, nom non definitif** (le nom de l entreprise et le domaine
+  ne sont pas tranches, cf. `docs/DECISIONS-ET-ETAT.md`). A corriger des que le nom est choisi : c est la
+  seule source des URL absolues (canonical, sitemap, JSON-LD). Le sitemap exclut desormais `/devis`,
+  qui est en noindex.
+  Verifie : `npm run build` OK, 18 pages (accueil, about, devis, 2 pages liste, 12 fiches, 404,
+  robots.txt, sitemap) ; `npx astro check` : 24 fichiers, 0 erreur, 0 avertissement, 0 hint (le hint de
+  la passe A a disparu avec l ancienne fiche) ; `grep -rl "/catalog\|/products/" dist` et le meme grep
+  sur `src` ne renvoient rien ; le sitemap liste 16 adresses, dont les 2 pages liste et les 12 fiches.
+  Visuels : Thomas generera des images par IA plus tard ; il suffira de les mettre dans `src/assets` et
+  de les lister dans `images:` de la fiche.
 - 13.10.2026, E2 passe A TERMINEE (Claude Code). Les trois derniers fichiers qui utilisaient les
   anciens champs d Atelier Ko (price, material, category, formatPrice) sont passes au schema metier :
   `SiteHeader.astro` (plus de prix : "Prix sur demande", visuel via ProductImage),
@@ -58,13 +90,16 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E2 passe B : les adresses SEO decidees dans `docs/DECISIONS-ET-ETAT.md`.
-- Fiches a `/monuments-funeraires/<slug>` (famille monument) et
-  `/monuments-cineraires-cavurnes/<slug>` (famille cineraire), a la place de `/products/<slug>`.
-- Une page liste par famille : `/monuments-funeraires/` et `/monuments-cineraires-cavurnes/`,
-  avec les filtres gamme (le filtre famille n a plus de sens une fois la liste par famille).
-- Menu (`siteConfig.navigation`), liens internes (accueil, fiches, fil d Ariane, ProductCard,
-  SiteHeader, devis) et sitemap a reprendre ; supprimer `/catalog` et `/products/`.
-- Verifier qu aucun lien ne pointe plus vers les anciennes adresses, puis build et astro check.
-Rappels : prix nulle part en dur, tout via `src/data/tarifs.json` en E3 ; la gamme prestige n a
-encore aucun modele (filtre propose, liste vide).
+E3 : coordonnees et prix dans un seul fichier chacun.
+- `src/config/entreprise.ts` : nom, telephone, adresse, NPA, email, horaires a `null` tant que les
+  associes ne les ont pas fournis. Les valeurs du production-spec sont provisoires : ne pas les
+  recopier. L affichage doit se taire proprement quand une valeur est `null`.
+- `src/data/tarifs.json` : un prix par modele (cle = slug de la fiche), `null` partout au depart.
+- L affichage "prix sur demande" doit etre pilote par `tarifs.json` : prix si connu, sinon
+  `PRIX_SUR_DEMANDE` (aujourd hui en dur dans `src/data/products.ts`, utilise par ProductCard, les
+  fiches, le menu mobile et l accueil). Aucun prix ailleurs dans le code.
+- `src/config/site.ts` garde encore le nom, la tagline et les textes d Atelier Ko (en anglais) :
+  c est la que `entreprise.ts` prendra le relais ; les titres de pages passent par `pageTitle`.
+Rappels : la gamme prestige n a encore aucun modele (filtre propose, liste vide) ; le domaine
+`https://www.pierretombale.ch` dans `astro.config.mjs` est provisoire, nom non definitif ; la page
+`about` est encore le texte anglais d Atelier Ko (E4).
