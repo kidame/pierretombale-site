@@ -1,51 +1,61 @@
 ---
 import ProductCard from "@/components/ProductCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { siteConfig, pageTitle } from "@/config/site";
-import { getProductFilters, getProducts } from "@/data/products";
+import { pageTitle } from "@/config/site";
+import {
+  FAMILLES,
+  FAMILLE_LABELS,
+  GAMMES,
+  GAMME_LABELS,
+  getProducts,
+} from "@/data/products";
 
 const products = await getProducts();
-const { categories, materials } = getProductFilters(products);
 ---
 
 <BaseLayout
-  title={pageTitle("The Catalogue")}
-  description={`Browse every piece in the ${siteConfig.name} catalogue. Filter by category and material — solid oak, ash, walnut. Hand-built to order.`}
+  title={pageTitle("Catalogue")}
+  description="Tous nos modèles de monuments funéraires et de monuments cinéraires, par famille et par gamme. Granit massif, réalisation sur mesure, prix sur demande."
 >
   <main id="main-content">
     <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
-      <h1 class="type-h1 hero-in max-w-[12ch]">Every piece, made to order</h1>
+      <h1 class="type-h1 hero-in max-w-[14ch]">Nos modèles de monuments</h1>
       <p class="type-lead hero-in mt-8 max-w-[52ch]" style="--reveal-delay:120ms">
-        Six pieces, three materials. Filter to find what fits your room — then we begin by selecting the board.
+        {products.length} modèles, deux familles : les monuments de sépulture et les monuments cinéraires.
+        Filtrez par famille et par gamme ; le dessin retenu se taille ensuite dans le granit de votre choix.
       </p>
     </section>
 
     <div class="shell pb-32">
-      <section class="border-t border-line pb-10 pt-7" aria-label="Filter and sort the catalogue">
+      <section class="border-t border-line pb-10 pt-7" aria-label="Filtrer et trier le catalogue">
         <div class="flex flex-col gap-7 lg:flex-row lg:items-start lg:justify-between">
           <div class="space-y-5">
-            <div data-filter-group="category">
-              <p class="label mb-2.5" id="filter-category">Category</p>
-              <div class="flex flex-wrap items-center gap-2" role="group" aria-labelledby="filter-category">
-                <button class="chip" type="button" data-filter-value="all" aria-pressed="true">All pieces</button>
+            <div data-filter-group="famille">
+              <p class="label mb-2.5" id="filter-famille">Famille</p>
+              <div class="flex flex-wrap items-center gap-2" role="group" aria-labelledby="filter-famille">
+                <button class="chip" type="button" data-filter-value="all" aria-pressed="true">
+                  Toutes les familles
+                </button>
                 {
-                  categories.map((category) => (
-                    <button class="chip" type="button" data-filter-value={category} aria-pressed="false">
-                      {category}
+                  FAMILLES.map((famille) => (
+                    <button class="chip" type="button" data-filter-value={famille} aria-pressed="false">
+                      {FAMILLE_LABELS[famille]}
                     </button>
                   ))
                 }
               </div>
             </div>
 
-            <div data-filter-group="material">
-              <p class="label mb-2.5" id="filter-material">Material</p>
-              <div class="flex flex-wrap items-center gap-2" role="group" aria-labelledby="filter-material">
-                <button class="chip" type="button" data-filter-value="all" aria-pressed="true">All materials</button>
+            <div data-filter-group="gamme">
+              <p class="label mb-2.5" id="filter-gamme">Gamme</p>
+              <div class="flex flex-wrap items-center gap-2" role="group" aria-labelledby="filter-gamme">
+                <button class="chip" type="button" data-filter-value="all" aria-pressed="true">
+                  Toutes les gammes
+                </button>
                 {
-                  materials.map((material) => (
-                    <button class="chip" type="button" data-filter-value={material} aria-pressed="false">
-                      {material}
+                  GAMMES.map((gamme) => (
+                    <button class="chip" type="button" data-filter-value={gamme} aria-pressed="false">
+                      {GAMME_LABELS[gamme]}
                     </button>
                   ))
                 }
@@ -54,11 +64,10 @@ const { categories, materials } = getProductFilters(products);
           </div>
 
           <div class="shrink-0">
-            <label class="label mb-2.5 block" for="catalog-sort">Sort by</label>
+            <label class="label mb-2.5 block" for="catalog-sort">Trier par</label>
             <select id="catalog-sort" class="field mono w-full text-[0.8125rem] lg:w-52" data-catalog-sort>
-              <option value="featured">Featured</option>
-              <option value="price-asc">Price — low to high</option>
-              <option value="price-desc">Price — high to low</option>
+              <option value="ordre">Ordre du catalogue</option>
+              <option value="nom">Nom (A à Z)</option>
             </select>
           </div>
         </div>
@@ -66,12 +75,12 @@ const { categories, materials } = getProductFilters(products);
 
       <p class="mono border-t border-line py-4 text-[0.6875rem] uppercase tracking-[0.05em] text-muted" aria-live="polite">
         <span data-catalog-count>{String(products.length).padStart(2, "0")}</span>&#32;<span
-          data-catalog-count-label>pieces</span
-        >&#32;shown
+          data-catalog-count-label>modèles affichés</span
+        >
       </p>
 
       <p class="type-h3 hidden py-32 text-center text-muted" data-catalog-empty>
-        No pieces match that combination.
+        Aucun modèle ne correspond à ces filtres.
       </p>
 
       <ul class="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3" data-catalog-grid>
@@ -79,9 +88,9 @@ const { categories, materials } = getProductFilters(products);
           products.map((product, index) => (
             <li
               data-catalog-item
-              data-category={product.category}
-              data-material={product.material}
-              data-price={product.price}
+              data-famille={product.famille}
+              data-gamme={product.gamme}
+              data-name={product.name}
               data-index={index}
             >
               <ProductCard
@@ -105,20 +114,19 @@ const { categories, materials } = getProductFilters(products);
       const countLabel = document.querySelector("[data-catalog-count-label]");
       const empty = document.querySelector("[data-catalog-empty]");
       const sort = document.querySelector("[data-catalog-sort]");
-      const filters = { category: "all", material: "all" };
+      const filters = { famille: "all", gamme: "all" };
 
       if (!grid || !sort) return;
 
       function applyFilters() {
         const visible = items.filter(
           (item) =>
-            (filters.category === "all" || item.dataset.category === filters.category) &&
-            (filters.material === "all" || item.dataset.material === filters.material),
+            (filters.famille === "all" || item.dataset.famille === filters.famille) &&
+            (filters.gamme === "all" || item.dataset.gamme === filters.gamme),
         );
 
         visible.sort((a, b) => {
-          if (sort.value === "price-asc") return Number(a.dataset.price) - Number(b.dataset.price);
-          if (sort.value === "price-desc") return Number(b.dataset.price) - Number(a.dataset.price);
+          if (sort.value === "nom") return a.dataset.name.localeCompare(b.dataset.name, "fr");
           return Number(a.dataset.index) - Number(b.dataset.index);
         });
 
@@ -129,7 +137,7 @@ const { categories, materials } = getProductFilters(products);
         });
 
         countNode.textContent = String(visible.length).padStart(2, "0");
-        countLabel.textContent = visible.length === 1 ? "piece" : "pieces";
+        countLabel.textContent = visible.length === 1 ? "modèle affiché" : "modèles affichés";
         empty.classList.toggle("hidden", visible.length > 0);
         grid.classList.toggle("hidden", visible.length === 0);
       }

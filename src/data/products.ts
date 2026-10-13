@@ -72,15 +72,14 @@ export function getRelated(products: Product[], slug: string, limit = 3): Produc
     .slice(0, limit);
 }
 
-export function getProductFilters(products: Product[]): {
-  familles: Famille[];
-  gammes: Gamme[];
-} {
-  return {
-    familles: [...new Set(products.map((product) => product.famille))],
-    gammes: [...new Set(products.map((product) => product.gamme))],
-  };
-}
+/**
+ * Les filtres du catalogue viennent de la gamme annoncee, pas des fiches
+ * presentes : une gamme sans modele reste proposee (le catalogue se remplit
+ * au fil des visuels de l atelier), dans un ordre fixe.
+ */
+export const FAMILLES: Famille[] = ["monument", "cineraire"];
+
+export const GAMMES: Gamme[] = ["classique", "contemporain", "prestige", "musulman"];
 
 /**
  * Visuel a afficher pour un modele : sa premiere image si elle existe, sinon

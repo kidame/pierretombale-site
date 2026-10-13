@@ -1,7 +1,7 @@
 ---
-import { Image } from "astro:assets";
+import ProductImage from "@/components/ProductImage.astro";
 import { siteConfig } from "@/config/site";
-import { formatPrice, getProducts, requireProduct } from "@/data/products";
+import { PRIX_SUR_DEMANDE, getProducts, requireProduct } from "@/data/products";
 
 interface Props {
   /** Current pathname, used to mark the active nav item. */
@@ -113,19 +113,16 @@ const featuredProduct = requireProduct(await getProducts(), siteConfig.featured.
       data-mobile-menu-link
     >
       <div class="overflow-hidden bg-surface">
-        <Image
-          src={featuredProduct.images[0]}
-          alt={`${featuredProduct.name} — ${featuredProduct.shortDescription}`}
+        <ProductImage
+          product={featuredProduct}
           width={900}
           height={560}
-          format="webp"
-          loading="lazy"
-          class="aspect-[16/10] max-h-[28dvh] w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+          class="aspect-[16/10] max-h-[28dvh] w-full object-contain transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
         />
       </div>
       <div class="mt-3 flex items-baseline justify-between gap-4">
-        <p class="label">In the workshop — {featuredProduct.name}</p>
-        <p class="mono text-[0.6875rem]">{formatPrice(featuredProduct.price)}</p>
+        <p class="label">Au catalogue — {featuredProduct.name}</p>
+        <p class="mono text-[0.6875rem]">{PRIX_SUR_DEMANDE}</p>
       </div>
     </a>
   </div>

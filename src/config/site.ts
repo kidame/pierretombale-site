@@ -108,11 +108,11 @@ export const siteConfig = {
    */
   featured: {
     /** Three cards in the homepage "in the workshop" grid. */
-    homepageGrid: ["arvid-chair", "low-plinth-table", "tora-desk"],
+    homepageGrid: ["stele-doucine-classique", "stele-arrondie", "stele-cineraire-droite"],
     /** The single large piece given its own homepage section. */
-    homepageSolo: "monolith-bench",
+    homepageSolo: "monument-avec-jardiniere",
     /** The piece shown at the foot of the mobile menu. */
-    mobileMenu: "oken-stool",
+    mobileMenu: "stele-coeur",
   },
 } as const;
 

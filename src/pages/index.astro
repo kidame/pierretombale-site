@@ -1,10 +1,19 @@
 ---
 import { Image } from "astro:assets";
 import ProductCard from "@/components/ProductCard.astro";
+import ProductImage from "@/components/ProductImage.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import heroImg from "@/assets/atelier-hero.jpg";
 import { siteConfig } from "@/config/site";
-import { formatPrice, getProducts, requireProduct } from "@/data/products";
+import { TEINTES, granitsDisponibles, nomGranit, type Teinte } from "@/data/granits";
+import {
+  FAMILLE_LABELS,
+  GAMMES,
+  GAMME_LABELS,
+  PRIX_SUR_DEMANDE,
+  getProducts,
+  requireProduct,
+} from "@/data/products";
 
 const products = await getProducts();
 const featured = siteConfig.featured.homepageGrid.map((slug) => requireProduct(products, slug));
@@ -12,29 +21,38 @@ const solo = requireProduct(products, siteConfig.featured.homepageSolo);
 
 const siteUrl = (Astro.site ?? new URL(Astro.url.origin)).href;
 
+const granits = granitsDisponibles();
+
 const facts = [
-  { value: "2018", label: "Founded" },
-  { value: siteConfig.location.region, label: "Sweden" },
-  { value: String(products.length).padStart(2, "0"), label: "Pieces" },
-  { value: "03", label: "Timbers" },
+  { value: String(products.length).padStart(2, "0"), label: "Modèles au catalogue" },
+  { value: String(granits.length).padStart(2, "0"), label: "Granits proposés" },
+  { value: String(GAMMES.length).padStart(2, "0"), label: "Gammes" },
+  { value: "Suisse romande", label: "Zone d'intervention" },
 ];
 
-const materials = [
-  {
-    name: "European Oak",
-    tag: "Quiet · structural",
-    copy: "A single grade of slow-grown oak from managed forests in southern Sweden. Quarter-sawn for stability.",
-  },
-  {
-    name: "Curved Ash",
-    tag: "Resilient · sprung",
-    copy: "A small reserve from the south coast, steam-bent over custom forms. Used only where the curve earns it.",
-  },
-  {
-    name: "American Walnut",
-    tag: "Warm · figured",
-    copy: "Bought in single planks from a family mill in Pennsylvania. The grain decides the piece, not the reverse.",
-  },
+/* La liste des granits vit dans src/data/granits.json : on la regroupe par
+   teinte pour l affichage, sans la recopier ici. */
+const TEINTE_PLURIEL: Record<Teinte, string> = {
+  noir: "Granits noirs",
+  gris: "Granits gris",
+  blanc: "Granits blancs",
+  bleu: "Granits bleus",
+  rose: "Granits rosés",
+  rouge: "Granits rouges",
+  vert: "Granits verts",
+  beige: "Granits beiges",
+};
+
+const groupesGranits = TEINTES.map((teinte) => ({
+  teinte,
+  granits: granits.filter((granit) => granit.teinte === teinte),
+})).filter((groupe) => groupe.granits.length > 0);
+
+const soloSpecs: Array<[string, string]> = [
+  ["Dimensions", solo.dimensions],
+  ["Famille", FAMILLE_LABELS[solo.famille]],
+  ["Granit présenté", nomGranit(solo.granitPresente)],
+  ["Prix", PRIX_SUR_DEMANDE],
 ];
 
 const organizationSchema = {
@@ -53,21 +71,21 @@ const organizationSchema = {
 ---
 
 <BaseLayout
-  title={`${siteConfig.name} — ${siteConfig.tagline}`}
-  description="A small catalogue of seating, tables and storage. Solid oak, ash and walnut, hand-built to order in Småland, Sweden."
+  title={`Monuments funéraires et cinéraires — ${siteConfig.name}`}
+  description="Monuments funéraires et monuments cinéraires en granit massif, réalisés sur mesure pour la Suisse romande. Conseil, gravure et pose. Prix sur demande."
 >
   <main id="main-content">
     {/* ---------------------------------------------------------------- Hero */}
     <section class="shell grid items-center gap-x-12 gap-y-10 pb-4 pt-8 md:grid-cols-12 md:pb-10 md:pt-12">
       <div class="hero-in md:col-span-5">
-        <h1 class="type-hero">Hand-carved pieces from the northern woods</h1>
+        <h1 class="type-hero">Monuments funéraires et cinéraires en granit</h1>
         <p class="type-lead mt-7 max-w-[42ch]">
-          A small, slow catalogue of seating, tables and storage — solid oak, ash and walnut, shaped by hand and
-          built to outlast the room they were made for.
+          Un catalogue court de monuments et de monuments cinéraires, taillés dans le granit massif. Chaque
+          sépulture est réalisée sur mesure : conseil, gravure et pose comprises.
         </p>
         <div class="mt-9 flex flex-wrap gap-3">
-          <a href="/catalog" class="btn btn-primary">Browse the catalogue</a>
-          <a href="/about" class="btn btn-outline">The workshop</a>
+          <a href="/catalog" class="btn btn-primary">Voir le catalogue</a>
+          <a href="/devis" class="btn btn-outline">Demander un devis</a>
         </div>
       </div>
 
@@ -75,7 +93,7 @@ const organizationSchema = {
         <div class="overflow-hidden bg-surface">
           <Image
             src={heroImg}
-            alt="Hand-carved sculptural walnut lounge chair in a sunlit atelier"
+            alt=""
             width={1600}
             height={1400}
             format="webp"
@@ -85,8 +103,8 @@ const organizationSchema = {
           />
         </div>
         <figcaption class="mono mt-3 flex justify-between gap-4 text-[0.625rem] uppercase tracking-[0.05em] text-muted">
-          <span>No. 04 — Arvid Lounge</span>
-          <span>Solid walnut · 2025</span>
+          <span>Visuel provisoire</span>
+          <span>Photographies de l'atelier à venir</span>
         </figcaption>
       </figure>
     </section>
@@ -105,12 +123,12 @@ const organizationSchema = {
       </dl>
     </div>
 
-    {/* --------------------------------------------------- Currently in build */}
+    {/* ------------------------------------------------------ Quelques modeles */}
     <section class="shell mt-24 md:mt-36">
       <div class="rule" data-reveal="line"></div>
       <div class="mt-8 flex flex-wrap items-end justify-between gap-x-8 gap-y-4" data-reveal>
-        <h2 class="type-h2 max-w-[14ch]">A few pieces, close to ready</h2>
-        <a href="/catalog" class="link link-mono pb-1.5 text-muted">All six pieces</a>
+        <h2 class="type-h2 max-w-[14ch]">Quelques modèles du catalogue</h2>
+        <a href="/catalog" class="link link-mono pb-1.5 text-muted">Les {products.length} modèles</a>
       </div>
 
       <div class="mt-12 grid gap-x-8 gap-y-14 md:mt-14 md:grid-cols-3">
@@ -135,31 +153,25 @@ const organizationSchema = {
             {/* Wrapper carries the unmask clip so the image keeps its own
                 hover transition — see the mask notes in src/styles.css. */}
             <div>
-              <Image
-                src={solo.images[0]}
-                alt=""
+              <ProductImage
+                product={solo}
                 width={1600}
                 height={1100}
-                loading="lazy"
-                format="webp"
-                class="aspect-[5/4] w-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.04] md:aspect-[16/11]"
+                alt=""
+                class="aspect-[5/4] w-full object-contain transition-transform duration-[1100ms] ease-out group-hover:scale-[1.04] md:aspect-[16/11]"
               />
             </div>
           </a>
         </div>
 
         <div class="md:col-span-5 lg:col-span-4" data-reveal style="--reveal-delay:140ms">
-          <h2 class="type-h2">One plank, no hardware</h2>
+          <p class="label">{FAMILLE_LABELS[solo.famille]} · {GAMME_LABELS[solo.gamme]}</p>
+          <h2 class="type-h2 mt-5">{solo.name}</h2>
           <p class="type-body mt-6 max-w-[44ch]">{solo.description}</p>
 
           <dl class="mono mt-9 border-t border-line text-[0.8125rem]">
             {
-              [
-                ["Dimensions", solo.dimensions],
-                ["Finish", solo.finish],
-                ["Lead time", solo.leadTime],
-                ["From", formatPrice(solo.price)],
-              ].map(([term, value]) => (
+              soloSpecs.map(([term, value]) => (
                 <div class="flex justify-between gap-6 border-b border-line py-3">
                   <dt class="text-muted">{term}</dt>
                   <dd class="text-right">{value}</dd>
@@ -168,23 +180,33 @@ const organizationSchema = {
             }
           </dl>
 
-          <a href={`/products/${solo.slug}`} class="btn btn-primary mt-9">See the piece</a>
+          <a href={`/products/${solo.slug}`} class="btn btn-primary mt-9">Voir ce modèle</a>
         </div>
       </div>
     </section>
 
-    {/* ----------------------------------------------------------- Materials */}
+    {/* ------------------------------------------------------------- Granits */}
     <section class="shell mt-24 md:mt-36">
       <div class="rule" data-reveal="line"></div>
-      <h2 class="type-h2 mt-8 max-w-[18ch]" data-reveal>We've spent years learning three timbers</h2>
+      <h2 class="type-h2 mt-8 max-w-[18ch]" data-reveal>Chaque modèle se décline dans nos granits</h2>
+      <p class="type-body mt-6 max-w-[52ch]" data-reveal>
+        Le granit présenté sur un visuel n'est qu'un exemple : le même modèle se taille dans les autres teintes.
+        La liste évolue avec ce que l'atelier peut fournir.
+      </p>
 
       <div class="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-3">
         {
-          materials.map((material, index) => (
+          groupesGranits.map((groupe, index) => (
             <div class="border-t border-line pt-6" data-reveal style={`--reveal-delay:${index * 110}ms`}>
-              <h3 class="type-h3">{material.name}</h3>
-              <p class="label mt-3">{material.tag}</p>
-              <p class="type-body mt-4 text-[0.9375rem]">{material.copy}</p>
+              <h3 class="type-h3">{TEINTE_PLURIEL[groupe.teinte]}</h3>
+              <p class="label mt-3">
+                {groupe.granits.length === 1 ? "1 granit" : `${groupe.granits.length} granits`}
+              </p>
+              <ul class="type-body mt-4 text-[0.9375rem]">
+                {groupe.granits.map((granit) => (
+                  <li>{granit.nom}</li>
+                ))}
+              </ul>
             </div>
           ))
         }
