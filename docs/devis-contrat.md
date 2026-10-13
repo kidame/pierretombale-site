@@ -3,9 +3,12 @@
 Ce document décrit ce que le formulaire `/devis/` envoie, et ce que la fonction qui le reçoit doit
 faire. C'est la référence de l'étape **E6**.
 
-- Formulaire : `src/pages/devis.astro` (écrit à l'étape E4, passe 4).
+- Formulaire : `src/pages/devis.astro` (écrit à l'étape E4 passe 4, complété à l'étape E5 par la
+  personnalisation guidée).
 - Réglages : `src/config/devis.ts` — `envoiActif`, `endpoint`, limites de fichiers, délai anti-robot,
   messages affichés.
+- Choix de gravure : `src/data/personnalisation.ts` — polices, hauteurs de lettres, finitions,
+  motifs. Source unique des valeurs autorisées, partagée avec le configurateur à venir.
 - Destinataire à écrire en E6 : fonction Cloudflare Pages `functions/api/devis.ts`, qui envoie un
   courriel par **Resend** vers une adresse donnée en **variable d'environnement** (décision de Thomas
   du 13.10.2026 : **pas de n8n**).
@@ -50,12 +53,52 @@ Les listes `modele` et `granit` sont générées au build : une valeur inconnue 
 demande forgée, soit un catalogue modifié depuis l'affichage de la page. Ne pas faire échouer la
 demande pour autant : transmettre la valeur brute dans le courriel et la signaler.
 
-### Gravure et personnalisation
+### L'inscription (personnalisation guidée, étape E5)
 
-| Nom | Type | Obligatoire | Notes |
+Les valeurs autorisées sont les **identifiants de `src/data/personnalisation.ts`** — c'est la source
+unique, lue par la page de devis aujourd'hui et par le configurateur visuel demain. Une liste
+changée là-bas change ici : la fonction ne doit jamais contenir sa propre copie de ces listes, elle
+les importe.
+
+Quatre lignes fixes, numérotées de 1 à 4. Pour chaque `<n>` de 1 à 4 :
+
+| Nom | Type | Obligatoire | Valeurs |
 | --- | --- | --- | --- |
-| `gravure` | texte long | non | Noms, dates, épitaphe. Garder les retours à la ligne. |
+| `ligne<n>_texte` | texte | non | 60 caractères au maximum (`LIGNE_LONGUEUR_MAX`). |
+| `ligne<n>_police` | choix unique | non | `cinzel`, `marcellus`, `eb-garamond`, `jost`, `great-vibes`, `pinyon-script` (`policeIds`) |
+| `ligne<n>_hauteur` | nombre | non | `30`, `40`, `50`, `60` — en millimètres (`hauteursLettresMm`) |
+
+Soit douze champs : `ligne1_texte`, `ligne1_police`, `ligne1_hauteur`, … `ligne4_hauteur`.
+
+- La ligne 1 est présentée comme étant « le plus souvent le nom », la ligne 2 « le plus souvent les
+  dates ». Ce ne sont que des libellés d'aide : **rien ne garantit** que la ligne 1 contienne un nom.
+- `ligne<n>_police` et `ligne<n>_hauteur` sont **toujours envoyés**, même quand la ligne est vide :
+  ce sont des `select` avec une valeur par défaut (police `cinzel` ; hauteurs 50, 40, 30, 30 mm).
+  Une ligne dont le `texte` est vide n'a pas d'inscription : ignorer sa police et sa hauteur.
+- Longueur à revérifier côté serveur : le `maxlength` du HTML ne protège de rien.
+
+| Nom | Type | Obligatoire | Valeurs |
+| --- | --- | --- | --- |
+| `finition` | choix unique | non | `blanc`, `dore`, `feuille-or` (`finitionIds`), ou **vide** (« Je ne sais pas encore ») |
+| `motif` | choix unique | non | `aucun`, `croix`, `colombe`, `rose`, `coeur`, `arbre`, `autre`, `dessin-fourni` (`motifIds`) |
+| `gravure_precisions` | texte long | non | Épitaphe longue, disposition, orthographe exacte. Garder les retours à la ligne. |
 | `fichiers` | fichiers | non | Champ répété : plusieurs valeurs sous le même nom. |
+
+- `finition` vide est le choix par défaut : la famille n'a pas tranché, ce n'est pas une erreur.
+- `motif` vaut `aucun` par défaut.
+- `motif` = `autre` ou `dessin-fourni` : la page rappelle à la famille de décrire le symbole dans
+  `gravure_precisions` et de joindre son dessin dans `fichiers`. Le courriel doit **le signaler**,
+  même si les deux champs sont vides : c'est le cas où il faut rappeler la famille.
+- Le champ `gravure` de l'étape E4 (un seul texte libre pour toute la gravure) **n'existe plus** :
+  il a été remplacé par les douze champs de ligne et par `gravure_precisions`.
+
+Une valeur inconnue dans `ligne<n>_police`, `ligne<n>_hauteur`, `finition` ou `motif` signifie soit
+une demande forgée, soit une liste modifiée depuis l'affichage de la page. Même règle que pour
+`modele` et `granit` : **ne pas faire échouer la demande**, transmettre la valeur brute dans le
+courriel et la signaler.
+
+Aucun de ces choix n'engage : seul le **bon à tirer** engage, et la page le dit sous l'aperçu
+(`MENTION_APERCU` dans `src/data/personnalisation.ts`).
 
 Limites des fichiers (`fichiersDevis` dans `src/config/devis.ts`), vérifiées par le JavaScript et **à
 revérifier côté serveur** :
@@ -129,6 +172,23 @@ Non figé, à décider en E6, mais trois points découlent de ce formulaire :
 1. Destinataire = variable d'environnement (jamais écrit dans le dépôt).
 2. `Reply-To` = le champ `email`, pour qu'une réponse parte directement à la famille.
 3. Les fichiers joints partent en pièces jointes du courriel : rien n'est stocké côté site.
+
+## Configurateur futur
+
+Le configurateur visuel (Konva) décrit dans `docs/CONFIGURATEUR-FUTUR.md` **ne crée aucun champ
+nouveau** : il doit produire exactement les champs de ce contrat, avec les mêmes noms et les mêmes
+valeurs autorisées — `ligne1_texte` … `ligne4_hauteur`, `finition`, `motif`,
+`gravure_precisions`, plus `modele` et `granit`. C'est pour cela que la page de devis et le
+configurateur lisent la même source, `src/data/personnalisation.ts`.
+
+Conséquences :
+
+- la fonction `/api/devis` écrite en E6 n'aura **rien à changer** quand le configurateur arrivera ;
+- une demande venue du configurateur et une demande venue du formulaire donnent le **même courriel**,
+  donc la même fiche de travail pour la gravure ;
+- un champ propre au configurateur (une image PNG d'aperçu, par exemple) viendrait **s'ajouter** à
+  cette liste, sans jamais remplacer les champs de texte : un PNG ne se relit pas, et c'est le texte
+  qui part à la gravure.
 
 ## Ce qui reste à faire en E6
 
