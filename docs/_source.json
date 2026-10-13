@@ -1,0 +1,18 @@
+{
+  "source_workflow": "W6 — WebBrief Generator (BHkQgZjNeKZZO0Fn)",
+  "n8n_execution_id": "2641",
+  "trigger": "form (via n8n_test_workflow, session web kumo-workflow)",
+  "nom_entreprise": "PierreTombale.ch (nom de travail propose, domaine libre au 2026-08-17)",
+  "secteur": "pierre tombale",
+  "ville_seo": "Suisse (national — contournement T-034 : seed 'pierre tombale Val-de-Travers' = 0 suggestion)",
+  "commune_siege": "Couvet (2108)",
+  "url_concurrent_reference": "https://www.lespierrestombales.ch",
+  "started_at": "2026-08-17T09:23:37.289Z",
+  "stopped_at": "2026-08-17T09:30:20.380Z",
+  "note": "Run destine au dossier de presentation d'opportunite aux associes (projet commun). Brief_client = strategie du rapport analyses/2026-08-17 (§5+§8) : prix transparents, hub deuil, offre cineraire centrale (~90% cremation CH). Aucun site n'existe encore ; GBP inexistante (gbp_found=false, attendu).",
+  "valeurs_provisoires": {
+    "telephone": "numéro KUMO de Thomas, champ obligatoire du formulaire W6, PAS celui de l'entreprise",
+    "npa_et_commune_siege": "2108 / Couvet = hypothèse de travail, siège réel non décidé",
+    "nom_entreprise": "nom de travail, à confirmer"
+  }
+}

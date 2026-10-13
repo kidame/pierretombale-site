@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spec Web SEO-First – PierreTombale.ch – KUMO</title>
+<style>
+  :root {
+    --bg: #ffffff; --surface: #f8f8f7; --card: #ffffff;
+    --gold: #9E8237; --gold-light: #b8a05a; --gold-bg: rgba(158,130,55,0.06);
+    --text: #444444; --muted: #777777; --muted2: #aaaaaa; --muted3: #cccccc;
+    --heading: #2E74B5; --heading2: #1F4D78;
+    --ok: #2d7a2d; --warn: #9E8237; --err: #885555;
+    --info: #2E74B5; --border: #e5e5e5; --border-light: #f0f0f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); padding: 40px 48px; max-width: 900px; margin: 0 auto; font-size: 13px; line-height: 1.7; }
+  .header { text-align: left; margin-bottom: 36px; padding-bottom: 20px; border-bottom: 2px solid var(--gold); }
+  .header-brand { font-size: 22px; font-weight: 700; color: var(--gold); letter-spacing: 1px; margin-bottom: 2px; }
+  .header-tagline { color: var(--muted); font-size: 12px; font-style: italic; margin-bottom: 12px; }
+  h1 { font-size: 20px; font-weight: 700; color: var(--heading); margin-bottom: 4px; }
+  .subtitle { color: var(--muted2); font-size: 11px; }
+  .section { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; margin-bottom: 20px; }
+  .section-title { font-size: 14px; font-weight: 700; color: var(--heading); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border-light); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--surface); color: var(--muted); padding: 8px 12px; text-align: left; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+  td.label { color: var(--muted); font-size: 12px; width: 35%; font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 700; }
+  .badge-ok { background: rgba(45,122,45,0.08); color: var(--ok); }
+  .badge-warn { background: var(--gold-bg); color: var(--gold); }
+  .badge-err { background: rgba(136,85,85,0.08); color: var(--err); }
+  .badge-accent { background: var(--gold-bg); color: var(--gold); }
+  .badge-info { background: rgba(46,116,181,0.08); color: var(--info); }
+  .kw-row td:first-child { font-weight: 600; }
+  .trafic-total { font-size: 26px; font-weight: 700; color: var(--gold); margin: 8px 0; }
+  .trafic-note { font-size: 11px; color: var(--muted); }
+  .competitor-block { border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin-bottom: 10px; }
+  .competitor-domain { font-weight: 700; color: var(--heading2); margin-bottom: 6px; font-size: 13px; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .tag { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 3px 8px; font-size: 11px; color: var(--text); }
+  .tag.red { background: rgba(136,85,85,0.05); border-color: rgba(136,85,85,0.2); color: var(--err); }
+  .tag.green { background: rgba(45,122,45,0.05); border-color: rgba(45,122,45,0.2); color: var(--ok); }
+  .tag.blue { background: rgba(46,116,181,0.05); border-color: rgba(46,116,181,0.2); color: var(--info); }
+  .page-block { border-left: 3px solid var(--gold); padding: 12px 16px; margin-bottom: 10px; background: var(--surface); border-radius: 0 6px 6px 0; }
+  .page-name { font-weight: 700; margin-bottom: 4px; font-size: 14px; color: var(--heading2); }
+  .page-obj { font-size: 12px; color: var(--muted); }
+  .rec-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border-light); }
+  .rec-item:last-child { border-bottom: none; }
+  .rec-num { background: var(--gold); color: #fff; font-weight: 800; font-size: 11px; min-width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .rec-action { font-weight: 700; font-size: 13px; }
+  .rec-reason { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .mini-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
+  .mini-card-title { font-size: 10px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.5px; }
+  .mini-card-value { font-size: 16px; font-weight: 700; color: var(--heading2); }
+  .conv-block { border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin-bottom: 10px; }
+  .conv-page { font-weight: 700; color: var(--heading2); font-size: 14px; margin-bottom: 10px; }
+  .conv-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: 12px; }
+  .conv-label { color: var(--muted); min-width: 140px; flex-shrink: 0; font-weight: 600; font-size: 11px; text-transform: uppercase; }
+  .roadmap-phase { margin-bottom: 20px; }
+  .roadmap-title { font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--heading); }
+  .roadmap-item { font-size: 12px; padding: 5px 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; }
+  .roadmap-item:last-child { border-bottom: none; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 16px; }
+  .footer { text-align: center; color: var(--muted2); font-size: 11px; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); }
+  a { color: var(--gold); }
+  @media print {
+    body { padding: 16px; }
+    .section { break-inside: avoid; }
+  }
+
+  /* Section types */
+  .section-strategic { border-left: 3px solid var(--gold); }
+  .section-analytical { background: var(--surface); }
+  .section-actionable { border-left: 3px solid var(--ok); }
+  .section-technical { border-left: 3px solid var(--border); }
+  .section-highlight { background: linear-gradient(135deg, rgba(158,130,55,0.04), rgba(158,130,55,0.01)); border: 1px solid rgba(158,130,55,0.2); }
+  /* Key metrics grid */
+  .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+  .metric-card { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 14px; text-align: center; }
+  .metric-value { font-size: 20px; font-weight: 700; color: var(--heading2); margin-bottom: 2px; }
+  .metric-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  /* Case study */
+  .case-study { border: 1px solid rgba(158,130,55,0.25); border-radius: 8px; overflow: hidden; }
+  .case-study-header { background: linear-gradient(135deg, rgba(158,130,55,0.08), rgba(158,130,55,0.02)); padding: 16px 20px; border-bottom: 1px solid rgba(158,130,55,0.15); }
+  .case-study-body { padding: 16px 20px; }
+  .case-study-badge { display: inline-block; background: var(--gold); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 3px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .case-study-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; }
+  .case-study-col h4 { font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; font-weight: 700; }
+  .case-study-col li { font-size: 12px; color: var(--text); margin-bottom: 4px; list-style: none; padding-left: 14px; position: relative; }
+  .case-study-col li::before { content: ''; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; }
+  .case-study-col.retain li::before { background: var(--ok); }
+  .case-study-col.adapt li::before { background: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="header">
+<div class="header-brand">KUMO</div>
+<div class="header-tagline">Votre site. Votre visibilité. Vos résultats.</div>
+<h1>Plan de visibilité et structure du site – PierreTombale.ch</h1>
+<div class="subtitle">pierre tombale · Suisse · 17.08.2026 · kumo-seo.ch</div>
+</div><div class="section section-highlight" style="border-left: 3px solid var(--gold);"><div class="section-title" style="color: var(--gold);">En résumé</div><div style="font-size: 14px; line-height: 1.8;"><p style="margin-bottom: 8px;"><strong>Constat :</strong> Le marché de la pierre tombale en Suisse romande est opaque sur les prix, dominé par quelques acteurs genevois, et aucun site ne propose de tarifs transparents combinés à une offre cinéraire forte  –  alors que 90% des décès en Suisse aboutissent à une crémation.</p><p style="margin-bottom: 8px;"><strong>Ce qu'il faut faire :</strong> Créer un site rapide et sobre avec une page prix transparente comme arme principale, un catalogue cinéraire complet, et des pages locales ciblant le Val-de-Travers puis les villes neuchâteloises.</p><p style="margin-bottom: 8px;"><strong>Pourquoi c'est important :</strong> Les recherches &quot;pierre tombale prix suisse&quot; représentent un volume régulier avec un pic en juin ; le premier site à afficher des prix clairs et honnêtes captera la confiance des familles en deuil.</p><p><strong>Ce que cela peut apporter :</strong> Estimation : en atteignant la page 1 sur les requêtes prix, le site pourrait capter entre 15 et 30 visites qualifiées par mois, avec un potentiel de demandes de devis proportionnel à la transparence affichée.</p></div><div style="margin-bottom: 20px;"><div class="metrics-grid"><div class="metric-card"><div class="metric-value">pierre tombale prix suisse</div><div class="metric-label">Mot-clé principal</div></div><div class="metric-card"><div class="metric-value">170</div><div class="metric-label">Potentiel total observé</div></div><div class="metric-card"><div class="metric-value">18 pages</div><div class="metric-label">Structure recommandée</div></div></div></div><div class="section section-strategic">
+  <div class="section-title">🎯 Diagnostic & Positionnement</div>
+  <div class="grid-2">
+    <div class="mini-card"><div class="mini-card-title">Modèle business</div><div class="mini-card-value">Artisan spécialisé avec positionnement transparent</div></div>
+    <div class="mini-card"><div class="mini-card-title">Site recommandé</div><div class="mini-card-value">site_autorite</div></div>
+    <div class="mini-card"><div class="mini-card-title">Confiance requise</div><div class="mini-card-value">critical</div></div>
+    <div class="mini-card"><div class="mini-card-title">Vitesse conversion</div><div class="mini-card-value">long</div></div>
+  </div><p style="margin-top:16px;font-size:14px"><strong>Promesse :</strong> Des prix affichés, un granit sourcé directement, et un accompagnement digne pour chaque famille en Suisse romande.</p><p style="margin-top:6px;font-size:14px"><strong>Différenciation :</strong> Transparence tarifaire totale (prix publiés avec détail des prestations incluses) + approvisionnement direct en granit = meilleur rapport qualité-prix + offre cinéraire centrale adaptée à la réalité suisse (90% de crémation)</p></div><div class="section section-strategic">
+<div class="section-title">📍 Fiche entreprise</div><p style="color:var(--warn)">⚠️ GBP introuvable – informations à compléter manuellement</p></div><div class="section section-strategic">
+<div class="section-title">📈 Estimation trafic</div>
+<div class="grid-2">
+  <p style="font-size:11px;color:var(--muted);margin-bottom:12px">⚠️ Estimations basées sur les volumes DataForSEO – ne constituent pas une garantie de résultats.</p>
+<div class="mini-card"><div class="mini-card-title">Trafic estimé pos.3 (hyp. CTR 11%)</div><div class="trafic-total">19/mois</div></div>
+  <div class="mini-card"><div class="mini-card-title">Potentiel pos.1</div><div class="trafic-total" style="color:var(--gold)">~51/mois</div></div>
+</div><p style="margin-top:12px;font-size:14px;color:var(--ok)">Estimation prudente basée sur les volumes DataForSEO fournis. Hypothèse : CTR de 11% en position 3 et 30% en position 1. Le volume réel est probablement supérieur car les mots-clés longue traîne (non mesurés), les variantes locales et les requêtes cinéraires ne sont pas comptabilisés. Avec un taux de conversion hypothétique de 3-5% (fourchette courante pour le SEO local dans le funéraire), cela pourrait représenter 1 à 3 prises de contact mensuelles en position 3, et 2 à 5 en position 1  –  estimation dépendant de la qualité du site, des photos et de la transparence tarifaire réelle. Le pic saisonnier en juin (volume +96%) devrait amplifier ces chiffres durant la période avril-août.</p></div><div class="section section-analytical">
+<div class="section-title">🔑 Mots-clés prioritaires</div>
+<table>
+<thead><tr><th>P.</th><th>Mot-clé</th><th>Vol.</th><th>Difficulté</th><th>Intention</th><th>Trafic pos.3</th></tr></thead>
+<tbody><tr class="kw-row"><td><span class="badge badge-accent">1</span></td><td>pierre tombale prix suisse</td><td>70</td><td><span class="badge badge-warn">37/100</span></td><td><span class="badge badge-info">commercial</span></td><td>~8</td></tr><tr class="kw-row"><td><span class="badge badge-accent">2</span></td><td>prix pierre tombale suisse</td><td>70</td><td><span class="badge badge-warn">37/100</span></td><td><span class="badge badge-info">commercial</span></td><td>~8</td></tr><tr class="kw-row"><td><span class="badge badge-accent">3</span></td><td>pierre tombale suisse</td><td>10</td><td><span class="badge badge-err">?/100</span></td><td><span class="badge badge-info">informational</span></td><td>~1</td></tr><tr class="kw-row"><td><span class="badge badge-accent">4</span></td><td>prix d'une pierre tombale en granit suisse</td><td>10</td><td><span class="badge badge-err">?/100</span></td><td><span class="badge badge-info">commercial</span></td><td>~1</td></tr><tr class="kw-row"><td><span class="badge badge-accent">6</span></td><td>pierre tombale suisse romande</td><td>10</td><td><span class="badge badge-err">?/100</span></td><td><span class="badge badge-info">informational</span></td><td>~1</td></tr></tbody></table></div><div class="section section-analytical">
+  <div class="section-title">🔍 Stratégie SERP</div>
+  <div class="tag-list" style="margin-bottom:12px"><span class="tag blue">ai_overview</span><span class="tag blue">people_also_ask</span><span class="tag blue">images</span><span class="tag blue">related_searches</span></div><div style="font-size:13px;padding:4px 0;border-bottom:1px solid var(--border)">→ PAA dominantes sur toutes les requêtes principales → créer une page FAQ structurée avec schema FAQPage pour capter les positions PAA</div><div style="font-size:13px;padding:4px 0;border-bottom:1px solid var(--border)">→ Images présentes sur les requêtes prix → photographier chaque type de monument, nommer les fichiers avec des alt text descriptifs (ex: 'pierre-tombale-granit-noir-simple-suisse.webp'), créer une galerie visuelle</div><div style="font-size:13px;padding:4px 0;border-bottom:1px solid var(--border)">→ AI Overview actif → structurer le contenu avec des paragraphes courts, des réponses directes en début de page, des listes à puces pour les prestations incluses</div><div style="font-size:13px;padding:4px 0;border-bottom:1px solid var(--border)">→ Pas de local_pack détecté sur les requêtes nationales → opportunité majeure : créer le GBP pour apparaître dans le pack local sur les requêtes localisées (Val-de-Travers, Neuchâtel)</div><div style="font-size:13px;padding:4px 0;border-bottom:1px solid var(--border)">→ Requêtes images → prévoir des photos réelles de monuments (pas de stock photos), avec schema Product incluant des fourchettes de prix pour enrichir les résultats</div></div><div class="section section-analytical">
+<div class="section-title">⚔️ Analyse concurrents</div><div class="competitor-block">
+  <div class="competitor-domain">1. marbrier-geneve.ch</div><div style="font-size:12px;margin-bottom:10px">
+    <span class="badge badge-accent">0 ref. domains</span>
+    <span class="badge">0 rank</span>
+    <span class="badge badge-err">données insuffisantes</span>
+    </div><div style="font-size:13px;margin-bottom:8px;color:var(--muted)">Forces :</div>
+  <div class="tag-list"><span class="tag green">Page prix avec fourchettes de prix affichées (2'150 à 15'000 CHF)</span><span class="tag green">Positionnée en 3e position SERP sur 'pierre tombale prix suisse'</span><span class="tag green">Meta description contenant des chiffres concrets</span></div>
+  <div style="font-size:13px;margin-top:10px;margin-bottom:8px;color:var(--muted)">Faiblesses :</div>
+  <div class="tag-list"><span class="tag red">Données d'autorité insuffisantes (referring_domains et domain_rank à 0)</span><span class="tag red">Crawl technique échoué  –  possibles problèmes techniques</span><span class="tag red">Ancrage géographique limité à Genève</span></div>
+  <div style="font-size:13px;margin-top:10px;margin-bottom:8px;color:var(--muted)">Opportunités :</div>
+  <div class="tag-list"><span class="tag">Surpasser par des prix plus détaillés (ligne par ligne vs fourchettes vagues)</span><span class="tag">Couvrir la Suisse romande au-delà de Genève</span><span class="tag">Site techniquement plus rapide et mieux structuré</span></div>
+  </div><div class="competitor-block">
+  <div class="competitor-domain">2. lespierrestombales.ch</div><div style="font-size:12px;margin-bottom:10px">
+    <span class="badge badge-accent">0 ref. domains</span>
+    <span class="badge">0 rank</span>
+    <span class="badge badge-err">données insuffisantes</span>
+    </div><div style="font-size:13px;margin-bottom:8px;color:var(--muted)">Forces :</div>
+  <div class="tag-list"><span class="tag green">Score de page de 100 sur la page d'accueil</span><span class="tag green">Showroom physique à Carouge (Genève)</span><span class="tag green">Structure de contenu riche : modèles, granits, accompagnement</span><span class="tag green">H2 bien structurés couvrant le parcours client complet</span><span class="tag green">Positionnement émotionnel fort ('l'art de la pierre et la dignité du souvenir')</span></div>
+  <div style="font-size:13px;margin-top:10px;margin-bottom:8px;color:var(--muted)">Faiblesses :</div>
+  <div class="tag-list"><span class="tag red">Données d'autorité insuffisantes (referring_domains et domain_rank à 0)</span><span class="tag red">Ancré à Genève, pas de couverture au-delà de Genève</span><span class="tag red">Pas de page prix visible avec tarifs détaillés</span></div>
+  <div style="font-size:13px;margin-top:10px;margin-bottom:8px;color:var(--muted)">Opportunités :</div>
+  <div class="tag-list"><span class="tag">Reprendre la structure de contenu riche (modèles, granits, accompagnement) et l'adapter au contexte neuchâtelois</span><span class="tag">Ajouter la transparence tarifaire que ce concurrent ne propose pas</span><span class="tag">Développer l'offre cinéraire que ce concurrent semble sous-traiter</span><span class="tag">Créer des pages locales que ce concurrent n'a pas (Neuchâtel, Val-de-Travers)</span></div>
+  </div><div class="competitor-block">
+  <div class="competitor-domain">3. gpggranit.com</div><div style="font-size:12px;margin-bottom:10px">
+    <span class="badge badge-accent">0 ref. domains</span>
+    <span class="badge">0 rank</span>
+    <span class="badge badge-err">données insuffisantes</span>
+    </div><div style="font-size:13px;margin-bottom:8px;color:var(--muted)">Forces :</div>
+  <div class="tag-list"><span class="tag green">Article informatif bien référencé sur 'prix pierre tombale granit'</span><span class="tag green">Prix en euros avec fourchettes (2'000-5'000€)</span><span class="tag green">Contenu daté (août 2023), signal de fraîcheur</span></div>
+  <div style="font-size:13px;margin-top:10px;margin-bottom:8px;color:var(--muted)">Faiblesses :</div>
+  <div class="tag-list"><span class="tag red">Site français, pas suisse  –  prix en euros, pas en CHF</span><span class="tag red">Article informationnel, pas une page de service local</span><span class="tag red">Aucun ancrage géographique suisse</span></div>
+  <div style="font-size:13px;margin-top:10px;margin-bottom:8px;color:var(--muted)">Opportunités :</div>
+  <div class="tag-list"><span class="tag">Fournir des prix en CHF pour le marché suisse (ce que ce concurrent ne fait pas)</span><span class="tag">Créer du contenu plus complet et localisé</span><span class="tag">Signal de pertinence locale que ce site ne pourra jamais avoir</span></div>
+  </div></div><div class="section case-study">
+  <div class="case-study-header">
+    <span class="case-study-badge">Modèle retenu</span>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div style="font-size: 18px; font-weight: 700; color: var(--heading2);">lespierrestombales.ch</div>
+        <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Fourni manuellement – manual</div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 24px; font-weight: 700; color: var(--gold);">100<span style="font-size: 13px; color: var(--muted);">/100</span></div>
+        <div style="font-size: 10px; color: var(--muted); text-transform: uppercase;">Score technique</div>
+      </div>
+    </div>
+  </div>
+  <div class="case-study-body">
+    <p style="font-size: 13px; color: var(--text); margin-bottom: 16px;">
+      Ce site est bien positionné sur un marché similaire au vôtre. Nous l’avons analysé pour identifier les bonnes pratiques à adapter à votre situation.
+    </p>
+    <div class="case-study-grid">
+      <div class="case-study-col retain">
+        <h4>Ce qu’on en retient</h4>
+        <ul>
+          <li>Titre principal clair : « Pierres tombales à Genève, 
+ l'art de la pierre et la dignité du souvenir. »</li>
+          <li>Très bonne qualité technique (score 100/100)</li>
+          <li>Structure de page bien organisée (10 sections)</li>
+          <li>Description pour Google bien rédigée</li>
+        </ul>
+      </div>
+      <div class="case-study-col adapt">
+        <h4>Ce qu’on adapte pour vous</h4>
+        <ul>
+          <li>Contenu 100% personnalisé à Suisse</li>
+          <li>Pages ciblées sur vos mots-clés locaux</li>
+          <li>Conversion adaptée à votre activité</li>
+          <li>Fiche Google optimisée pour votre zone</li>
+        </ul>
+      </div>
+    </div></div></div><div class="section section-actionable">
+<div class="section-title">⚡ Recommandations prioritaires</div><div class="rec-item">
+  <div class="rec-num">1</div>
+  <div>
+    <div class="rec-action">Créer et optimiser un profil Google Business Profile</div>
+    <div class="rec-reason">Aucun GBP trouvé. C'est la première action à faire, avant même le site. Le GBP génère de la visibilité locale immédiate (Google Maps, pack local) et renforce la crédibilité. Catégorie principale : 'Marbrier' ou 'Marbrerie funéraire'. Adresse à Couvet, zone desservie : canton de Neuchâtel et Suisse romande.</div>
+  </div>
+  </div><div class="rec-item">
+  <div class="rec-num">2</div>
+  <div>
+    <div class="rec-action">Publier la page prix avec de vrais tarifs détaillés dès le lancement</div>
+    <div class="rec-reason">C'est le différenciateur n°1. Aucun concurrent suisse ne publie de prix détaillés avec prestations incluses. Cette page sera l'arme principale pour capter le trafic commercial et convertir les familles.</div>
+  </div>
+  </div><div class="rec-item">
+  <div class="rec-num">3</div>
+  <div>
+    <div class="rec-action">Photographier au minimum 10 monuments réels (tombes, cavurnes, plaques) dans les cimetières locaux</div>
+    <div class="rec-reason">Les SERP affichent des images sur les requêtes prix. Des photos réelles (pas de stock) construisent la confiance dans un secteur où le visuel est décisif. Alt text optimisés pour le SEO images.</div>
+  </div>
+  </div><div class="rec-item">
+  <div class="rec-num">4</div>
+  <div>
+    <div class="rec-action">Mettre en avant l'offre cinéraire comme service principal, pas secondaire</div>
+    <div class="rec-reason">90% de crémation en Suisse, 97% à Neuchâtel. Le catalogue classique (tombes inhumation) doit exister, mais l'offre cavurne/columbarium/urne doit être au premier plan du site.</div>
+  </div>
+  </div><div class="rec-item">
+  <div class="rec-num">5</div>
+  <div>
+    <div class="rec-action">Collecter les premiers avis clients sur Google dès les premières réalisations</div>
+    <div class="rec-reason">Dans un secteur à confiance critique, les avis Google sont la preuve sociale la plus efficace. Objectif : 5 avis authentiques dans les 3 premiers mois.</div>
+  </div>
+  </div><div class="rec-item">
+  <div class="rec-num">6</div>
+  <div>
+    <div class="rec-action">Préparer le calendrier de contenu éditorial (hub deuil) pour avril-mai afin de capter le pic de juin</div>
+    <div class="rec-reason">La saisonnalité montre un pic en juin (+96% de volume). Publier les articles guides (épitaphes, messages de condoléances) 2 mois avant permet d'indexer et de commencer à ranker au bon moment.</div>
+  </div>
+  </div><div class="rec-item">
+  <div class="rec-num">7</div>
+  <div>
+    <div class="rec-action">Établir des contacts avec les pompes funèbres du Val-de-Travers et de Neuchâtel</div>
+    <div class="rec-reason">Les pompes funèbres sont le premier prescripteur dans le funéraire. Un partenariat de recommandation réciproque compense le volume limité de recherches locales (~130 décès/an au Val-de-Travers).</div>
+  </div>
+  </div></div><div class="section section-actionable">
+<div class="section-title">🗂️ Structure du site</div><div class="page-block" style="border-left-color:var(--ok)">
+  <div class="page-name">1. Accueil <span style="color:var(--muted);font-weight:400;font-size:13px">/</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--ok)20;color:var(--ok)">Phase 1 – Vitale</span></div>
+  <div class="page-obj">Présenter PierreTombale.ch, son positionnement transparent, et orienter vers les pages clés (prix, catalogue, contact)</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">pierre tombale suisse</span><span class="tag">pierre tombale suisse romande</span></div>
+  </div><div class="page-block" style="border-left-color:var(--ok)">
+  <div class="page-name">2. Prix des pierres tombales en Suisse <span style="color:var(--muted);font-weight:400;font-size:13px">/prix-pierre-tombale-suisse</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--ok)20;color:var(--ok)">Phase 1 – Vitale</span></div>
+  <div class="page-obj">Afficher les prix réels avec détail des prestations incluses. Capturer le trafic commercial principal.</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">pierre tombale prix suisse</span><span class="tag">prix pierre tombale suisse</span><span class="tag">prix d'une pierre tombale en granit suisse</span></div>
+  </div><div class="page-block" style="border-left-color:var(--ok)">
+  <div class="page-name">3. Monuments funéraires  –  Catalogue <span style="color:var(--muted);font-weight:400;font-size:13px">/monuments-funeraires</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--ok)20;color:var(--ok)">Phase 1 – Vitale</span></div>
+  <div class="page-obj">Présenter la gamme complète : granit, marbre, simple, double, cinéraire, moderne, classique</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">monument funéraire suisse</span><span class="tag">pierre tombale granit suisse</span></div>
+  </div><div class="page-block" style="border-left-color:var(--ok)">
+  <div class="page-name">4. Monuments cinéraires, cavurnes et columbarium <span style="color:var(--muted);font-weight:400;font-size:13px">/monuments-cineraires-cavurnes</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--ok)20;color:var(--ok)">Phase 1 – Vitale</span></div>
+  <div class="page-obj">Page dédiée à l'offre cinéraire centrale : cavurnes, plaques columbarium, urnes. Répond à la réalité de 90% de crémation.</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">cavurne suisse</span><span class="tag">plaque funéraire columbarium</span><span class="tag">urne funéraire suisse</span></div>
+  </div><div class="page-block" style="border-left-color:var(--gold)">
+  <div class="page-name">5. Gravure et inscriptions funéraires <span style="color:var(--muted);font-weight:400;font-size:13px">/gravure-inscription-funeraire</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--gold)20;color:var(--gold)">Phase 2 – Croissance</span></div>
+  <div class="page-obj">Détailler le service de gravure (ajout de noms, dates, épitaphes) sur monuments existants ou neufs</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">gravure pierre tombale suisse</span><span class="tag">inscription pierre tombale</span></div>
+  </div><div class="page-block" style="border-left-color:var(--gold)">
+  <div class="page-name">6. Entretien et rénovation de tombes <span style="color:var(--muted);font-weight:400;font-size:13px">/entretien-renovation-tombe</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--gold)20;color:var(--gold)">Phase 2 – Croissance</span></div>
+  <div class="page-obj">Proposer les services d'entretien, nettoyage et rénovation de monuments existants</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">entretien tombe suisse</span><span class="tag">nettoyage pierre tombale</span><span class="tag">rénovation monument funéraire</span></div>
+  </div><div class="page-block" style="border-left-color:var(--gold)">
+  <div class="page-name">7. Plaques funéraires <span style="color:var(--muted);font-weight:400;font-size:13px">/plaques-funeraires</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--gold)20;color:var(--gold)">Phase 2 – Croissance</span></div>
+  <div class="page-obj">Présenter les plaques funéraires pour tombes et columbarium</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">plaque funéraire suisse</span><span class="tag">plaque funéraire personnalisée</span></div>
+  </div><div class="page-block" style="border-left-color:var(--gold)">
+  <div class="page-name">8. Pierre tombale musulmane <span style="color:var(--muted);font-weight:400;font-size:13px">/pierre-tombale-musulmane</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--gold)20;color:var(--gold)">Phase 2 – Croissance</span></div>
+  <div class="page-obj">Page dédiée aux monuments conformes aux traditions musulmanes</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">pierre tombale musulmane suisse</span><span class="tag">monument funéraire musulman</span></div>
+  </div><div class="page-block" style="border-left-color:var(--ok)">
+  <div class="page-name">9. Pierre tombale au Val-de-Travers <span style="color:var(--muted);font-weight:400;font-size:13px">/pierre-tombale-val-de-travers</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--ok)20;color:var(--ok)">Phase 1 – Vitale</span></div>
+  <div class="page-obj">Page locale pour le Val-de-Travers (Couvet, Fleurier, Môtiers). Ancrage territorial principal.</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">pierre tombale Couvet</span><span class="tag">pierre tombale Val-de-Travers</span><span class="tag">marbrier Val-de-Travers</span></div>
+  </div><div class="page-block" style="border-left-color:var(--ok)">
+  <div class="page-name">10. Pierre tombale à Neuchâtel <span style="color:var(--muted);font-weight:400;font-size:13px">/pierre-tombale-neuchatel</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--ok)20;color:var(--ok)">Phase 1 – Vitale</span></div>
+  <div class="page-obj">Page locale pour Neuchâtel ville et environs</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">pierre tombale Neuchâtel</span><span class="tag">marbrier Neuchâtel</span></div>
+  </div><div class="page-block" style="border-left-color:var(--gold)">
+  <div class="page-name">11. Pierre tombale à La Chaux-de-Fonds <span style="color:var(--muted);font-weight:400;font-size:13px">/pierre-tombale-la-chaux-de-fonds</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--gold)20;color:var(--gold)">Phase 2 – Croissance</span></div>
+  <div class="page-obj">Page locale pour La Chaux-de-Fonds</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">pierre tombale La Chaux-de-Fonds</span><span class="tag">marbrier La Chaux-de-Fonds</span></div>
+  </div><div class="page-block" style="border-left-color:var(--gold)">
+  <div class="page-name">12. Pierre tombale au Locle <span style="color:var(--muted);font-weight:400;font-size:13px">/pierre-tombale-le-locle</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--gold)20;color:var(--gold)">Phase 2 – Croissance</span></div>
+  <div class="page-obj">Page locale pour Le Locle</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">pierre tombale Le Locle</span><span class="tag">marbrier Le Locle</span></div>
+  </div><div class="page-block" style="border-left-color:var(--ok)">
+  <div class="page-name">13. À propos  –  Notre marbrerie <span style="color:var(--muted);font-weight:400;font-size:13px">/a-propos</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--ok)20;color:var(--ok)">Phase 1 – Vitale</span></div>
+  <div class="page-obj">Présenter l'histoire, les valeurs, l'approvisionnement direct en granit. Construire la confiance.</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">marbrerie suisse romande</span></div>
+  </div><div class="page-block" style="border-left-color:var(--ok)">
+  <div class="page-name">14. Contact <span style="color:var(--muted);font-weight:400;font-size:13px">/contact</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--ok)20;color:var(--ok)">Phase 1 – Vitale</span></div>
+  <div class="page-obj">Formulaire de contact et coordonnées. Point de conversion principal.</div>
+  <div class="tag-list" style="margin-top:6px"></div>
+  </div><div class="page-block" style="border-left-color:var(--ok)">
+  <div class="page-name">15. FAQ  –  Questions fréquentes sur les pierres tombales en Suisse <span style="color:var(--muted);font-weight:400;font-size:13px">/faq</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--ok)20;color:var(--ok)">Phase 1 – Vitale</span></div>
+  <div class="page-obj">Répondre aux PAA détectées, capter les featured snippets, rassurer les familles</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">prix pierre tombale suisse</span><span class="tag">coût pierre tombale suisse</span></div>
+  </div><div class="page-block" style="border-left-color:var(--info)">
+  <div class="page-name">16. Messages de condoléances <span style="color:var(--muted);font-weight:400;font-size:13px">/messages-condoleances</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--info)20;color:var(--info)">Phase 3 – Autorité</span></div>
+  <div class="page-obj">Article guide pour capter du trafic informationnel à fort volume et faible concurrence</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">message de condoléances suisse</span><span class="tag">texte condoléances</span></div>
+  </div><div class="page-block" style="border-left-color:var(--info)">
+  <div class="page-name">17. Épitaphes  –  Textes pour pierres tombales <span style="color:var(--muted);font-weight:400;font-size:13px">/epitaphes-textes-pierre-tombale</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--info)20;color:var(--info)">Phase 3 – Autorité</span></div>
+  <div class="page-obj">Guide des épitaphes avec exemples. Autorité topique + trafic informationnel.</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">épitaphe pierre tombale</span><span class="tag">texte pierre tombale</span></div>
+  </div><div class="page-block" style="border-left-color:var(--info)">
+  <div class="page-name">18. Remerciements après décès <span style="color:var(--muted);font-weight:400;font-size:13px">/remerciements-apres-deces</span></div>
+  <div style="margin-bottom:4px"><span class="badge" style="background:var(--info)20;color:var(--info)">Phase 3 – Autorité</span></div>
+  <div class="page-obj">Guide pratique pour rédiger des remerciements. Trafic informationnel.</div>
+  <div class="tag-list" style="margin-top:6px"><span class="tag">remerciements après décès</span><span class="tag">carte remerciement décès suisse</span></div>
+  </div></div><div class="section section-actionable">
+  <div class="section-title">🎯 Spec Conversion (par page)</div><div class="conv-block">
+    <div class="conv-page">Accueil</div>
+    <div class="conv-row"><span class="conv-label">Objection principale</span><span>Est-ce une vraie marbrerie ou juste un site internet sans atelier ?</span></div>
+    <div class="conv-row"><span class="conv-label">Preuves à afficher</span><span><span class="tag green">Localisation au Val-de-Travers mentionnée clairement</span> <span class="tag green">Photos réelles de monuments posés dans les cimetières locaux [à collecter]</span> <span class="tag green">Lien direct vers la page prix avec tarifs affichés</span></span></div>
+    <div class="conv-row"><span class="conv-label">CTA principal</span><span style="font-weight:600;color:var(--ok)">Voir nos prix détaillés</span></div>
+    <div class="conv-row"><span class="conv-label">CTA secondaire</span><span>Nous contacter</span></div>
+    <div class="conv-row"><span class="conv-label">Composants UX</span><span><span class="tag blue">hero</span> <span class="tag blue">bloc_services</span> <span class="tag blue">cta_section</span> <span class="tag blue">methode_etapes</span> <span class="tag blue">zone_desservie</span> <span class="tag blue">preuves_sociales</span> <span class="tag blue">faq</span> <span class="tag blue">cta_section</span> <span class="tag blue">contact_sticky_mobile</span></span></div>
+    </div><div class="conv-block">
+    <div class="conv-page">Prix des pierres tombales en Suisse</div>
+    <div class="conv-row"><span class="conv-label">Objection principale</span><span>Ces prix sont-ils réels ? Y a-t-il des coûts cachés ?</span></div>
+    <div class="conv-row"><span class="conv-label">Preuves à afficher</span><span><span class="tag green">Détail ligne par ligne de ce qui est inclus (gravure, pose, taxes)</span> <span class="tag green">Mention explicite 'aucun coût caché'</span> <span class="tag green">Photos du monument correspondant à chaque gamme de prix [à collecter]</span></span></div>
+    <div class="conv-row"><span class="conv-label">CTA principal</span><span style="font-weight:600;color:var(--ok)">Demander un devis détaillé gratuit</span></div>
+    <div class="conv-row"><span class="conv-label">CTA secondaire</span><span>Appeler directement</span></div>
+    <div class="conv-row"><span class="conv-label">Composants UX</span><span><span class="tag blue">hero</span> <span class="tag blue">tarification</span> <span class="tag blue">methode_etapes</span> <span class="tag blue">faq</span> <span class="tag blue">cta_section</span> <span class="tag blue">formulaire_contact</span> <span class="tag blue">contact_sticky_mobile</span></span></div>
+    </div><div class="conv-block">
+    <div class="conv-page">Monuments funéraires  –  Catalogue</div>
+    <div class="conv-row"><span class="conv-label">Objection principale</span><span>Comment savoir quel monument correspond à mes besoins et à mon budget ?</span></div>
+    <div class="conv-row"><span class="conv-label">Preuves à afficher</span><span><span class="tag green">Photos de chaque type de monument avec dimensions [à collecter]</span> <span class="tag green">Lien vers la page prix pour chaque catégorie</span> <span class="tag green">Échantillons de granit visibles (photos ou visite sur rendez-vous)</span></span></div>
+    <div class="conv-row"><span class="conv-label">CTA principal</span><span style="font-weight:600;color:var(--ok)">Voir les prix de chaque modèle</span></div>
+    <div class="conv-row"><span class="conv-label">CTA secondaire</span><span>Demander un rendez-vous pour voir les granits</span></div>
+    <div class="conv-row"><span class="conv-label">Composants UX</span><span><span class="tag blue">hero</span> <span class="tag blue">bloc_services</span> <span class="tag blue">realisations</span> <span class="tag blue">cta_section</span> <span class="tag blue">zone_desservie</span> <span class="tag blue">contact_sticky_mobile</span></span></div>
+    </div><div class="conv-block">
+    <div class="conv-page">Monuments cinéraires, cavurnes et columbarium</div>
+    <div class="conv-row"><span class="conv-label">Objection principale</span><span>Est-ce que cette marbrerie connaît vraiment les spécificités de la crémation et des cimetières suisses ?</span></div>
+    <div class="conv-row"><span class="conv-label">Preuves à afficher</span><span><span class="tag green">Statistique crémation (90% CH, 97% NE) démontrant la spécialisation</span> <span class="tag green">Photos de cavurnes et plaques posées [à collecter]</span> <span class="tag green">Mention des règlements de cimetières respectés</span></span></div>
+    <div class="conv-row"><span class="conv-label">CTA principal</span><span style="font-weight:600;color:var(--ok)">Voir les prix des monuments cinéraires</span></div>
+    <div class="conv-row"><span class="conv-label">CTA secondaire</span><span>Poser une question sur le cinéraire</span></div>
+    <div class="conv-row"><span class="conv-label">Composants UX</span><span><span class="tag blue">hero</span> <span class="tag blue">bloc_services</span> <span class="tag blue">methode_etapes</span> <span class="tag blue">realisations</span> <span class="tag blue">faq</span> <span class="tag blue">cta_section</span> <span class="tag blue">contact_sticky_mobile</span></span></div>
+    </div><div class="conv-block">
+    <div class="conv-page">Pierre tombale au Val-de-Travers</div>
+    <div class="conv-row"><span class="conv-label">Objection principale</span><span>Le marbrier précédent est parti. Qui reprend le service localement ?</span></div>
+    <div class="conv-row"><span class="conv-label">Preuves à afficher</span><span><span class="tag green">Mention du siège à Couvet</span> <span class="tag green">Liste des cimetières desservis dans la commune</span> <span class="tag green">Photos de réalisations dans les cimetières du Val-de-Travers [à collecter]</span></span></div>
+    <div class="conv-row"><span class="conv-label">CTA principal</span><span style="font-weight:600;color:var(--ok)">Demander un devis</span></div>
+    <div class="conv-row"><span class="conv-label">CTA secondaire</span><span>Voir nos prix</span></div>
+    <div class="conv-row"><span class="conv-label">Composants UX</span><span><span class="tag blue">hero</span> <span class="tag blue">bloc_services</span> <span class="tag blue">zone_desservie</span> <span class="tag blue">realisations</span> <span class="tag blue">preuves_sociales</span> <span class="tag blue">cta_section</span> <span class="tag blue">carte_google_maps</span> <span class="tag blue">contact_sticky_mobile</span></span></div>
+    </div><div class="conv-block">
+    <div class="conv-page">Pierre tombale à Neuchâtel</div>
+    <div class="conv-row"><span class="conv-label">Objection principale</span><span>Ce marbrier est au Val-de-Travers, intervient-il vraiment à Neuchâtel ?</span></div>
+    <div class="conv-row"><span class="conv-label">Preuves à afficher</span><span><span class="tag green">Mention explicite des cimetières de Neuchâtel desservis</span> <span class="tag green">Précision que les prix sont identiques, sans supplément de distance</span> <span class="tag green">Photos de réalisations à Neuchâtel [à collecter]</span></span></div>
+    <div class="conv-row"><span class="conv-label">CTA principal</span><span style="font-weight:600;color:var(--ok)">Consulter les prix</span></div>
+    <div class="conv-row"><span class="conv-label">CTA secondaire</span><span>Prendre rendez-vous à Neuchâtel</span></div>
+    <div class="conv-row"><span class="conv-label">Composants UX</span><span><span class="tag blue">hero</span> <span class="tag blue">bloc_services</span> <span class="tag blue">zone_desservie</span> <span class="tag blue">realisations</span> <span class="tag blue">cta_section</span> <span class="tag blue">formulaire_contact</span> <span class="tag blue">contact_sticky_mobile</span></span></div>
+    </div><div class="conv-block">
+    <div class="conv-page">À propos  –  Notre marbrerie</div>
+    <div class="conv-row"><span class="conv-label">Objection principale</span><span>Qui est derrière ce site ? Puis-je faire confiance à cette marbrerie ?</span></div>
+    <div class="conv-row"><span class="conv-label">Preuves à afficher</span><span><span class="tag green">Histoire de la reprise du marché local (marbrier sortant)</span> <span class="tag green">Explication de l'approvisionnement direct en granit</span> <span class="tag green">Photos de l'activité réelle [à collecter]</span></span></div>
+    <div class="conv-row"><span class="conv-label">CTA principal</span><span style="font-weight:600;color:var(--ok)">Nous contacter</span></div>
+    <div class="conv-row"><span class="conv-label">CTA secondaire</span><span>Voir nos réalisations</span></div>
+    <div class="conv-row"><span class="conv-label">Composants UX</span><span><span class="tag blue">hero</span> <span class="tag blue">methode_etapes</span> <span class="tag blue">realisations</span> <span class="tag blue">zone_desservie</span> <span class="tag blue">cta_section</span> <span class="tag blue">contact_sticky_mobile</span></span></div>
+    </div><div class="conv-block">
+    <div class="conv-page">Contact</div>
+    <div class="conv-row"><span class="conv-label">Objection principale</span><span>Vais-je recevoir une réponse rapide et un devis clair ?</span></div>
+    <div class="conv-row"><span class="conv-label">Preuves à afficher</span><span><span class="tag green">Mention 'devis détaillé et transparent'</span> <span class="tag green">Coordonnées visibles (téléphone, email)</span></span></div>
+    <div class="conv-row"><span class="conv-label">CTA principal</span><span style="font-weight:600;color:var(--ok)">Envoyer ma demande</span></div>
+    <div class="conv-row"><span class="conv-label">CTA secondaire</span><span>Appeler directement</span></div>
+    <div class="conv-row"><span class="conv-label">Composants UX</span><span><span class="tag blue">hero</span> <span class="tag blue">formulaire_contact</span> <span class="tag blue">coordonnees</span> <span class="tag blue">carte_google_maps</span> <span class="tag blue">contact_sticky_mobile</span></span></div>
+    </div><div class="conv-block">
+    <div class="conv-page">FAQ</div>
+    <div class="conv-row"><span class="conv-label">Objection principale</span><span>Je ne sais pas par où commencer, je manque d'informations</span></div>
+    <div class="conv-row"><span class="conv-label">Preuves à afficher</span><span><span class="tag green">Réponses précises basées sur la réglementation suisse</span> <span class="tag green">Lien vers la page prix dans les réponses pertinentes</span></span></div>
+    <div class="conv-row"><span class="conv-label">CTA principal</span><span style="font-weight:600;color:var(--ok)">Demander un devis gratuit</span></div>
+    <div class="conv-row"><span class="conv-label">CTA secondaire</span><span>Voir nos prix</span></div>
+    <div class="conv-row"><span class="conv-label">Composants UX</span><span><span class="tag blue">hero</span> <span class="tag blue">faq</span> <span class="tag blue">cta_section</span> <span class="tag blue">contact_sticky_mobile</span></span></div>
+    </div></div><div class="section section-technical">
+<div class="section-title">🏷️ Balises SEO</div>
+<table>
+<thead><tr><th>Page</th><th>Title</th><th>Meta Description</th></tr></thead>
+<tbody><tr><td style="font-weight:600">Accueil</td><td style="font-size:13px">PierreTombale.ch  –  Pierres tombales en Suisse | Prix affichés</td><td style="font-size:13px;color:var(--muted)">Marbrerie funéraire au Val-de-Travers (NE). Pierres tombales, monuments cinéraires et cavurnes en Suisse romande. Prix transparents, granit sourcé directement.</td></tr><tr><td style="font-weight:600">Prix des pierres tombales en Suisse</td><td style="font-size:13px">Prix pierre tombale en Suisse  –  Tarifs détaillés | PierreTombale.ch</td><td style="font-size:13px;color:var(--muted)">Combien coûte une pierre tombale en Suisse ? Nos prix sont affichés avec le détail des prestations incluses : gravure, pose, taxes. Devis transparent.</td></tr><tr><td style="font-weight:600">Monuments funéraires  –  Catalogue</td><td style="font-size:13px">Monuments funéraires granit et marbre  –  Catalogue | PierreTombale.ch</td><td style="font-size:13px;color:var(--muted)">Catalogue de monuments funéraires en granit et marbre : tombes simples, doubles, cinéraires, classiques et modernes. Marbrerie en Suisse romande.</td></tr><tr><td style="font-weight:600">Monuments cinéraires, cavurnes et columbarium</td><td style="font-size:13px">Monuments cinéraires et cavurnes en Suisse | PierreTombale.ch</td><td style="font-size:13px;color:var(--muted)">Cavurnes, monuments cinéraires et plaques de columbarium pour la Suisse romande. 90% de crémation en Suisse : notre offre cinéraire est centrale. Prix affichés.</td></tr><tr><td style="font-weight:600">Pierre tombale au Val-de-Travers</td><td style="font-size:13px">Pierre tombale au Val-de-Travers  –  Marbrerie à Couvet (NE)</td><td style="font-size:13px;color:var(--muted)">Marbrerie funéraire au Val-de-Travers, Couvet. Pierres tombales, monuments cinéraires et cavurnes. Intervention dans tous les cimetières de la commune.</td></tr><tr><td style="font-weight:600">Pierre tombale à Neuchâtel</td><td style="font-size:13px">Pierre tombale à Neuchâtel  –  Monuments funéraires et cinéraires</td><td style="font-size:13px;color:var(--muted)">Pierres tombales et monuments cinéraires à Neuchâtel. Prix transparents, granit direct. Intervention dans les cimetières de Neuchâtel et environs.</td></tr><tr><td style="font-weight:600">À propos  –  Notre marbrerie</td><td style="font-size:13px">À propos  –  Marbrerie funéraire au Val-de-Travers | PierreTombale.ch</td><td style="font-size:13px;color:var(--muted)">Marbrerie funéraire implantée au Val-de-Travers (NE). Granit sourcé directement, prix transparents, intervention en Suisse romande.</td></tr><tr><td style="font-weight:600">Contact</td><td style="font-size:13px">Contact  –  PierreTombale.ch | Devis pierre tombale Suisse</td><td style="font-size:13px;color:var(--muted)">Contactez PierreTombale.ch pour un devis détaillé. Marbrerie funéraire au Val-de-Travers, intervention en Suisse romande. Réponse à chaque demande.</td></tr><tr><td style="font-weight:600">FAQ</td><td style="font-size:13px">FAQ pierres tombales en Suisse  –  Prix, délais, démarches</td><td style="font-size:13px;color:var(--muted)">Réponses aux questions fréquentes sur les pierres tombales en Suisse : prix, délai de pose, types de granit, réglementation des cimetières. Guide pratique.</td></tr><tr><td style="font-weight:600">Gravure et inscriptions funéraires</td><td style="font-size:13px">Gravure et inscriptions funéraires en Suisse | PierreTombale.ch</td><td style="font-size:13px;color:var(--muted)">Service de gravure sur pierre tombale en Suisse romande : ajout de noms, dates, épitaphes. Gravure sur monuments existants ou neufs. Devis détaillé.</td></tr><tr><td style="font-weight:600">Entretien et rénovation de tombes</td><td style="font-size:13px">Entretien et rénovation de tombes en Suisse | PierreTombale.ch</td><td style="font-size:13px;color:var(--muted)">Nettoyage, entretien et rénovation de pierres tombales en Suisse romande. Redonner de la dignité à un monument existant. Devis sur demande.</td></tr><tr><td style="font-weight:600">Plaques funéraires</td><td style="font-size:13px">Plaques funéraires personnalisées en Suisse | PierreTombale.ch</td><td style="font-size:13px;color:var(--muted)">Plaques funéraires pour tombes et columbarium. Gravure personnalisée, granit et marbre. Marbrerie au Val-de-Travers, intervention en Suisse romande.</td></tr><tr><td style="font-weight:600">Pierre tombale musulmane</td><td style="font-size:13px">Pierre tombale musulmane en Suisse  –  Monument conforme</td><td style="font-size:13px;color:var(--muted)">Monuments funéraires conformes aux traditions musulmanes en Suisse romande. Orientation, gravure en arabe, respect des prescriptions. Devis détaillé.</td></tr><tr><td style="font-weight:600">Pierre tombale à La Chaux-de-Fonds</td><td style="font-size:13px">Pierre tombale à La Chaux-de-Fonds  –  Marbrerie funéraire (NE)</td><td style="font-size:13px;color:var(--muted)">Pierres tombales et monuments cinéraires à La Chaux-de-Fonds. Prix transparents, granit sourcé directement. Marbrerie au Val-de-Travers.</td></tr><tr><td style="font-weight:600">Pierre tombale au Locle</td><td style="font-size:13px">Pierre tombale au Locle  –  Monuments funéraires et cinéraires (NE)</td><td style="font-size:13px;color:var(--muted)">Pierres tombales et monuments cinéraires au Locle. Marbrerie au Val-de-Travers, granit direct, prix affichés. Intervention dans les cimetières du Locle.</td></tr><tr><td style="font-weight:600">Messages de condoléances</td><td style="font-size:13px">Messages de condoléances  –  Exemples et modèles | PierreTombale.ch</td><td style="font-size:13px;color:var(--muted)">Exemples de messages de condoléances pour accompagner une famille en deuil. Textes sobres et sincères, adaptés à différentes situations.</td></tr><tr><td style="font-weight:600">Épitaphes  –  Textes pour pierres tombales</td><td style="font-size:13px">Épitaphes pour pierre tombale  –  Exemples et inspiration</td><td style="font-size:13px;color:var(--muted)">Exemples d'épitaphes pour pierres tombales : textes courts, citations, formules d'hommage. Guide pour choisir une inscription gravée sur un monument.</td></tr><tr><td style="font-weight:600">Remerciements après décès</td><td style="font-size:13px">Remerciements après décès  –  Modèles de textes | PierreTombale.ch</td><td style="font-size:13px;color:var(--muted)">Modèles de textes de remerciements après un décès. Comment remercier les proches après des obsèques. Exemples sobres et adaptés à la Suisse romande.</td></tr></tbody></table></div><div class="section section-technical">
+  <div class="section-title">🔧 Schemas structurés</div>
+  <table><thead><tr><th>Schema</th><th>Raison</th></tr></thead><tbody><tr><td style="font-weight:600">LocalBusiness</td><td style="font-size:13px;color:var(--muted)">Indispensable pour le référencement local. Le GBP n'existe pas encore  –  le schema LocalBusiness sur le site est le premier signal structuré pour Google. Inclure NAP (nom, adresse, téléphone), zone desservie, type d'activité.</td></tr><tr><td style="font-weight:600">Product</td><td style="font-size:13px;color:var(--muted)">Sur la page prix et le catalogue, utiliser le schema Product avec fourchettes de prix en CHF pour enrichir les résultats de recherche avec des rich snippets prix. Pertinent car les requêtes principales sont commerciales (prix).</td></tr><tr><td style="font-weight:600">FAQPage</td><td style="font-size:13px;color:var(--muted)">Sur la page FAQ, pour capter les PAA et potentiellement apparaître en featured snippet. Les PAA sont présentes sur toutes les requêtes cibles.</td></tr><tr><td style="font-weight:600">BreadcrumbList</td><td style="font-size:13px;color:var(--muted)">Site avec architecture multi-niveaux (catalogue &gt; sous-pages). Le fil d'Ariane structuré aide Google à comprendre la hiérarchie et améliore l'affichage dans les SERP.</td></tr></tbody></table></div><div class="section section-technical">
+  <div class="section-title">🔗 Maillage interne</div>
+  <table><thead><tr><th>Source</th><th>→ Cible</th><th>Ancre</th></tr></thead><tbody><tr><td></td><td>prix-pierre-tombale-suisse</td><td style="font-style:italic;color:var(--muted)">voir nos prix détaillés pour les pierres tombales en Suisse</td></tr><tr><td></td><td>monuments-cineraires-cavurnes</td><td style="font-style:italic;color:var(--muted)">monuments cinéraires et cavurnes</td></tr><tr><td></td><td>monuments-funeraires</td><td style="font-style:italic;color:var(--muted)">catalogue des monuments funéraires</td></tr><tr><td>prix-pierre-tombale-suisse</td><td>monuments-funeraires</td><td style="font-style:italic;color:var(--muted)">voir le catalogue complet des monuments</td></tr><tr><td>prix-pierre-tombale-suisse</td><td>monuments-cineraires-cavurnes</td><td style="font-style:italic;color:var(--muted)">prix des monuments cinéraires et cavurnes</td></tr><tr><td>prix-pierre-tombale-suisse</td><td>contact</td><td style="font-style:italic;color:var(--muted)">demander un devis détaillé</td></tr><tr><td>monuments-funeraires</td><td>prix-pierre-tombale-suisse</td><td style="font-style:italic;color:var(--muted)">voir les prix de chaque modèle</td></tr><tr><td>monuments-funeraires</td><td>monuments-cineraires-cavurnes</td><td style="font-style:italic;color:var(--muted)">monuments cinéraires et cavurnes</td></tr><tr><td>monuments-funeraires</td><td>gravure-inscription-funeraire</td><td style="font-style:italic;color:var(--muted)">gravure et inscriptions funéraires</td></tr><tr><td>monuments-cineraires-cavurnes</td><td>prix-pierre-tombale-suisse</td><td style="font-style:italic;color:var(--muted)">consulter les prix des monuments cinéraires</td></tr><tr><td>pierre-tombale-val-de-travers</td><td>prix-pierre-tombale-suisse</td><td style="font-style:italic;color:var(--muted)">voir nos prix</td></tr><tr><td>pierre-tombale-val-de-travers</td><td>monuments-cineraires-cavurnes</td><td style="font-style:italic;color:var(--muted)">offre cinéraire et cavurnes</td></tr><tr><td>pierre-tombale-neuchatel</td><td>prix-pierre-tombale-suisse</td><td style="font-style:italic;color:var(--muted)">consulter nos prix transparents</td></tr><tr><td>pierre-tombale-neuchatel</td><td>monuments-cineraires-cavurnes</td><td style="font-style:italic;color:var(--muted)">monuments cinéraires à Neuchâtel</td></tr><tr><td>faq</td><td>prix-pierre-tombale-suisse</td><td style="font-style:italic;color:var(--muted)">page prix avec tarifs détaillés</td></tr><tr><td>faq</td><td>monuments-cineraires-cavurnes</td><td style="font-style:italic;color:var(--muted)">cavurnes et monuments cinéraires</td></tr><tr><td>a-propos</td><td>prix-pierre-tombale-suisse</td><td style="font-style:italic;color:var(--muted)">nos prix affichés</td></tr><tr><td>a-propos</td><td>monuments-funeraires</td><td style="font-style:italic;color:var(--muted)">catalogue de nos monuments</td></tr><tr><td>epitaphes-textes-pierre-tombale</td><td>gravure-inscription-funeraire</td><td style="font-style:italic;color:var(--muted)">service de gravure d'épitaphe</td></tr></tbody></table></div><div class="section section-technical">
+  <div class="section-title">❓ FAQ (People Also Ask)</div><div style="margin-bottom:16px">
+    <div style="font-weight:600;font-size:14px;margin-bottom:4px">Quel est le prix d'une pierre tombale en Suisse ?</div>
+    <div style="font-size:13px;color:var(--muted)">Le prix d'une pierre tombale en Suisse varie selon le type de monument (simple, double, cinéraire), le matériau choisi (granit, marbre), les dimensions et les finitions. Chez PierreTombale.ch, nous affichons nos prix en détail sur notre page tarifs, avec le détail de ce qui est inclus : fourniture, gravure, pose et taxes. Consultez notre page prix pour connaître nos tarifs exacts.</div>
+    </div><div style="margin-bottom:16px">
+    <div style="font-weight:600;font-size:14px;margin-bottom:4px">Quel est le prix d'une pierre tombale simple en Suisse ?</div>
+    <div style="font-size:13px;color:var(--muted)">Le prix d'une pierre tombale simple dépend du type de granit, de la taille de la stèle et des prestations incluses. Nous publions nos tarifs ligne par ligne pour que chaque famille sache exactement ce qu'elle paie. Contactez-nous ou consultez notre page tarifs pour un devis précis correspondant à votre projet.</div>
+    </div><div style="margin-bottom:16px">
+    <div style="font-weight:600;font-size:14px;margin-bottom:4px">Combien de temps faut-il attendre avant de poser une pierre tombale ?</div>
+    <div style="font-size:13px;color:var(--muted)">Dans le canton de Neuchâtel et dans la plupart des communes de Suisse romande, il faut attendre environ un an après l'inhumation avant de poser un monument. Ce délai permet au terrain de se stabiliser. Pour une crémation avec cavurne, le délai peut être plus court selon le règlement du cimetière. Renseignez-vous auprès de votre commune ou contactez-nous pour connaître les règles spécifiques.</div>
+    </div><div style="margin-bottom:16px">
+    <div style="font-weight:600;font-size:14px;margin-bottom:4px">Quelle est la différence entre une cavurne et une pierre tombale classique ?</div>
+    <div style="font-size:13px;color:var(--muted)">Une pierre tombale classique est posée sur une tombe d'inhumation (cercueil). Une cavurne est un petit caveau conçu pour accueillir une ou plusieurs urnes après crémation, surmonté d'un monument en granit. En Suisse, où plus de 90% des décès aboutissent à une crémation, la cavurne est devenue la solution la plus courante pour les familles souhaitant un lieu de recueillement identifié.</div>
+    </div><div style="margin-bottom:16px">
+    <div style="font-weight:600;font-size:14px;margin-bottom:4px">Peut-on ajouter un nom ou une inscription sur une pierre tombale existante ?</div>
+    <div style="font-size:13px;color:var(--muted)">Oui. L'ajout d'un nom, de dates ou d'une épitaphe sur un monument existant est un service courant. PierreTombale.ch propose la gravure complémentaire sur des monuments déjà en place dans les cimetières de Suisse romande. Contactez-nous avec une photo du monument pour recevoir un devis.</div>
+    </div></div><div class="section section-analytical">
+  <div class="section-title">📅 Saisonnalité</div>
+  <table><thead><tr><th>Keyword</th><th>Pic</th><th>Creux</th><th>Variation</th></tr></thead><tbody>
+  <tr><td style="font-weight:600">pierre tombale prix suisse</td>
+  <td><span class="badge badge-ok">juin (90)</span></td>
+  <td><span class="badge badge-warn">décembre (30)</span></td>
+  <td>96%</td></tr>
+  </tbody></table></div><div class="section section-actionable">
+  <div class="section-title">🚀 Roadmap 90 jours</div><div class="roadmap-phase">
+      <div class="roadmap-title" style="color:var(--ok)">0–30 jours : Lancement</div><div class="roadmap-item"><span>Créer le profil Google Business Profile avec catégorie 'Marbrerie funéraire', adresse à Couvet, zone desservie canton de Neuchâtel</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Publier les 9 pages Phase 1 : accueil, prix, catalogue monuments, cinéraire/cavurnes, Val-de-Travers, Neuchâtel, FAQ, à propos, contact</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Fournir les photos réelles de monuments posés (minimum 10 photos de qualité) et le logo</span><span class="badge" style="font-size:11px">client</span></div><div class="roadmap-item"><span>Remplir la grille tarifaire sur la page prix avec les vrais tarifs, ligne par ligne</span><span class="badge" style="font-size:11px">client</span></div><div class="roadmap-item"><span>Implémenter les schemas LocalBusiness, Product (page prix), FAQPage, BreadcrumbList</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Soumettre le sitemap à Google Search Console et vérifier l'indexation</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Installer Google Analytics 4 et configurer les objectifs de conversion (formulaire contact, clic téléphone)</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Contacter les pompes funèbres du Val-de-Travers et de Neuchâtel pour présenter la marbrerie</span><span class="badge" style="font-size:11px">client</span></div></div><div class="roadmap-phase">
+      <div class="roadmap-title" style="color:var(--gold)">30–60 jours : Croissance</div><div class="roadmap-item"><span>Publier les pages Phase 2 prioritaires : gravure/inscriptions, entretien/rénovation, plaques funéraires</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Publier les pages locales Phase 2 : La Chaux-de-Fonds, Le Locle</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Publier la page pierre tombale musulmane</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Collecter les 3-5 premiers avis clients sur Google Business Profile</span><span class="badge" style="font-size:11px">client</span></div><div class="roadmap-item"><span>Renforcer le maillage interne entre les pages publiées</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Optimiser les images (alt text, compression, formats webp) et vérifier les Core Web Vitals</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Préparer le premier article du hub contenu deuil (épitaphes) pour publication en mai-juin afin de capter le pic saisonnier de juin</span><span class="badge" style="font-size:11px">KUMO</span></div></div><div class="roadmap-phase">
+      <div class="roadmap-title" style="color:var(--info)">60–90 jours : Autorité</div><div class="roadmap-item"><span>Publier les articles Phase 3 : épitaphes, messages de condoléances, remerciements après décès</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Analyser les premières données Search Console : quels mots-clés génèrent des impressions, quelles pages rankent</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Optimiser les pages sous-performantes (meta descriptions, contenu, H2) selon les données réelles</span><span class="badge" style="font-size:11px">KUMO</span></div><div class="roadmap-item"><span>Planifier l'extension géographique Phase 2 : pages Vaud, Fribourg, Valais</span><span class="badge" style="font-size:11px">les deux</span></div><div class="roadmap-item"><span>Évaluer le ROI : nombre de devis demandés vs trafic organique, ajuster la stratégie</span><span class="badge" style="font-size:11px">les deux</span></div><div class="roadmap-item"><span>Identifier les opportunités de backlinks locaux : annuaires funéraires suisses, associations professionnelles, partenaires pompes funèbres</span><span class="badge" style="font-size:11px">KUMO</span></div></div></div><div class="section">
+  <div class="section-title">💬 Points brief client</div></div><div class="footer">Spec générée par KUMO W6 Pro · SEO-First Website Spec Generator · Données : DataForSEO + Claude Sonnet · 17.08.2026</div>
+</body></html>

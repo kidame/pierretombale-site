@@ -1,0 +1,2438 @@
+{
+  "meta": {
+    "generator": "KUMO W6 Pro v6.3",
+    "version": "1.1",
+    "date": "2026-08-17",
+    "client": "PierreTombale.ch",
+    "secteur": "pierre tombale",
+    "ville": "Suisse",
+    "langue": "FR",
+    "validated": false,
+    "note_validation": "Ce fichier doit être validé par l'opérateur avant utilisation dans Claude Code. Mettre validated=true après relecture du brief MD.",
+    "tier_inferred": "premium",
+    "tier_pages_count_target": null,
+    "tier_pages_count_actual": 18,
+    "tier_rationale": "18 pages prévues (9 en Phase 1, 5 en Phase 2, 4 en Phase 3), architecture multi-silo (catalogue/prix, local, services, contenu éditorial), besoin de schemas multiples et de maillage complexe. Le tier premium (6500 CHF) est justifié par le volume de pages et la complexité de l'offre.",
+    "_validation_warnings": [],
+    "_meta_length_warnings": [
+      {
+        "page": "accueil",
+        "field": "title",
+        "length": 63,
+        "target": "50-60"
+      },
+      {
+        "page": "prix-pierre-tombale-suisse",
+        "field": "title",
+        "length": 69,
+        "target": "50-60"
+      },
+      {
+        "page": "monuments-funeraires",
+        "field": "title",
+        "length": 70,
+        "target": "50-60"
+      },
+      {
+        "page": "monuments-cineraires-cavurnes",
+        "field": "title",
+        "length": 61,
+        "target": "50-60"
+      },
+      {
+        "page": "gravure-inscription-funeraire",
+        "field": "title",
+        "length": 63,
+        "target": "50-60"
+      },
+      {
+        "page": "entretien-renovation-tombe",
+        "field": "title",
+        "length": 62,
+        "target": "50-60"
+      },
+      {
+        "page": "entretien-renovation-tombe",
+        "field": "description",
+        "length": 139,
+        "target": "140-160"
+      },
+      {
+        "page": "plaques-funeraires",
+        "field": "title",
+        "length": 62,
+        "target": "50-60"
+      },
+      {
+        "page": "pierre-tombale-neuchatel",
+        "field": "title",
+        "length": 65,
+        "target": "50-60"
+      },
+      {
+        "page": "pierre-tombale-la-chaux-de-fonds",
+        "field": "title",
+        "length": 63,
+        "target": "50-60"
+      },
+      {
+        "page": "pierre-tombale-la-chaux-de-fonds",
+        "field": "description",
+        "length": 136,
+        "target": "140-160"
+      },
+      {
+        "page": "pierre-tombale-le-locle",
+        "field": "title",
+        "length": 67,
+        "target": "50-60"
+      },
+      {
+        "page": "a-propos",
+        "field": "title",
+        "length": 69,
+        "target": "50-60"
+      },
+      {
+        "page": "a-propos",
+        "field": "description",
+        "length": 131,
+        "target": "140-160"
+      },
+      {
+        "page": "messages-condoleances",
+        "field": "title",
+        "length": 67,
+        "target": "50-60"
+      },
+      {
+        "page": "messages-condoleances",
+        "field": "description",
+        "length": 136,
+        "target": "140-160"
+      },
+      {
+        "page": "remerciements-apres-deces",
+        "field": "title",
+        "length": 66,
+        "target": "50-60"
+      }
+    ]
+  },
+  "client": {
+    "nom_entreprise": "PierreTombale.ch",
+    "secteur": "pierre tombale",
+    "ville": "Suisse",
+    "npa": "2108",
+    "telephone": "078 930 81 00",
+    "commune_siege": "Couvet",
+    "gbp_url": null,
+    "gbp_found": false,
+    "site_existant": null,
+    "brief_client": "Projet : nouvelle marbrerie funéraire basée au Val-de-Travers (NE, siège à Couvet), portée nationale Suisse romande. Reprise du marché laissé par le marbrier sortant de Couvet (départ à la retraite). Positionnement : PRIX TRANSPARENTS ET CONTENUS grâce à un approvisionnement direct en granit — casser l'opacité du marché (fourchettes suisses publiées : 2'000–15'000 CHF). Géographie SEO : pages villes val-de-travers, neuchatel, la-chaux-de-fonds, le-locle (puis vaud/fribourg/valais en phase 2) + cluster national « prix pierre tombale suisse ». Pages voulues : 1) page PRIX/catalogue avec vrais prix affichés et ce qui est inclus (gravure, pose, taxes) — l'arme n°1 ; 2) catalogue monuments (granit/marbre, simple/double/cinéraire, moderne/classique) ; 3) gravure et inscription complémentaire ; 4) entretien/nettoyage/rénovation de tombes ; 5) plaques funéraires et columbarium ; 6) urnes et cavurnes ; 7) pierre tombale musulmane ; 8) hub contenu « Accompagner le deuil » (messages de condoléances, épitaphes, textes d'hommage, remerciements après décès) pour l'autorité topique — gros volumes CH à concurrence quasi nulle. IMPORTANT : ~90 % de crémation en Suisse (97 % à Neuchâtel) → l'offre cinéraire (cavurnes, plaques, columbarium) est CENTRALE, pas optionnelle. Marché local : ~130 décès/an au Val-de-Travers — le SEO national + pack local + prescripteurs (pompes funèbres) compensent. Ton sobre et digne, jamais mercantile (achat de deuil). FAQ selon règles des cimetières neuchâtelois (pose ~1 an après inhumation). Site statique rapide, schema LocalBusiness + Product avec fourchettes de prix."
+  },
+  "diagnostic": {
+    "business_model_type": "artisan_premium",
+    "business_model_type_label": "Artisan spécialisé avec positionnement transparent",
+    "offer_complexity": "complex",
+    "offer_complexity_label": "Complexe (multiples offres : monuments, cinéraire, gravure, entretien, plaques, urnes)",
+    "trust_requirement": "critical",
+    "trust_requirement_label": "Très élevée (critique)  –  achat lié au deuil, besoin de dignité et de confiance absolue",
+    "conversion_speed": "long",
+    "conversion_speed_label": "Lente (décision mûrie sur plusieurs semaines ou mois, souvent après le délai réglementaire de pose)",
+    "geographic_scope": "region",
+    "geographic_scope_label": "Régionale (Val-de-Travers d'abord, Suisse romande ensuite)",
+    "search_intent_mix": [
+      "commercial_prix",
+      "informationnel_guide",
+      "transactionnel_local"
+    ],
+    "content_need_level": "high",
+    "content_need_level_label": "Élevé (catalogue produits, pages prix, pages locales, hub contenu éditorial)",
+    "recommended_site_model": "site_autorite",
+    "recommended_site_model_label": "Site d'autorité locale avec catalogue, contenu éducatif et pages locales",
+    "promesse": "Des prix affichés, un granit sourcé directement, et un accompagnement digne pour chaque famille en Suisse romande.",
+    "angle_differenciation": "Transparence tarifaire totale (prix publiés avec détail des prestations incluses) + approvisionnement direct en granit = meilleur rapport qualité-prix + offre cinéraire centrale adaptée à la réalité suisse (90% de crémation)"
+  },
+  "pages": [
+    {
+      "id": "accueil",
+      "slug": "",
+      "name": "Accueil",
+      "phase": 1,
+      "score_business": 9,
+      "objectif": "Présenter PierreTombale.ch, son positionnement transparent, et orienter vers les pages clés (prix, catalogue, contact)",
+      "keywords_cibles": [
+        "pierre tombale suisse",
+        "pierre tombale suisse romande"
+      ],
+      "silo": "principal",
+      "parent_page": null,
+      "contenu": {
+        "h1": "Pierres tombales et monuments funéraires en Suisse romande  –  Prix affichés",
+        "intro": "PierreTombale.ch est une marbrerie funéraire implantée au Val-de-Travers, dans le canton de Neuchâtel, qui intervient dans toute la Suisse romande. Notre principe est simple : chaque famille mérite de connaître le prix d'une pierre tombale avant de s'engager. Nous publions nos tarifs avec le détail de ce qui est inclus  –  gravure, pose, taxes  –  parce que la transparence est un devoir, pas un argument de vente.",
+        "h2_obligatoires": [
+          "Des prix affichés pour chaque type de monument",
+          "Monuments cinéraires : l'offre adaptée à la Suisse",
+          "Comment se déroule un projet de pierre tombale",
+          "Zone d'intervention en Suisse romande",
+          "Ce que disent nos clients"
+        ],
+        "sections": [
+          {
+            "type": "hero",
+            "h1": "Pierres tombales et monuments funéraires en Suisse romande  –  Prix affichés",
+            "intro": "PierreTombale.ch est une marbrerie funéraire implantée au Val-de-Travers, dans le canton de Neuchâtel, qui intervient dans toute la Suisse romande. Notre principe est simple : chaque famille mérite de connaître le prix d'une pierre tombale avant de s'engager. Nous publions nos tarifs avec le détail de ce qui est inclus  –  gravure, pose, taxes  –  parce que la transparence est un devoir, pas un argument de vente.",
+            "cta_principal": "Voir nos prix détaillés",
+            "cta_secondaire": "Nous contacter"
+          },
+          {
+            "type": "bloc_services",
+            "intro": "Monuments funéraires en granit et en marbre  –  tombes simples, doubles, cinéraires, classiques ou modernes. Monuments cinéraires, cavurnes et plaques de columbarium  –  une offre pensée pour la réalité suisse où la crémation concerne plus de 9 décès sur 10. Gravure et inscriptions, entretien et rénovation de tombes existantes. Chaque réalisation est fabriquée à partir de granit sourcé directement, sans intermédiaire.",
+            "items": [],
+            "texte_libre": "Monuments funéraires en granit et en marbre  –  tombes simples, doubles, cinéraires, classiques ou modernes. Monuments cinéraires, cavurnes et plaques de columbarium  –  une offre pensée pour la réalité suisse où la crémation concerne plus de 9 décès sur 10. Gravure et inscriptions, entretien et rénovation de tombes existantes. Chaque réalisation est fabriquée à partir de granit sourcé directement, sans intermédiaire."
+          },
+          {
+            "type": "cta_section",
+            "texte": "Voir nos prix détaillés",
+            "cible": "/contact"
+          },
+          {
+            "type": "methode_etapes",
+            "instruction": "Processus en 3-5 étapes. Utiliser le contenu de la conversion spec pour les étapes."
+          },
+          {
+            "type": "zone_desservie",
+            "ville": "Suisse",
+            "commune_siege": "Couvet",
+            "instruction": "Texte ou carte mentionnant la zone d'intervention"
+          },
+          {
+            "type": "preuves_sociales",
+            "instruction": "Avis clients à collecter – prévoir un emplacement placeholder avec texte type 'Avis clients bientôt disponibles'"
+          },
+          {
+            "type": "faq",
+            "items": [
+              {
+                "question": "Quel est le prix d'une pierre tombale en Suisse ?",
+                "reponse": "Le prix d'une pierre tombale en Suisse varie selon le type de monument (simple, double, cinéraire), le matériau choisi (granit, marbre), les dimensions et les finitions. Chez PierreTombale.ch, nous affichons nos prix en détail sur notre page tarifs, avec le détail de ce qui est inclus : fourniture, gravure, pose et taxes. Consultez notre page prix pour connaître nos tarifs exacts."
+              },
+              {
+                "question": "Quel est le prix d'une pierre tombale simple en Suisse ?",
+                "reponse": "Le prix d'une pierre tombale simple dépend du type de granit, de la taille de la stèle et des prestations incluses. Nous publions nos tarifs ligne par ligne pour que chaque famille sache exactement ce qu'elle paie. Contactez-nous ou consultez notre page tarifs pour un devis précis correspondant à votre projet."
+              },
+              {
+                "question": "Combien de temps faut-il attendre avant de poser une pierre tombale ?",
+                "reponse": "Dans le canton de Neuchâtel et dans la plupart des communes de Suisse romande, il faut attendre environ un an après l'inhumation avant de poser un monument. Ce délai permet au terrain de se stabiliser. Pour une crémation avec cavurne, le délai peut être plus court selon le règlement du cimetière. Renseignez-vous auprès de votre commune ou contactez-nous pour connaître les règles spécifiques."
+              },
+              {
+                "question": "Quelle est la différence entre une cavurne et une pierre tombale classique ?",
+                "reponse": "Une pierre tombale classique est posée sur une tombe d'inhumation (cercueil). Une cavurne est un petit caveau conçu pour accueillir une ou plusieurs urnes après crémation, surmonté d'un monument en granit. En Suisse, où plus de 90% des décès aboutissent à une crémation, la cavurne est devenue la solution la plus courante pour les familles souhaitant un lieu de recueillement identifié."
+              },
+              {
+                "question": "Peut-on ajouter un nom ou une inscription sur une pierre tombale existante ?",
+                "reponse": "Oui. L'ajout d'un nom, de dates ou d'une épitaphe sur un monument existant est un service courant. PierreTombale.ch propose la gravure complémentaire sur des monuments déjà en place dans les cimetières de Suisse romande. Contactez-nous avec une photo du monument pour recevoir un devis."
+              }
+            ]
+          },
+          {
+            "type": "cta_section",
+            "texte": "Voir nos prix détaillés",
+            "cible": "/contact"
+          },
+          {
+            "type": "contact_sticky_mobile",
+            "telephone": "078 930 81 00",
+            "texte_cta": "Appeler",
+            "instruction": "Barre fixe en bas de page sur mobile avec numéro cliquable tel:"
+          }
+        ]
+      },
+      "meta_seo": {
+        "title": "PierreTombale.ch  –  Pierres tombales en Suisse | Prix affichés",
+        "description": "Marbrerie funéraire au Val-de-Travers (NE). Pierres tombales, monuments cinéraires et cavurnes en Suisse romande. Prix transparents, granit sourcé directement.",
+        "keywords_principaux": [
+          "pierre tombale suisse",
+          "pierre tombale suisse romande",
+          "monument funéraire suisse"
+        ]
+      },
+      "conversion_spec": {
+        "objection_principale": "Est-ce une vraie marbrerie ou juste un site internet sans atelier ?",
+        "preuves_a_afficher": [
+          "Localisation au Val-de-Travers mentionnée clairement",
+          "Photos réelles de monuments posés dans les cimetières locaux [à collecter]",
+          "Lien direct vers la page prix avec tarifs affichés"
+        ],
+        "cta_principal": "Voir nos prix détaillés",
+        "cta_secondaire": "Nous contacter",
+        "friction_a_reduire": null
+      },
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "prix-pierre-tombale-suisse",
+      "slug": "prix-pierre-tombale-suisse",
+      "name": "Prix des pierres tombales en Suisse",
+      "phase": 1,
+      "score_business": 10,
+      "objectif": "Afficher les prix réels avec détail des prestations incluses. Capturer le trafic commercial principal.",
+      "keywords_cibles": [
+        "pierre tombale prix suisse",
+        "prix pierre tombale suisse",
+        "prix d'une pierre tombale en granit suisse"
+      ],
+      "silo": "catalogue_prix",
+      "parent_page": null,
+      "contenu": {
+        "h1": "Prix des pierres tombales en Suisse  –  Tarifs détaillés et transparents",
+        "intro": "Combien coûte une pierre tombale en Suisse ? La question est légitime, et pourtant rares sont les marbreries qui y répondent clairement. Chez PierreTombale.ch, nous affichons nos prix parce que les familles en deuil ne devraient pas avoir à négocier dans l'incertitude. Cette page présente nos tarifs pour chaque type de monument, avec le détail des prestations incluses.",
+        "h2_obligatoires": [
+          "Prix des pierres tombales simples",
+          "Prix des pierres tombales doubles",
+          "Prix des monuments cinéraires et cavurnes",
+          "Ce qui est inclus dans nos tarifs",
+          "Pourquoi nos prix sont publiés",
+          "Questions fréquentes sur les prix"
+        ],
+        "sections": [
+          {
+            "type": "hero",
+            "h1": "Prix des pierres tombales en Suisse  –  Tarifs détaillés et transparents",
+            "intro": "Combien coûte une pierre tombale en Suisse ? La question est légitime, et pourtant rares sont les marbreries qui y répondent clairement. Chez PierreTombale.ch, nous affichons nos prix parce que les familles en deuil ne devraient pas avoir à négocier dans l'incertitude. Cette page présente nos tarifs pour chaque type de monument, avec le détail des prestations incluses.",
+            "cta_principal": "Demander un devis détaillé gratuit",
+            "cta_secondaire": "Appeler directement"
+          },
+          {
+            "type": "tarification",
+            "instruction": "Tarifs à fournir par le client. Ne pas inventer de prix. Prévoir un emplacement ou un CTA 'Demander un devis'."
+          },
+          {
+            "type": "methode_etapes",
+            "instruction": "Processus en 3-5 étapes. Utiliser le contenu de la conversion spec pour les étapes."
+          },
+          {
+            "type": "faq",
+            "items": [
+              {
+                "question": "Quel est le prix d'une pierre tombale en Suisse ?",
+                "reponse": "Le prix d'une pierre tombale en Suisse varie selon le type de monument (simple, double, cinéraire), le matériau choisi (granit, marbre), les dimensions et les finitions. Chez PierreTombale.ch, nous affichons nos prix en détail sur notre page tarifs, avec le détail de ce qui est inclus : fourniture, gravure, pose et taxes. Consultez notre page prix pour connaître nos tarifs exacts."
+              },
+              {
+                "question": "Quel est le prix d'une pierre tombale simple en Suisse ?",
+                "reponse": "Le prix d'une pierre tombale simple dépend du type de granit, de la taille de la stèle et des prestations incluses. Nous publions nos tarifs ligne par ligne pour que chaque famille sache exactement ce qu'elle paie. Contactez-nous ou consultez notre page tarifs pour un devis précis correspondant à votre projet."
+              },
+              {
+                "question": "Combien de temps faut-il attendre avant de poser une pierre tombale ?",
+                "reponse": "Dans le canton de Neuchâtel et dans la plupart des communes de Suisse romande, il faut attendre environ un an après l'inhumation avant de poser un monument. Ce délai permet au terrain de se stabiliser. Pour une crémation avec cavurne, le délai peut être plus court selon le règlement du cimetière. Renseignez-vous auprès de votre commune ou contactez-nous pour connaître les règles spécifiques."
+              },
+              {
+                "question": "Quelle est la différence entre une cavurne et une pierre tombale classique ?",
+                "reponse": "Une pierre tombale classique est posée sur une tombe d'inhumation (cercueil). Une cavurne est un petit caveau conçu pour accueillir une ou plusieurs urnes après crémation, surmonté d'un monument en granit. En Suisse, où plus de 90% des décès aboutissent à une crémation, la cavurne est devenue la solution la plus courante pour les familles souhaitant un lieu de recueillement identifié."
+              },
+              {
+                "question": "Peut-on ajouter un nom ou une inscription sur une pierre tombale existante ?",
+                "reponse": "Oui. L'ajout d'un nom, de dates ou d'une épitaphe sur un monument existant est un service courant. PierreTombale.ch propose la gravure complémentaire sur des monuments déjà en place dans les cimetières de Suisse romande. Contactez-nous avec une photo du monument pour recevoir un devis."
+              }
+            ]
+          },
+          {
+            "type": "cta_section",
+            "texte": "Demander un devis détaillé gratuit",
+            "cible": "/contact"
+          },
+          {
+            "type": "formulaire_contact",
+            "champs": [
+              "nom",
+              "email_ou_telephone",
+              "description_besoin"
+            ],
+            "cta_submit": "Demander un devis détaillé gratuit"
+          },
+          {
+            "type": "contact_sticky_mobile",
+            "telephone": "078 930 81 00",
+            "texte_cta": "Appeler",
+            "instruction": "Barre fixe en bas de page sur mobile avec numéro cliquable tel:"
+          }
+        ]
+      },
+      "meta_seo": {
+        "title": "Prix pierre tombale en Suisse  –  Tarifs détaillés | PierreTombale.ch",
+        "description": "Combien coûte une pierre tombale en Suisse ? Nos prix sont affichés avec le détail des prestations incluses : gravure, pose, taxes. Devis transparent.",
+        "keywords_principaux": [
+          "pierre tombale prix suisse",
+          "prix pierre tombale suisse",
+          "prix pierre tombale granit suisse"
+        ]
+      },
+      "conversion_spec": {
+        "objection_principale": "Ces prix sont-ils réels ? Y a-t-il des coûts cachés ?",
+        "preuves_a_afficher": [
+          "Détail ligne par ligne de ce qui est inclus (gravure, pose, taxes)",
+          "Mention explicite 'aucun coût caché'",
+          "Photos du monument correspondant à chaque gamme de prix [à collecter]"
+        ],
+        "cta_principal": "Demander un devis détaillé gratuit",
+        "cta_secondaire": "Appeler directement",
+        "friction_a_reduire": null
+      },
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "voir le catalogue complet des monuments"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "prix des monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "contact",
+          "ancre": "demander un devis détaillé"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "monuments-funeraires",
+      "slug": "monuments-funeraires",
+      "name": "Monuments funéraires  –  Catalogue",
+      "phase": 1,
+      "score_business": 8,
+      "objectif": "Présenter la gamme complète : granit, marbre, simple, double, cinéraire, moderne, classique",
+      "keywords_cibles": [
+        "monument funéraire suisse",
+        "pierre tombale granit suisse"
+      ],
+      "silo": "catalogue_prix",
+      "parent_page": null,
+      "contenu": {
+        "h1": "Monuments funéraires en Suisse  –  Catalogue granit et marbre",
+        "intro": "Notre catalogue de monuments funéraires couvre l'ensemble des besoins : tombes simples, tombes doubles, monuments cinéraires, styles classiques et contemporains. Chaque monument est réalisé en granit ou en marbre, sourcé directement pour garantir un rapport qualité-prix juste. Nous intervenons dans les cimetières de Suisse romande, du Val-de-Travers à Neuchâtel et au-delà.",
+        "h2_obligatoires": [
+          "Monuments en granit : couleurs et finitions",
+          "Tombes simples et tombes doubles",
+          "Monuments cinéraires et cavurnes",
+          "Monuments modernes et monuments classiques",
+          "Nos réalisations en Suisse romande"
+        ],
+        "sections": [
+          {
+            "type": "hero",
+            "h1": "Monuments funéraires en Suisse  –  Catalogue granit et marbre",
+            "intro": "Notre catalogue de monuments funéraires couvre l'ensemble des besoins : tombes simples, tombes doubles, monuments cinéraires, styles classiques et contemporains. Chaque monument est réalisé en granit ou en marbre, sourcé directement pour garantir un rapport qualité-prix juste. Nous intervenons dans les cimetières de Suisse romande, du Val-de-Travers à Neuchâtel et au-delà.",
+            "cta_principal": "Voir les prix de chaque modèle",
+            "cta_secondaire": "Demander un rendez-vous pour voir les granits"
+          },
+          {
+            "type": "bloc_services",
+            "intro": "Notre catalogue de monuments funéraires couvre l'ensemble des besoins : tombes simples, tombes doubles, monuments cinéraires, styles classiques et contemporains. Chaque monument est réalisé en granit ou en marbre, sourcé directement pour garantir un rapport qualité-prix juste. Nous intervenons dans les cimetières de Suisse romande, du Val-de-Travers à Neuchâtel et au-delà.",
+            "items": []
+          },
+          {
+            "type": "realisations",
+            "instruction": "Portfolio / cas clients à fournir par le client. Prévoir un emplacement placeholder."
+          },
+          {
+            "type": "cta_section",
+            "texte": "Voir les prix de chaque modèle",
+            "cible": "/contact"
+          },
+          {
+            "type": "zone_desservie",
+            "ville": "Suisse",
+            "commune_siege": "Couvet",
+            "instruction": "Texte ou carte mentionnant la zone d'intervention"
+          },
+          {
+            "type": "contact_sticky_mobile",
+            "telephone": "078 930 81 00",
+            "texte_cta": "Appeler",
+            "instruction": "Barre fixe en bas de page sur mobile avec numéro cliquable tel:"
+          }
+        ]
+      },
+      "meta_seo": {
+        "title": "Monuments funéraires granit et marbre  –  Catalogue | PierreTombale.ch",
+        "description": "Catalogue de monuments funéraires en granit et marbre : tombes simples, doubles, cinéraires, classiques et modernes. Marbrerie en Suisse romande.",
+        "keywords_principaux": [
+          "monument funéraire suisse",
+          "pierre tombale granit suisse",
+          "catalogue monument funéraire"
+        ]
+      },
+      "conversion_spec": {
+        "objection_principale": "Comment savoir quel monument correspond à mes besoins et à mon budget ?",
+        "preuves_a_afficher": [
+          "Photos de chaque type de monument avec dimensions [à collecter]",
+          "Lien vers la page prix pour chaque catégorie",
+          "Échantillons de granit visibles (photos ou visite sur rendez-vous)"
+        ],
+        "cta_principal": "Voir les prix de chaque modèle",
+        "cta_secondaire": "Demander un rendez-vous pour voir les granits",
+        "friction_a_reduire": null
+      },
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        },
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir les prix de chaque modèle"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "gravure-inscription-funeraire",
+          "ancre": "gravure et inscriptions funéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "monuments-cineraires-cavurnes",
+      "slug": "monuments-cineraires-cavurnes",
+      "name": "Monuments cinéraires, cavurnes et columbarium",
+      "phase": 1,
+      "score_business": 9,
+      "objectif": "Page dédiée à l'offre cinéraire centrale : cavurnes, plaques columbarium, urnes. Répond à la réalité de 90% de crémation.",
+      "keywords_cibles": [
+        "cavurne suisse",
+        "plaque funéraire columbarium",
+        "urne funéraire suisse"
+      ],
+      "silo": "catalogue_prix",
+      "parent_page": "monuments-funeraires",
+      "contenu": {
+        "h1": "Monuments cinéraires, cavurnes et columbarium en Suisse",
+        "intro": "En Suisse, plus de 90% des décès aboutissent à une crémation  –  et ce chiffre dépasse 97% dans le canton de Neuchâtel. L'offre cinéraire n'est donc pas un complément : c'est le cœur de notre activité. PierreTombale.ch propose des monuments cinéraires, des cavurnes et des plaques de columbarium adaptés aux cimetières de Suisse romande.",
+        "h2_obligatoires": [
+          "Qu'est-ce qu'une cavurne ?",
+          "Plaques de columbarium",
+          "Urnes et monuments cinéraires individuels",
+          "90% de crémation en Suisse : une réalité",
+          "Prix des monuments cinéraires"
+        ],
+        "sections": [
+          {
+            "type": "hero",
+            "h1": "Monuments cinéraires, cavurnes et columbarium en Suisse",
+            "intro": "En Suisse, plus de 90% des décès aboutissent à une crémation  –  et ce chiffre dépasse 97% dans le canton de Neuchâtel. L'offre cinéraire n'est donc pas un complément : c'est le cœur de notre activité. PierreTombale.ch propose des monuments cinéraires, des cavurnes et des plaques de columbarium adaptés aux cimetières de Suisse romande.",
+            "cta_principal": "Voir les prix des monuments cinéraires",
+            "cta_secondaire": "Poser une question sur le cinéraire"
+          },
+          {
+            "type": "bloc_services",
+            "intro": "En Suisse, plus de 90% des décès aboutissent à une crémation  –  et ce chiffre dépasse 97% dans le canton de Neuchâtel. L'offre cinéraire n'est donc pas un complément : c'est le cœur de notre activité. PierreTombale.ch propose des monuments cinéraires, des cavurnes et des plaques de columbarium adaptés aux cimetières de Suisse romande.",
+            "items": []
+          },
+          {
+            "type": "methode_etapes",
+            "instruction": "Processus en 3-5 étapes. Utiliser le contenu de la conversion spec pour les étapes."
+          },
+          {
+            "type": "realisations",
+            "instruction": "Portfolio / cas clients à fournir par le client. Prévoir un emplacement placeholder."
+          },
+          {
+            "type": "faq",
+            "items": [
+              {
+                "question": "Quel est le prix d'une pierre tombale en Suisse ?",
+                "reponse": "Le prix d'une pierre tombale en Suisse varie selon le type de monument (simple, double, cinéraire), le matériau choisi (granit, marbre), les dimensions et les finitions. Chez PierreTombale.ch, nous affichons nos prix en détail sur notre page tarifs, avec le détail de ce qui est inclus : fourniture, gravure, pose et taxes. Consultez notre page prix pour connaître nos tarifs exacts."
+              },
+              {
+                "question": "Quel est le prix d'une pierre tombale simple en Suisse ?",
+                "reponse": "Le prix d'une pierre tombale simple dépend du type de granit, de la taille de la stèle et des prestations incluses. Nous publions nos tarifs ligne par ligne pour que chaque famille sache exactement ce qu'elle paie. Contactez-nous ou consultez notre page tarifs pour un devis précis correspondant à votre projet."
+              },
+              {
+                "question": "Combien de temps faut-il attendre avant de poser une pierre tombale ?",
+                "reponse": "Dans le canton de Neuchâtel et dans la plupart des communes de Suisse romande, il faut attendre environ un an après l'inhumation avant de poser un monument. Ce délai permet au terrain de se stabiliser. Pour une crémation avec cavurne, le délai peut être plus court selon le règlement du cimetière. Renseignez-vous auprès de votre commune ou contactez-nous pour connaître les règles spécifiques."
+              },
+              {
+                "question": "Quelle est la différence entre une cavurne et une pierre tombale classique ?",
+                "reponse": "Une pierre tombale classique est posée sur une tombe d'inhumation (cercueil). Une cavurne est un petit caveau conçu pour accueillir une ou plusieurs urnes après crémation, surmonté d'un monument en granit. En Suisse, où plus de 90% des décès aboutissent à une crémation, la cavurne est devenue la solution la plus courante pour les familles souhaitant un lieu de recueillement identifié."
+              },
+              {
+                "question": "Peut-on ajouter un nom ou une inscription sur une pierre tombale existante ?",
+                "reponse": "Oui. L'ajout d'un nom, de dates ou d'une épitaphe sur un monument existant est un service courant. PierreTombale.ch propose la gravure complémentaire sur des monuments déjà en place dans les cimetières de Suisse romande. Contactez-nous avec une photo du monument pour recevoir un devis."
+              }
+            ]
+          },
+          {
+            "type": "cta_section",
+            "texte": "Voir les prix des monuments cinéraires",
+            "cible": "/contact"
+          },
+          {
+            "type": "contact_sticky_mobile",
+            "telephone": "078 930 81 00",
+            "texte_cta": "Appeler",
+            "instruction": "Barre fixe en bas de page sur mobile avec numéro cliquable tel:"
+          }
+        ]
+      },
+      "meta_seo": {
+        "title": "Monuments cinéraires et cavurnes en Suisse | PierreTombale.ch",
+        "description": "Cavurnes, monuments cinéraires et plaques de columbarium pour la Suisse romande. 90% de crémation en Suisse : notre offre cinéraire est centrale. Prix affichés.",
+        "keywords_principaux": [
+          "cavurne suisse",
+          "monument cinéraire suisse",
+          "plaque columbarium"
+        ]
+      },
+      "conversion_spec": {
+        "objection_principale": "Est-ce que cette marbrerie connaît vraiment les spécificités de la crémation et des cimetières suisses ?",
+        "preuves_a_afficher": [
+          "Statistique crémation (90% CH, 97% NE) démontrant la spécialisation",
+          "Photos de cavurnes et plaques posées [à collecter]",
+          "Mention des règlements de cimetières respectés"
+        ],
+        "cta_principal": "Voir les prix des monuments cinéraires",
+        "cta_secondaire": "Poser une question sur le cinéraire",
+        "friction_a_reduire": null
+      },
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        },
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "consulter les prix des monuments cinéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "gravure-inscription-funeraire",
+      "slug": "gravure-inscription-funeraire",
+      "name": "Gravure et inscriptions funéraires",
+      "phase": 2,
+      "score_business": 6,
+      "objectif": "Détailler le service de gravure (ajout de noms, dates, épitaphes) sur monuments existants ou neufs",
+      "keywords_cibles": [
+        "gravure pierre tombale suisse",
+        "inscription pierre tombale"
+      ],
+      "silo": "services",
+      "parent_page": null,
+      "contenu": {
+        "h1": "[H1 à rédiger pour Gravure et inscriptions funéraires]",
+        "intro": null,
+        "h2_obligatoires": [],
+        "sections": []
+      },
+      "meta_seo": {
+        "title": "Gravure et inscriptions funéraires en Suisse | PierreTombale.ch",
+        "description": "Service de gravure sur pierre tombale en Suisse romande : ajout de noms, dates, épitaphes. Gravure sur monuments existants ou neufs. Devis détaillé.",
+        "keywords_principaux": [
+          "gravure pierre tombale suisse",
+          "inscription funéraire"
+        ]
+      },
+      "conversion_spec": null,
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "entretien-renovation-tombe",
+      "slug": "entretien-renovation-tombe",
+      "name": "Entretien et rénovation de tombes",
+      "phase": 2,
+      "score_business": 6,
+      "objectif": "Proposer les services d'entretien, nettoyage et rénovation de monuments existants",
+      "keywords_cibles": [
+        "entretien tombe suisse",
+        "nettoyage pierre tombale",
+        "rénovation monument funéraire"
+      ],
+      "silo": "services",
+      "parent_page": null,
+      "contenu": {
+        "h1": "[H1 à rédiger pour Entretien et rénovation de tombes]",
+        "intro": null,
+        "h2_obligatoires": [],
+        "sections": []
+      },
+      "meta_seo": {
+        "title": "Entretien et rénovation de tombes en Suisse | PierreTombale.ch",
+        "description": "Nettoyage, entretien et rénovation de pierres tombales en Suisse romande. Redonner de la dignité à un monument existant. Devis sur demande.",
+        "keywords_principaux": [
+          "entretien tombe suisse",
+          "nettoyage pierre tombale",
+          "rénovation monument funéraire"
+        ]
+      },
+      "conversion_spec": null,
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "plaques-funeraires",
+      "slug": "plaques-funeraires",
+      "name": "Plaques funéraires",
+      "phase": 2,
+      "score_business": 5,
+      "objectif": "Présenter les plaques funéraires pour tombes et columbarium",
+      "keywords_cibles": [
+        "plaque funéraire suisse",
+        "plaque funéraire personnalisée"
+      ],
+      "silo": "catalogue_prix",
+      "parent_page": "monuments-funeraires",
+      "contenu": {
+        "h1": "[H1 à rédiger pour Plaques funéraires]",
+        "intro": null,
+        "h2_obligatoires": [],
+        "sections": []
+      },
+      "meta_seo": {
+        "title": "Plaques funéraires personnalisées en Suisse | PierreTombale.ch",
+        "description": "Plaques funéraires pour tombes et columbarium. Gravure personnalisée, granit et marbre. Marbrerie au Val-de-Travers, intervention en Suisse romande.",
+        "keywords_principaux": [
+          "plaque funéraire suisse",
+          "plaque funéraire personnalisée"
+        ]
+      },
+      "conversion_spec": null,
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "pierre-tombale-musulmane",
+      "slug": "pierre-tombale-musulmane",
+      "name": "Pierre tombale musulmane",
+      "phase": 2,
+      "score_business": 5,
+      "objectif": "Page dédiée aux monuments conformes aux traditions musulmanes",
+      "keywords_cibles": [
+        "pierre tombale musulmane suisse",
+        "monument funéraire musulman"
+      ],
+      "silo": "catalogue_prix",
+      "parent_page": "monuments-funeraires",
+      "contenu": {
+        "h1": "[H1 à rédiger pour Pierre tombale musulmane]",
+        "intro": null,
+        "h2_obligatoires": [],
+        "sections": []
+      },
+      "meta_seo": {
+        "title": "Pierre tombale musulmane en Suisse  –  Monument conforme",
+        "description": "Monuments funéraires conformes aux traditions musulmanes en Suisse romande. Orientation, gravure en arabe, respect des prescriptions. Devis détaillé.",
+        "keywords_principaux": [
+          "pierre tombale musulmane suisse",
+          "monument funéraire musulman"
+        ]
+      },
+      "conversion_spec": null,
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "pierre-tombale-val-de-travers",
+      "slug": "pierre-tombale-val-de-travers",
+      "name": "Pierre tombale au Val-de-Travers",
+      "phase": 1,
+      "score_business": 8,
+      "objectif": "Page locale pour le Val-de-Travers (Couvet, Fleurier, Môtiers). Ancrage territorial principal.",
+      "keywords_cibles": [
+        "pierre tombale Couvet",
+        "pierre tombale Val-de-Travers",
+        "marbrier Val-de-Travers"
+      ],
+      "silo": "local",
+      "parent_page": null,
+      "contenu": {
+        "h1": "Pierre tombale au Val-de-Travers  –  Marbrerie funéraire à Couvet",
+        "intro": "PierreTombale.ch est implantée au Val-de-Travers, avec un siège à Couvet dans le canton de Neuchâtel. Nous intervenons dans les cimetières de Couvet, Fleurier, Môtiers, Boveresse, Buttes et de l'ensemble de la commune du Val-de-Travers. La marbrerie reprend le marché local laissé par le marbrier précédent, parti à la retraite.",
+        "h2_obligatoires": [
+          "Marbrerie funéraire à Couvet",
+          "Cimetières desservis au Val-de-Travers",
+          "Monuments cinéraires au Val-de-Travers",
+          "Nos réalisations locales"
+        ],
+        "sections": [
+          {
+            "type": "hero",
+            "h1": "Pierre tombale au Val-de-Travers  –  Marbrerie funéraire à Couvet",
+            "intro": "PierreTombale.ch est implantée au Val-de-Travers, avec un siège à Couvet dans le canton de Neuchâtel. Nous intervenons dans les cimetières de Couvet, Fleurier, Môtiers, Boveresse, Buttes et de l'ensemble de la commune du Val-de-Travers. La marbrerie reprend le marché local laissé par le marbrier précédent, parti à la retraite.",
+            "cta_principal": "Demander un devis",
+            "cta_secondaire": "Voir nos prix"
+          },
+          {
+            "type": "bloc_services",
+            "intro": "PierreTombale.ch est implantée au Val-de-Travers, avec un siège à Couvet dans le canton de Neuchâtel. Nous intervenons dans les cimetières de Couvet, Fleurier, Môtiers, Boveresse, Buttes et de l'ensemble de la commune du Val-de-Travers. La marbrerie reprend le marché local laissé par le marbrier précédent, parti à la retraite.",
+            "items": []
+          },
+          {
+            "type": "zone_desservie",
+            "ville": "Suisse",
+            "commune_siege": "Couvet",
+            "instruction": "Texte ou carte mentionnant la zone d'intervention"
+          },
+          {
+            "type": "realisations",
+            "instruction": "Portfolio / cas clients à fournir par le client. Prévoir un emplacement placeholder."
+          },
+          {
+            "type": "preuves_sociales",
+            "instruction": "Avis clients à collecter – prévoir un emplacement placeholder avec texte type 'Avis clients bientôt disponibles'"
+          },
+          {
+            "type": "cta_section",
+            "texte": "Demander un devis",
+            "cible": "/contact"
+          },
+          {
+            "type": "carte_google_maps",
+            "google_maps_url": null,
+            "instruction": "Embed Google Maps – URL à fournir par le client"
+          },
+          {
+            "type": "contact_sticky_mobile",
+            "telephone": "078 930 81 00",
+            "texte_cta": "Appeler",
+            "instruction": "Barre fixe en bas de page sur mobile avec numéro cliquable tel:"
+          }
+        ]
+      },
+      "meta_seo": {
+        "title": "Pierre tombale au Val-de-Travers  –  Marbrerie à Couvet (NE)",
+        "description": "Marbrerie funéraire au Val-de-Travers, Couvet. Pierres tombales, monuments cinéraires et cavurnes. Intervention dans tous les cimetières de la commune.",
+        "keywords_principaux": [
+          "pierre tombale Val-de-Travers",
+          "marbrier Couvet",
+          "pierre tombale Couvet"
+        ]
+      },
+      "conversion_spec": {
+        "objection_principale": "Le marbrier précédent est parti. Qui reprend le service localement ?",
+        "preuves_a_afficher": [
+          "Mention du siège à Couvet",
+          "Liste des cimetières desservis dans la commune",
+          "Photos de réalisations dans les cimetières du Val-de-Travers [à collecter]"
+        ],
+        "cta_principal": "Demander un devis",
+        "cta_secondaire": "Voir nos prix",
+        "friction_a_reduire": null
+      },
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        },
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "offre cinéraire et cavurnes"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "pierre-tombale-neuchatel",
+      "slug": "pierre-tombale-neuchatel",
+      "name": "Pierre tombale à Neuchâtel",
+      "phase": 1,
+      "score_business": 8,
+      "objectif": "Page locale pour Neuchâtel ville et environs",
+      "keywords_cibles": [
+        "pierre tombale Neuchâtel",
+        "marbrier Neuchâtel"
+      ],
+      "silo": "local",
+      "parent_page": null,
+      "contenu": {
+        "h1": "Pierre tombale à Neuchâtel  –  Monuments funéraires et cinéraires",
+        "intro": "PierreTombale.ch intervient dans les cimetières de la ville de Neuchâtel et de ses environs pour la création et la pose de pierres tombales, monuments cinéraires et plaques de columbarium. Avec un taux de crémation de 97% dans le canton, l'offre cinéraire est naturellement au premier plan. Nous proposons des prix transparents, affichés en ligne, pour que chaque famille puisse s'informer sereinement.",
+        "h2_obligatoires": [
+          "Pierres tombales dans les cimetières de Neuchâtel",
+          "Monuments cinéraires à Neuchâtel",
+          "97% de crémation dans le canton",
+          "Prendre rendez-vous à Neuchâtel"
+        ],
+        "sections": [
+          {
+            "type": "hero",
+            "h1": "Pierre tombale à Neuchâtel  –  Monuments funéraires et cinéraires",
+            "intro": "PierreTombale.ch intervient dans les cimetières de la ville de Neuchâtel et de ses environs pour la création et la pose de pierres tombales, monuments cinéraires et plaques de columbarium. Avec un taux de crémation de 97% dans le canton, l'offre cinéraire est naturellement au premier plan. Nous proposons des prix transparents, affichés en ligne, pour que chaque famille puisse s'informer sereinement.",
+            "cta_principal": "Consulter les prix",
+            "cta_secondaire": "Prendre rendez-vous à Neuchâtel"
+          },
+          {
+            "type": "bloc_services",
+            "intro": "PierreTombale.ch intervient dans les cimetières de la ville de Neuchâtel et de ses environs pour la création et la pose de pierres tombales, monuments cinéraires et plaques de columbarium. Avec un taux de crémation de 97% dans le canton, l'offre cinéraire est naturellement au premier plan. Nous proposons des prix transparents, affichés en ligne, pour que chaque famille puisse s'informer sereinement.",
+            "items": []
+          },
+          {
+            "type": "zone_desservie",
+            "ville": "Suisse",
+            "commune_siege": "Couvet",
+            "instruction": "Texte ou carte mentionnant la zone d'intervention"
+          },
+          {
+            "type": "realisations",
+            "instruction": "Portfolio / cas clients à fournir par le client. Prévoir un emplacement placeholder."
+          },
+          {
+            "type": "cta_section",
+            "texte": "Consulter les prix",
+            "cible": "/contact"
+          },
+          {
+            "type": "formulaire_contact",
+            "champs": [
+              "nom",
+              "email_ou_telephone",
+              "description_besoin"
+            ],
+            "cta_submit": "Consulter les prix"
+          },
+          {
+            "type": "contact_sticky_mobile",
+            "telephone": "078 930 81 00",
+            "texte_cta": "Appeler",
+            "instruction": "Barre fixe en bas de page sur mobile avec numéro cliquable tel:"
+          }
+        ]
+      },
+      "meta_seo": {
+        "title": "Pierre tombale à Neuchâtel  –  Monuments funéraires et cinéraires",
+        "description": "Pierres tombales et monuments cinéraires à Neuchâtel. Prix transparents, granit direct. Intervention dans les cimetières de Neuchâtel et environs.",
+        "keywords_principaux": [
+          "pierre tombale Neuchâtel",
+          "marbrier Neuchâtel",
+          "monument funéraire Neuchâtel"
+        ]
+      },
+      "conversion_spec": {
+        "objection_principale": "Ce marbrier est au Val-de-Travers, intervient-il vraiment à Neuchâtel ?",
+        "preuves_a_afficher": [
+          "Mention explicite des cimetières de Neuchâtel desservis",
+          "Précision que les prix sont identiques, sans supplément de distance",
+          "Photos de réalisations à Neuchâtel [à collecter]"
+        ],
+        "cta_principal": "Consulter les prix",
+        "cta_secondaire": "Prendre rendez-vous à Neuchâtel",
+        "friction_a_reduire": null
+      },
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        },
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "consulter nos prix transparents"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires à Neuchâtel"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "pierre-tombale-la-chaux-de-fonds",
+      "slug": "pierre-tombale-la-chaux-de-fonds",
+      "name": "Pierre tombale à La Chaux-de-Fonds",
+      "phase": 2,
+      "score_business": 5,
+      "objectif": "Page locale pour La Chaux-de-Fonds",
+      "keywords_cibles": [
+        "pierre tombale La Chaux-de-Fonds",
+        "marbrier La Chaux-de-Fonds"
+      ],
+      "silo": "local",
+      "parent_page": null,
+      "contenu": {
+        "h1": "[H1 à rédiger pour Pierre tombale à La Chaux-de-Fonds]",
+        "intro": null,
+        "h2_obligatoires": [],
+        "sections": []
+      },
+      "meta_seo": {
+        "title": "Pierre tombale à La Chaux-de-Fonds  –  Marbrerie funéraire (NE)",
+        "description": "Pierres tombales et monuments cinéraires à La Chaux-de-Fonds. Prix transparents, granit sourcé directement. Marbrerie au Val-de-Travers.",
+        "keywords_principaux": [
+          "pierre tombale La Chaux-de-Fonds",
+          "marbrier La Chaux-de-Fonds"
+        ]
+      },
+      "conversion_spec": null,
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "pierre-tombale-le-locle",
+      "slug": "pierre-tombale-le-locle",
+      "name": "Pierre tombale au Locle",
+      "phase": 2,
+      "score_business": 4,
+      "objectif": "Page locale pour Le Locle",
+      "keywords_cibles": [
+        "pierre tombale Le Locle",
+        "marbrier Le Locle"
+      ],
+      "silo": "local",
+      "parent_page": null,
+      "contenu": {
+        "h1": "[H1 à rédiger pour Pierre tombale au Locle]",
+        "intro": null,
+        "h2_obligatoires": [],
+        "sections": []
+      },
+      "meta_seo": {
+        "title": "Pierre tombale au Locle  –  Monuments funéraires et cinéraires (NE)",
+        "description": "Pierres tombales et monuments cinéraires au Locle. Marbrerie au Val-de-Travers, granit direct, prix affichés. Intervention dans les cimetières du Locle.",
+        "keywords_principaux": [
+          "pierre tombale Le Locle",
+          "marbrier Le Locle"
+        ]
+      },
+      "conversion_spec": null,
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "a-propos",
+      "slug": "a-propos",
+      "name": "À propos  –  Notre marbrerie",
+      "phase": 1,
+      "score_business": 7,
+      "objectif": "Présenter l'histoire, les valeurs, l'approvisionnement direct en granit. Construire la confiance.",
+      "keywords_cibles": [
+        "marbrerie suisse romande"
+      ],
+      "silo": "principal",
+      "parent_page": null,
+      "contenu": {
+        "h1": "Notre marbrerie funéraire en Suisse romande",
+        "intro": "PierreTombale.ch est une marbrerie funéraire implantée au Val-de-Travers, dans le canton de Neuchâtel. Nous avons fait le choix de la transparence tarifaire : nos prix sont publiés, détaillés, et chaque devis mentionne ce qui est inclus. Ce choix vient d'un constat simple  –  le marché de la pierre tombale en Suisse est opaque, et les familles en deuil méritent mieux que des fourchettes vagues. Notre granit est sourcé directement, sans passer par des intermédiaires, ce qui nous permet de proposer un rapport qualité-prix honnête. Nous intervenons dans les cimetières de Suisse romande, du Val-de-Travers à Neuchâtel, La Chaux-de-Fonds, et au-delà. Chaque monument est réalisé avec soin, dans le respect des souhaits de la famille et des règlements du cimetière.",
+        "h2_obligatoires": [
+          "Pourquoi nous affichons nos prix",
+          "Un granit sourcé directement",
+          "Intervention en Suisse romande"
+        ],
+        "sections": [
+          {
+            "type": "hero",
+            "h1": "Notre marbrerie funéraire en Suisse romande",
+            "intro": "[Intro à rédiger pour À propos  –  Notre marbrerie]",
+            "cta_principal": "Nous contacter",
+            "cta_secondaire": "Voir nos réalisations"
+          },
+          {
+            "type": "methode_etapes",
+            "instruction": "Processus en 3-5 étapes. Utiliser le contenu de la conversion spec pour les étapes."
+          },
+          {
+            "type": "realisations",
+            "instruction": "Portfolio / cas clients à fournir par le client. Prévoir un emplacement placeholder."
+          },
+          {
+            "type": "zone_desservie",
+            "ville": "Suisse",
+            "commune_siege": "Couvet",
+            "instruction": "Texte ou carte mentionnant la zone d'intervention"
+          },
+          {
+            "type": "cta_section",
+            "texte": "Nous contacter",
+            "cible": "/contact"
+          },
+          {
+            "type": "contact_sticky_mobile",
+            "telephone": "078 930 81 00",
+            "texte_cta": "Appeler",
+            "instruction": "Barre fixe en bas de page sur mobile avec numéro cliquable tel:"
+          }
+        ]
+      },
+      "meta_seo": {
+        "title": "À propos  –  Marbrerie funéraire au Val-de-Travers | PierreTombale.ch",
+        "description": "Marbrerie funéraire implantée au Val-de-Travers (NE). Granit sourcé directement, prix transparents, intervention en Suisse romande.",
+        "keywords_principaux": [
+          "marbrerie funéraire suisse romande",
+          "marbrerie Val-de-Travers"
+        ]
+      },
+      "conversion_spec": {
+        "objection_principale": "Qui est derrière ce site ? Puis-je faire confiance à cette marbrerie ?",
+        "preuves_a_afficher": [
+          "Histoire de la reprise du marché local (marbrier sortant)",
+          "Explication de l'approvisionnement direct en granit",
+          "Photos de l'activité réelle [à collecter]"
+        ],
+        "cta_principal": "Nous contacter",
+        "cta_secondaire": "Voir nos réalisations",
+        "friction_a_reduire": null
+      },
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        },
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "nos prix affichés"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue de nos monuments"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "contact",
+      "slug": "contact",
+      "name": "Contact",
+      "phase": 1,
+      "score_business": 7,
+      "objectif": "Formulaire de contact et coordonnées. Point de conversion principal.",
+      "keywords_cibles": [],
+      "silo": "principal",
+      "parent_page": null,
+      "contenu": {
+        "h1": "Contactez PierreTombale.ch  –  Marbrerie funéraire en Suisse romande",
+        "intro": "Pour un devis, une question ou un rendez-vous, contactez-nous par téléphone ou via le formulaire ci-dessous. Nous répondons à chaque demande avec le soin qu'elle mérite. PierreTombale.ch intervient dans le canton de Neuchâtel et en Suisse romande.",
+        "h2_obligatoires": [
+          "Demander un devis détaillé",
+          "Nous trouver au Val-de-Travers"
+        ],
+        "sections": [
+          {
+            "type": "hero",
+            "h1": "Contactez PierreTombale.ch  –  Marbrerie funéraire en Suisse romande",
+            "intro": "[Intro à rédiger pour Contact]",
+            "cta_principal": "Envoyer ma demande",
+            "cta_secondaire": "Appeler directement"
+          },
+          {
+            "type": "formulaire_contact",
+            "champs": [
+              "nom",
+              "email_ou_telephone",
+              "description_besoin"
+            ],
+            "cta_submit": "Envoyer ma demande"
+          },
+          {
+            "type": "coordonnees",
+            "telephone": "078 930 81 00",
+            "email": null,
+            "adresse": "[Adresse à confirmer avec le client]"
+          },
+          {
+            "type": "carte_google_maps",
+            "google_maps_url": null,
+            "instruction": "Embed Google Maps – URL à fournir par le client"
+          },
+          {
+            "type": "contact_sticky_mobile",
+            "telephone": "078 930 81 00",
+            "texte_cta": "Appeler",
+            "instruction": "Barre fixe en bas de page sur mobile avec numéro cliquable tel:"
+          }
+        ]
+      },
+      "meta_seo": {
+        "title": "Contact  –  PierreTombale.ch | Devis pierre tombale Suisse",
+        "description": "Contactez PierreTombale.ch pour un devis détaillé. Marbrerie funéraire au Val-de-Travers, intervention en Suisse romande. Réponse à chaque demande.",
+        "keywords_principaux": [
+          "contact marbrier suisse",
+          "devis pierre tombale"
+        ]
+      },
+      "conversion_spec": {
+        "objection_principale": "Vais-je recevoir une réponse rapide et un devis clair ?",
+        "preuves_a_afficher": [
+          "Mention 'devis détaillé et transparent'",
+          "Coordonnées visibles (téléphone, email)"
+        ],
+        "cta_principal": "Envoyer ma demande",
+        "cta_secondaire": "Appeler directement",
+        "friction_a_reduire": null
+      },
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "faq",
+      "slug": "faq",
+      "name": "FAQ  –  Questions fréquentes sur les pierres tombales en Suisse",
+      "phase": 1,
+      "score_business": 7,
+      "objectif": "Répondre aux PAA détectées, capter les featured snippets, rassurer les familles",
+      "keywords_cibles": [
+        "prix pierre tombale suisse",
+        "coût pierre tombale suisse"
+      ],
+      "silo": "principal",
+      "parent_page": null,
+      "contenu": {
+        "h1": "Questions fréquentes sur les pierres tombales en Suisse",
+        "intro": "Les familles confrontées au choix d'une pierre tombale se posent des questions légitimes sur les prix, les délais, les matériaux et les démarches. Cette page rassemble les réponses aux questions les plus fréquentes concernant les monuments funéraires en Suisse romande. Si votre question n'apparaît pas ici, contactez-nous directement.",
+        "h2_obligatoires": [
+          "Prix et tarifs",
+          "Délais et réglementation",
+          "Crémation et monuments cinéraires",
+          "Gravure et personnalisation"
+        ],
+        "sections": [
+          {
+            "type": "hero",
+            "h1": "Questions fréquentes sur les pierres tombales en Suisse",
+            "intro": "Les familles confrontées au choix d'une pierre tombale se posent des questions légitimes sur les prix, les délais, les matériaux et les démarches. Cette page rassemble les réponses aux questions les plus fréquentes concernant les monuments funéraires en Suisse romande. Si votre question n'apparaît pas ici, contactez-nous directement.",
+            "cta_principal": "Demander un devis gratuit",
+            "cta_secondaire": "Voir nos prix"
+          },
+          {
+            "type": "faq",
+            "items": [
+              {
+                "question": "Quel est le prix d'une pierre tombale en Suisse ?",
+                "reponse": "Le prix d'une pierre tombale en Suisse varie selon le type de monument (simple, double, cinéraire), le matériau choisi (granit, marbre), les dimensions et les finitions. Chez PierreTombale.ch, nous affichons nos prix en détail sur notre page tarifs, avec le détail de ce qui est inclus : fourniture, gravure, pose et taxes. Consultez notre page prix pour connaître nos tarifs exacts."
+              },
+              {
+                "question": "Quel est le prix d'une pierre tombale simple en Suisse ?",
+                "reponse": "Le prix d'une pierre tombale simple dépend du type de granit, de la taille de la stèle et des prestations incluses. Nous publions nos tarifs ligne par ligne pour que chaque famille sache exactement ce qu'elle paie. Contactez-nous ou consultez notre page tarifs pour un devis précis correspondant à votre projet."
+              },
+              {
+                "question": "Combien de temps faut-il attendre avant de poser une pierre tombale ?",
+                "reponse": "Dans le canton de Neuchâtel et dans la plupart des communes de Suisse romande, il faut attendre environ un an après l'inhumation avant de poser un monument. Ce délai permet au terrain de se stabiliser. Pour une crémation avec cavurne, le délai peut être plus court selon le règlement du cimetière. Renseignez-vous auprès de votre commune ou contactez-nous pour connaître les règles spécifiques."
+              },
+              {
+                "question": "Quelle est la différence entre une cavurne et une pierre tombale classique ?",
+                "reponse": "Une pierre tombale classique est posée sur une tombe d'inhumation (cercueil). Une cavurne est un petit caveau conçu pour accueillir une ou plusieurs urnes après crémation, surmonté d'un monument en granit. En Suisse, où plus de 90% des décès aboutissent à une crémation, la cavurne est devenue la solution la plus courante pour les familles souhaitant un lieu de recueillement identifié."
+              },
+              {
+                "question": "Peut-on ajouter un nom ou une inscription sur une pierre tombale existante ?",
+                "reponse": "Oui. L'ajout d'un nom, de dates ou d'une épitaphe sur un monument existant est un service courant. PierreTombale.ch propose la gravure complémentaire sur des monuments déjà en place dans les cimetières de Suisse romande. Contactez-nous avec une photo du monument pour recevoir un devis."
+              }
+            ]
+          },
+          {
+            "type": "cta_section",
+            "texte": "Demander un devis gratuit",
+            "cible": "/contact"
+          },
+          {
+            "type": "contact_sticky_mobile",
+            "telephone": "078 930 81 00",
+            "texte_cta": "Appeler",
+            "instruction": "Barre fixe en bas de page sur mobile avec numéro cliquable tel:"
+          }
+        ]
+      },
+      "meta_seo": {
+        "title": "FAQ pierres tombales en Suisse  –  Prix, délais, démarches",
+        "description": "Réponses aux questions fréquentes sur les pierres tombales en Suisse : prix, délai de pose, types de granit, réglementation des cimetières. Guide pratique.",
+        "keywords_principaux": [
+          "prix pierre tombale suisse",
+          "délai pose pierre tombale",
+          "question pierre tombale"
+        ]
+      },
+      "conversion_spec": {
+        "objection_principale": "Je ne sais pas par où commencer, je manque d'informations",
+        "preuves_a_afficher": [
+          "Réponses précises basées sur la réglementation suisse",
+          "Lien vers la page prix dans les réponses pertinentes"
+        ],
+        "cta_principal": "Demander un devis gratuit",
+        "cta_secondaire": "Voir nos prix",
+        "friction_a_reduire": null
+      },
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        },
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "page prix avec tarifs détaillés"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "cavurnes et monuments cinéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "FAQPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "messages-condoleances",
+      "slug": "messages-condoleances",
+      "name": "Messages de condoléances",
+      "phase": 3,
+      "score_business": 3,
+      "objectif": "Article guide pour capter du trafic informationnel à fort volume et faible concurrence",
+      "keywords_cibles": [
+        "message de condoléances suisse",
+        "texte condoléances"
+      ],
+      "silo": "contenu_deuil",
+      "parent_page": null,
+      "contenu": {
+        "h1": "[H1 à rédiger pour Messages de condoléances]",
+        "intro": null,
+        "h2_obligatoires": [],
+        "sections": []
+      },
+      "meta_seo": {
+        "title": "Messages de condoléances  –  Exemples et modèles | PierreTombale.ch",
+        "description": "Exemples de messages de condoléances pour accompagner une famille en deuil. Textes sobres et sincères, adaptés à différentes situations.",
+        "keywords_principaux": [
+          "message de condoléances",
+          "texte condoléances"
+        ]
+      },
+      "conversion_spec": null,
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "epitaphes-textes-pierre-tombale",
+      "slug": "epitaphes-textes-pierre-tombale",
+      "name": "Épitaphes  –  Textes pour pierres tombales",
+      "phase": 3,
+      "score_business": 3,
+      "objectif": "Guide des épitaphes avec exemples. Autorité topique + trafic informationnel.",
+      "keywords_cibles": [
+        "épitaphe pierre tombale",
+        "texte pierre tombale"
+      ],
+      "silo": "contenu_deuil",
+      "parent_page": null,
+      "contenu": {
+        "h1": "[H1 à rédiger pour Épitaphes  –  Textes pour pierres tombales]",
+        "intro": null,
+        "h2_obligatoires": [],
+        "sections": []
+      },
+      "meta_seo": {
+        "title": "Épitaphes pour pierre tombale  –  Exemples et inspiration",
+        "description": "Exemples d'épitaphes pour pierres tombales : textes courts, citations, formules d'hommage. Guide pour choisir une inscription gravée sur un monument.",
+        "keywords_principaux": [
+          "épitaphe pierre tombale",
+          "texte pierre tombale"
+        ]
+      },
+      "conversion_spec": null,
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        },
+        {
+          "cible": "gravure-inscription-funeraire",
+          "ancre": "service de gravure d'épitaphe"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "id": "remerciements-apres-deces",
+      "slug": "remerciements-apres-deces",
+      "name": "Remerciements après décès",
+      "phase": 3,
+      "score_business": 2,
+      "objectif": "Guide pratique pour rédiger des remerciements. Trafic informationnel.",
+      "keywords_cibles": [
+        "remerciements après décès",
+        "carte remerciement décès suisse"
+      ],
+      "silo": "contenu_deuil",
+      "parent_page": null,
+      "contenu": {
+        "h1": "[H1 à rédiger pour Remerciements après décès]",
+        "intro": null,
+        "h2_obligatoires": [],
+        "sections": []
+      },
+      "meta_seo": {
+        "title": "Remerciements après décès  –  Modèles de textes | PierreTombale.ch",
+        "description": "Modèles de textes de remerciements après un décès. Comment remercier les proches après des obsèques. Exemples sobres et adaptés à la Suisse romande.",
+        "keywords_principaux": [
+          "remerciements après décès",
+          "carte remerciement décès"
+        ]
+      },
+      "conversion_spec": null,
+      "maillage_sortant": [
+        {
+          "cible": "prix-pierre-tombale-suisse",
+          "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+        },
+        {
+          "cible": "monuments-cineraires-cavurnes",
+          "ancre": "monuments cinéraires et cavurnes"
+        },
+        {
+          "cible": "monuments-funeraires",
+          "ancre": "catalogue des monuments funéraires"
+        }
+      ],
+      "schemas": [
+        "LocalBusiness",
+        "BreadcrumbList"
+      ]
+    }
+  ],
+  "faq_globale": [
+    {
+      "question": "Quel est le prix d'une pierre tombale en Suisse ?",
+      "reponse": "Le prix d'une pierre tombale en Suisse varie selon le type de monument (simple, double, cinéraire), le matériau choisi (granit, marbre), les dimensions et les finitions. Chez PierreTombale.ch, nous affichons nos prix en détail sur notre page tarifs, avec le détail de ce qui est inclus : fourniture, gravure, pose et taxes. Consultez notre page prix pour connaître nos tarifs exacts."
+    },
+    {
+      "question": "Quel est le prix d'une pierre tombale simple en Suisse ?",
+      "reponse": "Le prix d'une pierre tombale simple dépend du type de granit, de la taille de la stèle et des prestations incluses. Nous publions nos tarifs ligne par ligne pour que chaque famille sache exactement ce qu'elle paie. Contactez-nous ou consultez notre page tarifs pour un devis précis correspondant à votre projet."
+    },
+    {
+      "question": "Combien de temps faut-il attendre avant de poser une pierre tombale ?",
+      "reponse": "Dans le canton de Neuchâtel et dans la plupart des communes de Suisse romande, il faut attendre environ un an après l'inhumation avant de poser un monument. Ce délai permet au terrain de se stabiliser. Pour une crémation avec cavurne, le délai peut être plus court selon le règlement du cimetière. Renseignez-vous auprès de votre commune ou contactez-nous pour connaître les règles spécifiques."
+    },
+    {
+      "question": "Quelle est la différence entre une cavurne et une pierre tombale classique ?",
+      "reponse": "Une pierre tombale classique est posée sur une tombe d'inhumation (cercueil). Une cavurne est un petit caveau conçu pour accueillir une ou plusieurs urnes après crémation, surmonté d'un monument en granit. En Suisse, où plus de 90% des décès aboutissent à une crémation, la cavurne est devenue la solution la plus courante pour les familles souhaitant un lieu de recueillement identifié."
+    },
+    {
+      "question": "Peut-on ajouter un nom ou une inscription sur une pierre tombale existante ?",
+      "reponse": "Oui. L'ajout d'un nom, de dates ou d'une épitaphe sur un monument existant est un service courant. PierreTombale.ch propose la gravure complémentaire sur des monuments déjà en place dans les cimetières de Suisse romande. Contactez-nous avec une photo du monument pour recevoir un devis."
+    }
+  ],
+  "seo_reference": {
+    "keywords_complets": [
+      {
+        "keyword": "pierre tombale prix suisse",
+        "volume": 70,
+        "difficulty": 37,
+        "difficulty_label": "moyen",
+        "intention": "commercial",
+        "priorite": 1
+      },
+      {
+        "keyword": "prix pierre tombale suisse",
+        "volume": 70,
+        "difficulty": 37,
+        "difficulty_label": "moyen",
+        "intention": "commercial",
+        "priorite": 2
+      },
+      {
+        "keyword": "prix d'une pierre tombale en granit suisse",
+        "volume": 10,
+        "difficulty": null,
+        "difficulty_label": "inconnu",
+        "intention": "commercial",
+        "priorite": 4
+      },
+      {
+        "keyword": "prix d une pierre tombale en granit suisse",
+        "volume": 10,
+        "difficulty": null,
+        "difficulty_label": "inconnu",
+        "intention": "commercial",
+        "priorite": 5
+      },
+      {
+        "keyword": "pierre tombale suisse romande",
+        "volume": 10,
+        "difficulty": null,
+        "difficulty_label": "inconnu",
+        "intention": "informational",
+        "priorite": 6
+      },
+      {
+        "keyword": "pierre tombale suisse",
+        "volume": 10,
+        "difficulty": null,
+        "difficulty_label": "inconnu",
+        "intention": "informational",
+        "priorite": 3
+      }
+    ],
+    "serp_features": [
+      {
+        "keyword": "pierre tombale prix suisse",
+        "has_local_pack": false,
+        "has_featured_snippet": false,
+        "has_images": true,
+        "features": [
+          "ai_overview",
+          "organic",
+          "people_also_ask",
+          "images",
+          "related_searches"
+        ]
+      },
+      {
+        "keyword": "prix pierre tombale suisse",
+        "has_local_pack": false,
+        "has_featured_snippet": false,
+        "has_images": true,
+        "features": [
+          "ai_overview",
+          "organic",
+          "people_also_ask",
+          "images",
+          "related_searches"
+        ]
+      },
+      {
+        "keyword": "prix d'une pierre tombale en granit suisse",
+        "has_local_pack": false,
+        "has_featured_snippet": false,
+        "has_images": false,
+        "features": [
+          "ai_overview",
+          "organic",
+          "people_also_ask",
+          "related_searches"
+        ]
+      },
+      {
+        "keyword": "prix d une pierre tombale en granit suisse",
+        "has_local_pack": false,
+        "has_featured_snippet": false,
+        "has_images": false,
+        "features": [
+          "ai_overview",
+          "organic",
+          "people_also_ask",
+          "related_searches"
+        ]
+      },
+      {
+        "keyword": "pierre tombale suisse romande",
+        "has_local_pack": false,
+        "has_featured_snippet": false,
+        "has_images": false,
+        "features": [
+          "organic",
+          "ai_overview",
+          "people_also_ask",
+          "related_searches"
+        ]
+      },
+      {
+        "keyword": "pierre tombale Couvet",
+        "has_local_pack": false,
+        "has_featured_snippet": false,
+        "has_images": false,
+        "features": []
+      }
+    ],
+    "paa_brutes": [
+      "Quel est le prix d'une pierre tombale en Suisse ?",
+      "Quel est le coût moyen d'une pierre tombale ?",
+      "Quel est le prix moyen d'un enterrement en Suisse ?",
+      "Quel est le prix moyen d'une pierre tombale ?",
+      "Quel est le prix d'une pierre tombale simple en Suisse ?",
+      "Quel est le tarif moyen d'une pierre tombale ?",
+      "Quel est le prix d'un cercueil en Suisse ?",
+      "Comment puis-je trouver la pierre tombale d'un défunt ?"
+    ],
+    "related_searches": [],
+    "seasonality": {
+      "keyword": "pierre tombale prix suisse",
+      "peak_month": "juin",
+      "peak_volume": 90,
+      "low_month": "décembre",
+      "low_volume": 30,
+      "variation_pct": 96,
+      "monthly_data": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 90
+        }
+      ]
+    },
+    "reference_competitor": {
+      "mode": "manual",
+      "domain": "lespierrestombales.ch",
+      "url": "https://www.lespierrestombales.ch",
+      "quality_label": "bon",
+      "quality_score": 6,
+      "h1": "Pierres tombales à Genève, \n l'art de la pierre et la dignité du souvenir.",
+      "h2s": [
+        "Gestion des cookies",
+        "Un accompagnement humain pour créer une pierre tombale sur mesure",
+        "Modèles de pierres tombales et monuments funéraires sur mesure",
+        "Granits pour pierre tombale à Genève",
+        "Rencontrer la matière dans notre showroom à Carouge",
+        "Pierres tombales, monuments funéraires et gravures à Genève",
+        "Comprendre avant de choisir",
+        "Pierres tombales et monuments funéraires pour les familles de Suisse romande",
+        "Explorer l’univers des monuments funéraires",
+        "Construisons ensemble \n un hommage durable."
+      ],
+      "meta_description": "Création de pierres tombales et monuments funéraires à Genève. Showroom à Carouge, granits, modèles et accompagnement personnalisé.",
+      "page_score": 100,
+      "ville_reference": "manual",
+      "keywords_ranked": []
+    },
+    "competitors": [
+      {
+        "domain": "https://www.marbrier-geneve.ch/prix-pierre-tombale/",
+        "h1": "",
+        "meta_description": "Effectivement, il peut aller de 2.150 francs suisses pour le plus économique à plus de 15.000 francs suisses pour une sépulture originale. Il faut savoir que la ...",
+        "score_technique": 0,
+        "referring_domains": 0,
+        "domain_rank": 0,
+        "checks_failed": []
+      },
+      {
+        "domain": "https://lespierrestombales.ch/",
+        "h1": "",
+        "meta_description": "Création de pierres tombales et monuments funéraires à Genève. Showroom à Carouge, granits, modèles et accompagnement personnalisé.",
+        "score_technique": 0,
+        "referring_domains": 0,
+        "domain_rank": 0,
+        "checks_failed": []
+      },
+      {
+        "domain": "https://www.gpggranit.com/conseils/monument-funeraire/prix-dune-pierre-tombale-en-granit/",
+        "h1": "",
+        "meta_description": "7 août 2023 — Le prix moyen d'une pierre tombale se situe entre 2 000 € et 5 000 €. Les dimensions et l'épaisseur de la pierre, ainsi que la présence d'une ...",
+        "score_technique": 0,
+        "referring_domains": 0,
+        "domain_rank": 0,
+        "checks_failed": []
+      }
+    ]
+  },
+  "strategie_serp": {
+    "features_dominantes": [
+      "ai_overview",
+      "people_also_ask",
+      "images",
+      "related_searches"
+    ],
+    "decisions": [
+      "PAA dominantes sur toutes les requêtes principales → créer une page FAQ structurée avec schema FAQPage pour capter les positions PAA",
+      "Images présentes sur les requêtes prix → photographier chaque type de monument, nommer les fichiers avec des alt text descriptifs (ex: 'pierre-tombale-granit-noir-simple-suisse.webp'), créer une galerie visuelle",
+      "AI Overview actif → structurer le contenu avec des paragraphes courts, des réponses directes en début de page, des listes à puces pour les prestations incluses",
+      "Pas de local_pack détecté sur les requêtes nationales → opportunité majeure : créer le GBP pour apparaître dans le pack local sur les requêtes localisées (Val-de-Travers, Neuchâtel)",
+      "Requêtes images → prévoir des photos réelles de monuments (pas de stock photos), avec schema Product incluant des fourchettes de prix pour enrichir les résultats"
+    ]
+  },
+  "estimation_trafic": {
+    "methode": "CTR_pos3_11pct",
+    "total_mensuel_estime": 19,
+    "total_potentiel_pos1": 51,
+    "contexte_commercial": "Estimation prudente basée sur les volumes DataForSEO fournis. Hypothèse : CTR de 11% en position 3 et 30% en position 1. Le volume réel est probablement supérieur car les mots-clés longue traîne (non mesurés), les variantes locales et les requêtes cinéraires ne sont pas comptabilisés. Avec un taux de conversion hypothétique de 3-5% (fourchette courante pour le SEO local dans le funéraire), cela pourrait représenter 1 à 3 prises de contact mensuelles en position 3, et 2 à 5 en position 1  –  estimation dépendant de la qualité du site, des photos et de la transparence tarifaire réelle. Le pic saisonnier en juin (volume +96%) devrait amplifier ces chiffres durant la période avril-août.",
+    "detail_par_keyword": [
+      {
+        "keyword": "pierre tombale prix suisse",
+        "volume": 70,
+        "difficulty": 37,
+        "trafic_estime_pos3": 8,
+        "trafic_potentiel_pos1": 21
+      },
+      {
+        "keyword": "prix pierre tombale suisse",
+        "volume": 70,
+        "difficulty": 37,
+        "trafic_estime_pos3": 8,
+        "trafic_potentiel_pos1": 21
+      },
+      {
+        "keyword": "pierre tombale suisse",
+        "volume": 10,
+        "difficulty": 0,
+        "trafic_estime_pos3": 1,
+        "trafic_potentiel_pos1": 3
+      },
+      {
+        "keyword": "prix d'une pierre tombale en granit suisse",
+        "volume": 10,
+        "difficulty": 0,
+        "trafic_estime_pos3": 1,
+        "trafic_potentiel_pos1": 3
+      },
+      {
+        "keyword": "pierre tombale suisse romande",
+        "volume": 10,
+        "difficulty": 0,
+        "trafic_estime_pos3": 1,
+        "trafic_potentiel_pos1": 3
+      }
+    ]
+  },
+  "recommandations": [
+    {
+      "priorite": 1,
+      "action": "Créer et optimiser un profil Google Business Profile",
+      "raison": "Aucun GBP trouvé. C'est la première action à faire, avant même le site. Le GBP génère de la visibilité locale immédiate (Google Maps, pack local) et renforce la crédibilité. Catégorie principale : 'Marbrier' ou 'Marbrerie funéraire'. Adresse à Couvet, zone desservie : canton de Neuchâtel et Suisse romande."
+    },
+    {
+      "priorite": 2,
+      "action": "Publier la page prix avec de vrais tarifs détaillés dès le lancement",
+      "raison": "C'est le différenciateur n°1. Aucun concurrent suisse ne publie de prix détaillés avec prestations incluses. Cette page sera l'arme principale pour capter le trafic commercial et convertir les familles."
+    },
+    {
+      "priorite": 3,
+      "action": "Photographier au minimum 10 monuments réels (tombes, cavurnes, plaques) dans les cimetières locaux",
+      "raison": "Les SERP affichent des images sur les requêtes prix. Des photos réelles (pas de stock) construisent la confiance dans un secteur où le visuel est décisif. Alt text optimisés pour le SEO images."
+    },
+    {
+      "priorite": 4,
+      "action": "Mettre en avant l'offre cinéraire comme service principal, pas secondaire",
+      "raison": "90% de crémation en Suisse, 97% à Neuchâtel. Le catalogue classique (tombes inhumation) doit exister, mais l'offre cavurne/columbarium/urne doit être au premier plan du site."
+    },
+    {
+      "priorite": 5,
+      "action": "Collecter les premiers avis clients sur Google dès les premières réalisations",
+      "raison": "Dans un secteur à confiance critique, les avis Google sont la preuve sociale la plus efficace. Objectif : 5 avis authentiques dans les 3 premiers mois."
+    },
+    {
+      "priorite": 6,
+      "action": "Préparer le calendrier de contenu éditorial (hub deuil) pour avril-mai afin de capter le pic de juin",
+      "raison": "La saisonnalité montre un pic en juin (+96% de volume). Publier les articles guides (épitaphes, messages de condoléances) 2 mois avant permet d'indexer et de commencer à ranker au bon moment."
+    },
+    {
+      "priorite": 7,
+      "action": "Établir des contacts avec les pompes funèbres du Val-de-Travers et de Neuchâtel",
+      "raison": "Les pompes funèbres sont le premier prescripteur dans le funéraire. Un partenariat de recommandation réciproque compense le volume limité de recherches locales (~130 décès/an au Val-de-Travers)."
+    }
+  ],
+  "roadmap_90_jours": {
+    "0_30_jours": [
+      {
+        "action": "Créer le profil Google Business Profile avec catégorie 'Marbrerie funéraire', adresse à Couvet, zone desservie canton de Neuchâtel",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Publier les 9 pages Phase 1 : accueil, prix, catalogue monuments, cinéraire/cavurnes, Val-de-Travers, Neuchâtel, FAQ, à propos, contact",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Fournir les photos réelles de monuments posés (minimum 10 photos de qualité) et le logo",
+        "responsable": "client"
+      },
+      {
+        "action": "Remplir la grille tarifaire sur la page prix avec les vrais tarifs, ligne par ligne",
+        "responsable": "client"
+      },
+      {
+        "action": "Implémenter les schemas LocalBusiness, Product (page prix), FAQPage, BreadcrumbList",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Soumettre le sitemap à Google Search Console et vérifier l'indexation",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Installer Google Analytics 4 et configurer les objectifs de conversion (formulaire contact, clic téléphone)",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Contacter les pompes funèbres du Val-de-Travers et de Neuchâtel pour présenter la marbrerie",
+        "responsable": "client"
+      }
+    ],
+    "30_60_jours": [
+      {
+        "action": "Publier les pages Phase 2 prioritaires : gravure/inscriptions, entretien/rénovation, plaques funéraires",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Publier les pages locales Phase 2 : La Chaux-de-Fonds, Le Locle",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Publier la page pierre tombale musulmane",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Collecter les 3-5 premiers avis clients sur Google Business Profile",
+        "responsable": "client"
+      },
+      {
+        "action": "Renforcer le maillage interne entre les pages publiées",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Optimiser les images (alt text, compression, formats webp) et vérifier les Core Web Vitals",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Préparer le premier article du hub contenu deuil (épitaphes) pour publication en mai-juin afin de capter le pic saisonnier de juin",
+        "responsable": "KUMO"
+      }
+    ],
+    "60_90_jours": [
+      {
+        "action": "Publier les articles Phase 3 : épitaphes, messages de condoléances, remerciements après décès",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Analyser les premières données Search Console : quels mots-clés génèrent des impressions, quelles pages rankent",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Optimiser les pages sous-performantes (meta descriptions, contenu, H2) selon les données réelles",
+        "responsable": "KUMO"
+      },
+      {
+        "action": "Planifier l'extension géographique Phase 2 : pages Vaud, Fribourg, Valais",
+        "responsable": "les deux"
+      },
+      {
+        "action": "Évaluer le ROI : nombre de devis demandés vs trafic organique, ajuster la stratégie",
+        "responsable": "les deux"
+      },
+      {
+        "action": "Identifier les opportunités de backlinks locaux : annuaires funéraires suisses, associations professionnelles, partenaires pompes funèbres",
+        "responsable": "KUMO"
+      }
+    ],
+    "clusters": [
+      {
+        "cluster_name": "Prix et catalogue pierres tombales Suisse",
+        "pillar_page": {
+          "slug": "prix-pierre-tombale-suisse",
+          "title": "Prix des pierres tombales en Suisse  –  Tarifs détaillés",
+          "target_keywords": [
+            "pierre tombale prix suisse",
+            "prix pierre tombale suisse"
+          ]
+        },
+        "support_pages": [
+          {
+            "slug": "monuments-funeraires",
+            "title": "Catalogue des monuments funéraires",
+            "target_keyword": "monument funéraire suisse",
+            "role": "sub_topic"
+          },
+          {
+            "slug": "monuments-cineraires-cavurnes",
+            "title": "Monuments cinéraires et cavurnes",
+            "target_keyword": "cavurne suisse",
+            "role": "sub_topic"
+          },
+          {
+            "slug": "plaques-funeraires",
+            "title": "Plaques funéraires",
+            "target_keyword": "plaque funéraire suisse",
+            "role": "sub_topic"
+          },
+          {
+            "slug": "pierre-tombale-musulmane",
+            "title": "Pierre tombale musulmane",
+            "target_keyword": "pierre tombale musulmane suisse",
+            "role": "sub_topic"
+          },
+          {
+            "slug": "faq",
+            "title": "FAQ pierres tombales en Suisse",
+            "target_keyword": "question pierre tombale suisse",
+            "role": "faq"
+          }
+        ],
+        "cadence_publication": "1_par_mois",
+        "estimated_months_to_authority": 6
+      },
+      {
+        "cluster_name": "Pages locales  –  Canton de Neuchâtel",
+        "pillar_page": {
+          "slug": "",
+          "title": "PierreTombale.ch  –  Pierres tombales en Suisse romande",
+          "target_keywords": [
+            "pierre tombale suisse romande"
+          ]
+        },
+        "support_pages": [
+          {
+            "slug": "pierre-tombale-val-de-travers",
+            "title": "Pierre tombale au Val-de-Travers",
+            "target_keyword": "pierre tombale Val-de-Travers",
+            "role": "sub_topic"
+          },
+          {
+            "slug": "pierre-tombale-neuchatel",
+            "title": "Pierre tombale à Neuchâtel",
+            "target_keyword": "pierre tombale Neuchâtel",
+            "role": "sub_topic"
+          },
+          {
+            "slug": "pierre-tombale-la-chaux-de-fonds",
+            "title": "Pierre tombale à La Chaux-de-Fonds",
+            "target_keyword": "pierre tombale La Chaux-de-Fonds",
+            "role": "sub_topic"
+          },
+          {
+            "slug": "pierre-tombale-le-locle",
+            "title": "Pierre tombale au Locle",
+            "target_keyword": "pierre tombale Le Locle",
+            "role": "sub_topic"
+          }
+        ],
+        "cadence_publication": "1_par_2_semaines",
+        "estimated_months_to_authority": 4
+      },
+      {
+        "cluster_name": "Hub contenu  –  Accompagner le deuil",
+        "pillar_page": {
+          "slug": "epitaphes-textes-pierre-tombale",
+          "title": "Épitaphes pour pierre tombale  –  Exemples et inspiration",
+          "target_keywords": [
+            "épitaphe pierre tombale",
+            "texte pierre tombale"
+          ]
+        },
+        "support_pages": [
+          {
+            "slug": "messages-condoleances",
+            "title": "Messages de condoléances",
+            "target_keyword": "message de condoléances",
+            "role": "sub_topic"
+          },
+          {
+            "slug": "remerciements-apres-deces",
+            "title": "Remerciements après décès",
+            "target_keyword": "remerciements après décès",
+            "role": "sub_topic"
+          }
+        ],
+        "cadence_publication": "1_par_mois",
+        "estimated_months_to_authority": 8
+      }
+    ]
+  },
+  "schemas_recommandes": [
+    {
+      "type": "LocalBusiness",
+      "raison": "Indispensable pour le référencement local. Le GBP n'existe pas encore  –  le schema LocalBusiness sur le site est le premier signal structuré pour Google. Inclure NAP (nom, adresse, téléphone), zone desservie, type d'activité."
+    },
+    {
+      "type": "Product",
+      "raison": "Sur la page prix et le catalogue, utiliser le schema Product avec fourchettes de prix en CHF pour enrichir les résultats de recherche avec des rich snippets prix. Pertinent car les requêtes principales sont commerciales (prix)."
+    },
+    {
+      "type": "FAQPage",
+      "raison": "Sur la page FAQ, pour capter les PAA et potentiellement apparaître en featured snippet. Les PAA sont présentes sur toutes les requêtes cibles."
+    },
+    {
+      "type": "BreadcrumbList",
+      "raison": "Site avec architecture multi-niveaux (catalogue > sous-pages). Le fil d'Ariane structuré aide Google à comprendre la hiérarchie et améliore l'affichage dans les SERP."
+    }
+  ],
+  "maillage_complet": [
+    {
+      "source": "",
+      "target": "prix-pierre-tombale-suisse",
+      "ancre": "voir nos prix détaillés pour les pierres tombales en Suisse"
+    },
+    {
+      "source": "",
+      "target": "monuments-cineraires-cavurnes",
+      "ancre": "monuments cinéraires et cavurnes"
+    },
+    {
+      "source": "",
+      "target": "monuments-funeraires",
+      "ancre": "catalogue des monuments funéraires"
+    },
+    {
+      "source": "prix-pierre-tombale-suisse",
+      "target": "monuments-funeraires",
+      "ancre": "voir le catalogue complet des monuments"
+    },
+    {
+      "source": "prix-pierre-tombale-suisse",
+      "target": "monuments-cineraires-cavurnes",
+      "ancre": "prix des monuments cinéraires et cavurnes"
+    },
+    {
+      "source": "prix-pierre-tombale-suisse",
+      "target": "contact",
+      "ancre": "demander un devis détaillé"
+    },
+    {
+      "source": "monuments-funeraires",
+      "target": "prix-pierre-tombale-suisse",
+      "ancre": "voir les prix de chaque modèle"
+    },
+    {
+      "source": "monuments-funeraires",
+      "target": "monuments-cineraires-cavurnes",
+      "ancre": "monuments cinéraires et cavurnes"
+    },
+    {
+      "source": "monuments-funeraires",
+      "target": "gravure-inscription-funeraire",
+      "ancre": "gravure et inscriptions funéraires"
+    },
+    {
+      "source": "monuments-cineraires-cavurnes",
+      "target": "prix-pierre-tombale-suisse",
+      "ancre": "consulter les prix des monuments cinéraires"
+    },
+    {
+      "source": "pierre-tombale-val-de-travers",
+      "target": "prix-pierre-tombale-suisse",
+      "ancre": "voir nos prix"
+    },
+    {
+      "source": "pierre-tombale-val-de-travers",
+      "target": "monuments-cineraires-cavurnes",
+      "ancre": "offre cinéraire et cavurnes"
+    },
+    {
+      "source": "pierre-tombale-neuchatel",
+      "target": "prix-pierre-tombale-suisse",
+      "ancre": "consulter nos prix transparents"
+    },
+    {
+      "source": "pierre-tombale-neuchatel",
+      "target": "monuments-cineraires-cavurnes",
+      "ancre": "monuments cinéraires à Neuchâtel"
+    },
+    {
+      "source": "faq",
+      "target": "prix-pierre-tombale-suisse",
+      "ancre": "page prix avec tarifs détaillés"
+    },
+    {
+      "source": "faq",
+      "target": "monuments-cineraires-cavurnes",
+      "ancre": "cavurnes et monuments cinéraires"
+    },
+    {
+      "source": "a-propos",
+      "target": "prix-pierre-tombale-suisse",
+      "ancre": "nos prix affichés"
+    },
+    {
+      "source": "a-propos",
+      "target": "monuments-funeraires",
+      "ancre": "catalogue de nos monuments"
+    },
+    {
+      "source": "epitaphes-textes-pierre-tombale",
+      "target": "gravure-inscription-funeraire",
+      "ancre": "service de gravure d'épitaphe"
+    }
+  ],
+  "assets_a_demander_client": [
+    {
+      "asset_type": "image_hero",
+      "page_destination": "global",
+      "format_primary": "webp",
+      "format_fallback": "jpeg",
+      "dimensions_recommandees": "1920x1080",
+      "alt_text_suggere": "Pierre tombale en granit posée dans un cimetière suisse",
+      "loading": "eager",
+      "fetchpriority": "high",
+      "poids_max_kb": 200
+    },
+    {
+      "asset_type": "image_galerie",
+      "page_destination": "monuments-funeraires",
+      "format_primary": "webp",
+      "format_fallback": "jpeg",
+      "dimensions_recommandees": "1200x800",
+      "alt_text_suggere": "Monument funéraire [type] en granit [couleur]  –  PierreTombale.ch",
+      "loading": "lazy",
+      "fetchpriority": "auto",
+      "poids_max_kb": 150
+    },
+    {
+      "asset_type": "image_galerie",
+      "page_destination": "monuments-cineraires-cavurnes",
+      "format_primary": "webp",
+      "format_fallback": "jpeg",
+      "dimensions_recommandees": "1200x800",
+      "alt_text_suggere": "Cavurne en granit avec plaque gravée dans un cimetière suisse",
+      "loading": "lazy",
+      "fetchpriority": "auto",
+      "poids_max_kb": 150
+    },
+    {
+      "asset_type": "image_galerie",
+      "page_destination": "prix-pierre-tombale-suisse",
+      "format_primary": "webp",
+      "format_fallback": "jpeg",
+      "dimensions_recommandees": "1200x800",
+      "alt_text_suggere": "Pierre tombale simple en granit gris  –  exemple avec prix affiché",
+      "loading": "lazy",
+      "fetchpriority": "auto",
+      "poids_max_kb": 150
+    },
+    {
+      "asset_type": "image_galerie",
+      "page_destination": "pierre-tombale-val-de-travers",
+      "format_primary": "webp",
+      "format_fallback": "jpeg",
+      "dimensions_recommandees": "1200x800",
+      "alt_text_suggere": "Monument funéraire posé au cimetière de Couvet Val-de-Travers",
+      "loading": "lazy",
+      "fetchpriority": "auto",
+      "poids_max_kb": 150
+    },
+    {
+      "asset_type": "logo",
+      "page_destination": "global",
+      "format_primary": "webp",
+      "format_fallback": "png",
+      "dimensions_recommandees": "600x200",
+      "alt_text_suggere": "Logo PierreTombale.ch marbrerie funéraire suisse",
+      "loading": "eager",
+      "fetchpriority": "high",
+      "poids_max_kb": 50
+    },
+    {
+      "asset_type": "image_galerie",
+      "page_destination": "a-propos",
+      "format_primary": "webp",
+      "format_fallback": "jpeg",
+      "dimensions_recommandees": "1200x800",
+      "alt_text_suggere": "Atelier de marbrerie funéraire PierreTombale.ch",
+      "loading": "lazy",
+      "fetchpriority": "auto",
+      "poids_max_kb": 150
+    }
+  ],
+  "multimedia_blocks": [
+    {
+      "id": "mm_001",
+      "block_type": "iframe_googlemap",
+      "page_destination": "contact",
+      "src_url": "[URL Google Maps à générer avec l'adresse du client à Couvet]",
+      "title_a11y": "Localisation de PierreTombale.ch au Val-de-Travers, Couvet",
+      "poster_image_required": false,
+      "width": 1280,
+      "height": 450,
+      "loading": "lazy",
+      "cls_safe": true,
+      "captions_required": false,
+      "transcript_required": false,
+      "schema": null
+    },
+    {
+      "id": "mm_002",
+      "block_type": "iframe_googlemap",
+      "page_destination": "pierre-tombale-val-de-travers",
+      "src_url": "[URL Google Maps Val-de-Travers]",
+      "title_a11y": "Zone d'intervention au Val-de-Travers  –  Couvet, Fleurier, Môtiers",
+      "poster_image_required": false,
+      "width": 1280,
+      "height": 400,
+      "loading": "lazy",
+      "cls_safe": true,
+      "captions_required": false,
+      "transcript_required": false,
+      "schema": null
+    }
+  ]
+}
