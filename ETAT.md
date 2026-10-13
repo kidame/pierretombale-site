@@ -55,6 +55,10 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   sur `src` ne renvoient rien ; le sitemap liste 16 adresses, dont les 2 pages liste et les 12 fiches.
   Visuels : Thomas generera des images par IA plus tard ; il suffira de les mettre dans `src/assets` et
   de les lister dans `images:` de la fiche.
+  Piege : `npm run format` (prettier) reformate tout le depot, y compris les documents de `docs/`,
+  `analyses/` et le production-spec JSON genere par W6. Le code de `src/` etait deja conforme ; le reste
+  a ete remis dans l etat d origine. Ne lancer prettier que sur un chemin precis, par exemple
+  `npx prettier --write src`.
 - 13.10.2026, E2 passe A TERMINEE (Claude Code). Les trois derniers fichiers qui utilisaient les
   anciens champs d Atelier Ko (price, material, category, formatPrice) sont passes au schema metier :
   `SiteHeader.astro` (plus de prix : "Prix sur demande", visuel via ProductImage),
