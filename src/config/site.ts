@@ -50,7 +50,7 @@ export const siteConfig = {
   /**
    * Fallback social share card, served from public/. Used by any page that
    * does not pass its own `image` — product pages pass their photography, so
-   * this covers the homepage, catalogue, studio, cart and 404.
+   * this covers the homepage, catalogue, studio, devis and 404.
    */
   socialImage: {
     src: "/og-image.png",
@@ -77,7 +77,6 @@ export const siteConfig = {
       links: [
         { label: "All pieces", href: "/catalog" },
         { label: "The studio", href: "/about" },
-        { label: "Your cart", href: "/cart" },
       ],
     },
     {
@@ -100,8 +99,6 @@ export const siteConfig = {
     locale: "en-US",
     /** ISO 4217 currency code. */
     currency: "USD",
-    /** Flat delivery charge added once when the cart is not empty. */
-    shippingFlatRate: 120,
   },
 
   /**

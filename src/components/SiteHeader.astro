@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import CartDrawer from "@/components/CartDrawer.astro";
 import { siteConfig } from "@/config/site";
 import { formatPrice, getProducts, requireProduct } from "@/data/products";
 
@@ -15,7 +14,6 @@ const isActive = (href: string) => (href === "/" ? currentPath === "/" : current
 
 const navItems = siteConfig.navigation;
 const featuredProduct = requireProduct(await getProducts(), siteConfig.featured.mobileMenu);
-const cartIndex = String(navItems.length + 1).padStart(2, "0");
 ---
 
 <header class="site-header sticky top-0 z-50">
@@ -45,18 +43,6 @@ const cartIndex = String(navItems.length + 1).padStart(2, "0");
     </ul>
 
     <div class="flex items-center gap-1">
-      <a
-        href="/cart"
-        data-cart-toggle
-        data-cart-label
-        aria-label="Cart, 0 items"
-        aria-expanded="false"
-        aria-controls="cart-drawer-panel"
-        class="link-mono -m-2 inline-flex items-center gap-2 p-2 transition-colors hover:text-accent"
-      >
-        <span class="hidden sm:inline">Cart</span>
-        <span class="mono text-[0.6875rem]" data-cart-count>00</span>
-      </a>
       <button
         type="button"
         class="-mr-2 inline-flex size-10 items-center justify-center transition-colors hover:text-accent md:hidden"
@@ -118,25 +104,12 @@ const cartIndex = String(navItems.length + 1).padStart(2, "0");
           </li>
         ))
       }
-      <li class="menu-item border-b border-line" style={`--i:${navItems.length}`}>
-        <a
-          href="/cart"
-          data-cart-label
-          aria-label="Cart, 0 items"
-          class="flex items-baseline gap-4 py-5 text-muted transition-colors hover:text-accent"
-          data-mobile-menu-link
-        >
-          <span class="mono text-[0.6875rem] text-accent">{cartIndex}</span>
-          <span class="type-h3">Cart</span>
-          <span class="mono ml-auto self-center text-[0.6875rem]" data-cart-count>00</span>
-        </a>
-      </li>
     </ul>
 
     <a
       href={`/products/${featuredProduct.slug}`}
       class="menu-item group mt-auto block pt-8"
-      style={`--i:${navItems.length + 1}`}
+      style={`--i:${navItems.length}`}
       data-mobile-menu-link
     >
       <div class="overflow-hidden bg-surface">
@@ -157,8 +130,6 @@ const cartIndex = String(navItems.length + 1).padStart(2, "0");
     </a>
   </div>
 </div>
-
-<CartDrawer />
 
 <style>
   .nav-link {

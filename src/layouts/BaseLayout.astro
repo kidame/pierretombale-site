@@ -12,7 +12,7 @@ interface Props {
   description?: string;
   /** Social share image. Accepts an imported asset or an absolute-from-root path. */
   image?: ImageMetadata | string;
-  /** Excludes the page from search indexes (cart, 404, previews). */
+  /** Excludes the page from search indexes (devis, 404, previews). */
   noindex?: boolean;
   includeHeader?: boolean;
   includeFooter?: boolean;
@@ -84,74 +84,6 @@ const ogImage = new URL(social.src, origin).href;
         document.documentElement.dataset.motion = "on";
       }
     </script>
-
-    <script is:inline>
-      (() => {
-        const storageKey = "atelier-ko-cart";
-
-        function readCart() {
-          try {
-            return JSON.parse(window.localStorage.getItem(storageKey) || "[]");
-          } catch {
-            return [];
-          }
-        }
-
-        function writeCart(items) {
-          window.localStorage.setItem(storageKey, JSON.stringify(items));
-          document.dispatchEvent(new CustomEvent("atelier-cart-change", { detail: items }));
-        }
-
-        function count(items = readCart()) {
-          return items.reduce((total, item) => total + Number(item.quantity || 0), 0);
-        }
-
-        function updateBadges() {
-          const total = count();
-          document.querySelectorAll("[data-cart-count]").forEach((node) => {
-            node.textContent = String(total).padStart(2, "0");
-          });
-          document.querySelectorAll("[data-cart-label]").forEach((node) => {
-            node.setAttribute("aria-label", `Cart, ${total} ${total === 1 ? "item" : "items"}`);
-          });
-        }
-
-        window.AtelierCart = {
-          read: readCart,
-          write: writeCart,
-          count,
-          add(slug, quantity = 1) {
-            const items = readCart();
-            const existing = items.find((item) => item.slug === slug);
-            if (existing) {
-              existing.quantity += quantity;
-              writeCart(items);
-              return;
-            }
-            writeCart([...items, { slug, quantity }]);
-          },
-          remove(slug) {
-            writeCart(readCart().filter((item) => item.slug !== slug));
-          },
-          setQuantity(slug, quantity) {
-            if (quantity <= 0) {
-              this.remove(slug);
-              return;
-            }
-            writeCart(readCart().map((item) => (item.slug === slug ? { ...item, quantity } : item)));
-          },
-          updateBadges,
-        };
-
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", updateBadges);
-        } else {
-          updateBadges();
-        }
-        window.addEventListener("storage", updateBadges);
-        document.addEventListener("atelier-cart-change", updateBadges);
-      })();
-    </script>
   </head>
   <body>
     <a
@@ -163,90 +95,6 @@ const ogImage = new URL(social.src, origin).href;
     {includeHeader && <SiteHeader currentPath={Astro.url.pathname} />}
     <slot />
     {includeFooter && <SiteFooter />}
-
-    <script is:inline>
-      // Cart drawer. The panel lives once in the header, so open/close is
-      // delegated from the document. Any element with `data-cart-toggle` opens
-      // it and any `data-cart-close` closes it, which means pages never wire up
-      // their own handlers. Without JavaScript the header cart stays an
-      // ordinary link to /cart and this never runs.
-      (() => {
-        const drawer = document.querySelector("[data-cart-drawer]");
-        if (!drawer) return;
-
-        const panel = drawer.querySelector("[data-cart-panel]");
-        const focusableSelector =
-          "a[href],button:not([disabled]),input:not([disabled]),[tabindex]:not([tabindex='-1'])";
-        let lastFocused = null;
-
-        function setOpen(open) {
-          drawer.hidden = !open;
-          document.documentElement.style.overflow = open ? "hidden" : "";
-          document.querySelectorAll("[data-cart-toggle]").forEach((toggle) => {
-            toggle.setAttribute("aria-expanded", String(open));
-          });
-
-          if (open) {
-            lastFocused = document.activeElement;
-            panel.querySelector("[data-cart-close]")?.focus({ preventScroll: true });
-          } else if (lastFocused) {
-            lastFocused.focus({ preventScroll: true });
-          }
-        }
-
-        window.AtelierCart.openDrawer = () => setOpen(true);
-
-        document.addEventListener("click", (event) => {
-          const target = event.target instanceof Element ? event.target : null;
-          if (!target) return;
-
-          if (target.closest("[data-cart-toggle]")) {
-            event.preventDefault();
-            setOpen(drawer.hidden);
-          } else if (target.closest("[data-cart-close]") || target.matches("[data-cart-backdrop]")) {
-            setOpen(false);
-          }
-        });
-
-        // Any control with `data-add-to-cart` adds its product and opens the
-        // panel, so the drawer is the confirmation rather than a label swap.
-        document.addEventListener("click", (event) => {
-          const button = event.target instanceof Element && event.target.closest("[data-add-to-cart]");
-          if (!button) return;
-
-          const quantity = Number(button.dataset.addQuantity || 1);
-          window.AtelierCart.add(button.dataset.addToCart, Math.max(1, quantity));
-          setOpen(true);
-        });
-
-        document.addEventListener("keydown", (event) => {
-          if (drawer.hidden) return;
-
-          if (event.key === "Escape") {
-            event.preventDefault();
-            setOpen(false);
-            return;
-          }
-
-          if (event.key !== "Tab") return;
-
-          const focusable = Array.from(panel.querySelectorAll(focusableSelector)).filter(
-            (node) => node.offsetParent !== null,
-          );
-          const first = focusable[0];
-          const last = focusable[focusable.length - 1];
-          if (!first || !last) return;
-
-          if (event.shiftKey && document.activeElement === first) {
-            event.preventDefault();
-            last.focus();
-          } else if (!event.shiftKey && document.activeElement === last) {
-            event.preventDefault();
-            first.focus();
-          }
-        });
-      })();
-    </script>
 
     <script is:inline>
       // Scroll reveals. Each target unobserves itself after firing once, so the
