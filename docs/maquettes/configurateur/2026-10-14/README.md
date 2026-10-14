@@ -25,3 +25,6 @@ Les trois zones et reglages de police ne tranchent pas les questions encore ouve
 Les materiaux, accessoires, textes et monuments sont illustratifs, pas le catalogue final.
 Les choix actifs, champs, prix et mentions devront suivre les decisions et le contrat du site.
 Aucun code runtime, build, deploiement ou envoi de formulaire dans cette livraison.
+
+## Direction design derivee
+Lecture et regles : DIRECTION-DESIGN.md (ce qu on garde, ce qu on adapte, points ouverts).
