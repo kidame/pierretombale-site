@@ -44,6 +44,12 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 14.10.2026, Codex : archivage des 6 maquettes ordinateur/mobile dans
+  `docs/maquettes/configurateur/2026-10-14/`, PNG originaux numerotes et README.
+  Correction de Thomas : motifs de gravure SVG sans fond dans les apercus de
+  selection, aucun medaillon. PNG historiques non retouches ; accessoires hors v1.
+  Aucun code runtime, build, deploiement ou envoi. Suite : adapter les futures
+  maquettes a ces regles, sans changer les prerequis E5/E6.
 - 14.10.2026, Codex : preparation des images pour le futur configurateur, sans generation.
   Spec : `docs/images-configurateur/PREPARATION.md`, inventaire de 27 references
   (14 monuments, 13 cineraires), gabarit JSON de calibration a remplir. Masters orthographiques,

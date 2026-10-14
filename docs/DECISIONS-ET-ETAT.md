@@ -1,5 +1,12 @@
 # Décisions et état du projet PierreTombale.ch
 
+## Precision visuelle du configurateur (Thomas, 14.10.2026)
+- Motifs de gravure : SVG sans fond, egalement dans les apercus de selection.
+- Aucun medaillon. Cette decision prime sur les exemples visuels generes.
+- Maquettes originales : `docs/maquettes/configurateur/2026-10-14/README.md`.
+  Les PNG ne sont pas encore corriges ; accessoires toujours hors v1.
+  Cette livraison ne change ni le runtime ni les autres arbitrages ouverts.
+
 Mis à jour le 13.10.2026. Ce fichier complète la spec. En cas de contradiction, surtout sur le calendrier, c'est lui qui fait foi.
 
 ## Ce que les associés ont décidé ou confirmé
