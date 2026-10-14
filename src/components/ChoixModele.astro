@@ -59,6 +59,9 @@ const groupes = FAMILLES.map((famille) => ({
             value=""
             checked={aucunModele && groupe.famille === FAMILLES[0]}
           />
+          {/* Le point d interrogation est du TEXTE, pas une image ni une police
+              d icones : il se charge avec la page et grossit avec elle. */}
+          <span class="carte-icone" aria-hidden="true">?</span>
           <span class="carte-coche" aria-hidden="true">Choisi</span>
           <span class="carte-nom">Je ne sais pas encore, conseillez-moi</span>
           <span class="carte-desc type-body">
@@ -108,8 +111,9 @@ const groupes = FAMILLES.map((famille) => ({
   .choix-titre {
     grid-column: 1 / -1;
     margin: 1.5rem 0 0;
-    font-size: 0.8125rem;
-    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink);
   }
   .choix-titre:first-child {
     margin-top: 0;
@@ -124,6 +128,7 @@ const groupes = FAMILLES.map((famille) => ({
     flex-direction: column;
     padding: 0.5rem;
     border: 1px solid var(--line-strong);
+    border-radius: 3px;
     background-color: var(--canvas);
     cursor: pointer;
   }
@@ -134,13 +139,14 @@ const groupes = FAMILLES.map((famille) => ({
     opacity: 0;
   }
 
-  /* L etat coche ne se joue pas sur la couleur seule : bordure epaisse ET le
-     mot « Choisi ». Le padding compense l epaississement pour que la grille ne
-     bouge pas au clic. */
+  /* L etat coche ne se joue pas sur la couleur seule : bordure de 2 px, fond
+     legerement teinte ET le mot « Choisi ». Le padding compense
+     l epaississement pour que la grille ne bouge pas au clic. */
   .carte-modele:has(input:checked) {
-    padding: calc(0.5rem - 2px);
-    border-width: 3px;
+    padding: calc(0.5rem - 1px);
+    border-width: 2px;
     border-color: var(--ink);
+    background-color: var(--surface);
   }
   .carte-modele:has(input:focus-visible) {
     outline: 2px solid var(--ink);
@@ -155,39 +161,61 @@ const groupes = FAMILLES.map((famille) => ({
     align-self: flex-start;
     margin-top: 0.5rem;
     background-color: var(--ink);
-    padding: 0.125rem 0.5rem;
+    padding: 0.1875rem 0.5rem;
     color: var(--canvas);
-    font-size: 0.6875rem;
-    letter-spacing: 0.08em;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
   }
 
   .carte-nom {
     margin-top: 0.5rem;
-    font-size: 0.9375rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 600;
     line-height: 1.3;
   }
   .carte-desc {
     margin-top: 0.25rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     color: var(--muted);
   }
   .carte-prix {
     margin-top: 0.375rem;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     color: var(--muted);
   }
 
   /* Pas de vignette sur la carte « conseillez-moi » : son texte prend la place
-     de l image, centre sur la hauteur de ses voisines. */
+     de l image, centre sur la hauteur de ses voisines. Un fond teinte et un
+     point d interrogation la distinguent au premier coup d oeil : ne pas savoir
+     est un choix offert, pas un modele de plus. */
   .carte-conseil {
     justify-content: center;
     min-height: 11rem;
+    background-color: var(--surface);
     text-align: center;
+  }
+  /* Son fond etant deja teinte, la carte « conseillez-moi » cochee va d un cran
+     plus loin : sinon l etat coche ne se lirait que sur la bordure. */
+  .carte-conseil:has(input:checked) {
+    background-color: var(--surface-strong);
   }
   .carte-conseil:has(input:checked) .carte-coche {
     align-self: center;
+  }
+  .carte-icone {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background-color: var(--canvas);
+    font-size: 1.5rem;
+    line-height: 1;
   }
 
   /* `hidden` doit l emporter sur le `display: flex` ci-dessus : c est ainsi que

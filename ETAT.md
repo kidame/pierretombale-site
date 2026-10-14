@@ -35,14 +35,90 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [x] E5. Personnalisation guidee dans le formulaire de devis (4 lignes d inscription, polices sur
       echantillons, hauteur des lettres, finition, motif, apercu en direct du texte) ; configurateur
       visuel reporte (voir `docs/CONFIGURATEUR-FUTUR.md`).
+      PASSE 3 TERMINEE (etapes + choix visuel).
       (passe 1 : personnalisation guidee ; passe 2 : simplification pour les familles, police unique,
-      pastilles de granit, sections conditionnelles, brouillon. Passe 3 eventuelle, etapes et
-      recapitulatif, a decider APRES un test sur telephone avec un proche age.)
+      pastilles de granit, sections conditionnelles, brouillon ; passe 3 : choix visuel du modele en
+      cartes (A), parcours en 4 etapes avec recapitulatif (B), lisibilite et zones cliquables (C).)
 - [ ] E6. Envoi du devis : fonction Cloudflare Pages + Resend (pas de n8n), adresse en variable
       d environnement, Turnstile. Aucun secret dans le repo. Suivre `docs/devis-contrat.md`.
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 14.10.2026, E5 PASSE 3 SOUS-PASSE C TERMINEE (Claude Code) : LISIBILITE, ZONES CLIQUABLES, FINITIONS.
+  E5 EST FINIE. Tout l habillage est en CSS DE PAGE (`devis.astro` et `ChoixModele.astro`) :
+  `src/styles.css` n est PAS touche, et AUCUNE classe Tailwind n a ete ajoutee ni retiree (la feuille
+  Tailwind est unique et partagee par les 23 pages). Les classes `grav-*` nouvelles ne sont pas des
+  utilitaires, donc elles ne generent rien. Les blocs `<style>` de page ne sont dans aucune couche CSS
+  (`@layer`) : ils l emportent sur les composants et les utilitaires Tailwind SANS selecteur plus
+  precis ni `!important`. C est par la que `.field`, `.field-label` et `.btn` sont redefinis pour
+  cette page seule.
+  LIBELLES : `.field-label` passe du mono gris majuscule de 10 px a 16 px, minuscules, var(--ink),
+  graisse 500 (donc tous les `label for=` et toutes les `legend` d un coup) ; `.grav-sous-label`
+  ("Texte", "Taille des lettres") de meme. Le mono majuscule ne reste QUE sur le `h2` d etape
+  (`.etape-titre`, 15 px, var(--ink)), sur les titres de section (`.etape p.label`, 13 px) et dans la
+  barre de progression. PIEGE : le `h2` porte `label` ET `etape-titre` ; le selecteur des titres de
+  section est donc `.etape p.label`, sinon il reprendrait le `h2` (2 classes contre 1).
+  AIDES : toutes a 15 px au moins (`.grav-aide`, `.grav-rappel`, `.grav-vide`, `.grav-erreur`).
+  CONTRASTE verifie au calcul : var(--muted) #5a5a56 donne 6,3:1 sur le fond #f4f4f2 et le brun
+  d erreur #8d3c33 6,4:1 - tous deux au-dela des 4,5:1 demandes. L `opacity: 0.45` des etapes sautees
+  est RETIREE pour cette raison (elle cassait le contraste) : gris + texte barre a la place.
+  ZONES CLIQUABLES (>= 48 px, bordure 1 px, coin de 3 px, coche = bordure 2 px var(--ink) + fond
+  var(--surface) + le rond natif coche) : `.grav-carte` (type de demande), `.grav-onglet` (famille),
+  `.grav-choix` (recontact, finition, granit "je ne sais pas", consentement), `.grav-polices label`
+  (les 6 echantillons : nom 1.5rem dans la police, sous-titre 0.875rem). Focus clavier partout par
+  `:has(input:focus-visible)` -> outline 2 px. Les ronds natifs passent de 16 a 20 px (`.grav-radio`).
+  LES ONGLETS FAMILLE MONTRENT A NOUVEAU LEUR ROND NATIF (il etait masque en sous-passe A) et passent
+  en UN PAVE PAR LIGNE sur telephone (grille 3 colonnes des 40rem) : trois paves serres sur 390 px ne
+  se touchent pas. Les pastilles de granit gardent leur anneau (la couleur fait le travail), rond
+  porte de 44 a 48 px.
+  CHAMPS : `.field` devient une BOITE COMPLETE (bordure 1 px sur les 4 cotes, coin 3 px, 48 px de
+  haut, texte 16 px, fond canvas) au lieu du seul trait bas du theme, focus = outline 2 px + bordure
+  var(--ink) (le theme mettait `outline: none`). Le champ fichier a la meme boite (`.grav-fichier`).
+  BOUTONS : Continuer / Retour / Envoyer / Ajouter une ligne a 52 px de haut, texte 16 px en
+  minuscules (plus le petit mono majuscule du theme) ; pleine largeur sous 640 px. ORDRE SUR MOBILE :
+  `.etape-nav` est en `column-reverse`, donc Continuer (dernier dans le HTML) s affiche AU-DESSUS de
+  Retour ; en `row` des 40rem, l ordre du HTML revient.
+  BARRE DE PROGRESSION : 14 px, pastille de 28 px, etape courante = pastille PLEINE (fond ink, texte
+  canvas), etapes sautees grisees et barrees PLUS une mention "(non concernée)" hors de l oeil
+  (classe `.sr`, attribut `hidden` pose par `majBarre`) : un texte barre ne s entend pas.
+  BOGUE DU NO-JS CORRIGE : `[hidden]` ne gagnait pas contre un `display` d auteur, donc la barre
+  (`.etapes`, flex), les navigations (`.etape-nav`, flex) et le bouton "Ajouter une ligne" (`.btn`,
+  inline-flex) s affichaient SANS JavaScript, alors qu ils n ont alors aucun sens. Une regle
+  `[hidden] { display: none }` dans le bloc de page (hors couche, donc gagnante) plus deux regles
+  precises reglent les trois cas. A RETENIR pour toute nouvelle classe de ce bloc : si elle declare
+  `display`, elle doit prevoir son `[hidden]`.
+  DATE : `min` = aujourd hui, pose AU CHARGEMENT par `poseDateMinimale()` (pas au build : une page en
+  cache proposerait la date de sa generation), en fuseau LOCAL champ par champ - `toISOString()`
+  donnerait la veille en Suisse avant 1 h du matin.
+  TELEPHONE : `inputmode="tel"` et l aide "Par exemple 079 123 45 67".
+  RECAPITULATIF : chaque bloc est une LISTE DE DEFINITIONS (`dl` / `dt` / `dd`, intitule au-dessus,
+  reponse en dessous : rien ne se tasse sur 390 px) au lieu de paragraphes ; "Modifier" est SOULIGNE
+  en permanence (`.recap-modifier`, 44 px de haut) et non plus au survol seulement. L apercu de la
+  gravure est bien le MEME noeud deplace dans le recap (verifie dans dist : un seul `[data-apercu]`,
+  une place a l etape 3 et une a l etape 4).
+  CHOIXMODELE : la carte "conseillez-moi" se distingue par un fond teinte (var(--surface), et
+  var(--surface-strong) quand elle est cochee, sinon l etat coche ne se lirait que sur la bordure) et
+  un POINT D INTERROGATION EN TEXTE dans un rond de 44 px - pas d image, pas de police d icones. Nom
+  16 px graisse 600, prix 14 px, badge "Choisi" porte a 13 px, bordure cochee ramenee de 3 a 2 px.
+  CONTRAT DES CHAMPS : AUCUN CHAMP NOUVEAU, confirme et note en tete de `docs/devis-contrat.md`
+  (les 29 `name=` de dist sont exactement ceux du contrat ; les seuls ajouts sont des attributs,
+  `inputmode` et `min`, et un `<span>` lu par les lecteurs d ecran).
+  MESURES (gzip niveau 9, meme calcul que `scripts/poids-pages.py`, par integration temporaire dans
+  `astro.config.mjs`, retiree depuis ; `python3 scripts/poids-pages.py dist` reste REFUSE a l agent,
+  le motif `Bash(python3 scripts/:*)` coupe au milieu d un mot) : SEUL `/devis/` change. html 21060
+  (20251 en sous-passe B), js en ligne 13146 (12474), css 9120 = 6834 partage + 2286 propre (1839).
+  PREUVE QU AUCUNE AUTRE PAGE NE CHANGE : 404.html 3783 et css 6834 partout, a l octet comme en
+  sous-passe B. Comme le nom du fichier CSS partage contient son empreinte, un 404.html inchange a
+  l octet prouve que la feuille partagee est inchangee elle aussi.
+  Verifie : `npm run build` 23 pages, `npx astro check` 34 fichiers 0 erreur ; dans dist les 4
+  sections sont dans l ordre 1-2-3-4 et AUCUNE ne porte `hidden`, 7 attributs `required` (les 5 champs
+  prevus), 3 radios famille, 14 radios modele, 8 `grav-choix`, 1 `inputmode="tel"`, 4 mentions
+  "(non concernée)", aucun `min` en dur sur la date, sitemap 21 adresses,
+  `grep -rliE "atelier|kosovo|sous-trait|fabriqu|n8n" dist` vide.
+  PAS FAIT, ET ASSUME : le script en ligne (plus de 750 lignes, 13146 octets gz) n est pas extrait
+  dans `src/scripts/devis.ts` (section 9 de la spec). C est le premier levier si `/devis/` doit
+  maigrir : un `<script is:inline>` n est ni minifie ni depouille de ses commentaires.
+  PAS FAIT : l essai dans un navigateur (aucun navigateur dans la session) ; c est Thomas qui verifie.
 - 14.10.2026, E5 PASSE 3 SOUS-PASSE B TERMINEE (Claude Code) : PARCOURS EN 4 ETAPES ET RECAPITULATIF.
   `src/pages/devis.astro` : 4 `<section data-etape="N" aria-labelledby="etape-N-titre">` dans l ordre de
   la spec (1 Votre demande : typeDemande en 3 cartes radio avec une phrase, commune, cimetiere, date ;
@@ -418,16 +494,15 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E5 PASSE 3, SOUS-PASSE C : les styles et les finitions. `docs/SPEC-DEVIS-ETAPES.md` FAIT FOI
-(sections 6 et 8) : libelles de champs a 15-16 px en minuscules et en couleur de texte principale (les
-petits libelles mono majuscules ne restent que pour les titres de section), zone cliquable des radios
-et des cases >= 44 px de haut, boutons "Continuer" pleine largeur et >= 48 px sur telephone,
-`min` = date du jour sur `datePoseSouhaitee` (calculee en JS cote client), telephone `inputmode="tel"`
-avec l aide "ex. 079 123 45 67". Mettre `docs/devis-contrat.md` a jour (aucun champ nouveau n est
-attendu ; la sous-passe B n en a ajoute aucun, seule l etape du brouillon a change et elle ne part pas
-avec la demande). A decider la aussi : extraire le script dans `src/scripts/devis.ts` pour qu il soit
-minifie (section 9 de la spec ; il approche 700 lignes et pese 12474 octets gz en ligne).
-A FAIRE AVANT E6, decision de Thomas : essayer le parcours sur un telephone avec un proche age.
+TEST PAR THOMAS AVEC UN PROCHE AGE, SUR UN TELEPHONE (sa decision du 14.10.2026, prealable a E6).
+E5 est terminee : plus rien n est a construire sur `/devis/` avant ce test. Ce qu il faut regarder :
+le parcours complet en 4 etapes sur un ecran de 390 px, les etapes 2 et 3 sautees selon le type de
+demande, le retour arriere qui conserve les reponses, le rechargement qui reprend a la meme etape, les
+boutons et les cases assez grands pour un pouce age, et le recapitulatif qui se relit sans lunettes.
+Ce qui n a PAS pu etre essaye dans la session : rien dans un navigateur (il n y en a pas).
+Si la page doit maigrir ou si le script devient difficile a tenir : l extraire dans
+`src/scripts/devis.ts` (section 9 de `docs/SPEC-DEVIS-ETAPES.md`) le ferait minifier ; il pese
+13146 octets gz en ligne, surtout des commentaires.
 
 ENSUITE E6 : ENVOI DU DEVIS. Fonction Cloudflare Pages `functions/api/devis.ts` + Resend (PAS de n8n,
 decision de Thomas du 13.10.2026), adresse de destination en variable d environnement, Turnstile.

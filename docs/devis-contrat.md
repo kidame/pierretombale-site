@@ -5,6 +5,11 @@ faire. C'est la référence de l'étape **E6**.
 
 - Formulaire : `src/pages/devis.astro` (écrit à l'étape E4 passe 4, complété à l'étape E5 par la
   personnalisation guidée, simplifié à l'étape E5 passe 2 du 14.10.2026).
+- **E5 passe 3 (14.10.2026) n'ajoute, ne retire et ne renomme AUCUN champ** — vérifié dans `dist` :
+  les 29 champs listés ci-dessous sont exactement ceux que la page envoie. Les trois sous-passes ont
+  changé la présentation seulement : choix du modèle en cartes (A), découpage en quatre étapes et
+  récapitulatif (B), lisibilité et zones cliquables (C). L'étape en cours est gardée dans le
+  brouillon du navigateur sous la clef `__etape`, qui **ne part jamais** avec la demande.
 - Réglages : `src/config/devis.ts` — `envoiActif`, `endpoint`, limites de fichiers, délai anti-robot,
   format de la référence, clé du brouillon, messages affichés.
 - Choix de gravure : `src/data/personnalisation.ts` — polices, hauteurs de lettres, finitions,

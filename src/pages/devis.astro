@@ -184,11 +184,18 @@ const reglages = {
   },
 };
 
+/* Les classes des champs. Chacune commence par une classe `grav-*` ou `etape-*`
+   habillee dans le `<style>` de la page ; les classes Tailwind qui suivent sont
+   celles que la page portait deja. REGLE DE POIDS (passe 3, sous-passe C) : on
+   n AJOUTE ni ne RETIRE aucune classe Tailwind, car la feuille Tailwind est
+   unique et partagee par les 23 pages - la toucher ferait changer le poids de
+   tout le site. Tout l habillage de la sous-passe C passe donc par du CSS de
+   page, qui ne part qu avec /devis/. */
 const classeChamp = "field mt-2";
-const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
-const classeRadio = "mt-1 size-4 shrink-0 accent-[var(--ink)]";
-const classeChoix = "flex items-start gap-3 text-[0.9375rem]";
-const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
+const classeErreur = "grav-erreur type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
+const classeRadio = "grav-radio mt-1 size-4 shrink-0 accent-[var(--ink)]";
+const classeChoix = "grav-choix flex items-start gap-3 text-[0.9375rem]";
+const classeAide = "grav-aide type-body mt-2 text-[0.8125rem] text-muted";
 const classeTitreEtape = "label etape-titre";
 ---
 
@@ -230,6 +237,11 @@ const classeTitreEtape = "label etape-titre";
                   {etape.numero}
                 </span>
                 <span>{etape.court}</span>
+                {/* Une etape sautee se voit grisee et barree. Un texte barre se
+                    lit a l oeil mais ne s entend pas : cette mention, montree
+                    par le script en meme temps que le gris, le dit aux lecteurs
+                    d ecran. Elle reste hors de l oeil (classe `sr`). */}
+                <span class="sr" data-etape-sautee-dit hidden>(non concernée)</span>
               </li>
             ))
           }
@@ -344,7 +356,13 @@ const classeTitreEtape = "label etape-titre";
                 {
                   ongletsFamille.map((onglet) => (
                     <label class="grav-onglet">
-                      <input type="radio" name="famille" value={onglet.valeur} checked={onglet.valeur === ""} />
+                      <input
+                        class={classeRadio}
+                        type="radio"
+                        name="famille"
+                        value={onglet.valeur}
+                        checked={onglet.valeur === ""}
+                      />
                       <span>{onglet.label}</span>
                     </label>
                   ))
@@ -354,7 +372,7 @@ const classeTitreEtape = "label etape-titre";
 
             <fieldset class="mt-10">
               <legend class="field-label">Modèle du catalogue (facultatif)</legend>
-              <p class="type-body mt-2 max-w-[56ch] text-[0.8125rem] text-muted">
+              <p class="grav-aide type-body mt-2 max-w-[56ch] text-[0.8125rem] text-muted">
                 Pour nous donner une idée. Rien n'est définitif : nous en reparlons ensemble.
               </p>
               <ChoixModele modeleInitial="" />
@@ -432,7 +450,7 @@ const classeTitreEtape = "label etape-titre";
                 utilisable sans JavaScript. */}
             <fieldset class="mt-10">
               <legend class="field-label">Style d'écriture</legend>
-              <p class="type-body mt-2 max-w-[56ch] text-[0.8125rem] text-muted">
+              <p class="grav-aide type-body mt-2 max-w-[56ch] text-[0.8125rem] text-muted">
                 Le même style pour toutes les lignes. Chaque nom est écrit dans son style.
               </p>
               <div class="grav-polices">
@@ -591,7 +609,9 @@ const classeTitreEtape = "label etape-titre";
                 </p>
                 {lignesInscription.map((ligne) => <p data-apercu-ligne={String(ligne.numero)} hidden></p>)}
               </div>
-              <p class="type-body mt-3 max-w-[56ch] text-[0.8125rem] text-muted">{MENTION_APERCU}</p>
+              <p class="grav-aide type-body mt-3 max-w-[56ch] text-[0.8125rem] text-muted">
+                {MENTION_APERCU}
+              </p>
             </div>
           </div>
 
@@ -659,10 +679,15 @@ const classeTitreEtape = "label etape-titre";
                 id="telephone"
                 name="telephone"
                 type="tel"
+                inputmode="tel"
                 autocomplete="tel"
                 aria-describedby="telephone-aide telephone-erreur"
               />
-              <p class={classeAide} id="telephone-aide">Si vous préférez que nous vous appelions.</p>
+              {/* `inputmode="tel"` ouvre le pave numerique du telephone, et
+                  l exemple evite d avoir a deviner le format attendu. */}
+              <p class={classeAide} id="telephone-aide">
+                Si vous préférez que nous vous appelions. Par exemple 079 123 45 67.
+              </p>
               <p class={classeErreur} id="telephone-erreur" data-erreur="telephone"></p>
             </div>
 
@@ -733,7 +758,7 @@ const classeTitreEtape = "label etape-titre";
 
             <label class="field-label mt-6" for="fichiers">Fichiers à joindre (facultatif)</label>
             <input
-              class="mt-3 block w-full text-[0.9375rem]"
+              class="grav-fichier mt-3 block w-full text-[0.9375rem]"
               id="fichiers"
               name="fichiers"
               type="file"
@@ -741,7 +766,7 @@ const classeTitreEtape = "label etape-titre";
               accept={acceptFichiers}
               aria-describedby="fichiers-aide fichiers-erreur"
             />
-            <p class="type-body mt-3 text-[0.8125rem] text-muted" id="fichiers-aide">
+            <p class="grav-aide type-body mt-3 text-[0.8125rem] text-muted" id="fichiers-aide">
               Un dessin à faire graver, une photo du monument existant, une esquisse. JPEG, PNG, WEBP ou
               PDF, {fichiersDevis.nombreMax} fichiers au maximum et {tailleTotaleMaxLisible} au total.
             </p>
@@ -859,57 +884,232 @@ const classeTitreEtape = "label etape-titre";
       max-width: 24rem;
     }
 
-    /* Les quatre etapes : barre de progression, boutons, titres. Le strict
-       necessaire au parcours ; l habillage des libelles et des zones
-       cliquables vient a la sous-passe C. */
+    /* L attribut `hidden` doit TOUJOURS l emporter sur un `display` du theme.
+       Sans cette ligne, le bouton "Ajouter une ligne" (classe `btn`, donc
+       `display: inline-flex`) apparaitrait quand JavaScript est absent, alors
+       que les quatre lignes sont deja toutes la. Ce bloc n etant dans aucune
+       couche CSS, il l emporte sur `@layer components` sans `!important`.
+       Les regles plus precises `.etapes[hidden]` et `.etape-nav[hidden]`
+       ci-dessous font le meme travail pour ces deux-la, quel que soit l ordre. */
+    [hidden] {
+      display: none;
+    }
+
+    /* Hors de l oeil, mais lu par les lecteurs d ecran. Meme recette que le
+       piege anti-robot plus haut dans la page : jamais `display: none`, qui
+       retirerait le texte de la lecture. */
+    .sr {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ------------------------------------------------- Lisibilite generale ---
+       SOUS-PASSE C. Public vise : des familles agees, sur un telephone, souvent
+       en plein jour. D ou : des libelles en minuscules a 16 px dans la couleur
+       du texte (le mono gris de 10 px du theme ne reste QUE sur les titres
+       d etape et de section), des aides a 15 px au moins, des champs en boites
+       completes et des zones a toucher d au moins 48 px.
+       Ces regles REMPLACENT ici celles de `src/styles.css` : ce bloc n est pas
+       dans une couche CSS (`@layer`), il l emporte donc sur les composants et
+       les utilitaires Tailwind sans avoir besoin d un selecteur plus precis. Et
+       comme Astro le limite a cette page, les 22 autres ne changent pas. */
+
+    /* Libelle de champ : une phrase, pas une etiquette technique. */
+    .field-label {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: -0.006em;
+      text-transform: none;
+      color: var(--ink);
+    }
+
+    /* Texte d aide sous un champ. `--muted` donne 6,3:1 sur le fond : au-dela
+       du minimum de 4,5:1, meme a cette taille. */
+    .grav-aide {
+      font-size: 0.9375rem;
+    }
+
+    /* Message d erreur. Le brun-rouge donne 6,4:1 sur le fond ; la taille le
+       met au niveau du texte courant, car c est ce qu il faut lire en premier. */
+    .grav-erreur {
+      font-size: 0.9375rem;
+    }
+
+    /* Champs texte, listes deroulantes et zones de texte : une BOITE COMPLETE,
+       pas un simple trait bas. Un trait seul se devine mal sur un telephone, et
+       rien ne dit alors ou commence la zone a toucher. */
+    .field {
+      min-height: 3rem;
+      padding: 0.6875rem 0.75rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background-color: var(--canvas);
+      font-size: 1rem;
+    }
+    .field:focus,
+    .field:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 1px;
+      border-color: var(--ink);
+    }
+    .grav-fichier {
+      min-height: 3rem;
+      padding: 0.6875rem 0.75rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      font-size: 1rem;
+    }
+
+    /* Les boutons radio et les cases restent NATIFS et VISIBLES (sauf pastilles
+       de granit et cartes modele, ou la couleur et la vignette font le travail) :
+       une famille agee reconnait un rond coche. 20 px plutot que 16. */
+    .grav-radio {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    /* Un choix a cocher = une boite d au moins 48 px de haut, bordee, que l on
+       touche n importe ou. Coche : bordure de 2 px, fond teinte, et le rond
+       natif coche - jamais la couleur seule. */
+    .grav-choix {
+      padding: 0.875rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      min-height: 3rem;
+      font-size: 1rem;
+      line-height: 1.45;
+      cursor: pointer;
+    }
+    .grav-choix:has(input:checked) {
+      padding: calc(0.875rem - 1px);
+      border-width: 2px;
+      border-color: var(--ink);
+      background-color: var(--surface);
+    }
+    .grav-choix:has(input:focus-visible) {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    /* Les quatre etapes : barre de progression, boutons, titres. */
     .etapes {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem 1.25rem;
+      gap: 0.75rem 1.25rem;
       margin: 0 0 2.5rem;
       padding: 0;
       list-style: none;
-      font-size: 0.8125rem;
+      font-size: 0.875rem;
       color: var(--muted);
+    }
+    /* `display: flex` l emporterait sur le `display: none` que le navigateur
+       applique a l attribut `hidden` : sans cette ligne, la barre et les boutons
+       de navigation apparaitraient AUSSI quand JavaScript est absent, alors que
+       les quatre etapes sont alors visibles a la suite et qu il n y a rien a
+       numeroter. Meme precaution plus bas pour `.etape-nav`. */
+    .etapes[hidden] {
+      display: none;
     }
     .etape-item {
       display: flex;
-      align-items: baseline;
-      gap: 0.375rem;
+      align-items: center;
+      gap: 0.5rem;
     }
     .etape-numero {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.75rem;
+      height: 1.75rem;
       border: 1px solid var(--line-strong);
       border-radius: 999px;
-      font-size: 0.6875rem;
+      font-size: 0.875rem;
     }
     .etape-item[aria-current="step"] {
       color: var(--ink);
       font-weight: 500;
     }
+    /* L etape en cours est la seule pastille pleine : elle se repere sans lire. */
     .etape-item[aria-current="step"] .etape-numero {
       border-color: var(--ink);
-      border-width: 2px;
+      background-color: var(--ink);
+      color: var(--canvas);
     }
-    /* Une etape sautee reste visible, grisee : la famille voit qu elle n a pas
-       ete oubliee, mais qu elle ne la concerne pas. */
+    /* Une etape sautee reste visible, grisee et barree : la famille voit qu elle
+       n a pas ete oubliee, mais qu elle ne la concerne pas. Pas d `opacity`, qui
+       ferait tomber le contraste sous le minimum ; le gris du theme tient 6,3:1
+       et le texte barre dit le reste a l oeil, la mention `.sr` au casque. */
     .etape-item[data-sautee] {
-      opacity: 0.45;
+      color: var(--muted);
       text-decoration: line-through;
     }
+    .etape-item[data-sautee] .etape-numero {
+      text-decoration: none;
+    }
+
+    /* Navigation. Sur telephone les boutons prennent toute la largeur et
+       "Continuer" passe AU-DESSUS de "Retour" (`column-reverse` : il est le
+       dernier dans le HTML, donc le premier a l oeil) - le geste qui avance
+       doit tomber sous le pouce, celui qui recule plus loin. */
     .etape-nav {
       display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
+      flex-direction: column-reverse;
+      gap: 0.75rem;
       margin-top: 2.5rem;
+    }
+    .etape-nav[hidden] {
+      display: none;
+    }
+    .etape-titre {
+      font-size: 0.9375rem;
+      color: var(--ink);
     }
     .etape-titre:focus-visible {
       outline: 2px solid var(--ink);
       outline-offset: 4px;
+    }
+    /* Les titres de section mono majuscules du theme : gardes, mais un cran plus
+       lisibles que les 11 px d origine. Selecteur sur `p` pour ne pas rattraper
+       le `h2` de l etape, qui porte lui aussi la classe `label`. */
+    .etape p.label {
+      font-size: 0.8125rem;
+    }
+
+    /* Boutons du parcours : hauts de 52 px, en minuscules et a 16 px plutot que
+       le petit mono majuscule du theme. "Continuer" et "Envoyer" en fond sombre,
+       "Retour" en bordure (classes `btn-primary` et `btn-outline` du theme). */
+    .etape-nav .btn,
+    [data-devis-envoyer],
+    [data-ajouter-ligne] {
+      min-height: 3.25rem;
+      padding: 0.875rem 1.5rem;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      letter-spacing: -0.006em;
+      text-transform: none;
+      white-space: normal;
+    }
+    @media (max-width: 39.9375rem) {
+      .etape-nav .btn,
+      [data-devis-envoyer] {
+        width: 100%;
+      }
+    }
+    @media (min-width: 40rem) {
+      .etape-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
     }
 
     /* Les trois types de demande, en cartes : la phrase explique le choix.
@@ -924,14 +1124,17 @@ const classeTitreEtape = "label etape-titre";
       display: flex;
       align-items: flex-start;
       gap: 0.75rem;
+      min-height: 3rem;
       padding: 1rem;
       border: 1px solid var(--line-strong);
+      border-radius: 3px;
       cursor: pointer;
     }
     .grav-carte:has(input:checked) {
       padding: calc(1rem - 1px);
       border-width: 2px;
       border-color: var(--ink);
+      background-color: var(--surface);
     }
     .grav-carte:has(input:focus-visible) {
       outline: 2px solid var(--ink);
@@ -939,9 +1142,9 @@ const classeTitreEtape = "label etape-titre";
     }
     .grav-carte-nom {
       display: block;
-      font-size: 0.9375rem;
+      font-size: 1rem;
       font-weight: 500;
-      line-height: 1.3;
+      line-height: 1.35;
     }
 
     /* Le recapitulatif de l etape 4 : lecture seule, un bloc par etape. */
@@ -963,78 +1166,111 @@ const classeTitreEtape = "label etape-titre";
       margin: 0;
     }
     .recap-titre {
-      font-size: 0.9375rem;
-      font-weight: 500;
+      font-size: 1rem;
+      font-weight: 600;
     }
-    .recap-item {
-      margin: 0.375rem 0 0;
-      font-size: 0.9375rem;
+    /* Le lien "Modifier" est SOULIGNE en permanence : un mot cliquable qui
+       n a l air cliquable qu au survol n existe pas sur un telephone. La
+       hauteur de 44 px lui donne une zone a toucher. */
+    .recap-modifier {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+      font-size: 1rem;
+      text-decoration: underline;
+    }
+    /* Chaque bloc est une liste de definitions : l intitule au-dessus, la
+       reponse en dessous. Sur un telephone etroit, rien ne se tasse en colonnes
+       et chaque reponse garde toute la largeur. */
+    .recap-liste {
+      margin: 0.75rem 0 0;
     }
     .recap-cle {
+      font-size: 0.9375rem;
       color: var(--muted);
+    }
+    .recap-valeur {
+      margin: 0.125rem 0 0.875rem;
+      font-size: 1rem;
+    }
+    .recap-valeur:last-child {
+      margin-bottom: 0;
     }
 
     /* Les 6 styles d ecriture. Chaque nom est ecrit dans sa police : la liste
        est a la fois l echantillon et le choix. */
     .grav-polices {
       display: grid;
-      gap: 1.25rem;
+      gap: 0.75rem;
       margin-top: 1rem;
     }
+    /* Chaque echantillon est une boite a toucher, comme les autres choix. */
     .grav-polices label {
       display: flex;
       align-items: flex-start;
       gap: 0.75rem;
+      padding: 0.875rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .grav-polices label:has(input:checked) {
+      padding: calc(0.875rem - 1px);
+      border-width: 2px;
+      border-color: var(--ink);
+      background-color: var(--surface);
+    }
+    .grav-polices label:has(input:focus-visible) {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
     }
     .grav-nom {
       display: block;
       font-size: 1.5rem;
-      line-height: 1;
+      line-height: 1.1;
+      color: var(--ink);
     }
     .grav-style {
       display: block;
       margin-top: 0.25rem;
-      font-size: 0.75rem;
+      font-size: 0.875rem;
       color: var(--muted);
     }
 
     /* Les trois onglets de famille : de vrais boutons radio `famille`, habilles
-       en grands pavés. Au moins 44 px de haut, et l etat coche se lit sur la
-       bordure epaisse, pas sur une couleur seule. */
+       en grands paves d au moins 48 px. Le rond natif reste VISIBLE (il l etait
+       masque en sous-passe A) : une famille agee reconnait un rond coche bien
+       mieux qu une bordure. Un pave par ligne sur telephone, les trois cote a
+       cote au-dela : trois paves serres sur 390 px ne se touchent pas. */
     .grav-onglets {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
       gap: 0.5rem;
       margin-top: 0.75rem;
     }
     .grav-onglet {
-      position: relative;
-      flex: 1 1 8rem;
-    }
-    .grav-onglet input {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-    }
-    .grav-onglet span {
       display: flex;
       align-items: center;
-      justify-content: center;
-      min-height: 2.75rem;
-      padding: 0.5rem 1rem;
+      gap: 0.75rem;
+      min-height: 3rem;
+      padding: 0.875rem 1rem;
       border: 1px solid var(--line-strong);
-      font-size: 0.9375rem;
-      text-align: center;
+      border-radius: 3px;
+      font-size: 1rem;
       cursor: pointer;
     }
-    .grav-onglet input:checked + span {
-      padding: calc(0.5rem - 1px) calc(1rem - 1px);
+    /* Le `mt-1` des autres ronds ne sert qu aux libelles sur plusieurs lignes :
+       ici le pave est centre. */
+    .grav-onglet input {
+      margin-top: 0;
+    }
+    .grav-onglet:has(input:checked) {
+      padding: calc(0.875rem - 1px) calc(1rem - 1px);
       border-width: 2px;
       border-color: var(--ink);
+      background-color: var(--surface);
       font-weight: 500;
     }
-    .grav-onglet input:focus-visible + span {
+    .grav-onglet:has(input:focus-visible) {
       outline: 2px solid var(--ink);
       outline-offset: 2px;
     }
@@ -1047,8 +1283,9 @@ const classeTitreEtape = "label etape-titre";
     }
     .grav-granit-titre {
       margin: 0;
-      font-size: 0.8125rem;
-      color: var(--muted);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--ink);
     }
     .grav-pastilles {
       display: flex;
@@ -1074,8 +1311,8 @@ const classeTitreEtape = "label etape-titre";
     }
     .grav-rond {
       display: block;
-      width: 2.75rem;
-      height: 2.75rem;
+      width: 3rem;
+      height: 3rem;
       border-radius: 999px;
       box-shadow: inset 0 0 0 1px var(--line-strong);
       transition: box-shadow 200ms ease;
@@ -1088,7 +1325,7 @@ const classeTitreEtape = "label etape-titre";
         0 0 0 4px var(--ink);
     }
     .grav-pastille-nom {
-      font-size: 0.75rem;
+      font-size: 0.875rem;
       line-height: 1.25;
       color: var(--muted);
     }
@@ -1101,16 +1338,19 @@ const classeTitreEtape = "label etape-titre";
       display: grid;
       gap: 1.25rem;
     }
+    /* « Texte » et « Taille des lettres » sont des libelles de champ comme les
+       autres : meme taille, meme couleur. */
     .grav-sous-label {
       display: block;
-      font-size: 0.8125rem;
-      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
     }
     .grav-rappel {
       margin-top: 0.75rem;
       border-left: 2px solid var(--line);
       padding-left: 1rem;
-      font-size: 0.8125rem;
+      font-size: 0.9375rem;
     }
     .grav-motif {
       max-width: 32rem;
@@ -1118,6 +1358,9 @@ const classeTitreEtape = "label etape-titre";
     @media (min-width: 40rem) {
       .grav-polices {
         grid-template-columns: 1fr 1fr;
+      }
+      .grav-onglets {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
     @media (min-width: 48rem) {
@@ -1151,7 +1394,7 @@ const classeTitreEtape = "label etape-titre";
       overflow-wrap: anywhere;
     }
     .grav-vide {
-      font-size: 0.8125rem;
+      font-size: 0.9375rem;
       color: #f4f1ea;
     }
   </style>
@@ -1217,6 +1460,20 @@ const classeTitreEtape = "label etape-titre";
       function poseHorodatage() {
         const horodatage = champ("horodatage");
         if (horodatage) horodatage.value = String(Date.now());
+      }
+
+      /* Date de pose : on ne peut pas poser quelque chose dans le passe. Le
+         `min` est mis AU CHARGEMENT et non au build, sinon une page gardee en
+         cache proposerait encore la date de sa generation.
+         FUSEAU LOCAL, calcule champ par champ : `toISOString()` passe par UTC
+         et donnerait la veille en Suisse avant une ou deux heures du matin. */
+      function poseDateMinimale() {
+        const date = champ("datePoseSouhaitee");
+        if (!date) return;
+        const jour = new Date();
+        const mois = String(jour.getMonth() + 1).padStart(2, "0");
+        const quantieme = String(jour.getDate()).padStart(2, "0");
+        date.min = `${jour.getFullYear()}-${mois}-${quantieme}`;
       }
 
       /* ----------------------------------------- Comment vous recontacter ---
@@ -1521,8 +1778,13 @@ const classeTitreEtape = "label etape-titre";
       function majBarre() {
         for (const item of itemsEtapes) {
           const numero = Number(item.dataset.etapeItem);
-          if (etapeSautee(numero)) item.setAttribute("data-sautee", "");
+          const sautee = etapeSautee(numero);
+          if (sautee) item.setAttribute("data-sautee", "");
           else item.removeAttribute("data-sautee");
+          /* Le gris et le texte barre ne s entendent pas : la mention
+             "(non concernée)" le dit aux lecteurs d ecran. */
+          const dit = item.querySelector("[data-etape-sautee-dit]");
+          if (dit) dit.hidden = !sautee;
           if (numero === etapeCourante) item.setAttribute("aria-current", "step");
           else item.removeAttribute("aria-current");
         }
@@ -1622,7 +1884,7 @@ const classeTitreEtape = "label etape-titre";
         nom.textContent = titre;
         const modifier = document.createElement("button");
         modifier.type = "button";
-        modifier.className = "link";
+        modifier.className = "link recap-modifier";
         modifier.textContent = "Modifier";
         modifier.setAttribute("aria-label", `Modifier : ${titre}`);
         modifier.addEventListener("click", () => {
@@ -1635,16 +1897,23 @@ const classeTitreEtape = "label etape-titre";
         entete.appendChild(modifier);
         bloc.appendChild(entete);
 
+        /* Une liste de definitions : l intitule (`dt`) au-dessus, la reponse
+           (`dd`) en dessous. C est la structure que les lecteurs d ecran
+           annoncent par paires, et sur un telephone etroit chaque reponse garde
+           toute la largeur au lieu d etre tassee dans une colonne. */
+        const liste = document.createElement("dl");
+        liste.className = "recap-liste";
         for (const [cle, valeur] of utiles) {
-          const ligne = document.createElement("p");
-          ligne.className = "recap-item";
-          const etiquette = document.createElement("span");
-          etiquette.className = "recap-cle";
-          etiquette.textContent = `${cle} : `;
-          ligne.appendChild(etiquette);
-          ligne.appendChild(document.createTextNode(valeur));
-          bloc.appendChild(ligne);
+          const intitule = document.createElement("dt");
+          intitule.className = "recap-cle";
+          intitule.textContent = cle;
+          const reponse = document.createElement("dd");
+          reponse.className = "recap-valeur";
+          reponse.textContent = valeur;
+          liste.appendChild(intitule);
+          liste.appendChild(reponse);
         }
+        bloc.appendChild(liste);
 
         recapBlocs.appendChild(bloc);
       }
@@ -1819,6 +2088,7 @@ const classeTitreEtape = "label etape-titre";
 
       /* =============================================== Mise en route ======= */
       poseHorodatage();
+      poseDateMinimale();
 
       const repris = restaureBrouillon();
       if (repris && brouillon) brouillon.hidden = false;

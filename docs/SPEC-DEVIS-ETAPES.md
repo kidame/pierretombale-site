@@ -88,6 +88,18 @@ C. Styles (libelles, zones cliquables, boutons), date min, telephone, texte sous
   qu aucun champ n a required hors des 5 prevus).
 - Texte visible sans "atelier|kosovo|sous-trait|fabriqu|n8n".
 
+## Etat au 14.10.2026
+- Les trois sous-passes A, B et C sont faites : cartes modele et onglets famille, quatre etapes avec
+  barre et recapitulatif, puis lisibilite (libelles 16 px en minuscules, zones a cocher >= 48 px
+  bordees, champs en boites completes, boutons de 52 px pleine largeur sur telephone).
+- Section 6 entierement couverte, avec deux renforts : date `min` posee au CHARGEMENT en fuseau local
+  (pas au build), et telephone `inputmode="tel"` avec l exemple "079 123 45 67".
+- Contrat des champs INCHANGE (`docs/devis-contrat.md` le dit et c est verifie dans `dist`).
+- Poids : seul `/devis/` change (html 21060 gz, js en ligne 13146, css propre 2286 ; feuille partagee
+  6834 a l octet comme avant, 404.html 3783 aussi).
+- Reste a faire : le test sur telephone avec un proche age (decision de Thomas), puis E6. La section 9
+  ci-dessous, extraire le script dans `src/scripts/devis.ts`, n est PAS faite.
+
 ## 9. Risques connus
 - Un formulaire en etapes cache la longueur : compense par la barre et "Continuer" qui n exige rien
   de facultatif.
