@@ -82,6 +82,19 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
 - Sections conditionnelles selon le type de demande ; brouillon conserve dans le navigateur.
 - Passe 2 (etapes + recapitulatif) decidee apres un test avec un proche age sur telephone.
 
+## Configurateur visuel, cadrage (Thomas, 14.10.2026)
+- Reference : parcours Rootia de France Tombale (docs/references/2026-10-14-*). Meme principe technique
+  (photo par granit + canvas 2D a l echelle en cm), design a nous, fait apres la conception technique.
+- Pas de multilingue pour le moment (confirme a nouveau).
+- Pas d etape "complements" (vase, fleurs, entretien) pour le moment ; peut-etre a l avenir : prevoir
+  la place dans le modele de donnees, pas dans l interface.
+- Pas de medaillon photo en v1.
+- Images : Thomas produit 27 produits declines en plusieurs granits (en cours). Regles dans
+  docs/references/2026-10-14-croisement-analyses-configurateur.md (vue de face, stele nue, meme cadrage
+  par modele, image monument + image stele, nommage par id de granit, largeur stele en cm, zone gravable).
+- Ouvert : 4 lignes a police commune (actuel) ou 3 zones multilignes a reglages independants (Rootia) ;
+  alignement par zone ; pose au forfait ou par commune ; rappel a creneau (v1 : texte libre).
+
 ## Où retrouver quoi
 - `docs/SPEC-BUILD-SITE.md` : la spec de build, avec l'avertissement sur les valeurs provisoires du production-spec.
 - `analyses/2026-08-17-niche-pierre-tombale-ne.md` : l'analyse de marché complète, sections 1 à 15. Les données sont dans `analyses/data/`.
