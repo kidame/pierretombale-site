@@ -51,7 +51,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   puis 11 adaptations a nos decisions (4 etapes sans Options, aucun medaillon, SVG transparents,
   obligatoires selon devis-contrat.md, tailles 30-60 mm, contraste pour public age) et 4 points
   ouverts (ordre Motifs/Inscription, alignement par zone, multilignes, images monument+stele).
-  Aucun code modifie. Commit 59a258e.
+  Aucun code modifie. Commit 59a258e. Puis les 4 points tranches selon la pile (ordre Granit >
+  Inscription > Motifs > Devis, alignement 3 boutons, 3 zones multilignes en cm, composition sur la vue
+  monument pilotee par la calibration) : docs/DECISIONS-ET-ETAT.md, commit 4ea3f5b.
 - 14.10.2026, Codex : archivage des 6 maquettes ordinateur/mobile dans
   `docs/maquettes/configurateur/2026-10-14/`, PNG originaux numerotes et README.
   Correction de Thomas : motifs de gravure SVG sans fond dans les apercus de
