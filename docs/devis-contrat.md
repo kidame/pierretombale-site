@@ -78,6 +78,14 @@ demande pour autant : transmettre la valeur brute dans le courriel et la signale
 et non plus en liste déroulante. Les valeurs envoyées sont inchangées : l'`id` du granit, ou vide
 pour « Je ne sais pas encore », qui reste le choix par défaut.
 
+`famille` et `modele` sont présentés de la même façon depuis le 14.10.2026 (E5 passe 3) : `famille`
+en **trois onglets** (boutons radio larges) et `modele` en **grille de cartes** avec la vignette du
+catalogue (`src/components/ChoixModele.astro`), et non plus en listes déroulantes. **Les valeurs
+envoyées ne changent pas.** Pour `modele`, la valeur **vide** signifie « Je ne sais pas encore,
+conseillez-moi » : c'est le choix par défaut, une réponse normale, et non l'absence de réponse — la
+famille attend alors une proposition de notre part. Il y a une carte « conseillez-moi » par famille,
+mais toutes portent la même valeur vide : la demande ne dit donc jamais laquelle a été touchée.
+
 ### Sections repliées selon `typeDemande`
 
 En JavaScript, la page replie les sections inutiles — et les **désactive** (`fieldset.disabled`),

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import ChoixModele from "@/components/ChoixModele.astro";
 import { pageTitle } from "@/config/site";
 import {
   acceptFichiers,
@@ -26,7 +27,7 @@ import {
   polices,
   STYLE_POLICE_LABELS,
 } from "@/data/personnalisation";
-import { FAMILLE_LABELS, FAMILLES, getProducts } from "@/data/products";
+import { getProducts } from "@/data/products";
 import { breadcrumbSchema } from "@/data/seo";
 
 /* Page "Demander un devis".
@@ -63,11 +64,16 @@ import "@fontsource/pinyon-script/latin-400.css";
 const origin = Astro.site ?? new URL(Astro.url.origin);
 
 const products = await getProducts();
-const modelesParFamille = FAMILLES.map((famille) => ({
-  famille,
-  label: FAMILLE_LABELS[famille],
-  modeles: products.filter((product) => product.famille === famille),
-}));
+
+/* Les trois onglets de famille. Leurs valeurs sont celles du contrat
+   (`monument`, `cineraire`, ou vide) : seuls les libelles sont au singulier,
+   comme les familles les disent. "Je ne sais pas" reste le choix par defaut et
+   affiche tous les modeles. */
+const ongletsFamille = [
+  { valeur: "monument", label: "Monument funéraire" },
+  { valeur: "cineraire", label: "Monument cinéraire" },
+  { valeur: "", label: "Je ne sais pas" },
+];
 
 const groupesGranits = granitsParTeinte();
 
@@ -358,32 +364,37 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         <fieldset class="mt-16 border-t border-line pt-8" data-bloc="monument">
           <legend class="label">Le monument</legend>
 
-          <div class="mt-6 grid gap-8 md:grid-cols-2">
-            <div>
-              <label class="field-label" for="famille">Famille de monument</label>
-              <select class={classeChamp} id="famille" name="famille">
-                <option value="">Je ne sais pas</option>
-                <option value="monument">Monument funéraire</option>
-                <option value="cineraire">Monument cinéraire</option>
-              </select>
+          {/* Famille et modele se choisissent a l oeil, plus dans deux listes
+              deroulantes : trois onglets larges, puis une grille de cartes avec
+              la vignette du catalogue. Les onglets filtrent la grille EN
+              JAVASCRIPT SEULEMENT ; sans JavaScript, les cartes sont toutes la,
+              groupees par famille sous leur sous-titre. */}
+          <fieldset class="mt-6">
+            <legend class="field-label">Famille de monument</legend>
+            <div class="grav-onglets">
+              {
+                ongletsFamille.map((onglet) => (
+                  <label class="grav-onglet">
+                    <input
+                      type="radio"
+                      name="famille"
+                      value={onglet.valeur}
+                      checked={onglet.valeur === ""}
+                    />
+                    <span>{onglet.label}</span>
+                  </label>
+                ))
+              }
             </div>
+          </fieldset>
 
-            <div>
-              <label class="field-label" for="modele">Modèle du catalogue</label>
-              <select class={classeChamp} id="modele" name="modele">
-                <option value="">Je ne sais pas encore</option>
-                {
-                  modelesParFamille.map((groupe) => (
-                    <optgroup label={groupe.label}>
-                      {groupe.modeles.map((modele) => (
-                        <option value={modele.slug}>{modele.name}</option>
-                      ))}
-                    </optgroup>
-                  ))
-                }
-              </select>
-            </div>
-          </div>
+          <fieldset class="mt-10">
+            <legend class="field-label">Modèle du catalogue (facultatif)</legend>
+            <p class="type-body mt-2 max-w-[56ch] text-[0.8125rem] text-muted">
+              Pour nous donner une idée. Rien n'est définitif : nous en reparlons ensemble.
+            </p>
+            <ChoixModele modeleInitial="" />
+          </fieldset>
 
           {/* Pastilles de couleur plutot qu une liste deroulante : une teinte se
               reconnait a l oeil, et une pastille se touche du pouce. Ce sont de
@@ -761,6 +772,47 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
       color: var(--muted);
     }
 
+    /* Les trois onglets de famille : de vrais boutons radio `famille`, habilles
+       en grands pavés. Au moins 44 px de haut, et l etat coche se lit sur la
+       bordure epaisse, pas sur une couleur seule. */
+    .grav-onglets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .grav-onglet {
+      position: relative;
+      flex: 1 1 8rem;
+    }
+    .grav-onglet input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+    .grav-onglet span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.75rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--line-strong);
+      font-size: 0.9375rem;
+      text-align: center;
+      cursor: pointer;
+    }
+    .grav-onglet input:checked + span {
+      padding: calc(0.5rem - 1px) calc(1rem - 1px);
+      border-width: 2px;
+      border-color: var(--ink);
+      font-weight: 500;
+    }
+    .grav-onglet input:focus-visible + span {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+
     /* Pastilles de granit : de vrais boutons radio, masques a l oeil mais
        toujours la pour le clavier et les lecteurs d ecran. L etat coche et le
        focus se lisent sur l anneau de la pastille. */
@@ -985,6 +1037,41 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         if (aidePhoto) aidePhoto.hidden = !choix.photo;
       }
 
+      /* ----------------------------------------- Onglets de famille ----------
+         Les trois boutons radio `famille` commandent la grille de cartes :
+         l onglet choisi n affiche que les modeles de sa famille, "Je ne sais
+         pas" les affiche tous avec leur sous-titre. Sans JavaScript rien ne se
+         cache : toutes les cartes restent la, groupees par famille. */
+      const cartesModele = Array.from(form.querySelectorAll("[data-famille]"));
+      const titresModele = Array.from(form.querySelectorAll("[data-choix-titre]"));
+
+      const radioDeCarte = (carte) => carte.querySelector("input[name='modele']");
+
+      function majOngletFamille() {
+        const famille = champ("famille");
+        const choisie = famille ? famille.value : "";
+
+        for (const titre of titresModele) titre.hidden = choisie !== "";
+        for (const carte of cartesModele) {
+          carte.hidden = choisie !== "" && carte.dataset.famille !== choisie;
+        }
+
+        /* Un modele coche mais devenu invisible repartirait avec la demande sans
+           que la famille le voie : on revient alors sur la carte
+           "conseillez-moi" de l onglet affiche (valeur vide, contrat inchange). */
+        const coche = cartesModele.find((carte) => {
+          const radio = radioDeCarte(carte);
+          return radio && radio.checked;
+        });
+        if (coche && coche.hidden) {
+          const repli = cartesModele.find((carte) => {
+            const radio = radioDeCarte(carte);
+            return !carte.hidden && radio && radio.value === "";
+          });
+          if (repli) radioDeCarte(repli).checked = true;
+        }
+      }
+
       /* ------------------------------------------------- Lignes 3 et 4 -------
          Deux lignes suffisent au depart. Les suivantes se depliant une a une,
          le formulaire tient dans un ecran de telephone. Sans JavaScript elles
@@ -1146,11 +1233,19 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         }
         if (!donnees || typeof donnees !== "object") return false;
 
+        /* Deux cartes "conseillez-moi" portent la meme valeur vide : sans ce
+           garde-fou, les deux seraient cochees a la suite et c est la derniere
+           qui resterait allumee. On ne coche donc que le premier bouton qui
+           corresponde, pour chaque groupe. */
+        const posees = new Set();
         for (const element of champsBrouillon()) {
           const valeur = donnees[element.name];
           if (typeof valeur !== "string") continue;
           if (element.type === "radio") {
-            if (element.value === valeur) element.checked = true;
+            if (element.value === valeur && !posees.has(element.name)) {
+              element.checked = true;
+              posees.add(element.name);
+            }
           } else {
             element.value = valeur;
           }
@@ -1168,6 +1263,7 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
       function majTout() {
         majRecontact();
         majSections();
+        majOngletFamille();
         majMotif();
         majApercu();
       }
@@ -1178,16 +1274,20 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
       /* Pre-selection du modele depuis /devis/?modele=<slug>, pose par les
          fiches. Elle passe APRES le brouillon : venir d une fiche est une
          intention plus recente que le brouillon de la veille. Un slug inconnu
-         est ignore : le select reste sur "Je ne sais pas encore" plutot que
+         est ignore : la carte "conseillez-moi" reste cochee plutot que
          d afficher un choix qui n existe pas. */
       const demande = new URLSearchParams(window.location.search).get("modele");
-      const selectModele = champ("modele");
-      if (demande && selectModele && reglages.famillesParModele[demande]) {
-        selectModele.value = demande;
-        const selectFamille = champ("famille");
-        if (selectFamille && selectFamille.value === "") {
-          selectFamille.value = reglages.famillesParModele[demande];
-        }
+      const modeleDemande = champ("modele");
+      const familleDemandee = demande ? reglages.famillesParModele[demande] : undefined;
+      if (demande && modeleDemande && familleDemandee) {
+        /* `form.elements.modele` est la liste des boutons radio des cartes :
+           lui affecter une valeur coche le bouton qui la porte. */
+        modeleDemande.value = demande;
+        /* L onglet suit le modele demande, meme si le brouillon en avait choisi
+           un autre : sinon la carte cochee resterait cachee. `majTout`, juste
+           apres, met la grille d accord. */
+        const familleDesCartes = champ("famille");
+        if (familleDesCartes) familleDesCartes.value = familleDemandee;
       }
 
       majTout();

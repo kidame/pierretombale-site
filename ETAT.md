@@ -43,6 +43,35 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 14.10.2026, E5 PASSE 3 SOUS-PASSE A TERMINEE (Claude Code) : CHOIX VISUEL DU MODELE.
+  `src/components/ChoixModele.astro` : grille de cartes radio `name="modele"` (vignette
+  ProductImage 480x600 lazy, nom, shortDescription, prixAffiche), 2 colonnes sur mobile et 3 au-dela,
+  plus une carte "Je ne sais pas encore, conseillez-moi" (value vide) EN PREMIER par famille. Etat
+  coche = bordure de 3 px + le mot "Choisi" (jamais la couleur seule) ; le radio est masque a l oeil
+  (position absolue, 1 px, opacity 0) mais jamais `display:none`. Chaque carte porte `data-famille`.
+  Les deux `<select>` famille et modele sont SUPPRIMES. `famille` devient 3 onglets radio larges
+  (>= 44 px, `grav-onglet`) : "Monument funeraire", "Monument cineraire", "Je ne sais pas" (defaut,
+  valeur vide). `majOngletFamille()` (JS) cache les cartes des autres familles et les sous-titres ;
+  "Je ne sais pas" montre tout. Un modele coche devenu invisible revient sur la carte
+  "conseillez-moi" visible. SANS JS : les 14 cartes sont la, groupees par famille sous un sous-titre.
+  `?modele=<slug>` coche la carte ET pose l onglet de sa famille, meme si le brouillon disait autre
+  chose (`form.elements.modele` est une RadioNodeList : lui affecter une valeur coche le bon bouton).
+  Brouillon : garde-fou dans `restaureBrouillon` (les 2 cartes "conseillez-moi" partagent la valeur
+  vide ; sans lui la derniere restait allumee). Contrat INCHANGE (`docs/devis-contrat.md` note juste
+  que `modele` vide signifie "conseillez-moi", et que la demande ne dit pas laquelle des deux cartes).
+  A SAVOIR : le CSS de /devis/ (styles `grav-*` + les 6 `@font-face`) PASSE EN FICHIER EXTERNE
+  `dist/_astro/devis.*.css` (6843 octets bruts, 1526 gz) : en ajoutant ~2,5 Ko de CSS, la feuille
+  depasse le seuil d inlining d Astro (4096 octets). Elle n est referencee que par /devis/.
+  MESURES (gzip niveau 9, meme calcul que `scripts/poids-pages.py`, par integration temporaire dans
+  `astro.config.mjs`, retiree depuis — le motif `Bash(python3 scripts/:*)` ne couvre toujours pas
+  `python3 scripts/poids-pages.py`) : `/devis/` html 15939 (15348 en passe 2), js en ligne 8614
+  (7908), css 8360 = 6834 partage + 1526 propre (6834). Aucune autre page ne change : css 6834
+  partout et 404.html 3783, a l octet comme en passe 2.
+  Verifie : `npm run build` 23 pages, `npx astro check` 34 fichiers 0 erreur ; dans dist 14 radios
+  `modele` (12 slugs + 2 vides, une seule `checked`), 3 radios `famille`, plus aucun select
+  famille/modele, 12 vignettes `loading="lazy"`, seules images referencees = les 2 SVG provisoires
+  (703 et 713 octets, tres loin des 60 Ko), 7 attributs `required` (les 5 champs prevus),
+  sitemap 21 adresses, `grep -rliE "atelier|kosovo|sous-trait|fabriqu|n8n" dist` vide.
 - 14.10.2026, E5 PASSE 2 TERMINEE (Claude Code) : formulaire de devis SIMPLIFIE pour les familles
   (decisions de Thomas du 14.10.2026, `docs/DECISIONS-ET-ETAT.md` section "Formulaire de devis,
   peaufinage"). Toujours UNE page, complete et utilisable sans JavaScript.
@@ -345,11 +374,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-D ABORD UN TEST REEL, PAS DU CODE : ouvrir `/devis/` sur un telephone avec un proche age, le
-laisser remplir une demande seul, et noter ou il hesite. C est ce test, decide par Thomas le
-14.10.2026, qui tranche la passe 3 du formulaire (decoupage en etapes et recapitulatif avant
-envoi) : elle ne se fait pas "au cas ou". Points a observer : le choix du style d ecriture, les
-pastilles de granit, le bouton "Ajouter une ligne", et si la longueur de la page decourage.
+E5 PASSE 3, SOUS-PASSE B : le decoupage en etapes. `docs/SPEC-DEVIS-ETAPES.md` FAIT FOI (sections 3,
+4 et 8) : 4 sections `data-etape`, barre de progression, boutons "Continuer" / "Retour", etapes 2 et
+3 sautees selon `typeDemande`, recapitulatif en lecture seule avant le bouton, etape courante gardee
+dans le brouillon. Toujours UNE page, un seul `<form>`, tout visible sans JavaScript.
+Puis sous-passe C : styles (libelles, zones cliquables, boutons), date min = aujourd hui, telephone
+`inputmode`, texte sous le bouton. Le script inline depasse 600 lignes : l extraire dans
+`src/scripts/devis.ts` si c est plus sur (section 9 de la spec).
 
 ENSUITE E6 : ENVOI DU DEVIS. Fonction Cloudflare Pages `functions/api/devis.ts` + Resend (PAS de n8n,
 decision de Thomas du 13.10.2026), adresse de destination en variable d environnement, Turnstile.
