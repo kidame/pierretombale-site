@@ -44,6 +44,14 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 14.10.2026, Claude : lecture des 6 maquettes et redaction de
+  `docs/maquettes/configurateur/2026-10-14/DIRECTION-DESIGN.md` : palette (ivoire,
+  anthracite, accent bronze unique), typographie (titres serif, interface sans), structure
+  ordinateur/mobile, composants (nuancier, motifs, zones de texte, recapitulatif, confirmation),
+  puis 11 adaptations a nos decisions (4 etapes sans Options, aucun medaillon, SVG transparents,
+  obligatoires selon devis-contrat.md, tailles 30-60 mm, contraste pour public age) et 4 points
+  ouverts (ordre Motifs/Inscription, alignement par zone, multilignes, images monument+stele).
+  Aucun code modifie. Commit 59a258e.
 - 14.10.2026, Codex : archivage des 6 maquettes ordinateur/mobile dans
   `docs/maquettes/configurateur/2026-10-14/`, PNG originaux numerotes et README.
   Correction de Thomas : motifs de gravure SVG sans fond dans les apercus de
@@ -539,5 +547,7 @@ Resend (SPF/DKIM), un compte Resend dont il saisit lui-meme la cle dans Cloudfla
 destination des demandes. Sans eux, la fonction ne peut pas etre essayee pour de vrai.
 Ensuite E7 : deploiement Cloudflare Pages.
 Le configurateur visuel (Konva) n est plus une etape du plan : il viendra apres la mise en ligne,
+en respectant docs/maquettes/configurateur/2026-10-14/DIRECTION-DESIGN.md (regles derivees des
+maquettes, points ouverts a trancher avant la passe B),
 selon `docs/CONFIGURATEUR-FUTUR.md` (inputs a obtenir d abord : dimensions mm par modele, zones de
 gravure, polices et finitions confirmees, visuels).
