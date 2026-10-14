@@ -99,8 +99,24 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
 - Images : Thomas produit 27 produits declines en plusieurs granits (en cours). Regles dans
   docs/references/2026-10-14-croisement-analyses-configurateur.md (vue de face, stele nue, meme cadrage
   par modele, image monument + image stele, nommage par id de granit, largeur stele en cm, zone gravable).
-- Ouvert : 4 lignes a police commune (actuel) ou 3 zones multilignes a reglages independants (Rootia) ;
-  alignement par zone ; pose au forfait ou par commune ; rappel a creneau (v1 : texte libre).
+- Tranche le 14.10.2026 (Claude, valide par Thomas "decide par rapport a notre tech") :
+  1. Ordre des etapes : Granit > Inscription > Motifs > Votre devis (4 etapes, pas d etape Options).
+     Le granit d abord parce que le canvas a besoin de son fond ; le texte avant les motifs parce que
+     toutes les familles saisissent un texte, les motifs sont facultatifs et se placent autour.
+  2. Alignement : centre par defaut, 3 boutons (gauche, centre, droite) qui n agissent que sur les
+     lignes internes d une zone multiligne. Pas de justifie. Retirables sans toucher aux donnees.
+  3. Zones : configurateur = 3 zones libres, 120 caracteres, retours a la ligne autorises (4 lignes
+     max par zone), une police + une hauteur + une finition + un alignement par zone. Le formulaire
+     /devis/ garde ses 4 lignes a police commune. La scene est stockee en cm, jamais en pixels.
+  4. Vues : composition sur la vue stele (export PNG = cette vue, pixelRatio 2). La vue monument
+     affiche aussi la composition des que sa calibration (x0, y0, echelle, cf. PREPARATION.md)
+     existe dans le JSON du modele ; sinon photo nue legendee "sans gravure". Pilote par les donnees.
+  Technique figee : Konva en import dynamique sur /personnaliser/<slug>/ seulement, etat en JS sans
+  framework (comme devis.astro), config inlinee en JSON au build, polices de gravure chargees sur
+  cette page seule avec attente de document.fonts.load, prix indicatif calcule dans le navigateur et
+  recalcule par la fonction Cloudflare avec le meme module, envoi sur le meme /api/devis avec un bloc
+  `configurateur` (scene JSON + PNG). Bornes 120 caracteres et 4 lignes par zone a confirmer avec le
+  graveur. Reste ouvert : pose au forfait ou par commune ; rappel a creneau (v1 : texte libre).
 
 ## Où retrouver quoi
 - `docs/SPEC-BUILD-SITE.md` : la spec de build, avec l'avertissement sur les valeurs provisoires du production-spec.

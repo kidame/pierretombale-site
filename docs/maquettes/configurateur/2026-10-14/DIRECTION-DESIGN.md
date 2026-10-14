@@ -90,18 +90,17 @@ points ouverts. Les maquettes restent des references : on recode, on ne reprodui
     rapidement" (on ne promet pas de delai), "Une matiere, un hommage singulier" (a valider avec
     les associes, trop publicitaire pour le ton decide).
 
-## 3. Points ouverts (a trancher avec Thomas / les associes)
+## 3. Points tranches le 14.10.2026 (detail dans docs/DECISIONS-ET-ETAT.md)
 
-- Ordre des etapes : la maquette met Motifs avant Inscription. France Tombale fait pareil. On
-  peut preferer Inscription d abord (c est ce que toutes les familles remplissent, les motifs
-  sont facultatifs). A decider avant la passe B.
-- Alignement par zone (4 boutons) : utile seulement si la zone peut etre plus large que le
-  texte ; on le garde pour la v1 si Konva le rend sans effort, sinon on centre tout.
-- Zones multilignes : la maquette dit "Chaque zone peut contenir plusieurs lignes". OK, mais
-  le compteur reste 120 caracteres par zone, et une zone = une police + une taille + une
-  finition.
-- Vignettes monument / stele : besoin des deux images par granit (regles images dans
-  docs/references/2026-10-14-croisement-analyses-configurateur.md).
+- Ordre : Granit > Inscription > Motifs > Votre devis. Les ecrans 02 et 03 des maquettes
+  s echangent ; leur contenu reste valable.
+- Alignement : centre par defaut, 3 boutons (gauche, centre, droite), pas de justifie ; n agit que
+  sur les lignes internes d une zone.
+- Zones : 3 zones libres, 120 caracteres, retours a la ligne (4 lignes max), une police + une
+  hauteur + une finition + un alignement par zone ; scene stockee en cm.
+- Vues : composition sur la vue stele ; sur la vue monument des que sa calibration existe dans le
+  JSON du modele, sinon photo nue "sans gravure".
+- Pari d usage a verifier au test avec un proche age : Inscription avant Motifs.
 
 ## 4. Implications pour la construction
 - Les composants ci-dessus se codent en Astro + Tailwind avec les jetons existants du theme ;
