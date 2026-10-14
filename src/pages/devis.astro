@@ -47,7 +47,7 @@ import { breadcrumbSchema } from "@/data/seo";
    de demande, et un brouillon garde dans le navigateur.
 
    PARCOURS EN 4 ETAPES (passe 3, sous-passe B, `docs/SPEC-DEVIS-ETAPES.md`) :
-   les champs sont ranges dans quatre `<section data-etape>` — votre demande,
+   les champs sont ranges dans quatre `<section data-etape>` - votre demande,
    le monument, l inscription, vos coordonnees et envoi. Le decoupage est une
    COUCHE JAVASCRIPT par-dessus : sans JavaScript les quatre sections sont
    visibles a la suite, la barre de progression et les boutons "Continuer" et
@@ -1678,7 +1678,7 @@ const classeTitreEtape = "label etape-titre";
             const texte = texteLigne(numero);
             if (texte === "") continue;
             gravureRemplie = true;
-            items.push([`Ligne ${numero}`, `${texte} — ${libelleOption(`ligne${numero}_hauteur`)}`]);
+            items.push([`Ligne ${numero}`, `${texte} - ${libelleOption(`ligne${numero}_hauteur`)}`]);
           }
           const police = reglages.polices[valeurDe("police")];
           items.push(["Style d'écriture", police ? police.nom : ""]);
@@ -1710,7 +1710,7 @@ const classeTitreEtape = "label etape-titre";
          navigateur ne le permet pas), jamais le consentement : il doit etre
          donne a chaque envoi.
          Tout passe par try/catch : navigation privee, stockage plein ou refuse,
-         JSON abime — le brouillon est un confort, son echec ne doit jamais
+         JSON abime - le brouillon est un confort, son echec ne doit jamais
          empecher une demande. */
       const brouillon = form.querySelector("[data-brouillon]");
       const boutonEffacer = form.querySelector("[data-brouillon-effacer]");
@@ -1876,7 +1876,15 @@ const classeTitreEtape = "label etape-titre";
         majTout();
         planifieSauvegarde();
       });
-      form.addEventListener("change", () => {
+      /* Cocher un modele coche sa famille : le recapitulatif et l onglet
+         restent coherents, et "Je ne sais pas" ne survit pas a un choix precis. */
+      form.addEventListener("change", (evenement) => {
+        const cible = evenement.target;
+        if (cible && cible.name === "modele" && cible.checked) {
+          const carte = cible.closest("[data-famille]");
+          const radioFamille = carte && form.querySelector(`input[name="famille"][value="${carte.dataset.famille}"]`);
+          if (radioFamille && !radioFamille.checked) radioFamille.checked = true;
+        }
         majTout();
         planifieSauvegarde();
         // Le recapitulatif doit suivre : un fichier ajoute s y compte aussitot.
