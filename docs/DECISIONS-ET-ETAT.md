@@ -104,7 +104,7 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
      Le granit d abord parce que le canvas a besoin de son fond ; le texte avant les motifs parce que
      toutes les familles saisissent un texte, les motifs sont facultatifs et se placent autour.
   2. Alignement : tout centre, aucun bouton (Thomas a choisi la version securisee). Le champ
-      existe dans la scene, fixe a "centre", pour une evolution sans migration.
+     `alignement` existe dans la scene, fixe a "centre", pour une evolution sans migration.
   3. Zones : configurateur = 3 zones libres, 120 caracteres, retours a la ligne autorises (4 lignes
      max par zone), une police + une hauteur + une finition + un alignement par zone. Le formulaire
      /devis/ garde ses 4 lignes a police commune. La scene est stockee en cm, jamais en pixels.
