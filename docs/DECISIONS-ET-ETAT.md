@@ -75,6 +75,13 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
   Il devra reutiliser les memes donnees (src/data/personnalisation.ts) et le meme contrat (docs/devis-contrat.md),
   et ne charger son code que sur sa propre page, sans alourdir les autres pages ni nuire au SEO.
 
+## Formulaire de devis, peaufinage (Thomas, 14.10.2026)
+- Pas de champ "budget indicatif" pour le moment.
+- Telephone : facultatif, la famille choisit comment etre recontactee (telephone ou email).
+- Une seule police pour tout le monument (pratique courante), tailles de lettres pre-remplies.
+- Sections conditionnelles selon le type de demande ; brouillon conserve dans le navigateur.
+- Passe 2 (etapes + recapitulatif) decidee apres un test avec un proche age sur telephone.
+
 ## Où retrouver quoi
 - `docs/SPEC-BUILD-SITE.md` : la spec de build, avec l'avertissement sur les valeurs provisoires du production-spec.
 - `analyses/2026-08-17-niche-pierre-tombale-ne.md` : l'analyse de marché complète, sections 1 à 15. Les données sont dans `analyses/data/`.
