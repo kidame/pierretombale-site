@@ -44,6 +44,15 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 14.10.2026, Codex : analyse fonctionnelle du configurateur Rootia de France Tombale,
+  demandee par Thomas avant reproduction. Document :
+  `docs/ANALYSE-CONFIGURATEUR-ROOTIA-2026-10-14.md`. Parcours live : granit, motifs/medaillons,
+  gravure, complements, devis. 3 zones de texte (120 caracteres chacune), motifs repetables
+  au-dela de 3, 3 photos de concession maximum. Estimation de monument en direct observee :
+  corrige le constat concurrentiel du 13.10 qui la reservait aux plaques. Aucun formulaire
+  envoye au commercant, aucun code du site modifie. Les ecarts avec les 4 lignes et la police
+  commune actuelles sont documentes ; aucun changement de contrat ni lancement de build.
+  La prochaine etape du site reste celle ci-dessous, sauf nouvelle decision de Thomas.
 - 14.10.2026, E5 PASSE 3 SOUS-PASSE C TERMINEE (Claude Code) : LISIBILITE, ZONES CLIQUABLES, FINITIONS.
   E5 EST FINIE. Tout l habillage est en CSS DE PAGE (`devis.astro` et `ChoixModele.astro`) :
   `src/styles.css` n est PAS touche, et AUCUNE classe Tailwind n a ete ajoutee ni retiree (la feuille
