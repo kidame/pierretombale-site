@@ -41,6 +41,42 @@ export const acceptFichiers = fichiersDevis.typesAcceptes.join(",");
 export const tailleTotaleMaxLisible = `${Math.round(fichiersDevis.tailleTotaleMaxOctets / (1024 * 1024))} Mo`;
 
 /**
+ * Numéro de demande, dit « référence ».
+ *
+ * Format : `PT-AAAAMMJJ-xxxx` — `PT` pour le site, la date du jour de la
+ * demande (année, mois, jour), puis quatre caractères tirés au hasard. Exemple :
+ * `PT-20261014-7KQ2`. La date se lit à l'œil nu dans la référence, ce qui aide
+ * au téléphone avec une famille qui rappelle.
+ *
+ * ATTRIBUÉ PAR LE SERVEUR, EN E6, par la fonction d'envoi — jamais par le
+ * navigateur. Un numéro posé côté navigateur se duplique (deux onglets), se
+ * perd (brouillon restauré) et se laisse forger. La fonction le tire au moment
+ * où elle accepte la demande, l'écrit dans le courriel aux associés et dans
+ * l'accusé de réception à la famille. Voir `docs/devis-contrat.md`.
+ */
+export const referenceDevis = {
+  prefixe: "PT",
+  /** Le format, en clair, tel qu'il est documenté. */
+  format: "PT-AAAAMMJJ-xxxx",
+  /** Nombre de caractères tirés au hasard à la fin. */
+  longueurSuffixe: 4,
+  /**
+   * Caractères possibles du suffixe. Ni `0`/`O` ni `1`/`I` : une référence se
+   * dicte au téléphone et se recopie à la main.
+   */
+  alphabetSuffixe: "23456789ABCDEFGHJKLMNPQRSTUVWXYZ",
+} as const;
+
+/**
+ * Clé du brouillon conservé dans le `localStorage` du navigateur de la famille.
+ * Le brouillon garde les champs texte, les listes et les choix, JAMAIS les
+ * fichiers joints (le navigateur ne le permet pas, et nous n'en voulons pas) ni
+ * le consentement, qui doit être donné à chaque envoi. Il est effacé dès que la
+ * demande est partie.
+ */
+export const cleBrouillonDevis = "pt-devis-brouillon";
+
+/**
  * Délai minimal entre l'affichage de la page et l'envoi. Un robot remplit et
  * poste en quelques millisecondes ; une famille met au moins quelques
  * secondes. Le champ caché `horodatage` porte l'heure d'affichage, posée par
@@ -58,4 +94,5 @@ export const messagesDevis = {
   erreurReseau:
     "Votre demande n'a pas pu être transmise. Merci de réessayer dans un instant.",
   erreurSaisie: "Merci de corriger les champs signalés ci-dessous.",
+  brouillonRetrouve: "Nous avons retrouvé votre brouillon.",
 } as const;

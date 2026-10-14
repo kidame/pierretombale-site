@@ -84,7 +84,12 @@ export const polices: Police[] = [
   },
 ];
 
-/** Police proposée par défaut sur chaque ligne. */
+/**
+ * Police proposée par défaut. Depuis le peaufinage du 14.10.2026, le choix est
+ * UNIQUE pour tout le monument (c'est la pratique courante des marbriers, et
+ * une police par ligne demandait quatre décisions à une famille en deuil) : le
+ * formulaire envoie un seul champ `police`, et non plus `ligne<n>_police`.
+ */
 export const POLICE_DEFAUT = "cinzel";
 
 export const policeIds: string[] = polices.map((police) => police.id);
@@ -110,6 +115,16 @@ export const hauteursParDefaut = {
   dates: 40,
   epitaphe: 30,
 } as const;
+
+/**
+ * Libellé affiché à la famille : « 3 cm » plutôt que « 30 mm ». Les valeurs
+ * envoyées restent en millimètres (30, 40, 50, 60) : c'est l'unité du métier,
+ * et le contrat du formulaire ne change pas. Seul l'affichage change, parce que
+ * les centimètres se représentent mieux à la lecture.
+ */
+export function hauteurLabel(mm: number): string {
+  return `${mm / 10} cm`;
+}
 
 /* ------------------------------------------------------------- Finitions */
 
@@ -196,23 +211,43 @@ export interface LigneInscription {
   /** Aide affichée sous le champ, ou `null`. */
   aide: string | null;
   hauteurParDefaut: number;
+  /**
+   * `true` : la ligne est repliée derrière le bouton « Ajouter une ligne »
+   * quand le JavaScript fonctionne. Sans JavaScript elle reste visible : le
+   * formulaire doit être complet dans tous les cas.
+   */
+  repliable: boolean;
 }
 
 export const lignesInscription: LigneInscription[] = [
   {
     numero: 1,
     label: "Ligne 1",
-    aide: "Le plus souvent le nom.",
+    aide: "Souvent le nom.",
     hauteurParDefaut: hauteursParDefaut.nom,
+    repliable: false,
   },
   {
     numero: 2,
     label: "Ligne 2",
-    aide: "Le plus souvent les dates.",
+    aide: "Souvent les dates.",
     hauteurParDefaut: hauteursParDefaut.dates,
+    repliable: false,
   },
-  { numero: 3, label: "Ligne 3", aide: null, hauteurParDefaut: hauteursParDefaut.epitaphe },
-  { numero: 4, label: "Ligne 4", aide: null, hauteurParDefaut: hauteursParDefaut.epitaphe },
+  {
+    numero: 3,
+    label: "Ligne 3",
+    aide: "Épitaphe, quelques mots.",
+    hauteurParDefaut: hauteursParDefaut.epitaphe,
+    repliable: true,
+  },
+  {
+    numero: 4,
+    label: "Ligne 4",
+    aide: "Épitaphe, quelques mots.",
+    hauteurParDefaut: hauteursParDefaut.epitaphe,
+    repliable: true,
+  },
 ];
 
 /** Longueur maximale d'une ligne, en caractères. */

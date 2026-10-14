@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { pageTitle } from "@/config/site";
 import {
   acceptFichiers,
+  cleBrouillonDevis,
   devisConfig,
   fichiersDevis,
   messagesDevis,
@@ -14,6 +15,7 @@ import {
   finitions,
   getFinition,
   getPolice,
+  hauteurLabel,
   hauteursLettresMm,
   LIGNE_LONGUEUR_MAX,
   lignesInscription,
@@ -34,7 +36,15 @@ import { breadcrumbSchema } from "@/data/seo";
    `false` et le JavaScript affiche un message au lieu de poster.
    Le contrat des champs est ecrit dans `docs/devis-contrat.md` : renommer un
    champ ici oblige a le renommer la-bas. Sans JavaScript, le formulaire poste
-   nativement vers `action`, ce qui marchera des que la fonction existera. */
+   nativement vers `action`, ce qui marchera des que la fonction existera.
+
+   PUBLIC VISE : des familles en deuil, souvent agees, le plus souvent sur un
+   telephone. D ou le peaufinage du 14.10.2026 (passe 2 de E5) : UNE SEULE page,
+   complete sans JavaScript, un seul style d ecriture pour tout le monument,
+   des tailles de lettres deja choisies, des pastilles de couleur a toucher
+   plutot qu une liste deroulante, les sections inutiles repliees selon le type
+   de demande, et un brouillon garde dans le navigateur. Tout ce qui se replie
+   se replie EN JAVASCRIPT SEULEMENT : sans JavaScript, tout reste visible. */
 
 /* LES POLICES DE GRAVURE NE SE CHARGENT QUE SUR CETTE PAGE (regle de
    performance non negociable, E5). Ces imports sont volontairement ICI, dans la
@@ -84,6 +94,8 @@ const reglages = {
   typesAcceptes: [...fichiersDevis.typesAcceptes],
   tailleLisible: tailleTotaleMaxLisible,
   messages: messagesDevis,
+  /** Cle du brouillon dans le localStorage du navigateur de la famille. */
+  cleBrouillon: cleBrouillonDevis,
   /** Famille de chaque modele : sert a remplir le select "famille" avec ?modele=. */
   famillesParModele: Object.fromEntries(products.map((product) => [product.slug, product.famille])),
 
@@ -103,10 +115,23 @@ const reglages = {
   lignes: lignesInscription.map((ligne) => ligne.numero),
   /** Motifs qui demandent une explication ou un fichier de la famille. */
   motifsAvecPrecision: motifs.filter((motif) => motif.demandePrecision).map((motif) => motif.id),
+
+  /* ---- Sections affichees selon le type de demande. `monument` = famille,
+     modele et granit ; `inscription` = texte grave, finition, motif et apercu ;
+     `photo` = le rappel "une photo du monument existant nous aide beaucoup".
+     Un type inconnu, ou aucun choix, montre tout. ---- */
+  blocsParTypeDemande: {
+    nouveau: { monument: true, inscription: true, photo: false },
+    inscription: { monument: false, inscription: true, photo: true },
+    autre: { monument: false, inscription: false, photo: false },
+  },
 };
 
 const classeChamp = "field mt-2";
 const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
+const classeRadio = "mt-1 size-4 shrink-0 accent-[var(--ink)]";
+const classeChoix = "flex items-start gap-3 text-[0.9375rem]";
+const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
 ---
 
 <BaseLayout
@@ -144,6 +169,13 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
         >
         </p>
 
+        {/* Brouillon retrouve. Pose par le script seulement : sans JavaScript il
+            n y a pas de brouillon, donc rien a annoncer. */}
+        <p class="type-body mb-10 text-[0.9375rem] text-muted" data-brouillon hidden>
+          {messagesDevis.brouillonRetrouve}{" "}
+          <button type="button" class="link" data-brouillon-effacer>Effacer</button>
+        </p>
+
         {/* ------------------------------------------------- Vos coordonnees */}
         <fieldset class="border-t border-line pt-8">
           <legend class="label">Vos coordonnées</legend>
@@ -178,7 +210,17 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
             </div>
 
             <div>
-              <label class="field-label" for="telephone">Téléphone (facultatif)</label>
+              {/* L etoile apparait quand la famille demande un appel : c est
+                  alors le seul moyen de la joindre. Le script seul la pose, en
+                  meme temps que `required` ; sans JavaScript le telephone reste
+                  facultatif, comme l annonce le libelle. */}
+              <label class="field-label" for="telephone">
+                Téléphone <span data-tel-facultatif>(facultatif)</span><span
+                  data-tel-requis
+                  aria-hidden="true"
+                  hidden>*</span
+                >
+              </label>
               <input
                 class={classeChamp}
                 id="telephone"
@@ -187,9 +229,7 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
                 autocomplete="tel"
                 aria-describedby="telephone-aide telephone-erreur"
               />
-              <p class="type-body mt-2 text-[0.8125rem] text-muted" id="telephone-aide">
-                Si vous préférez que nous vous appelions.
-              </p>
+              <p class={classeAide} id="telephone-aide">Si vous préférez que nous vous appelions.</p>
               <p class={classeErreur} id="telephone-erreur" data-erreur="telephone"></p>
             </div>
 
@@ -204,17 +244,57 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
                 autocomplete="address-level2"
                 aria-describedby="localite-aide localite-erreur"
               />
-              <p class="type-body mt-2 text-[0.8125rem] text-muted" id="localite-aide">
-                Votre commune, pour situer le déplacement.
-              </p>
+              <p class={classeAide} id="localite-aide">Votre commune, pour situer le déplacement.</p>
               <p class={classeErreur} id="localite-erreur" data-erreur="localite"></p>
             </div>
           </div>
+
+          <fieldset class="mt-10">
+            <legend class="field-label">Comment vous recontacter</legend>
+            <div class="mt-4 space-y-3">
+              {
+                [
+                  { valeur: "telephone", label: "Par téléphone" },
+                  { valeur: "email", label: "Par e-mail" },
+                ].map((choix) => (
+                  <label class={classeChoix}>
+                    <input
+                      class={classeRadio}
+                      type="radio"
+                      name="recontact"
+                      value={choix.valeur}
+                      checked={choix.valeur === "email"}
+                    />
+                    <span>{choix.label}</span>
+                  </label>
+                ))
+              }
+            </div>
+          </fieldset>
+
+          {/* Visible sans JavaScript (facultatif de toute facon) ; le script le
+              replie tant que la famille n a pas demandé un appel. */}
+          <div class="grav-court mt-10" data-quand-appeler>
+            <label class="field-label" for="quandAppeler">Quand vous appeler ? (facultatif)</label>
+            <input
+              class={classeChamp}
+              id="quandAppeler"
+              name="quandAppeler"
+              type="text"
+              autocomplete="off"
+              aria-describedby="quandAppeler-aide"
+            />
+            <p class={classeAide} id="quandAppeler-aide">
+              Par exemple : le matin, ou après 17 h.
+            </p>
+          </div>
         </fieldset>
 
-        {/* ----------------------------------------------------- Le monument */}
+        {/* ------------------------------------------------- Votre demande */}
+        {/* `typeDemande` commande l affichage des sections suivantes : il reste
+            donc en dehors d elles, et toujours visible. */}
         <fieldset class="mt-16 border-t border-line pt-8">
-          <legend class="label">Le monument</legend>
+          <legend class="label">Votre demande</legend>
 
           <fieldset class="mt-6" aria-describedby="typeDemande-erreur">
             <legend class="field-label">Type de demande <span aria-hidden="true">*</span></legend>
@@ -225,14 +305,8 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
                   { valeur: "inscription", label: "Une inscription sur un monument existant" },
                   { valeur: "autre", label: "Autre demande" },
                 ].map((choix) => (
-                  <label class="flex items-start gap-3 text-[0.9375rem]">
-                    <input
-                      class="mt-1 size-4 shrink-0 accent-[var(--ink)]"
-                      type="radio"
-                      name="typeDemande"
-                      value={choix.valeur}
-                      required
-                    />
+                  <label class={classeChoix}>
+                    <input class={classeRadio} type="radio" name="typeDemande" value={choix.valeur} required />
                     <span>{choix.label}</span>
                   </label>
                 ))
@@ -242,6 +316,49 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
           </fieldset>
 
           <div class="mt-10 grid gap-8 md:grid-cols-2">
+            <div>
+              <label class="field-label" for="cimetiere">Cimetière (facultatif)</label>
+              <input class={classeChamp} id="cimetiere" name="cimetiere" type="text" autocomplete="off" />
+            </div>
+
+            <div>
+              <label class="field-label" for="communeCimetiere">Commune du cimetière (facultatif)</label>
+              <input
+                class={classeChamp}
+                id="communeCimetiere"
+                name="communeCimetiere"
+                type="text"
+                autocomplete="off"
+                aria-describedby="communeCimetiere-aide"
+              />
+              <p class={classeAide} id="communeCimetiere-aide">
+                Chaque commune a son règlement : nous le vérifions pour vous.
+              </p>
+            </div>
+
+            <div>
+              <label class="field-label" for="datePoseSouhaitee">Date de pose souhaitée (facultatif)</label>
+              <input
+                class={classeChamp}
+                id="datePoseSouhaitee"
+                name="datePoseSouhaitee"
+                type="date"
+                aria-describedby="datePoseSouhaitee-aide"
+              />
+              <p class={classeAide} id="datePoseSouhaitee-aide">
+                Si vous avez une date en tête, par exemple avant une cérémonie.
+              </p>
+            </div>
+          </div>
+        </fieldset>
+
+        {/* ----------------------------------------------------- Le monument */}
+        {/* Replie par le script pour une inscription sur monument existant ou
+            une autre demande : la famille n a alors pas de modele a choisir. */}
+        <fieldset class="mt-16 border-t border-line pt-8" data-bloc="monument">
+          <legend class="label">Le monument</legend>
+
+          <div class="mt-6 grid gap-8 md:grid-cols-2">
             <div>
               <label class="field-label" for="famille">Famille de monument</label>
               <select class={classeChamp} id="famille" name="famille">
@@ -266,133 +383,125 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
                 }
               </select>
             </div>
-
-            <div>
-              <label class="field-label" for="granit">Granit souhaité</label>
-              <select class={classeChamp} id="granit" name="granit" aria-describedby="granit-aide">
-                <option value="">Je ne sais pas encore</option>
-                {
-                  groupesGranits.map((groupe) => (
-                    <optgroup label={groupe.titre}>
-                      {groupe.granits.map((granit) => (
-                        <option value={granit.id}>{granit.nom}</option>
-                      ))}
-                    </optgroup>
-                  ))
-                }
-              </select>
-              <p class="type-body mt-2 text-[0.8125rem] text-muted" id="granit-aide">
-                Une teinte se juge sur la pierre : le choix se confirme au rendez-vous.
-              </p>
-            </div>
-
-            <div>
-              <label class="field-label" for="cimetiere">Cimetière (facultatif)</label>
-              <input class={classeChamp} id="cimetiere" name="cimetiere" type="text" autocomplete="off" />
-            </div>
-
-            <div>
-              <label class="field-label" for="communeCimetiere">Commune du cimetière (facultatif)</label>
-              <input
-                class={classeChamp}
-                id="communeCimetiere"
-                name="communeCimetiere"
-                type="text"
-                autocomplete="off"
-                aria-describedby="communeCimetiere-aide"
-              />
-              <p class="type-body mt-2 text-[0.8125rem] text-muted" id="communeCimetiere-aide">
-                Chaque commune a son règlement : nous le vérifions pour vous.
-              </p>
-            </div>
           </div>
+
+          {/* Pastilles de couleur plutot qu une liste deroulante : une teinte se
+              reconnait a l oeil, et une pastille se touche du pouce. Ce sont de
+              vrais boutons radio, seulement habilles : ils restent utilisables
+              au clavier et sans JavaScript. Les couleurs viennent de
+              TEINTE_PASTILLE (src/data/granits.ts) : approximatives, jamais un
+              echantillon, ce que dit l aide sous les groupes. */}
+          <fieldset class="mt-12" aria-describedby="granit-aide">
+            <legend class="field-label">Granit souhaité</legend>
+
+            <label class={`${classeChoix} mt-4`}>
+              <input class={classeRadio} type="radio" name="granit" value="" checked />
+              <span>Je ne sais pas encore</span>
+            </label>
+
+            {
+              groupesGranits.map((groupe) => (
+                <div class="grav-granit-groupe">
+                  <p class="grav-granit-titre type-body">{groupe.titre}</p>
+                  <div class="grav-pastilles">
+                    {groupe.granits.map((granit) => (
+                      <label class="grav-pastille">
+                        <input type="radio" name="granit" value={granit.id} />
+                        <span
+                          class="grav-rond"
+                          style={`background-color:${TEINTE_PASTILLE[granit.teinte]}`}
+                          aria-hidden="true"
+                        />
+                        <span class="grav-pastille-nom">{granit.nom}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
+
+            <p class={classeAide} id="granit-aide">
+              Les couleurs ci-dessus sont approximatives. Une teinte se juge sur la pierre : le choix se
+              confirme au rendez-vous.
+            </p>
+          </fieldset>
         </fieldset>
 
         {/* ----------------------------------------------------- L inscription */}
-        <fieldset class="mt-16 border-t border-line pt-8">
+        <fieldset class="mt-16 border-t border-line pt-8" data-bloc="inscription">
           <legend class="label">L'inscription</legend>
 
           <p class="type-body mt-6 max-w-[56ch] text-[0.9375rem] text-muted">
-            Quatre lignes, pour commencer : le plus souvent le nom, les dates, puis une pensée. Rien
-            n'est définitif, et rien ne part à la gravure sans votre accord sur un bon à tirer.
+            Deux lignes suffisent pour commencer : le plus souvent le nom, puis les dates. Vous pouvez en
+            ajouter. Rien n'est définitif, et rien ne part à la gravure sans votre accord sur un bon à
+            tirer.
           </p>
 
-          {/* Echantillons : chaque nom de police est ecrit dans sa propre
-              police. Statique, donc lisible aussi sans JavaScript. */}
-          <p class="field-label mt-8">Les polices proposées</p>
-          <ul class="grav-echantillons mt-4">
-            {
-              polices.map((police) => (
-                <li>
-                  <span class="grav-nom" style={`font-family:${police.famille}`}>
-                    {police.nom}
-                  </span>
-                  <span class="grav-style type-body">{STYLE_POLICE_LABELS[police.style]}</span>
-                </li>
-              ))
-            }
-          </ul>
+          {/* UN SEUL style d ecriture pour tout le monument (pratique courante
+              des marbriers) : chaque nom est ecrit dans sa propre police, donc
+              l echantillon EST le choix. Statique : lisible et utilisable sans
+              JavaScript. */}
+          <fieldset class="mt-10">
+            <legend class="field-label">Style d'écriture</legend>
+            <p class="type-body mt-2 max-w-[56ch] text-[0.8125rem] text-muted">
+              Le même style pour toutes les lignes. Chaque nom est écrit dans son style.
+            </p>
+            <div class="grav-polices">
+              {
+                polices.map((police) => (
+                  <label>
+                    <input
+                      class={classeRadio}
+                      type="radio"
+                      name="police"
+                      value={police.id}
+                      checked={police.id === policeParDefaut.id}
+                    />
+                    <span>
+                      <span class="grav-nom" style={`font-family:${police.famille}`}>
+                        {police.nom}
+                      </span>
+                      <span class="grav-style type-body">{STYLE_POLICE_LABELS[police.style]}</span>
+                    </span>
+                  </label>
+                ))
+              }
+            </div>
+          </fieldset>
 
+          {/* Les tailles de lettres sont deja choisies : une famille n a rien a
+              decider ici si elle ne le souhaite pas. Les valeurs envoyees
+              restent en millimetres (contrat inchange), seul l affichage est en
+              centimetres. */}
           {
             lignesInscription.map((ligne) => (
-              <fieldset class="mt-10">
-                <legend class="field-label">{ligne.label}</legend>
-                <div class="grav-ligne mt-3">
-                  <div>
-                    <label class="grav-sous-label type-body" for={`ligne${ligne.numero}_texte`}>
-                      Texte
-                    </label>
-                    <input
-                      class={classeChamp}
-                      id={`ligne${ligne.numero}_texte`}
-                      name={`ligne${ligne.numero}_texte`}
-                      type="text"
-                      maxlength={LIGNE_LONGUEUR_MAX}
-                      autocomplete="off"
-                      aria-describedby={ligne.aide ? `ligne${ligne.numero}_texte-aide` : undefined}
-                    />
-                    {ligne.aide && (
-                      <p
-                        class="type-body mt-2 text-[0.8125rem] text-muted"
-                        id={`ligne${ligne.numero}_texte-aide`}
-                      >
-                        {ligne.aide}
-                      </p>
-                    )}
-                  </div>
-
-                  <div class="grav-reglages">
+              <div data-ligne-sup={ligne.repliable ? String(ligne.numero) : undefined}>
+                <fieldset class="mt-10">
+                  <legend class="field-label">{ligne.label}</legend>
+                  <div class="grav-ligne mt-3">
                     <div>
-                      <label class="grav-sous-label type-body" for={`ligne${ligne.numero}_police`}>
-                        Police
+                      <label class="grav-sous-label type-body" for={`ligne${ligne.numero}_texte`}>
+                        Texte
                       </label>
-                      <select
+                      <input
                         class={classeChamp}
-                        id={`ligne${ligne.numero}_police`}
-                        name={`ligne${ligne.numero}_police`}
-                      >
-                        {polices.map((police) => (
-                          <option value={police.id} selected={police.id === policeParDefaut.id}>
-                            {police.nom} — {STYLE_POLICE_LABELS[police.style].toLowerCase()}
-                          </option>
-                        ))}
-                      </select>
-                      {/* Apercu du nom de la police choisie, ecrit dans cette
-                          police. Le script le met a jour ; sans script il
-                          montre la police proposee par defaut. */}
-                      <span
-                        class="grav-apercu-police"
-                        style={`font-family:${policeParDefaut.famille}`}
-                        data-echantillon={String(ligne.numero)}
-                        aria-hidden="true"
-                      >
-                        {policeParDefaut.nom}
-                      </span>
+                        id={`ligne${ligne.numero}_texte`}
+                        name={`ligne${ligne.numero}_texte`}
+                        type="text"
+                        maxlength={LIGNE_LONGUEUR_MAX}
+                        autocomplete="off"
+                        aria-describedby={ligne.aide ? `ligne${ligne.numero}_texte-aide` : undefined}
+                      />
+                      {ligne.aide && (
+                        <p class={classeAide} id={`ligne${ligne.numero}_texte-aide`}>
+                          {ligne.aide}
+                        </p>
+                      )}
                     </div>
 
-                    <div>
+                    <div class="grav-reglages">
                       <label class="grav-sous-label type-body" for={`ligne${ligne.numero}_hauteur`}>
-                        Hauteur des lettres
+                        Taille des lettres
                       </label>
                       <select
                         class={classeChamp}
@@ -401,16 +510,23 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
                       >
                         {hauteursLettresMm.map((hauteur) => (
                           <option value={String(hauteur)} selected={hauteur === ligne.hauteurParDefaut}>
-                            {hauteur} mm
+                            {hauteurLabel(hauteur)}
                           </option>
                         ))}
                       </select>
                     </div>
                   </div>
-                </div>
-              </fieldset>
+                </fieldset>
+              </div>
             ))
           }
+
+          {/* Pose par le script, qui replie d abord les lignes 3 et 4. Sans
+              JavaScript, les quatre lignes sont la et ce bouton n apparait
+              jamais. */}
+          <button type="button" class="btn btn-outline mt-8" data-ajouter-ligne hidden>
+            Ajouter une ligne
+          </button>
 
           <div class="mt-12">
             <label class="field-label" for="gravure_precisions">
@@ -422,7 +538,7 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
               name="gravure_precisions"
               rows="5"
               aria-describedby="gravure_precisions-aide"></textarea>
-            <p class="type-body mt-2 text-[0.8125rem] text-muted" id="gravure_precisions-aide">
+            <p class={classeAide} id="gravure_precisions-aide">
               Épitaphe longue, disposition souhaitée, lignes supplémentaires, accents et orthographe
               exacte des noms.
             </p>
@@ -430,31 +546,20 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
         </fieldset>
 
         {/* ------------------------------------------------ Finition et motif */}
-        <fieldset class="mt-16 border-t border-line pt-8">
+        <fieldset class="mt-16 border-t border-line pt-8" data-bloc="inscription">
           <legend class="label">Finition et motif</legend>
 
           <fieldset class="mt-6">
             <legend class="field-label">Finition de la gravure</legend>
             <div class="mt-4 space-y-3">
-              <label class="flex items-start gap-3 text-[0.9375rem]">
-                <input
-                  class="mt-1 size-4 shrink-0 accent-[var(--ink)]"
-                  type="radio"
-                  name="finition"
-                  value=""
-                  checked
-                />
+              <label class={classeChoix}>
+                <input class={classeRadio} type="radio" name="finition" value="" checked />
                 <span>Je ne sais pas encore</span>
               </label>
               {
                 finitions.map((finition) => (
-                  <label class="flex items-start gap-3 text-[0.9375rem]">
-                    <input
-                      class="mt-1 size-4 shrink-0 accent-[var(--ink)]"
-                      type="radio"
-                      name="finition"
-                      value={finition.id}
-                    />
+                  <label class={classeChoix}>
+                    <input class={classeRadio} type="radio" name="finition" value={finition.id} />
                     <span>
                       {finition.nom}
                       <span class="grav-style type-body">{finition.aide}</span>
@@ -476,7 +581,7 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
                 ))
               }
             </select>
-            <p class="type-body mt-2 text-[0.8125rem] text-muted" id="motif-aide">
+            <p class={classeAide} id="motif-aide">
               Pour « autre symbole » ou « dessin fourni par la famille », décrivez-le dans les précisions
               ci-dessus et joignez votre fichier plus bas.
             </p>
@@ -491,7 +596,7 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
         {/* -------------------------------------------------- Apercu en direct */}
         {/* Reste cache sans JavaScript : un cadre vide n apprendrait rien. Le
             formulaire, lui, est complet dans tous les cas. */}
-        <div class="mt-16 border-t border-line pt-8" data-apercu hidden>
+        <div class="mt-16 border-t border-line pt-8" data-bloc="inscription" data-apercu hidden>
           <p class="label">Aperçu de la gravure</p>
           <div
             class="grav-cadre"
@@ -511,7 +616,14 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
           <legend class="label">Fichiers à joindre</legend>
 
           <div class="mt-6">
-            <label class="field-label" for="fichiers">Fichiers à joindre (facultatif)</label>
+            {/* Mis en avant par le script pour une inscription sur monument
+                existant : c est le cas ou la photo nous sert le plus. Sans
+                JavaScript le rappel reste affiche, comme tout le reste. */}
+            <p class="grav-rappel type-body" data-aide-photo>
+              Une photo du monument existant nous aide beaucoup.
+            </p>
+
+            <label class="field-label mt-6" for="fichiers">Fichiers à joindre (facultatif)</label>
             <input
               class="mt-3 block w-full text-[0.9375rem]"
               id="fichiers"
@@ -540,7 +652,7 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
               name="message"
               rows="5"
               aria-describedby="message-aide"></textarea>
-            <p class="type-body mt-2 text-[0.8125rem] text-muted" id="message-aide">
+            <p class={classeAide} id="message-aide">
               Tout ce qui nous aiderait : délai souhaité, monument voisin, question particulière.
             </p>
           </div>
@@ -548,9 +660,9 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
 
         {/* ----------------------------------------------------- Consentement */}
         <div class="mt-16 border-t border-line pt-8">
-          <label class="flex items-start gap-3 text-[0.9375rem]" for="consentement">
+          <label class={classeChoix} for="consentement">
             <input
-              class="mt-1 size-4 shrink-0 accent-[var(--ink)]"
+              class={classeRadio}
               id="consentement"
               name="consentement"
               type="checkbox"
@@ -590,6 +702,10 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
           <button type="submit" class="btn btn-primary" data-devis-envoyer>Envoyer ma demande</button>
           <p class="type-body hidden text-[0.9375rem]" data-devis-statut role="status" aria-live="polite"></p>
         </div>
+        <p class="type-body mt-6 max-w-[56ch] text-[0.9375rem] text-muted">
+          Nous vous recontactons pour affiner votre demande. Rien n'est engagé, et rien n'est gravé avant
+          votre accord.
+        </p>
       </form>
     </section>
 
@@ -610,20 +726,28 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
     </section>
   </main>
 
-  {/* Habillage de la section gravure. Ecrit en CSS plutot qu en utilitaires
-      Tailwind POUR UNE RAISON DE POIDS : la feuille Tailwind est unique et
-      partagee par les 23 pages, donc toute classe inedite utilisee ici
-      alourdirait aussi l accueil et les fiches. Ce bloc, lui, reste sur
+  {/* Habillage des sections de personnalisation. Ecrit en CSS plutot qu en
+      utilitaires Tailwind POUR UNE RAISON DE POIDS : la feuille Tailwind est
+      unique et partagee par les 23 pages, donc toute classe inedite utilisee
+      ici alourdirait aussi l accueil et les fiches. Ce bloc, lui, reste sur
       /devis/. Les classes Tailwind gardees ci-dessus servaient deja ailleurs
       dans le site : elles ne coutent rien de plus. */}
   <style>
-    .grav-echantillons {
+    .grav-court {
+      max-width: 24rem;
+    }
+
+    /* Les 6 styles d ecriture. Chaque nom est ecrit dans sa police : la liste
+       est a la fois l echantillon et le choix. */
+    .grav-polices {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+    .grav-polices label {
       display: flex;
-      flex-wrap: wrap;
-      gap: 1.25rem 2.5rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+      align-items: flex-start;
+      gap: 0.75rem;
     }
     .grav-nom {
       display: block;
@@ -636,11 +760,66 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
       font-size: 0.75rem;
       color: var(--muted);
     }
-    .grav-ligne {
-      display: grid;
-      gap: 1.25rem;
+
+    /* Pastilles de granit : de vrais boutons radio, masques a l oeil mais
+       toujours la pour le clavier et les lecteurs d ecran. L etat coche et le
+       focus se lisent sur l anneau de la pastille. */
+    .grav-granit-groupe {
+      margin-top: 1.75rem;
     }
-    .grav-reglages {
+    .grav-granit-titre {
+      margin: 0;
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+    .grav-pastilles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.25rem;
+      margin-top: 0.75rem;
+    }
+    .grav-pastille {
+      position: relative;
+      display: flex;
+      width: 5rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      text-align: center;
+    }
+    .grav-pastille input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+    .grav-rond {
+      display: block;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 1px var(--line-strong);
+      transition: box-shadow 200ms ease;
+    }
+    .grav-pastille input:checked + .grav-rond,
+    .grav-pastille input:focus-visible + .grav-rond {
+      box-shadow:
+        inset 0 0 0 1px var(--line-strong),
+        0 0 0 2px var(--canvas),
+        0 0 0 4px var(--ink);
+    }
+    .grav-pastille-nom {
+      font-size: 0.75rem;
+      line-height: 1.25;
+      color: var(--muted);
+    }
+    .grav-pastille input:checked ~ .grav-pastille-nom {
+      color: var(--ink);
+    }
+
+    /* Une ligne d inscription : son texte, et la taille de ses lettres. */
+    .grav-ligne {
       display: grid;
       gap: 1.25rem;
     }
@@ -648,12 +827,6 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
       display: block;
       font-size: 0.8125rem;
       color: var(--muted);
-    }
-    .grav-apercu-police {
-      display: block;
-      margin-top: 0.5rem;
-      font-size: 1.125rem;
-      line-height: 1;
     }
     .grav-rappel {
       margin-top: 0.75rem;
@@ -665,7 +838,7 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
       max-width: 32rem;
     }
     @media (min-width: 40rem) {
-      .grav-reglages {
+      .grav-polices {
         grid-template-columns: 1fr 1fr;
       }
     }
@@ -675,7 +848,7 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
         align-items: start;
       }
       .grav-reglages {
-        width: 22rem;
+        width: 11rem;
       }
     }
 
@@ -761,12 +934,252 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
       }
 
       // Horodatage d affichage : un robot poste en quelques millisecondes.
-      const horodatage = champ("horodatage");
-      if (horodatage) horodatage.value = String(Date.now());
+      function poseHorodatage() {
+        const horodatage = champ("horodatage");
+        if (horodatage) horodatage.value = String(Date.now());
+      }
+      poseHorodatage();
+
+      /* ----------------------------------------- Comment vous recontacter ---
+         Par defaut nous repondons par e-mail, et le telephone est facultatif.
+         Si la famille prefere un appel, le numero devient NECESSAIRE (c est
+         alors le seul moyen de la joindre) et nous lui demandons quand
+         l appeler. Sans JavaScript, les deux champs restent visibles et
+         facultatifs : aucun champ masque n est jamais `required`. */
+      const telephone = champ("telephone");
+      const blocQuandAppeler = form.querySelector("[data-quand-appeler]");
+      const telFacultatif = form.querySelector("[data-tel-facultatif]");
+      const telRequis = form.querySelector("[data-tel-requis]");
+
+      function majRecontact() {
+        const recontact = champ("recontact");
+        const parTelephone = Boolean(recontact) && recontact.value === "telephone";
+        if (blocQuandAppeler) blocQuandAppeler.hidden = !parTelephone;
+        if (telephone) telephone.required = parTelephone;
+        if (telFacultatif) telFacultatif.hidden = parTelephone;
+        if (telRequis) telRequis.hidden = !parTelephone;
+      }
+
+      /* ------------------------------------------- Sections conditionnelles --
+         Une inscription sur un monument existant n a pas de modele a choisir ;
+         une "autre demande" n a ni monument ni inscription. Les sections
+         repliees sont aussi DESACTIVEES (`fieldset.disabled`) : leurs valeurs
+         par defaut ne partent donc pas avec la demande. Aucune ne contient de
+         champ obligatoire, donc rien ne peut rester requis et invisible.
+         Sans JavaScript, tout reste visible et actif. */
+      const aidePhoto = form.querySelector("[data-aide-photo]");
+
+      function majSections() {
+        const typeDemande = champ("typeDemande");
+        const choix =
+          reglages.blocsParTypeDemande[typeDemande ? typeDemande.value : ""] || {
+            monument: true,
+            inscription: true,
+            photo: false,
+          };
+        form.querySelectorAll("[data-bloc]").forEach((bloc) => {
+          const visible = choix[bloc.dataset.bloc] !== false;
+          bloc.hidden = !visible;
+          if (bloc.tagName === "FIELDSET") bloc.disabled = !visible;
+        });
+        if (aidePhoto) aidePhoto.hidden = !choix.photo;
+      }
+
+      /* ------------------------------------------------- Lignes 3 et 4 -------
+         Deux lignes suffisent au depart. Les suivantes se depliant une a une,
+         le formulaire tient dans un ecran de telephone. Sans JavaScript elles
+         sont toutes la, et le bouton n apparait pas. */
+      const lignesSup = Array.from(form.querySelectorAll("[data-ligne-sup]"));
+      const boutonLigne = form.querySelector("[data-ajouter-ligne]");
+
+      function majBoutonLigne() {
+        if (boutonLigne) boutonLigne.hidden = !lignesSup.some((bloc) => bloc.hidden);
+      }
+
+      /** Deplie les lignes supplementaires qui portent deja du texte. */
+      function ouvreLignesRemplies() {
+        for (const bloc of lignesSup) {
+          const texte = bloc.querySelector("input[type='text']");
+          if (texte && String(texte.value || "").trim() !== "") bloc.hidden = false;
+        }
+        majBoutonLigne();
+      }
+
+      if (lignesSup.length > 0 && boutonLigne) {
+        for (const bloc of lignesSup) bloc.hidden = true;
+        boutonLigne.addEventListener("click", () => {
+          const suivante = lignesSup.find((bloc) => bloc.hidden);
+          if (!suivante) return;
+          suivante.hidden = false;
+          majBoutonLigne();
+          const texte = suivante.querySelector("input[type='text']");
+          if (texte && texte.focus) texte.focus();
+        });
+      }
+
+      /* ------------------------------------------ Apercu de la gravure -------
+         Progressive enhancement : sans ce script, les listes, les radios et les
+         champs restent la, et seul l apercu manque. Aucune librairie, aucun
+         canvas. Le style d ecriture est unique : toutes les lignes le portent. */
+      const apercu = form.querySelector("[data-apercu]");
+      const cadre = form.querySelector("[data-apercu-cadre]");
+      const apercuVide = form.querySelector("[data-apercu-vide]");
+      const apercuPret = Boolean(apercu && cadre && apercuVide);
+
+      function famillePoliceChoisie() {
+        const choix = champ("police");
+        const police = choix ? reglages.polices[choix.value] : null;
+        return police ? police.famille : "inherit";
+      }
+
+      function majApercu() {
+        if (!apercuPret) return;
+
+        const granit = champ("granit");
+        cadre.style.backgroundColor =
+          (granit && reglages.couleurParGranit[granit.value]) || reglages.couleurGranitDefaut;
+
+        /* `form.elements.finition` est la liste des radios : sa `value` est
+           celle du bouton coche, vide si c est "Je ne sais pas encore". */
+        const finition = champ("finition");
+        const couleur =
+          reglages.couleurParFinition[finition ? finition.value : ""] || reglages.couleurFinitionDefaut;
+        const famille = famillePoliceChoisie();
+
+        let rempli = false;
+        for (const numero of reglages.lignes) {
+          const ligne = form.querySelector(`[data-apercu-ligne="${numero}"]`);
+          if (!ligne) continue;
+          const texte = String(champ(`ligne${numero}_texte`).value || "").trim();
+          const hauteur = Number(champ(`ligne${numero}_hauteur`).value) || 40;
+          ligne.textContent = texte;
+          ligne.hidden = texte === "";
+          ligne.style.fontFamily = famille;
+          ligne.style.fontSize = (hauteur * reglages.apercuPxParMm).toFixed(1) + "px";
+          ligne.style.color = couleur;
+          if (texte !== "") rempli = true;
+        }
+        apercuVide.hidden = rempli;
+      }
+
+      // Motif qui demande un dessin ou une explication : on le rappelle.
+      const motifRappel = form.querySelector("[data-motif-rappel]");
+
+      function majMotif() {
+        const motif = champ("motif");
+        if (motif && motifRappel) {
+          motifRappel.hidden = !reglages.motifsAvecPrecision.includes(motif.value);
+        }
+      }
+
+      /* ------------------------------------------------------- Brouillon -----
+         Une famille remplit ce formulaire en plusieurs fois, parfois en
+         cherchant une date dans un papier. Les champs texte, les listes et les
+         choix sont donc gardes dans le navigateur, sur sa machine et nulle part
+         ailleurs. JAMAIS les fichiers joints (le navigateur ne le permet pas),
+         jamais le consentement : il doit etre donne a chaque envoi.
+         Tout passe par try/catch : navigation privee, stockage plein ou refuse,
+         JSON abime — le brouillon est un confort, son echec ne doit jamais
+         empecher une demande. */
+      const brouillon = form.querySelector("[data-brouillon]");
+      const boutonEffacer = form.querySelector("[data-brouillon-effacer]");
+      const IGNORES = ["societe", "horodatage", "consentement", "fichiers"];
+
+      function champsBrouillon() {
+        return Array.from(form.elements).filter(
+          (element) =>
+            element.name &&
+            !IGNORES.includes(element.name) &&
+            element.type !== "file" &&
+            element.type !== "hidden" &&
+            element.type !== "submit" &&
+            element.type !== "button" &&
+            element.type !== "checkbox",
+        );
+      }
+
+      /** Vrai quand la famille a vraiment ecrit quelque chose. */
+      function brouillonUtile(champs) {
+        return champs.some(
+          (element) =>
+            (element.tagName === "TEXTAREA" || ["text", "tel", "email", "date"].includes(element.type)) &&
+            String(element.value || "").trim() !== "",
+        );
+      }
+
+      function oublieBrouillon() {
+        try {
+          window.localStorage.removeItem(reglages.cleBrouillon);
+        } catch {
+          /* Rien a faire : il n y avait deja peut-etre rien. */
+        }
+      }
+
+      function sauveBrouillon() {
+        try {
+          const champs = champsBrouillon();
+          if (!brouillonUtile(champs)) {
+            oublieBrouillon();
+            return;
+          }
+          const donnees = {};
+          for (const element of champs) {
+            if (element.type === "radio") {
+              if (element.checked) donnees[element.name] = element.value;
+            } else {
+              donnees[element.name] = element.value;
+            }
+          }
+          window.localStorage.setItem(reglages.cleBrouillon, JSON.stringify(donnees));
+        } catch {
+          /* Stockage indisponible : on continue sans brouillon. */
+        }
+      }
+
+      function restaureBrouillon() {
+        let donnees = null;
+        try {
+          const brut = window.localStorage.getItem(reglages.cleBrouillon);
+          donnees = brut ? JSON.parse(brut) : null;
+        } catch {
+          donnees = null;
+        }
+        if (!donnees || typeof donnees !== "object") return false;
+
+        for (const element of champsBrouillon()) {
+          const valeur = donnees[element.name];
+          if (typeof valeur !== "string") continue;
+          if (element.type === "radio") {
+            if (element.value === valeur) element.checked = true;
+          } else {
+            element.value = valeur;
+          }
+        }
+        return true;
+      }
+
+      let minuteurBrouillon = 0;
+      function planifieSauvegarde() {
+        window.clearTimeout(minuteurBrouillon);
+        minuteurBrouillon = window.setTimeout(sauveBrouillon, 500);
+      }
+
+      /** Remet toutes les parties mobiles d accord avec les champs. */
+      function majTout() {
+        majRecontact();
+        majSections();
+        majMotif();
+        majApercu();
+      }
+
+      if (restaureBrouillon() && brouillon) brouillon.hidden = false;
+      ouvreLignesRemplies();
 
       /* Pre-selection du modele depuis /devis/?modele=<slug>, pose par les
-         fiches. Un slug inconnu est ignore : le select reste sur "Je ne sais
-         pas encore" plutot que d afficher un choix qui n existe pas. */
+         fiches. Elle passe APRES le brouillon : venir d une fiche est une
+         intention plus recente que le brouillon de la veille. Un slug inconnu
+         est ignore : le select reste sur "Je ne sais pas encore" plutot que
+         d afficher un choix qui n existe pas. */
       const demande = new URLSearchParams(window.location.search).get("modele");
       const selectModele = champ("modele");
       if (demande && selectModele && reglages.famillesParModele[demande]) {
@@ -777,72 +1190,27 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
         }
       }
 
-      /* ---------------- Echantillons de police et apercu de la gravure ----
-         Progressive enhancement : sans ce script, les selects, les radios et
-         les champs restent la, et l echantillon montre la police proposee par
-         defaut. Aucune librairie, aucun canvas. */
+      majTout();
 
-      function famillePolice(id) {
-        const police = reglages.polices[id];
-        return police ? police.famille : "inherit";
-      }
+      form.addEventListener("input", () => {
+        majTout();
+        planifieSauvegarde();
+      });
+      form.addEventListener("change", () => {
+        majTout();
+        planifieSauvegarde();
+      });
 
-      for (const numero of reglages.lignes) {
-        const select = champ(`ligne${numero}_police`);
-        const echantillon = form.querySelector(`[data-echantillon="${numero}"]`);
-        if (!select || !echantillon) continue;
-        select.addEventListener("change", () => {
-          const police = reglages.polices[select.value];
-          if (!police) return;
-          echantillon.textContent = police.nom;
-          echantillon.style.fontFamily = police.famille;
-        });
-      }
-
-      const apercu = form.querySelector("[data-apercu]");
-      const cadre = form.querySelector("[data-apercu-cadre]");
-      const apercuVide = form.querySelector("[data-apercu-vide]");
-
-      function majApercu() {
-        const granit = champ("granit");
-        cadre.style.backgroundColor =
-          (granit && reglages.couleurParGranit[granit.value]) || reglages.couleurGranitDefaut;
-
-        /* `form.elements.finition` est la liste des radios : sa `value` est
-           celle du bouton coche, vide si c est "Je ne sais pas encore". */
-        const finition = champ("finition");
-        const couleur =
-          reglages.couleurParFinition[finition ? finition.value : ""] || reglages.couleurFinitionDefaut;
-
-        let rempli = false;
-        for (const numero of reglages.lignes) {
-          const ligne = form.querySelector(`[data-apercu-ligne="${numero}"]`);
-          if (!ligne) continue;
-          const texte = String(champ(`ligne${numero}_texte`).value || "").trim();
-          const hauteur = Number(champ(`ligne${numero}_hauteur`).value) || 40;
-          ligne.textContent = texte;
-          ligne.hidden = texte === "";
-          ligne.style.fontFamily = famillePolice(champ(`ligne${numero}_police`).value);
-          ligne.style.fontSize = (hauteur * reglages.apercuPxParMm).toFixed(1) + "px";
-          ligne.style.color = couleur;
-          if (texte !== "") rempli = true;
-        }
-        apercuVide.hidden = rempli;
-      }
-
-      if (apercu && cadre && apercuVide) {
-        apercu.hidden = false;
-        majApercu();
-        form.addEventListener("input", majApercu);
-        form.addEventListener("change", majApercu);
-      }
-
-      // Motif qui demande un dessin ou une explication : on le rappelle.
-      const motif = champ("motif");
-      const motifRappel = form.querySelector("[data-motif-rappel]");
-      if (motif && motifRappel) {
-        motif.addEventListener("change", () => {
-          motifRappel.hidden = !reglages.motifsAvecPrecision.includes(motif.value);
+      if (boutonEffacer) {
+        boutonEffacer.addEventListener("click", () => {
+          oublieBrouillon();
+          form.reset();
+          poseHorodatage();
+          if (brouillon) brouillon.hidden = true;
+          videErreurs();
+          for (const bloc of lignesSup) bloc.hidden = true;
+          majBoutonLigne();
+          majTout();
         });
       }
 
@@ -897,6 +1265,14 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
           problemes.push(["email", "Cette adresse e-mail semble incomplète (exemple : nom@exemple.ch)."]);
         }
 
+        // Le numero n est necessaire que si la famille demande un appel.
+        if (telephone && telephone.required && estVide("telephone")) {
+          problemes.push([
+            "telephone",
+            "Merci d'indiquer un numéro de téléphone, pour que nous puissions vous appeler.",
+          ]);
+        }
+
         const fichiers = erreurFichiers();
         if (fichiers) problemes.push(["fichiers", fichiers]);
 
@@ -924,6 +1300,8 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
           }
 
           if (reponse.ok && charge && charge.ok === true) {
+            // La demande est partie : le brouillon n a plus de raison d etre.
+            oublieBrouillon();
             window.location.href = "/devis/merci/";
             return;
           }

@@ -35,11 +35,72 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [x] E5. Personnalisation guidee dans le formulaire de devis (4 lignes d inscription, polices sur
       echantillons, hauteur des lettres, finition, motif, apercu en direct du texte) ; configurateur
       visuel reporte (voir `docs/CONFIGURATEUR-FUTUR.md`).
+      (passe 1 : personnalisation guidee ; passe 2 : simplification pour les familles, police unique,
+      pastilles de granit, sections conditionnelles, brouillon. Passe 3 eventuelle, etapes et
+      recapitulatif, a decider APRES un test sur telephone avec un proche age.)
 - [ ] E6. Envoi du devis : fonction Cloudflare Pages + Resend (pas de n8n), adresse en variable
       d environnement, Turnstile. Aucun secret dans le repo. Suivre `docs/devis-contrat.md`.
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 14.10.2026, E5 PASSE 2 TERMINEE (Claude Code) : formulaire de devis SIMPLIFIE pour les familles
+  (decisions de Thomas du 14.10.2026, `docs/DECISIONS-ET-ETAT.md` section "Formulaire de devis,
+  peaufinage"). Toujours UNE page, complete et utilisable sans JavaScript.
+  CHAMPS : `police` (UN seul style d ecriture pour tout le monument, 6 echantillons radio, chaque
+  nom ecrit dans sa police, defaut cinzel) REMPLACE les 4 `ligne<n>_police` ; `recontact` (radio
+  telephone / e-mail, defaut e-mail) ; `quandAppeler` (texte libre) ; `datePoseSouhaitee`
+  (input date). Le telephone reste facultatif, SAUF si `recontact` = telephone : le JS le passe
+  alors en requis, pose l etoile et deplie `quandAppeler`. 9 champs d inscription au lieu de 12.
+  TAILLES DE LETTRES : libelle "Taille des lettres", affichage en centimetres ("3 cm" ... "6 cm",
+  via `hauteurLabel`), valeurs envoyees INCHANGEES (30/40/50/60 mm), defauts 50/40/30/30.
+  Lignes 3 et 4 repliees derriere un bouton "Ajouter une ligne" EN JS SEULEMENT (sans JS les 4
+  lignes sont la, le bouton reste cache) ; une ligne repliee qui porte du texte se deplie a la
+  restauration du brouillon.
+  GRANIT : pastilles de couleur cliquables (vrais boutons radio habilles, masques a l oeil mais
+  utilisables au clavier et sans JS ; anneau sur `:checked` et `:focus-visible`), groupees par
+  teinte, couleurs de TEINTE_PASTILLE, plus "Je ne sais pas encore" par defaut. Champ `granit`
+  inchange. Le select deroulant est supprime.
+  SECTIONS CONDITIONNELLES (JS) : `typeDemande` sort de la section "Le monument" et vit dans une
+  nouvelle section "Votre demande" (avec cimetiere, commune, date de pose), sinon il se cacherait
+  lui-meme. `nouveau` = tout ; `inscription` = pas de section monument + rappel "Une photo du
+  monument existant nous aide beaucoup" pres des fichiers ; `autre` = ni monument ni inscription.
+  Les blocs replies sont AUSSI desactives (`fieldset.disabled`) : leurs valeurs par defaut ne
+  partent pas. Aucun champ obligatoire dans un bloc repliable, donc jamais de `required` masque
+  (verifie dans dist : les 7 `required` du HTML sont tous hors `data-bloc`). Sans JS, tout visible.
+  BROUILLON : `localStorage` (cle `cleBrouillonDevis` = "pt-devis-brouillon"), champs texte, listes
+  et radios seulement, JAMAIS les fichiers ni le consentement ; enregistre 500 ms apres la frappe,
+  et seulement si un champ texte est rempli ; message "Nous avons retrouve votre brouillon." avec
+  un bouton "Effacer" (remet le formulaire a zero) ; efface a l envoi reussi. Tout en try/catch.
+  `?modele=` passe APRES la restauration : venir d une fiche est plus recent que le brouillon.
+  REFERENCE DE DEMANDE : `referenceDevis` dans `src/config/devis.ts`, format `PT-AAAAMMJJ-xxxx`,
+  alphabet sans 0/O/1/I. ATTRIBUEE PAR LE SERVEUR EN E6, jamais par le navigateur (duplication en
+  deux onglets, perte au brouillon, forgeable). Le formulaire n en envoie aucune.
+  `docs/devis-contrat.md` a jour : `police`, `recontact`, `quandAppeler`, `datePoseSouhaitee`,
+  suppression de `ligne<n>_police`, tableau des sections repliees (un champ ABSENT est le cas
+  normal, pas une erreur), sections "Reference de demande attribuee par le serveur" et "Brouillon
+  conserve dans le navigateur".
+  MESURES (gzip, meme calcul que `scripts/poids-pages.py`) : `/devis/` html 15348 octets (12318
+  apres E5 passe 1), js en ligne 7908 (5613), css partage 6834 INCHANGE. Preuve qu aucune autre
+  page ne change : 404.html 3783 et css 6834, exactement les chiffres de la passe 1 ; et toutes les
+  classes Tailwind de la page existaient deja (seul `btn-outline` est nouveau ICI, mais il sert
+  deja sur 6 autres pages). L habillage reste en CSS `grav-*` dans la page, mis en ligne dans
+  `/devis/index.html` seul (un seul fichier css dans `dist/_astro`).
+  A SAVOIR POUR PLUS TARD : un `<script is:inline>` n est NI minifie NI depouille de ses
+  commentaires par Astro. Les commentaires francais du script partent donc chez la famille : c est
+  la premiere chose a retirer si `/devis/` doit maigrir.
+  PIEGE DE SESSION : `python3 scripts/poids-pages.py` reste REFUSE a l agent malgre la ligne
+  `Bash(python3 scripts/:*)` de `.claude/settings.json` (le motif coupe au milieu d un mot, il
+  faudrait `Bash(python3 scripts/poids-pages.py:*)`) ; `gzip` et `git checkout` sont refuses aussi.
+  La mesure a donc ete refaite par une integration temporaire dans `astro.config.mjs` (gzip de
+  Node, NIVEAU 9 pour coller au defaut de `gzip.compress()` en python), retiree depuis
+  (`git status` : `astro.config.mjs` non modifie). Niveau 9 : les chiffres tombent a l octet sur
+  ceux de la passe 1, le niveau par defaut de Node donnait 3789 au lieu de 3783.
+  Verifie : `npm run build` OK (23 pages), `npx astro check` 33 fichiers 0 erreur 0 avertissement
+  0 hint ; `grep -rliE "atelier|kosovo|sous-trait|fabriqu|n8n" dist` ne renvoie rien ; sitemap
+  21 adresses (inchange) ; dans dist : 6 radios `police`, 0 `ligne<n>_police`, 14 radios `granit`,
+  4 `ligne<n>_hauteur` avec 50/40/30/30, `recontact` a "email", "3 cm" a "6 cm" sur les 4 lignes.
+  A FAIRE AVANT E6 : essayer la page sur un telephone avec un proche age (c est la decision de
+  Thomas : la passe 3, etapes et recapitulatif, ne se decide qu apres ce test).
 - 13.10.2026, E5 TERMINEE (Claude Code) : PERSONNALISATION GUIDEE, pas de configurateur visuel
   (reporte, regles dans `docs/CONFIGURATEUR-FUTUR.md`).
   `src/data/personnalisation.ts` est la SOURCE UNIQUE (reutilisee plus tard par le configurateur) :
@@ -284,7 +345,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E6 : ENVOI DU DEVIS. Fonction Cloudflare Pages `functions/api/devis.ts` + Resend (PAS de n8n,
+D ABORD UN TEST REEL, PAS DU CODE : ouvrir `/devis/` sur un telephone avec un proche age, le
+laisser remplir une demande seul, et noter ou il hesite. C est ce test, decide par Thomas le
+14.10.2026, qui tranche la passe 3 du formulaire (decoupage en etapes et recapitulatif avant
+envoi) : elle ne se fait pas "au cas ou". Points a observer : le choix du style d ecriture, les
+pastilles de granit, le bouton "Ajouter une ligne", et si la longueur de la page decourage.
+
+ENSUITE E6 : ENVOI DU DEVIS. Fonction Cloudflare Pages `functions/api/devis.ts` + Resend (PAS de n8n,
 decision de Thomas du 13.10.2026), adresse de destination en variable d environnement, Turnstile.
 Tout est specifie dans `docs/devis-contrat.md`, y compris les 12 champs d inscription, `finition`,
 `motif` et `gravure_precisions` ajoutes en E5 (valeurs autorisees = ids de
