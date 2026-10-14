@@ -94,13 +94,16 @@ points ouverts. Les maquettes restent des references : on recode, on ne reprodui
 
 - Ordre : Granit > Inscription > Motifs > Votre devis. Les ecrans 02 et 03 des maquettes
   s echangent ; leur contenu reste valable.
-- Alignement : centre par defaut, 3 boutons (gauche, centre, droite), pas de justifie ; n agit que
-  sur les lignes internes d une zone.
+- Alignement : tout centre, aucun bouton (choix de Thomas). Les 4 boutons de la maquette 03
+  disparaissent ; le champ reste dans les donnees pour plus tard.
 - Zones : 3 zones libres, 120 caracteres, retours a la ligne (4 lignes max), une police + une
   hauteur + une finition + un alignement par zone ; scene stockee en cm.
 - Vues : composition sur la vue stele ; sur la vue monument des que sa calibration existe dans le
   JSON du modele, sinon photo nue "sans gravure".
 - Pari d usage a verifier au test avec un proche age : Inscription avant Motifs.
+- Valide par Thomas le 14.10.2026 (1 audacieuse, 2 securisee, 3 audacieuse, 4 le plus realisable).
+- Exigence transverse : tout doit rester facilement ameliorable ou corrigible par Thomas et
+  l agent ; principe de maintenabilite detaille dans docs/DECISIONS-ET-ETAT.md.
 
 ## 4. Implications pour la construction
 - Les composants ci-dessus se codent en Astro + Tailwind avec les jetons existants du theme ;

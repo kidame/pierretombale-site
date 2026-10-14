@@ -103,8 +103,8 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
   1. Ordre des etapes : Granit > Inscription > Motifs > Votre devis (4 etapes, pas d etape Options).
      Le granit d abord parce que le canvas a besoin de son fond ; le texte avant les motifs parce que
      toutes les familles saisissent un texte, les motifs sont facultatifs et se placent autour.
-  2. Alignement : centre par defaut, 3 boutons (gauche, centre, droite) qui n agissent que sur les
-     lignes internes d une zone multiligne. Pas de justifie. Retirables sans toucher aux donnees.
+  2. Alignement : tout centre, aucun bouton (Thomas a choisi la version securisee). Le champ
+      existe dans la scene, fixe a "centre", pour une evolution sans migration.
   3. Zones : configurateur = 3 zones libres, 120 caracteres, retours a la ligne autorises (4 lignes
      max par zone), une police + une hauteur + une finition + un alignement par zone. Le formulaire
      /devis/ garde ses 4 lignes a police commune. La scene est stockee en cm, jamais en pixels.
@@ -117,6 +117,25 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
   recalcule par la fonction Cloudflare avec le meme module, envoi sur le meme /api/devis avec un bloc
   `configurateur` (scene JSON + PNG). Bornes 120 caracteres et 4 lignes par zone a confirmer avec le
   graveur. Reste ouvert : pose au forfait ou par commune ; rappel a creneau (v1 : texte libre).
+- Validation de Thomas, 14.10.2026 : 1 audacieuse (Inscription avant Motifs), 2 securisee (tout
+  centre, aucun bouton d alignement ; le champ `alignement` reste dans la scene, fixe a "centre",
+  pour l ajouter plus tard sans casser les devis deja envoyes), 3 audacieuse (3 zones multilignes),
+  4 le plus realisable (composition sur la vue stele seule en v1 ; la vue monument suivra quand sa
+  calibration existera, sans code nouveau).
+- Principe de maintenabilite (demande de Thomas, 14.10.2026 : "tout devra etre facilement
+  ameliorable ou corrigible par toi et moi") :
+  - Tout ce qui est un choix (granits, polices, hauteurs, finitions, motifs, bornes 120/4/3,
+    textes d aide, ordre des etapes) vit dans src/data/ ou src/config/, jamais dans le code du canvas.
+    Ajouter un motif = deposer un SVG + une ligne dans un fichier de donnees.
+  - Le JSON par modele (dimensions, zones gravables, images, calibrations) est genere au build
+    depuis la fiche produit : corriger une cote = corriger la fiche.
+  - Le code du configurateur est decoupe en petits fichiers a un seul role (etat, rendu Konva,
+    prix, export, formulaire), chacun avec un commentaire d en-tete en francais qui dit ce qu il
+    fait et ce qu il ne fait pas. Pas de framework, pas de bundle externe autre que Konva.
+  - Un seul document de reference pour le modifier : docs/CONFIGURATEUR-FUTUR.md, avec une
+    section "Comment changer X" tenue a jour a chaque passe.
+  - Chaque passe (A a F de l etude) est un commit isole, testable seul, avec le script
+    scripts/poids-pages.py comme garde-fou : on peut revenir en arriere passe par passe.
 
 ## Où retrouver quoi
 - `docs/SPEC-BUILD-SITE.md` : la spec de build, avec l'avertissement sur les valeurs provisoires du production-spec.
