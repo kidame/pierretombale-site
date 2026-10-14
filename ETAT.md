@@ -44,6 +44,14 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 14.10.2026, Codex : preparation des images pour le futur configurateur, sans generation.
+  Spec : `docs/images-configurateur/PREPARATION.md`, inventaire de 27 references
+  (14 monuments, 13 cineraires), gabarit JSON de calibration a remplir. Masters orthographiques,
+  deux vues par combinaison, exceptions sans stele/acier ajoure/bicolores et controle de recalage.
+  Granits finaux, dimensions, zones et slugs publics NON confirmes : zero declinaison lancee.
+  Les 27 images luxe existantes ne sont pas des fonds calibres. Aucun code runtime, prix,
+  granit, build ou deploiement modifie. Suite images : recueillir les donnees, puis valider
+  les masters pilotes avant la serie. Le test E5 et les prerequis E6 restent inchanges.
 - 14.10.2026, Codex : analyse fonctionnelle du configurateur Rootia de France Tombale,
   demandee par Thomas avant reproduction. Document :
   `docs/ANALYSE-CONFIGURATEUR-ROOTIA-2026-10-14.md`. Parcours live : granit, motifs/medaillons,

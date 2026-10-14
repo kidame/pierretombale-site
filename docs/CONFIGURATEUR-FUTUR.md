@@ -111,3 +111,10 @@ fichier JavaScript externe. Konva pèse plusieurs centaines de kilo-octets. Donc
 
 Point de départ technique retenu le 13.10.2026 : la démo « Badge Maker » de Konva — s'en inspirer,
 ne pas la copier.
+
+## Precision images du 14.10.2026
+La preparation technique actuelle est dans `images-configurateur/PREPARATION.md`.
+Elle precise les deux vues obligatoires, les cas sans stele et les masques, les
+calibrations distinctes par vue et le stockage en mm. La projection adapte son
+echelle a chaque master ; 1 px = 0,5 mm reste une ancienne proposition, pas une
+contrainte sur les images sources. Aucune generation ou implementation lancee.

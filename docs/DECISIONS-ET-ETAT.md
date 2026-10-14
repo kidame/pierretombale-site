@@ -117,3 +117,14 @@ Question posée : existe-t-il un dépôt GitHub pour ne pas partir de zéro, ave
 **Granits Maffre, ce que le site fait réellement** (observé le 13.10.2026) : menu « Configurateur », « Notre catalogue » (par type, par collection, par catégorie, par tradition), « Nos granits », « Où acheter ? ». Catalogue en grille de 23 pages avec photo, mots-clés, dimensions et « À partir de X € ». Chaque monument a un bouton « Configurez » qui renvoie vers un simulateur externe. Pas de panier, pas de formulaire de devis sur les pages vues : le sur-mesure passe par la page Contact. C'est un fabricant qui vend à des professionnels ; notre site est pour les familles, donc plus court (une quinzaine de modèles au départ) et avec un devis direct.
 
 **Écartés** : le modèle Astro + Decap CMS + Cloudflare (`jshuntley/astro-decap-cloudflare-starter`, 6 étoiles, sans licence, version de Decap non fixée) ; les thèmes Astro e-commerce avec panier (Eclipse, Vortexwear, ShopVerse, Proxima), payants ou centrés sur le paiement. Pour que les associés modifient les prix sans toucher au code, un simple fichier de prix modifiable depuis GitHub suffit au départ.
+
+## Preparation des images (Thomas, 14.10.2026)
+- Aucune generation maintenant. Liste definitive des materiaux encore inconnue.
+- Reference de production : `docs/images-configurateur/PREPARATION.md`. Inventaire de
+  27 modeles et gabarit de calibration, hors runtime ; aucune declinaison lancee.
+- Images luxe deja produites = presentation. Le configurateur exige des masters nus,
+  orthographiques, avec geometrie et cadrage fixes entre granits, et deux vues par variante.
+- Cotes collectees en cm, converties en mm canoniques pour le contrat du site.
+- Dalles sans stele, acier ajoure et parties bicolores doivent etre calibres separement.
+- Les mentions anterieures "27 produits declines en plusieurs granits (en cours)" ne
+  constituent pas une autorisation de lancer une serie avant ces validations.

@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "statut": "gabarit_non_productif",
+  "referenceInterneId": null,
+  "slugSite": null,
+  "nomPublic": null,
+  "famille": null,
+  "versionGeometrie": null,
+  "unitePhysique": "mm",
+  "dimensionsMm": {
+    "stele": null,
+    "socle": null,
+    "dalle": null,
+    "encombrement": null
+  },
+  "surfaceComposition": {
+    "type": null,
+    "largeurMm": null,
+    "hauteurMm": null,
+    "origine": "coin_haut_gauche_boite_englobante_du_plan",
+    "contourMm": null,
+    "zoneGravableMm": null,
+    "exclusionsMm": [],
+    "margeSecuriteMm": null
+  },
+  "vues": {
+    "monument": {
+      "largeurPx": null,
+      "hauteurPx": null,
+      "camera": null,
+      "origineSurfacePx": null,
+      "pxParMm": null
+    },
+    "composition": {
+      "suffixe": null,
+      "largeurPx": null,
+      "hauteurPx": null,
+      "camera": "orthographique_perpendiculaire_au_plan_gravable",
+      "origineSurfacePx": null,
+      "pxParMm": null
+    }
+  },
+  "partiesMateriaux": [],
+  "granitsConfirmes": [],
+  "declinaisons": [],
+  "vuesAlternatives": [],
+  "validation": {
+    "dimensions": null,
+    "zones": null,
+    "master": null,
+    "visuel": null
+  }
+}
