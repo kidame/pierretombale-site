@@ -43,6 +43,50 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 14.10.2026, E5 PASSE 3 SOUS-PASSE B TERMINEE (Claude Code) : PARCOURS EN 4 ETAPES ET RECAPITULATIF.
+  `src/pages/devis.astro` : 4 `<section data-etape="N" aria-labelledby="etape-N-titre">` dans l ordre de
+  la spec (1 Votre demande : typeDemande en 3 cartes radio avec une phrase, commune, cimetiere, date ;
+  2 Le monument ; 3 L inscription ; 4 Vos coordonnees et envoi). Chaque section a un `h2` numerote
+  (`tabindex="-1"`, classe `label etape-titre`). Script garde EN LIGNE (option 1 du mandat).
+  SANS JS : les 4 sections sont visibles a la suite, aucune ne porte `hidden`, envoi natif, ni barre ni
+  bouton Continuer/Retour (rendus avec `hidden`, montres par le JS). Toujours 7 attributs `required`
+  dans dist, les 5 champs prevus (nom, email, localite, typeDemande, consentement).
+  AVEC JS : classe `etapes-actives` sur le form, une seule section sans `hidden`. Barre `<ol class="etapes">`
+  (4 items, `aria-current="step"`, etapes sautees marquees `data-sautee` et grisees/barrees). Continuer
+  ne valide que l etape affichee (`valide(portee)` / `videErreurs(portee)` filtrent par
+  `portee.contains(premierControle(nom))`), puis va a l etape suivante NON SAUTEE, focus sur son h2 et
+  remontee en haut du FORMULAIRE (pas de la page : la barre doit rester visible). Etapes sautees : 2 et 3
+  si `typeDemande` = autre, 2 si = inscription ; deduites de `blocsParTypeDemande` (meme table que les
+  blocs replies), donc un changement de type a l etape 1 recalcule tout (`majEtapes` quitte meme une
+  etape devenue sautee). Les fieldsets `data-bloc` restent desactives quand ils sont sautes : rien
+  d inutile ne part. Entree dans un input texte : `preventDefault` puis Continuer (a l etape 4, Entree
+  ne fait rien : le bouton d envoi est juste la). A l envoi, validation complete ; une erreur d une
+  etape precedente y ramene avant de la montrer.
+  RECAPITULATIF (etape 4, lecture seule, regenere a chaque affichage et a chaque `change` si on y est) :
+  4 blocs (Votre demande / Le monument / L inscription / Fichiers) avec un bouton "Modifier" (classe
+  `link`, `aria-label` complet) qui retourne a l etape et focalise son premier champ. Noms lisibles
+  ajoutes a `reglages` (`labelsTypeDemande`, `labelsFamille`, `nomsParModele`, `nomsParGranit`,
+  `nomsParFinition`) ; motif et taille des lettres lus dans le libelle de l option choisie, donc "5 cm"
+  sans redire `hauteurLabel`. L APERCU EST UN SEUL NOEUD DEPLACE : `[data-apercu-place]` (etape 3) vers
+  `[data-recap-apercu]` (etape 4) quand une ligne est remplie, et ramene au retour. Contrat des champs
+  INCHANGE (aucun champ ajoute ni renomme).
+  BROUILLON : garde aussi l etape sous la clef `__etape` (aucun champ ne porte ce nom) ;
+  `restaureBrouillon` rend desormais l objet au lieu d un booleen. Au chargement on revient a cette
+  etape, SAUF si l URL porte `?modele=` (venir d une fiche recommence au debut) ; une etape sautee ou
+  inconnue ramene a la 1. "Effacer" remet a l etape 1.
+  MESURES (gzip niveau 9, meme calcul que `scripts/poids-pages.py`, par integration temporaire dans
+  `astro.config.mjs`, retiree depuis — le motif `Bash(python3 scripts/:*)` ne couvre toujours pas
+  `python3 scripts/poids-pages.py`) : SEUL `/devis/` change. html 20251 (15939 en sous-passe A),
+  js en ligne 12474 (8614), css 8673 = 6834 partage + 1839 propre (1526). Preuve : 404.html 3783 et
+  css 6834 partout, a l octet comme en sous-passe A.
+  A SAVOIR : les +3860 octets gz de script sont surtout des COMMENTAIRES (un `<script is:inline>` n est
+  ni minifie ni depouille). Le script approche 700 lignes : l extraire dans `src/scripts/devis.ts`
+  (section 9 de la spec) le ferait minifier ; c est le premier levier si `/devis/` doit maigrir.
+  Verifie : `npm run build` 23 pages, `npx astro check` 34 fichiers 0 erreur ; dans dist les 4 sections
+  sont dans l ordre 1-2-3-4 et aucune ne porte `hidden`, le texte "Rien n est engage..." est dans la
+  MEME section que le bouton submit et juste apres lui, 3 radios `typeDemande`, 3 `famille`, 14 `modele`,
+  sitemap 21 adresses, `grep -rliE "atelier|kosovo|sous-trait|fabriqu|n8n" dist` vide.
+  PAS FAIT (sous-passe C) : styles des libelles et des radios, date min, inputmode du telephone, docs.
 - 14.10.2026, E5 PASSE 3 SOUS-PASSE A TERMINEE (Claude Code) : CHOIX VISUEL DU MODELE.
   `src/components/ChoixModele.astro` : grille de cartes radio `name="modele"` (vignette
   ProductImage 480x600 lazy, nom, shortDescription, prixAffiche), 2 colonnes sur mobile et 3 au-dela,
@@ -374,13 +418,16 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
-E5 PASSE 3, SOUS-PASSE B : le decoupage en etapes. `docs/SPEC-DEVIS-ETAPES.md` FAIT FOI (sections 3,
-4 et 8) : 4 sections `data-etape`, barre de progression, boutons "Continuer" / "Retour", etapes 2 et
-3 sautees selon `typeDemande`, recapitulatif en lecture seule avant le bouton, etape courante gardee
-dans le brouillon. Toujours UNE page, un seul `<form>`, tout visible sans JavaScript.
-Puis sous-passe C : styles (libelles, zones cliquables, boutons), date min = aujourd hui, telephone
-`inputmode`, texte sous le bouton. Le script inline depasse 600 lignes : l extraire dans
-`src/scripts/devis.ts` si c est plus sur (section 9 de la spec).
+E5 PASSE 3, SOUS-PASSE C : les styles et les finitions. `docs/SPEC-DEVIS-ETAPES.md` FAIT FOI
+(sections 6 et 8) : libelles de champs a 15-16 px en minuscules et en couleur de texte principale (les
+petits libelles mono majuscules ne restent que pour les titres de section), zone cliquable des radios
+et des cases >= 44 px de haut, boutons "Continuer" pleine largeur et >= 48 px sur telephone,
+`min` = date du jour sur `datePoseSouhaitee` (calculee en JS cote client), telephone `inputmode="tel"`
+avec l aide "ex. 079 123 45 67". Mettre `docs/devis-contrat.md` a jour (aucun champ nouveau n est
+attendu ; la sous-passe B n en a ajoute aucun, seule l etape du brouillon a change et elle ne part pas
+avec la demande). A decider la aussi : extraire le script dans `src/scripts/devis.ts` pour qu il soit
+minifie (section 9 de la spec ; il approche 700 lignes et pese 12474 octets gz en ligne).
+A FAIRE AVANT E6, decision de Thomas : essayer le parcours sur un telephone avec un proche age.
 
 ENSUITE E6 : ENVOI DU DEVIS. Fonction Cloudflare Pages `functions/api/devis.ts` + Resend (PAS de n8n,
 decision de Thomas du 13.10.2026), adresse de destination en variable d environnement, Turnstile.

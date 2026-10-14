@@ -44,8 +44,15 @@ import { breadcrumbSchema } from "@/data/seo";
    complete sans JavaScript, un seul style d ecriture pour tout le monument,
    des tailles de lettres deja choisies, des pastilles de couleur a toucher
    plutot qu une liste deroulante, les sections inutiles repliees selon le type
-   de demande, et un brouillon garde dans le navigateur. Tout ce qui se replie
-   se replie EN JAVASCRIPT SEULEMENT : sans JavaScript, tout reste visible. */
+   de demande, et un brouillon garde dans le navigateur.
+
+   PARCOURS EN 4 ETAPES (passe 3, sous-passe B, `docs/SPEC-DEVIS-ETAPES.md`) :
+   les champs sont ranges dans quatre `<section data-etape>` — votre demande,
+   le monument, l inscription, vos coordonnees et envoi. Le decoupage est une
+   COUCHE JAVASCRIPT par-dessus : sans JavaScript les quatre sections sont
+   visibles a la suite, la barre de progression et les boutons "Continuer" et
+   "Retour" n apparaissent pas, et le formulaire poste nativement. Tout ce qui
+   se replie se replie EN JAVASCRIPT SEULEMENT. */
 
 /* LES POLICES DE GRAVURE NE SE CHARGENT QUE SUR CETTE PAGE (regle de
    performance non negociable, E5). Ces imports sont volontairement ICI, dans la
@@ -64,6 +71,41 @@ import "@fontsource/pinyon-script/latin-400.css";
 const origin = Astro.site ?? new URL(Astro.url.origin);
 
 const products = await getProducts();
+
+/* Les quatre etapes. UNE SEULE source pour le titre de chaque section et pour
+   l item correspondant de la barre de progression : `court` est le mot de la
+   barre, `titre` celui du `h2`. */
+const etapes = [
+  { numero: 1, titre: "Votre demande", court: "Votre demande" },
+  { numero: 2, titre: "Le monument", court: "Le monument" },
+  { numero: 3, titre: "L'inscription", court: "L'inscription" },
+  { numero: 4, titre: "Vos coordonnées et envoi", court: "Envoi" },
+];
+
+/** « 2. Le monument » : le numero aide la famille a se situer. */
+const titreEtape = (numero: number) =>
+  `${numero}. ${etapes.find((etape) => etape.numero === numero)?.titre ?? ""}`;
+
+/* Les trois types de demande, en grandes cartes : chacune porte une phrase, car
+   « Autre demande » seul n apprend rien a qui lit vite. Les valeurs sont celles
+   du contrat (`nouveau`, `inscription`, `autre`). */
+const typesDemande = [
+  {
+    valeur: "nouveau",
+    label: "Un nouveau monument",
+    phrase: "Une pierre tombale ou un monument cinéraire à créer.",
+  },
+  {
+    valeur: "inscription",
+    label: "Une inscription sur un monument existant",
+    phrase: "Ajouter un nom, des dates, sur une tombe déjà posée.",
+  },
+  {
+    valeur: "autre",
+    label: "Autre demande",
+    phrase: "Une remise en état, un nettoyage, une question : dites-nous.",
+  },
+];
 
 /* Les trois onglets de famille. Leurs valeurs sont celles du contrat
    (`monument`, `cineraire`, ou vide) : seuls les libelles sont au singulier,
@@ -102,7 +144,7 @@ const reglages = {
   messages: messagesDevis,
   /** Cle du brouillon dans le localStorage du navigateur de la famille. */
   cleBrouillon: cleBrouillonDevis,
-  /** Famille de chaque modele : sert a remplir le select "famille" avec ?modele=. */
+  /** Famille de chaque modele : sert a poser l onglet famille avec ?modele=. */
   famillesParModele: Object.fromEntries(products.map((product) => [product.slug, product.famille])),
 
   /* ---- Apercu de la gravure. Tout vient de src/data/personnalisation.ts et
@@ -122,10 +164,19 @@ const reglages = {
   /** Motifs qui demandent une explication ou un fichier de la famille. */
   motifsAvecPrecision: motifs.filter((motif) => motif.demandePrecision).map((motif) => motif.id),
 
+  /* ---- Noms lisibles, pour le recapitulatif de l etape 4. Le formulaire
+     envoie des identifiants ; la famille doit relire des mots. ---- */
+  labelsTypeDemande: Object.fromEntries(typesDemande.map((type) => [type.valeur, type.label])),
+  labelsFamille: Object.fromEntries(ongletsFamille.map((onglet) => [onglet.valeur, onglet.label])),
+  nomsParModele: Object.fromEntries(products.map((product) => [product.slug, product.name])),
+  nomsParGranit: Object.fromEntries(granits.map((granit) => [granit.id, granit.nom])),
+  nomsParFinition: Object.fromEntries(finitions.map((finition) => [finition.id, finition.nom])),
+
   /* ---- Sections affichees selon le type de demande. `monument` = famille,
-     modele et granit ; `inscription` = texte grave, finition, motif et apercu ;
-     `photo` = le rappel "une photo du monument existant nous aide beaucoup".
-     Un type inconnu, ou aucun choix, montre tout. ---- */
+     modele et granit (etape 2) ; `inscription` = texte grave, finition, motif
+     et apercu (etape 3) ; `photo` = le rappel "une photo du monument existant
+     nous aide beaucoup". Un type inconnu, ou aucun choix, montre tout.
+     Ce meme tableau dit quelles ETAPES sont sautees. ---- */
   blocsParTypeDemande: {
     nouveau: { monument: true, inscription: true, photo: false },
     inscription: { monument: false, inscription: true, photo: true },
@@ -138,6 +189,7 @@ const classeErreur = "type-body mt-2 hidden text-[0.8125rem] text-[#8d3c33]";
 const classeRadio = "mt-1 size-4 shrink-0 accent-[var(--ink)]";
 const classeChoix = "flex items-start gap-3 text-[0.9375rem]";
 const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
+const classeTitreEtape = "label etape-titre";
 ---
 
 <BaseLayout
@@ -167,7 +219,24 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         class="mt-12 max-w-[62ch]"
         data-devis
       >
-        {/* Resume d erreurs, rempli par le script. role="alert" : annonce des qu il est rempli. */}
+        {/* Barre de progression. Posee par le script seulement : sans
+            JavaScript les quatre sections sont visibles a la suite, et
+            annoncer une "etape 1 sur 4" serait faux. */}
+        <ol class="etapes" aria-label="Les étapes du formulaire" data-etapes hidden>
+          {
+            etapes.map((etape) => (
+              <li class="etape-item" data-etape-item={String(etape.numero)}>
+                <span class="etape-numero" aria-hidden="true">
+                  {etape.numero}
+                </span>
+                <span>{etape.court}</span>
+              </li>
+            ))
+          }
+        </ol>
+
+        {/* Resume d erreurs, rempli par le script. role="alert" : annonce des qu il est rempli.
+            Il reste hors des sections pour etre lu quelle que soit l etape. */}
         <p
           class="type-body mb-10 hidden border-l-2 border-[#8d3c33] pl-4 text-[0.9375rem] text-[#8d3c33]"
           data-devis-resume
@@ -182,9 +251,367 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
           <button type="button" class="link" data-brouillon-effacer>Effacer</button>
         </p>
 
-        {/* ------------------------------------------------- Vos coordonnees */}
-        <fieldset class="border-t border-line pt-8">
-          <legend class="label">Vos coordonnées</legend>
+        {/* ============================================ 1. Votre demande ==== */}
+        {/* `typeDemande` commande les etapes suivantes : il vient donc en
+            premier, et les etapes 2 et 3 se sautent selon sa valeur. */}
+        <section class="etape border-t border-line pt-8" data-etape="1" aria-labelledby="etape-1-titre">
+          <h2 class={classeTitreEtape} id="etape-1-titre" data-etape-titre tabindex="-1">
+            {titreEtape(1)}
+          </h2>
+
+          <fieldset class="mt-6" aria-describedby="typeDemande-erreur">
+            <legend class="field-label">Type de demande <span aria-hidden="true">*</span></legend>
+            <div class="grav-cartes">
+              {
+                typesDemande.map((type) => (
+                  <label class="grav-carte">
+                    <input class={classeRadio} type="radio" name="typeDemande" value={type.valeur} required />
+                    <span>
+                      <span class="grav-carte-nom">{type.label}</span>
+                      <span class="grav-style type-body">{type.phrase}</span>
+                    </span>
+                  </label>
+                ))
+              }
+            </div>
+            <p class={classeErreur} id="typeDemande-erreur" data-erreur="typeDemande"></p>
+          </fieldset>
+
+          <div class="mt-10 grid gap-8 md:grid-cols-2">
+            <div>
+              <label class="field-label" for="communeCimetiere">Commune du cimetière (facultatif)</label>
+              <input
+                class={classeChamp}
+                id="communeCimetiere"
+                name="communeCimetiere"
+                type="text"
+                autocomplete="off"
+                aria-describedby="communeCimetiere-aide"
+              />
+              <p class={classeAide} id="communeCimetiere-aide">
+                Chaque commune a son règlement : nous le vérifions pour vous.
+              </p>
+            </div>
+
+            <div>
+              <label class="field-label" for="cimetiere">Cimetière (facultatif)</label>
+              <input class={classeChamp} id="cimetiere" name="cimetiere" type="text" autocomplete="off" />
+            </div>
+
+            <div>
+              <label class="field-label" for="datePoseSouhaitee">Date de pose souhaitée (facultatif)</label>
+              <input
+                class={classeChamp}
+                id="datePoseSouhaitee"
+                name="datePoseSouhaitee"
+                type="date"
+                aria-describedby="datePoseSouhaitee-aide"
+              />
+              <p class={classeAide} id="datePoseSouhaitee-aide">
+                Si vous avez une date en tête, par exemple avant une cérémonie.
+              </p>
+            </div>
+          </div>
+
+          <div class="etape-nav" data-etape-nav hidden>
+            <button type="button" class="btn btn-primary" data-continuer>Continuer</button>
+          </div>
+        </section>
+
+        {/* ============================================== 2. Le monument ==== */}
+        {/* Etape sautee pour une inscription sur monument existant ou une autre
+            demande : la famille n a alors pas de modele a choisir. Le fieldset
+            `data-bloc` est aussi DESACTIVE dans ce cas, pour que ses valeurs
+            par defaut ne partent pas avec la demande. */}
+        <section
+          class="etape mt-16 border-t border-line pt-8"
+          data-etape="2"
+          aria-labelledby="etape-2-titre"
+        >
+          <h2 class={classeTitreEtape} id="etape-2-titre" data-etape-titre tabindex="-1">
+            {titreEtape(2)}
+          </h2>
+
+          <fieldset data-bloc="monument">
+            {/* Famille et modele se choisissent a l oeil, plus dans deux listes
+                deroulantes : trois onglets larges, puis une grille de cartes
+                avec la vignette du catalogue. Les onglets filtrent la grille EN
+                JAVASCRIPT SEULEMENT ; sans JavaScript, les cartes sont toutes
+                la, groupees par famille sous leur sous-titre. */}
+            <fieldset class="mt-6">
+              <legend class="field-label">Famille de monument</legend>
+              <div class="grav-onglets">
+                {
+                  ongletsFamille.map((onglet) => (
+                    <label class="grav-onglet">
+                      <input type="radio" name="famille" value={onglet.valeur} checked={onglet.valeur === ""} />
+                      <span>{onglet.label}</span>
+                    </label>
+                  ))
+                }
+              </div>
+            </fieldset>
+
+            <fieldset class="mt-10">
+              <legend class="field-label">Modèle du catalogue (facultatif)</legend>
+              <p class="type-body mt-2 max-w-[56ch] text-[0.8125rem] text-muted">
+                Pour nous donner une idée. Rien n'est définitif : nous en reparlons ensemble.
+              </p>
+              <ChoixModele modeleInitial="" />
+            </fieldset>
+
+            {/* Pastilles de couleur plutot qu une liste deroulante : une teinte
+                se reconnait a l oeil, et une pastille se touche du pouce. Ce
+                sont de vrais boutons radio, seulement habilles : ils restent
+                utilisables au clavier et sans JavaScript. Les couleurs viennent
+                de TEINTE_PASTILLE (src/data/granits.ts) : approximatives,
+                jamais un echantillon, ce que dit l aide sous les groupes. */}
+            <fieldset class="mt-12" aria-describedby="granit-aide">
+              <legend class="field-label">Granit souhaité</legend>
+
+              <label class={`${classeChoix} mt-4`}>
+                <input class={classeRadio} type="radio" name="granit" value="" checked />
+                <span>Je ne sais pas encore</span>
+              </label>
+
+              {
+                groupesGranits.map((groupe) => (
+                  <div class="grav-granit-groupe">
+                    <p class="grav-granit-titre type-body">{groupe.titre}</p>
+                    <div class="grav-pastilles">
+                      {groupe.granits.map((granit) => (
+                        <label class="grav-pastille">
+                          <input type="radio" name="granit" value={granit.id} />
+                          <span
+                            class="grav-rond"
+                            style={`background-color:${TEINTE_PASTILLE[granit.teinte]}`}
+                            aria-hidden="true"
+                          />
+                          <span class="grav-pastille-nom">{granit.nom}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                ))
+              }
+
+              <p class={classeAide} id="granit-aide">
+                Les couleurs ci-dessus sont approximatives. Une teinte se juge sur la pierre : le choix se
+                confirme au rendez-vous.
+              </p>
+            </fieldset>
+          </fieldset>
+
+          <div class="etape-nav" data-etape-nav hidden>
+            <button type="button" class="btn btn-outline" data-retour>Retour</button>
+            <button type="button" class="btn btn-primary" data-continuer>Continuer</button>
+          </div>
+        </section>
+
+        {/* ============================================ 3. L'inscription ==== */}
+        {/* Etape sautee pour une autre demande. */}
+        <section
+          class="etape mt-16 border-t border-line pt-8"
+          data-etape="3"
+          aria-labelledby="etape-3-titre"
+        >
+          <h2 class={classeTitreEtape} id="etape-3-titre" data-etape-titre tabindex="-1">
+            {titreEtape(3)}
+          </h2>
+
+          <fieldset data-bloc="inscription">
+            <p class="type-body mt-6 max-w-[56ch] text-[0.9375rem] text-muted">
+              Deux lignes suffisent pour commencer : le plus souvent le nom, puis les dates. Vous pouvez en
+              ajouter. Rien n'est définitif, et rien ne part à la gravure sans votre accord sur un bon à
+              tirer.
+            </p>
+
+            {/* UN SEUL style d ecriture pour tout le monument (pratique
+                courante des marbriers) : chaque nom est ecrit dans sa propre
+                police, donc l echantillon EST le choix. Statique : lisible et
+                utilisable sans JavaScript. */}
+            <fieldset class="mt-10">
+              <legend class="field-label">Style d'écriture</legend>
+              <p class="type-body mt-2 max-w-[56ch] text-[0.8125rem] text-muted">
+                Le même style pour toutes les lignes. Chaque nom est écrit dans son style.
+              </p>
+              <div class="grav-polices">
+                {
+                  polices.map((police) => (
+                    <label>
+                      <input
+                        class={classeRadio}
+                        type="radio"
+                        name="police"
+                        value={police.id}
+                        checked={police.id === policeParDefaut.id}
+                      />
+                      <span>
+                        <span class="grav-nom" style={`font-family:${police.famille}`}>
+                          {police.nom}
+                        </span>
+                        <span class="grav-style type-body">{STYLE_POLICE_LABELS[police.style]}</span>
+                      </span>
+                    </label>
+                  ))
+                }
+              </div>
+            </fieldset>
+
+            {/* Les tailles de lettres sont deja choisies : une famille n a rien
+                a decider ici si elle ne le souhaite pas. Les valeurs envoyees
+                restent en millimetres (contrat inchange), seul l affichage est
+                en centimetres. */}
+            {
+              lignesInscription.map((ligne) => (
+                <div data-ligne-sup={ligne.repliable ? String(ligne.numero) : undefined}>
+                  <fieldset class="mt-10">
+                    <legend class="field-label">{ligne.label}</legend>
+                    <div class="grav-ligne mt-3">
+                      <div>
+                        <label class="grav-sous-label type-body" for={`ligne${ligne.numero}_texte`}>
+                          Texte
+                        </label>
+                        <input
+                          class={classeChamp}
+                          id={`ligne${ligne.numero}_texte`}
+                          name={`ligne${ligne.numero}_texte`}
+                          type="text"
+                          maxlength={LIGNE_LONGUEUR_MAX}
+                          autocomplete="off"
+                          aria-describedby={ligne.aide ? `ligne${ligne.numero}_texte-aide` : undefined}
+                        />
+                        {ligne.aide && (
+                          <p class={classeAide} id={`ligne${ligne.numero}_texte-aide`}>
+                            {ligne.aide}
+                          </p>
+                        )}
+                      </div>
+
+                      <div class="grav-reglages">
+                        <label class="grav-sous-label type-body" for={`ligne${ligne.numero}_hauteur`}>
+                          Taille des lettres
+                        </label>
+                        <select
+                          class={classeChamp}
+                          id={`ligne${ligne.numero}_hauteur`}
+                          name={`ligne${ligne.numero}_hauteur`}
+                        >
+                          {hauteursLettresMm.map((hauteur) => (
+                            <option value={String(hauteur)} selected={hauteur === ligne.hauteurParDefaut}>
+                              {hauteurLabel(hauteur)}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              ))
+            }
+
+            {/* Pose par le script, qui replie d abord les lignes 3 et 4. Sans
+                JavaScript, les quatre lignes sont la et ce bouton n apparait
+                jamais. */}
+            <button type="button" class="btn btn-outline mt-8" data-ajouter-ligne hidden>
+              Ajouter une ligne
+            </button>
+
+            <div class="mt-12">
+              <label class="field-label" for="gravure_precisions">
+                Précisions sur la gravure (facultatif)
+              </label>
+              <textarea
+                class={classeChamp}
+                id="gravure_precisions"
+                name="gravure_precisions"
+                rows="5"
+                aria-describedby="gravure_precisions-aide"></textarea>
+              <p class={classeAide} id="gravure_precisions-aide">
+                Épitaphe longue, disposition souhaitée, lignes supplémentaires, accents et orthographe
+                exacte des noms.
+              </p>
+            </div>
+
+            <fieldset class="mt-12">
+              <legend class="field-label">Finition de la gravure</legend>
+              <div class="mt-4 space-y-3">
+                <label class={classeChoix}>
+                  <input class={classeRadio} type="radio" name="finition" value="" checked />
+                  <span>Je ne sais pas encore</span>
+                </label>
+                {
+                  finitions.map((finition) => (
+                    <label class={classeChoix}>
+                      <input class={classeRadio} type="radio" name="finition" value={finition.id} />
+                      <span>
+                        {finition.nom}
+                        <span class="grav-style type-body">{finition.aide}</span>
+                      </span>
+                    </label>
+                  ))
+                }
+              </div>
+            </fieldset>
+
+            <div class="grav-motif mt-10">
+              <label class="field-label" for="motif">Motif gravé</label>
+              <select class={classeChamp} id="motif" name="motif" aria-describedby="motif-aide">
+                {
+                  motifs.map((motif) => (
+                    <option value={motif.id} selected={motif.id === MOTIF_DEFAUT}>
+                      {motif.nom}
+                    </option>
+                  ))
+                }
+              </select>
+              <p class={classeAide} id="motif-aide">
+                Pour « autre symbole » ou « dessin fourni par la famille », décrivez-le dans les précisions
+                ci-dessus et joignez votre fichier à l'étape suivante.
+              </p>
+              {/* Rappel mis en avant par le script quand le choix le demande. */}
+              <p class="grav-rappel type-body" data-motif-rappel hidden>
+                Ce choix demande un document de votre part : ajoutez votre dessin ou votre croquis dans
+                « Fichiers à joindre », à l'étape suivante.
+              </p>
+            </div>
+          </fieldset>
+
+          {/* Place de l apercu. Le script le DEPLACE dans le recapitulatif de
+              l etape 4 quand une ligne est remplie, et le ramene ici des que la
+              famille revient a cette etape : un seul noeud, une seule fonction
+              `majApercu`. Sans JavaScript l apercu reste cache (un cadre vide
+              n apprendrait rien) et le formulaire est complet. */}
+          <div class="mt-16 border-t border-line pt-8" data-apercu-place data-bloc="inscription">
+            <div data-apercu hidden>
+              <p class="label">Aperçu de la gravure</p>
+              <div class="grav-cadre" style={`background-color:${COULEUR_GRANIT_DEFAUT}`} data-apercu-cadre>
+                <p class="grav-vide type-body" data-apercu-vide>
+                  Saisissez votre texte ci-dessus pour le voir apparaître ici.
+                </p>
+                {lignesInscription.map((ligne) => <p data-apercu-ligne={String(ligne.numero)} hidden></p>)}
+              </div>
+              <p class="type-body mt-3 max-w-[56ch] text-[0.8125rem] text-muted">{MENTION_APERCU}</p>
+            </div>
+          </div>
+
+          <div class="etape-nav" data-etape-nav hidden>
+            <button type="button" class="btn btn-outline" data-retour>Retour</button>
+            <button type="button" class="btn btn-primary" data-continuer>Continuer</button>
+          </div>
+        </section>
+
+        {/* ================================ 4. Vos coordonnées et envoi ==== */}
+        {/* Les coordonnees viennent en DERNIER : la famille a d abord dit ce
+            qu elle cherche, elle donne son adresse ensuite. */}
+        <section
+          class="etape mt-16 border-t border-line pt-8"
+          data-etape="4"
+          aria-labelledby="etape-4-titre"
+        >
+          <h2 class={classeTitreEtape} id="etape-4-titre" data-etape-titre tabindex="-1">
+            {titreEtape(4)}
+          </h2>
 
           <div class="mt-6 grid gap-8 md:grid-cols-2">
             <div>
@@ -294,339 +721,9 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
               Par exemple : le matin, ou après 17 h.
             </p>
           </div>
-        </fieldset>
 
-        {/* ------------------------------------------------- Votre demande */}
-        {/* `typeDemande` commande l affichage des sections suivantes : il reste
-            donc en dehors d elles, et toujours visible. */}
-        <fieldset class="mt-16 border-t border-line pt-8">
-          <legend class="label">Votre demande</legend>
-
-          <fieldset class="mt-6" aria-describedby="typeDemande-erreur">
-            <legend class="field-label">Type de demande <span aria-hidden="true">*</span></legend>
-            <div class="mt-4 space-y-3">
-              {
-                [
-                  { valeur: "nouveau", label: "Un nouveau monument" },
-                  { valeur: "inscription", label: "Une inscription sur un monument existant" },
-                  { valeur: "autre", label: "Autre demande" },
-                ].map((choix) => (
-                  <label class={classeChoix}>
-                    <input class={classeRadio} type="radio" name="typeDemande" value={choix.valeur} required />
-                    <span>{choix.label}</span>
-                  </label>
-                ))
-              }
-            </div>
-            <p class={classeErreur} id="typeDemande-erreur" data-erreur="typeDemande"></p>
-          </fieldset>
-
-          <div class="mt-10 grid gap-8 md:grid-cols-2">
-            <div>
-              <label class="field-label" for="cimetiere">Cimetière (facultatif)</label>
-              <input class={classeChamp} id="cimetiere" name="cimetiere" type="text" autocomplete="off" />
-            </div>
-
-            <div>
-              <label class="field-label" for="communeCimetiere">Commune du cimetière (facultatif)</label>
-              <input
-                class={classeChamp}
-                id="communeCimetiere"
-                name="communeCimetiere"
-                type="text"
-                autocomplete="off"
-                aria-describedby="communeCimetiere-aide"
-              />
-              <p class={classeAide} id="communeCimetiere-aide">
-                Chaque commune a son règlement : nous le vérifions pour vous.
-              </p>
-            </div>
-
-            <div>
-              <label class="field-label" for="datePoseSouhaitee">Date de pose souhaitée (facultatif)</label>
-              <input
-                class={classeChamp}
-                id="datePoseSouhaitee"
-                name="datePoseSouhaitee"
-                type="date"
-                aria-describedby="datePoseSouhaitee-aide"
-              />
-              <p class={classeAide} id="datePoseSouhaitee-aide">
-                Si vous avez une date en tête, par exemple avant une cérémonie.
-              </p>
-            </div>
-          </div>
-        </fieldset>
-
-        {/* ----------------------------------------------------- Le monument */}
-        {/* Replie par le script pour une inscription sur monument existant ou
-            une autre demande : la famille n a alors pas de modele a choisir. */}
-        <fieldset class="mt-16 border-t border-line pt-8" data-bloc="monument">
-          <legend class="label">Le monument</legend>
-
-          {/* Famille et modele se choisissent a l oeil, plus dans deux listes
-              deroulantes : trois onglets larges, puis une grille de cartes avec
-              la vignette du catalogue. Les onglets filtrent la grille EN
-              JAVASCRIPT SEULEMENT ; sans JavaScript, les cartes sont toutes la,
-              groupees par famille sous leur sous-titre. */}
-          <fieldset class="mt-6">
-            <legend class="field-label">Famille de monument</legend>
-            <div class="grav-onglets">
-              {
-                ongletsFamille.map((onglet) => (
-                  <label class="grav-onglet">
-                    <input
-                      type="radio"
-                      name="famille"
-                      value={onglet.valeur}
-                      checked={onglet.valeur === ""}
-                    />
-                    <span>{onglet.label}</span>
-                  </label>
-                ))
-              }
-            </div>
-          </fieldset>
-
-          <fieldset class="mt-10">
-            <legend class="field-label">Modèle du catalogue (facultatif)</legend>
-            <p class="type-body mt-2 max-w-[56ch] text-[0.8125rem] text-muted">
-              Pour nous donner une idée. Rien n'est définitif : nous en reparlons ensemble.
-            </p>
-            <ChoixModele modeleInitial="" />
-          </fieldset>
-
-          {/* Pastilles de couleur plutot qu une liste deroulante : une teinte se
-              reconnait a l oeil, et une pastille se touche du pouce. Ce sont de
-              vrais boutons radio, seulement habilles : ils restent utilisables
-              au clavier et sans JavaScript. Les couleurs viennent de
-              TEINTE_PASTILLE (src/data/granits.ts) : approximatives, jamais un
-              echantillon, ce que dit l aide sous les groupes. */}
-          <fieldset class="mt-12" aria-describedby="granit-aide">
-            <legend class="field-label">Granit souhaité</legend>
-
-            <label class={`${classeChoix} mt-4`}>
-              <input class={classeRadio} type="radio" name="granit" value="" checked />
-              <span>Je ne sais pas encore</span>
-            </label>
-
-            {
-              groupesGranits.map((groupe) => (
-                <div class="grav-granit-groupe">
-                  <p class="grav-granit-titre type-body">{groupe.titre}</p>
-                  <div class="grav-pastilles">
-                    {groupe.granits.map((granit) => (
-                      <label class="grav-pastille">
-                        <input type="radio" name="granit" value={granit.id} />
-                        <span
-                          class="grav-rond"
-                          style={`background-color:${TEINTE_PASTILLE[granit.teinte]}`}
-                          aria-hidden="true"
-                        />
-                        <span class="grav-pastille-nom">{granit.nom}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              ))
-            }
-
-            <p class={classeAide} id="granit-aide">
-              Les couleurs ci-dessus sont approximatives. Une teinte se juge sur la pierre : le choix se
-              confirme au rendez-vous.
-            </p>
-          </fieldset>
-        </fieldset>
-
-        {/* ----------------------------------------------------- L inscription */}
-        <fieldset class="mt-16 border-t border-line pt-8" data-bloc="inscription">
-          <legend class="label">L'inscription</legend>
-
-          <p class="type-body mt-6 max-w-[56ch] text-[0.9375rem] text-muted">
-            Deux lignes suffisent pour commencer : le plus souvent le nom, puis les dates. Vous pouvez en
-            ajouter. Rien n'est définitif, et rien ne part à la gravure sans votre accord sur un bon à
-            tirer.
-          </p>
-
-          {/* UN SEUL style d ecriture pour tout le monument (pratique courante
-              des marbriers) : chaque nom est ecrit dans sa propre police, donc
-              l echantillon EST le choix. Statique : lisible et utilisable sans
-              JavaScript. */}
-          <fieldset class="mt-10">
-            <legend class="field-label">Style d'écriture</legend>
-            <p class="type-body mt-2 max-w-[56ch] text-[0.8125rem] text-muted">
-              Le même style pour toutes les lignes. Chaque nom est écrit dans son style.
-            </p>
-            <div class="grav-polices">
-              {
-                polices.map((police) => (
-                  <label>
-                    <input
-                      class={classeRadio}
-                      type="radio"
-                      name="police"
-                      value={police.id}
-                      checked={police.id === policeParDefaut.id}
-                    />
-                    <span>
-                      <span class="grav-nom" style={`font-family:${police.famille}`}>
-                        {police.nom}
-                      </span>
-                      <span class="grav-style type-body">{STYLE_POLICE_LABELS[police.style]}</span>
-                    </span>
-                  </label>
-                ))
-              }
-            </div>
-          </fieldset>
-
-          {/* Les tailles de lettres sont deja choisies : une famille n a rien a
-              decider ici si elle ne le souhaite pas. Les valeurs envoyees
-              restent en millimetres (contrat inchange), seul l affichage est en
-              centimetres. */}
-          {
-            lignesInscription.map((ligne) => (
-              <div data-ligne-sup={ligne.repliable ? String(ligne.numero) : undefined}>
-                <fieldset class="mt-10">
-                  <legend class="field-label">{ligne.label}</legend>
-                  <div class="grav-ligne mt-3">
-                    <div>
-                      <label class="grav-sous-label type-body" for={`ligne${ligne.numero}_texte`}>
-                        Texte
-                      </label>
-                      <input
-                        class={classeChamp}
-                        id={`ligne${ligne.numero}_texte`}
-                        name={`ligne${ligne.numero}_texte`}
-                        type="text"
-                        maxlength={LIGNE_LONGUEUR_MAX}
-                        autocomplete="off"
-                        aria-describedby={ligne.aide ? `ligne${ligne.numero}_texte-aide` : undefined}
-                      />
-                      {ligne.aide && (
-                        <p class={classeAide} id={`ligne${ligne.numero}_texte-aide`}>
-                          {ligne.aide}
-                        </p>
-                      )}
-                    </div>
-
-                    <div class="grav-reglages">
-                      <label class="grav-sous-label type-body" for={`ligne${ligne.numero}_hauteur`}>
-                        Taille des lettres
-                      </label>
-                      <select
-                        class={classeChamp}
-                        id={`ligne${ligne.numero}_hauteur`}
-                        name={`ligne${ligne.numero}_hauteur`}
-                      >
-                        {hauteursLettresMm.map((hauteur) => (
-                          <option value={String(hauteur)} selected={hauteur === ligne.hauteurParDefaut}>
-                            {hauteurLabel(hauteur)}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-            ))
-          }
-
-          {/* Pose par le script, qui replie d abord les lignes 3 et 4. Sans
-              JavaScript, les quatre lignes sont la et ce bouton n apparait
-              jamais. */}
-          <button type="button" class="btn btn-outline mt-8" data-ajouter-ligne hidden>
-            Ajouter une ligne
-          </button>
-
-          <div class="mt-12">
-            <label class="field-label" for="gravure_precisions">
-              Précisions sur la gravure (facultatif)
-            </label>
-            <textarea
-              class={classeChamp}
-              id="gravure_precisions"
-              name="gravure_precisions"
-              rows="5"
-              aria-describedby="gravure_precisions-aide"></textarea>
-            <p class={classeAide} id="gravure_precisions-aide">
-              Épitaphe longue, disposition souhaitée, lignes supplémentaires, accents et orthographe
-              exacte des noms.
-            </p>
-          </div>
-        </fieldset>
-
-        {/* ------------------------------------------------ Finition et motif */}
-        <fieldset class="mt-16 border-t border-line pt-8" data-bloc="inscription">
-          <legend class="label">Finition et motif</legend>
-
-          <fieldset class="mt-6">
-            <legend class="field-label">Finition de la gravure</legend>
-            <div class="mt-4 space-y-3">
-              <label class={classeChoix}>
-                <input class={classeRadio} type="radio" name="finition" value="" checked />
-                <span>Je ne sais pas encore</span>
-              </label>
-              {
-                finitions.map((finition) => (
-                  <label class={classeChoix}>
-                    <input class={classeRadio} type="radio" name="finition" value={finition.id} />
-                    <span>
-                      {finition.nom}
-                      <span class="grav-style type-body">{finition.aide}</span>
-                    </span>
-                  </label>
-                ))
-              }
-            </div>
-          </fieldset>
-
-          <div class="grav-motif mt-10">
-            <label class="field-label" for="motif">Motif gravé</label>
-            <select class={classeChamp} id="motif" name="motif" aria-describedby="motif-aide">
-              {
-                motifs.map((motif) => (
-                  <option value={motif.id} selected={motif.id === MOTIF_DEFAUT}>
-                    {motif.nom}
-                  </option>
-                ))
-              }
-            </select>
-            <p class={classeAide} id="motif-aide">
-              Pour « autre symbole » ou « dessin fourni par la famille », décrivez-le dans les précisions
-              ci-dessus et joignez votre fichier plus bas.
-            </p>
-            {/* Rappel mis en avant par le script quand le choix le demande. */}
-            <p class="grav-rappel type-body" data-motif-rappel hidden>
-              Ce choix demande un document de votre part : ajoutez votre dessin ou votre croquis dans
-              « Fichiers à joindre », ci-dessous.
-            </p>
-          </div>
-        </fieldset>
-
-        {/* -------------------------------------------------- Apercu en direct */}
-        {/* Reste cache sans JavaScript : un cadre vide n apprendrait rien. Le
-            formulaire, lui, est complet dans tous les cas. */}
-        <div class="mt-16 border-t border-line pt-8" data-bloc="inscription" data-apercu hidden>
-          <p class="label">Aperçu de la gravure</p>
-          <div
-            class="grav-cadre"
-            style={`background-color:${COULEUR_GRANIT_DEFAUT}`}
-            data-apercu-cadre
-          >
-            <p class="grav-vide type-body" data-apercu-vide>
-              Saisissez votre texte ci-dessus pour le voir apparaître ici.
-            </p>
-            {lignesInscription.map((ligne) => <p data-apercu-ligne={String(ligne.numero)} hidden></p>)}
-          </div>
-          <p class="type-body mt-3 max-w-[56ch] text-[0.8125rem] text-muted">{MENTION_APERCU}</p>
-        </div>
-
-        {/* -------------------------------------------------- Fichiers a joindre */}
-        <fieldset class="mt-16 border-t border-line pt-8">
-          <legend class="label">Fichiers à joindre</legend>
-
-          <div class="mt-6">
+          <div class="mt-12 border-t border-line pt-8">
+            <p class="label">Fichiers à joindre</p>
             {/* Mis en avant par le script pour une inscription sur monument
                 existant : c est le cas ou la photo nous sert le plus. Sans
                 JavaScript le rappel reste affiche, comme tout le reste. */}
@@ -650,12 +747,8 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
             </p>
             <p class={classeErreur} id="fichiers-erreur" data-erreur="fichiers"></p>
           </div>
-        </fieldset>
 
-        {/* -------------------------------------------------------- Message */}
-        <fieldset class="mt-16 border-t border-line pt-8">
-          <legend class="label">Votre message</legend>
-          <div class="mt-6">
+          <div class="mt-12 border-t border-line pt-8">
             <label class="field-label" for="message">Message (facultatif)</label>
             <textarea
               class={classeChamp}
@@ -667,56 +760,74 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
               Tout ce qui nous aiderait : délai souhaité, monument voisin, question particulière.
             </p>
           </div>
-        </fieldset>
 
-        {/* ----------------------------------------------------- Consentement */}
-        <div class="mt-16 border-t border-line pt-8">
-          <label class={classeChoix} for="consentement">
-            <input
-              class={classeRadio}
-              id="consentement"
-              name="consentement"
-              type="checkbox"
-              value="oui"
-              required
-              aria-describedby="consentement-erreur"
-            />
-            <span>
-              J'accepte que mes données soient utilisées pour traiter ma demande
-              <span aria-hidden="true">*</span>. Voir la{" "}
-              <a href="/protection-des-donnees/" class="link">protection des données</a>.
-            </span>
-          </label>
-          <p class={classeErreur} id="consentement-erreur" data-erreur="consentement"></p>
-        </div>
+          <div class="mt-12 border-t border-line pt-8">
+            <label class={classeChoix} for="consentement">
+              <input
+                class={classeRadio}
+                id="consentement"
+                name="consentement"
+                type="checkbox"
+                value="oui"
+                required
+                aria-describedby="consentement-erreur"
+              />
+              <span>
+                J'accepte que mes données soient utilisées pour traiter ma demande
+                <span aria-hidden="true">*</span>. Voir la{" "}
+                <a href="/protection-des-donnees/" class="link">protection des données</a>.
+              </span>
+            </label>
+            <p class={classeErreur} id="consentement-erreur" data-erreur="consentement"></p>
+          </div>
 
-        {/* Anti-spam. Le champ `societe` est un piege : invisible et hors du
-            parcours au clavier, une famille ne le remplit jamais, un robot si.
-            `horodatage` porte l heure d affichage, posee par le script (la page
-            est statique, le serveur ne peut pas la fournir). Les deux ne font
-            que voyager : c est la fonction E6 qui tranche. */}
-        <div
-          aria-hidden="true"
-          style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap"
-        >
-          <label for="societe">Société</label>
-          <input id="societe" name="societe" type="text" tabindex="-1" autocomplete="off" />
-        </div>
-        <input type="hidden" name="horodatage" value="" />
+          {/* Recapitulatif. Rempli par le script a chaque affichage de cette
+              etape, en lecture seule : la famille relit ce qu elle a demandé
+              avant d envoyer, et chaque bloc ramene a son etape. Sans
+              JavaScript il n apparait pas : toutes les reponses sont alors
+              visibles a la suite, juste au-dessus. */}
+          <div class="recap mt-12" data-recap hidden>
+            <p class="label">Votre demande en bref</p>
+            <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem]">
+              Vérifiez les noms et les dates : c'est ce qui sera gravé.
+            </p>
+            <div data-recap-blocs></div>
+            <div data-recap-apercu></div>
+          </div>
 
-        {/* Emplacement de Cloudflare Turnstile (etape E6) : le widget viendra
-            ici, juste avant le bouton. Sa cle de site, meme publique, sera
-            lue dans une variable d environnement Cloudflare : aucune cle,
-            publique ou secrete, n entre dans le depot. */}
+          {/* Anti-spam. Le champ `societe` est un piege : invisible et hors du
+              parcours au clavier, une famille ne le remplit jamais, un robot si.
+              `horodatage` porte l heure d affichage, posee par le script (la page
+              est statique, le serveur ne peut pas la fournir). Les deux ne font
+              que voyager : c est la fonction E6 qui tranche. */}
+          <div
+            aria-hidden="true"
+            style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap"
+          >
+            <label for="societe">Société</label>
+            <input id="societe" name="societe" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          <input type="hidden" name="horodatage" value="" />
 
-        <div class="mt-12 flex flex-wrap items-center gap-6">
-          <button type="submit" class="btn btn-primary" data-devis-envoyer>Envoyer ma demande</button>
-          <p class="type-body hidden text-[0.9375rem]" data-devis-statut role="status" aria-live="polite"></p>
-        </div>
-        <p class="type-body mt-6 max-w-[56ch] text-[0.9375rem] text-muted">
-          Nous vous recontactons pour affiner votre demande. Rien n'est engagé, et rien n'est gravé avant
-          votre accord.
-        </p>
+          {/* Emplacement de Cloudflare Turnstile (etape E6) : le widget viendra
+              ici, juste avant le bouton. Sa cle de site, meme publique, sera
+              lue dans une variable d environnement Cloudflare : aucune cle,
+              publique ou secrete, n entre dans le depot. */}
+
+          <div class="etape-nav" data-etape-nav hidden>
+            <button type="button" class="btn btn-outline" data-retour>Retour</button>
+          </div>
+
+          <div class="mt-12 flex flex-wrap items-center gap-6">
+            <button type="submit" class="btn btn-primary" data-devis-envoyer>Envoyer ma demande</button>
+            <p class="type-body hidden text-[0.9375rem]" data-devis-statut role="status" aria-live="polite">
+            </p>
+          </div>
+          <p class="type-body mt-6 max-w-[56ch] text-[0.9375rem] text-muted">
+            Nous vous recontactons pour affiner votre demande. Rien n'est engagé, et rien n'est gravé avant
+            votre accord.
+          </p>
+        </section>
       </form>
     </section>
 
@@ -746,6 +857,121 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
   <style>
     .grav-court {
       max-width: 24rem;
+    }
+
+    /* Les quatre etapes : barre de progression, boutons, titres. Le strict
+       necessaire au parcours ; l habillage des libelles et des zones
+       cliquables vient a la sous-passe C. */
+    .etapes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      margin: 0 0 2.5rem;
+      padding: 0;
+      list-style: none;
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+    .etape-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.375rem;
+    }
+    .etape-numero {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      font-size: 0.6875rem;
+    }
+    .etape-item[aria-current="step"] {
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .etape-item[aria-current="step"] .etape-numero {
+      border-color: var(--ink);
+      border-width: 2px;
+    }
+    /* Une etape sautee reste visible, grisee : la famille voit qu elle n a pas
+       ete oubliee, mais qu elle ne la concerne pas. */
+    .etape-item[data-sautee] {
+      opacity: 0.45;
+      text-decoration: line-through;
+    }
+    .etape-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .etape-titre:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 4px;
+    }
+
+    /* Les trois types de demande, en cartes : la phrase explique le choix.
+       L etat coche se lit sur la bordure epaisse, pas sur une couleur seule ;
+       le padding compense pour que rien ne bouge au clic. */
+    .grav-cartes {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .grav-carte {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem;
+      border: 1px solid var(--line-strong);
+      cursor: pointer;
+    }
+    .grav-carte:has(input:checked) {
+      padding: calc(1rem - 1px);
+      border-width: 2px;
+      border-color: var(--ink);
+    }
+    .grav-carte:has(input:focus-visible) {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+    .grav-carte-nom {
+      display: block;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    /* Le recapitulatif de l etape 4 : lecture seule, un bloc par etape. */
+    .recap {
+      border: 1px solid var(--line-strong);
+      padding: 1.25rem;
+    }
+    .recap-bloc {
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      padding-top: 1.25rem;
+    }
+    .recap-entete {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem 1rem;
+      margin: 0;
+    }
+    .recap-titre {
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+    .recap-item {
+      margin: 0.375rem 0 0;
+      font-size: 0.9375rem;
+    }
+    .recap-cle {
+      color: var(--muted);
     }
 
     /* Les 6 styles d ecriture. Chaque nom est ecrit dans sa police : la liste
@@ -969,8 +1195,10 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         if (controle && controle.setAttribute) controle.setAttribute("aria-invalid", "true");
       }
 
-      function videErreurs() {
-        form.querySelectorAll("[data-erreur]").forEach((zone) => {
+      /** Vide les messages d erreur, de tout le formulaire ou d une seule etape. */
+      function videErreurs(portee) {
+        const racine = portee || form;
+        racine.querySelectorAll("[data-erreur]").forEach((zone) => {
           zone.textContent = "";
           zone.classList.add("hidden");
           const controle = premierControle(zone.dataset.erreur);
@@ -990,7 +1218,6 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         const horodatage = champ("horodatage");
         if (horodatage) horodatage.value = String(Date.now());
       }
-      poseHorodatage();
 
       /* ----------------------------------------- Comment vous recontacter ---
          Par defaut nous repondons par e-mail, et le telephone est facultatif.
@@ -1012,23 +1239,29 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         if (telRequis) telRequis.hidden = !parTelephone;
       }
 
-      /* ------------------------------------------- Sections conditionnelles --
+      /* ------------------------------------------- Blocs conditionnels -------
          Une inscription sur un monument existant n a pas de modele a choisir ;
-         une "autre demande" n a ni monument ni inscription. Les sections
-         repliees sont aussi DESACTIVEES (`fieldset.disabled`) : leurs valeurs
-         par defaut ne partent donc pas avec la demande. Aucune ne contient de
-         champ obligatoire, donc rien ne peut rester requis et invisible.
+         une "autre demande" n a ni monument ni inscription. Les blocs replies
+         sont aussi DESACTIVES (`fieldset.disabled`) : leurs valeurs par defaut
+         ne partent donc pas avec la demande. Aucun ne contient de champ
+         obligatoire, donc rien ne peut rester requis et invisible.
          Sans JavaScript, tout reste visible et actif. */
       const aidePhoto = form.querySelector("[data-aide-photo]");
 
-      function majSections() {
+      /** Les blocs demandes par le type de demande. Un type inconnu montre tout. */
+      function choixBlocs() {
         const typeDemande = champ("typeDemande");
-        const choix =
+        return (
           reglages.blocsParTypeDemande[typeDemande ? typeDemande.value : ""] || {
             monument: true,
             inscription: true,
             photo: false,
-          };
+          }
+        );
+      }
+
+      function majSections() {
+        const choix = choixBlocs();
         form.querySelectorAll("[data-bloc]").forEach((bloc) => {
           const visible = choix[bloc.dataset.bloc] !== false;
           bloc.hidden = !visible;
@@ -1107,16 +1340,25 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
       /* ------------------------------------------ Apercu de la gravure -------
          Progressive enhancement : sans ce script, les listes, les radios et les
          champs restent la, et seul l apercu manque. Aucune librairie, aucun
-         canvas. Le style d ecriture est unique : toutes les lignes le portent. */
+         canvas. Le style d ecriture est unique : toutes les lignes le portent.
+         UN SEUL noeud d apercu : le script le deplace entre l etape 3 (ou la
+         famille ecrit) et le recapitulatif de l etape 4 (ou elle relit). */
       const apercu = form.querySelector("[data-apercu]");
       const cadre = form.querySelector("[data-apercu-cadre]");
       const apercuVide = form.querySelector("[data-apercu-vide]");
+      const apercuPlace = form.querySelector("[data-apercu-place]");
       const apercuPret = Boolean(apercu && cadre && apercuVide);
 
       function famillePoliceChoisie() {
         const choix = champ("police");
         const police = choix ? reglages.polices[choix.value] : null;
         return police ? police.famille : "inherit";
+      }
+
+      /** Texte d une ligne d inscription, vide si la famille n a rien ecrit. */
+      function texteLigne(numero) {
+        const controle = champ(`ligne${numero}_texte`);
+        return controle ? String(controle.value || "").trim() : "";
       }
 
       function majApercu() {
@@ -1137,7 +1379,7 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         for (const numero of reglages.lignes) {
           const ligne = form.querySelector(`[data-apercu-ligne="${numero}"]`);
           if (!ligne) continue;
-          const texte = String(champ(`ligne${numero}_texte`).value || "").trim();
+          const texte = texteLigne(numero);
           const hauteur = Number(champ(`ligne${numero}_hauteur`).value) || 40;
           ligne.textContent = texte;
           ligne.hidden = texte === "";
@@ -1159,18 +1401,322 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         }
       }
 
+      /* ---------------------------------------------------- Ce qui est requis */
+      const REQUIS = [
+        ["nom", "Merci d'indiquer votre nom et votre prénom."],
+        ["email", "Merci d'indiquer une adresse e-mail : c'est par là que nous répondons."],
+        ["localite", "Merci d'indiquer votre localité."],
+        ["typeDemande", "Merci de choisir le type de demande."],
+        ["consentement", "Merci de cocher cette case pour que nous puissions traiter votre demande."],
+      ];
+
+      function estVide(nom) {
+        const controle = champ(nom);
+        if (!controle) return false;
+        if (controle.type === "checkbox") return !controle.checked;
+        return String(controle.value || "").trim() === "";
+      }
+
+      /** Les fichiers joints : nombre, poids total et format. */
+      function erreurFichiers() {
+        const controle = champ("fichiers");
+        if (!controle || !controle.files || controle.files.length === 0) return null;
+
+        const fichiers = Array.from(controle.files);
+        if (fichiers.length > reglages.nombreMaxFichiers) {
+          return `${reglages.nombreMaxFichiers} fichiers au maximum (vous en avez choisi ${fichiers.length}).`;
+        }
+
+        const total = fichiers.reduce((somme, fichier) => somme + fichier.size, 0);
+        if (total > reglages.tailleTotaleMaxOctets) {
+          const poids = (total / (1024 * 1024)).toFixed(1).replace(".", ",");
+          return `${reglages.tailleLisible} au total au maximum (vos fichiers pèsent ${poids} Mo).`;
+        }
+
+        const refuse = fichiers.find((fichier) => !reglages.typesAcceptes.includes(fichier.type));
+        if (refuse) {
+          return `Le fichier « ${refuse.name} » n'est pas dans un format accepté : JPEG, PNG, WEBP ou PDF.`;
+        }
+
+        return null;
+      }
+
+      /** Vrai si le champ se trouve dans la portee controlee (null : tout le formulaire). */
+      function dansPortee(nom, portee) {
+        if (!portee) return true;
+        const controle = premierControle(nom);
+        return Boolean(controle) && portee.contains(controle);
+      }
+
+      /** Les problemes de saisie, de tout le formulaire ou d une seule etape. */
+      function valide(portee) {
+        const problemes = [];
+
+        for (const [nom, texte] of REQUIS) {
+          if (dansPortee(nom, portee) && estVide(nom)) problemes.push([nom, texte]);
+        }
+
+        const email = champ("email");
+        if (dansPortee("email", portee) && email && email.value.trim() !== "" && email.validity.typeMismatch) {
+          problemes.push(["email", "Cette adresse e-mail semble incomplète (exemple : nom@exemple.ch)."]);
+        }
+
+        // Le numero n est necessaire que si la famille demande un appel.
+        if (dansPortee("telephone", portee) && telephone && telephone.required && estVide("telephone")) {
+          problemes.push([
+            "telephone",
+            "Merci d'indiquer un numéro de téléphone, pour que nous puissions vous appeler.",
+          ]);
+        }
+
+        if (dansPortee("fichiers", portee)) {
+          const fichiers = erreurFichiers();
+          if (fichiers) problemes.push(["fichiers", fichiers]);
+        }
+
+        return problemes;
+      }
+
+      /** Affiche les problemes, le resume, et pose le focus sur le premier. */
+      function montreProblemes(problemes) {
+        for (const [nom, texte] of problemes) poseErreur(nom, texte);
+        resume.textContent = reglages.messages.erreurSaisie;
+        resume.classList.remove("hidden");
+        annonce("");
+        return premierControle(problemes[0][0]);
+      }
+
+      /* ------------------------------------------------- Les quatre etapes ---
+         Le decoupage est une COUCHE JAVASCRIPT : une seule section sans
+         `hidden` a la fois, les autres avec. Sans ce script les quatre sont
+         visibles a la suite et l envoi est natif. Les etapes 2 et 3 se sautent
+         selon le type de demande ; leurs champs sont alors desactives par
+         `majSections`, donc rien d inutile ne part avec la demande. */
+      const sections = Array.from(form.querySelectorAll("[data-etape]"));
+      const itemsEtapes = Array.from(form.querySelectorAll("[data-etape-item]"));
+      const barre = form.querySelector("[data-etapes]");
+      const enEtapes = sections.length > 0;
+      const DERNIERE = sections.length;
+      let etapeCourante = 1;
+
+      const numeroDe = (section) => Number(section.dataset.etape);
+      const sectionDe = (numero) => sections.find((section) => numeroDe(section) === numero) || null;
+
+      /** Etape 2 sautee sans monument, etape 3 sans inscription. */
+      function etapeSautee(numero) {
+        const choix = choixBlocs();
+        if (numero === 2) return choix.monument === false;
+        if (numero === 3) return choix.inscription === false;
+        return false;
+      }
+
+      /** Etape suivante (sens 1) ou precedente (sens -1) qui ne soit pas sautee. */
+      function etapeVoisine(depuis, sens) {
+        for (let numero = depuis + sens; numero >= 1 && numero <= DERNIERE; numero += sens) {
+          if (!etapeSautee(numero)) return numero;
+        }
+        return null;
+      }
+
+      function majBarre() {
+        for (const item of itemsEtapes) {
+          const numero = Number(item.dataset.etapeItem);
+          if (etapeSautee(numero)) item.setAttribute("data-sautee", "");
+          else item.removeAttribute("data-sautee");
+          if (numero === etapeCourante) item.setAttribute("aria-current", "step");
+          else item.removeAttribute("aria-current");
+        }
+      }
+
+      /** Ramene l apercu a sa place, dans l etape de l inscription. */
+      function rangeApercu() {
+        if (apercu && apercuPlace && apercu.parentNode !== apercuPlace) apercuPlace.appendChild(apercu);
+      }
+
+      function montreEtape(numero, options) {
+        const avecFocus = !options || options.focus !== false;
+        etapeCourante = numero;
+        for (const section of sections) section.hidden = numeroDe(section) !== numero;
+        majBarre();
+        if (numero === DERNIERE) remplitRecap();
+        else rangeApercu();
+        if (!avecFocus) return;
+        const titre = sectionDe(numero) && sectionDe(numero).querySelector("[data-etape-titre]");
+        if (titre && titre.focus) titre.focus({ preventScroll: true });
+        /* On remonte en haut du formulaire, pas de la page : la barre de
+           progression et le titre de l etape doivent etre les premiers visibles. */
+        if (form.scrollIntoView) form.scrollIntoView({ block: "start" });
+      }
+
+      /** "Continuer" : on ne verifie que les champs de l etape affichee. */
+      function continuer() {
+        const section = sectionDe(etapeCourante);
+        if (!section) return;
+        videErreurs(section);
+        const problemes = valide(section);
+        if (problemes.length > 0) {
+          const premier = montreProblemes(problemes);
+          if (premier && premier.focus) premier.focus();
+          return;
+        }
+        const suivante = etapeVoisine(etapeCourante, 1);
+        if (suivante) montreEtape(suivante);
+      }
+
+      /** "Retour" : aucune verification, et les valeurs saisies restent la. */
+      function retour() {
+        const avant = etapeVoisine(etapeCourante, -1);
+        if (avant) montreEtape(avant);
+      }
+
+      /** Remet la barre d accord avec le type de demande, et fuit une etape devenue sautee. */
+      function majEtapes() {
+        if (!enEtapes) return;
+        if (etapeSautee(etapeCourante)) {
+          const repli = etapeVoisine(etapeCourante, 1) || etapeVoisine(etapeCourante, -1) || 1;
+          montreEtape(repli, { focus: false });
+          return;
+        }
+        majBarre();
+      }
+
+      /* ------------------------------------------------- Recapitulatif -------
+         Lecture seule, regenere a chaque affichage de la derniere etape : la
+         famille relit en mots ce qu elle a choisi en cases, et chaque bloc
+         ramene a son etape. Les noms lisibles viennent de `reglages` : le
+         formulaire envoie des identifiants, jamais ces libelles. */
+      const recap = form.querySelector("[data-recap]");
+      const recapBlocs = form.querySelector("[data-recap-blocs]");
+      const recapApercu = form.querySelector("[data-recap-apercu]");
+
+      const valeurDe = (nom) => {
+        const controle = champ(nom);
+        return controle ? String(controle.value || "") : "";
+      };
+
+      /** Libelle de l option choisie dans une liste : "3 cm", "Croix". */
+      function libelleOption(nom) {
+        const liste = champ(nom);
+        if (!liste || !liste.options || liste.selectedIndex < 0) return "";
+        return liste.options[liste.selectedIndex].text;
+      }
+
+      /** "2026-12-24" devient "24.12.2026". */
+      function dateLisible(valeur) {
+        const morceaux = String(valeur || "").split("-");
+        if (morceaux.length !== 3) return String(valeur || "");
+        return `${morceaux[2]}.${morceaux[1]}.${morceaux[0]}`;
+      }
+
+      function ajouteBloc(titre, etape, cible, items) {
+        const utiles = items.filter((item) => item[1] !== "");
+        if (utiles.length === 0) return;
+
+        const bloc = document.createElement("div");
+        bloc.className = "recap-bloc";
+
+        const entete = document.createElement("p");
+        entete.className = "recap-entete";
+        const nom = document.createElement("span");
+        nom.className = "recap-titre";
+        nom.textContent = titre;
+        const modifier = document.createElement("button");
+        modifier.type = "button";
+        modifier.className = "link";
+        modifier.textContent = "Modifier";
+        modifier.setAttribute("aria-label", `Modifier : ${titre}`);
+        modifier.addEventListener("click", () => {
+          montreEtape(etape, { focus: false });
+          const controle = premierControle(cible);
+          if (controle && controle.focus) controle.focus();
+          if (form.scrollIntoView) form.scrollIntoView({ block: "start" });
+        });
+        entete.appendChild(nom);
+        entete.appendChild(modifier);
+        bloc.appendChild(entete);
+
+        for (const [cle, valeur] of utiles) {
+          const ligne = document.createElement("p");
+          ligne.className = "recap-item";
+          const etiquette = document.createElement("span");
+          etiquette.className = "recap-cle";
+          etiquette.textContent = `${cle} : `;
+          ligne.appendChild(etiquette);
+          ligne.appendChild(document.createTextNode(valeur));
+          bloc.appendChild(ligne);
+        }
+
+        recapBlocs.appendChild(bloc);
+      }
+
+      function remplitRecap() {
+        if (!recap || !recapBlocs) return;
+        recapBlocs.textContent = "";
+
+        const choix = choixBlocs();
+        const date = valeurDe("datePoseSouhaitee");
+
+        ajouteBloc("Votre demande", 1, "typeDemande", [
+          ["Type de demande", reglages.labelsTypeDemande[valeurDe("typeDemande")] || ""],
+          ["Date de pose souhaitée", date === "" ? "" : dateLisible(date)],
+        ]);
+
+        if (choix.monument !== false) {
+          const modele = valeurDe("modele");
+          const granit = valeurDe("granit");
+          ajouteBloc("Le monument", 2, "famille", [
+            ["Famille", reglages.labelsFamille[valeurDe("famille")] || "Je ne sais pas"],
+            ["Modèle", reglages.nomsParModele[modele] || "Je ne sais pas encore, conseillez-moi"],
+            ["Granit", reglages.nomsParGranit[granit] || "Je ne sais pas encore"],
+          ]);
+        }
+
+        let gravureRemplie = false;
+        if (choix.inscription !== false) {
+          const items = [];
+          for (const numero of reglages.lignes) {
+            const texte = texteLigne(numero);
+            if (texte === "") continue;
+            gravureRemplie = true;
+            items.push([`Ligne ${numero}`, `${texte} — ${libelleOption(`ligne${numero}_hauteur`)}`]);
+          }
+          const police = reglages.polices[valeurDe("police")];
+          items.push(["Style d'écriture", police ? police.nom : ""]);
+          items.push(["Finition", reglages.nomsParFinition[valeurDe("finition")] || "Je ne sais pas encore"]);
+          items.push(["Motif gravé", libelleOption("motif")]);
+          ajouteBloc("L'inscription", 3, "ligne1_texte", items);
+        }
+
+        const fichiers = champ("fichiers");
+        const nombre = fichiers && fichiers.files ? fichiers.files.length : 0;
+        ajouteBloc("Fichiers à joindre", DERNIERE, "fichiers", [
+          ["Fichiers choisis", nombre === 0 ? "aucun" : String(nombre)],
+        ]);
+
+        /* L apercu de la gravure vient relire les lettres telles qu elles
+           seront gravees. C est LE MEME noeud que celui de l etape 3, deplace :
+           inutile de le dessiner deux fois. */
+        if (gravureRemplie && apercu && recapApercu) recapApercu.appendChild(apercu);
+        else rangeApercu();
+
+        recap.hidden = false;
+      }
+
       /* ------------------------------------------------------- Brouillon -----
          Une famille remplit ce formulaire en plusieurs fois, parfois en
-         cherchant une date dans un papier. Les champs texte, les listes et les
-         choix sont donc gardes dans le navigateur, sur sa machine et nulle part
-         ailleurs. JAMAIS les fichiers joints (le navigateur ne le permet pas),
-         jamais le consentement : il doit etre donne a chaque envoi.
+         cherchant une date dans un papier. Les champs texte, les listes, les
+         choix ET l etape en cours sont donc gardes dans le navigateur, sur sa
+         machine et nulle part ailleurs. JAMAIS les fichiers joints (le
+         navigateur ne le permet pas), jamais le consentement : il doit etre
+         donne a chaque envoi.
          Tout passe par try/catch : navigation privee, stockage plein ou refuse,
          JSON abime — le brouillon est un confort, son echec ne doit jamais
          empecher une demande. */
       const brouillon = form.querySelector("[data-brouillon]");
       const boutonEffacer = form.querySelector("[data-brouillon-effacer]");
       const IGNORES = ["societe", "horodatage", "consentement", "fichiers"];
+      /** Clef de l etape en cours. Aucun champ du formulaire ne porte ce nom. */
+      const CLEF_ETAPE = "__etape";
 
       function champsBrouillon() {
         return Array.from(form.elements).filter(
@@ -1217,12 +1763,14 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
               donnees[element.name] = element.value;
             }
           }
+          donnees[CLEF_ETAPE] = etapeCourante;
           window.localStorage.setItem(reglages.cleBrouillon, JSON.stringify(donnees));
         } catch {
           /* Stockage indisponible : on continue sans brouillon. */
         }
       }
 
+      /** Rend le brouillon restaure, ou `null` : l appelant y lit l etape. */
       function restaureBrouillon() {
         let donnees = null;
         try {
@@ -1231,7 +1779,7 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         } catch {
           donnees = null;
         }
-        if (!donnees || typeof donnees !== "object") return false;
+        if (!donnees || typeof donnees !== "object") return null;
 
         /* Deux cartes "conseillez-moi" portent la meme valeur vide : sans ce
            garde-fou, les deux seraient cochees a la suite et c est la derniere
@@ -1250,7 +1798,7 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
             element.value = valeur;
           }
         }
-        return true;
+        return donnees;
       }
 
       let minuteurBrouillon = 0;
@@ -1266,9 +1814,14 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         majOngletFamille();
         majMotif();
         majApercu();
+        majEtapes();
       }
 
-      if (restaureBrouillon() && brouillon) brouillon.hidden = false;
+      /* =============================================== Mise en route ======= */
+      poseHorodatage();
+
+      const repris = restaureBrouillon();
+      if (repris && brouillon) brouillon.hidden = false;
       ouvreLignesRemplies();
 
       /* Pre-selection du modele depuis /devis/?modele=<slug>, pose par les
@@ -1290,7 +1843,34 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         if (familleDesCartes) familleDesCartes.value = familleDemandee;
       }
 
+      // L apercu n est cache que pour le cas sans JavaScript.
+      if (apercuPret) apercu.hidden = false;
+
+      if (enEtapes) {
+        form.classList.add("etapes-actives");
+        if (barre) barre.hidden = false;
+        form.querySelectorAll("[data-etape-nav]").forEach((nav) => {
+          nav.hidden = false;
+        });
+        form.querySelectorAll("[data-continuer]").forEach((element) => {
+          element.addEventListener("click", continuer);
+        });
+        form.querySelectorAll("[data-retour]").forEach((element) => {
+          element.addEventListener("click", retour);
+        });
+      }
+
       majTout();
+
+      if (enEtapes) {
+        /* On reprend a l etape ou la famille s etait arretee. Pas quand elle
+           arrive d une fiche modele (?modele=) : elle vient alors de choisir,
+           et le parcours recommence au debut. Une etape sautee ou inconnue
+           ramene a la premiere. */
+        const voulue = demande ? 0 : Number(repris ? repris[CLEF_ETAPE] : 0);
+        const depart = voulue >= 1 && voulue <= DERNIERE && !etapeSautee(voulue) ? voulue : 1;
+        montreEtape(depart, { focus: false });
+      }
 
       form.addEventListener("input", () => {
         majTout();
@@ -1299,6 +1879,21 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
       form.addEventListener("change", () => {
         majTout();
         planifieSauvegarde();
+        // Le recapitulatif doit suivre : un fichier ajoute s y compte aussitot.
+        if (enEtapes && etapeCourante === DERNIERE) remplitRecap();
+      });
+
+      /* Entree dans un champ texte ne doit pas envoyer la demande : elle fait
+         "Continuer". A la derniere etape, ou "Continuer" n existe plus, elle ne
+         fait rien : le bouton d envoi est juste la, et une demande ne part pas
+         par megarde. */
+      const TYPES_TEXTE = ["text", "tel", "email", "date", "number", "search", "url"];
+      form.addEventListener("keydown", (evenement) => {
+        if (evenement.key !== "Enter") return;
+        const cible = evenement.target;
+        if (!cible || cible.tagName !== "INPUT" || !TYPES_TEXTE.includes(cible.type)) return;
+        evenement.preventDefault();
+        if (enEtapes && etapeCourante < DERNIERE) continuer();
       });
 
       if (boutonEffacer) {
@@ -1311,72 +1906,8 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
           for (const bloc of lignesSup) bloc.hidden = true;
           majBoutonLigne();
           majTout();
+          if (enEtapes) montreEtape(1, { focus: false });
         });
-      }
-
-      const REQUIS = [
-        ["nom", "Merci d'indiquer votre nom et votre prénom."],
-        ["email", "Merci d'indiquer une adresse e-mail : c'est par là que nous répondons."],
-        ["localite", "Merci d'indiquer votre localité."],
-        ["typeDemande", "Merci de choisir le type de demande."],
-        ["consentement", "Merci de cocher cette case pour que nous puissions traiter votre demande."],
-      ];
-
-      function estVide(nom) {
-        const controle = champ(nom);
-        if (!controle) return false;
-        if (controle.type === "checkbox") return !controle.checked;
-        return String(controle.value || "").trim() === "";
-      }
-
-      /** Les fichiers joints : nombre, poids total et format. */
-      function erreurFichiers() {
-        const controle = champ("fichiers");
-        if (!controle || !controle.files || controle.files.length === 0) return null;
-
-        const fichiers = Array.from(controle.files);
-        if (fichiers.length > reglages.nombreMaxFichiers) {
-          return `${reglages.nombreMaxFichiers} fichiers au maximum (vous en avez choisi ${fichiers.length}).`;
-        }
-
-        const total = fichiers.reduce((somme, fichier) => somme + fichier.size, 0);
-        if (total > reglages.tailleTotaleMaxOctets) {
-          const poids = (total / (1024 * 1024)).toFixed(1).replace(".", ",");
-          return `${reglages.tailleLisible} au total au maximum (vos fichiers pèsent ${poids} Mo).`;
-        }
-
-        const refuse = fichiers.find((fichier) => !reglages.typesAcceptes.includes(fichier.type));
-        if (refuse) {
-          return `Le fichier « ${refuse.name} » n'est pas dans un format accepté : JPEG, PNG, WEBP ou PDF.`;
-        }
-
-        return null;
-      }
-
-      function valide() {
-        const problemes = [];
-
-        for (const [nom, texte] of REQUIS) {
-          if (estVide(nom)) problemes.push([nom, texte]);
-        }
-
-        const email = champ("email");
-        if (email && email.value.trim() !== "" && email.validity.typeMismatch) {
-          problemes.push(["email", "Cette adresse e-mail semble incomplète (exemple : nom@exemple.ch)."]);
-        }
-
-        // Le numero n est necessaire que si la famille demande un appel.
-        if (telephone && telephone.required && estVide("telephone")) {
-          problemes.push([
-            "telephone",
-            "Merci d'indiquer un numéro de téléphone, pour que nous puissions vous appeler.",
-          ]);
-        }
-
-        const fichiers = erreurFichiers();
-        if (fichiers) problemes.push(["fichiers", fichiers]);
-
-        return problemes;
       }
 
       champ("fichiers").addEventListener("change", () => {
@@ -1425,13 +1956,16 @@ const classeAide = "type-body mt-2 text-[0.8125rem] text-muted";
         evenement.preventDefault();
         videErreurs();
 
-        const problemes = valide();
+        /* A l envoi, tout le formulaire est verifie, y compris les etapes
+           deja passees : si une erreur s y cache, on y retourne et on la
+           montre. */
+        const problemes = valide(null);
         if (problemes.length > 0) {
-          for (const [nom, texte] of problemes) poseErreur(nom, texte);
-          resume.textContent = reglages.messages.erreurSaisie;
-          resume.classList.remove("hidden");
-          annonce("");
-          const premier = premierControle(problemes[0][0]);
+          const premier = montreProblemes(problemes);
+          const section = premier && premier.closest ? premier.closest("[data-etape]") : null;
+          if (enEtapes && section && numeroDe(section) !== etapeCourante) {
+            montreEtape(numeroDe(section), { focus: false });
+          }
           if (premier && premier.focus) premier.focus();
           return;
         }
