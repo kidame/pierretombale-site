@@ -44,6 +44,10 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 19.10.2026, Codex : CIN1 pilote termine, 10 variantes PNG dans
+  docs/images-configurateur/pilotes/cineraire/cin1/v1/ avec README et manifeste.
+  Thomas demande une seule vue par variante pour le moment, produit + configurateur.
+  Lot 1254 px a valider, non calibre ; seconde vue reportee. Suite : pilote funeraire.
 - 19.10.2026, Codex : generation des 10 textures de matieres v1, PNG 1254 x 1254,
   classees dans docs/images-configurateur/matieres/2026-10-19/textures-v1/.
   README et manifest.json : correspondances, usage selecteur de matiere et images
