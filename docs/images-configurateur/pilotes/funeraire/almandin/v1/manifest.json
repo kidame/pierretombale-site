@@ -1,0 +1,68 @@
+{
+  "modeleId": "almandin",
+  "referenceInterne": "ALMANDIN",
+  "famille": "funeraire",
+  "nomPublic": null,
+  "version": 1,
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "almandin-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png"
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "almandin-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png"
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "almandin-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png"
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "almandin-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png"
+    },
+    {
+      "matiereId": "royal",
+      "image": "almandin-royal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png"
+    },
+    {
+      "matiereId": "vizag-blue",
+      "image": "almandin-vizag-blue.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png"
+    },
+    {
+      "matiereId": "viscount-white",
+      "image": "almandin-viscount-white.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png"
+    },
+    {
+      "matiereId": "rosso-porrino",
+      "image": "almandin-rosso-porrino.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png"
+    },
+    {
+      "matiereId": "egipat",
+      "image": "almandin-egipat.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png"
+    },
+    {
+      "matiereId": "marmara",
+      "image": "almandin-marmara.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png"
+    }
+  ]
+}
