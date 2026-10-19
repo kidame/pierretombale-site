@@ -44,6 +44,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 19.10.2026, Codex : classement de 10 photos originales de matieres dans
+  `docs/images-configurateur/matieres/2026-10-19/originaux/`, noms d'apres les etiquettes.
+  Correspondance fichiers recus / noms dans le README du lot ; integrite SHA-256 verifiee.
+  Etiquettes ROSSO PORRINO et VIZAG BLUE usees : lecture a confirmer avant publication.
+  Aucune retouche, generation, modification de granits.json, build ou publication.
+  Suite images : confirmer les appellations, finitions et dimensions des echantillons,
+  puis creer les textures sur demande. Prerequis du configurateur et E6 inchanges.
 - 14.10.2026, Claude : lecture des 6 maquettes et redaction de
   `docs/maquettes/configurateur/2026-10-14/DIRECTION-DESIGN.md` : palette (ivoire,
   anthracite, accent bronze unique), typographie (titres serif, interface sans), structure
