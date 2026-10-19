@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "date": "2026-10-19",
+  "usage": [
+    "reference-matiere",
+    "base-selecteur-matiere"
+  ],
+  "statut": "genere-a-valider-sur-echantillon",
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "echellePhysique": null,
+  "raccordableVerifie": false,
+  "matieres": [
+    {
+      "matiereId": "rozabeta",
+      "texture": "rozabeta-texture-v1.png",
+      "source": "../originaux/rozabeta.jpeg",
+      "validationUtilisateur": false
+    },
+    {
+      "matiereId": "paradiso",
+      "texture": "paradiso-texture-v1.png",
+      "source": "../originaux/paradiso.jpeg",
+      "validationUtilisateur": false
+    },
+    {
+      "matiereId": "jablanica",
+      "texture": "jablanica-texture-v1.png",
+      "source": "../originaux/jablanica.jpeg",
+      "validationUtilisateur": false
+    },
+    {
+      "matiereId": "royal",
+      "texture": "royal-texture-v1.png",
+      "source": "../originaux/royal.jpeg",
+      "validationUtilisateur": false
+    },
+    {
+      "matiereId": "vizag-blue",
+      "texture": "vizag-blue-texture-v1.png",
+      "source": "../originaux/vizag-blue.jpeg",
+      "validationUtilisateur": false
+    },
+    {
+      "matiereId": "viscount-white",
+      "texture": "viscount-white-texture-v1.png",
+      "source": "../originaux/viscount-white.jpeg",
+      "validationUtilisateur": false
+    },
+    {
+      "matiereId": "rosso-porrino",
+      "texture": "rosso-porrino-texture-v1.png",
+      "source": "../originaux/rosso-porrino.jpeg",
+      "validationUtilisateur": false
+    },
+    {
+      "matiereId": "egipat",
+      "texture": "egipat-texture-v1.png",
+      "source": "../originaux/egipat.jpeg",
+      "validationUtilisateur": false
+    },
+    {
+      "matiereId": "bengal",
+      "texture": "bengal-texture-v1.png",
+      "source": "../originaux/bengal.jpeg",
+      "validationUtilisateur": false
+    },
+    {
+      "matiereId": "marmara",
+      "texture": "marmara-texture-v1.png",
+      "source": "../originaux/marmara.jpeg",
+      "validationUtilisateur": false
+    }
+  ]
+}

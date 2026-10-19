@@ -44,6 +44,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 19.10.2026, Codex : generation des 10 textures de matieres v1, PNG 1254 x 1254,
+  classees dans docs/images-configurateur/matieres/2026-10-19/textures-v1/.
+  README et manifest.json : correspondances, usage selecteur de matiere et images
+  produit par variante, noms et limites de calibration. Integrite des transferts verifiee.
+  Thomas confirme la cible de 10 materiaux par modele funeraire et cineraire.
+  Suite : modele pilote puis declinaisons, avec cadrage fixe et calibration des vues.
+  Aucun changement runtime ni publication ; 270 combinaisons candidates pour 27 references.
 - 19.10.2026, Codex : classement de 10 photos originales de matieres dans
   `docs/images-configurateur/matieres/2026-10-19/originaux/`, noms d'apres les etiquettes.
   Correspondance fichiers recus / noms dans le README du lot ; integrite SHA-256 verifiee.
