@@ -44,6 +44,10 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 19.10.2026, Codex : ARQUES pilote termine, 10 variantes PNG dans
+  docs/images-configurateur/pilotes/funeraire/arques/v1/ avec manifeste et prompts.
+  CIN1 + ARQUES : 20 images archivees. Une vue par matiere ; 1254 px,
+  perspective et calibration a finaliser avant integration configurateur.
 - 19.10.2026, Codex : CIN1 pilote termine, 10 variantes PNG dans
   docs/images-configurateur/pilotes/cineraire/cin1/v1/ avec README et manifeste.
   Thomas demande une seule vue par variante pour le moment, produit + configurateur.
