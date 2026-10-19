@@ -44,6 +44,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 19.10.2026, Codex : plan de reprise persistant cree dans
+  docs/images-configurateur/REPRISE-SERIE.md et suivi-serie.json (270 combinaisons).
+  Priorite : finir le transfert doucine, archiver trois masters, puis poursuivre la serie.
 - 19.10.2026, Codex : ALMANDIN pilote termine, 10 variantes PNG dans
   docs/images-configurateur/pilotes/funeraire/almandin/v1/ avec manifeste et prompts.
   Total archive : 3 modeles / 30 variantes. Modele sans stele, zone gravable sur dalle

@@ -1,0 +1,2477 @@
+{
+  "schemaVersion": 1,
+  "misAJour": "2026-10-19",
+  "cible": 270,
+  "vueParVariante": 1,
+  "matieres": [
+    "bengal",
+    "rozabeta",
+    "paradiso",
+    "jablanica",
+    "royal",
+    "vizag-blue",
+    "viscount-white",
+    "rosso-porrino",
+    "egipat",
+    "marmara"
+  ],
+  "modeles": [
+    {
+      "modeleId": "cin1",
+      "referenceInterne": "CIN1",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_453ddd4d523c81918fad3b9a1c3efcfd",
+      "dossier": "pilotes/cineraire/cin1/v1",
+      "ordre": 1,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin1-bengal.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin1-rozabeta.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin1-paradiso.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin1-jablanica.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin1-royal.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin1-vizag-blue.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin1-viscount-white.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin1-rosso-porrino.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin1-egipat.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin1-marmara.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "arques",
+      "referenceInterne": "ARQUES",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_306eb6a04224819180c93aa5abbea98b",
+      "dossier": "pilotes/funeraire/arques/v1",
+      "ordre": 2,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "arques-bengal.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "arques-rozabeta.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "arques-paradiso.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "arques-jablanica.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "arques-royal.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "arques-vizag-blue.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "arques-viscount-white.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "arques-rosso-porrino.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "arques-egipat.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "arques-marmara.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "almandin",
+      "referenceInterne": "ALMANDIN",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_251cdb8e20148191add357f7a610984b",
+      "dossier": "pilotes/funeraire/almandin/v1",
+      "ordre": 3,
+      "notes": "Sans stele : ne pas en inventer. Zone sur dalle a confirmer.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "almandin-bengal.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "almandin-rozabeta.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "almandin-paradiso.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "almandin-jablanica.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "almandin-royal.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "almandin-vizag-blue.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "almandin-viscount-white.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "almandin-rosso-porrino.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "almandin-egipat.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "almandin-marmara.png",
+          "statut": "archive-documente",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "4-pieces-stele-doucine-avec-base",
+      "referenceInterne": "4 PIECES STELE DOUCINE AVEC BASE",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_467841a15f6c8191b4e85bad81391b5d",
+      "dossier": "pilotes/funeraire/4-pieces-stele-doucine-avec-base/v1",
+      "ordre": 4,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "4-pieces-stele-doucine-avec-base-bengal.png",
+          "statut": "genere-transfert-a-verifier",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "4-pieces-stele-doucine-avec-base-rozabeta.png",
+          "statut": "genere-transfert-a-verifier",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "4-pieces-stele-doucine-avec-base-paradiso.png",
+          "statut": "genere-transfert-a-verifier",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "4-pieces-stele-doucine-avec-base-jablanica.png",
+          "statut": "genere-transfert-a-verifier",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "4-pieces-stele-doucine-avec-base-royal.png",
+          "statut": "genere-transfert-a-verifier",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "4-pieces-stele-doucine-avec-base-vizag-blue.png",
+          "statut": "genere-transfert-a-verifier",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "4-pieces-stele-doucine-avec-base-viscount-white.png",
+          "statut": "genere-transfert-a-verifier",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "4-pieces-stele-doucine-avec-base-rosso-porrino.png",
+          "statut": "genere-transfert-a-verifier",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "4-pieces-stele-doucine-avec-base-egipat.png",
+          "statut": "genere-transfert-a-verifier",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "4-pieces-stele-doucine-avec-base-marmara.png",
+          "statut": "genere-transfert-a-verifier",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "5-pieces-jardiniere-en-closoir",
+      "referenceInterne": "5 PIECES JARDINIERE EN CLOSOIR",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_e51231eab77081918bdc4c42b475d355",
+      "dossier": "pilotes/funeraire/5-pieces-jardiniere-en-closoir/v1",
+      "ordre": 5,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "5-pieces-jardiniere-en-closoir-bengal.png",
+          "statut": "genere-a-archiver",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "5-pieces-jardiniere-en-closoir-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "5-pieces-jardiniere-en-closoir-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "5-pieces-jardiniere-en-closoir-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "5-pieces-jardiniere-en-closoir-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "5-pieces-jardiniere-en-closoir-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "5-pieces-jardiniere-en-closoir-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "5-pieces-jardiniere-en-closoir-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "5-pieces-jardiniere-en-closoir-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "5-pieces-jardiniere-en-closoir-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "4-pieces-sans-stele",
+      "referenceInterne": "4 PIECES SANS STELE",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_c75412893ebc8191871be7200a366d7d",
+      "dossier": "pilotes/funeraire/4-pieces-sans-stele/v1",
+      "ordre": 6,
+      "notes": "Sans stele : ne pas en inventer. Zone sur dalle a confirmer.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "4-pieces-sans-stele-bengal.png",
+          "statut": "genere-a-archiver",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "4-pieces-sans-stele-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "4-pieces-sans-stele-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "4-pieces-sans-stele-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "4-pieces-sans-stele-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "4-pieces-sans-stele-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "4-pieces-sans-stele-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "4-pieces-sans-stele-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "4-pieces-sans-stele-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "4-pieces-sans-stele-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "tombale-simple-200x100x10",
+      "referenceInterne": "TOMBALE SIMPLE 200X100X10",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_a22d31330dc881919a61702a37a3a6d2",
+      "dossier": "pilotes/funeraire/tombale-simple-200x100x10/v1",
+      "ordre": 7,
+      "notes": "Sans stele : ne pas en inventer. Zone sur dalle a confirmer.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "tombale-simple-200x100x10-bengal.png",
+          "statut": "genere-a-archiver",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "tombale-simple-200x100x10-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "tombale-simple-200x100x10-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "tombale-simple-200x100x10-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "tombale-simple-200x100x10-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "tombale-simple-200x100x10-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "tombale-simple-200x100x10-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "tombale-simple-200x100x10-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "tombale-simple-200x100x10-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "tombale-simple-200x100x10-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "musulman-4",
+      "referenceInterne": "MUSULMAN 4",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_2b452dada3f88191bd2a1162a8c3132e",
+      "dossier": "pilotes/funeraire/musulman-4/v1",
+      "ordre": 8,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "musulman-4-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "musulman-4-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "musulman-4-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "musulman-4-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "musulman-4-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "musulman-4-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "musulman-4-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "musulman-4-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "musulman-4-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "musulman-4-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "cin8",
+      "referenceInterne": "CIN8",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_24ecdbef74388191947ef8fc207743c0",
+      "dossier": "pilotes/cineraire/cin8/v1",
+      "ordre": 9,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin8-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin8-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin8-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin8-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin8-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin8-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin8-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin8-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin8-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin8-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "cin-nivora",
+      "referenceInterne": "CIN-NIVORA",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_555f2952e5208191bd8b2c71e1434091",
+      "dossier": "pilotes/cineraire/cin-nivora/v1",
+      "ordre": 10,
+      "notes": "Conserver acier ajoure ; ne varier que la pierre. Zones a confirmer.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin-nivora-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin-nivora-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin-nivora-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin-nivora-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin-nivora-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin-nivora-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin-nivora-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin-nivora-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin-nivora-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin-nivora-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "cin-bahia",
+      "referenceInterne": "CIN BAHIA",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_cc288cda143481918fdb5cebd6cd857a",
+      "dossier": "pilotes/cineraire/cin-bahia/v1",
+      "ordre": 11,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin-bahia-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin-bahia-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin-bahia-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin-bahia-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin-bahia-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin-bahia-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin-bahia-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin-bahia-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin-bahia-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin-bahia-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "cin-aquarius",
+      "referenceInterne": "CIN-AQUARIUS",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_6d912d4257d48191ba48a95e0c5fbb59",
+      "dossier": "pilotes/cineraire/cin-aquarius/v1",
+      "ordre": 12,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin-aquarius-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin-aquarius-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin-aquarius-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin-aquarius-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin-aquarius-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin-aquarius-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin-aquarius-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin-aquarius-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin-aquarius-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin-aquarius-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "cin-montagne01",
+      "referenceInterne": "CIN-MONTAGNE01",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_2a316d6ce1388191b2a548a52e7cee86",
+      "dossier": "pilotes/cineraire/cin-montagne01/v1",
+      "ordre": 13,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin-montagne01-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin-montagne01-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin-montagne01-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin-montagne01-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin-montagne01-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin-montagne01-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin-montagne01-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin-montagne01-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin-montagne01-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin-montagne01-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "cin-nautis",
+      "referenceInterne": "CIN-NAUTIS",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_69f17f5e19148191b2577f26c8062005",
+      "dossier": "pilotes/cineraire/cin-nautis/v1",
+      "ordre": 14,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin-nautis-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin-nautis-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin-nautis-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin-nautis-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin-nautis-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin-nautis-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin-nautis-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin-nautis-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin-nautis-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin-nautis-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "cin-aloria",
+      "referenceInterne": "CIN-ALORIA",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_a5b0215c74cc8191ada97fa9108a9925",
+      "dossier": "pilotes/cineraire/cin-aloria/v1",
+      "ordre": 15,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin-aloria-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin-aloria-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin-aloria-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin-aloria-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin-aloria-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin-aloria-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin-aloria-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin-aloria-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin-aloria-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin-aloria-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "cin-tombale",
+      "referenceInterne": "CIN-TOMBALE",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_c8988e6128448191b62aee86daf6f595",
+      "dossier": "pilotes/cineraire/cin-tombale/v1",
+      "ordre": 16,
+      "notes": "Sans stele : ne pas en inventer. Zone sur dalle a confirmer.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin-tombale-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin-tombale-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin-tombale-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin-tombale-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin-tombale-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin-tombale-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin-tombale-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin-tombale-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin-tombale-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin-tombale-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "cin-montagne02",
+      "referenceInterne": "CIN-MONTAGNE02",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_9a4236471b948191a6aa09cb4014e85c",
+      "dossier": "pilotes/cineraire/cin-montagne02/v1",
+      "ordre": 17,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin-montagne02-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin-montagne02-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin-montagne02-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin-montagne02-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin-montagne02-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin-montagne02-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin-montagne02-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin-montagne02-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin-montagne02-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin-montagne02-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "cin-saturne",
+      "referenceInterne": "CIN-SATURNE",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_363a7d241e148191b88b4b9434b9a4d8",
+      "dossier": "pilotes/cineraire/cin-saturne/v1",
+      "ordre": 18,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin-saturne-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin-saturne-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin-saturne-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin-saturne-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin-saturne-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin-saturne-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin-saturne-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin-saturne-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin-saturne-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin-saturne-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "cin-ovae",
+      "referenceInterne": "CIN-OVAE",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_5403a978a4d48191aa48605ce5b27545",
+      "dossier": "pilotes/cineraire/cin-ovae/v1",
+      "ordre": 19,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin-ovae-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin-ovae-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin-ovae-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin-ovae-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin-ovae-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin-ovae-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin-ovae-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin-ovae-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin-ovae-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin-ovae-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "cin-esperanza",
+      "referenceInterne": "CIN-ESPERANZA",
+      "famille": "cineraire",
+      "sourceLibraryId": "libfile_d63dc36f7c4c819190e22e819debfb06",
+      "dossier": "pilotes/cineraire/cin-esperanza/v1",
+      "ordre": 20,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "cin-esperanza-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "cin-esperanza-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "cin-esperanza-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "cin-esperanza-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "cin-esperanza-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "cin-esperanza-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "cin-esperanza-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "cin-esperanza-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "cin-esperanza-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "cin-esperanza-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "tango",
+      "referenceInterne": "TANGO",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_cb34cc325ec881918144fd8b952a6021",
+      "dossier": "pilotes/funeraire/tango/v1",
+      "ordre": 21,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "tango-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "tango-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "tango-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "tango-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "tango-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "tango-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "tango-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "tango-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "tango-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "tango-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "aventuri",
+      "referenceInterne": "AVENTURI",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_7ada6097744c81918cc5edfe0e51e389",
+      "dossier": "pilotes/funeraire/aventuri/v1",
+      "ordre": 22,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "aventuri-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "aventuri-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "aventuri-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "aventuri-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "aventuri-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "aventuri-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "aventuri-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "aventuri-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "aventuri-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "aventuri-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "quietude",
+      "referenceInterne": "QUIETUDE",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_e597b5b7f9688191a0e018189ad32d88",
+      "dossier": "pilotes/funeraire/quietude/v1",
+      "ordre": 23,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "quietude-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "quietude-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "quietude-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "quietude-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "quietude-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "quietude-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "quietude-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "quietude-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "quietude-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "quietude-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "arbre-de-vie",
+      "referenceInterne": "ARBRE DE VIE",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_58008a5f3e088191863e1c4b4f8959e7",
+      "dossier": "pilotes/funeraire/arbre-de-vie/v1",
+      "ordre": 24,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "arbre-de-vie-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "arbre-de-vie-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "arbre-de-vie-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "arbre-de-vie-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "arbre-de-vie-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "arbre-de-vie-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "arbre-de-vie-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "arbre-de-vie-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "arbre-de-vie-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "arbre-de-vie-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "eligie",
+      "referenceInterne": "ELIGIE",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_401b577ce0a081918b4b3312dec11478",
+      "dossier": "pilotes/funeraire/eligie/v1",
+      "ordre": 25,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "eligie-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "eligie-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "eligie-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "eligie-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "eligie-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "eligie-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "eligie-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "eligie-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "eligie-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "eligie-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "corazon",
+      "referenceInterne": "CORAZON",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_30d8624b06e481918aeab26c87e6c46f",
+      "dossier": "pilotes/funeraire/corazon/v1",
+      "ordre": 26,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "corazon-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "corazon-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "corazon-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "corazon-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "corazon-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "corazon-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "corazon-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "corazon-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "corazon-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "corazon-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    },
+    {
+      "modeleId": "douceur",
+      "referenceInterne": "DOUCEUR",
+      "famille": "funeraire",
+      "sourceLibraryId": "libfile_8844feb2cea88191b81c32c9c5442950",
+      "dossier": "pilotes/funeraire/douceur/v1",
+      "ordre": 27,
+      "notes": "Geometrie et zones physiques a valider.",
+      "variantes": [
+        {
+          "matiereId": "bengal",
+          "fichier": "douceur-bengal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rozabeta",
+          "fichier": "douceur-rozabeta.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "paradiso",
+          "fichier": "douceur-paradiso.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "jablanica",
+          "fichier": "douceur-jablanica.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "royal",
+          "fichier": "douceur-royal.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "vizag-blue",
+          "fichier": "douceur-vizag-blue.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "viscount-white",
+          "fichier": "douceur-viscount-white.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "rosso-porrino",
+          "fichier": "douceur-rosso-porrino.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "egipat",
+          "fichier": "douceur-egipat.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        },
+        {
+          "matiereId": "marmara",
+          "fichier": "douceur-marmara.png",
+          "statut": "a-generer",
+          "sha256": null,
+          "dimensionsPx": null,
+          "validationConfigurateur": false
+        }
+      ]
+    }
+  ]
+}
