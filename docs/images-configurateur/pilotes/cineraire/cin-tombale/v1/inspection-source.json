@@ -1,0 +1,34 @@
+{
+  "library_file_id": "libfile_c8988e6128448191b62aee86daf6f595",
+  "current_version_number": 0,
+  "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-tombale/CIN-TOMBALE.png",
+  "source_file_name": "CIN-TOMBALE.png",
+  "inspection_pending": false,
+  "geometry": "Bloc de pierre unique rectangulaire, bas et epais, dessus plan, angles droits et aretes fines. Aucun socle ajoute, aucune stele.",
+  "fixed_features": [
+    "Dalle rectangulaire unique"
+  ],
+  "removable_accessories": [],
+  "material_zones": "Pierre sombre mouchetee uniforme sur dessus et faces laterales.",
+  "ambiguity": "Aucune ambiguite majeure. La perspective ne fournit pas de dimensions fiables.",
+  "generation_note": "MODELE SANS STELE: ne pas inventer de plaque verticale, vase, cadre, croix, motif ou marche.",
+  "reference_dimensions_px": [
+    1448,
+    1086
+  ],
+  "library_xattr_verified": true,
+  "decisionPilote": "Modele sans stele : une dalle unique, sans socle ajoute. Aucune dimension physique fiable deduite de la perspective.",
+  "specificationGeneration": {
+    "id": "cin-tombale",
+    "family": "cineraire",
+    "geometry": "a compact cinerary monument consisting of one single low thick rectangular stone slab with a flat top and straight sides, without a headstone",
+    "stoneAreas": "all visible surfaces of the single rectangular stone slab",
+    "fixedAreas": "Preserve this as one solid slab only, with its original thickness, flat top, straight sides and fine edges.",
+    "extraConstraints": "Do not add a headstone, vertical plaque, second plinth, frame, step, vase, cross, engraving or other component.",
+    "masterDescription": "Preserve exactly the single low thick rectangular stone block, its planar horizontal top, straight vertical side faces, right-angled footprint and fine edges. There is no separate base beneath it and no upright element.",
+    "removeDescription": "No removable accessories or surface decorations are present.",
+    "interpretationNote": "Modele sans stele : une dalle unique, sans socle ajoute. Aucune dimension physique fiable deduite de la perspective.",
+    "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-tombale/CIN-TOMBALE.png",
+    "sourceLibraryId": "libfile_c8988e6128448191b62aee86daf6f595"
+  }
+}

@@ -2143,42 +2143,67 @@
         {
           "matiereId": "bengal",
           "fichier": "cin-tombale-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "c9727fec9fbffac41cd060f23fd7edc46f39e199611b7873e177a132ec3cf4dc",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2540499,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "cin-tombale-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "8d7be67d61d829dc75351cba65b6f976a1d563ed44f76cb267936603d3e38dfe",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2417293,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "cin-tombale-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "83b97bb09488fd85e27c1db9999e4ee74b81b685ca5b4d06779ad36fe561c6fb",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2513726,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "cin-tombale-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "19df7ce4c70990a5fdbbe9f454f5e4e0a2f087b14e10f6a8ce128935a889ffc4",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2451495,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "cin-tombale-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "fe4ec8f0275fbc588b241838c554a1e21fe34e055c020157b9d22bff214c1281",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2499965,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -3225,15 +3250,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T13:13:02.925525+00:00",
-    "imagesCompletes": 150,
-    "combinaisonsRestantes": 120,
+    "dateControle": "2026-10-20T13:17:05.583416+00:00",
+    "imagesCompletes": 155,
+    "combinaisonsRestantes": 115,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "cin-tombale",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3249,57 +3274,56 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T13:14:26.888143+00:00",
+    "dateFin": "2026-10-20T13:17:37.809705+00:00",
     "combinaisons": [
       {
-        "modeleId": "cin-aloria",
-        "matiereId": "vizag-blue"
+        "modeleId": "cin-tombale",
+        "matiereId": "bengal"
       },
       {
-        "modeleId": "cin-aloria",
-        "matiereId": "viscount-white"
+        "modeleId": "cin-tombale",
+        "matiereId": "rozabeta"
       },
       {
-        "modeleId": "cin-aloria",
-        "matiereId": "rosso-porrino"
+        "modeleId": "cin-tombale",
+        "matiereId": "paradiso"
       },
       {
-        "modeleId": "cin-aloria",
-        "matiereId": "egipat"
+        "modeleId": "cin-tombale",
+        "matiereId": "jablanica"
       },
       {
-        "modeleId": "cin-aloria",
-        "matiereId": "marmara"
+        "modeleId": "cin-tombale",
+        "matiereId": "royal"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 145,
-    "totalApres": 150,
+    "totalAvant": 150,
+    "totalApres": 155,
     "statut": "termine",
-    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
+    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
   },
   "prochainLot": [
     {
       "modeleId": "cin-tombale",
-      "matiereId": "bengal"
+      "matiereId": "vizag-blue"
     },
     {
       "modeleId": "cin-tombale",
-      "matiereId": "rozabeta"
+      "matiereId": "viscount-white"
     },
     {
       "modeleId": "cin-tombale",
-      "matiereId": "paradiso"
+      "matiereId": "rosso-porrino"
     },
     {
       "modeleId": "cin-tombale",
-      "matiereId": "jablanica"
+      "matiereId": "egipat"
     },
     {
       "modeleId": "cin-tombale",
-      "matiereId": "royal"
+      "matiereId": "marmara"
     }
   ]
 }
