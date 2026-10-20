@@ -1,8 +1,8 @@
 # Avancement des images
 
-Mis a jour : 2026-10-20T23:35:03.697908+00:00
+Mis a jour : 2026-10-20T23:46:00.817945+00:00
 
-Images completes archivees : 195/270.
+Images completes archivees : 200/270.
 Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 
 | Famille | Modele interne | Completes | Statut |
@@ -26,7 +26,7 @@ Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 | cineraire | CIN-MONTAGNE02 | 10/10 | Lot complet |
 | cineraire | CIN-SATURNE | 10/10 | Lot complet |
 | cineraire | CIN-OVAE | 10/10 | Lot complet |
-| cineraire | CIN-ESPERANZA | 5/10 | En cours |
+| cineraire | CIN-ESPERANZA | 10/10 | Lot complet |
 | funeraire | TANGO | 0/10 | A produire |
 | funeraire | AVENTURI | 0/10 | A produire |
 | funeraire | QUIETUDE | 0/10 | A produire |
@@ -35,6 +35,6 @@ Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 | funeraire | CORAZON | 0/10 | A produire |
 | funeraire | DOUCEUR | 0/10 | A produire |
 
-Prochaine action : {'modeleId': 'cin-esperanza', 'matiereId': 'vizag-blue', 'action': 'Produire les variantes restantes du produit par lots de 5, puis archiver le lot'}
+Prochaine action : {'modeleId': 'tango', 'matiereId': 'bengal', 'action': 'Produire les variantes restantes du produit par lots de 5, puis archiver le lot'}
 
 Source de verite detaillee : suivi-serie.json. Prompts exacts et SHA256 dans chaque dossier.

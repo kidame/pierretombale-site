@@ -55,6 +55,61 @@
         "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/royal-texture-v1.png"
       ],
       "controleVisuel": "CIN-ESPERANZA royal: stele epaisse asymetrique conservee; support rectangulaire, plateau semi-circulaire et fines couches frontales preserves; coeur et galet amovibles absents; plateforme intacte. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a thick asymmetric pebble-shaped upright, rectangular rear support, broad semicircular-front layered platform and rectangular lower plinth. Image 2 is only the vizag-blue stone reference. Change ONLY all stone surfaces of the headstone, rear support, every rounded platform layer and lower plinth to the exact material of image 2: cool silver-grey granite, slightly blue, with flowing charcoal mineral clouds and sparse fine burgundy-brown specks. Match natural colors, directional movement and realistic grain size, polished surface with gentle highlights. Preserve exactly the broadly rounded left side, straighter upper region and more angular right side of the upright. Preserve every narrow layer and edge band of the semicircular-front platform, every thickness, joint, crop, camera, scale, pale grey background and soft contact shadow. Keep the platform empty. Do not restore the removed loose heart or oval pebble. Do not add parts, engraving, text, decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T23:45:15.446213+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-c0dbb2dc-b57f-4deb-81b9-af7d818e4cbf.png",
+      "sha256": "8a0ecd0130d520f2daa245df589bf9d1a3c9ea7c2729a8ab065a98ccbc23f14f",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-da8e3c5c-39a0-4612-9d07-0234326b0dad.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-ESPERANZA vizag-blue: stele epaisse asymetrique conservee; support rectangulaire, plateau semi-circulaire et fines couches frontales preserves; coeur et galet amovibles absents; plateforme intacte. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a thick asymmetric pebble-shaped upright, rectangular rear support, broad semicircular-front layered platform and rectangular lower plinth. Image 2 is only the viscount-white stone reference. Change ONLY all stone surfaces of the headstone, rear support, every rounded platform layer and lower plinth to the exact material of image 2: luminous white and pale grey granite with fine dark mineral flecks and soft flowing grey clouds. Match natural colors and realistic grain size, polished surface with gentle highlights. Preserve exactly the broadly rounded left side, straighter upper region and more angular right side of the upright. Preserve every narrow layer and edge band of the semicircular-front platform, every thickness, joint, crop, camera, scale, pale grey background and soft contact shadow. Keep the platform empty. Do not restore the removed loose heart or oval pebble. Do not add parts, engraving, text, decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T23:45:28.288226+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-fd301f3b-f047-4e79-8fcd-82fdafa3277e.png",
+      "sha256": "cbd29b60bc5bfbbab8e21d9737fa0cf65e2baa6f4b1b0541c8b3d166a43470eb",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-da8e3c5c-39a0-4612-9d07-0234326b0dad.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-ESPERANZA viscount-white: stele epaisse asymetrique conservee; support rectangulaire, plateau semi-circulaire et fines couches frontales preserves; coeur et galet amovibles absents; plateforme intacte. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a thick asymmetric pebble-shaped upright, rectangular rear support, broad semicircular-front layered platform and rectangular lower plinth. Image 2 is only the Rosso Porrino stone reference. Change ONLY all stone surfaces of the headstone, rear support, every rounded platform layer and lower plinth to the exact material of image 2: salmon-pink feldspar, grey quartz, black flecks and cream-white mineral grains. Match natural colors, crystal scale and polished gloss. Preserve exactly the broadly rounded left side, straighter upper region and more angular right side of the upright, its thickness, the rectangular support, every narrow layer of the semicircular platform, the lower plinth, proportions, frontal centered viewpoint, lighting, shadows and neutral grey background. Keep platform empty. Do not restore removed heart or oval pebble. No parts, engraving, text, ornament, flowers, vase, plaque, people, watermark or extra objects. One square 2048x2048 image.",
+      "date": "2026-10-20T23:45:40.608898+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-505c4a21-0477-4f95-8d07-86f253e84d51.png",
+      "sha256": "9eab9a18b9abdcc2b4da47f0be4d8860b0db0db2cf0e59014edef804abce140e",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-da8e3c5c-39a0-4612-9d07-0234326b0dad.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-ESPERANZA rosso-porrino: stele epaisse asymetrique conservee; support rectangulaire, plateau semi-circulaire et fines couches frontales preserves; coeur et galet amovibles absents; plateforme intacte. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a thick asymmetric pebble-shaped upright, rectangular rear support, broad semicircular-front layered platform and rectangular lower plinth. Image 2 is only the Egipat stone reference. Change ONLY all stone surfaces of the headstone, rear support, every rounded platform layer and lower plinth to the exact material of image 2: neutral medium-grey salt-and-pepper granite with dense small black and white crystals. Match natural colors, crystal scale and polished gloss. Preserve exactly the broadly rounded left side, straighter upper region and more angular right side of the upright, its thickness, the rectangular support, every narrow layer of the semicircular platform, the lower plinth, proportions, frontal centered viewpoint, lighting, shadows and neutral grey background. Keep platform empty. Do not restore removed heart or oval pebble. No parts, engraving, text, ornament, flowers, vase, plaque, people, watermark or extra objects. One square 2048x2048 image.",
+      "date": "2026-10-20T23:45:51.897887+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-5397bb0f-3693-4740-b832-e4035ac1a374.png",
+      "sha256": "2fcc21443991b7da1ca25ac58eb6edb242ae5285b4349262fb5cc219652cc760",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-da8e3c5c-39a0-4612-9d07-0234326b0dad.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/egipat-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-ESPERANZA egipat: stele epaisse asymetrique conservee; support rectangulaire, plateau semi-circulaire et fines couches frontales preserves; coeur et galet amovibles absents; plateforme intacte. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a thick asymmetric pebble-shaped upright, rectangular rear support, broad semicircular-front layered platform and rectangular lower plinth. Image 2 is only the Marmara stone reference. Change ONLY all stone surfaces of the headstone, rear support, every rounded platform layer and lower plinth to the exact material of image 2: white crystalline marble with broad softly parallel grey bands and finer darker grey veins. Match natural colors, vein direction, mineral scale and polished gloss. Preserve exactly the broadly rounded left side, straighter upper region and more angular right side of the upright, its thickness, the rectangular support, every narrow layer of the semicircular platform, the lower plinth, proportions, frontal centered viewpoint, lighting, shadows and neutral grey background. Keep platform empty. Do not restore removed heart or oval pebble. No parts, engraving, text, ornament, flowers, vase, plaque, people, watermark or extra objects. One square 2048x2048 image.",
+      "date": "2026-10-20T23:46:00.817945+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-f10a2462-cece-4fd9-b9e6-50ec021cc6bd.png",
+      "sha256": "fe7030cbf5f09e196cb2617262b0d73b96af873e819b0295a3008fa129cd858d",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-da8e3c5c-39a0-4612-9d07-0234326b0dad.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/marmara-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-ESPERANZA marmara: stele epaisse asymetrique conservee; support rectangulaire, plateau semi-circulaire et fines couches frontales preserves; coeur et galet amovibles absents; plateforme intacte. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
     }
   }
 }

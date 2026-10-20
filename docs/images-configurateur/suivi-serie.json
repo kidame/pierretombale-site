@@ -2772,42 +2772,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "cin-esperanza-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "8a0ecd0130d520f2daa245df589bf9d1a3c9ea7c2729a8ab065a98ccbc23f14f",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3082946,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "cin-esperanza-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "cbd29b60bc5bfbbab8e21d9737fa0cf65e2baa6f4b1b0541c8b3d166a43470eb",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3017347,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "cin-esperanza-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "9eab9a18b9abdcc2b4da47f0be4d8860b0db0db2cf0e59014edef804abce140e",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3098158,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "cin-esperanza-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "2fcc21443991b7da1ca25ac58eb6edb242ae5285b4349262fb5cc219652cc760",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3218694,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "cin-esperanza-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "fe7030cbf5f09e196cb2617262b0d73b96af873e819b0295a3008fa129cd858d",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2409484,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -3450,15 +3475,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T23:35:03.697908+00:00",
-    "imagesCompletes": 195,
-    "combinaisonsRestantes": 75,
+    "dateControle": "2026-10-20T23:46:00.817945+00:00",
+    "imagesCompletes": 200,
+    "combinaisonsRestantes": 70,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "cin-esperanza",
-    "matiereId": "vizag-blue",
+    "modeleId": "tango",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
