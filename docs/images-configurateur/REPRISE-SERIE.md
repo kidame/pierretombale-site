@@ -22,10 +22,10 @@ Autorisation Thomas, 19.10.2026 : poursuivre les 27 modeles en 10 matieres, une 
 
 ## Point de reprise
 
-Checkpoint 2026-10-20T13:14:26.888143+00:00 : 150/270 images archivees, 120 restantes.
-15/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
+Checkpoint 2026-10-20T13:21:22.969665+00:00 : 160/270 images archivees, 110 restantes.
+16/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
 Le tableau AVANCEMENT.md est mis a jour automatiquement apres chaque archivage.
-Prochaine combinaison : cin-tombale / bengal.
+Prochaine combinaison : cin-montagne02 / bengal.
 
 Clarification Thomas du 20.10.2026 a 13h48 : terminer le set de 10 variantes de chaque produit.
 Un lot de 5 est un checkpoint, jamais une consigne d arret. Enchainer les lots sans confirmation.

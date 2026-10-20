@@ -2208,42 +2208,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "cin-tombale-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "5d79f6f54dd8ffe0519bf8263e0f0bc1bf59391af542390ea47995c87f3b9aa5",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2427705,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "cin-tombale-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "7593f4bafa8d84e0ca24fc29bc46de95c39191fd15a74bb8ab4677c63d4856aa",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2400434,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "cin-tombale-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "81c7a9be2e40f41ff9028c878891d6e4ab1deda78571f6af495d21692a0080d8",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2364130,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "cin-tombale-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "c16387f7334478bdc2d81f0d7b796759ff053aac3853b7bcd46490837a0f7d73",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2483083,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "cin-tombale-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "bb5e07a56742efb6a53167130b6421bd28b7ce127849e37e469b2b974e91c23c",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 1992341,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -2254,7 +2279,7 @@
       "sourceLibraryId": "libfile_9a4236471b948191a6aa09cb4014e85c",
       "dossier": "pilotes/cineraire/cin-montagne02/v1",
       "ordre": 17,
-      "notes": "Geometrie et zones physiques a valider.",
+      "notes": "Semelle rectangulaire a aretes arrondies, dalle superieure sombre a pourtour arrondi, marche transversale arriere claire. Stele irreguliere a sommet dominant central/decale a droite et epaulement montagneux plus bas a gauche; chants eclates. Galet clair pose a gauche. Distinct de Montagne01 par silhouette et bicolore. Semelle et marche claires restent fixes; dalle superieure et stele varient. Gravure optionnelle retiree. Galet traite comme accessoire pose, fixation non visible; son reflet frontal sombre n'est pas une seconde piece. Geometrie atelier et zones physiques a valider.",
       "variantes": [
         {
           "matiereId": "bengal",
@@ -3250,15 +3275,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T13:17:05.583416+00:00",
-    "imagesCompletes": 155,
-    "combinaisonsRestantes": 115,
+    "dateControle": "2026-10-20T13:21:01.324246+00:00",
+    "imagesCompletes": 160,
+    "combinaisonsRestantes": 110,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "cin-tombale",
-    "matiereId": "vizag-blue",
+    "modeleId": "cin-montagne02",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3274,56 +3299,57 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T13:17:37.809705+00:00",
+    "dateFin": "2026-10-20T13:21:22.969665+00:00",
     "combinaisons": [
       {
         "modeleId": "cin-tombale",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "cin-tombale",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "cin-tombale",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "cin-tombale",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "cin-tombale",
-        "matiereId": "royal"
+        "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 150,
-    "totalApres": 155,
+    "totalAvant": 155,
+    "totalApres": 160,
     "statut": "termine",
+    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
   },
   "prochainLot": [
     {
-      "modeleId": "cin-tombale",
-      "matiereId": "vizag-blue"
+      "modeleId": "cin-montagne02",
+      "matiereId": "bengal"
     },
     {
-      "modeleId": "cin-tombale",
-      "matiereId": "viscount-white"
+      "modeleId": "cin-montagne02",
+      "matiereId": "rozabeta"
     },
     {
-      "modeleId": "cin-tombale",
-      "matiereId": "rosso-porrino"
+      "modeleId": "cin-montagne02",
+      "matiereId": "paradiso"
     },
     {
-      "modeleId": "cin-tombale",
-      "matiereId": "egipat"
+      "modeleId": "cin-montagne02",
+      "matiereId": "jablanica"
     },
     {
-      "modeleId": "cin-tombale",
-      "matiereId": "marmara"
+      "modeleId": "cin-montagne02",
+      "matiereId": "royal"
     }
   ]
 }
