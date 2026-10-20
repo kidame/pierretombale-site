@@ -1,0 +1,40 @@
+# Avancement des images
+
+Mis a jour : 2026-10-20T09:07:40.090873+00:00
+
+Images completes archivees : 56/270.
+Une vue par variante, 10 matieres par modele. Pilotes non calibres.
+
+| Famille | Modele interne | Completes | Statut |
+| --- | --- | ---: | --- |
+| cineraire | CIN1 | 10/10 | Lot complet |
+| funeraire | ARQUES | 10/10 | Lot complet |
+| funeraire | ALMANDIN | 10/10 | Lot complet |
+| funeraire | 4 PIECES STELE DOUCINE AVEC BASE | 10/10 | Lot complet |
+| funeraire | 5 PIECES JARDINIERE EN CLOSOIR | 10/10 | Lot complet |
+| funeraire | 4 PIECES SANS STELE | 5/10 | En cours |
+| funeraire | TOMBALE SIMPLE 200X100X10 | 1/10 | En cours |
+| funeraire | MUSULMAN 4 | 0/10 | A produire |
+| cineraire | CIN8 | 0/10 | A produire |
+| cineraire | CIN-NIVORA | 0/10 | A produire |
+| cineraire | CIN BAHIA | 0/10 | A produire |
+| cineraire | CIN-AQUARIUS | 0/10 | A produire |
+| cineraire | CIN-MONTAGNE01 | 0/10 | A produire |
+| cineraire | CIN-NAUTIS | 0/10 | A produire |
+| cineraire | CIN-ALORIA | 0/10 | A produire |
+| cineraire | CIN-TOMBALE | 0/10 | A produire |
+| cineraire | CIN-MONTAGNE02 | 0/10 | A produire |
+| cineraire | CIN-SATURNE | 0/10 | A produire |
+| cineraire | CIN-OVAE | 0/10 | A produire |
+| cineraire | CIN-ESPERANZA | 0/10 | A produire |
+| funeraire | TANGO | 0/10 | A produire |
+| funeraire | AVENTURI | 0/10 | A produire |
+| funeraire | QUIETUDE | 0/10 | A produire |
+| funeraire | ARBRE DE VIE | 0/10 | A produire |
+| funeraire | ELIGIE | 0/10 | A produire |
+| funeraire | CORAZON | 0/10 | A produire |
+| funeraire | DOUCEUR | 0/10 | A produire |
+
+Prochaine action : {'modeleId': '4-pieces-sans-stele', 'matiereId': 'vizag-blue', 'action': 'Produire depuis la base Bengal puis archiver avant la variante suivante.'}
+
+Source de verite detaillee : suivi-serie.json. Prompts exacts et SHA256 dans chaque dossier.

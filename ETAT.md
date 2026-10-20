@@ -44,6 +44,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 20.10.2026, Codex : reprise bornee demandee par Thomas, 5 nouvelles images maximum.
+  Etat reel retrouve : 56/270, modele sans stele 5/10 ; quatre variantes precedentes
+  et tableau AVANCEMENT.md presents mais non commites, conserves dans ce checkpoint.
+  Registre, procedures et consigne d'automation limites a 5, generation sequentielle.
+  Automation observee en pause ; aucun redemarrage. Lot manuel prevu : Vizag Blue,
+  Viscount White, Rosso Porrino, Egipat, Marmara. Integrite des 5 PNG existants du
+  modele verifiee. Les pilotes restent non calibres. Prochaine variante : vizag-blue.
 - 20.10.2026, Codex : production reprise, jardiniere terminee 10/10. Six nouveaux PNG
   generes, inspectes et archives avec prompts exacts, SHA256 et controle PNG : total 52/270.
   Transfert reprenable stdin/stdout sans port, verrou exclusif et mise a jour par image :

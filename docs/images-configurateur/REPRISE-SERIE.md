@@ -5,17 +5,24 @@ Autorisation Thomas, 19.10.2026 : poursuivre les 27 modeles en 10 matieres, une 
 ## Point de reprise
 
 Registre unique : `suivi-serie.json` (27 modeles, 270 combinaisons). Les statuts distinguent generation, archivage et validation configurateur. Un fichier present n'est pas automatiquement valide.
-Etat courant apres production du 20.10.2026 : 52 images completes archivees. Jardiniere terminee 10/10 ; six nouvelles variantes Royal, Vizag Blue, Viscount White, Rosso Porrino, Egipat, Marmara. 218 images restent a obtenir.
-Prochaine combinaison : 4-pieces-sans-stele / rozabeta, depuis sa base Bengal existante, puis ses huit autres matieres.
-Le transfert Royal tronque a ete conserve sous transferts-interrompus/ ; une nouvelle sortie complete le remplace. Aucun blocage de quota rencontre pendant ce lot.
-Execution autonome et protocole de transfert testes : PRODUCTION-AUTONOME.md. Script : scripts/serie-images.py. Reprise automatique activee, toutes les heures ; premiere execution prevue le 20.10.2026 a 11h01 Europe/Zurich, non encore verifiee. Identifiant et consigne dans automation-production.json.
+Etat verifie a la reprise du 20.10.2026 : 56 images completes archivees, 214 restantes.
+Le modele 4-pieces-sans-stele est a 5/10 : Bengal, Rozabeta, Paradiso, Jablanica, Royal.
+Le bilan conversationnel de 55/270 etait anterieur au dernier archivage Royal.
+Prochain lot strictement limite a 5 nouvelles images : vizag-blue, viscount-white,
+rosso-porrino, egipat, marmara pour terminer ce modele.
+Point de controle : registre, 56 PNG presents, manifeste et integrite des 5 PNG sans stele verifies.
+Le tableau AVANCEMENT.md est genere apres chaque archivage par scripts/serie-images.py.
+La reprise automatique est en pause selon automations.peek du 20.10.2026.
+Dernier passage enregistre : 2026-10-20T09:05:22.684674+00:00. Cause de la pause non etablie ici.
+Sa consigne a ete reduite a 5 images maximum ; aucun redemarrage automatique effectue.
+Voir automation-production.json. La session manuelle utilise le verrou exclusif existant.
 
 ## Regles de continuation
 
 1. Lire AGENTS.md, ETAT.md, ce document et le registre ; verifier git status et les fichiers reels.
 2. Pour chaque modele : inspecter sa reference source, conserver ses formes et inserts, retirer accessoires amovibles/gravures. Ne pas inventer de stele ; acier ajoure et bicolores conservent leurs parties fixes. Documenter les ambiguities.
 3. Creer une seule base Bengal ; neuf editions changent uniquement la pierre depuis cette meme base, jamais depuis la variante precedente. Les prompts sont dans prompts.json par modele. Utiliser imagegen integre, pas de bascule API payante sans demande.
-4. Generer par groupes de trois maximum. A chaque image terminee : copier sous son nom stable, enregistrer son chemin et sa matiere, transferer au VPS et verifier SHA256. Ne pas attendre la fin d'un grand lot pour sauvegarder.
+4. Generer au maximum 5 nouvelles images par passage, strictement une image a la fois. A chaque image terminee : copier sous son nom stable, enregistrer son chemin et sa matiere, transferer au VPS et verifier SHA256. Ne pas attendre la fin d'un grand lot pour sauvegarder.
 5. Transfert interrompu : comparer taille et prefixe au fichier source avant reprise a l'offset exact. Un fichier incomplet reste hors statut archive. Pour les nouveaux transferts utiliser un suffixe .part, puis renommer seulement apres controle complet. Ne jamais ecraser une variante complete ; correction en v2.
 6. Mettre a jour le registre et le manifeste du modele avec resolution et hash reels. README : source, particularites, limites, nombre present. Commit local par modele (ou point de reprise), jamais push/publication implicite.
 7. Fin de session : marquer exactement la prochaine combinaison et toute generation en cours. Aucune execution autonome n'est garantie hors session active. Le plan garantit la tracabilite, pas un traitement en arriere-plan.

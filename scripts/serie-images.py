@@ -87,6 +87,18 @@ def archive(req, path, data):
     pending = [(a,x) for a in sorted(s["modeles"],key=lambda a:a["ordre"]) for x in a["variantes"] if x["statut"]!="archive-documente"]
     s["prochaineAction"] = {"modeleId":pending[0][0]["modeleId"],"matiereId":pending[0][1]["matiereId"],"action":"Produire depuis la base Bengal puis archiver avant la variante suivante."} if pending else {"action":"Serie complete, validation finale separee."}
     save(REG,s)
+    rows = ["# Avancement des images", "", "Mis a jour : "+now, "",
+            "Images completes archivees : "+str(count)+"/"+str(s["cible"])+".",
+            "Une vue par variante, 10 matieres par modele. Pilotes non calibres.", "",
+            "| Famille | Modele interne | Completes | Statut |",
+            "| --- | --- | ---: | --- |"]
+    for model in sorted(s["modeles"], key=lambda a:a["ordre"]):
+        n = sum(x["statut"]=="archive-documente" for x in model["variantes"])
+        label = "Lot complet" if n==10 else ("En cours" if n else "A produire")
+        rows.append("| "+model["famille"]+" | "+model["referenceInterne"]+" | "+str(n)+"/10 | "+label+" |")
+    rows += ["", "Prochaine action : "+str(s["prochaineAction"]), "",
+             "Source de verite detaillee : suivi-serie.json. Prompts exacts et SHA256 dans chaque dossier."]
+    (ROOT/"AVANCEMENT.md").write_text("\n".join(rows)+"\n")
     readme = path.parent/"README.md"
     if not readme.exists():
         readme.write_text("# "+m["referenceInterne"]+" - pilote v1\n\nSource : "+m["sourceLibraryId"]+".\n"+m["notes"]+"\n\nUne vue par matiere ; nom public et calibration non valides.\n")

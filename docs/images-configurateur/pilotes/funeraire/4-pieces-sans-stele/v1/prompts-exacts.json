@@ -1,0 +1,49 @@
+{
+  "mode": "imagegen-integre",
+  "variantes": {
+    "rozabeta": {
+      "prompt": "Use case: precise-object-edit. Single funeral monument catalog image, Rozabeta variant. Image 1 is the fixed geometry Bengal master and edit target: low horizontal monument without any upright headstone, with its exact stacked rectangular slab and base components. Image 2 is ONLY the Rozabeta stone reference. Replace all stone surfaces with reference-matched white and light grey granite, black small mineral speckles and scattered pale peach-pink feldspar crystals, realistic mineral scale and polished finish. Preserve precisely the entire object silhouette, slab thicknesses, component boundaries, perspective, centered camera, crop, scale, pale grey studio background and soft contact shadows. Do not add any headstone, new slab, engraving, vase, plant, flower, accessory, text or watermark. Only the material changes. One square image requested 2048x2048.",
+      "date": "2026-10-20T09:02:23.837107+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-108f5c8d-ca00-44bf-8944-3a0aead3e86f.png",
+      "sha256": "451e8653a60744f3643c50485edebb9fd6e506e634a2dbe290aab2bed8b4b96f",
+      "references": [
+        "4-pieces-sans-stele-bengal.png",
+        "rozabeta-texture-v1.png"
+      ],
+      "controleVisuel": "Composition, composants et silhouette conserves a l'oeil ; controle pixel et calibration non realises."
+    },
+    "paradiso": {
+      "prompt": "Use case: precise-object-edit. Product image, Paradiso variant. Image 1 is the fixed Bengal geometry master to edit: a low horizontal stacked rectangular funeral monument without an upright headstone. Image 2 is the Paradiso material reference only. Change all stone surfaces to match its flowing grey and charcoal mineral bands with restrained reddish-brown and muted orange mineral crystals, polished finish and believable grain scale. Preserve exactly all existing slab shapes, thicknesses, joints, silhouette, centered camera, perspective, framing, scale, plain pale grey background and soft contact shadows. No headstone, no additions, engraving, plants, flowers, vase, text, logo or watermark. Only material changes. One square image requested 2048x2048.",
+      "date": "2026-10-20T09:04:16.279866+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-0c926631-67ec-4dc2-8dfd-d2afb10f3912.png",
+      "sha256": "81cc6e6753bc18de81fe5afdf4a6bc581054dd0f1415a77719df0e647cd30754",
+      "references": [
+        "4-pieces-sans-stele-bengal.png",
+        "paradiso-texture-v1.png"
+      ],
+      "controleVisuel": "Composition, composants et silhouette conserves a l'oeil ; controle pixel et calibration non realises."
+    },
+    "jablanica": {
+      "prompt": "Use case: precise-object-edit. Funeral monument product image, Jablanica variant. Image 1 is the exact fixed geometry master to edit, a low horizontal monument made of stacked rectangular stone slabs with no upright headstone. Image 2 is the Jablanica stone material reference only. Replace all stone surfaces with its neutral dark charcoal and silver-grey small crystalline mottling, subtle irregular mineral clusters, natural polished finish and realistic grain scale. Preserve exactly each slab, thickness, joint, silhouette, centered camera, crop, scale, perspective, plain pale grey background and contact shadows. No headstone or additional parts, no inscriptions, motifs, plants, flowers, vases, accessories, logo or watermark. Change material only. One square image requested 2048x2048.",
+      "date": "2026-10-20T09:05:57.173243+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-4d9474ef-678c-40da-9dd1-0628eec189b3.png",
+      "sha256": "967203602554680bec3acd480089429511679353e40ecf3c18b30ec71a0fee4b",
+      "references": [
+        "4-pieces-sans-stele-bengal.png",
+        "jablanica-texture-v1.png"
+      ],
+      "controleVisuel": "Composition, composants et silhouette conserves a l'oeil ; controle pixel et calibration non realises."
+    },
+    "royal": {
+      "prompt": "Use case: precise-object-edit. Funeral monument product image, Royal material variant. Image 1 is the fixed geometry Bengal master to edit, a low horizontal monument of stacked rectangular slabs without an upright headstone. Image 2 is ONLY the Royal stone reference. Replace all stone surfaces with its black and neutral silver-grey irregular crystalline minerals and white flecks, matching the reference grain, colors, realistic scale and natural polished finish. Preserve exactly all slab shapes, component thicknesses, joints, silhouette, camera, framing, scale, perspective, uniform pale grey background and shadows. No upright headstone, new component, text, engraving, motif, vase, flowers, plants, accessories, logo or watermark. Only material changes. Single square image requested 2048x2048.",
+      "date": "2026-10-20T09:07:40.090873+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-af09fecf-6439-4ab1-8d28-074f17352211.png",
+      "sha256": "e7146064637e83a6b9903eb15565f8d77ad985513ac1f358c8cb74fc257024b2",
+      "references": [
+        "4-pieces-sans-stele-bengal.png",
+        "royal-texture-v1.png"
+      ],
+      "controleVisuel": "Composition, composants et silhouette conserves a l'oeil ; controle pixel et calibration non realises."
+    }
+  }
+}

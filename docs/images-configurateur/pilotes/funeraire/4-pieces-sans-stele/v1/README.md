@@ -22,3 +22,9 @@ Le controle du 20.10 porte sur les fichiers du VPS ; aucune nouvelle comparaison
 Calibration, contours au pixel, geometrie atelier, couleurs et echelle du grain non valides.
 Sans stele : ne pas en inventer. Zone sur dalle a confirmer.
 Aucune validation configurateur ni publication.
+
+<!-- production-live -->
+
+Etat courant : 5/10 variantes.
+Presentes : bengal, rozabeta, paradiso, jablanica, royal.
+Voir manifest.json pour dimensions et SHA256 ; prompts-exacts.json pour les nouveaux appels.
