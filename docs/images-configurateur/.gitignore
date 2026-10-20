@@ -1,0 +1,4 @@
+.production.lock
+*.part
+*.tmp
+*.incoming.json

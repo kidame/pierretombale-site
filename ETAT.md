@@ -44,6 +44,12 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 20.10.2026, Codex : production reprise, jardiniere terminee 10/10. Six nouveaux PNG
+  generes, inspectes et archives avec prompts exacts, SHA256 et controle PNG : total 52/270.
+  Transfert reprenable stdin/stdout sans port, verrou exclusif et mise a jour par image :
+  scripts/serie-images.py ; procedure docs/images-configurateur/PRODUCTION-AUTONOME.md.
+  Prochaine combinaison : 4-pieces-sans-stele / rozabeta. Aucun build ni changement runtime.
+  Automatisation de reprise demandee par Thomas, raccordement a suivre apres ce commit.
 - 20.10.2026, Codex : audit des images demande par Thomas. 46 PNG complets controles
   (CRC, IEND, decompression, SHA256), 1254 x 1254 ; cible documentaire 27 x 10 = 270.
   Suivi-serie.json et 7 manifestes synchronises ; README ajoutes aux 4 dossiers manquants,

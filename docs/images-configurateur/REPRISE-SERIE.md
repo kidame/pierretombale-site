@@ -5,10 +5,10 @@ Autorisation Thomas, 19.10.2026 : poursuivre les 27 modeles en 10 matieres, une 
 ## Point de reprise
 
 Registre unique : `suivi-serie.json` (27 modeles, 270 combinaisons). Les statuts distinguent generation, archivage et validation configurateur. Un fichier present n'est pas automatiquement valide.
-Etat verifie le 20.10.2026 : 46 images completes, inventoriees avec SHA256 et controle PNG ; 4 modeles complets, 3 partiels, 20 non commences. 224 images completes restent a obtenir. CIN1, ARQUES, ALMANDIN et doucine : 10 chacun ; jardiniere : 4 ; sans-stele : 1 ; tombale-simple : 1.
-Royal jardiniere : un transfert .png.part de 2700000 octets, exclu du total. Source complete non retrouvee pendant cet audit. Le registre conserve ce statut distinct ; aucun blocage de quota etabli.
-Prochaine action : retrouver la source Royal et verifier le prefixe avant reprise du transfert ; a defaut regenerer. Puis les cinq autres matieres de la jardiniere. Ne pas regenerer une image deja complete.
-Les 46 fichiers sont maintenant repertories ; prompts exacts des quatre nouveaux dossiers non retrouves. Details : AUDIT-2026-10-20.md et controle-integrite-2026-10-20.json. Aucune nouvelle image generee pendant l'audit.
+Etat courant apres production du 20.10.2026 : 52 images completes archivees. Jardiniere terminee 10/10 ; six nouvelles variantes Royal, Vizag Blue, Viscount White, Rosso Porrino, Egipat, Marmara. 218 images restent a obtenir.
+Prochaine combinaison : 4-pieces-sans-stele / rozabeta, depuis sa base Bengal existante, puis ses huit autres matieres.
+Le transfert Royal tronque a ete conserve sous transferts-interrompus/ ; une nouvelle sortie complete le remplace. Aucun blocage de quota rencontre pendant ce lot.
+Execution autonome et protocole de transfert testes : PRODUCTION-AUTONOME.md. Script : scripts/serie-images.py. Reprise planifiee a raccorder apres ce commit.
 
 ## Regles de continuation
 

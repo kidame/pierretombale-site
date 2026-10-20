@@ -1,0 +1,71 @@
+{
+  "mode": "imagegen-integre",
+  "variantes": {
+    "royal": {
+      "prompt": "Use case: precise-object-edit. Asset: single funeral monument product photograph, variant Royal. Image 1 is the fixed Bengal geometry master and edit target. Image 2 is ONLY the Royal stone material reference. Change ONLY the stone material on every stone surface of image 1 to faithfully match image 2: neutral black-grey and white crystalline Royal stone, its mineral shapes, colors and realistic grain scale. Preserve the exact complete monument silhouette, all component boundaries and proportions, curved headstone, planar slab, front rectangular open planter cavity, framing, camera, scale, plain pale grey background and contact shadows. No geometry changes. Do not fill the planter cavity. No inscriptions, flowers, plants, vases, accessories, logos or watermark. Single square image, requested 2048x2048; do not crop or zoom. This is one material variant of the exact same monument, not a redesign.",
+      "date": "2026-10-20T08:48:27.692080+00:00",
+      "sourceLocale": "generated_images/exec-3c2d88ca-1972-428f-aeeb-7d3f97879e86.png",
+      "sha256": "7fb2e144ade8a8d8247491cfea31e86699d404cbf396cc753f79e959a719bc34",
+      "references": [
+        "5-pieces-jardiniere-en-closoir-bengal.png",
+        "royal-texture-v1.png"
+      ],
+      "controleVisuel": "Cavite, stele courbe, cadrage et composants conserves visuellement ; pas de controle au pixel."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Single product catalog image, Vizag Blue variant. Image 1 is the fixed geometry Bengal monument master and edit target. Image 2 is ONLY the stone material reference. Replace all stone surfaces of image 1 with Vizag Blue matching image 2, cool bluish-grey and white flowing crystalline structure with restrained rusty garnet flecks. Keep every geometry detail unchanged: full silhouette, curved headstone, flat main slab, the front open rectangular planter cavity, all joints and components, camera, framing, scale, plain pale grey background and shadows. Preserve realistic stone grain scale. Do not fill the planter or change shapes. No engraving, text, plants, vases, flowers, accessories, logos or watermark. One square image requested 2048x2048. Change material only.",
+      "date": "2026-10-20T08:50:36.529608+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-f81fa4c8-525d-4041-a777-451cfbf03924.png",
+      "sha256": "94888f0a6a2966fc1d6ff937ce92296fe8e3550386944eeac0b8f506d8f14632",
+      "references": [
+        "5-pieces-jardiniere-en-closoir-bengal.png",
+        "vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "Composition, composants et silhouette conserves a l'oeil ; controle pixel et calibration non realises."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Product image, Viscount White variant. Image 1 is the exact fixed monument geometry master and edit target. Image 2 is the Viscount White stone material reference only. Change every stone surface to image 2's white and light silver-grey granite, small dark crystalline speckles and gentle flowing grey mineral clouds, with realistic grain scale and polished finish. Preserve exact silhouette, curved headstone, all slabs and joints, front open rectangular planter cavity, dimensions and proportions, camera, crop, background and shadows. No new shapes or objects, no inscriptions, no flowers, plants, vases, accessories, logos or watermark. Keep the planter empty. Only the material changes. Single square image requested 2048x2048.",
+      "date": "2026-10-20T08:51:56.321901+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-f477f787-5164-4fc9-be4d-2f6ac7afe820.png",
+      "sha256": "b40fffd52a4bf95043199cf64cef490769b6b7eb89bd9ff74892f72af8230b5a",
+      "references": [
+        "5-pieces-jardiniere-en-closoir-bengal.png",
+        "viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "Composition, composants et silhouette conserves a l'oeil ; controle pixel et calibration non realises."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Product catalog photograph, Rosso Porrino variant. Image 1 is the fixed Bengal monument master to edit. Image 2 is ONLY the Rosso Porrino stone material reference. Replace every stone surface with image 2's salmon-pink feldspar, pale grey translucent quartz and dark grey-black mineral speckles, faithfully matching the material and realistic grain scale. Preserve exactly the full monument silhouette, asymmetrically curved headstone, all slabs, front empty rectangular open planter cavity and every joint, proportions, camera, framing, plain pale grey background and contact shadows. No geometrical changes and do not fill the planter. No engraved text, ornaments, flowers, plants, vases, accessories, logo or watermark. Only the material changes. Single square image requested 2048x2048.",
+      "date": "2026-10-20T08:53:13.218316+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-6466db10-b52a-4369-89a6-c61d423ec5a6.png",
+      "sha256": "9a797699f33a0ac246ecb8a2ed126d1334ffd4cb44c142adcd55c6dd7526f96a",
+      "references": [
+        "5-pieces-jardiniere-en-closoir-bengal.png",
+        "rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "Composition, composants et silhouette conserves a l'oeil ; controle pixel et calibration non realises."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Product catalog image, Egipat variant. Image 1 is the fixed geometry monument master to edit; image 2 is ONLY the Egipat stone material reference. Replace all stone surfaces with the white and light-grey granite and dense irregular small black mineral grains of image 2. Faithfully match its subtle flowing grain arrangement, color balance and realistic texture scale. Keep exactly the complete monument geometry and silhouette, curved headstone, flat top slab, front rectangular empty open planter cavity, every component and joint, camera, crop, scale, pale grey studio background and soft contact shadows. Do not fill the planter. No additions, no engraving, no plants, flowers, vases, decorations, logo or watermark. Single square image requested 2048x2048. Only the stone material changes.",
+      "date": "2026-10-20T08:54:42.303895+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-0884e1ba-65e0-40b9-85c3-074d7ff99466.png",
+      "sha256": "345d2350a17bae06421bb0d78a3af2c46f71ae254739c7b38d2e9e3664952ff9",
+      "references": [
+        "5-pieces-jardiniere-en-closoir-bengal.png",
+        "egipat-texture-v1.png"
+      ],
+      "controleVisuel": "Composition, composants et silhouette conserves a l'oeil ; controle pixel et calibration non realises."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Product catalog photograph, Marmara variant. Image 1 is the fixed geometry Bengal monument master to edit. Image 2 is ONLY the Marmara stone material reference: ivory-white fine crystalline stone with sparse soft parallel smoky-grey bands. Change all stone surfaces to faithfully match image 2. Preserve believable continuous planar banding, restrained contrast, fine grain, and polished finish. Keep the exact monument silhouette, curved headstone, all component shapes, slab and joint positions, empty open rectangular planter cavity at the front, camera, framing, scale, pale grey studio background and contact shadows unchanged. Do not fill the cavity. No inscriptions, decorative motifs, flowers, plants, vases, accessories, logo or watermark. Single square image requested 2048x2048. Only the stone material changes.",
+      "date": "2026-10-20T08:56:19.889934+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-6d5d3e64-7123-4212-8a05-6f339ff8843f.png",
+      "sha256": "c272913929a851dabb4b6f2b4c899e68853c224f90f5981147b9f0be4c282171",
+      "references": [
+        "5-pieces-jardiniere-en-closoir-bengal.png",
+        "marmara-texture-v1.png"
+      ],
+      "controleVisuel": "Composition, composants et silhouette conserves a l'oeil ; controle pixel et calibration non realises."
+    }
+  }
+}

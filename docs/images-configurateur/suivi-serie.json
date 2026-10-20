@@ -644,56 +644,80 @@
         {
           "matiereId": "royal",
           "fichier": "5-pieces-jardiniere-en-closoir-royal.png",
-          "statut": "transfert-partiel-source-a-retrouver",
-          "sha256": null,
-          "dimensionsPx": null,
+          "statut": "archive-documente",
+          "sha256": "7fb2e144ade8a8d8247491cfea31e86699d404cbf396cc753f79e959a719bc34",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
           "validationConfigurateur": false,
-          "transfertPartiel": {
-            "fichier": "5-pieces-jardiniere-en-closoir-royal.png.part",
-            "tailleOctets": 2700000,
-            "sha256Partiel": "5bb2132e2e46427fbb401b4bd30227b33660b7be82d8ecb777d4fb3aa4a9d813",
-            "sourceCompleteRetrouvee": false
-          }
+          "tailleOctets": 3099741,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
           "fichier": "5-pieces-jardiniere-en-closoir-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "94888f0a6a2966fc1d6ff937ce92296fe8e3550386944eeac0b8f506d8f14632",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2895725,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "5-pieces-jardiniere-en-closoir-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "b40fffd52a4bf95043199cf64cef490769b6b7eb89bd9ff74892f72af8230b5a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3012722,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "5-pieces-jardiniere-en-closoir-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "9a797699f33a0ac246ecb8a2ed126d1334ffd4cb44c142adcd55c6dd7526f96a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2923428,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "5-pieces-jardiniere-en-closoir-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "345d2350a17bae06421bb0d78a3af2c46f71ae254739c7b38d2e9e3664952ff9",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3124007,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "5-pieces-jardiniere-en-closoir-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "c272913929a851dabb4b6f2b4c899e68853c224f90f5981147b9f0be4c282171",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2366261,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -2711,22 +2735,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T08:31:49.860711+00:00",
-    "imagesCompletes": 46,
-    "imagesInventorieesAvecHash": 46,
-    "transfertsPartiels": 1,
-    "combinaisonsRestantes": 224,
-    "aGenererSansFichierPartiel": 223,
-    "modelesComplets": 4,
-    "modelesPartiels": 3,
-    "modelesNonCommences": 20,
+    "dateControle": "2026-10-20T08:56:19.889934+00:00",
+    "imagesCompletes": 52,
+    "combinaisonsRestantes": 218,
     "imagesValideesConfigurateur": 0,
-    "aucuneNouvelleGenerationPendantAudit": true
+    "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "5-pieces-jardiniere-en-closoir",
-    "matiereId": "royal",
-    "action": "Retrouver la source complete, comparer le prefixe puis reprendre le transfert partiel ; a defaut regenerer. Ensuite vizag-blue, viscount-white, rosso-porrino, egipat, marmara.",
-    "sourceCompleteRetrouvee": false
+    "modeleId": "4-pieces-sans-stele",
+    "matiereId": "rozabeta",
+    "action": "Produire depuis la base Bengal puis archiver avant la variante suivante."
   }
 }

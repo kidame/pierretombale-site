@@ -28,3 +28,9 @@ Aucune validation configurateur ni publication.
 
 Royal : fichier .png.part de 2700000 octets conserve, hors compte des images completes.
 Retrouver la source complete et comparer son prefixe avant toute reprise du transfert ; sinon regenerer.
+
+<!-- production-live -->
+
+Etat courant : 10/10 variantes.
+Presentes : bengal, rozabeta, paradiso, jablanica, royal, vizag-blue, viscount-white, rosso-porrino, egipat, marmara.
+Voir manifest.json pour dimensions et SHA256 ; prompts-exacts.json pour les nouveaux appels.
