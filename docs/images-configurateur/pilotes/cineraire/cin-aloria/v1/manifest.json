@@ -65,19 +65,93 @@
       ],
       "tailleOctets": 2844060,
       "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "vizag-blue",
+      "image": "cin-aloria-vizag-blue.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png",
+      "sha256": "46ad381150d4502ab2f8808e332a8d62c37917b70d5ce5f2180000c25c3f4256",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2724745,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "viscount-white",
+      "image": "cin-aloria-viscount-white.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png",
+      "sha256": "eb33c3f6b7b02bb96a0a623f380920c51874941fc775bd88642a3380308236e6",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2680770,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rosso-porrino",
+      "image": "cin-aloria-rosso-porrino.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png",
+      "sha256": "f8f3d7f694a4796dc8066fce201642abf3121c4f6ed7f1da78a71ba33df1392e",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2672662,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "egipat",
+      "image": "cin-aloria-egipat.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png",
+      "sha256": "d2c24beb5bd15aea64fa31c2401d0b612c7d17f70cacd4d478b910342d06f4d8",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2850031,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "marmara",
+      "image": "cin-aloria-marmara.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png",
+      "sha256": "5baeae8f331af02f76dbb6212c54095832facf052ccc999a1452dad24c335fa7",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2278500,
+      "integritePngVerifiee": true
     }
   ],
   "statut": "pilote-a-valider",
   "vuesParVariante": 1,
   "calibration": null,
   "contoursPixelValides": false,
-  "variantesPresentes": 5,
+  "variantesPresentes": 10,
   "variantesCibles": 10,
-  "dernierControleIntegrite": "2026-10-20T13:09:09.142786+00:00",
+  "dernierControleIntegrite": "2026-10-20T13:13:02.925525+00:00",
   "dimensionsPx": [
     1254,
     1254
   ],
   "conformeResolutionFinale": false,
-  "validationConfigurateur": false
+  "validationConfigurateur": false,
+  "promptsExactsDisponibles": [
+    "bengal",
+    "rozabeta",
+    "paradiso",
+    "jablanica",
+    "royal",
+    "vizag-blue",
+    "viscount-white",
+    "rosso-porrino",
+    "egipat",
+    "marmara"
+  ],
+  "promptsExactsManquants": [],
+  "promptsExactsRetrouves": true
 }

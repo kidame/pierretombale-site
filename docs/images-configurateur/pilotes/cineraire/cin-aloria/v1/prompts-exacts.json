@@ -55,6 +55,61 @@
         "royal-texture-v1.png"
       ],
       "controleVisuel": "Gris sombre cristallin. Champ principal, dalle, plinthe et marche arri\u00e8re d\u00e9clin\u00e9s ; croissant sombre et fine jonction claire conserv\u00e9s, aucun accessoire."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with two stacked rectangular base slabs, a rear step, and an asymmetric curved headstone with a broad dark crescent integrated along its left side. Image 2 is only the vizag-blue stone reference. Change ONLY only the base slabs, rear step and broad main headstone field, which are light speckled stone in the source to the exact material of image 2: cool silver-grey granite, slightly blue, flowing charcoal mineral clouds and sparse fine burgundy-brown specks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the broad integrated left crescent of the headstone in its original dark polished stone, preserving its exact curved boundary and the fine light junction line. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark crescent is a fixed structural stone zone, not a shadow or optional ornament. Do not remove it, widen it or recolor it with the selected main material. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:12:29.922922+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-a3f5fc71-37f8-4aee-9124-06de2708dff0.png",
+      "sha256": "46ad381150d4502ab2f8808e332a8d62c37917b70d5ce5f2180000c25c3f4256",
+      "references": [
+        "cin-aloria-bengal.png",
+        "vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "Gris bleut\u00e9 vein\u00e9 \u00e0 inclusions brunes. Mati\u00e8re principale seule modifi\u00e9e, croissant noir fixe et joint clair pr\u00e9serv\u00e9s, dalle et marche inchang\u00e9es, absence de vase et fleurs."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with two stacked rectangular base slabs, a rear step, and an asymmetric curved headstone with a broad dark crescent integrated along its left side. Image 2 is only the viscount-white stone reference. Change ONLY only the base slabs, rear step and broad main headstone field, which are light speckled stone in the source to the exact material of image 2: luminous white and pale grey granite, fine dark mineral flecks and soft flowing grey clouds. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the broad integrated left crescent of the headstone in its original dark polished stone, preserving its exact curved boundary and the fine light junction line. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark crescent is a fixed structural stone zone, not a shadow or optional ornament. Do not remove it, widen it or recolor it with the selected main material. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:12:38.504853+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-61b3492e-7bb6-4059-88ce-2543bee053c5.png",
+      "sha256": "eb33c3f6b7b02bb96a0a623f380920c51874941fc775bd88642a3380308236e6",
+      "references": [
+        "cin-aloria-bengal.png",
+        "viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "Blanc gris mouchet\u00e9. Mati\u00e8re principale seule modifi\u00e9e, croissant noir fixe et joint clair pr\u00e9serv\u00e9s, dalle et marche inchang\u00e9es, absence de vase et fleurs."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with two stacked rectangular base slabs, a rear step, and an asymmetric curved headstone with a broad dark crescent integrated along its left side. Image 2 is only the rosso-porrino stone reference. Change ONLY only the base slabs, rear step and broad main headstone field, which are light speckled stone in the source to the exact material of image 2: salmon pink feldspar, grey quartz, black flecks and cream-white mineral grains. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the broad integrated left crescent of the headstone in its original dark polished stone, preserving its exact curved boundary and the fine light junction line. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark crescent is a fixed structural stone zone, not a shadow or optional ornament. Do not remove it, widen it or recolor it with the selected main material. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:12:47.500993+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-f9c7ee81-755a-46b4-925e-60e28a9cd078.png",
+      "sha256": "f8f3d7f694a4796dc8066fce201642abf3121c4f6ed7f1da78a71ba33df1392e",
+      "references": [
+        "cin-aloria-bengal.png",
+        "rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "Granite rose orang\u00e9. Mati\u00e8re principale seule modifi\u00e9e, croissant noir fixe et joint clair pr\u00e9serv\u00e9s, dalle et marche inchang\u00e9es, absence de vase et fleurs."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with two stacked rectangular base slabs, a rear step, and an asymmetric curved headstone with a broad dark crescent integrated along its left side. Image 2 is only the egipat stone reference. Change ONLY only the base slabs, rear step and broad main headstone field, which are light speckled stone in the source to the exact material of image 2: neutral medium-grey salt-and-pepper granite with dense small black and white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the broad integrated left crescent of the headstone in its original dark polished stone, preserving its exact curved boundary and the fine light junction line. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark crescent is a fixed structural stone zone, not a shadow or optional ornament. Do not remove it, widen it or recolor it with the selected main material. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:12:56.159128+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-5088fb68-266d-4fa3-9995-ed492d47b19d.png",
+      "sha256": "d2c24beb5bd15aea64fa31c2401d0b612c7d17f70cacd4d478b910342d06f4d8",
+      "references": [
+        "cin-aloria-bengal.png",
+        "egipat-texture-v1.png"
+      ],
+      "controleVisuel": "Grain noir et blanc contrast\u00e9. Mati\u00e8re principale seule modifi\u00e9e, croissant noir fixe et joint clair pr\u00e9serv\u00e9s, dalle et marche inchang\u00e9es, absence de vase et fleurs."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with two stacked rectangular base slabs, a rear step, and an asymmetric curved headstone with a broad dark crescent integrated along its left side. Image 2 is only the marmara stone reference. Change ONLY only the base slabs, rear step and broad main headstone field, which are light speckled stone in the source to the exact material of image 2: white crystalline marble with broad softly parallel grey bands and finer darker grey veins. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the broad integrated left crescent of the headstone in its original dark polished stone, preserving its exact curved boundary and the fine light junction line. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark crescent is a fixed structural stone zone, not a shadow or optional ornament. Do not remove it, widen it or recolor it with the selected main material. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:13:02.925525+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-af9d7d79-6828-4bd3-a33e-0cdd36d6fc54.png",
+      "sha256": "5baeae8f331af02f76dbb6212c54095832facf052ccc999a1452dad24c335fa7",
+      "references": [
+        "cin-aloria-bengal.png",
+        "marmara-texture-v1.png"
+      ],
+      "controleVisuel": "Blanc \u00e0 longues veines grises. Mati\u00e8re principale seule modifi\u00e9e, croissant noir fixe et joint clair pr\u00e9serv\u00e9s, dalle et marche inchang\u00e9es, absence de vase et fleurs."
     }
   }
 }

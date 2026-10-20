@@ -2067,42 +2067,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "cin-aloria-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "46ad381150d4502ab2f8808e332a8d62c37917b70d5ce5f2180000c25c3f4256",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2724745,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "cin-aloria-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "eb33c3f6b7b02bb96a0a623f380920c51874941fc775bd88642a3380308236e6",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2680770,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "cin-aloria-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "f8f3d7f694a4796dc8066fce201642abf3121c4f6ed7f1da78a71ba33df1392e",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2672662,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "cin-aloria-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "d2c24beb5bd15aea64fa31c2401d0b612c7d17f70cacd4d478b910342d06f4d8",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2850031,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "cin-aloria-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "5baeae8f331af02f76dbb6212c54095832facf052ccc999a1452dad24c335fa7",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2278500,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -2113,7 +2138,7 @@
       "sourceLibraryId": "libfile_c8988e6128448191b62aee86daf6f595",
       "dossier": "pilotes/cineraire/cin-tombale/v1",
       "ordre": 16,
-      "notes": "Sans stele : ne pas en inventer. Zone sur dalle a confirmer.",
+      "notes": "Bloc de pierre unique rectangulaire, bas et epais, dessus plan, angles droits et aretes fines. Aucun socle ajoute, aucune stele. Modele sans stele : une dalle unique, sans socle ajoute. Aucune dimension physique fiable deduite de la perspective. Geometrie atelier et zones physiques a valider.",
       "variantes": [
         {
           "matiereId": "bengal",
@@ -3200,15 +3225,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T13:09:09.142786+00:00",
-    "imagesCompletes": 145,
-    "combinaisonsRestantes": 125,
+    "dateControle": "2026-10-20T13:13:02.925525+00:00",
+    "imagesCompletes": 150,
+    "combinaisonsRestantes": 120,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "cin-aloria",
-    "matiereId": "vizag-blue",
+    "modeleId": "cin-tombale",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3224,56 +3249,57 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T13:10:34.861756+00:00",
+    "dateFin": "2026-10-20T13:14:26.888143+00:00",
     "combinaisons": [
       {
         "modeleId": "cin-aloria",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "cin-aloria",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "cin-aloria",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "cin-aloria",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "cin-aloria",
-        "matiereId": "royal"
+        "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 140,
-    "totalApres": 145,
+    "totalAvant": 145,
+    "totalApres": 150,
     "statut": "termine",
+    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
   },
   "prochainLot": [
     {
-      "modeleId": "cin-aloria",
-      "matiereId": "vizag-blue"
+      "modeleId": "cin-tombale",
+      "matiereId": "bengal"
     },
     {
-      "modeleId": "cin-aloria",
-      "matiereId": "viscount-white"
+      "modeleId": "cin-tombale",
+      "matiereId": "rozabeta"
     },
     {
-      "modeleId": "cin-aloria",
-      "matiereId": "rosso-porrino"
+      "modeleId": "cin-tombale",
+      "matiereId": "paradiso"
     },
     {
-      "modeleId": "cin-aloria",
-      "matiereId": "egipat"
+      "modeleId": "cin-tombale",
+      "matiereId": "jablanica"
     },
     {
-      "modeleId": "cin-aloria",
-      "matiereId": "marmara"
+      "modeleId": "cin-tombale",
+      "matiereId": "royal"
     }
   ]
 }
