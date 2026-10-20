@@ -1,0 +1,60 @@
+{
+  "mode": "imagegen-integre",
+  "variantes": {
+    "rozabeta": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry master of a simple low horizontal tomb slab, a single thick rectangular top slab over a wider thin rectangular base, without upright headstone. Image 2 is only the Rozabeta stone material reference. Change only all stone surfaces to the reference's light grey and white granite with soft salmon-pink feldspar crystals and fine black mineral flecks. Match realistic mineral grain, colors and polished finish. Preserve exactly the two slab shapes, thicknesses, joints, silhouette, front axial camera, crop, scale, perspective, pale grey background and soft shadow. No headstone, new piece, engraving, text, ornament, vase, flowers, logo or watermark. One single square image requested 2048x2048.",
+      "date": "2026-10-20T11:14:09.518626+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-f90b2c25-1d9d-4253-b446-043a015bf2ad.png",
+      "sha256": "d4d79ff6519a5a79c301151de9953fa683422b1dd871c766457c23dfb96ea97b",
+      "references": [
+        "tombale-simple-200x100x10-bengal.png",
+        "rozabeta-texture-v1.png"
+      ],
+      "controleVisuel": "Deux dalles rectangulaires superposees, sans stele, cadrage et fond coherents. Granit clair a feldspath rose et ponctuations noires. Controle visuel, sans mesure dimensionnelle ni calibration couleur."
+    },
+    "paradiso": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry master of a simple low horizontal tomb slab: one thick rectangular top slab over a wider thin rectangular base, without upright headstone. Image 2 is only the Paradiso material reference. Replace all stone surfaces with that exact polished grey granite, dense fine black minerals, copper salmon grains, softly flowing white and dark mineral bands. Respect realistic grain scale. Preserve precisely both slab shapes, thicknesses, joints, silhouette, front axial camera, crop, scale, perspective, pale grey background and soft shadow. No headstone, extra piece, engraving, text, ornament, vase, flower, logo or watermark. One single square image requested 2048x2048.",
+      "date": "2026-10-20T11:16:18.566357+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-b3af9ae8-8e58-4627-bc06-806d9c3566b0.png",
+      "sha256": "5d88afd4e68703982a681b8476abd7c929e7bda72d53fee3cdf50249d04f001f",
+      "references": [
+        "tombale-simple-200x100x10-bengal.png",
+        "paradiso-texture-v1.png"
+      ],
+      "controleVisuel": "Deux dalles rectangulaires superposees, sans stele, cadrage et fond coherents. Pierre grise mouchetee avec cristaux saumon et bandes minerales blanches et sombres. Controle visuel, sans calibration couleur ni mesure des dimensions."
+    },
+    "jablanica": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry master of a simple low horizontal tomb slab, one thick rectangular top slab over a wider thin rectangular base, without upright headstone. Image 2 is only the Jablanica stone material reference. Replace all stone surfaces with that exact polished dark grey granite, densely packed black minerals, silvery grey and translucent white crystals, no pink or colored veining. Match its grain and color faithfully. Preserve exactly the two slab shapes, thicknesses, joints, silhouette, front axial camera, crop, scale, perspective, pale grey background and soft shadow. No headstone, extra piece, engraving, text, ornament, vase, flower, logo or watermark. One single square image requested 2048x2048.",
+      "date": "2026-10-20T11:18:07.213064+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-aea33535-6598-4083-a804-e96951af33bc.png",
+      "sha256": "2a9d61eb61fe397b172b795d9ea5f8ed5d7ad2a1054e844a1ded9379349d02b2",
+      "references": [
+        "tombale-simple-200x100x10-bengal.png",
+        "jablanica-texture-v1.png"
+      ],
+      "controleVisuel": "Deux dalles rectangulaires superposees, sans stele, cadrage et fond coherents. Granit gris sombre mouchete de cristaux blancs, grains noirs et argent. Controle visuel, sans calibration couleur ni mesure des dimensions."
+    },
+    "royal": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry master of a simple low horizontal tomb slab, one thick rectangular top slab over a wider thin rectangular base, without upright headstone. Image 2 is only the Royal stone reference. Change all stone surfaces to this exact neutral dark granite with dense small black minerals and irregular silvery grey and white crystals, preserving its varied fine grain, polished finish and subtle cloudy pattern. Preserve exactly both slab shapes, thicknesses, joints, silhouette, front axial camera, crop, scale, perspective, pale grey background and soft shadow. No headstone, extra piece, engraving, text, ornament, vase, flower, logo or watermark. One single square image requested 2048x2048.",
+      "date": "2026-10-20T11:20:29.813044+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-d6728c09-a8ea-4d00-88d7-b7b2daad4ff6.png",
+      "sha256": "80884ba0f14c7a98f7fd5c990c71211a5128902820c7cf57e42f0f72380868ae",
+      "references": [
+        "tombale-simple-200x100x10-bengal.png",
+        "royal-texture-v1.png"
+      ],
+      "controleVisuel": "Deux dalles rectangulaires superposees, sans stele, cadrage et fond coherents. Granit neutre noir et gris, grains argent et blancs irreguliers. Controle visuel, sans calibration couleur ni mesure des dimensions."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry master of a simple low horizontal tomb slab, one thick rectangular top slab over a wider thin rectangular base, without upright headstone. Image 2 is only the Vizag Blue stone reference. Change all stone surfaces to that exact polished cool silver-grey slightly blue granite with flowing charcoal mineral clouds, pale crystalline areas and sparse fine burgundy-brown specks. Faithfully match its color and grain without inventing saturated blue. Preserve exactly both slab shapes, thicknesses, joints, silhouette, front axial camera, crop, scale, perspective, pale grey background and soft shadow. No headstone, extra piece, engraving, text, ornament, vase, flowers, logo or watermark. One single square image requested 2048x2048.",
+      "date": "2026-10-20T11:22:00.827902+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-d0eb8b85-d876-4532-b8a0-3a613adfe99f.png",
+      "sha256": "a7ee078968de0c07f83785cd591b16504cb9328ece71e1756eaf042d11fbb714",
+      "references": [
+        "tombale-simple-200x100x10-bengal.png",
+        "vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "Deux dalles rectangulaires superposees, sans stele, cadrage et fond coherents. Pierre gris clair a nuages anthracite et petites ponctuations brun rouge, conforme visuellement a la reference. Sans calibration couleur ni mesure des dimensions."
+    }
+  }
+}

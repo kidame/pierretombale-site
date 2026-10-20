@@ -4,10 +4,11 @@ Cible : 27 modeles, 10 matieres, UNE vue par variante. Aucun changement runtime 
 Le suivi courant est suivi-serie.json ; AUDIT-2026-10-20.md est un instantane historique a 46 images.
 
 ## Execution
-Decision Thomas du 20.10.2026 : maximum 5 nouvelles images par passage.
+Clarification Thomas du 20.10.2026 a 13h05 : produire toute la serie sans demander de continuation.
+Cinq images = taille d'un lot de sauvegarde, PAS une limite de session ni un ordre d'arret.
 Generer strictement une image a la fois, la controler et l'archiver avant la suivante.
-Apres 5 images, documenter, commiter et terminer le passage ; ne pas enchainer un second lot.
-Le lot courant termine si possible le premier modele incomplet.
+Apres chaque lot de 5, documenter et commiter, puis enchainer automatiquement le lot suivant.
+Continuer jusqu'a 270/270 ou blocage technique reel, sans nouvelle demande a Thomas.
 Aucune reconstruction d'infrastructure, aucun nouveau re-audit complet a chaque passage.
 Lire d'abord /home/kumo/atelier/AGENTS.md, les instructions du depot, ETAT.md et ce document.
 Acces VPS uniquement via vps-proxy ; toute commande commence par kumo.

@@ -13,3 +13,8 @@
 {"date": "2026-10-20T10:36:07.426977+00:00", "modeleId": "4-pieces-sans-stele", "matiereId": "rosso-porrino", "sha256": "3b1aa2d7dc56aeab4238d2a440fb324cdd160abac9fec55190bf3fa25bb115b4", "total": 59}
 {"date": "2026-10-20T10:38:27.733304+00:00", "modeleId": "4-pieces-sans-stele", "matiereId": "egipat", "sha256": "d7cf5d71f644955d3ac02ead2ebd1bdbb5233deee816d786119c049fe03bf610", "total": 60}
 {"date": "2026-10-20T10:40:33.960785+00:00", "modeleId": "4-pieces-sans-stele", "matiereId": "marmara", "sha256": "5a65c4c444b3c594c50cc6bb64de6705e642a8318dfc426ffc49f631002119b8", "total": 61}
+{"date": "2026-10-20T11:14:09.518626+00:00", "modeleId": "tombale-simple-200x100x10", "matiereId": "rozabeta", "sha256": "d4d79ff6519a5a79c301151de9953fa683422b1dd871c766457c23dfb96ea97b", "total": 62}
+{"date": "2026-10-20T11:16:18.566357+00:00", "modeleId": "tombale-simple-200x100x10", "matiereId": "paradiso", "sha256": "5d88afd4e68703982a681b8476abd7c929e7bda72d53fee3cdf50249d04f001f", "total": 63}
+{"date": "2026-10-20T11:18:07.213064+00:00", "modeleId": "tombale-simple-200x100x10", "matiereId": "jablanica", "sha256": "2a9d61eb61fe397b172b795d9ea5f8ed5d7ad2a1054e844a1ded9379349d02b2", "total": 64}
+{"date": "2026-10-20T11:20:29.813044+00:00", "modeleId": "tombale-simple-200x100x10", "matiereId": "royal", "sha256": "80884ba0f14c7a98f7fd5c990c71211a5128902820c7cf57e42f0f72380868ae", "total": 65}
+{"date": "2026-10-20T11:22:00.827902+00:00", "modeleId": "tombale-simple-200x100x10", "matiereId": "vizag-blue", "sha256": "a7ee078968de0c07f83785cd591b16504cb9328ece71e1756eaf042d11fbb714", "total": 66}

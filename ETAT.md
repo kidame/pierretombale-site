@@ -44,6 +44,16 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+<!-- images-checkpoint -->
+- Checkpoint images 2026-10-20T11:22:35.606195+00:00 : 66/270 archivees, 204 restantes.
+  6/27 modeles complets. Prochaine image : tombale-simple-200x100x10 / viscount-white.
+  Lots de 5 enchaines automatiquement, une generation puis archivage a la fois.
+  Suivi detaille : docs/images-configurateur/AVANCEMENT.md et suivi-serie.json.
+<!-- /images-checkpoint -->
+- 20.10.2026 13h05, Thomas : clarification prioritaire, produire les 270 images,
+  lots de 5 automatiquement enchaines. Ne plus arreter une session a la fin d'un lot.
+  Reprise a 61/270, tombale simple / rozabeta ; une image puis archivage immediat.
+  Reprise automatique existante reactivee, verrou exclusif contre les doublons.
 - 20.10.2026, Codex : lot de 5 termine et archive, total reel 61/270 (56 au depart).
   4-pieces-sans-stele termine 10/10 : Vizag Blue, Viscount White, Rosso Porrino,
   Egipat et Marmara ajoutes par imagegen integre, une generation puis un archivage a la fois.

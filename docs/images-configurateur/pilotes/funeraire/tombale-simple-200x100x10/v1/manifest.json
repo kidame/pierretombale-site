@@ -26,12 +26,82 @@
       ],
       "tailleOctets": 2512983,
       "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "tombale-simple-200x100x10-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "d4d79ff6519a5a79c301151de9953fa683422b1dd871c766457c23dfb96ea97b",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2418647,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "tombale-simple-200x100x10-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "5d88afd4e68703982a681b8476abd7c929e7bda72d53fee3cdf50249d04f001f",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2529744,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "tombale-simple-200x100x10-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "2a9d61eb61fe397b172b795d9ea5f8ed5d7ad2a1054e844a1ded9379349d02b2",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2496777,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "royal",
+      "image": "tombale-simple-200x100x10-royal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "80884ba0f14c7a98f7fd5c990c71211a5128902820c7cf57e42f0f72380868ae",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2481014,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "vizag-blue",
+      "image": "tombale-simple-200x100x10-vizag-blue.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png",
+      "sha256": "a7ee078968de0c07f83785cd591b16504cb9328ece71e1756eaf042d11fbb714",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2474980,
+      "integritePngVerifiee": true
     }
   ],
   "sourcePrompts": "../../../../prompts-serie.json",
   "promptsExactsRetrouves": false,
-  "dernierControleIntegrite": "2026-10-20T08:31:49.860711+00:00",
-  "variantesPresentes": 1,
+  "dernierControleIntegrite": "2026-10-20T11:22:00.827902+00:00",
+  "variantesPresentes": 6,
   "variantesCibles": 10,
-  "validationConfigurateur": false
+  "validationConfigurateur": false,
+  "promptsExactsDisponibles": [
+    "rozabeta",
+    "paradiso",
+    "jablanica",
+    "royal",
+    "vizag-blue"
+  ],
+  "promptsExactsManquants": [
+    "bengal"
+  ]
 }

@@ -4,35 +4,28 @@ Autorisation Thomas, 19.10.2026 : poursuivre les 27 modeles en 10 matieres, une 
 
 ## Point de reprise
 
-Registre unique : `suivi-serie.json` (27 modeles, 270 combinaisons). Les statuts distinguent generation, archivage et validation configurateur. Un fichier present n'est pas automatiquement valide.
-Etat courant apres le lot borne du 20.10.2026 : 61 images completes archivees, 209 restantes.
-Six modeles complets : CIN1, ARQUES, ALMANDIN, doucine avec base, jardiniere et 4 pieces sans stele.
-Tombale simple : 1/10. Les 20 autres modeles n'ont pas encore de variante archivee.
-Le bilan de 55/270 cite par Thomas precedait Royal ; le point de depart verifie etait 56/270.
-Cinq nouvelles variantes sans stele ajoutees : vizag-blue, viscount-white, rosso-porrino, egipat, marmara.
-Le modele 4-pieces-sans-stele est maintenant a 10/10 ; aucun nouveau modele lance dans ce passage.
-Tous les transferts du lot sont termines, PNG et SHA256 verifies ; aucune generation en cours.
+Checkpoint 2026-10-20T11:22:35.606195+00:00 : 66/270 images archivees, 204 restantes.
+6/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
 Le tableau AVANCEMENT.md est mis a jour automatiquement apres chaque archivage.
+Prochaine combinaison : tombale-simple-200x100x10 / viscount-white.
 
-Prochain lot, maximum 5 nouvelles images, sur tombale-simple-200x100x10 :
-rozabeta, paradiso, jablanica, royal, vizag-blue. Partir de son master Bengal existant.
-Le registre conserve prochaineAction, prochainLot et dernierLot pour reprendre sans re-audit complet.
+Clarification Thomas du 20.10.2026 a 13h05 : produire toute la serie.
+Un lot de 5 est un checkpoint, jamais une consigne d arret. Enchainer les lots sans confirmation.
+Une seule generation simultanee ; inspecter puis archiver chaque resultat avant le suivant.
+Le dernier lot est entierement transfere et controle. Aucun transfert partiel de ce lot.
+La production active detient le verrou ; le recepteur peut rester ouvert entre les lots.
+Ne pas prendre cette note de checkpoint pour une preuve de generation en arriere-plan.
+La reprise planifiee existante a ete reactivee ; sa capacite de generation reste a verifier.
+Voir automation-production.json et PRODUCTION-AUTONOME.md.
 
-La reprise automatique a ete observee en pause le 20.10.2026, dernier passage enregistre
-2026-10-20T09:05:22.684674+00:00. Cause de la pause non etablie ici.
-Sa consigne est desormais bornee a 5 images ; elle reste en pause, sans promesse de production en fond.
-Voir automation-production.json et PRODUCTION-AUTONOME.md. Recepteur du lot manuel ferme.
-
-Incident mineur de lecture : read_process_output(offset=0) a une fois affiche No output alors que
-le bloc etait ecrit. La taille partielle puis la lecture offset=-3 ont confirme l'accuse ;
-reprise a l'offset exact, aucune regeneration ni perte. Procedure completee.
+Les champs dernierLot et prochainLot sont actualises a chaque checkpoint ; prochaineAction est actualisee apres chaque image.
 
 ## Regles de continuation
 
 1. Lire AGENTS.md, ETAT.md, ce document et le registre ; verifier git status et les fichiers reels.
 2. Pour chaque modele : inspecter sa reference source, conserver ses formes et inserts, retirer accessoires amovibles/gravures. Ne pas inventer de stele ; acier ajoure et bicolores conservent leurs parties fixes. Documenter les ambiguities.
 3. Creer une seule base Bengal ; neuf editions changent uniquement la pierre depuis cette meme base, jamais depuis la variante precedente. Les prompts sont dans prompts.json par modele. Utiliser imagegen integre, pas de bascule API payante sans demande.
-4. Generer au maximum 5 nouvelles images par passage, strictement une image a la fois. A chaque image terminee : copier sous son nom stable, enregistrer son chemin et sa matiere, transferer au VPS et verifier SHA256. Ne pas attendre la fin d'un grand lot pour sauvegarder.
+4. Generer par lots de 5 automatiquement enchaines, strictement une image a la fois. Apres le checkpoint de chaque lot, continuer sans demander de confirmation. A chaque image terminee : copier sous son nom stable, enregistrer son chemin et sa matiere, transferer au VPS et verifier SHA256. Ne pas attendre la fin d'un grand lot pour sauvegarder.
 5. Transfert interrompu : comparer taille et prefixe au fichier source avant reprise a l'offset exact. Un fichier incomplet reste hors statut archive. Pour les nouveaux transferts utiliser un suffixe .part, puis renommer seulement apres controle complet. Ne jamais ecraser une variante complete ; correction en v2.
 6. Mettre a jour le registre et le manifeste du modele avec resolution et hash reels. README : source, particularites, limites, nombre present. Commit local par modele (ou point de reprise), jamais push/publication implicite.
 7. Fin de session : marquer exactement la prochaine combinaison et toute generation en cours. Aucune execution autonome n'est garantie hors session active. Le plan garantit la tracabilite, pas un traitement en arriere-plan.
