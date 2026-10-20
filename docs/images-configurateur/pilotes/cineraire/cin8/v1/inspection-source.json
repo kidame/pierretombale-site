@@ -1,0 +1,25 @@
+{
+  "library_file_id": "libfile_24ecdbef74388191947ef8fc207743c0",
+  "current_version_number": 0,
+  "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin8/CIN8.png",
+  "source_file_name": "CIN8.png",
+  "inspection_pending": false,
+  "geometry": "Dalle de base presque carree, stele massive en coeur a deux lobes, pointe basse descendant jusqu'a un pied elargi aux deux courbes concaves. Bande/ressaut fixe en S sur la dalle, de l'arriere gauche vers l'avant droit.",
+  "fixed_features": [
+    "Stele coeur et pied sculpte",
+    "Bande/ressaut en S sur la dalle"
+  ],
+  "removable_accessories": [
+    "Vase arrondi pose a l'avant gauche",
+    "Bouquet de roses et feuillage"
+  ],
+  "material_zones": "Ensemble pierre rouge-brun mouchetee dans la reference, y compris vase.",
+  "ambiguity": "Le S est un element de composition de la dalle, pas un accessoire. Aucune ambiguite majeure pour le vase et le bouquet.",
+  "generation_note": "Retirer vase et roses; garder la stele coeur complete et le S structurel.",
+  "reference_dimensions_px": [
+    1448,
+    1086
+  ],
+  "library_xattr_verified": true,
+  "decisionPilote": "Retirer vase, roses, feuillage et leurs reflets. Conserver le coeur complet, son pied evase et la bande structurelle en S sur la dalle. Toutes les parties minerales du monument varient ensemble."
+}

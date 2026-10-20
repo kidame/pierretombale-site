@@ -1,0 +1,60 @@
+{
+  "mode": "imagegen-integre",
+  "variantes": {
+    "bengal": {
+      "prompt": "Use case: product-mockup. Image 1 is the exact monument design reference for cin8. Image 2 is only the BENGAL stone reference. Create one clean frontal catalogue master, preserving the complete design and every structural component and proportion. Preserve the thick near-square rectangular base with beveled edges, the massive upright heart with two rounded lobes and a central cleft, its low pointed tip in front of a broad flared foot with concave curved shoulders, and the fixed raised ribbon in an S curve that runs across the base from the rear-left toward the front edge. Preserve the S ribbon as a physical relief, not a drawn line. Change all stone surfaces of the slab, sculpted foot, heart headstone and S-shaped ribbon to the exact polished black Bengal granite with natural silver and grey crystalline grain from image 2. Preserve the complete fixed S-shaped ribbon and the heart's flared foot as real structural stone parts. Remove the removable vase, roses, green foliage and all their reflections; leave the vacated slab area as plain matching stone. Camera exactly centered on the longitudinal axis, no left or right yaw, main front upright surface parallel to image plane. Use parallel orthographic projection with modest elevation only to reveal the base, no three-quarter view. Entire monument visible with balanced margins. Uniform pale grey studio background and soft contact shadow, gentle light, no glare obscuring surfaces. Do not invent components, text, ornaments, flowers, plants, vases or watermarks. Single square image requested 2048x2048. Fixed geometry master for nine material-only edits.",
+      "date": "2026-10-20T12:03:36.530011+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-1e314551-3e53-4f9b-8b0a-163949b69d56.png",
+      "sha256": "489ac872d53908711efbda32cd2323e568f85f15674a2bbca7ffac029555681d",
+      "references": [
+        "libfile_24ecdbef74388191947ef8fc207743c0",
+        "bengal-texture-v1.png"
+      ],
+      "controleVisuel": "Source originale inspectee : dalle unique, grande stele coeur, pied evase aux epaules concaves et relief en S conserves. Vase, roses, feuillage et reflets retires. Master frontal centre, granit Bengal sombre a grains argentes, fond gris clair. Pilote non calibre."
+    },
+    "rozabeta": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with one thick rectangular base slab, a large solid heart-shaped upright headstone on a flared sculpted foot, and a fixed S-shaped raised stone ribbon across the slab. Image 2 is only the rozabeta stone reference. Change ONLY all stone surfaces of the slab, sculpted foot, heart headstone and S-shaped ribbon to the exact material of image 2: light grey-white granite with soft salmon-pink feldspar crystals and fine black mineral flecks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve the complete fixed S-shaped ribbon and the heart's flared foot as real structural stone parts. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Keep the two rounded heart lobes, central cleft and lower pointed tip unchanged. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:03:46.796585+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-48cd0450-7954-4362-bb29-d277026ff3f3.png",
+      "sha256": "e72fdf9cc279e97972261eec2e9aaade99b0c8e5e1c40c9c65a4bd3e414250b1",
+      "references": [
+        "cin8-bengal.png",
+        "rozabeta-texture-v1.png"
+      ],
+      "controleVisuel": "Coeur massif et pointe basse, pied evase, dalle et ruban en S preserves. Aucun vase ni fleur. Vue frontale et cadrage identiques au master. Granit clair rose saumon, blanc, quartz gris et points noirs. Pilote non calibre."
+    },
+    "paradiso": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with one thick rectangular base slab, a large solid heart-shaped upright headstone on a flared sculpted foot, and a fixed S-shaped raised stone ribbon across the slab. Image 2 is only the paradiso stone reference. Change ONLY all stone surfaces of the slab, sculpted foot, heart headstone and S-shaped ribbon to the exact material of image 2: grey granite with fine black minerals, copper salmon grains, softly flowing white and dark mineral bands. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve the complete fixed S-shaped ribbon and the heart's flared foot as real structural stone parts. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Keep the two rounded heart lobes, central cleft and lower pointed tip unchanged. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:03:56.590943+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-5cf8173d-62cf-426c-b22b-c00f0c7031bb.png",
+      "sha256": "305427e2262603723ca880ad8f0a3a8a4e6ec4545147e48d4b5df64ea8f86185",
+      "references": [
+        "cin8-bengal.png",
+        "paradiso-texture-v1.png"
+      ],
+      "controleVisuel": "Coeur massif et pointe basse, pied evase, dalle unique et relief en S preserves. Cadrage et vue frontale conserves, sans accessoires ni inscription. Matiere : granit gris a grains cuivres saumon et veines claires. Pilote non calibre."
+    },
+    "jablanica": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with one thick rectangular base slab, a large solid heart-shaped upright headstone on a flared sculpted foot, and a fixed S-shaped raised stone ribbon across the slab. Image 2 is only the jablanica stone reference. Change ONLY all stone surfaces of the slab, sculpted foot, heart headstone and S-shaped ribbon to the exact material of image 2: dark grey granite densely packed with black minerals, silvery grey and translucent white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve the complete fixed S-shaped ribbon and the heart's flared foot as real structural stone parts. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Keep the two rounded heart lobes, central cleft and lower pointed tip unchanged. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:04:05.671170+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-d15e496b-3fcc-4377-8a5b-74b63df0481c.png",
+      "sha256": "5932103732647316b37263447290892b74e08a459d68461f6800672c0dd2e003",
+      "references": [
+        "cin8-bengal.png",
+        "jablanica-texture-v1.png"
+      ],
+      "controleVisuel": "Coeur massif et pointe basse, pied evase, dalle unique et relief en S preserves. Cadrage et vue frontale conserves, sans accessoires ni inscription. Matiere : granit gris sombre a cristaux gris argentes et mineraux noirs. Pilote non calibre."
+    },
+    "royal": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with one thick rectangular base slab, a large solid heart-shaped upright headstone on a flared sculpted foot, and a fixed S-shaped raised stone ribbon across the slab. Image 2 is only the royal stone reference. Change ONLY all stone surfaces of the slab, sculpted foot, heart headstone and S-shaped ribbon to the exact material of image 2: neutral dark granite with dense small black minerals and irregular silvery grey-white crystals in a subtly cloudy pattern. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve the complete fixed S-shaped ribbon and the heart's flared foot as real structural stone parts. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Keep the two rounded heart lobes, central cleft and lower pointed tip unchanged. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:04:17.295021+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-b29702c3-0861-41a2-a5f7-2ed9214ccf0f.png",
+      "sha256": "d68fc60de90e2c8df40639cff931841513a640432d2c1d61ed397cbaee95a549",
+      "references": [
+        "cin8-bengal.png",
+        "royal-texture-v1.png"
+      ],
+      "controleVisuel": "Coeur massif et pointe basse, pied evase, dalle unique et relief en S preserves. Cadrage et vue frontale conserves, sans accessoires ni inscription. Matiere : granit sombre a grains noirs denses et cristaux gris argentes. Pilote non calibre."
+    }
+  }
+}
