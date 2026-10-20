@@ -44,6 +44,61 @@
         "/workspace/scratch/fc8dfd468718/reference-textures/jablanica.png"
       ],
       "controleVisuel": "Relecture du 21.10.2026: stele rectangulaire, socle a etages, champs courbes clairs fixes sur stele et dalle, fond et cadrage conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "royal": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument on a layered rectangular plinth, with a rectangular upright headstone and thick upper slab carrying matching curved light-stone corner fields. Image 2 is only the royal stone reference. Change ONLY the dark primary stone of the projecting base, rear support, upper slab and large central headstone field, excluding every light curved insert to the exact material of image 2: neutral dark granite with dense small black minerals and irregular silvery grey-white crystals in a subtly cloudy pattern. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the two light curved corner fields of the headstone and the matching light curved fields on the upper slab in their original light granular stone. Preserve every curved material boundary exactly, including the light part visible at the rear support junction. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The light curved fields are fixed material zones, not removable decorations. Preserve the straight rectangular headstone outline and the slab's softened outer edges. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T22:11:39.210438+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-d07d877b-ea5c-4a89-97a9-941307450365.png",
+      "sha256": "8319aaa0acd5b00c50119b02be7f67ea04f78278e8b65bdab8d1f8945c97c619",
+      "references": [
+        "/workspace/scratch/fc8dfd468718/generated_images/exec-3c8f21cb-0ed6-41f7-897e-b102b38ada65.png",
+        "/workspace/scratch/fc8dfd468718/reference-textures/royal.png"
+      ],
+      "controleVisuel": "Relecture du 21.10.2026: stele rectangulaire, socle a etages, champs courbes clairs fixes sur stele et dalle, fond et cadrage conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument on a layered rectangular plinth, with a rectangular upright headstone and thick upper slab carrying matching curved light-stone corner fields. Image 2 is only the vizag-blue stone reference. Change ONLY the dark primary stone of the projecting base, rear support, upper slab and large central headstone field, excluding every light curved insert to the exact material of image 2: cool silver-grey granite, slightly blue, flowing charcoal mineral clouds and sparse fine burgundy-brown specks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the two light curved corner fields of the headstone and the matching light curved fields on the upper slab in their original light granular stone. Preserve every curved material boundary exactly, including the light part visible at the rear support junction. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The light curved fields are fixed material zones, not removable decorations. Preserve the straight rectangular headstone outline and the slab's softened outer edges. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T22:11:42.813640+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-b10e1f2c-04fb-46cd-b4fc-12902036e758.png",
+      "sha256": "1477253090c79649870437c01379201e1c7b42e55ea8b0a3a25cd8067a47fb58",
+      "references": [
+        "/workspace/scratch/fc8dfd468718/generated_images/exec-3c8f21cb-0ed6-41f7-897e-b102b38ada65.png",
+        "/workspace/scratch/fc8dfd468718/reference-textures/vizag-blue.png"
+      ],
+      "controleVisuel": "Relecture du 21.10.2026: stele rectangulaire, socle a etages, champs courbes clairs fixes sur stele et dalle, fond et cadrage conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument on a layered rectangular plinth, with a rectangular upright headstone and thick upper slab carrying matching curved light-stone corner fields. Image 2 is only the viscount-white stone reference. Change ONLY the dark primary stone of the projecting base, rear support, upper slab and large central headstone field, excluding every light curved insert to the exact material of image 2: luminous white and pale grey granite, fine dark mineral flecks and soft flowing grey clouds. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the two light curved corner fields of the headstone and the matching light curved fields on the upper slab in their original light granular stone. Preserve every curved material boundary exactly, including the light part visible at the rear support junction. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The light curved fields are fixed material zones, not removable decorations. Preserve the straight rectangular headstone outline and the slab's softened outer edges. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T22:11:46.824998+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-98711f1f-e78d-423d-ba0d-341637b435ba.png",
+      "sha256": "60a354d00216ef338e8d2ac43258148d3435a8d69517c7d8272a82d12399e503",
+      "references": [
+        "/workspace/scratch/fc8dfd468718/generated_images/exec-3c8f21cb-0ed6-41f7-897e-b102b38ada65.png",
+        "/workspace/scratch/fc8dfd468718/reference-textures/viscount-white.png"
+      ],
+      "controleVisuel": "Relecture du 21.10.2026: stele rectangulaire, socle a etages, champs courbes clairs fixes sur stele et dalle, fond et cadrage conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument on a layered rectangular plinth, with a rectangular upright headstone and thick upper slab carrying matching curved light-stone corner fields. Image 2 is only the rosso-porrino stone reference. Change ONLY the dark primary stone of the projecting base, rear support, upper slab and large central headstone field, excluding every light curved insert to the exact material of image 2: salmon pink feldspar, grey quartz, black flecks and cream-white mineral grains. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the two light curved corner fields of the headstone and the matching light curved fields on the upper slab in their original light granular stone. Preserve every curved material boundary exactly, including the light part visible at the rear support junction. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The light curved fields are fixed material zones, not removable decorations. Preserve the straight rectangular headstone outline and the slab's softened outer edges. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T22:11:50.121205+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-5d0ecd4c-e7a3-4279-b3c7-6a5ed4a0e116.png",
+      "sha256": "575cac072b336774c69e57ca5064906b7a6b99870e16c2f4e68b1bf93f41334b",
+      "references": [
+        "/workspace/scratch/fc8dfd468718/generated_images/exec-3c8f21cb-0ed6-41f7-897e-b102b38ada65.png",
+        "/workspace/scratch/fc8dfd468718/reference-textures/rosso-porrino.png"
+      ],
+      "controleVisuel": "Relecture du 21.10.2026: stele rectangulaire, socle a etages, champs courbes clairs fixes sur stele et dalle, fond et cadrage conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument on a layered rectangular plinth, with a rectangular upright headstone and thick upper slab carrying matching curved light-stone corner fields. Image 2 is only the egipat stone reference. Change ONLY the dark primary stone of the projecting base, rear support, upper slab and large central headstone field, excluding every light curved insert to the exact material of image 2: neutral medium-grey salt-and-pepper granite with dense small black and white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the two light curved corner fields of the headstone and the matching light curved fields on the upper slab in their original light granular stone. Preserve every curved material boundary exactly, including the light part visible at the rear support junction. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The light curved fields are fixed material zones, not removable decorations. Preserve the straight rectangular headstone outline and the slab's softened outer edges. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T22:11:54.802471+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-63f1c007-d80c-4a64-bae4-462b0df8ae0e.png",
+      "sha256": "4e329974fee2c46405f834a50b471c248174fa0d3f63386223ce27269694914f",
+      "references": [
+        "/workspace/scratch/fc8dfd468718/generated_images/exec-3c8f21cb-0ed6-41f7-897e-b102b38ada65.png",
+        "/workspace/scratch/fc8dfd468718/reference-textures/egipat.png"
+      ],
+      "controleVisuel": "Relecture du 21.10.2026: stele rectangulaire, socle a etages, champs courbes clairs fixes sur stele et dalle, fond et cadrage conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
     }
   }
 }

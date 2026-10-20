@@ -2477,42 +2477,67 @@
         {
           "matiereId": "royal",
           "fichier": "cin-saturne-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "8319aaa0acd5b00c50119b02be7f67ea04f78278e8b65bdab8d1f8945c97c619",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2835694,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
           "fichier": "cin-saturne-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "1477253090c79649870437c01379201e1c7b42e55ea8b0a3a25cd8067a47fb58",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2764500,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "cin-saturne-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "60a354d00216ef338e8d2ac43258148d3435a8d69517c7d8272a82d12399e503",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2742095,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "cin-saturne-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "575cac072b336774c69e57ca5064906b7a6b99870e16c2f4e68b1bf93f41334b",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2730822,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "cin-saturne-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "4e329974fee2c46405f834a50b471c248174fa0d3f63386223ce27269694914f",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2848866,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
@@ -3345,15 +3370,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T22:11:09.050826+00:00",
-    "imagesCompletes": 174,
-    "combinaisonsRestantes": 96,
+    "dateControle": "2026-10-20T22:11:54.802471+00:00",
+    "imagesCompletes": 179,
+    "combinaisonsRestantes": 91,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "cin-saturne",
-    "matiereId": "royal",
+    "matiereId": "marmara",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3369,32 +3394,32 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T22:11:09.319907+00:00",
+    "dateFin": "2026-10-20T22:11:55.165057+00:00",
     "combinaisons": [
       {
-        "modeleId": "cin-montagne02",
-        "matiereId": "marmara"
+        "modeleId": "cin-saturne",
+        "matiereId": "royal"
       },
       {
         "modeleId": "cin-saturne",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "cin-saturne",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "cin-saturne",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "cin-saturne",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 169,
-    "totalApres": 174,
+    "totalAvant": 174,
+    "totalApres": 179,
     "statut": "termine",
     "continuationAutomatique": true,
     "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
@@ -3402,23 +3427,23 @@
   "prochainLot": [
     {
       "modeleId": "cin-saturne",
-      "matiereId": "royal"
+      "matiereId": "marmara"
     },
     {
-      "modeleId": "cin-saturne",
-      "matiereId": "vizag-blue"
+      "modeleId": "cin-ovae",
+      "matiereId": "bengal"
     },
     {
-      "modeleId": "cin-saturne",
-      "matiereId": "viscount-white"
+      "modeleId": "cin-ovae",
+      "matiereId": "rozabeta"
     },
     {
-      "modeleId": "cin-saturne",
-      "matiereId": "rosso-porrino"
+      "modeleId": "cin-ovae",
+      "matiereId": "paradiso"
     },
     {
-      "modeleId": "cin-saturne",
-      "matiereId": "egipat"
+      "modeleId": "cin-ovae",
+      "matiereId": "jablanica"
     }
   ]
 }

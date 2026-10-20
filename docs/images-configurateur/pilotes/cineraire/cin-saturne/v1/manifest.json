@@ -53,15 +53,75 @@
       ],
       "tailleOctets": 2742447,
       "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "royal",
+      "image": "cin-saturne-royal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "8319aaa0acd5b00c50119b02be7f67ea04f78278e8b65bdab8d1f8945c97c619",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2835694,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "vizag-blue",
+      "image": "cin-saturne-vizag-blue.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png",
+      "sha256": "1477253090c79649870437c01379201e1c7b42e55ea8b0a3a25cd8067a47fb58",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2764500,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "viscount-white",
+      "image": "cin-saturne-viscount-white.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png",
+      "sha256": "60a354d00216ef338e8d2ac43258148d3435a8d69517c7d8272a82d12399e503",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2742095,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rosso-porrino",
+      "image": "cin-saturne-rosso-porrino.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png",
+      "sha256": "575cac072b336774c69e57ca5064906b7a6b99870e16c2f4e68b1bf93f41334b",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2730822,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "egipat",
+      "image": "cin-saturne-egipat.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png",
+      "sha256": "4e329974fee2c46405f834a50b471c248174fa0d3f63386223ce27269694914f",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2848866,
+      "integritePngVerifiee": true
     }
   ],
   "statut": "pilote-a-valider",
   "vuesParVariante": 1,
   "calibration": null,
   "contoursPixelValides": false,
-  "variantesPresentes": 4,
+  "variantesPresentes": 9,
   "variantesCibles": 10,
-  "dernierControleIntegrite": "2026-10-20T22:11:09.050826+00:00",
+  "dernierControleIntegrite": "2026-10-20T22:11:54.802471+00:00",
   "dimensionsPx": [
     1254,
     1254
