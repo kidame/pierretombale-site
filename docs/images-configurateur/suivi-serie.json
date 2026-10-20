@@ -1080,42 +1080,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "musulman-4-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "4dc69cb385cc265b6e76e92f019bc2eb4571d5ac6663164513376ec7fcf23d4d",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2729385,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "musulman-4-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "b5216ec88269017dd774f5c1c5c01531138506159b549f6ddb28b4a0d330d2f3",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2726252,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "musulman-4-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "5a1be3ea4eeeb1580141fe5534f7dabf331d5257ad49b988f33fb1de3c948e1a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2694570,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "musulman-4-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "8ee98acf45349f576b9adeeb0621b3fce2d4ca717b320234036798fd6e0779c9",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2844161,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "musulman-4-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "a7fea18b70e4e0c5def7d1383320abf82e98fcd56255085cb6d37859e56be4e2",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2289148,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -1126,7 +1151,7 @@
       "sourceLibraryId": "libfile_24ecdbef74388191947ef8fc207743c0",
       "dossier": "pilotes/cineraire/cin8/v1",
       "ordre": 9,
-      "notes": "Geometrie et zones physiques a valider.",
+      "notes": "Dalle de base presque carree, stele massive en coeur a deux lobes, pointe basse descendant jusqu'a un pied elargi aux deux courbes concaves. Bande/ressaut fixe en S sur la dalle, de l'arriere gauche vers l'avant droit. Retirer vase, roses, feuillage et leurs reflets. Conserver le coeur complet, son pied evase et la bande structurelle en S sur la dalle. Toutes les parties minerales du monument varient ensemble.",
       "variantes": [
         {
           "matiereId": "bengal",
@@ -2850,53 +2875,56 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T11:52:15.220877+00:00",
-    "imagesCompletes": 75,
-    "combinaisonsRestantes": 195,
+    "dateControle": "2026-10-20T11:58:44.592147+00:00",
+    "imagesCompletes": 80,
+    "combinaisonsRestantes": 190,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "musulman-4",
-    "matiereId": "vizag-blue",
-    "action": "Produire depuis la base Bengal puis archiver avant la variante suivante."
+    "modeleId": "cin8",
+    "matiereId": "bengal",
+    "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
     "tailleLot": 5,
     "generationSimultanee": 1,
-    "archivageApresChaqueImage": true,
+    "archivageApresChaqueImage": false,
     "enchainerLotsSansConfirmation": true,
     "arretAutomatiqueApresLot": false,
     "objectif": 270,
-    "decisionUtilisateur": "2026-10-20T13:05:23+02:00"
+    "decisionUtilisateur": "2026-10-20T13:48:47+02:00",
+    "sauvegardeLocaleApresChaqueImage": true,
+    "archivageParLot": true,
+    "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T11:55:29.954107+00:00",
+    "dateFin": "2026-10-20T11:59:38.356254+00:00",
     "combinaisons": [
       {
         "modeleId": "musulman-4",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "musulman-4",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "musulman-4",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "musulman-4",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "musulman-4",
-        "matiereId": "royal"
+        "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 70,
-    "totalApres": 75,
+    "totalAvant": 75,
+    "totalApres": 80,
     "statut": "termine",
     "generationEnCours": false,
     "continuationAutomatique": true,
@@ -2904,24 +2932,24 @@
   },
   "prochainLot": [
     {
-      "modeleId": "musulman-4",
-      "matiereId": "vizag-blue"
+      "modeleId": "cin8",
+      "matiereId": "bengal"
     },
     {
-      "modeleId": "musulman-4",
-      "matiereId": "viscount-white"
+      "modeleId": "cin8",
+      "matiereId": "rozabeta"
     },
     {
-      "modeleId": "musulman-4",
-      "matiereId": "rosso-porrino"
+      "modeleId": "cin8",
+      "matiereId": "paradiso"
     },
     {
-      "modeleId": "musulman-4",
-      "matiereId": "egipat"
+      "modeleId": "cin8",
+      "matiereId": "jablanica"
     },
     {
-      "modeleId": "musulman-4",
-      "matiereId": "marmara"
+      "modeleId": "cin8",
+      "matiereId": "royal"
     }
   ]
 }

@@ -1,4 +1,22 @@
 # Production autonome des 270 images
+<!-- protocole-produit-10:debut -->
+## Protocole de production actif
+
+- Unite de travail : un produit complet de 10 variantes, en deux lots de 5.
+- Generer les images une par une, avec une seule generation active.
+- Apres chaque generation, conserver le fichier local et sa correspondance modele-matiere.
+- Enchainer les generations du lot sans transfert ni mise a jour documentaire entre deux images.
+- Apres chaque lot de 5, transferer le lot groupe puis verifier les fichiers transferes. Le compteur et le tableau automatique se mettent a jour a la reception des images du lot.
+- Apres les 10 variantes verifiees du produit, mettre a jour ensemble les documents narratifs de production et de reprise.
+- Commencer ensuite le produit suivant sans demander confirmation.
+- A la reprise, reutiliser les variantes deja valides et completer uniquement les manquantes du produit en cours.
+- Le compteur ne compte que les fichiers produits et verifies; ce changement de protocole ne modifie aucun compteur.
+
+Action de reprise : Produire les variantes restantes du produit par lots de 5, puis archiver le lot
+
+Cette section definit le protocole courant pour la suite de la production.
+<!-- protocole-produit-10:fin -->
+
 Autorisation Thomas, 20.10.2026 : produire integralement, lot par lot, sans demande de continuation.
 Cible : 27 modeles, 10 matieres, UNE vue par variante. Aucun changement runtime ou publication.
 Le suivi courant est suivi-serie.json ; AUDIT-2026-10-20.md est un instantane historique a 46 images.
@@ -6,7 +24,7 @@ Le suivi courant est suivi-serie.json ; AUDIT-2026-10-20.md est un instantane hi
 ## Execution
 Clarification Thomas du 20.10.2026 a 13h05 : produire toute la serie sans demander de continuation.
 Cinq images = taille d'un lot de sauvegarde, PAS une limite de session ni un ordre d'arret.
-Generer strictement une image a la fois, la controler et l'archiver avant la suivante.
+Produire les variantes restantes du produit par lots de 5, puis archiver le lot.
 Apres chaque lot de 5, documenter et commiter, puis enchainer automatiquement le lot suivant.
 Continuer jusqu'a 270/270 ou blocage technique reel, sans nouvelle demande a Thomas.
 Aucune reconstruction d'infrastructure, aucun nouveau re-audit complet a chaque passage.

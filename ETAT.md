@@ -1,5 +1,23 @@
 # ETAT.md : relais entre sessions
 
+<!-- protocole-produit-10:debut -->
+## Protocole de production actif
+
+- Unite de travail : un produit complet de 10 variantes, en deux lots de 5.
+- Generer les images une par une, avec une seule generation active.
+- Apres chaque generation, conserver le fichier local et sa correspondance modele-matiere.
+- Enchainer les generations du lot sans transfert ni mise a jour documentaire entre deux images.
+- Apres chaque lot de 5, transferer le lot groupe puis verifier les fichiers transferes. Le compteur et le tableau automatique se mettent a jour a la reception des images du lot.
+- Apres les 10 variantes verifiees du produit, mettre a jour ensemble les documents narratifs de production et de reprise.
+- Commencer ensuite le produit suivant sans demander confirmation.
+- A la reprise, reutiliser les variantes deja valides et completer uniquement les manquantes du produit en cours.
+- Le compteur ne compte que les fichiers produits et verifies; ce changement de protocole ne modifie aucun compteur.
+
+Action de reprise : Produire les variantes restantes du produit par lots de 5, puis archiver le lot
+
+Cette section definit le protocole courant pour la suite de la production.
+<!-- protocole-produit-10:fin -->
+
 Ce fichier permet de reprendre le travail avec Claude ou avec ChatGPT/Codex, sans perte.
 Regle : chaque session le lit en premier et le met a jour en dernier, puis commit local.
 `docs/DECISIONS-ET-ETAT.md` garde les decisions business ; ce fichier garde l avancement du build.
@@ -45,8 +63,8 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 <!-- images-checkpoint -->
-- Checkpoint images 2026-10-20T11:55:29.954107+00:00 : 75/270 archivees, 195 restantes.
-  7/27 modeles complets. Prochaine image : musulman-4 / vizag-blue.
+- Checkpoint images 2026-10-20T11:59:38.356254+00:00 : 80/270 archivees, 190 restantes.
+  8/27 modeles complets. Prochaine image : cin8 / bengal.
   Produits complets de 10 variantes, deux lots de 5, generations successives puis transferts groupes.
   Suivi detaille : docs/images-configurateur/AVANCEMENT.md et suivi-serie.json.
 <!-- /images-checkpoint -->

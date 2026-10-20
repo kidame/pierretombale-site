@@ -1,13 +1,31 @@
 # Reprise de la serie images
 
+<!-- protocole-produit-10:debut -->
+## Protocole de production actif
+
+- Unite de travail : un produit complet de 10 variantes, en deux lots de 5.
+- Generer les images une par une, avec une seule generation active.
+- Apres chaque generation, conserver le fichier local et sa correspondance modele-matiere.
+- Enchainer les generations du lot sans transfert ni mise a jour documentaire entre deux images.
+- Apres chaque lot de 5, transferer le lot groupe puis verifier les fichiers transferes. Le compteur et le tableau automatique se mettent a jour a la reception des images du lot.
+- Apres les 10 variantes verifiees du produit, mettre a jour ensemble les documents narratifs de production et de reprise.
+- Commencer ensuite le produit suivant sans demander confirmation.
+- A la reprise, reutiliser les variantes deja valides et completer uniquement les manquantes du produit en cours.
+- Le compteur ne compte que les fichiers produits et verifies; ce changement de protocole ne modifie aucun compteur.
+
+Action de reprise : Produire les variantes restantes du produit par lots de 5, puis archiver le lot
+
+Cette section definit le protocole courant pour la suite de la production.
+<!-- protocole-produit-10:fin -->
+
 Autorisation Thomas, 19.10.2026 : poursuivre les 27 modeles en 10 matieres, une vue par variante, classer et documenter sur le VPS. Cette demande remplace l'ancien statut 'aucune generation' de PREPARATION.md. Les exigences finales de calibration restent applicables.
 
 ## Point de reprise
 
-Checkpoint 2026-10-20T11:55:29.954107+00:00 : 75/270 images archivees, 195 restantes.
-7/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
+Checkpoint 2026-10-20T11:59:38.356254+00:00 : 80/270 images archivees, 190 restantes.
+8/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
 Le tableau AVANCEMENT.md est mis a jour automatiquement apres chaque archivage.
-Prochaine combinaison : musulman-4 / vizag-blue.
+Prochaine combinaison : cin8 / bengal.
 
 Clarification Thomas du 20.10.2026 a 13h48 : terminer le set de 10 variantes de chaque produit.
 Un lot de 5 est un checkpoint, jamais une consigne d arret. Enchainer les lots sans confirmation.
@@ -25,7 +43,7 @@ Les champs dernierLot et prochainLot sont actualises a chaque checkpoint ; proch
 1. Lire AGENTS.md, ETAT.md, ce document et le registre ; verifier git status et les fichiers reels.
 2. Pour chaque modele : inspecter sa reference source, conserver ses formes et inserts, retirer accessoires amovibles/gravures. Ne pas inventer de stele ; acier ajoure et bicolores conservent leurs parties fixes. Documenter les ambiguities.
 3. Creer une seule base Bengal ; neuf editions changent uniquement la pierre depuis cette meme base, jamais depuis la variante precedente. Les prompts sont dans prompts.json par modele. Utiliser imagegen integre, pas de bascule API payante sans demande.
-4. Generer par lots de 5 automatiquement enchaines, strictement une image a la fois. Apres le checkpoint de chaque lot, continuer sans demander de confirmation. A chaque image terminee : copier sous son nom stable, enregistrer son chemin et sa matiere, transferer au VPS et verifier SHA256. Ne pas attendre la fin d'un grand lot pour sauvegarder.
+4. Produire les variantes restantes du produit par lots de 5, puis archiver le lot.
 5. Transfert interrompu : comparer taille et prefixe au fichier source avant reprise a l'offset exact. Un fichier incomplet reste hors statut archive. Pour les nouveaux transferts utiliser un suffixe .part, puis renommer seulement apres controle complet. Ne jamais ecraser une variante complete ; correction en v2.
 6. Mettre a jour le registre et le manifeste du modele avec resolution et hash reels. README : source, particularites, limites, nombre present. Commit local par modele (ou point de reprise), jamais push/publication implicite.
 7. Fin de session : marquer exactement la prochaine combinaison et toute generation en cours. Aucune execution autonome n'est garantie hors session active. Le plan garantit la tracabilite, pas un traitement en arriere-plan.

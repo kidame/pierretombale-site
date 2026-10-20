@@ -85,7 +85,7 @@ def archive(req, path, data):
     s["bilanVerifie"] = {"dateControle":now,"imagesCompletes":count,"combinaisonsRestantes":s["cible"]-count,
                         "imagesValideesConfigurateur":0,"controle":"archive par image, PNG et SHA256"}
     pending = [(a,x) for a in sorted(s["modeles"],key=lambda a:a["ordre"]) for x in a["variantes"] if x["statut"]!="archive-documente"]
-    s["prochaineAction"] = {"modeleId":pending[0][0]["modeleId"],"matiereId":pending[0][1]["matiereId"],"action":"Produire depuis la base Bengal puis archiver avant la variante suivante."} if pending else {"action":"Serie complete, validation finale separee."}
+    s["prochaineAction"] = {"modeleId":pending[0][0]["modeleId"],"matiereId":pending[0][1]["matiereId"],"action":"Produire les variantes restantes du produit par lots de 5, puis archiver le lot"} if pending else {"action":"Serie complete, validation finale separee."}
     save(REG,s)
     rows = ["# Avancement des images", "", "Mis a jour : "+now, "",
             "Images completes archivees : "+str(count)+"/"+str(s["cible"])+".",
