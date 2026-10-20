@@ -1,0 +1,39 @@
+{
+  "library_file_id": "libfile_a5b0215c74cc8191ada97fa9108a9925",
+  "current_version_number": 0,
+  "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-aloria/CIN-ALORIA.png",
+  "source_file_name": "CIN-ALORIA.png",
+  "inspection_pending": false,
+  "geometry": "Semelle et dalle rectangulaires superposees, marche arriere. Stele haute asymetrique a sommet courbe descendant vers la droite, cote droit arrondi et cote gauche cintre. Large bande sombre en croissant sur la gauche de la stele.",
+  "fixed_features": [
+    "Contour asymetrique galbe de la stele",
+    "Bande/croissant sombre integre a la gauche de la stele",
+    "Base a niveaux et marche arriere"
+  ],
+  "removable_accessories": [
+    "Vase haut et cintre a l'avant gauche",
+    "Deux roses et feuillage"
+  ],
+  "material_zones": "Pierre claire mouchetee pour base et grande partie de stele; bande gauche de stele et vase en pierre sombre.",
+  "ambiguity": "La bande sombre de stele est une zone bicolore fixe, pas une ombre. La ligne fine claire au raccord est visible.",
+  "generation_note": "Retirer vase et fleurs; conserver la bande bicolore fixe et son contour.",
+  "reference_dimensions_px": [
+    1448,
+    1086
+  ],
+  "library_xattr_verified": true,
+  "decisionPilote": "La bande sombre de stele est une seconde pierre fixe, distincte d'une ombre. La pierre claire du corps principal varie. Vase et fleurs retires avec leurs reflets.",
+  "specificationGeneration": {
+    "id": "cin-aloria",
+    "family": "cineraire",
+    "geometry": "a compact cinerary monument with two stacked rectangular base slabs, a rear step, and an asymmetric curved headstone with a broad dark crescent integrated along its left side",
+    "stoneAreas": "only the base slabs, rear step and broad main headstone field, which are light speckled stone in the source",
+    "fixedAreas": "Keep the broad integrated left crescent of the headstone in its original dark polished stone, preserving its exact curved boundary and the fine light junction line.",
+    "extraConstraints": "The dark crescent is a fixed structural stone zone, not a shadow or optional ornament. Do not remove it, widen it or recolor it with the selected main material.",
+    "masterDescription": "Preserve the wider lower rectangular plinth, upper rectangular slab and rear supporting step. Keep the tall asymmetric headstone with a high left tip, top flowing down toward the right, rounded right side and curved left side. Preserve the broad dark crescent on its left as fixed secondary stone; the rest of the monument is the variable primary stone.",
+    "removeDescription": "Remove the tall waisted dark vase, both roses, green foliage and all their reflections. Keep the underlying slab plain.",
+    "interpretationNote": "La bande sombre de stele est une seconde pierre fixe, distincte d'une ombre. La pierre claire du corps principal varie. Vase et fleurs retires avec leurs reflets.",
+    "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-aloria/CIN-ALORIA.png",
+    "sourceLibraryId": "libfile_a5b0215c74cc8191ada97fa9108a9925"
+  }
+}

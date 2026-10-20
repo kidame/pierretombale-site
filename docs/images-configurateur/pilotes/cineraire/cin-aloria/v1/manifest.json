@@ -1,0 +1,83 @@
+{
+  "modeleId": "cin-aloria",
+  "referenceInterne": "CIN-ALORIA",
+  "famille": "cineraire",
+  "sourceLibraryId": "libfile_a5b0215c74cc8191ada97fa9108a9925",
+  "nomPublic": null,
+  "version": 1,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "cin-aloria-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "ddcea6ff7c006816ef6674d8b02ed9050f2f1fb1b1898066b55601626b3b5ea4",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2901994,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "cin-aloria-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "ff4c72197c5049512eececefba5182da5344c7371ed838559177a0cf24ca4e70",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2802233,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "cin-aloria-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "d63233a7eb71475ef8e260969ac507f176843b2e5e9634be0caff12ca3152c4d",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2849107,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "cin-aloria-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "b94b11f6d3cc6c3dcb42ee7545292cd677966683c2d529dcd3507dea6bc0514a",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2849689,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "royal",
+      "image": "cin-aloria-royal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "964d18dc751a0176a6ee3c731ea26042c738e385e6c63f1c7b02739b003901a5",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2844060,
+      "integritePngVerifiee": true
+    }
+  ],
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantesPresentes": 5,
+  "variantesCibles": 10,
+  "dernierControleIntegrite": "2026-10-20T13:09:09.142786+00:00",
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "validationConfigurateur": false
+}
