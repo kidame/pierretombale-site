@@ -1926,42 +1926,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "cin-nautis-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "6957bcbd1e09a4537db8c6d0ef46b8a0816f39f78977a61d7057577f6d759372",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2626567,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "cin-nautis-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "2b3fde5adae7ad63c4cdb85a8ac7510172b7264acd8aa85ececff0ddf7ba88a6",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2600773,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "cin-nautis-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "dbd67fee6c20241282a4fe2ea05457e898b43bcb880b3c1c487609ff1f675450",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2604796,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "cin-nautis-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "0ec62b00a5feff99b6ba5d1064d078e6e506785e74bc8e30da5beabc0dcf75ce",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2734422,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "cin-nautis-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "54536183aa305eacae4b28a98bc86148bdde7e21ac0b24fdbd6161f9119ab5c0",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2433199,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -1972,7 +1997,7 @@
       "sourceLibraryId": "libfile_a5b0215c74cc8191ada97fa9108a9925",
       "dossier": "pilotes/cineraire/cin-aloria/v1",
       "ordre": 15,
-      "notes": "Geometrie et zones physiques a valider.",
+      "notes": "Semelle et dalle rectangulaires superposees, marche arriere. Stele haute asymetrique a sommet courbe descendant vers la droite, cote droit arrondi et cote gauche cintre. Large bande sombre en croissant sur la gauche de la stele. La bande sombre de stele est une seconde pierre fixe, distincte d'une ombre. La pierre claire du corps principal varie. Vase et fleurs retires avec leurs reflets. Geometrie atelier et zones physiques a valider.",
       "variantes": [
         {
           "matiereId": "bengal",
@@ -3150,15 +3175,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T13:01:13.173792+00:00",
-    "imagesCompletes": 135,
-    "combinaisonsRestantes": 135,
+    "dateControle": "2026-10-20T13:04:35.141793+00:00",
+    "imagesCompletes": 140,
+    "combinaisonsRestantes": 130,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "cin-nautis",
-    "matiereId": "vizag-blue",
+    "modeleId": "cin-aloria",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3174,56 +3199,57 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T13:01:39.879494+00:00",
+    "dateFin": "2026-10-20T13:06:22.593785+00:00",
     "combinaisons": [
       {
         "modeleId": "cin-nautis",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "cin-nautis",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "cin-nautis",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "cin-nautis",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "cin-nautis",
-        "matiereId": "royal"
+        "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 130,
-    "totalApres": 135,
+    "totalAvant": 135,
+    "totalApres": 140,
     "statut": "termine",
+    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
   },
   "prochainLot": [
     {
-      "modeleId": "cin-nautis",
-      "matiereId": "vizag-blue"
+      "modeleId": "cin-aloria",
+      "matiereId": "bengal"
     },
     {
-      "modeleId": "cin-nautis",
-      "matiereId": "viscount-white"
+      "modeleId": "cin-aloria",
+      "matiereId": "rozabeta"
     },
     {
-      "modeleId": "cin-nautis",
-      "matiereId": "rosso-porrino"
+      "modeleId": "cin-aloria",
+      "matiereId": "paradiso"
     },
     {
-      "modeleId": "cin-nautis",
-      "matiereId": "egipat"
+      "modeleId": "cin-aloria",
+      "matiereId": "jablanica"
     },
     {
-      "modeleId": "cin-nautis",
-      "matiereId": "marmara"
+      "modeleId": "cin-aloria",
+      "matiereId": "royal"
     }
   ]
 }

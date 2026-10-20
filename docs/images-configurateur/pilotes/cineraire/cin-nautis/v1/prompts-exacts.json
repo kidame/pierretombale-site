@@ -55,6 +55,61 @@
         "royal-texture-v1.png"
       ],
       "controleVisuel": "Granite gris sombre \u00e0 grain dense. Mati\u00e8re appliqu\u00e9e au socle et aux deux vagues, voilier clair fixe, silhouette et cadrage conserv\u00e9s."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a rectangular stone plinth, two layered wave-shaped stone surfaces and an upright sculpted light-stone sailboat with a curved hull and two tapered sails. Image 2 is only the vizag-blue stone reference. Change ONLY only the rectangular plinth and the two wave-shaped base levels, which are dark blue granite in the source to the exact material of image 2: cool silver-grey granite, slightly blue, flowing charcoal mineral clouds and sparse fine burgundy-brown specks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the complete sculpted sailboat, including its curved hull, both sails and the curved mast division, in the original light grey-white veined stone. Preserve its natural veining, all gaps, incised dividing lines and silhouette. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not recolor the light sailboat with the selected base material. Do not turn the two sails into one triangular headstone or flatten the layered waves. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:03:57.005420+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-b518cda0-b60f-4117-9d1d-9364fbdcb2ac.png",
+      "sha256": "6957bcbd1e09a4537db8c6d0ef46b8a0816f39f78977a61d7057577f6d759372",
+      "references": [
+        "cin-nautis-bengal.png",
+        "vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "Gris bleut\u00e9 vein\u00e9 et inclusions brunes. Socle et vagues seuls chang\u00e9s ; voilier blanc vein\u00e9, jonctions, niveaux et cadrage conserv\u00e9s."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a rectangular stone plinth, two layered wave-shaped stone surfaces and an upright sculpted light-stone sailboat with a curved hull and two tapered sails. Image 2 is only the viscount-white stone reference. Change ONLY only the rectangular plinth and the two wave-shaped base levels, which are dark blue granite in the source to the exact material of image 2: luminous white and pale grey granite, fine dark mineral flecks and soft flowing grey clouds. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the complete sculpted sailboat, including its curved hull, both sails and the curved mast division, in the original light grey-white veined stone. Preserve its natural veining, all gaps, incised dividing lines and silhouette. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not recolor the light sailboat with the selected base material. Do not turn the two sails into one triangular headstone or flatten the layered waves. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:04:06.665002+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-2ece5ece-1646-4d23-ad96-e70cc888fcfb.png",
+      "sha256": "2b3fde5adae7ad63c4cdb85a8ac7510172b7264acd8aa85ececff0ddf7ba88a6",
+      "references": [
+        "cin-nautis-bengal.png",
+        "viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "Granite blanc gris mouchet\u00e9. Socle et vagues seuls chang\u00e9s ; voilier blanc vein\u00e9, jonctions, niveaux et cadrage conserv\u00e9s."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a rectangular stone plinth, two layered wave-shaped stone surfaces and an upright sculpted light-stone sailboat with a curved hull and two tapered sails. Image 2 is only the rosso-porrino stone reference. Change ONLY only the rectangular plinth and the two wave-shaped base levels, which are dark blue granite in the source to the exact material of image 2: salmon pink feldspar, grey quartz, black flecks and cream-white mineral grains. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the complete sculpted sailboat, including its curved hull, both sails and the curved mast division, in the original light grey-white veined stone. Preserve its natural veining, all gaps, incised dividing lines and silhouette. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not recolor the light sailboat with the selected base material. Do not turn the two sails into one triangular headstone or flatten the layered waves. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:04:15.792210+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-976e6d19-b2b0-4d6b-9ef4-809850f527fb.png",
+      "sha256": "dbd67fee6c20241282a4fe2ea05457e898b43bcb880b3c1c487609ff1f675450",
+      "references": [
+        "cin-nautis-bengal.png",
+        "rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "Granite rose orang\u00e9 \u00e0 gros grains. Socle et vagues seuls chang\u00e9s ; voilier blanc vein\u00e9, jonctions, niveaux et cadrage conserv\u00e9s."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a rectangular stone plinth, two layered wave-shaped stone surfaces and an upright sculpted light-stone sailboat with a curved hull and two tapered sails. Image 2 is only the egipat stone reference. Change ONLY only the rectangular plinth and the two wave-shaped base levels, which are dark blue granite in the source to the exact material of image 2: neutral medium-grey salt-and-pepper granite with dense small black and white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the complete sculpted sailboat, including its curved hull, both sails and the curved mast division, in the original light grey-white veined stone. Preserve its natural veining, all gaps, incised dividing lines and silhouette. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not recolor the light sailboat with the selected base material. Do not turn the two sails into one triangular headstone or flatten the layered waves. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:04:25.978256+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-a81d2ee8-15dc-416e-a78b-3046e0514bb2.png",
+      "sha256": "0ec62b00a5feff99b6ba5d1064d078e6e506785e74bc8e30da5beabc0dcf75ce",
+      "references": [
+        "cin-nautis-bengal.png",
+        "egipat-texture-v1.png"
+      ],
+      "controleVisuel": "Grain noir et blanc contrast\u00e9. Socle et vagues seuls chang\u00e9s ; voilier blanc vein\u00e9, jonctions, niveaux et cadrage conserv\u00e9s."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a rectangular stone plinth, two layered wave-shaped stone surfaces and an upright sculpted light-stone sailboat with a curved hull and two tapered sails. Image 2 is only the marmara stone reference. Change ONLY only the rectangular plinth and the two wave-shaped base levels, which are dark blue granite in the source to the exact material of image 2: white crystalline marble with broad softly parallel grey bands and finer darker grey veins. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the complete sculpted sailboat, including its curved hull, both sails and the curved mast division, in the original light grey-white veined stone. Preserve its natural veining, all gaps, incised dividing lines and silhouette. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not recolor the light sailboat with the selected base material. Do not turn the two sails into one triangular headstone or flatten the layered waves. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:04:35.141793+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-faececc7-c790-47c7-823f-82f7a3f5a216.png",
+      "sha256": "54536183aa305eacae4b28a98bc86148bdde7e21ac0b24fdbd6161f9119ab5c0",
+      "references": [
+        "cin-nautis-bengal.png",
+        "marmara-texture-v1.png"
+      ],
+      "controleVisuel": "Pierre blanche \u00e0 bandes grises. Socle et vagues seuls chang\u00e9s ; voilier blanc vein\u00e9, jonctions, niveaux et cadrage conserv\u00e9s."
     }
   }
 }
