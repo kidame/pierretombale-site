@@ -2848,42 +2848,67 @@
         {
           "matiereId": "bengal",
           "fichier": "tango-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "eb2a2ea7668ca6cde9c7504a3ae0cd16a2d5d5aa8a80cddadba8bf9ef9167e08",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2758600,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "tango-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "19d6c2f9f0641de1ac5e0f116609847d12b76c2cec12b141d51bbe210a37112a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2592865,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "tango-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "ba0e1bce5e4c52094d3dac3cc8567154a6ea75768bd066da722a9c9382886b13",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2548549,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "tango-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "dc3fa727fecd8321b5a1b5566ccd6e0cf7605fa285f6b91470dad76f03aa9f2f",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2608503,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "tango-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "1a076a6ec1103f22e21da1f7084dd164e5bc5a7ccf32032990b733967f60b9d9",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2613836,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -3475,15 +3500,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T23:46:00.817945+00:00",
-    "imagesCompletes": 200,
-    "combinaisonsRestantes": 70,
+    "dateControle": "2026-10-20T23:55:39.490871+00:00",
+    "imagesCompletes": 205,
+    "combinaisonsRestantes": 65,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "tango",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {

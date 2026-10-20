@@ -1,0 +1,83 @@
+{
+  "modeleId": "tango",
+  "referenceInterne": "TANGO",
+  "famille": "funeraire",
+  "sourceLibraryId": "libfile_cb34cc325ec881918144fd8b952a6021",
+  "nomPublic": null,
+  "version": 1,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "tango-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "eb2a2ea7668ca6cde9c7504a3ae0cd16a2d5d5aa8a80cddadba8bf9ef9167e08",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2758600,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "tango-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "19d6c2f9f0641de1ac5e0f116609847d12b76c2cec12b141d51bbe210a37112a",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2592865,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "tango-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "ba0e1bce5e4c52094d3dac3cc8567154a6ea75768bd066da722a9c9382886b13",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2548549,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "tango-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "dc3fa727fecd8321b5a1b5566ccd6e0cf7605fa285f6b91470dad76f03aa9f2f",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2608503,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "royal",
+      "image": "tango-royal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "1a076a6ec1103f22e21da1f7084dd164e5bc5a7ccf32032990b733967f60b9d9",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2613836,
+      "integritePngVerifiee": true
+    }
+  ],
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantesPresentes": 5,
+  "variantesCibles": 10,
+  "dernierControleIntegrite": "2026-10-20T23:55:39.490871+00:00",
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "validationConfigurateur": false
+}

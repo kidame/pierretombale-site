@@ -152,3 +152,8 @@
 {"date": "2026-10-20T23:45:40.608898+00:00", "modeleId": "cin-esperanza", "matiereId": "rosso-porrino", "sha256": "9eab9a18b9abdcc2b4da47f0be4d8860b0db0db2cf0e59014edef804abce140e", "total": 198}
 {"date": "2026-10-20T23:45:51.897887+00:00", "modeleId": "cin-esperanza", "matiereId": "egipat", "sha256": "2fcc21443991b7da1ca25ac58eb6edb242ae5285b4349262fb5cc219652cc760", "total": 199}
 {"date": "2026-10-20T23:46:00.817945+00:00", "modeleId": "cin-esperanza", "matiereId": "marmara", "sha256": "fe7030cbf5f09e196cb2617262b0d73b96af873e819b0295a3008fa129cd858d", "total": 200}
+{"date": "2026-10-20T23:55:04.588250+00:00", "modeleId": "tango", "matiereId": "bengal", "sha256": "eb2a2ea7668ca6cde9c7504a3ae0cd16a2d5d5aa8a80cddadba8bf9ef9167e08", "total": 201}
+{"date": "2026-10-20T23:55:13.325011+00:00", "modeleId": "tango", "matiereId": "rozabeta", "sha256": "19d6c2f9f0641de1ac5e0f116609847d12b76c2cec12b141d51bbe210a37112a", "total": 202}
+{"date": "2026-10-20T23:55:22.256135+00:00", "modeleId": "tango", "matiereId": "paradiso", "sha256": "ba0e1bce5e4c52094d3dac3cc8567154a6ea75768bd066da722a9c9382886b13", "total": 203}
+{"date": "2026-10-20T23:55:30.817891+00:00", "modeleId": "tango", "matiereId": "jablanica", "sha256": "dc3fa727fecd8321b5a1b5566ccd6e0cf7605fa285f6b91470dad76f03aa9f2f", "total": 204}
+{"date": "2026-10-20T23:55:39.490871+00:00", "modeleId": "tango", "matiereId": "royal", "sha256": "1a076a6ec1103f22e21da1f7084dd164e5bc5a7ccf32032990b733967f60b9d9", "total": 205}
