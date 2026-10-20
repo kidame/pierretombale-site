@@ -86,12 +86,60 @@
       ],
       "tailleOctets": 2474980,
       "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "viscount-white",
+      "image": "tombale-simple-200x100x10-viscount-white.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png",
+      "sha256": "8777387dc993d17c79b6bfdae63cde9b3d83c0010f31479cba1342151fefdc15",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2442142,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rosso-porrino",
+      "image": "tombale-simple-200x100x10-rosso-porrino.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png",
+      "sha256": "30e907e7325014159d630c88a644f9f3f88e875d9447e7b3427d194c651e3f37",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2446990,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "egipat",
+      "image": "tombale-simple-200x100x10-egipat.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png",
+      "sha256": "b54af05d231aed283ccf6cd65ebcc32a0084d226a8a2b393bc30926f44aa8d0f",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2596357,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "marmara",
+      "image": "tombale-simple-200x100x10-marmara.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png",
+      "sha256": "9d781147ecb7ebb93e8ae5b4891704b715bb0c6abc44ac95c57dfe0edf952e41",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 1980726,
+      "integritePngVerifiee": true
     }
   ],
   "sourcePrompts": "../../../../prompts-serie.json",
   "promptsExactsRetrouves": false,
-  "dernierControleIntegrite": "2026-10-20T11:22:00.827902+00:00",
-  "variantesPresentes": 6,
+  "dernierControleIntegrite": "2026-10-20T11:29:50.244542+00:00",
+  "variantesPresentes": 10,
   "variantesCibles": 10,
   "validationConfigurateur": false,
   "promptsExactsDisponibles": [
@@ -99,7 +147,11 @@
     "paradiso",
     "jablanica",
     "royal",
-    "vizag-blue"
+    "vizag-blue",
+    "viscount-white",
+    "rosso-porrino",
+    "egipat",
+    "marmara"
   ],
   "promptsExactsManquants": [
     "bengal"

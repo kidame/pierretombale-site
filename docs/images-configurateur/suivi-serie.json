@@ -952,34 +952,54 @@
         {
           "matiereId": "viscount-white",
           "fichier": "tombale-simple-200x100x10-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "8777387dc993d17c79b6bfdae63cde9b3d83c0010f31479cba1342151fefdc15",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2442142,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "tombale-simple-200x100x10-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "30e907e7325014159d630c88a644f9f3f88e875d9447e7b3427d194c651e3f37",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2446990,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "tombale-simple-200x100x10-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "b54af05d231aed283ccf6cd65ebcc32a0084d226a8a2b393bc30926f44aa8d0f",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2596357,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "tombale-simple-200x100x10-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "9d781147ecb7ebb93e8ae5b4891704b715bb0c6abc44ac95c57dfe0edf952e41",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 1980726,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -2805,15 +2825,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T11:22:00.827902+00:00",
-    "imagesCompletes": 66,
-    "combinaisonsRestantes": 204,
+    "dateControle": "2026-10-20T11:29:50.244542+00:00",
+    "imagesCompletes": 70,
+    "combinaisonsRestantes": 200,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "tombale-simple-200x100x10",
-    "matiereId": "viscount-white",
+    "modeleId": "musulman-4",
+    "matiereId": "bengal",
     "action": "Produire depuis la base Bengal puis archiver avant la variante suivante."
   },
   "productionParPassage": {
@@ -2826,32 +2846,28 @@
     "decisionUtilisateur": "2026-10-20T13:05:23+02:00"
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T11:22:35.606195+00:00",
+    "dateFin": "2026-10-20T11:30:25.501708+00:00",
     "combinaisons": [
       {
         "modeleId": "tombale-simple-200x100x10",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "tombale-simple-200x100x10",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "tombale-simple-200x100x10",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "tombale-simple-200x100x10",
-        "matiereId": "royal"
-      },
-      {
-        "modeleId": "tombale-simple-200x100x10",
-        "matiereId": "vizag-blue"
+        "matiereId": "marmara"
       }
     ],
-    "imagesAjoutees": 5,
-    "totalAvant": 61,
-    "totalApres": 66,
+    "imagesAjoutees": 4,
+    "totalAvant": 66,
+    "totalApres": 70,
     "statut": "termine",
     "generationEnCours": false,
     "continuationAutomatique": true,
@@ -2859,24 +2875,24 @@
   },
   "prochainLot": [
     {
-      "modeleId": "tombale-simple-200x100x10",
-      "matiereId": "viscount-white"
-    },
-    {
-      "modeleId": "tombale-simple-200x100x10",
-      "matiereId": "rosso-porrino"
-    },
-    {
-      "modeleId": "tombale-simple-200x100x10",
-      "matiereId": "egipat"
-    },
-    {
-      "modeleId": "tombale-simple-200x100x10",
-      "matiereId": "marmara"
+      "modeleId": "musulman-4",
+      "matiereId": "bengal"
     },
     {
       "modeleId": "musulman-4",
-      "matiereId": "bengal"
+      "matiereId": "rozabeta"
+    },
+    {
+      "modeleId": "musulman-4",
+      "matiereId": "paradiso"
+    },
+    {
+      "modeleId": "musulman-4",
+      "matiereId": "jablanica"
+    },
+    {
+      "modeleId": "musulman-4",
+      "matiereId": "royal"
     }
   ]
 }

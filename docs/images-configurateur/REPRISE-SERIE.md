@@ -4,10 +4,10 @@ Autorisation Thomas, 19.10.2026 : poursuivre les 27 modeles en 10 matieres, une 
 
 ## Point de reprise
 
-Checkpoint 2026-10-20T11:22:35.606195+00:00 : 66/270 images archivees, 204 restantes.
-6/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
+Checkpoint 2026-10-20T11:30:25.501708+00:00 : 70/270 images archivees, 200 restantes.
+7/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
 Le tableau AVANCEMENT.md est mis a jour automatiquement apres chaque archivage.
-Prochaine combinaison : tombale-simple-200x100x10 / viscount-white.
+Prochaine combinaison : musulman-4 / bengal.
 
 Clarification Thomas du 20.10.2026 a 13h05 : produire toute la serie.
 Un lot de 5 est un checkpoint, jamais une consigne d arret. Enchainer les lots sans confirmation.
