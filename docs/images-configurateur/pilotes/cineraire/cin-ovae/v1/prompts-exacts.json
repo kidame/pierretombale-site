@@ -55,6 +55,61 @@
         "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/royal-texture-v1.png"
       ],
       "controleVisuel": "CIN-OVAE royal: silhouette arrondie a sommet asymetrique conservee; bandeau noir superieur, support arriere et socle inferieur fixes; paysage grave retire; dalle et champ principal seulement recolores. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a broad rounded upright narrowing toward its foot, an asymmetric stepped top, a rounded rectangular upper slab, and a dark base and rear support. Image 2 is only the vizag-blue stone reference. Change ONLY the broad lower main field and outer body of the headstone and the rounded rectangular upper slab to the exact material of image 2: cool silver-grey granite, slightly blue, with flowing charcoal mineral clouds and sparse fine burgundy-brown specks. Match natural colors, directional movement and realistic grain size, polished surface with gentle highlights. Keep the black upper band of the headstone, the entire rear support and the lower projecting base in their original dark stone. Preserve the wavy lower boundary of the upper band and the asymmetric outer headstone contour. Preserve exactly every structural component, silhouette, thickness, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark upper band is a fixed structural stone zone, not an engraving or removable decoration. Keep it plain, without the original landscape scene. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T23:22:26.336527+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-5d53e632-72d8-428a-8a39-1eca4f1e1704.png",
+      "sha256": "4b7c0878853dead90dfb41c21413c827b94070dabb2e2252b0644bfeeb73ad03",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-8bf61e0b-fff3-462e-b7e8-f068961b2d35.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-OVAE vizag-blue: silhouette arrondie a sommet asymetrique conservee; bandeau noir superieur, support arriere et socle inferieur fixes; paysage grave absent; dalle et champ principal seulement recolores. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a broad rounded upright narrowing toward its foot, an asymmetric stepped top, a rounded rectangular upper slab, and a dark base and rear support. Image 2 is only the viscount-white stone reference. Change ONLY the broad lower main field and outer body of the headstone and the rounded rectangular upper slab to the exact material of image 2: luminous white and pale grey granite with fine dark mineral flecks and soft flowing grey clouds. Match natural colors and realistic grain size, polished surface with gentle highlights. Keep the black upper band of the headstone, the entire rear support and the lower projecting base in their original dark stone. Preserve the wavy lower boundary of the upper band and the asymmetric outer headstone contour. Preserve exactly every structural component, silhouette, thickness, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark upper band is a fixed structural stone zone, not an engraving or removable decoration. Keep it plain, without the original landscape scene. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T23:22:35.695943+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-1d7d3362-d7b9-494e-b338-365793ae8010.png",
+      "sha256": "48569ceb51fd7f413136dea2b93ad6e2c699c4715def1fa546189911808f4b96",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-8bf61e0b-fff3-462e-b7e8-f068961b2d35.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-OVAE viscount-white: silhouette arrondie a sommet asymetrique conservee; bandeau noir superieur, support arriere et socle inferieur fixes; paysage grave absent; dalle et champ principal seulement recolores. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a broad rounded upright narrowing toward its foot, an asymmetric stepped top, a rounded rectangular upper slab, and a dark base and rear support. Image 2 is only the rosso-porrino stone reference. Change ONLY the broad lower main field and outer body of the headstone and the rounded rectangular upper slab to the exact material of image 2: salmon-pink feldspar, grey quartz, black flecks and cream-white mineral grains. Match natural colors and realistic grain size, polished surface with gentle highlights. Keep the black upper band of the headstone, the entire rear support and the lower projecting base in their original dark stone. Preserve the wavy lower boundary of the upper band and the asymmetric outer headstone contour. Preserve exactly every structural component, silhouette, thickness, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark upper band is a fixed structural stone zone, not an engraving or removable decoration. Keep it plain, without the original landscape scene. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T23:22:44.888092+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-6a316fdc-aa34-47c4-8b29-5a899535222e.png",
+      "sha256": "c92d74c7bc5ab1152c8add0a4a6faa2070173868b9b31942e9c170acedeb8c3e",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-8bf61e0b-fff3-462e-b7e8-f068961b2d35.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-OVAE rosso-porrino: silhouette arrondie a sommet asymetrique conservee; bandeau noir superieur, support arriere et socle inferieur fixes; paysage grave absent; dalle et champ principal seulement recolores. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a broad rounded upright narrowing toward its foot, an asymmetric stepped top, a rounded rectangular upper slab, and a dark base and rear support. Image 2 is only the egipat stone reference. Change ONLY the broad lower main field and outer body of the headstone and the rounded rectangular upper slab to the exact material of image 2: neutral medium-grey salt-and-pepper granite with dense small black and white crystals. Match natural colors and realistic grain size, polished surface with gentle highlights. Keep the black upper band of the headstone, the entire rear support and the lower projecting base in their original dark stone. Preserve the wavy lower boundary of the upper band and the asymmetric outer headstone contour. Preserve exactly every structural component, silhouette, thickness, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark upper band is a fixed structural stone zone, not an engraving or removable decoration. Keep it plain, without the original landscape scene. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T23:22:55.868144+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-21c368f4-5e58-4acf-af66-33b7f77d3776.png",
+      "sha256": "7b747505cbbff27e7935bb02d5dedda9a71fc3922c8b421436f399402a17f72e",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-8bf61e0b-fff3-462e-b7e8-f068961b2d35.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/egipat-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-OVAE egipat: silhouette arrondie a sommet asymetrique conservee; bandeau noir superieur, support arriere et socle inferieur fixes; paysage grave absent; dalle et champ principal seulement recolores. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a broad rounded upright narrowing toward its foot, an asymmetric stepped top, a rounded rectangular upper slab, and a dark base and rear support. Image 2 is only the marmara stone reference. Change ONLY the broad lower main field and outer body of the headstone and the rounded rectangular upper slab to the exact material of image 2: white crystalline marble with broad softly parallel grey bands and finer darker grey veins. Match natural colors, directional banding and realistic grain size, polished surface with gentle highlights. Keep the black upper band of the headstone, the entire rear support and the lower projecting base in their original dark stone. Preserve the wavy lower boundary of the upper band and the asymmetric outer headstone contour. Preserve exactly every structural component, silhouette, thickness, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark upper band is a fixed structural stone zone, not an engraving or removable decoration. Keep it plain, without the original landscape scene. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T23:23:04.915638+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-8455bfb1-761c-4f5e-824b-65a5cc4a3f21.png",
+      "sha256": "082cd51274ed04f75f6a69c03eabbea87eee54d6cdb94a1088c5f66a0689493b",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-8bf61e0b-fff3-462e-b7e8-f068961b2d35.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/marmara-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-OVAE marmara: silhouette arrondie a sommet asymetrique conservee; bandeau noir superieur, support arriere et socle inferieur fixes; paysage grave absent; dalle et champ principal seulement recolores. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
     }
   }
 }
