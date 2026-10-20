@@ -2566,42 +2566,67 @@
         {
           "matiereId": "bengal",
           "fichier": "cin-ovae-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "bef66f39973a1b53456c656e9eb148ce0efbae468463830afc6cc1b1d949b179",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2809597,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "cin-ovae-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "9fce80979430f2b7fa9c79fd1ce41c188444b46e3d67ba4f87934ec6a75f5a8e",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2623660,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "cin-ovae-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "8df0fb2358a6dc0baea70e4003786480c6dfa4783e832b0ee2f8f288a7a77f64",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2725980,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "cin-ovae-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "3105f6844c6cdc0b2dbdb0576156d8fa7c625c7139458bb313147e6115a5e96b",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2737023,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "cin-ovae-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "c022bca19021b1a7feeeefd8a608e668a4058dcba0d1474615ba9a162649d826",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2760801,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -3375,15 +3400,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T23:04:41.662892+00:00",
-    "imagesCompletes": 180,
-    "combinaisonsRestantes": 90,
+    "dateControle": "2026-10-20T23:14:00.144709+00:00",
+    "imagesCompletes": 185,
+    "combinaisonsRestantes": 85,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "cin-ovae",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {

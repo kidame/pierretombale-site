@@ -1,0 +1,60 @@
+{
+  "mode": "imagegen-integre",
+  "variantes": {
+    "bengal": {
+      "prompt": "Use case: product-mockup. Image 1 is the exact monument design reference for cin-ovae. Image 2 is only the BENGAL stone reference. Create one clean frontal catalogue master, preserving the complete design and every structural component and proportion. Preserve the broad upright with rounded flanks narrowing toward the bottom, its asymmetric upper contour with a soft step, the low rounded rectangular top slab, rear support and wider lower plinth. The large light main headstone field and light slab are variable primary stone; the dark headstone top band, rear support and lower base are fixed secondary stone. Change ONLY the broad lower main field and outer body of the headstone and the rounded rectangular upper slab, which are light stone in the source, to the exact polished black Bengal granite with natural silver and grey crystalline grain from image 2. Keep the black upper band of the headstone, the entire rear support and the lower projecting base in their original dark stone. Preserve the wavy lower boundary of the upper band and the asymmetric outer headstone contour. Remove only the engraved landscape in the dark upper band: bridge, birds, plants and water scene. Leave a plain dark stone band with its original outline. Do not confuse the band boundary with the actual stepped top silhouette. Camera exactly centered on the longitudinal axis, no left or right yaw, main front upright surface parallel to image plane. Use parallel orthographic projection with modest elevation only to reveal the base, no three-quarter view. Entire monument visible with balanced margins. Uniform pale grey studio background and soft contact shadow, gentle light, no glare obscuring surfaces. Do not invent components, text, ornaments, flowers, plants, vases or watermarks. Single square image requested 2048x2048. Fixed geometry master for nine material-only edits.",
+      "date": "2026-10-20T23:13:19.412930+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-8bf61e0b-fff3-462e-b7e8-f068961b2d35.png",
+      "sha256": "bef66f39973a1b53456c656e9eb148ce0efbae468463830afc6cc1b1d949b179",
+      "references": [
+        "libfile_5403a978a4d48191aa48605ce5b27545",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/bengal-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-OVAE bengal: silhouette arrondie a sommet asymetrique conservee; bandeau noir superieur, support arriere et socle inferieur fixes; paysage grave retire; dalle et champ principal seulement recolores. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "rozabeta": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a broad rounded upright narrowing toward its foot, an asymmetric stepped top, a rounded rectangular upper slab, and a dark base and rear support. Image 2 is only the rozabeta stone reference. Change ONLY the broad lower main field and outer body of the headstone and the rounded rectangular upper slab to the exact material of image 2: light grey-white granite with soft salmon-pink feldspar crystals and fine black mineral flecks. Match natural colors and realistic grain size, polished surface with gentle highlights. Keep the black upper band of the headstone, the entire rear support and the lower projecting base in their original dark stone. Preserve the wavy lower boundary of the upper band and the asymmetric outer headstone contour. Preserve exactly every structural component, silhouette, thickness, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark upper band is a fixed structural stone zone, not an engraving or removable decoration. Keep it plain, without the original landscape scene. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T23:13:29.299469+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-22bd5edd-a955-4311-b099-d78afa737618.png",
+      "sha256": "9fce80979430f2b7fa9c79fd1ce41c188444b46e3d67ba4f87934ec6a75f5a8e",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-8bf61e0b-fff3-462e-b7e8-f068961b2d35.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-OVAE rozabeta: silhouette arrondie a sommet asymetrique conservee; bandeau noir superieur, support arriere et socle inferieur fixes; paysage grave retire; dalle et champ principal seulement recolores. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "paradiso": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a broad rounded upright narrowing toward its foot, an asymmetric stepped top, a rounded rectangular upper slab, and a dark base and rear support. Image 2 is only the paradiso stone reference. Change ONLY the broad lower main field and outer body of the headstone and the rounded rectangular upper slab to the exact material of image 2: grey granite with fine black minerals, copper salmon grains, softly flowing white and dark mineral bands. Match natural colors, directional banding and realistic grain size, polished surface with gentle highlights. Keep the black upper band of the headstone, the entire rear support and the lower projecting base in their original dark stone. Preserve the wavy lower boundary of the upper band and the asymmetric outer headstone contour. Preserve exactly every structural component, silhouette, thickness, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark upper band is a fixed structural stone zone, not an engraving or removable decoration. Keep it plain, without the original landscape scene. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T23:13:39.170887+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-4dcaca57-e797-4e31-822c-1da31f3f9233.png",
+      "sha256": "8df0fb2358a6dc0baea70e4003786480c6dfa4783e832b0ee2f8f288a7a77f64",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-8bf61e0b-fff3-462e-b7e8-f068961b2d35.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/paradiso-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-OVAE paradiso: silhouette arrondie a sommet asymetrique conservee; bandeau noir superieur, support arriere et socle inferieur fixes; paysage grave retire; dalle et champ principal seulement recolores. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "jablanica": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a broad rounded upright narrowing toward its foot, an asymmetric stepped top, a rounded rectangular upper slab, and a dark base and rear support. Image 2 is only the jablanica stone reference. Change ONLY the broad lower main field and outer body of the headstone and the rounded rectangular upper slab to the exact material of image 2: dark grey granite densely packed with black minerals, silvery grey and translucent white crystals. Match natural colors and realistic grain size, polished surface with gentle highlights. Keep the black upper band of the headstone, the entire rear support and the lower projecting base in their original dark stone. Preserve the wavy lower boundary of the upper band and the asymmetric outer headstone contour. Preserve exactly every structural component, silhouette, thickness, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark upper band is a fixed structural stone zone, not an engraving or removable decoration. Keep it plain, without the original landscape scene. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T23:13:49.229354+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-8733f637-4f4b-448b-ad39-a04e0725b138.png",
+      "sha256": "3105f6844c6cdc0b2dbdb0576156d8fa7c625c7139458bb313147e6115a5e96b",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-8bf61e0b-fff3-462e-b7e8-f068961b2d35.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/jablanica-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-OVAE jablanica: silhouette arrondie a sommet asymetrique conservee; bandeau noir superieur, support arriere et socle inferieur fixes; paysage grave retire; dalle et champ principal seulement recolores. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "royal": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a broad rounded upright narrowing toward its foot, an asymmetric stepped top, a rounded rectangular upper slab, and a dark base and rear support. Image 2 is only the royal stone reference. Change ONLY the broad lower main field and outer body of the headstone and the rounded rectangular upper slab to the exact material of image 2: neutral dark granite with dense small black minerals and irregular silvery grey-white crystals in a subtly cloudy pattern. Match natural colors and realistic grain size, polished surface with gentle highlights. Keep the black upper band of the headstone, the entire rear support and the lower projecting base in their original dark stone. Preserve the wavy lower boundary of the upper band and the asymmetric outer headstone contour. Preserve exactly every structural component, silhouette, thickness, joint, crop, camera, scale, pale grey background and soft contact shadows. The dark upper band is a fixed structural stone zone, not an engraving or removable decoration. Keep it plain, without the original landscape scene. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T23:14:00.144709+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-5d8d1a5e-5823-4af7-83d7-b324fb3ce9bc.png",
+      "sha256": "c022bca19021b1a7feeeefd8a608e668a4058dcba0d1474615ba9a162649d826",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-8bf61e0b-fff3-462e-b7e8-f068961b2d35.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/royal-texture-v1.png"
+      ],
+      "controleVisuel": "CIN-OVAE royal: silhouette arrondie a sommet asymetrique conservee; bandeau noir superieur, support arriere et socle inferieur fixes; paysage grave retire; dalle et champ principal seulement recolores. Fond gris et cadrage frontal conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    }
+  }
+}
