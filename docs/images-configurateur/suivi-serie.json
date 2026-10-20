@@ -1221,42 +1221,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "cin8-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "71cbc83ce9795fa94e90aa8701b7edbf95bb23a4200c9d2e84a134e0b83d8cb7",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2894380,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "cin8-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "4e6b0b9b389dc0fc0be0e6fad5152cb9326ee156a7bba7be5944b66b74698f6b",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2790999,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "cin8-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "7d386a91f8d667a171290d8b866317262792f11518a67139305618efdd0f373d",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2896305,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "cin8-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "ba8c504a36b8864b5ff8c94757e484f4c6771b2096c337fe4f12d71ca208736c",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3006974,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "cin8-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "9bfb450976a21f962c5ff12cf1e4a49df32d2cda61c53b2110ad0c33c06957ca",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2369367,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -1267,7 +1292,7 @@
       "sourceLibraryId": "libfile_555f2952e5208191bd8b2c71e1434091",
       "dossier": "pilotes/cineraire/cin-nivora/v1",
       "ordre": 10,
-      "notes": "Conserver acier ajoure ; ne varier que la pierre. Zones a confirmer.",
+      "notes": "Deux dalles rectangulaires superposees avec semelle debordante, marche transversale arriere. Grande stele circulaire en acier ajoure dessine un arbre avec racines, branches et feuilles. Petit coeur epais en granit devant a gauche. Arbre en acier ajoure conserve entierement, sans changement de matiere. Le petit coeur separe est conserve par prudence comme composant du modele; sa fixation n'est pas visible. Seules les pieces en pierre varient. Geometrie atelier et zones physiques a valider.",
       "variantes": [
         {
           "matiereId": "bengal",
@@ -2900,15 +2925,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T12:04:17.295021+00:00",
-    "imagesCompletes": 85,
-    "combinaisonsRestantes": 185,
+    "dateControle": "2026-10-20T12:08:54.606541+00:00",
+    "imagesCompletes": 90,
+    "combinaisonsRestantes": 180,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "cin8",
-    "matiereId": "vizag-blue",
+    "modeleId": "cin-nivora",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -2924,56 +2949,57 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T12:04:42.776477+00:00",
+    "dateFin": "2026-10-20T12:09:35.255654+00:00",
     "combinaisons": [
       {
         "modeleId": "cin8",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "cin8",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "cin8",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "cin8",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "cin8",
-        "matiereId": "royal"
+        "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 80,
-    "totalApres": 85,
+    "totalAvant": 85,
+    "totalApres": 90,
     "statut": "termine",
+    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
   },
   "prochainLot": [
     {
-      "modeleId": "cin8",
-      "matiereId": "vizag-blue"
+      "modeleId": "cin-nivora",
+      "matiereId": "bengal"
     },
     {
-      "modeleId": "cin8",
-      "matiereId": "viscount-white"
+      "modeleId": "cin-nivora",
+      "matiereId": "rozabeta"
     },
     {
-      "modeleId": "cin8",
-      "matiereId": "rosso-porrino"
+      "modeleId": "cin-nivora",
+      "matiereId": "paradiso"
     },
     {
-      "modeleId": "cin8",
-      "matiereId": "egipat"
+      "modeleId": "cin-nivora",
+      "matiereId": "jablanica"
     },
     {
-      "modeleId": "cin8",
-      "matiereId": "marmara"
+      "modeleId": "cin-nivora",
+      "matiereId": "royal"
     }
   ]
 }
