@@ -2284,82 +2284,132 @@
         {
           "matiereId": "bengal",
           "fichier": "cin-montagne02-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "4ae11eda7ced4dde2ffbc9b3245136daba42fdd5ae957c45c0be15ecbd14b7e6",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2928223,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "cin-montagne02-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "4880c8d78b74bc47a1c14bba49a71a9f3d6b88140f46826348ac0d25b41402ff",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2790715,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "cin-montagne02-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "a6f520dffcc5de65ee046bbfb114bcc109b532f1e55d51d63ec00c1970e1c047",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2933374,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "cin-montagne02-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "6b5df8a30dd890040020f7a46c6c87f4b3db4fa52f11d0ce6e9941fbe4eaba62",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2871409,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "cin-montagne02-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "fac97b1624b32bcde9e22c885cca24d13c8fb73838fb2f919f21d048cc7849b1",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2927692,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
           "fichier": "cin-montagne02-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "0223a8fcab8467f298fafc871b4dc2e6f05a67a02894bb664e7c8aac7d38d3e8",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2842997,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "cin-montagne02-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "b50fe0219fd5baacac53a20b0a9d0ebba87da479aa5af777250d8dfc3aca0e11",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2820395,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "cin-montagne02-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "ef6688f1f92e3dbbbbd1131ff07454a75a5bd0591f9f5ab3e4190b30cdacdf0f",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2800408,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "cin-montagne02-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "bde83279331731961f76109b97cd463e2492bb01e2f40f8b182a9a780bd75823",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2978716,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "cin-montagne02-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "9bf44a844eff663ed1ce231debb446f6e360dd989999053265555a8b84cb2b79",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2419603,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -2375,34 +2425,54 @@
         {
           "matiereId": "bengal",
           "fichier": "cin-saturne-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "1144fa4fa1ced61e678afe4a5e0eb005b045615525e3d850d6277b5aae0708cb",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2752512,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "cin-saturne-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "38c3d3de73763cf851b42ce0a5cd43cee3ca051484de8b38757207c025d041fe",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2778796,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "cin-saturne-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "dcbfbcfd23cf323146238ccf53ce628e49a9462e20202a165f76b35365b3e942",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2853117,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "cin-saturne-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "d53290d9ce56271371b7f4ff0f0a614e2c689d2f9c453aec3be51ea01e0d50aa",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2742447,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
@@ -3275,15 +3345,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T13:21:01.324246+00:00",
-    "imagesCompletes": 160,
-    "combinaisonsRestantes": 110,
+    "dateControle": "2026-10-20T22:11:09.050826+00:00",
+    "imagesCompletes": 174,
+    "combinaisonsRestantes": 96,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "cin-montagne02",
-    "matiereId": "bengal",
+    "modeleId": "cin-saturne",
+    "matiereId": "royal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3299,57 +3369,56 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T13:21:22.969665+00:00",
+    "dateFin": "2026-10-20T22:11:09.319907+00:00",
     "combinaisons": [
       {
-        "modeleId": "cin-tombale",
-        "matiereId": "vizag-blue"
-      },
-      {
-        "modeleId": "cin-tombale",
-        "matiereId": "viscount-white"
-      },
-      {
-        "modeleId": "cin-tombale",
-        "matiereId": "rosso-porrino"
-      },
-      {
-        "modeleId": "cin-tombale",
-        "matiereId": "egipat"
-      },
-      {
-        "modeleId": "cin-tombale",
+        "modeleId": "cin-montagne02",
         "matiereId": "marmara"
+      },
+      {
+        "modeleId": "cin-saturne",
+        "matiereId": "bengal"
+      },
+      {
+        "modeleId": "cin-saturne",
+        "matiereId": "rozabeta"
+      },
+      {
+        "modeleId": "cin-saturne",
+        "matiereId": "paradiso"
+      },
+      {
+        "modeleId": "cin-saturne",
+        "matiereId": "jablanica"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 155,
-    "totalApres": 160,
+    "totalAvant": 169,
+    "totalApres": 174,
     "statut": "termine",
-    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
+    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
   },
   "prochainLot": [
     {
-      "modeleId": "cin-montagne02",
-      "matiereId": "bengal"
-    },
-    {
-      "modeleId": "cin-montagne02",
-      "matiereId": "rozabeta"
-    },
-    {
-      "modeleId": "cin-montagne02",
-      "matiereId": "paradiso"
-    },
-    {
-      "modeleId": "cin-montagne02",
-      "matiereId": "jablanica"
-    },
-    {
-      "modeleId": "cin-montagne02",
+      "modeleId": "cin-saturne",
       "matiereId": "royal"
+    },
+    {
+      "modeleId": "cin-saturne",
+      "matiereId": "vizag-blue"
+    },
+    {
+      "modeleId": "cin-saturne",
+      "matiereId": "viscount-white"
+    },
+    {
+      "modeleId": "cin-saturne",
+      "matiereId": "rosso-porrino"
+    },
+    {
+      "modeleId": "cin-saturne",
+      "matiereId": "egipat"
     }
   ]
 }

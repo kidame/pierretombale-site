@@ -1,0 +1,38 @@
+{
+  "library_file_id": "libfile_9a4236471b948191a6aa09cb4014e85c",
+  "current_version_number": 0,
+  "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-montagne02/CIN-MONTAGNE02.png",
+  "source_file_name": "CIN-MONTAGNE02.png",
+  "inspection_pending": false,
+  "geometry": "Semelle rectangulaire a aretes arrondies, dalle superieure sombre a pourtour arrondi, marche transversale arriere claire. Stele irreguliere a sommet dominant central/decale a droite et epaulement montagneux plus bas a gauche; chants eclates. Galet clair pose a gauche.",
+  "fixed_features": [
+    "Contour montagneux et chants eclates de la stele",
+    "Semelle et marche arriere claires",
+    "Dalle superieure sombre a bord arrondi"
+  ],
+  "removable_accessories": [
+    "Galet clair pose a l'avant gauche, probablement decoratif"
+  ],
+  "material_zones": "Composition bicolore: semelle et marche arriere claires veinees, dalle superieure et facade de stele sombres. Paysage blanc de montagnes/sapins en facade.",
+  "ambiguity": "Le paysage frontal semble une gravure de surface; le galet pourrait etre une plaque ovale. Le point sombre dans la stele est un reflet du galet, pas une seconde pierre posee.",
+  "generation_note": "Conserver bicolore et silhouette montagneuse; si galet retire, retirer aussi son reflet. Ne pas confondre ce modele avec montagne01.",
+  "reference_dimensions_px": [
+    1448,
+    1086
+  ],
+  "library_xattr_verified": true,
+  "decisionPilote": "Distinct de Montagne01 par silhouette et bicolore. Semelle et marche claires restent fixes; dalle superieure et stele varient. Gravure optionnelle retiree. Galet traite comme accessoire pose, fixation non visible; son reflet frontal sombre n'est pas une seconde piece.",
+  "specificationGeneration": {
+    "id": "cin-montagne02",
+    "family": "cineraire",
+    "geometry": "a compact cinerary monument with a light rectangular plinth and rear step, a dark upper slab with rounded edges, and a thick irregular mountain-shaped upright with a high peak slightly right of center",
+    "stoneAreas": "only the upper slab and the mountain-shaped headstone, which are dark stone in the source, including the headstone's rough exposed edges",
+    "fixedAreas": "Keep the lower projecting plinth and rear transverse step in their original light grey-white veined stone. Preserve the bicolor boundaries. Keep the headstone edges rough as an unpolished finish of the variable headstone stone.",
+    "extraConstraints": "Preserve the dominant peak slightly right of center and the lower mountain shoulder on the left. Do not substitute the left-high skyline of Montagne01. Keep the upper slab's rounded perimeter.",
+    "masterDescription": "Preserve the rectangular lowest plinth with softened edges, the slightly inset thick upper slab with a rounded perimeter, the transverse rear supporting step, and the thick mountain-shaped headstone. Its highest point lies slightly right of center with a lower shoulder on the left. Preserve its irregular chipped perimeter. The light lower plinth and rear step are fixed secondary stone; the dark upper slab and headstone are variable primary stone.",
+    "removeDescription": "Remove the white mountain-and-pine-tree surface engraving and the loose light oval pebble on the front-left slab. Remove the pebble's reflections in the slab and headstone. Preserve all actual peaks and rough edges.",
+    "interpretationNote": "Distinct de Montagne01 par silhouette et bicolore. Semelle et marche claires restent fixes; dalle superieure et stele varient. Gravure optionnelle retiree. Galet traite comme accessoire pose, fixation non visible; son reflet frontal sombre n'est pas une seconde piece.",
+    "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-montagne02/CIN-MONTAGNE02.png",
+    "sourceLibraryId": "libfile_9a4236471b948191a6aa09cb4014e85c"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "modeleId": "cin-saturne",
+  "referenceInterne": "CIN-SATURNE",
+  "famille": "cineraire",
+  "sourceLibraryId": "libfile_363a7d241e148191b88b4b9434b9a4d8",
+  "nomPublic": null,
+  "version": 1,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "cin-saturne-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "1144fa4fa1ced61e678afe4a5e0eb005b045615525e3d850d6277b5aae0708cb",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2752512,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "cin-saturne-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "38c3d3de73763cf851b42ce0a5cd43cee3ca051484de8b38757207c025d041fe",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2778796,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "cin-saturne-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "dcbfbcfd23cf323146238ccf53ce628e49a9462e20202a165f76b35365b3e942",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2853117,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "cin-saturne-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "d53290d9ce56271371b7f4ff0f0a614e2c689d2f9c453aec3be51ea01e0d50aa",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2742447,
+      "integritePngVerifiee": true
+    }
+  ],
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantesPresentes": 4,
+  "variantesCibles": 10,
+  "dernierControleIntegrite": "2026-10-20T22:11:09.050826+00:00",
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "validationConfigurateur": false
+}

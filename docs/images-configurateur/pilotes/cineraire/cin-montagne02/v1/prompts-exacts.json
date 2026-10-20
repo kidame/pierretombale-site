@@ -1,0 +1,115 @@
+{
+  "mode": "imagegen-integre",
+  "variantes": {
+    "bengal": {
+      "prompt": "Use case: product-mockup. Image 1 is the exact monument design reference for cin-montagne02. Image 2 is only the BENGAL stone reference. Create one clean frontal catalogue master, preserving the complete design and every structural component and proportion. Preserve the rectangular lowest plinth with softened edges, the slightly inset thick upper slab with a rounded perimeter, the transverse rear supporting step, and the thick mountain-shaped headstone. Its highest point lies slightly right of center with a lower shoulder on the left. Preserve its irregular chipped perimeter. The light lower plinth and rear step are fixed secondary stone; the dark upper slab and headstone are variable primary stone. Change only the upper slab and the mountain-shaped headstone, which are dark stone in the source, including the headstone's rough exposed edges to the exact polished black Bengal granite with natural silver and grey crystalline grain from image 2. Keep the lower projecting plinth and rear transverse step in their original light grey-white veined stone. Preserve the bicolor boundaries. Keep the headstone edges rough as an unpolished finish of the variable headstone stone. Remove the white mountain-and-pine-tree surface engraving and the loose light oval pebble on the front-left slab. Remove the pebble's reflections in the slab and headstone. Preserve all actual peaks and rough edges. Camera exactly centered on the longitudinal axis, no left or right yaw, main front upright surface parallel to image plane. Use parallel orthographic projection with modest elevation only to reveal the base, no three-quarter view. Entire monument visible with balanced margins. Uniform pale grey studio background and soft contact shadow, gentle light, no glare obscuring surfaces. Do not invent components, text, ornaments, flowers, plants, vases or watermarks. Single square image requested 2048x2048. Fixed geometry master for nine material-only edits.",
+      "date": "2026-10-20T13:29:02.196663+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-da755bf6-d786-4e2a-983e-9fbb2b28bb3c.png",
+      "sha256": "4ae11eda7ced4dde2ffbc9b3245136daba42fdd5ae957c45c0be15ecbd14b7e6",
+      "references": [
+        "libfile_9a4236471b948191a6aa09cb4014e85c",
+        "bengal-texture-v1.png"
+      ],
+      "controleVisuel": "St\u00e8le irr\u00e9guli\u00e8re au sommet principal l\u00e9g\u00e8rement \u00e0 droite du centre, chants \u00e9clat\u00e9s pr\u00e9serv\u00e9s. St\u00e8le et dalle sup\u00e9rieure arrondie en Bengal ; plinthe et marche arri\u00e8re claires conserv\u00e9es. Paysage grav\u00e9 et galet retir\u00e9s."
+    },
+    "rozabeta": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a light rectangular plinth and rear step, a dark upper slab with rounded edges, and a thick irregular mountain-shaped upright with a high peak slightly right of center. Image 2 is only the rozabeta stone reference. Change ONLY only the upper slab and the mountain-shaped headstone, which are dark stone in the source, including the headstone's rough exposed edges to the exact material of image 2: light grey-white granite with soft salmon-pink feldspar crystals and fine black mineral flecks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and rear transverse step in their original light grey-white veined stone. Preserve the bicolor boundaries. Keep the headstone edges rough as an unpolished finish of the variable headstone stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the dominant peak slightly right of center and the lower mountain shoulder on the left. Do not substitute the left-high skyline of Montagne01. Keep the upper slab's rounded perimeter. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:29:12.037788+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-33520727-95cd-48f0-bda7-14b1c5f680ad.png",
+      "sha256": "4880c8d78b74bc47a1c14bba49a71a9f3d6b88140f46826348ac0d25b41402ff",
+      "references": [
+        "cin-montagne02-bengal.png",
+        "rozabeta-texture-v1.png"
+      ],
+      "controleVisuel": "Rose clair mouchet\u00e9. St\u00e8le et dalle sup\u00e9rieure d\u00e9clin\u00e9es, socle et support arri\u00e8re clairs conserv\u00e9s, contour montagneux et chants bruts inchang\u00e9s."
+    },
+    "paradiso": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a light rectangular plinth and rear step, a dark upper slab with rounded edges, and a thick irregular mountain-shaped upright with a high peak slightly right of center. Image 2 is only the paradiso stone reference. Change ONLY only the upper slab and the mountain-shaped headstone, which are dark stone in the source, including the headstone's rough exposed edges to the exact material of image 2: grey granite with fine black minerals, copper salmon grains, softly flowing white and dark mineral bands. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and rear transverse step in their original light grey-white veined stone. Preserve the bicolor boundaries. Keep the headstone edges rough as an unpolished finish of the variable headstone stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the dominant peak slightly right of center and the lower mountain shoulder on the left. Do not substitute the left-high skyline of Montagne01. Keep the upper slab's rounded perimeter. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:29:21.246510+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-e4842477-42ea-4622-8679-2c6911ce5d71.png",
+      "sha256": "a6f520dffcc5de65ee046bbfb114bcc109b532f1e55d51d63ec00c1970e1c047",
+      "references": [
+        "cin-montagne02-bengal.png",
+        "paradiso-texture-v1.png"
+      ],
+      "controleVisuel": "Gris vein\u00e9 brun roux. St\u00e8le et dalle sup\u00e9rieure d\u00e9clin\u00e9es, socle et support arri\u00e8re clairs conserv\u00e9s, contour montagneux et chants bruts inchang\u00e9s."
+    },
+    "jablanica": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a light rectangular plinth and rear step, a dark upper slab with rounded edges, and a thick irregular mountain-shaped upright with a high peak slightly right of center. Image 2 is only the jablanica stone reference. Change ONLY only the upper slab and the mountain-shaped headstone, which are dark stone in the source, including the headstone's rough exposed edges to the exact material of image 2: dark grey granite densely packed with black minerals, silvery grey and translucent white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and rear transverse step in their original light grey-white veined stone. Preserve the bicolor boundaries. Keep the headstone edges rough as an unpolished finish of the variable headstone stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the dominant peak slightly right of center and the lower mountain shoulder on the left. Do not substitute the left-high skyline of Montagne01. Keep the upper slab's rounded perimeter. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T13:29:30.296868+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/recovered-cin-montagne02-jablanica.png",
+      "sha256": "6b5df8a30dd890040020f7a46c6c87f4b3db4fa52f11d0ce6e9941fbe4eaba62",
+      "references": [
+        "cin-montagne02-bengal.png",
+        "jablanica-texture-v1.png"
+      ],
+      "controleVisuel": "Gris noir mouchet\u00e9 ; PNG r\u00e9cup\u00e9r\u00e9 de la sortie originale sans r\u00e9g\u00e9n\u00e9ration. St\u00e8le et dalle sup\u00e9rieure d\u00e9clin\u00e9es, socle et support arri\u00e8re clairs conserv\u00e9s, contour montagneux et chants bruts inchang\u00e9s."
+    },
+    "royal": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a light rectangular plinth and rear step, a dark upper slab with rounded edges, and a thick irregular mountain-shaped upright with a high peak slightly right of center. Image 2 is only the royal stone reference. Change ONLY only the upper slab and the mountain-shaped headstone, which are dark stone in the source, including the headstone's rough exposed edges to the exact material of image 2: neutral dark granite with dense small black minerals and irregular silvery grey-white crystals in a subtly cloudy pattern. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and rear transverse step in their original light grey-white veined stone. Preserve the bicolor boundaries. Keep the headstone edges rough as an unpolished finish of the variable headstone stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the dominant peak slightly right of center and the lower mountain shoulder on the left. Do not substitute the left-high skyline of Montagne01. Keep the upper slab's rounded perimeter. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T22:10:00.848514+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-a4f50a67-018b-48d8-8fb9-331d65bfd1b0.png",
+      "sha256": "fac97b1624b32bcde9e22c885cca24d13c8fb73838fb2f919f21d048cc7849b1",
+      "references": [
+        "/workspace/scratch/fc8dfd468718/generated_images/exec-da755bf6-d786-4e2a-983e-9fbb2b28bb3c.png",
+        "/workspace/scratch/fc8dfd468718/reference-textures/royal.png"
+      ],
+      "controleVisuel": "Relecture du 21.10.2026: silhouette montagneuse, sommet decale a droite, chants eclates, semelle et marche claires conserves. Dalle et stele varient seules. Pilote 1254 px non calibre."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a light rectangular plinth and rear step, a dark upper slab with rounded edges, and a thick irregular mountain-shaped upright with a high peak slightly right of center. Image 2 is only the vizag-blue stone reference. Change ONLY only the upper slab and the mountain-shaped headstone, which are dark stone in the source, including the headstone's rough exposed edges to the exact material of image 2: cool silver-grey granite, slightly blue, flowing charcoal mineral clouds and sparse fine burgundy-brown specks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and rear transverse step in their original light grey-white veined stone. Preserve the bicolor boundaries. Keep the headstone edges rough as an unpolished finish of the variable headstone stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the dominant peak slightly right of center and the lower mountain shoulder on the left. Do not substitute the left-high skyline of Montagne01. Keep the upper slab's rounded perimeter. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T22:10:05.750342+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-e8647538-7556-45d4-9b3b-91418766db0c.png",
+      "sha256": "0223a8fcab8467f298fafc871b4dc2e6f05a67a02894bb664e7c8aac7d38d3e8",
+      "references": [
+        "/workspace/scratch/fc8dfd468718/generated_images/exec-da755bf6-d786-4e2a-983e-9fbb2b28bb3c.png",
+        "/workspace/scratch/fc8dfd468718/reference-textures/vizag-blue.png"
+      ],
+      "controleVisuel": "Relecture du 21.10.2026: silhouette montagneuse, sommet decale a droite, chants eclates, semelle et marche claires conserves. Dalle et stele varient seules. Sans gravure ni accessoire. Pilote 1254 px non calibre."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a light rectangular plinth and rear step, a dark upper slab with rounded edges, and a thick irregular mountain-shaped upright with a high peak slightly right of center. Image 2 is only the viscount-white stone reference. Change ONLY only the upper slab and the mountain-shaped headstone, which are dark stone in the source, including the headstone's rough exposed edges to the exact material of image 2: luminous white and pale grey granite, fine dark mineral flecks and soft flowing grey clouds. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and rear transverse step in their original light grey-white veined stone. Preserve the bicolor boundaries. Keep the headstone edges rough as an unpolished finish of the variable headstone stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the dominant peak slightly right of center and the lower mountain shoulder on the left. Do not substitute the left-high skyline of Montagne01. Keep the upper slab's rounded perimeter. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T22:10:10.830136+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-3c307615-b4d1-4233-8830-d432f4c9cb9a.png",
+      "sha256": "b50fe0219fd5baacac53a20b0a9d0ebba87da479aa5af777250d8dfc3aca0e11",
+      "references": [
+        "/workspace/scratch/fc8dfd468718/generated_images/exec-da755bf6-d786-4e2a-983e-9fbb2b28bb3c.png",
+        "/workspace/scratch/fc8dfd468718/reference-textures/viscount-white.png"
+      ],
+      "controleVisuel": "Relecture du 21.10.2026: silhouette montagneuse, sommet decale a droite, chants eclates, semelle et marche claires conserves. Dalle et stele varient seules. Sans gravure ni accessoire. Pilote 1254 px non calibre."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a light rectangular plinth and rear step, a dark upper slab with rounded edges, and a thick irregular mountain-shaped upright with a high peak slightly right of center. Image 2 is only the rosso-porrino stone reference. Change ONLY only the upper slab and the mountain-shaped headstone, which are dark stone in the source, including the headstone's rough exposed edges to the exact material of image 2: salmon pink feldspar, grey quartz, black flecks and cream-white mineral grains. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and rear transverse step in their original light grey-white veined stone. Preserve the bicolor boundaries. Keep the headstone edges rough as an unpolished finish of the variable headstone stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the dominant peak slightly right of center and the lower mountain shoulder on the left. Do not substitute the left-high skyline of Montagne01. Keep the upper slab's rounded perimeter. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T22:10:15.094396+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-2b189b3b-c0db-4797-a02b-f4d04416e070.png",
+      "sha256": "ef6688f1f92e3dbbbbd1131ff07454a75a5bd0591f9f5ab3e4190b30cdacdf0f",
+      "references": [
+        "/workspace/scratch/fc8dfd468718/generated_images/exec-da755bf6-d786-4e2a-983e-9fbb2b28bb3c.png",
+        "/workspace/scratch/fc8dfd468718/reference-textures/rosso-porrino.png"
+      ],
+      "controleVisuel": "Relecture du 21.10.2026: silhouette montagneuse, sommet decale a droite, chants eclates, semelle et marche claires conserves. Dalle et stele varient seules. Sans gravure ni accessoire. Pilote 1254 px non calibre."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a light rectangular plinth and rear step, a dark upper slab with rounded edges, and a thick irregular mountain-shaped upright with a high peak slightly right of center. Image 2 is only the egipat stone reference. Change ONLY only the upper slab and the mountain-shaped headstone, which are dark stone in the source, including the headstone's rough exposed edges to the exact material of image 2: neutral medium-grey salt-and-pepper granite with dense small black and white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and rear transverse step in their original light grey-white veined stone. Preserve the bicolor boundaries. Keep the headstone edges rough as an unpolished finish of the variable headstone stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the dominant peak slightly right of center and the lower mountain shoulder on the left. Do not substitute the left-high skyline of Montagne01. Keep the upper slab's rounded perimeter. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T22:10:19.357024+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-35db315f-4aa4-4eb8-a8ce-a03801093c07.png",
+      "sha256": "bde83279331731961f76109b97cd463e2492bb01e2f40f8b182a9a780bd75823",
+      "references": [
+        "/workspace/scratch/fc8dfd468718/generated_images/exec-da755bf6-d786-4e2a-983e-9fbb2b28bb3c.png",
+        "/workspace/scratch/fc8dfd468718/reference-textures/egipat.png"
+      ],
+      "controleVisuel": "Relecture du 21.10.2026: silhouette montagneuse, sommet decale a droite, chants eclates, semelle et marche claires conserves. Dalle et stele varient seules. Sans gravure ni accessoire. Pilote 1254 px non calibre."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a light rectangular plinth and rear step, a dark upper slab with rounded edges, and a thick irregular mountain-shaped upright with a high peak slightly right of center. Image 2 is only the marmara stone reference. Change ONLY only the upper slab and the mountain-shaped headstone, which are dark stone in the source, including the headstone's rough exposed edges to the exact material of image 2: white crystalline marble with broad softly parallel grey bands and finer darker grey veins. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and rear transverse step in their original light grey-white veined stone. Preserve the bicolor boundaries. Keep the headstone edges rough as an unpolished finish of the variable headstone stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the dominant peak slightly right of center and the lower mountain shoulder on the left. Do not substitute the left-high skyline of Montagne01. Keep the upper slab's rounded perimeter. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T22:10:52.773838+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-da17747a-3239-46eb-b8a1-7e64959a6c6f.png",
+      "sha256": "9bf44a844eff663ed1ce231debb446f6e360dd989999053265555a8b84cb2b79",
+      "references": [
+        "/workspace/scratch/fc8dfd468718/generated_images/exec-da755bf6-d786-4e2a-983e-9fbb2b28bb3c.png",
+        "/workspace/scratch/fc8dfd468718/reference-textures/marmara.png"
+      ],
+      "controleVisuel": "Relecture du 21.10.2026: silhouette montagneuse, sommet decale a droite, chants eclates, semelle et marche claires conserves. Dalle et stele varient seules. Sans gravure ni accessoire. Pilote 1254 px non calibre."
+    }
+  }
+}

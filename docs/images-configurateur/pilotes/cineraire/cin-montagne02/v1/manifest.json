@@ -1,0 +1,143 @@
+{
+  "modeleId": "cin-montagne02",
+  "referenceInterne": "CIN-MONTAGNE02",
+  "famille": "cineraire",
+  "sourceLibraryId": "libfile_9a4236471b948191a6aa09cb4014e85c",
+  "nomPublic": null,
+  "version": 1,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "cin-montagne02-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "4ae11eda7ced4dde2ffbc9b3245136daba42fdd5ae957c45c0be15ecbd14b7e6",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2928223,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "cin-montagne02-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "4880c8d78b74bc47a1c14bba49a71a9f3d6b88140f46826348ac0d25b41402ff",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2790715,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "cin-montagne02-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "a6f520dffcc5de65ee046bbfb114bcc109b532f1e55d51d63ec00c1970e1c047",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2933374,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "cin-montagne02-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "6b5df8a30dd890040020f7a46c6c87f4b3db4fa52f11d0ce6e9941fbe4eaba62",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2871409,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "royal",
+      "image": "cin-montagne02-royal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "fac97b1624b32bcde9e22c885cca24d13c8fb73838fb2f919f21d048cc7849b1",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2927692,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "vizag-blue",
+      "image": "cin-montagne02-vizag-blue.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png",
+      "sha256": "0223a8fcab8467f298fafc871b4dc2e6f05a67a02894bb664e7c8aac7d38d3e8",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2842997,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "viscount-white",
+      "image": "cin-montagne02-viscount-white.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png",
+      "sha256": "b50fe0219fd5baacac53a20b0a9d0ebba87da479aa5af777250d8dfc3aca0e11",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2820395,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rosso-porrino",
+      "image": "cin-montagne02-rosso-porrino.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png",
+      "sha256": "ef6688f1f92e3dbbbbd1131ff07454a75a5bd0591f9f5ab3e4190b30cdacdf0f",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2800408,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "egipat",
+      "image": "cin-montagne02-egipat.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png",
+      "sha256": "bde83279331731961f76109b97cd463e2492bb01e2f40f8b182a9a780bd75823",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2978716,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "marmara",
+      "image": "cin-montagne02-marmara.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png",
+      "sha256": "9bf44a844eff663ed1ce231debb446f6e360dd989999053265555a8b84cb2b79",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2419603,
+      "integritePngVerifiee": true
+    }
+  ],
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantesPresentes": 10,
+  "variantesCibles": 10,
+  "dernierControleIntegrite": "2026-10-20T22:10:52.773838+00:00",
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "validationConfigurateur": false
+}

@@ -1,0 +1,12 @@
+# CIN-SATURNE - pilote v1
+
+Source : libfile_363a7d241e148191b88b4b9434b9a4d8.
+Geometrie et zones physiques a valider.
+
+Une vue par matiere ; nom public et calibration non valides.
+
+<!-- production-live -->
+
+Etat courant : 4/10 variantes.
+Presentes : bengal, rozabeta, paradiso, jablanica.
+Voir manifest.json pour dimensions et SHA256 ; prompts-exacts.json pour les nouveaux appels.
