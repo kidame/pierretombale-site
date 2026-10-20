@@ -99,6 +99,17 @@
         "/workspace/scratch/fc8dfd468718/reference-textures/egipat.png"
       ],
       "controleVisuel": "Relecture du 21.10.2026: stele rectangulaire, socle a etages, champs courbes clairs fixes sur stele et dalle, fond et cadrage conserves. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument on a layered rectangular plinth, with a rectangular upright headstone and thick upper slab carrying matching curved light-stone corner fields. Image 2 is only the marmara stone reference. Change ONLY the dark primary stone of the projecting base, rear support, upper slab and large central headstone field, excluding every light curved insert to the exact material of image 2: white crystalline marble with broad softly parallel grey bands and finer darker grey veins. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the two light curved corner fields of the headstone and the matching light curved fields on the upper slab in their original light granular stone. Preserve every curved material boundary exactly, including the light part visible at the rear support junction. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The light curved fields are fixed material zones, not removable decorations. Preserve the straight rectangular headstone outline and the slab's softened outer edges. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T23:04:41.662892+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-50e93756-b215-47ee-8f15-a9c8259128bf.png",
+      "sha256": "7678373fa528c1aeacadd95efd548b67a293d1cccd8ffaba12098e4857f94931",
+      "references": [
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/pilotes/cineraire/cin-saturne/v1/cin-saturne-bengal.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/marmara-texture-v1.png"
+      ],
+      "controleVisuel": "Stele rectangulaire, socle a etages, champs courbes clairs fixes sur stele et dalle, fond et cadrage conserves. La pierre principale reprend le marbre Marmara blanc a bandes grises. Sans texte ni accessoire. Pilote 1254 px non calibre."
     }
   }
 }

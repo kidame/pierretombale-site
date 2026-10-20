@@ -7,6 +7,6 @@ Une vue par matiere ; nom public et calibration non valides.
 
 <!-- production-live -->
 
-Etat courant : 9/10 variantes.
-Presentes : bengal, rozabeta, paradiso, jablanica, royal, vizag-blue, viscount-white, rosso-porrino, egipat.
+Etat courant : 10/10 variantes.
+Presentes : bengal, rozabeta, paradiso, jablanica, royal, vizag-blue, viscount-white, rosso-porrino, egipat, marmara.
 Voir manifest.json pour dimensions et SHA256 ; prompts-exacts.json pour les nouveaux appels.

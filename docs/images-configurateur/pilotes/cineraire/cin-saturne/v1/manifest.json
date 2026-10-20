@@ -113,15 +113,27 @@
       ],
       "tailleOctets": 2848866,
       "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "marmara",
+      "image": "cin-saturne-marmara.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png",
+      "sha256": "7678373fa528c1aeacadd95efd548b67a293d1cccd8ffaba12098e4857f94931",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2309907,
+      "integritePngVerifiee": true
     }
   ],
   "statut": "pilote-a-valider",
   "vuesParVariante": 1,
   "calibration": null,
   "contoursPixelValides": false,
-  "variantesPresentes": 9,
+  "variantesPresentes": 10,
   "variantesCibles": 10,
-  "dernierControleIntegrite": "2026-10-20T22:11:54.802471+00:00",
+  "dernierControleIntegrite": "2026-10-20T23:04:41.662892+00:00",
   "dimensionsPx": [
     1254,
     1254
