@@ -1861,42 +1861,67 @@
         {
           "matiereId": "bengal",
           "fichier": "cin-nautis-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "234fcd1dc299dafeb0cd175add0fafe1274f34995a6fd3ffaca38d7cecf6db6b",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2749662,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "cin-nautis-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "7c9dccf1720b4e09510deb76e5cc4be45b1f0177cfc2f871324165475c3a1f39",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2604267,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "cin-nautis-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "7c3926621c0eee1e898093c040aa2ba852e07078262984600c32c9239b53a140",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2709321,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "cin-nautis-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "7cf10464252ec2dfea29a350280617fd348f64309a84bb00f3be14f3eea33e93",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2685065,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "cin-nautis-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "95e7f0d78acff5482ee9e07345429b38a2b38eaf06cd9078093c26159db1a0fd",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2652578,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -3125,15 +3150,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T12:56:54.897136+00:00",
-    "imagesCompletes": 130,
-    "combinaisonsRestantes": 140,
+    "dateControle": "2026-10-20T13:01:13.173792+00:00",
+    "imagesCompletes": 135,
+    "combinaisonsRestantes": 135,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "cin-nautis",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3149,57 +3174,56 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T12:57:48.476144+00:00",
+    "dateFin": "2026-10-20T13:01:39.879494+00:00",
     "combinaisons": [
       {
-        "modeleId": "cin-montagne01",
-        "matiereId": "vizag-blue"
+        "modeleId": "cin-nautis",
+        "matiereId": "bengal"
       },
       {
-        "modeleId": "cin-montagne01",
-        "matiereId": "viscount-white"
+        "modeleId": "cin-nautis",
+        "matiereId": "rozabeta"
       },
       {
-        "modeleId": "cin-montagne01",
-        "matiereId": "rosso-porrino"
+        "modeleId": "cin-nautis",
+        "matiereId": "paradiso"
       },
       {
-        "modeleId": "cin-montagne01",
-        "matiereId": "egipat"
+        "modeleId": "cin-nautis",
+        "matiereId": "jablanica"
       },
       {
-        "modeleId": "cin-montagne01",
-        "matiereId": "marmara"
+        "modeleId": "cin-nautis",
+        "matiereId": "royal"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 125,
-    "totalApres": 130,
+    "totalAvant": 130,
+    "totalApres": 135,
     "statut": "termine",
-    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
+    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
   },
   "prochainLot": [
     {
       "modeleId": "cin-nautis",
-      "matiereId": "bengal"
+      "matiereId": "vizag-blue"
     },
     {
       "modeleId": "cin-nautis",
-      "matiereId": "rozabeta"
+      "matiereId": "viscount-white"
     },
     {
       "modeleId": "cin-nautis",
-      "matiereId": "paradiso"
+      "matiereId": "rosso-porrino"
     },
     {
       "modeleId": "cin-nautis",
-      "matiereId": "jablanica"
+      "matiereId": "egipat"
     },
     {
       "modeleId": "cin-nautis",
-      "matiereId": "royal"
+      "matiereId": "marmara"
     }
   ]
 }

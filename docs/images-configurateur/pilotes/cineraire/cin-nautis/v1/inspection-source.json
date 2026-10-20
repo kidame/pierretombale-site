@@ -1,0 +1,37 @@
+{
+  "library_file_id": "libfile_69f17f5e19148191b2577f26c8062005",
+  "current_version_number": 0,
+  "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-nautis/CIN-NAUTIS.png",
+  "source_file_name": "CIN-NAUTIS.png",
+  "inspection_pending": false,
+  "geometry": "Semelle rectangulaire, deux niveaux courbes superposes en forme de vagues. Stele sculptee en voilier: coque incurvee basse et deux surfaces de voile effilees separant une ligne de mat courbe. Galet clair pose a gauche.",
+  "fixed_features": [
+    "Voilier sculpte complet, coque et voiles",
+    "Vagues/ressauts courbes de la base"
+  ],
+  "removable_accessories": [
+    "Galet oval clair pose sur la dalle a gauche, probablement decoratif"
+  ],
+  "material_zones": "Base et vagues bleu sombre; bateau en pierre claire veinee. Galet en pierre claire.",
+  "ambiguity": "La fixation du galet n'est pas visible; il pourrait etre une petite plaque ovale. Traiter son retrait avec prudence selon la regle generale du brief.",
+  "generation_note": "Conserver le contraste entre bateau et base ainsi que les vides/limites des deux voiles; ne pas simplifier en stele triangulaire.",
+  "reference_dimensions_px": [
+    1448,
+    1086
+  ],
+  "library_xattr_verified": true,
+  "decisionPilote": "Bicolore conserve : base et vagues varient; voilier clair veine reste fixe. Le galet clair separe est traite comme accessoire pose, fixation non visible. Coque, voiles et leurs limites sont structurelles.",
+  "specificationGeneration": {
+    "id": "cin-nautis",
+    "family": "cineraire",
+    "geometry": "a compact cinerary monument with a rectangular stone plinth, two layered wave-shaped stone surfaces and an upright sculpted light-stone sailboat with a curved hull and two tapered sails",
+    "stoneAreas": "only the rectangular plinth and the two wave-shaped base levels, which are dark blue granite in the source",
+    "fixedAreas": "Keep the complete sculpted sailboat, including its curved hull, both sails and the curved mast division, in the original light grey-white veined stone. Preserve its natural veining, all gaps, incised dividing lines and silhouette.",
+    "extraConstraints": "Do not recolor the light sailboat with the selected base material. Do not turn the two sails into one triangular headstone or flatten the layered waves.",
+    "masterDescription": "Preserve the rectangular lowest plinth and two curved wave-shaped layers above it. Keep the large sculpted sailboat at the rear: a low curved hull, two tapered billowing sails and the curved central mast division. The dark blue base and waves are the variable primary stone; the complete light veined boat remains fixed secondary stone.",
+    "removeDescription": "Remove the loose light oval pebble resting on the left of the slab and its reflections. Leave the complete wave-shaped slab underneath intact.",
+    "interpretationNote": "Bicolore conserve : base et vagues varient; voilier clair veine reste fixe. Le galet clair separe est traite comme accessoire pose, fixation non visible. Coque, voiles et leurs limites sont structurelles.",
+    "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-nautis/CIN-NAUTIS.png",
+    "sourceLibraryId": "libfile_69f17f5e19148191b2577f26c8062005"
+  }
+}

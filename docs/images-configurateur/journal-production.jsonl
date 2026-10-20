@@ -82,3 +82,8 @@
 {"date": "2026-10-20T12:56:36.789767+00:00", "modeleId": "cin-montagne01", "matiereId": "rosso-porrino", "sha256": "843afc945b41b8166f474a815662c2579da8ec2e3221e939f92e25d1f3da1b30", "total": 128}
 {"date": "2026-10-20T12:56:46.494593+00:00", "modeleId": "cin-montagne01", "matiereId": "egipat", "sha256": "49c035146702f87a8762b29b4407961c4e08798022028114a65c9d5c892e54d6", "total": 129}
 {"date": "2026-10-20T12:56:54.897136+00:00", "modeleId": "cin-montagne01", "matiereId": "marmara", "sha256": "3d0ef2bd644ec564110f0492b7ac3c2f62645d564356674df1689b28ed8e4527", "total": 130}
+{"date": "2026-10-20T13:00:36.385493+00:00", "modeleId": "cin-nautis", "matiereId": "bengal", "sha256": "234fcd1dc299dafeb0cd175add0fafe1274f34995a6fd3ffaca38d7cecf6db6b", "total": 131}
+{"date": "2026-10-20T13:00:45.677567+00:00", "modeleId": "cin-nautis", "matiereId": "rozabeta", "sha256": "7c9dccf1720b4e09510deb76e5cc4be45b1f0177cfc2f871324165475c3a1f39", "total": 132}
+{"date": "2026-10-20T13:00:55.413671+00:00", "modeleId": "cin-nautis", "matiereId": "paradiso", "sha256": "7c3926621c0eee1e898093c040aa2ba852e07078262984600c32c9239b53a140", "total": 133}
+{"date": "2026-10-20T13:01:03.801396+00:00", "modeleId": "cin-nautis", "matiereId": "jablanica", "sha256": "7cf10464252ec2dfea29a350280617fd348f64309a84bb00f3be14f3eea33e93", "total": 134}
+{"date": "2026-10-20T13:01:13.173792+00:00", "modeleId": "cin-nautis", "matiereId": "royal", "sha256": "95e7f0d78acff5482ee9e07345429b38a2b38eaf06cd9078093c26159db1a0fd", "total": 135}
