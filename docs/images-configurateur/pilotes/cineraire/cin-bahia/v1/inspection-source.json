@@ -1,0 +1,35 @@
+{
+  "library_file_id": "libfile_cc288cda143481918fdb5cebd6cd857a",
+  "current_version_number": 0,
+  "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-bahia/CIN BAHIA.png",
+  "source_file_name": "CIN BAHIA.png",
+  "inspection_pending": false,
+  "geometry": "Stele simple rectangulaire verticale, sur une longue marche arriere. Base rectangulaire a deux niveaux; grande dalle intermediaire legerement en retrait de la semelle.",
+  "fixed_features": [
+    "Stele rectangulaire a sommet droit",
+    "Marche arriere et deux niveaux de base"
+  ],
+  "removable_accessories": [],
+  "material_zones": "Composition bicolore: semelle et marche arriere en pierre claire tres mouchetee; dalle intermediaire et stele en pierre gris-bleu.",
+  "ambiguity": "Aucun accessoire visible. Deux pierres distinctes sont visibles, et non un simple changement d'eclairage.",
+  "generation_note": "Conserver la repartition bicolore et les joints entre pieces.",
+  "reference_dimensions_px": [
+    1448,
+    1086
+  ],
+  "library_xattr_verified": true,
+  "decisionPilote": "Bicolore confirme visuellement. Zone variable retenue : stele et dalle intermediaire gris-bleu d'origine. Semelle et marche arriere claires conservees comme seconde pierre fixe; choix pilote sans multiplier les combinaisons.",
+  "specificationGeneration": {
+    "id": "cin-bahia",
+    "family": "cineraire",
+    "geometry": "a compact cinerary monument with a straight rectangular upright headstone, a wide rear transverse step, and two stacked rectangular base slabs",
+    "stoneAreas": "only the main upright headstone and the upper rectangular horizontal slab, which are blue-grey granite in the source",
+    "fixedAreas": "Keep the lower projecting plinth and the full rear transverse step in their original light grey-white coarse crystalline stone. Preserve both material boundaries and all joints.",
+    "extraConstraints": "Do not turn the two materials into a single stone. The headstone top and sides remain straight, with no added curves, arch, ornament or inscription.",
+    "masterDescription": "Preserve the simple upright rectangular headstone with a straight horizontal top, the broad transverse rear step supporting it, the rectangular upper slab in front of that step, and the wider rectangular lower plinth. Keep the light coarse-grained lower plinth and rear step as fixed secondary stone; only the blue-grey headstone and upper slab are the variable primary stone.",
+    "removeDescription": "No removable accessories or surface decorations are present.",
+    "interpretationNote": "Bicolore confirme visuellement. Zone variable retenue : stele et dalle intermediaire gris-bleu d'origine. Semelle et marche arriere claires conservees comme seconde pierre fixe; choix pilote sans multiplier les combinaisons.",
+    "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-bahia/CIN BAHIA.png",
+    "sourceLibraryId": "libfile_cc288cda143481918fdb5cebd6cd857a"
+  }
+}

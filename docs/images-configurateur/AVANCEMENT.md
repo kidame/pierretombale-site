@@ -1,8 +1,8 @@
 # Avancement des images
 
-Mis a jour : 2026-10-20T12:20:18.930150+00:00
+Mis a jour : 2026-10-20T12:26:35.817252+00:00
 
-Images completes archivees : 100/270.
+Images completes archivees : 105/270.
 Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 
 | Famille | Modele interne | Completes | Statut |
@@ -17,7 +17,7 @@ Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 | funeraire | MUSULMAN 4 | 10/10 | Lot complet |
 | cineraire | CIN8 | 10/10 | Lot complet |
 | cineraire | CIN-NIVORA | 10/10 | Lot complet |
-| cineraire | CIN BAHIA | 0/10 | A produire |
+| cineraire | CIN BAHIA | 5/10 | En cours |
 | cineraire | CIN-AQUARIUS | 0/10 | A produire |
 | cineraire | CIN-MONTAGNE01 | 0/10 | A produire |
 | cineraire | CIN-NAUTIS | 0/10 | A produire |
@@ -35,6 +35,6 @@ Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 | funeraire | CORAZON | 0/10 | A produire |
 | funeraire | DOUCEUR | 0/10 | A produire |
 
-Prochaine action : {'modeleId': 'cin-bahia', 'matiereId': 'bengal', 'action': 'Produire depuis la base Bengal puis archiver avant la variante suivante.'}
+Prochaine action : {'modeleId': 'cin-bahia', 'matiereId': 'vizag-blue', 'action': 'Produire depuis la base Bengal puis archiver avant la variante suivante.'}
 
 Source de verite detaillee : suivi-serie.json. Prompts exacts et SHA256 dans chaque dossier.

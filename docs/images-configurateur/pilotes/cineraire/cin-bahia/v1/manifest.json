@@ -1,0 +1,83 @@
+{
+  "modeleId": "cin-bahia",
+  "referenceInterne": "CIN BAHIA",
+  "famille": "cineraire",
+  "sourceLibraryId": "libfile_cc288cda143481918fdb5cebd6cd857a",
+  "nomPublic": null,
+  "version": 1,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "cin-bahia-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "73a576845793d257ca51e75c8876ad725f560e4db1f6f9e4f4beafa116e0b839",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3039002,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "cin-bahia-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "b9b5b73be02ed03a391ae38cdd7179d89e1ac7de57035d03a42622d579603622",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2904291,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "cin-bahia-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "f684c8f5cf3f0bb196752d7824bfb54bb311f34cdbe1fc87b0a4beb4ef1e3d3a",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2959740,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "cin-bahia-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "d839e7365136758f33d8f8e47b4d14c539f806700bbaffff09cbc3ff7c0ef5a1",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2903635,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "royal",
+      "image": "cin-bahia-royal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "1c5d6ff49ee5276f890d38bad1dafd3f6aa792238f1b667072e7bfcf370833b2",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2956236,
+      "integritePngVerifiee": true
+    }
+  ],
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantesPresentes": 5,
+  "variantesCibles": 10,
+  "dernierControleIntegrite": "2026-10-20T12:26:35.817252+00:00",
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "validationConfigurateur": false
+}

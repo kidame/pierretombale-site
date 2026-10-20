@@ -52,3 +52,8 @@
 {"date": "2026-10-20T12:20:03.152530+00:00", "modeleId": "cin-nivora", "matiereId": "rosso-porrino", "sha256": "eff4cd077aebdeffd6922ee0c20cd6d4a35b63192dbcef720b24b2bd7d35d2df", "total": 98}
 {"date": "2026-10-20T12:20:11.862816+00:00", "modeleId": "cin-nivora", "matiereId": "egipat", "sha256": "6c3d787603c9d6334162d56dca9e34e6e28c5b2bf1eefe3fb8ec0dc897c6a03b", "total": 99}
 {"date": "2026-10-20T12:20:18.930150+00:00", "modeleId": "cin-nivora", "matiereId": "marmara", "sha256": "4cb9afdd0c02af5550923d9aaeb2a96aa496f31275d697b63ad45a407e210a2c", "total": 100}
+{"date": "2026-10-20T12:25:56.476276+00:00", "modeleId": "cin-bahia", "matiereId": "bengal", "sha256": "73a576845793d257ca51e75c8876ad725f560e4db1f6f9e4f4beafa116e0b839", "total": 101}
+{"date": "2026-10-20T12:26:06.609078+00:00", "modeleId": "cin-bahia", "matiereId": "rozabeta", "sha256": "b9b5b73be02ed03a391ae38cdd7179d89e1ac7de57035d03a42622d579603622", "total": 102}
+{"date": "2026-10-20T12:26:16.824866+00:00", "modeleId": "cin-bahia", "matiereId": "paradiso", "sha256": "f684c8f5cf3f0bb196752d7824bfb54bb311f34cdbe1fc87b0a4beb4ef1e3d3a", "total": 103}
+{"date": "2026-10-20T12:26:26.189835+00:00", "modeleId": "cin-bahia", "matiereId": "jablanica", "sha256": "d839e7365136758f33d8f8e47b4d14c539f806700bbaffff09cbc3ff7c0ef5a1", "total": 104}
+{"date": "2026-10-20T12:26:35.817252+00:00", "modeleId": "cin-bahia", "matiereId": "royal", "sha256": "1c5d6ff49ee5276f890d38bad1dafd3f6aa792238f1b667072e7bfcf370833b2", "total": 105}
