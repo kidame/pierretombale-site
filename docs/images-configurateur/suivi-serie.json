@@ -1362,42 +1362,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "cin-nivora-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "b2af6046283124f542e6834ee7cfd0695d905de7057457b32dd6bef8659fb17c",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2480886,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "cin-nivora-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "2aae2b7ae7cf30819e29861bb4e7afb0de64df1c432dce5fd1797f6a7c055685",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2439417,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "cin-nivora-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "eff4cd077aebdeffd6922ee0c20cd6d4a35b63192dbcef720b24b2bd7d35d2df",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2445222,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "cin-nivora-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "6c3d787603c9d6334162d56dca9e34e6e28c5b2bf1eefe3fb8ec0dc897c6a03b",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2501213,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "cin-nivora-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "4cb9afdd0c02af5550923d9aaeb2a96aa496f31275d697b63ad45a407e210a2c",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2223370,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -1408,7 +1433,7 @@
       "sourceLibraryId": "libfile_cc288cda143481918fdb5cebd6cd857a",
       "dossier": "pilotes/cineraire/cin-bahia/v1",
       "ordre": 11,
-      "notes": "Geometrie et zones physiques a valider.",
+      "notes": "Stele simple rectangulaire verticale, sur une longue marche arriere. Base rectangulaire a deux niveaux; grande dalle intermediaire legerement en retrait de la semelle. Bicolore confirme visuellement. Zone variable retenue : stele et dalle intermediaire gris-bleu d'origine. Semelle et marche arriere claires conservees comme seconde pierre fixe; choix pilote sans multiplier les combinaisons. Geometrie atelier et zones physiques a valider.",
       "variantes": [
         {
           "matiereId": "bengal",
@@ -2950,15 +2975,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T12:14:39.812542+00:00",
-    "imagesCompletes": 95,
-    "combinaisonsRestantes": 175,
+    "dateControle": "2026-10-20T12:20:18.930150+00:00",
+    "imagesCompletes": 100,
+    "combinaisonsRestantes": 170,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "cin-nivora",
-    "matiereId": "vizag-blue",
+    "modeleId": "cin-bahia",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -2974,56 +2999,57 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T12:15:59.303307+00:00",
+    "dateFin": "2026-10-20T12:21:16.460358+00:00",
     "combinaisons": [
       {
         "modeleId": "cin-nivora",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "cin-nivora",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "cin-nivora",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "cin-nivora",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "cin-nivora",
-        "matiereId": "royal"
+        "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 90,
-    "totalApres": 95,
+    "totalAvant": 95,
+    "totalApres": 100,
     "statut": "termine",
+    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
   },
   "prochainLot": [
     {
-      "modeleId": "cin-nivora",
-      "matiereId": "vizag-blue"
+      "modeleId": "cin-bahia",
+      "matiereId": "bengal"
     },
     {
-      "modeleId": "cin-nivora",
-      "matiereId": "viscount-white"
+      "modeleId": "cin-bahia",
+      "matiereId": "rozabeta"
     },
     {
-      "modeleId": "cin-nivora",
-      "matiereId": "rosso-porrino"
+      "modeleId": "cin-bahia",
+      "matiereId": "paradiso"
     },
     {
-      "modeleId": "cin-nivora",
-      "matiereId": "egipat"
+      "modeleId": "cin-bahia",
+      "matiereId": "jablanica"
     },
     {
-      "modeleId": "cin-nivora",
-      "matiereId": "marmara"
+      "modeleId": "cin-bahia",
+      "matiereId": "royal"
     }
   ]
 }

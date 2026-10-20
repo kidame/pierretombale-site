@@ -121,3 +121,11 @@ Pour les fichiers locaux utilises comme references, lire view_image avec detail=
 Apres l accuse final de sauvegarde, conserver chemin, hash, prompt et controle visuel ; liberer les grandes donnees base64 temporaires pour ne pas accumuler toute la serie en memoire. Le PNG original et sa copie VPS restent intacts.
 
 Les blocs de transfert de 512000 caracteres base64 ont ete verifies pendant cette continuation. Les envois restent strictement sequentiels. Lire l accuse final et ne compter l image qu apres validation SHA256 et PNG par le recepteur.
+
+## Orchestration reusable des sets de produits
+
+La sequence fonctionne par set de 10, avec deux lots de 5 et une seule generation active. Les transferts sont regroupes a la fin de chaque lot, sans ecriture documentaire bloquante entre les generations.
+
+Les fonctions de production testees sont conservees dans orchestration-chatgpt.json ; les fiches des modeles et les identites des sources sont dans specifications-modeles.json. Ces fonctions s utilisent dans functions.exec de ChatGPT, pas comme un worker imagegen sur le VPS. Reacquerir le verrou et redefinir les PID de la session. Les chemins locaux sont temporaires : verifier leur presence avant reutilisation, rematerialiser les references originales si necessaire. Le registre courant et les fichiers archives restent la source du compte reel.
+
+Les blocs de 1024000 caracteres base64 ont ete controles pendant les sets Musulman 4 et CIN8. Les envois restent sequentiels et chaque accuse final valide le fichier complet. Apres archivage, liberer les donnees base64 temporaires ; conserver les chemins, prompts, SHA256 et inspections.

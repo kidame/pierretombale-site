@@ -1,0 +1,682 @@
+{
+  "version": 1,
+  "usage": "Fiches preparees a partir des sources inspectees. Les chemins locaux sont temporaires : s'ils ont disparu, rematerialiser la version sourceLibraryId du registre. Conserver les zones fixes; seuls stoneAreas varient. Avant tout nouveau master, inspecter a nouveau sa source si elle n'a pas ete vue dans la conversation.",
+  "modelSpecs": {
+    "cin-nivora": {
+      "id": "cin-nivora",
+      "family": "cineraire",
+      "geometry": "a compact cinerary monument with two stacked rectangular stone slabs, a rear transverse stone step, a large circular openwork steel tree headpiece, and a small thick upright stone heart at the front left",
+      "stoneAreas": "only the stone surfaces of the two base slabs, rear step and small upright heart; never the steel tree or its circular frame",
+      "fixedAreas": "Keep the entire circular openwork tree in anthracite grey steel, including its rim, roots, trunk, branches, leaves, metallic reflections and every open gap. Preserve the small upright heart in its exact position.",
+      "extraConstraints": "The tree is real pierced metal, not a stone slab, engraving, printed picture or filled disc. Do not fill any openings or remove the small heart.",
+      "masterDescription": "Preserve the two stacked rectangular base slabs with the wider lower plinth and narrower upper slab, the transverse step at the back, the large circular steel ring filled by an openwork tree with roots, branches and leaves, and the thick upright stone heart near the front-left of the ring. Preserve all actual cutout spaces and the silhouette of every steel part.",
+      "removeDescription": "There are no flowers or vases to remove. Keep the upright stone heart as part of this pilot model.",
+      "interpretationNote": "Arbre en acier ajoure conserve entierement, sans changement de matiere. Le petit coeur separe est conserve par prudence comme composant du modele; sa fixation n'est pas visible. Seules les pieces en pierre varient.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-nivora/CIN-NIVORA.png",
+      "sourceLibraryId": "libfile_555f2952e5208191bd8b2c71e1434091"
+    },
+    "cin-bahia": {
+      "id": "cin-bahia",
+      "family": "cineraire",
+      "geometry": "a compact cinerary monument with a straight rectangular upright headstone, a wide rear transverse step, and two stacked rectangular base slabs",
+      "stoneAreas": "only the main upright headstone and the upper rectangular horizontal slab, which are blue-grey granite in the source",
+      "fixedAreas": "Keep the lower projecting plinth and the full rear transverse step in their original light grey-white coarse crystalline stone. Preserve both material boundaries and all joints.",
+      "extraConstraints": "Do not turn the two materials into a single stone. The headstone top and sides remain straight, with no added curves, arch, ornament or inscription.",
+      "masterDescription": "Preserve the simple upright rectangular headstone with a straight horizontal top, the broad transverse rear step supporting it, the rectangular upper slab in front of that step, and the wider rectangular lower plinth. Keep the light coarse-grained lower plinth and rear step as fixed secondary stone; only the blue-grey headstone and upper slab are the variable primary stone.",
+      "removeDescription": "No removable accessories or surface decorations are present.",
+      "interpretationNote": "Bicolore confirme visuellement. Zone variable retenue : stele et dalle intermediaire gris-bleu d'origine. Semelle et marche arriere claires conservees comme seconde pierre fixe; choix pilote sans multiplier les combinaisons.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-bahia/CIN BAHIA.png",
+      "sourceLibraryId": "libfile_cc288cda143481918fdb5cebd6cd857a"
+    },
+    "cin-aquarius": {
+      "id": "cin-aquarius",
+      "family": "cineraire",
+      "geometry": "a compact cinerary monument with a rectangular base slab, a rear support in two levels, and an asymmetric curved upright headstone whose wave-shaped top slopes down to the right",
+      "stoneAreas": "all stone surfaces of the base, the two rear support levels and the curved upright headstone",
+      "fixedAreas": "Preserve all stone components, the two support levels and the asymmetric headstone outline as fixed geometry.",
+      "extraConstraints": "Keep the highest point on the left, the small concave shoulder below it and the descending wave toward the right. Do not make the headstone symmetrical or rectangular.",
+      "masterDescription": "Preserve the rectangular base slab and the two stacked support levels under the rear headstone. The upright has curved sides, a high left point with a concave shoulder below it, and a wave-shaped top descending toward the right. Preserve its thickness, all curves and both support levels.",
+      "removeDescription": "Remove the round vase with its small neck at the front left, the bamboo stalk and leaves, and all their reflections in the headstone and slab. Fill the vacated area with plain matching stone.",
+      "interpretationNote": "Vase et bambou sont amovibles. Leurs reflets doivent aussi disparaitre. Aucun bicolore structurel identifie.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-aquarius/CIN-AQUARIUS.png",
+      "sourceLibraryId": "libfile_6d912d4257d48191ba48a95e0c5fbb59"
+    },
+    "cin-montagne01": {
+      "id": "cin-montagne01",
+      "family": "cineraire",
+      "geometry": "a compact cinerary monument with a single rectangular base slab and a thick upright headstone whose irregular mountain skyline has its highest peak on the left and lower peaks toward the right",
+      "stoneAreas": "all stone surfaces of the rectangular slab and mountain-shaped headstone, retaining the different polished and rough finishes",
+      "fixedAreas": "Keep the headstone's thick irregular broken-stone edge as rough natural stone. It is a finish of the same selected material, not a separate white insert.",
+      "extraConstraints": "Preserve the precise external mountain skyline, highest on the left and descending through smaller peaks toward the right. Do not replace the rough edges with a smooth bevel.",
+      "masterDescription": "Preserve the plain rectangular slab and the thick irregular mountain-shaped upright. The tall main peak is on the left, followed by an intermediate peak and a lower right peak. Keep the uneven chipped perimeter and rough stone edges, while the broad front face remains polished.",
+      "removeDescription": "Remove only the white surface engraving of mountains and pine trees, leaving a plain polished stone face. Keep the actual mountain-shaped outer contour and rough edge geometry.",
+      "interpretationNote": "Le paysage blanc frontal est traite comme gravure optionnelle. La silhouette montagneuse et les chants eclates restent. Les chants clairs sont interpretes comme finition brute de la meme pierre, pas comme incrustation.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-montagne01/CIN-MONTAGNE01.png",
+      "sourceLibraryId": "libfile_2a316d6ce1388191b2a548a52e7cee86"
+    },
+    "cin-nautis": {
+      "id": "cin-nautis",
+      "family": "cineraire",
+      "geometry": "a compact cinerary monument with a rectangular stone plinth, two layered wave-shaped stone surfaces and an upright sculpted light-stone sailboat with a curved hull and two tapered sails",
+      "stoneAreas": "only the rectangular plinth and the two wave-shaped base levels, which are dark blue granite in the source",
+      "fixedAreas": "Keep the complete sculpted sailboat, including its curved hull, both sails and the curved mast division, in the original light grey-white veined stone. Preserve its natural veining, all gaps, incised dividing lines and silhouette.",
+      "extraConstraints": "Do not recolor the light sailboat with the selected base material. Do not turn the two sails into one triangular headstone or flatten the layered waves.",
+      "masterDescription": "Preserve the rectangular lowest plinth and two curved wave-shaped layers above it. Keep the large sculpted sailboat at the rear: a low curved hull, two tapered billowing sails and the curved central mast division. The dark blue base and waves are the variable primary stone; the complete light veined boat remains fixed secondary stone.",
+      "removeDescription": "Remove the loose light oval pebble resting on the left of the slab and its reflections. Leave the complete wave-shaped slab underneath intact.",
+      "interpretationNote": "Bicolore conserve : base et vagues varient; voilier clair veine reste fixe. Le galet clair separe est traite comme accessoire pose, fixation non visible. Coque, voiles et leurs limites sont structurelles.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-nautis/CIN-NAUTIS.png",
+      "sourceLibraryId": "libfile_69f17f5e19148191b2577f26c8062005"
+    },
+    "cin-aloria": {
+      "id": "cin-aloria",
+      "family": "cineraire",
+      "geometry": "a compact cinerary monument with two stacked rectangular base slabs, a rear step, and an asymmetric curved headstone with a broad dark crescent integrated along its left side",
+      "stoneAreas": "only the base slabs, rear step and broad main headstone field, which are light speckled stone in the source",
+      "fixedAreas": "Keep the broad integrated left crescent of the headstone in its original dark polished stone, preserving its exact curved boundary and the fine light junction line.",
+      "extraConstraints": "The dark crescent is a fixed structural stone zone, not a shadow or optional ornament. Do not remove it, widen it or recolor it with the selected main material.",
+      "masterDescription": "Preserve the wider lower rectangular plinth, upper rectangular slab and rear supporting step. Keep the tall asymmetric headstone with a high left tip, top flowing down toward the right, rounded right side and curved left side. Preserve the broad dark crescent on its left as fixed secondary stone; the rest of the monument is the variable primary stone.",
+      "removeDescription": "Remove the tall waisted dark vase, both roses, green foliage and all their reflections. Keep the underlying slab plain.",
+      "interpretationNote": "La bande sombre de stele est une seconde pierre fixe, distincte d'une ombre. La pierre claire du corps principal varie. Vase et fleurs retires avec leurs reflets.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-aloria/CIN-ALORIA.png",
+      "sourceLibraryId": "libfile_a5b0215c74cc8191ada97fa9108a9925"
+    },
+    "cin-tombale": {
+      "id": "cin-tombale",
+      "family": "cineraire",
+      "geometry": "a compact cinerary monument consisting of one single low thick rectangular stone slab with a flat top and straight sides, without a headstone",
+      "stoneAreas": "all visible surfaces of the single rectangular stone slab",
+      "fixedAreas": "Preserve this as one solid slab only, with its original thickness, flat top, straight sides and fine edges.",
+      "extraConstraints": "Do not add a headstone, vertical plaque, second plinth, frame, step, vase, cross, engraving or other component.",
+      "masterDescription": "Preserve exactly the single low thick rectangular stone block, its planar horizontal top, straight vertical side faces, right-angled footprint and fine edges. There is no separate base beneath it and no upright element.",
+      "removeDescription": "No removable accessories or surface decorations are present.",
+      "interpretationNote": "Modele sans stele : une dalle unique, sans socle ajoute. Aucune dimension physique fiable deduite de la perspective.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-tombale/CIN-TOMBALE.png",
+      "sourceLibraryId": "libfile_c8988e6128448191b62aee86daf6f595"
+    },
+    "cin-montagne02": {
+      "id": "cin-montagne02",
+      "family": "cineraire",
+      "geometry": "a compact cinerary monument with a light rectangular plinth and rear step, a dark upper slab with rounded edges, and a thick irregular mountain-shaped upright with a high peak slightly right of center",
+      "stoneAreas": "only the upper slab and the mountain-shaped headstone, which are dark stone in the source, including the headstone's rough exposed edges",
+      "fixedAreas": "Keep the lower projecting plinth and rear transverse step in their original light grey-white veined stone. Preserve the bicolor boundaries. Keep the headstone edges rough as an unpolished finish of the variable headstone stone.",
+      "extraConstraints": "Preserve the dominant peak slightly right of center and the lower mountain shoulder on the left. Do not substitute the left-high skyline of Montagne01. Keep the upper slab's rounded perimeter.",
+      "masterDescription": "Preserve the rectangular lowest plinth with softened edges, the slightly inset thick upper slab with a rounded perimeter, the transverse rear supporting step, and the thick mountain-shaped headstone. Its highest point lies slightly right of center with a lower shoulder on the left. Preserve its irregular chipped perimeter. The light lower plinth and rear step are fixed secondary stone; the dark upper slab and headstone are variable primary stone.",
+      "removeDescription": "Remove the white mountain-and-pine-tree surface engraving and the loose light oval pebble on the front-left slab. Remove the pebble's reflections in the slab and headstone. Preserve all actual peaks and rough edges.",
+      "interpretationNote": "Distinct de Montagne01 par silhouette et bicolore. Semelle et marche claires restent fixes; dalle superieure et stele varient. Gravure optionnelle retiree. Galet traite comme accessoire pose, fixation non visible; son reflet frontal sombre n'est pas une seconde piece.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-montagne02/CIN-MONTAGNE02.png",
+      "sourceLibraryId": "libfile_9a4236471b948191a6aa09cb4014e85c"
+    },
+    "cin-saturne": {
+      "id": "cin-saturne",
+      "family": "cineraire",
+      "geometry": "a compact cinerary monument on a layered rectangular plinth, with a rectangular upright headstone and thick upper slab carrying matching curved light-stone corner fields",
+      "stoneAreas": "the dark primary stone of the projecting base, rear support, upper slab and large central headstone field, excluding every light curved insert",
+      "fixedAreas": "Keep the two light curved corner fields of the headstone and the matching light curved fields on the upper slab in their original light granular stone. Preserve every curved material boundary exactly, including the light part visible at the rear support junction.",
+      "extraConstraints": "The light curved fields are fixed material zones, not removable decorations. Preserve the straight rectangular headstone outline and the slab's softened outer edges.",
+      "masterDescription": "Preserve the straight rectangular upright, projecting lower plinth, inset thick upper slab and transverse rear support. On the headstone, keep the broad dark central field between light curved fields at opposing corners. Preserve the corresponding curved light/dark composition on the upper slab. All originally dark primary stone varies; all light curved fields remain fixed secondary stone.",
+      "removeDescription": "No loose accessories or optional surface engraving are visible.",
+      "interpretationNote": "Limites bicolores courbes conservees exactement. La photo ne distingue pas incrustation et finition; choix pilote : champs clairs fixes, pierre sombre principale variable, sans inventer de joints supplementaires.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-saturne/CIN-SATURNE.png",
+      "sourceLibraryId": "libfile_363a7d241e148191b88b4b9434b9a4d8"
+    },
+    "cin-ovae": {
+      "id": "cin-ovae",
+      "family": "cineraire",
+      "geometry": "a compact cinerary monument with a broad rounded upright narrowing toward its foot, an asymmetric stepped top, a rounded rectangular upper slab, and a dark base and rear support",
+      "stoneAreas": "only the broad lower main field and outer body of the headstone and the rounded rectangular upper slab, which are light stone in the source",
+      "fixedAreas": "Keep the black upper band of the headstone, the entire rear support and the lower projecting base in their original dark stone. Preserve the wavy lower boundary of the upper band and the asymmetric outer headstone contour.",
+      "extraConstraints": "Remove engraving without removing the black upper band. Do not confuse the band boundary with the actual stepped top silhouette.",
+      "masterDescription": "Preserve the broad upright with rounded flanks narrowing toward the bottom, its asymmetric upper contour with a soft step, the low rounded rectangular top slab, rear support and wider lower plinth. The large light main headstone field and light slab are variable primary stone; the dark headstone top band, rear support and lower base are fixed secondary stone.",
+      "removeDescription": "Remove only the engraved landscape in the dark upper band: bridge, birds, plants and water scene. Leave a plain dark stone band with its original outline.",
+      "interpretationNote": "Bandeau noir superieur structurel conserve. Le paysage est une gravure optionnelle distincte. Corps clair de stele et tombale varient; bandeau, support et base sombres restent fixes.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-ovae/CIN-OVAE.png",
+      "sourceLibraryId": "libfile_5403a978a4d48191aa48605ce5b27545"
+    },
+    "cin-esperanza": {
+      "id": "cin-esperanza",
+      "family": "cineraire",
+      "geometry": "a compact cinerary monument with a thick upright pebble-shaped headstone on a rectangular rear support, a broad semicircular-front upper platform with fine layered edges, and a rectangular lower plinth",
+      "stoneAreas": "all stone surfaces of the main headstone, its support, the semicircular-front platform and all base levels",
+      "fixedAreas": "Preserve every layer of the rounded-front platform, the rectangular rear support and the asymmetric pebble-shaped upright as fixed components.",
+      "extraConstraints": "Keep the upright's broadly rounded left side, straighter upper region and more angular right side. Keep the semicircular front and its narrow stacked edge bands.",
+      "masterDescription": "Preserve the rectangular lower plinth and the layered upper platform with a broad semicircular front. Keep the thick rectangular support behind the platform and the massive upright with a pebble-like outline: top nearly straight, left side broadly rounded, right side more angular. Preserve all platform strata and the headstone thickness.",
+      "removeDescription": "Remove the small loose dark heart resting on the separate light oval pebble at the left, including both pieces and their reflections. Leave the underlying platform intact.",
+      "interpretationNote": "Le petit coeur couche sur le galet clair est traite comme ensemble decoratif amovible; aucune fixation visible. Ce choix pilote ne concerne pas les couches fixes du plateau arrondi. Monument principal uniforme variable.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-esperanza/CIN-ESPERANZA.png",
+      "sourceLibraryId": "libfile_d63dc36f7c4c819190e22e819debfb06"
+    },
+    "tango": {
+      "id": "tango",
+      "family": "funeraire",
+      "geometry": "an elongated funerary monument with a projecting rectangular plinth, rounded-front side rails, a front recessed step, a patterned top slab and two offset curved headstone wings with an open gap",
+      "stoneAreas": "only the dark main field of the large pointed right headstone wing and the dark top slab, including the curved dark segment at the slab's front-left corner",
+      "fixedAreas": "Keep the lower plinth, side rails, front step, rear support, smaller left headstone wing, cantilever shelf between the wings, light outline of the taller wing and curved fan-like slab inserts in their original light grey-white veined stone. Preserve the open space between the wings.",
+      "extraConstraints": "The small cantilever shelf is fixed and must remain after the vase is removed. Preserve all curved light lines on the top slab and the curved boundary at its front-left corner.",
+      "masterDescription": "Preserve the wide rectangular base, raised side rails with rounded front ends, recessed front step and thick top slab. Keep both headstone wings: the shorter light curved wing on the left, taller pointed wing on the right, and the open gap between them. Keep the small light cantilever shelf across part of the gap. Preserve the light border of the taller wing and light curved fan-shaped inserts crossing the dark slab. Only the dark right-wing field and dark top slab are variable primary stone; the light components remain fixed secondary stone.",
+      "removeDescription": "Remove the dark vase standing on the small shelf, the red flowers, foliage and their reflections. Keep the shelf itself.",
+      "interpretationNote": "Tablette entre ailes conservee comme piece fixe. Zone variable retenue : champs sombres de la grande aile et de la tombale. Toutes les pieces et lignes claires restent fixes. Le raccord courbe avant gauche appartient a la tombale, pas a un objet pose.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/tango/TANGO.png",
+      "sourceLibraryId": "libfile_cb34cc325ec881918144fd8b952a6021"
+    },
+    "aventuri": {
+      "id": "aventuri",
+      "family": "funeraire",
+      "geometry": "an elongated rectilinear funerary monument with several stepped rectangular stone levels, a flat top slab, a straight rectangular headstone, a dark front crossbar and a planting cavity behind its center",
+      "stoneAreas": "the main stone of the base, stepped sides, front step, top slab and headstone body, which is pink-brown in the source, excluding the dark accent bars and the complete bicolor frieze",
+      "fixedAreas": "Keep the dark transverse front bar and dark rear headstone support in their original dark stone. Keep the full interlaced light-and-dark wave frieze near the top of the headstone unchanged in both material zones. Preserve the planting cavity as an open recess.",
+      "extraConstraints": "Do not remove the front bar or fill the planting cavity when removing the plants. The bicolor wave frieze is a fixed design insert, not an inscription to erase.",
+      "masterDescription": "Preserve the wide rectangular lowest plinth, successive straight stepped levels, flat rectangular top slab, straight upright rectangular headstone and dark transverse support under it. Preserve the dark front crossbar and the recessed planting opening immediately behind its center. Keep the horizontal frieze of interlaced light and dark waves near the headstone top. The pink-brown primary stone varies; dark bars and the entire bicolor frieze remain fixed.",
+      "removeDescription": "Remove the flowers, green leaves and other vegetation in the front recess, together with their reflections. Keep the recess and its dark interior visible, without inventing a new pot or filling it with stone.",
+      "interpretationNote": "Pierre rose/brune principale variable. Barre avant, support arriere et frise bicolore conserves fixes. Vegetation retiree sans supprimer la cavite; aucun pot distinct visible.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/aventuri/AVENTURI.png",
+      "sourceLibraryId": "libfile_7ada6097744c81918cc5edfe0e51e389"
+    },
+    "quietude": {
+      "id": "quietude",
+      "family": "funeraire",
+      "geometry": "an elongated funerary monument with a rectangular top slab, rounded-front side rails, a recessed front step and an asymmetric wave-topped headstone with a large circular cutout opening to the left",
+      "stoneAreas": "all stone surfaces of the base, rails, steps, slab, rear support and asymmetric headstone",
+      "fixedAreas": "Preserve the headstone's entire outer silhouette and its left-opening circular cutout, including the upper curved transition into the opening. Keep all rails and support levels.",
+      "extraConstraints": "The cutout is an actual open space extending to the left edge; do not close it into a hole, fill it with granite or reverse it to the right.",
+      "masterDescription": "Preserve the projecting rectangular plinth, long rectangular top slab, two raised side rails with rounded front ends, recessed front step and transverse rear support. Keep the asymmetric headstone with a high wave on the left, lower right top, curved right flank and large circular notch that opens at its left edge. Preserve the exact compound curves surrounding that open notch.",
+      "removeDescription": "Remove the optional applied bird and branch decoration, the colored leaves and water scene, and their reflections. Keep all underlying stone and the open circular cutout unchanged.",
+      "interpretationNote": "Oiseau et branche semblent appliques et partiellement en relief; traites comme decor optionnel retire. Le contour de pierre et l'echancrure ouverte a gauche sont conserves. Fixation precise du decor inconnue.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/quietude/QUIETUDE.png",
+      "sourceLibraryId": "libfile_e597b5b7f9688191a0e018189ad32d88"
+    },
+    "arbre-de-vie": {
+      "id": "arbre-de-vie",
+      "family": "funeraire",
+      "geometry": "an elongated funerary monument with a rectangular slab, side rails, a recessed front step, prominent front bevels and a broad asymmetric solid-stone headstone with a scalloped upper-left outline",
+      "stoneAreas": "all stone surfaces of the base, frame, steps, slab, bevels, rear support and solid headstone",
+      "fixedAreas": "Preserve every scallop in the headstone's upper-left silhouette, the lower wave on its right, all curved flanks and the broad front bevel planes. The headstone remains solid stone.",
+      "extraConstraints": "This is not an openwork metal tree or a circular steel panel. Do not create holes, separate tree branches, new material inserts or metal elements. Light bevel highlights remain reflections on the same stone.",
+      "masterDescription": "Preserve the wide rectangular lowest plinth, long rectangular slab, lateral frame, recessed front step and substantial sloping bevels at the front. Keep the broad solid upright with an asymmetric outline: a scalloped crown-like upper-left region, lower wavy upper-right region and curved sides. Preserve each scallop as real stone geometry.",
+      "removeDescription": "Remove only the large white engraved tree on the headstone face and its reflections. Leave the solid stone face and scalloped outer contour intact.",
+      "interpretationNote": "Arbre grave en surface de pierre pleine, distinct de NIVORA en acier ajoure. Gravure retiree, festons conserves. Chanfreins clairs interpretes comme finition/reflets de la meme pierre, sans ajout d'inserts.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/arbre-de-vie/ARBRE DE VIE.png",
+      "sourceLibraryId": "libfile_58008a5f3e088191863e1c4b4f8959e7"
+    },
+    "eligie": {
+      "id": "eligie",
+      "family": "funeraire",
+      "geometry": "an elongated funerary monument with a rectangular slab, sloped-front side rails, a recessed front step, a large bevel below the slab and a two-part curved upright headstone",
+      "stoneAreas": "the main base, rails, steps, slab, rear support and broad right headstone panel, which are light stone in the source",
+      "fixedAreas": "Keep the narrower left headstone wing in its original dark polished stone, including its full curved outline, thickness and overlap with the broad right panel.",
+      "extraConstraints": "The dark left wing is a structural part of the headstone, not a removable plaque. Preserve both wavy top contours and all curved side profiles.",
+      "masterDescription": "Preserve the wide lower rectangular plinth, long slab, raised side rails with inclined front faces, recessed front step and broad bevel under the slab's front. Keep the upright as two overlapping curved components: a broad light main panel on the right and a narrower dark wing on the left, each with its own wavy top and curved sides. The light main body varies; the entire dark left wing remains fixed secondary stone.",
+      "removeDescription": "Remove only the white engraved rose and stem on the dark left wing, leaving a plain dark polished surface. Keep the wing itself.",
+      "interpretationNote": "Aile noire gauche structurelle conservee. Pierre claire du monument principal variable. Rose gravee traitee comme decor optionnel retire sans supprimer la piece.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/eligie/ELIGIE.png",
+      "sourceLibraryId": "libfile_401b577ce0a081918b4b3312dec11478"
+    },
+    "corazon": {
+      "id": "corazon",
+      "family": "funeraire",
+      "geometry": "an elongated funerary monument with a rectangular slab, rounded-front side rails, a recessed front step and a large asymmetric heart headstone above three layered curved fan-like forms",
+      "stoneAreas": "all stone surfaces of the base, rails, steps, slab, rear support, heart and three curved forms beneath it",
+      "fixedAreas": "Preserve the entire large heart and all three curved structural layers below it. Keep their boundaries, spacing, projections and relationship to the rear support.",
+      "extraConstraints": "The left heart lobe is higher and the low point lies toward the left. Do not make the heart symmetrical, remove the three lower curves or treat them as loose plaques.",
+      "masterDescription": "Preserve the broad rectangular plinth, long top slab, side rails with rounded front ends, recessed front step and rear support. Keep the large asymmetric heart-shaped upright with its higher left lobe and low point toward the left. Beneath the heart, preserve the three stacked curved forms opening fan-like toward the right as fixed headstone geometry.",
+      "removeDescription": "Remove only the small engraved cross and flowers on the upper-left heart face, leaving plain stone. Keep the complete heart outline and every curved layer below it.",
+      "interpretationNote": "Coeur et trois strates courbes inferieures forment la stele. Gravure croix/fleurs optionnelle retiree. Lignes claires aux aretes interpretees comme chanfreins/reflets, sans seconde matiere certaine.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/corazon/CORAZON.png",
+      "sourceLibraryId": "libfile_30d8624b06e481918aeab26c87e6c46f"
+    },
+    "douceur": {
+      "id": "douceur",
+      "family": "funeraire",
+      "geometry": "an elongated funerary monument with a softly edged rectangular slab, bulky curved side rails with rounded returns and longitudinal moldings, a recessed front step and a broad shield-like asymmetric headstone",
+      "stoneAreas": "all stone surfaces of the base, side rails, moldings, steps, slab, rear support and headstone",
+      "fixedAreas": "Preserve the voluminous curved rails with their rounded front and rear returns, all longitudinal moldings, the recessed front step and the exact shield-like headstone outline.",
+      "extraConstraints": "Silver highlights on the polished curves are reflections of the same stone, not metal inserts. Do not flatten the rails, simplify the moldings or add a second material.",
+      "masterDescription": "Preserve the projecting rectangular plinth, gently edged rectangular slab, substantial side rails whose ends curl downward with rounded front and rear returns, the longitudinal molding profiles and recessed front step. Keep the broad shield-like upright with bulging sides, asymmetrically undulating top and small shoulders near its upper corners.",
+      "removeDescription": "Remove the faceted dark vase and bouquet of white flowers on the front-left slab, together with all their reflections in the slab and headstone. Leave matching plain stone underneath.",
+      "interpretationNote": "Vase et fleurs amovibles retires avec leurs reflets. Reflet du vase dans la stele ne constitue pas un second vase. Zones argentees des moulures sont des reflets, aucun insert metallique identifie.",
+      "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/douceur/DOUCEUR.png",
+      "sourceLibraryId": "libfile_8844feb2cea88191b81c32c9c5442950"
+    },
+    "cin8": {
+      "id": "cin8",
+      "family": "cineraire",
+      "geometry": "a compact cinerary monument with one thick rectangular base slab, a large solid heart-shaped upright headstone on a flared sculpted foot, and a fixed S-shaped raised stone ribbon across the slab",
+      "stoneAreas": "all stone surfaces of the slab, sculpted foot, heart headstone and S-shaped ribbon",
+      "fixedAreas": "Preserve the complete fixed S-shaped ribbon and the heart's flared foot as real structural stone parts.",
+      "extraConstraints": "Keep the two rounded heart lobes, central cleft and lower pointed tip unchanged.",
+      "masterDescription": "Preserve the thick near-square rectangular base with beveled edges, the massive upright heart with two rounded lobes and a central cleft, its low pointed tip in front of a broad flared foot with concave curved shoulders, and the fixed raised ribbon in an S curve that runs across the base from the rear-left toward the front edge. Preserve the S ribbon as a physical relief, not a drawn line.",
+      "removeDescription": "Remove the removable vase, roses, green foliage and all their reflections; leave the vacated slab area as plain matching stone."
+    }
+  },
+  "referenceMapping": {
+    "musulman-4": {
+      "library_file_id": "libfile_2b452dada3f88191bd2a1162a8c3132e",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/musulman-4/MUSULMAN 4.png",
+      "source_file_name": "MUSULMAN 4.png",
+      "inspection_pending": false,
+      "geometry": "Longue semelle rectangulaire debordante, cadre sureleve ouvert, deux longs rails aux extremites avant arrondies, traverse basse a l'avant, remplissage central en gravier. Stele arriere haute a sommet en arc bulbeux pointu, sur marche transversale.",
+      "fixed_features": [
+        "Cadre ouvert et cavite centrale avec gravier",
+        "Profil ogival/bulbeux de la stele",
+        "Marches et traverses du monument"
+      ],
+      "removable_accessories": [],
+      "material_zones": "Pierre principale sombre mouchetee. Partie superieure de stele claire, delimitee par une silhouette sombre de mosquees et un croissant.",
+      "ambiguity": "L'image ne permet pas de trancher si le champ clair et le motif de mosquees sont une incrustation ou une gravure/illustration. Le contour exterieur de la stele est structurel.",
+      "generation_note": "Conserver la cavite et son gravier, ne pas fermer par une dalle pleine. Ne pas transformer le motif religieux en nouvelle geometrie.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "cin8": {
+      "library_file_id": "libfile_24ecdbef74388191947ef8fc207743c0",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin8/CIN8.png",
+      "source_file_name": "CIN8.png",
+      "inspection_pending": false,
+      "geometry": "Dalle de base presque carree, stele massive en coeur a deux lobes, pointe basse descendant jusqu'a un pied elargi aux deux courbes concaves. Bande/ressaut fixe en S sur la dalle, de l'arriere gauche vers l'avant droit.",
+      "fixed_features": [
+        "Stele coeur et pied sculpte",
+        "Bande/ressaut en S sur la dalle"
+      ],
+      "removable_accessories": [
+        "Vase arrondi pose a l'avant gauche",
+        "Bouquet de roses et feuillage"
+      ],
+      "material_zones": "Ensemble pierre rouge-brun mouchetee dans la reference, y compris vase.",
+      "ambiguity": "Le S est un element de composition de la dalle, pas un accessoire. Aucune ambiguite majeure pour le vase et le bouquet.",
+      "generation_note": "Retirer vase et roses; garder la stele coeur complete et le S structurel.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "cin-nivora": {
+      "library_file_id": "libfile_555f2952e5208191bd8b2c71e1434091",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-nivora/CIN-NIVORA.png",
+      "source_file_name": "CIN-NIVORA.png",
+      "inspection_pending": false,
+      "geometry": "Deux dalles rectangulaires superposees avec semelle debordante, marche transversale arriere. Grande stele circulaire en acier ajoure dessine un arbre avec racines, branches et feuilles. Petit coeur epais en granit devant a gauche.",
+      "fixed_features": [
+        "Grande couronne circulaire en acier ajoure et arbre de vie",
+        "Marches/dalles de pierre",
+        "Petit coeur en pierre a conserver par prudence comme composant du modele"
+      ],
+      "removable_accessories": [],
+      "material_zones": "Pierre sombre a gros cristaux sur dalles, marche et petit coeur; acier gris anthracite pour la stele ajouree.",
+      "ambiguity": "Le petit coeur est une piece separee; la fixation ne se voit pas. Il pourrait etre une plaque personnalisee amovible, mais ce n'est pas un vase ou une fleur.",
+      "generation_note": "CONSERVER L'ACIER AJOURE, sa couleur et ses vides. Ne pas remplacer l'arbre ajoure par une plaque pleine ou par du granit.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "cin-bahia": {
+      "library_file_id": "libfile_cc288cda143481918fdb5cebd6cd857a",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-bahia/CIN BAHIA.png",
+      "source_file_name": "CIN BAHIA.png",
+      "inspection_pending": false,
+      "geometry": "Stele simple rectangulaire verticale, sur une longue marche arriere. Base rectangulaire a deux niveaux; grande dalle intermediaire legerement en retrait de la semelle.",
+      "fixed_features": [
+        "Stele rectangulaire a sommet droit",
+        "Marche arriere et deux niveaux de base"
+      ],
+      "removable_accessories": [],
+      "material_zones": "Composition bicolore: semelle et marche arriere en pierre claire tres mouchetee; dalle intermediaire et stele en pierre gris-bleu.",
+      "ambiguity": "Aucun accessoire visible. Deux pierres distinctes sont visibles, et non un simple changement d'eclairage.",
+      "generation_note": "Conserver la repartition bicolore et les joints entre pieces.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "cin-aquarius": {
+      "library_file_id": "libfile_6d912d4257d48191ba48a95e0c5fbb59",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-aquarius/CIN-AQUARIUS.png",
+      "source_file_name": "CIN-AQUARIUS.png",
+      "inspection_pending": false,
+      "geometry": "Dalle de base rectangulaire, socle arriere a deux niveaux. Stele asymetrique aux flancs galbes, sommet en vague descendant vers la droite; petit epaulement concave a gauche sous le point haut.",
+      "fixed_features": [
+        "Contour asymetrique en vague de la stele",
+        "Socle arriere a deux niveaux et base"
+      ],
+      "removable_accessories": [
+        "Vase spherique a petit col a l'avant gauche",
+        "Tige de bambou et feuilles"
+      ],
+      "material_zones": "Pierre sombre mouchetee sur l'ensemble mineral de la reference.",
+      "ambiguity": "La tige et le vase se refletent sur la stele; ces reflets doivent disparaitre avec les accessoires.",
+      "generation_note": "Retirer le vase, le bambou et leurs reflets; conserver la silhouette exacte de la stele.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "cin-montagne01": {
+      "library_file_id": "libfile_2a316d6ce1388191b2a548a52e7cee86",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-montagne01/CIN-MONTAGNE01.png",
+      "source_file_name": "CIN-MONTAGNE01.png",
+      "inspection_pending": false,
+      "geometry": "Dalle rectangulaire simple, stele haute a silhouette de chaine montagneuse: grand sommet a gauche, sommet intermediaire puis sommet bas a droite. Bords epais irreguliers a aspect eclate.",
+      "fixed_features": [
+        "Silhouette exterieure des sommets",
+        "Bords irreguliers/eclates de la stele",
+        "Dalle rectangulaire"
+      ],
+      "removable_accessories": [],
+      "material_zones": "Face polie et dalle en pierre sombre; chants de stele clairs et rugueux. Dessin blanc de montagnes et sapins sur la face.",
+      "ambiguity": "Le paysage blanc en facade semble une gravure de surface; son caractere optionnel depend du brief. Les chants clairs sont visuellement des surfaces brutes, pas necessairement une seconde pierre.",
+      "generation_note": "Conserver le contour montagneux et la finition brute des chants meme si le motif grave optionnel est retire.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "cin-nautis": {
+      "library_file_id": "libfile_69f17f5e19148191b2577f26c8062005",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-nautis/CIN-NAUTIS.png",
+      "source_file_name": "CIN-NAUTIS.png",
+      "inspection_pending": false,
+      "geometry": "Semelle rectangulaire, deux niveaux courbes superposes en forme de vagues. Stele sculptee en voilier: coque incurvee basse et deux surfaces de voile effilees separant une ligne de mat courbe. Galet clair pose a gauche.",
+      "fixed_features": [
+        "Voilier sculpte complet, coque et voiles",
+        "Vagues/ressauts courbes de la base"
+      ],
+      "removable_accessories": [
+        "Galet oval clair pose sur la dalle a gauche, probablement decoratif"
+      ],
+      "material_zones": "Base et vagues bleu sombre; bateau en pierre claire veinee. Galet en pierre claire.",
+      "ambiguity": "La fixation du galet n'est pas visible; il pourrait etre une petite plaque ovale. Traiter son retrait avec prudence selon la regle generale du brief.",
+      "generation_note": "Conserver le contraste entre bateau et base ainsi que les vides/limites des deux voiles; ne pas simplifier en stele triangulaire.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "cin-aloria": {
+      "library_file_id": "libfile_a5b0215c74cc8191ada97fa9108a9925",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-aloria/CIN-ALORIA.png",
+      "source_file_name": "CIN-ALORIA.png",
+      "inspection_pending": false,
+      "geometry": "Semelle et dalle rectangulaires superposees, marche arriere. Stele haute asymetrique a sommet courbe descendant vers la droite, cote droit arrondi et cote gauche cintre. Large bande sombre en croissant sur la gauche de la stele.",
+      "fixed_features": [
+        "Contour asymetrique galbe de la stele",
+        "Bande/croissant sombre integre a la gauche de la stele",
+        "Base a niveaux et marche arriere"
+      ],
+      "removable_accessories": [
+        "Vase haut et cintre a l'avant gauche",
+        "Deux roses et feuillage"
+      ],
+      "material_zones": "Pierre claire mouchetee pour base et grande partie de stele; bande gauche de stele et vase en pierre sombre.",
+      "ambiguity": "La bande sombre de stele est une zone bicolore fixe, pas une ombre. La ligne fine claire au raccord est visible.",
+      "generation_note": "Retirer vase et fleurs; conserver la bande bicolore fixe et son contour.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "cin-tombale": {
+      "library_file_id": "libfile_c8988e6128448191b62aee86daf6f595",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-tombale/CIN-TOMBALE.png",
+      "source_file_name": "CIN-TOMBALE.png",
+      "inspection_pending": false,
+      "geometry": "Bloc de pierre unique rectangulaire, bas et epais, dessus plan, angles droits et aretes fines. Aucun socle ajoute, aucune stele.",
+      "fixed_features": [
+        "Dalle rectangulaire unique"
+      ],
+      "removable_accessories": [],
+      "material_zones": "Pierre sombre mouchetee uniforme sur dessus et faces laterales.",
+      "ambiguity": "Aucune ambiguite majeure. La perspective ne fournit pas de dimensions fiables.",
+      "generation_note": "MODELE SANS STELE: ne pas inventer de plaque verticale, vase, cadre, croix, motif ou marche.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "cin-montagne02": {
+      "library_file_id": "libfile_9a4236471b948191a6aa09cb4014e85c",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-montagne02/CIN-MONTAGNE02.png",
+      "source_file_name": "CIN-MONTAGNE02.png",
+      "inspection_pending": false,
+      "geometry": "Semelle rectangulaire a aretes arrondies, dalle superieure sombre a pourtour arrondi, marche transversale arriere claire. Stele irreguliere a sommet dominant central/decale a droite et epaulement montagneux plus bas a gauche; chants eclates. Galet clair pose a gauche.",
+      "fixed_features": [
+        "Contour montagneux et chants eclates de la stele",
+        "Semelle et marche arriere claires",
+        "Dalle superieure sombre a bord arrondi"
+      ],
+      "removable_accessories": [
+        "Galet clair pose a l'avant gauche, probablement decoratif"
+      ],
+      "material_zones": "Composition bicolore: semelle et marche arriere claires veinees, dalle superieure et facade de stele sombres. Paysage blanc de montagnes/sapins en facade.",
+      "ambiguity": "Le paysage frontal semble une gravure de surface; le galet pourrait etre une plaque ovale. Le point sombre dans la stele est un reflet du galet, pas une seconde pierre posee.",
+      "generation_note": "Conserver bicolore et silhouette montagneuse; si galet retire, retirer aussi son reflet. Ne pas confondre ce modele avec montagne01.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "cin-saturne": {
+      "library_file_id": "libfile_363a7d241e148191b88b4b9434b9a4d8",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-saturne/CIN-SATURNE.png",
+      "source_file_name": "CIN-SATURNE.png",
+      "inspection_pending": false,
+      "geometry": "Petit monument sur socle rectangulaire a plusieurs niveaux. Stele verticale rectangulaire a sommet droit. Tombale epaisse aux contours adoucis, avec raccords courbes de couleur.",
+      "fixed_features": [
+        "Deux zones claires courbes dans les angles opposes de la stele, autour d'un grand champ central sombre; composition courbe claire/sombre reprise sur la tombale. Socle et support arriere fixes."
+      ],
+      "removable_accessories": [],
+      "material_zones": "Oui : zones claires granulees et grands champs sombres sur stele et tombale.",
+      "ambiguity": "La photographie ne permet pas de distinguer des incrustations de pierre d'une difference de finition; conserver dans tous les cas leurs limites courbes exactes.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "cin-ovae": {
+      "library_file_id": "libfile_5403a978a4d48191aa48605ce5b27545",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-ovae/CIN-OVAE.png",
+      "source_file_name": "CIN-OVAE.png",
+      "inspection_pending": false,
+      "geometry": "Stele large a flancs arrondis, resserree en bas, sommet asymetrique avec ressaut doux. Petite tombale claire rectangulaire a angles arrondis, sur base et support arriere sombres.",
+      "fixed_features": [
+        "Bandeau noir superieur de la stele, separe du champ clair par une ligne ondulee; conserver le bandeau et son contour."
+      ],
+      "removable_accessories": [],
+      "material_zones": "Oui : corps de stele et tombale clairs; bandeau de stele, support et base sombres.",
+      "ambiguity": "Le paysage peut etre efface selon la consigne sur les motifs sans supprimer le bandeau noir. La limite haute irreguliere de la stele est geometrique.",
+      "surface_decoration": "Paysage grave dans le bandeau noir (pont, oiseaux, vegetaux). Gravure de surface distincte du bandeau structurel.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "cin-esperanza": {
+      "library_file_id": "libfile_d63dc36f7c4c819190e22e819debfb06",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-esperanza/CIN-ESPERANZA.png",
+      "source_file_name": "CIN-ESPERANZA.png",
+      "inspection_pending": false,
+      "geometry": "Stele epaisse de forme galet verticale, haut presque droit, flanc gauche largement arrondi, flanc droit plus anguleux. Support rectangulaire. Plateau superieur a avant en demi-cercle, souligne par plusieurs minces niveaux, sur socle rectangulaire.",
+      "fixed_features": [
+        "Plateau arrondi et ses strates, support de stele, base rectangulaire."
+      ],
+      "removable_accessories": [
+        "A gauche, petit coeur noir pose sur un galet clair ovale; l'ensemble apparait pose et probablement amovible."
+      ],
+      "material_zones": "Monument principal dans la meme pierre sombre; le galet clair et le coeur noir forment un ensemble contrastant.",
+      "ambiguity": "Aucune liaison du coeur et du galet au plateau n'est visible. Leur statut d'accessoire est une inference; si le registre les definit comme pieces fixes du modele, conserver l'ensemble.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "tango": {
+      "library_file_id": "libfile_cb34cc325ec881918144fd8b952a6021",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/tango/TANGO.png",
+      "source_file_name": "TANGO.png",
+      "inspection_pending": false,
+      "geometry": "Long monument rectangulaire sur base large, cadre lateral releve avec avant arrondi et marche frontale. Stele faite de deux ailes courbes decalees : aile claire courte a gauche et aile sombre haute en pointe a droite. Ouverture entre les ailes.",
+      "fixed_features": [
+        "Petite tablette claire en porte-a-faux entre les ailes, supportant le vase; elle fait partie de la composition et doit rester. Inserts clairs courbes en eventail dans la tombale sombre; contour clair de la grande aile et plateau arriere fixes."
+      ],
+      "removable_accessories": [
+        "Vase sombre sur la tablette et fleurs rouges a retirer."
+      ],
+      "material_zones": "Oui : cadre, base et petite aile clairs; grande aile et tombale sombres avec lignes claires courbes.",
+      "ambiguity": "Une jointure en arc au coin avant gauche de la tombale delimite une zone sombre; conserver cette limite sans en faire un objet pose.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "aventuri": {
+      "library_file_id": "libfile_7ada6097744c81918cc5edfe0e51e389",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/aventuri/AVENTURI.png",
+      "source_file_name": "AVENTURI.png",
+      "inspection_pending": false,
+      "geometry": "Long monument tres rectiligne, base rectangulaire et plusieurs niveaux decroissants. Tombale plate rectangulaire. Stele rectangulaire a sommet droit. Barre sombre transversale devant la tombale et support sombre sous la stele.",
+      "fixed_features": [
+        "Frise horizontale bicolore en ondes entrelacees pres du haut de la stele. Barre frontale sombre et cavite plantee derriere son milieu."
+      ],
+      "removable_accessories": [
+        "Vegetation fleurie dans la cavite avant; a retirer en gardant la cavite."
+      ],
+      "material_zones": "Oui : pierre principale rose/brune, accents noirs sur traverse avant et support arriere, frise claire/noire sur stele.",
+      "ambiguity": "Aucun pot distinct visible; ne pas supprimer la cavite ni la barre avec les fleurs. La frise semble un assemblage/insert fixe, pas une inscription.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "quietude": {
+      "library_file_id": "libfile_e597b5b7f9688191a0e018189ad32d88",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/quietude/QUIETUDE.png",
+      "source_file_name": "QUIETUDE.png",
+      "inspection_pending": false,
+      "geometry": "Long monument avec dalle rectangulaire, cadres lateraux a bouts avant arrondis, marche en retrait. Stele asymetrique a sommet en vague et grande echancrure circulaire ouverte sur le cote gauche; flanc droit courbe.",
+      "fixed_features": [
+        "Contour de stele avec l'echancrure circulaire, support arriere et profils de cadre. Oiseau bleu clair et branche colores apparaissent appliques sur la face, au bord de l'echancrure, sans vase."
+      ],
+      "removable_accessories": [],
+      "material_zones": "Pierre principale sombre uniforme; decorations colorees sur la stele.",
+      "ambiguity": "Fixation de l'oiseau non visible; il ne ressemble pas a un accessoire simplement pose sur la tombale. Si les motifs decoratifs sont retires, conserver exactement l'echancrure et le contour de la stele.",
+      "surface_decoration": "Oiseau, branche feuillue et paysage d'eau. Une partie parait en relief rapporte.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "arbre-de-vie": {
+      "library_file_id": "libfile_58008a5f3e088191863e1c4b4f8959e7",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/arbre-de-vie/ARBRE DE VIE.png",
+      "source_file_name": "ARBRE DE VIE.png",
+      "inspection_pending": false,
+      "geometry": "Long monument a dalle rectangulaire, cadres lateraux et marche frontale. Chanfreins importants a l'avant. Stele large asymetrique : sommet gauche decoupe en festons suivant une couronne d'arbre, sommet droit en vague basse; flancs incurves.",
+      "fixed_features": [
+        "Decoupe festonnee du sommet gauche et silhouette de la stele; cadre, marche et chanfreins. Aucun element ajoure ni disque metallique."
+      ],
+      "removable_accessories": [],
+      "material_zones": "Pierre principale sombre/bleutee. Les chanfreins avant paraissent tres clairs, mais une autre matiere n'est pas certaine.",
+      "ambiguity": "Les zones claires des chanfreins peuvent provenir de la finition et des reflets. Conserver les plans et aretes sans inventer des inserts independants. Garder les festons si la gravure est retiree.",
+      "surface_decoration": "Grand arbre grave blanc sur la partie gauche de la stele; motif de surface, pas arbre en acier ajoure.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "eligie": {
+      "library_file_id": "libfile_401b577ce0a081918b4b3312dec11478",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/eligie/ELIGIE.png",
+      "source_file_name": "ELIGIE.png",
+      "inspection_pending": false,
+      "geometry": "Long monument clair avec dalle rectangulaire, cadres lateraux a faces avant inclinees, marche frontale et grand chanfrein sous la dalle. Stele composee de deux formes verticales galbees : panneau clair large a droite et aile sombre plus etroite a gauche, superposes.",
+      "fixed_features": [
+        "Aile sombre gauche, raccord courbe entre les deux parties, sommets ondules et flancs tailles en courbe; aucun objet pose."
+      ],
+      "removable_accessories": [],
+      "material_zones": "Oui : monument principal clair et aile noire de stele.",
+      "ambiguity": "Conserver l'aile noire meme si la rose est retiree. Les parties de stele sont structurelles, non des plaques accessoires posees.",
+      "surface_decoration": "Rose blanche gravee sur l'aile noire.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "corazon": {
+      "library_file_id": "libfile_30d8624b06e481918aeab26c87e6c46f",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/corazon/CORAZON.png",
+      "source_file_name": "CORAZON.png",
+      "inspection_pending": false,
+      "geometry": "Long monument a dalle rectangulaire, cadres lateraux a bouts avant arrondis et marche frontale. Stele en grand coeur asymetrique, lobe gauche plus haut, pointe situee en bas a gauche. Sous le coeur, trois formes courbes superposees en eventail s'ouvrent vers la droite.",
+      "fixed_features": [
+        "Grand coeur et trois strates courbes inferieures; support arriere. Tous ces contours appartiennent a la stele."
+      ],
+      "removable_accessories": [],
+      "material_zones": "Pierre sombre/bleutee uniforme; les lignes claires des aretes semblent des reflets/chanfreins, sans insert distinct certain.",
+      "ambiguity": "Ne pas confondre les courbes empilees sous le coeur avec des plaques amovibles. La decoration de surface peut etre retiree sans modifier la silhouette.",
+      "surface_decoration": "Petite croix et fleurs gravees sur le haut gauche du coeur.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    },
+    "douceur": {
+      "library_file_id": "libfile_8844feb2cea88191b81c32c9c5442950",
+      "current_version_number": 0,
+      "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/douceur/DOUCEUR.png",
+      "source_file_name": "DOUCEUR.png",
+      "inspection_pending": false,
+      "geometry": "Long monument a dalle rectangulaire aux bords adoucis, profils lateraux volumineux enroules vers le bas aux extremites et moulures longitudinales; marche frontale en retrait. Stele large de type ecusson, flancs bombes, haut asymetrique ondule et petits ressauts aux angles superieurs.",
+      "fixed_features": [
+        "Rails lateraux galbes avec retours arrondis avant et arriere, moulures, marches et contour de stele."
+      ],
+      "removable_accessories": [
+        "Vase facette sombre et bouquet de fleurs blanches poses sur le devant gauche de la tombale; a retirer, ainsi que leurs reflets dans la stele et la dalle."
+      ],
+      "material_zones": "Pierre sombre uniforme; larges reflets argentes sur les moulures, sans preuve d'une seconde pierre.",
+      "ambiguity": "Le vase visible dans la stele est un reflet, pas un second vase. Ne pas transformer les reflets argentes en inserts metalliques.",
+      "reference_dimensions_px": [
+        1448,
+        1086
+      ],
+      "library_xattr_verified": true
+    }
+  }
+}

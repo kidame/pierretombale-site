@@ -55,6 +55,61 @@
         "royal-texture-v1.png"
       ],
       "controleVisuel": "Arbre, cercle et decoupes en acier anthracite conserves. Deux dalles, marche arriere et petit coeur avant gauche presents, avec le meme cadrage frontal et les memes proportions que le master. Seule la pierre varie : granit noir et gris argente, motif legerement nuage. Pilote non calibre."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with two stacked rectangular stone slabs, a rear transverse stone step, a large circular openwork steel tree headpiece, and a small thick upright stone heart at the front left. Image 2 is only the vizag-blue stone reference. Change ONLY only the stone surfaces of the two base slabs, rear step and small upright heart; never the steel tree or its circular frame to the exact material of image 2: cool silver-grey granite, slightly blue, flowing charcoal mineral clouds and sparse fine burgundy-brown specks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the entire circular openwork tree in anthracite grey steel, including its rim, roots, trunk, branches, leaves, metallic reflections and every open gap. Preserve the small upright heart in its exact position. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The tree is real pierced metal, not a stone slab, engraving, printed picture or filled disc. Do not fill any openings or remove the small heart. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:19:43.816498+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-6815f702-ec51-408f-8616-51084ad48327.png",
+      "sha256": "b2af6046283124f542e6834ee7cfd0695d905de7057457b32dd6bef8659fb17c",
+      "references": [
+        "cin-nivora-bengal.png",
+        "vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "Arbre, cercle, branches, racines, feuilles et ouvertures en acier anthracite conserves. Les deux dalles, la marche arriere et le petit coeur avant gauche gardent la geometrie et le cadrage du master. Seule la pierre varie : granit gris froid avec nuages sombres et points brun-bordeaux. Pilote sans calibration atelier ni contours au pixel."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with two stacked rectangular stone slabs, a rear transverse stone step, a large circular openwork steel tree headpiece, and a small thick upright stone heart at the front left. Image 2 is only the viscount-white stone reference. Change ONLY only the stone surfaces of the two base slabs, rear step and small upright heart; never the steel tree or its circular frame to the exact material of image 2: luminous white and pale grey granite, fine dark mineral flecks and soft flowing grey clouds. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the entire circular openwork tree in anthracite grey steel, including its rim, roots, trunk, branches, leaves, metallic reflections and every open gap. Preserve the small upright heart in its exact position. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The tree is real pierced metal, not a stone slab, engraving, printed picture or filled disc. Do not fill any openings or remove the small heart. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:19:54.049791+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-701e1675-0e5f-4eab-8ae9-70523c495a6f.png",
+      "sha256": "2aae2b7ae7cf30819e29861bb4e7afb0de64df1c432dce5fd1797f6a7c055685",
+      "references": [
+        "cin-nivora-bengal.png",
+        "viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "Arbre, cercle, branches, racines, feuilles et ouvertures en acier anthracite conserves. Les deux dalles, la marche arriere et le petit coeur avant gauche gardent la geometrie et le cadrage du master. Seule la pierre varie : granit blanc-gris a petits grains noirs. Pilote sans calibration atelier ni contours au pixel."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with two stacked rectangular stone slabs, a rear transverse stone step, a large circular openwork steel tree headpiece, and a small thick upright stone heart at the front left. Image 2 is only the rosso-porrino stone reference. Change ONLY only the stone surfaces of the two base slabs, rear step and small upright heart; never the steel tree or its circular frame to the exact material of image 2: salmon pink feldspar, grey quartz, black flecks and cream-white mineral grains. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the entire circular openwork tree in anthracite grey steel, including its rim, roots, trunk, branches, leaves, metallic reflections and every open gap. Preserve the small upright heart in its exact position. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The tree is real pierced metal, not a stone slab, engraving, printed picture or filled disc. Do not fill any openings or remove the small heart. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:20:03.152530+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-5798a20e-9f95-4bed-8b38-93e9673a9ec0.png",
+      "sha256": "eff4cd077aebdeffd6922ee0c20cd6d4a35b63192dbcef720b24b2bd7d35d2df",
+      "references": [
+        "cin-nivora-bengal.png",
+        "rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "Arbre, cercle, branches, racines, feuilles et ouvertures en acier anthracite conserves. Les deux dalles, la marche arriere et le petit coeur avant gauche gardent la geometrie et le cadrage du master. Seule la pierre varie : granit rose saumon, quartz gris et grains noirs. Pilote sans calibration atelier ni contours au pixel."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with two stacked rectangular stone slabs, a rear transverse stone step, a large circular openwork steel tree headpiece, and a small thick upright stone heart at the front left. Image 2 is only the egipat stone reference. Change ONLY only the stone surfaces of the two base slabs, rear step and small upright heart; never the steel tree or its circular frame to the exact material of image 2: neutral medium-grey salt-and-pepper granite with dense small black and white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the entire circular openwork tree in anthracite grey steel, including its rim, roots, trunk, branches, leaves, metallic reflections and every open gap. Preserve the small upright heart in its exact position. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The tree is real pierced metal, not a stone slab, engraving, printed picture or filled disc. Do not fill any openings or remove the small heart. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:20:11.862816+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-2848f7c2-1564-44f2-b990-2a3c6ab15e1e.png",
+      "sha256": "6c3d787603c9d6334162d56dca9e34e6e28c5b2bf1eefe3fb8ec0dc897c6a03b",
+      "references": [
+        "cin-nivora-bengal.png",
+        "egipat-texture-v1.png"
+      ],
+      "controleVisuel": "Arbre, cercle, branches, racines, feuilles et ouvertures en acier anthracite conserves. Les deux dalles, la marche arriere et le petit coeur avant gauche gardent la geometrie et le cadrage du master. Seule la pierre varie : granit gris sel et poivre. Pilote sans calibration atelier ni contours au pixel."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with two stacked rectangular stone slabs, a rear transverse stone step, a large circular openwork steel tree headpiece, and a small thick upright stone heart at the front left. Image 2 is only the marmara stone reference. Change ONLY only the stone surfaces of the two base slabs, rear step and small upright heart; never the steel tree or its circular frame to the exact material of image 2: white crystalline marble with broad softly parallel grey bands and finer darker grey veins. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the entire circular openwork tree in anthracite grey steel, including its rim, roots, trunk, branches, leaves, metallic reflections and every open gap. Preserve the small upright heart in its exact position. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The tree is real pierced metal, not a stone slab, engraving, printed picture or filled disc. Do not fill any openings or remove the small heart. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:20:18.930150+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-a75c9054-db79-4f4a-afcb-58917e1747a4.png",
+      "sha256": "4cb9afdd0c02af5550923d9aaeb2a96aa496f31275d697b63ad45a407e210a2c",
+      "references": [
+        "cin-nivora-bengal.png",
+        "marmara-texture-v1.png"
+      ],
+      "controleVisuel": "Arbre, cercle, branches, racines, feuilles et ouvertures en acier anthracite conserves. Les deux dalles, la marche arriere et le petit coeur avant gauche gardent la geometrie et le cadrage du master. Seule la pierre varie : marbre blanc cristallin a bandes grises paralleles. Pilote sans calibration atelier ni contours au pixel."
     }
   }
 }
