@@ -63,8 +63,8 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 <!-- images-checkpoint -->
-- Checkpoint images 2026-10-20T12:33:18.106780+00:00 : 110/270 archivees, 160 restantes.
-  11/27 modeles complets. Prochaine image : cin-aquarius / bengal.
+- Checkpoint images 2026-10-20T12:44:52.524732+00:00 : 120/270 archivees, 150 restantes.
+  12/27 modeles complets. Prochaine image : cin-montagne01 / bengal.
   Produits complets de 10 variantes, deux lots de 5, generations successives puis transferts groupes.
   Suivi detaille : docs/images-configurateur/AVANCEMENT.md et suivi-serie.json.
 <!-- /images-checkpoint -->

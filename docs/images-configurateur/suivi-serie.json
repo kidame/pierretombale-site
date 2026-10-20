@@ -1644,42 +1644,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "cin-aquarius-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "5c2eea8f32ddc06bea5c905717ebd343bf582fbb5cdcc4ee772a802ad42d2689",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2883831,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "cin-aquarius-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "5e5734d02819ffd39026317c67b447f53dadaf2d845228f698e92eeedec80e61",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2876632,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "cin-aquarius-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "5a51ec09bda1d827a238edc92f1243bfab7919549d5f5c428675d5e995dbbc73",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2874258,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "cin-aquarius-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "d0233e476859a158203adc7641a20163fdab4e71f8d3710b8a0cf7b6014ce069",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3060194,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "cin-aquarius-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "42624c08e1a95efa8d94c75c2a2b38dfd8cb8ebd5bf7d77b2bbeeb4f147b5af5",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2284838,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -1690,7 +1715,7 @@
       "sourceLibraryId": "libfile_2a316d6ce1388191b2a548a52e7cee86",
       "dossier": "pilotes/cineraire/cin-montagne01/v1",
       "ordre": 13,
-      "notes": "Geometrie et zones physiques a valider.",
+      "notes": "Dalle rectangulaire simple, stele haute a silhouette de chaine montagneuse: grand sommet a gauche, sommet intermediaire puis sommet bas a droite. Bords epais irreguliers a aspect eclate. Le paysage blanc frontal est traite comme gravure optionnelle. La silhouette montagneuse et les chants eclates restent. Les chants clairs sont interpretes comme finition brute de la meme pierre, pas comme incrustation. Geometrie atelier et zones physiques a valider.",
       "variantes": [
         {
           "matiereId": "bengal",
@@ -3050,15 +3075,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T12:39:03.563783+00:00",
-    "imagesCompletes": 115,
-    "combinaisonsRestantes": 155,
+    "dateControle": "2026-10-20T12:44:16.628265+00:00",
+    "imagesCompletes": 120,
+    "combinaisonsRestantes": 150,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "cin-aquarius",
-    "matiereId": "vizag-blue",
+    "modeleId": "cin-montagne01",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3074,56 +3099,57 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T12:39:42.432929+00:00",
+    "dateFin": "2026-10-20T12:44:52.524732+00:00",
     "combinaisons": [
       {
         "modeleId": "cin-aquarius",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "cin-aquarius",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "cin-aquarius",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "cin-aquarius",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "cin-aquarius",
-        "matiereId": "royal"
+        "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 110,
-    "totalApres": 115,
+    "totalAvant": 115,
+    "totalApres": 120,
     "statut": "termine",
+    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
   },
   "prochainLot": [
     {
-      "modeleId": "cin-aquarius",
-      "matiereId": "vizag-blue"
+      "modeleId": "cin-montagne01",
+      "matiereId": "bengal"
     },
     {
-      "modeleId": "cin-aquarius",
-      "matiereId": "viscount-white"
+      "modeleId": "cin-montagne01",
+      "matiereId": "rozabeta"
     },
     {
-      "modeleId": "cin-aquarius",
-      "matiereId": "rosso-porrino"
+      "modeleId": "cin-montagne01",
+      "matiereId": "paradiso"
     },
     {
-      "modeleId": "cin-aquarius",
-      "matiereId": "egipat"
+      "modeleId": "cin-montagne01",
+      "matiereId": "jablanica"
     },
     {
-      "modeleId": "cin-aquarius",
-      "matiereId": "marmara"
+      "modeleId": "cin-montagne01",
+      "matiereId": "royal"
     }
   ]
 }
