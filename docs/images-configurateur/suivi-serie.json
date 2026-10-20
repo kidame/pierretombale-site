@@ -1720,42 +1720,67 @@
         {
           "matiereId": "bengal",
           "fichier": "cin-montagne01-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "b560ebe84bd9285fb3c486c6f4c575001ae07dda2705b0ca82776e7eb7168d5e",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2888728,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "cin-montagne01-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "593bc6826e00007c1211a783c3b8084534bba3281e188136f58d4427322043b8",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2810774,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "cin-montagne01-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "72927ba5a351437028ed7c92602bbd54cfff3fadc07fe67edd7f5e1b8bbaec40",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2873084,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "cin-montagne01-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "9a533b40673d03a7e7a43d7ca2d7c7ef0db3be083d869f62894bdb84f1c4e0e8",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2911358,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "cin-montagne01-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "a163ff6ebb1edc792271dd179b2b25e5d8e654900a1656f3772597bcb4209433",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2896851,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -3075,15 +3100,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T12:44:16.628265+00:00",
-    "imagesCompletes": 120,
-    "combinaisonsRestantes": 150,
+    "dateControle": "2026-10-20T12:51:26.664933+00:00",
+    "imagesCompletes": 125,
+    "combinaisonsRestantes": 145,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "cin-montagne01",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3099,57 +3124,56 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T12:44:52.524732+00:00",
+    "dateFin": "2026-10-20T12:51:47.627436+00:00",
     "combinaisons": [
       {
-        "modeleId": "cin-aquarius",
-        "matiereId": "vizag-blue"
+        "modeleId": "cin-montagne01",
+        "matiereId": "bengal"
       },
       {
-        "modeleId": "cin-aquarius",
-        "matiereId": "viscount-white"
+        "modeleId": "cin-montagne01",
+        "matiereId": "rozabeta"
       },
       {
-        "modeleId": "cin-aquarius",
-        "matiereId": "rosso-porrino"
+        "modeleId": "cin-montagne01",
+        "matiereId": "paradiso"
       },
       {
-        "modeleId": "cin-aquarius",
-        "matiereId": "egipat"
+        "modeleId": "cin-montagne01",
+        "matiereId": "jablanica"
       },
       {
-        "modeleId": "cin-aquarius",
-        "matiereId": "marmara"
+        "modeleId": "cin-montagne01",
+        "matiereId": "royal"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 115,
-    "totalApres": 120,
+    "totalAvant": 120,
+    "totalApres": 125,
     "statut": "termine",
-    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
+    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
   },
   "prochainLot": [
     {
       "modeleId": "cin-montagne01",
-      "matiereId": "bengal"
+      "matiereId": "vizag-blue"
     },
     {
       "modeleId": "cin-montagne01",
-      "matiereId": "rozabeta"
+      "matiereId": "viscount-white"
     },
     {
       "modeleId": "cin-montagne01",
-      "matiereId": "paradiso"
+      "matiereId": "rosso-porrino"
     },
     {
       "modeleId": "cin-montagne01",
-      "matiereId": "jablanica"
+      "matiereId": "egipat"
     },
     {
       "modeleId": "cin-montagne01",
-      "matiereId": "royal"
+      "matiereId": "marmara"
     }
   ]
 }

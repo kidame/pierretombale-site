@@ -1,0 +1,60 @@
+{
+  "mode": "imagegen-integre",
+  "variantes": {
+    "bengal": {
+      "prompt": "Use case: product-mockup. Image 1 is the exact monument design reference for cin-montagne01. Image 2 is only the BENGAL stone reference. Create one clean frontal catalogue master, preserving the complete design and every structural component and proportion. Preserve the plain rectangular slab and the thick irregular mountain-shaped upright. The tall main peak is on the left, followed by an intermediate peak and a lower right peak. Keep the uneven chipped perimeter and rough stone edges, while the broad front face remains polished. Change all stone surfaces of the rectangular slab and mountain-shaped headstone, retaining the different polished and rough finishes to the exact polished black Bengal granite with natural silver and grey crystalline grain from image 2. Keep the headstone's thick irregular broken-stone edge as rough natural stone. It is a finish of the same selected material, not a separate white insert. Remove only the white surface engraving of mountains and pine trees, leaving a plain polished stone face. Keep the actual mountain-shaped outer contour and rough edge geometry. Camera exactly centered on the longitudinal axis, no left or right yaw, main front upright surface parallel to image plane. Use parallel orthographic projection with modest elevation only to reveal the base, no three-quarter view. Entire monument visible with balanced margins. Uniform pale grey studio background and soft contact shadow, gentle light, no glare obscuring surfaces. Do not invent components, text, ornaments, flowers, plants, vases or watermarks. Single square image requested 2048x2048. Fixed geometry master for nine material-only edits.",
+      "date": "2026-10-20T12:50:49.579460+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-a7a8aa63-dd63-4550-907f-18ddafe7228d.png",
+      "sha256": "b560ebe84bd9285fb3c486c6f4c575001ae07dda2705b0ca82776e7eb7168d5e",
+      "references": [
+        "libfile_2a316d6ce1388191b2a548a52e7cee86",
+        "bengal-texture-v1.png"
+      ],
+      "controleVisuel": "Vue frontale propre : dalle rectangulaire unique, silhouette montagneuse avec sommet principal \u00e0 gauche et sommets d\u00e9croissants \u00e0 droite, chants \u00e9clat\u00e9s conserv\u00e9s, surface Bengal homog\u00e8ne. Gravure retir\u00e9e ; aucune inscription ni accessoire."
+    },
+    "rozabeta": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a single rectangular base slab and a thick upright headstone whose irregular mountain skyline has its highest peak on the left and lower peaks toward the right. Image 2 is only the rozabeta stone reference. Change ONLY all stone surfaces of the rectangular slab and mountain-shaped headstone, retaining the different polished and rough finishes to the exact material of image 2: light grey-white granite with soft salmon-pink feldspar crystals and fine black mineral flecks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the headstone's thick irregular broken-stone edge as rough natural stone. It is a finish of the same selected material, not a separate white insert. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the precise external mountain skyline, highest on the left and descending through smaller peaks toward the right. Do not replace the rough edges with a smooth bevel. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:50:59.120358+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-dba588d6-6c8a-4934-bf92-3865a7292b43.png",
+      "sha256": "593bc6826e00007c1211a783c3b8084534bba3281e188136f58d4427322043b8",
+      "references": [
+        "cin-montagne01-bengal.png",
+        "rozabeta-texture-v1.png"
+      ],
+      "controleVisuel": "Granite rose clair mouchet\u00e9, silhouette et dalle inchang\u00e9es, chants \u00e9clat\u00e9s dans la mati\u00e8re choisie. Vue frontale propre, gravure absente."
+    },
+    "paradiso": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a single rectangular base slab and a thick upright headstone whose irregular mountain skyline has its highest peak on the left and lower peaks toward the right. Image 2 is only the paradiso stone reference. Change ONLY all stone surfaces of the rectangular slab and mountain-shaped headstone, retaining the different polished and rough finishes to the exact material of image 2: grey granite with fine black minerals, copper salmon grains, softly flowing white and dark mineral bands. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the headstone's thick irregular broken-stone edge as rough natural stone. It is a finish of the same selected material, not a separate white insert. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the precise external mountain skyline, highest on the left and descending through smaller peaks toward the right. Do not replace the rough edges with a smooth bevel. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:51:08.170974+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-07786455-0dd5-46d1-9b95-37f5998360a3.png",
+      "sha256": "72927ba5a351437028ed7c92602bbd54cfff3fadc07fe67edd7f5e1b8bbaec40",
+      "references": [
+        "cin-montagne01-bengal.png",
+        "paradiso-texture-v1.png"
+      ],
+      "controleVisuel": "Pierre grise vein\u00e9e brun-roux, silhouette montagneuse stable, chants bruts et dalle conserv\u00e9s. Vue frontale propre, gravure absente."
+    },
+    "jablanica": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a single rectangular base slab and a thick upright headstone whose irregular mountain skyline has its highest peak on the left and lower peaks toward the right. Image 2 is only the jablanica stone reference. Change ONLY all stone surfaces of the rectangular slab and mountain-shaped headstone, retaining the different polished and rough finishes to the exact material of image 2: dark grey granite densely packed with black minerals, silvery grey and translucent white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the headstone's thick irregular broken-stone edge as rough natural stone. It is a finish of the same selected material, not a separate white insert. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the precise external mountain skyline, highest on the left and descending through smaller peaks toward the right. Do not replace the rough edges with a smooth bevel. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:51:17.205131+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-219923fe-fa09-4c8d-88b6-45910651dd81.png",
+      "sha256": "9a533b40673d03a7e7a43d7ca2d7c7ef0db3be083d869f62894bdb84f1c4e0e8",
+      "references": [
+        "cin-montagne01-bengal.png",
+        "jablanica-texture-v1.png"
+      ],
+      "controleVisuel": "Granite gris noir mouchet\u00e9, g\u00e9om\u00e9trie identique au ma\u00eetre, sommet principal \u00e0 gauche et bordures brutes conserv\u00e9s. Vue frontale propre, gravure absente."
+    },
+    "royal": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a single rectangular base slab and a thick upright headstone whose irregular mountain skyline has its highest peak on the left and lower peaks toward the right. Image 2 is only the royal stone reference. Change ONLY all stone surfaces of the rectangular slab and mountain-shaped headstone, retaining the different polished and rough finishes to the exact material of image 2: neutral dark granite with dense small black minerals and irregular silvery grey-white crystals in a subtly cloudy pattern. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the headstone's thick irregular broken-stone edge as rough natural stone. It is a finish of the same selected material, not a separate white insert. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Preserve the precise external mountain skyline, highest on the left and descending through smaller peaks toward the right. Do not replace the rough edges with a smooth bevel. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:51:26.664933+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-255c05af-340a-4c54-b213-685b1a5b4e26.png",
+      "sha256": "a163ff6ebb1edc792271dd179b2b25e5d8e654900a1656f3772597bcb4209433",
+      "references": [
+        "cin-montagne01-bengal.png",
+        "royal-texture-v1.png"
+      ],
+      "controleVisuel": "Granite gris sombre \u00e0 grain dense, contour montagneux et \u00e9paisseur de dalle inchang\u00e9s, aucun d\u00e9cor ajout\u00e9. Vue frontale propre, gravure absente."
+    }
+  }
+}

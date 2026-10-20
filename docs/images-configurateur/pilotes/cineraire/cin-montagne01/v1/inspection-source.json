@@ -1,0 +1,36 @@
+{
+  "library_file_id": "libfile_2a316d6ce1388191b2a548a52e7cee86",
+  "current_version_number": 0,
+  "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-montagne01/CIN-MONTAGNE01.png",
+  "source_file_name": "CIN-MONTAGNE01.png",
+  "inspection_pending": false,
+  "geometry": "Dalle rectangulaire simple, stele haute a silhouette de chaine montagneuse: grand sommet a gauche, sommet intermediaire puis sommet bas a droite. Bords epais irreguliers a aspect eclate.",
+  "fixed_features": [
+    "Silhouette exterieure des sommets",
+    "Bords irreguliers/eclates de la stele",
+    "Dalle rectangulaire"
+  ],
+  "removable_accessories": [],
+  "material_zones": "Face polie et dalle en pierre sombre; chants de stele clairs et rugueux. Dessin blanc de montagnes et sapins sur la face.",
+  "ambiguity": "Le paysage blanc en facade semble une gravure de surface; son caractere optionnel depend du brief. Les chants clairs sont visuellement des surfaces brutes, pas necessairement une seconde pierre.",
+  "generation_note": "Conserver le contour montagneux et la finition brute des chants meme si le motif grave optionnel est retire.",
+  "reference_dimensions_px": [
+    1448,
+    1086
+  ],
+  "library_xattr_verified": true,
+  "decisionPilote": "Le paysage blanc frontal est traite comme gravure optionnelle. La silhouette montagneuse et les chants eclates restent. Les chants clairs sont interpretes comme finition brute de la meme pierre, pas comme incrustation.",
+  "specificationGeneration": {
+    "id": "cin-montagne01",
+    "family": "cineraire",
+    "geometry": "a compact cinerary monument with a single rectangular base slab and a thick upright headstone whose irregular mountain skyline has its highest peak on the left and lower peaks toward the right",
+    "stoneAreas": "all stone surfaces of the rectangular slab and mountain-shaped headstone, retaining the different polished and rough finishes",
+    "fixedAreas": "Keep the headstone's thick irregular broken-stone edge as rough natural stone. It is a finish of the same selected material, not a separate white insert.",
+    "extraConstraints": "Preserve the precise external mountain skyline, highest on the left and descending through smaller peaks toward the right. Do not replace the rough edges with a smooth bevel.",
+    "masterDescription": "Preserve the plain rectangular slab and the thick irregular mountain-shaped upright. The tall main peak is on the left, followed by an intermediate peak and a lower right peak. Keep the uneven chipped perimeter and rough stone edges, while the broad front face remains polished.",
+    "removeDescription": "Remove only the white surface engraving of mountains and pine trees, leaving a plain polished stone face. Keep the actual mountain-shaped outer contour and rough edge geometry.",
+    "interpretationNote": "Le paysage blanc frontal est traite comme gravure optionnelle. La silhouette montagneuse et les chants eclates restent. Les chants clairs sont interpretes comme finition brute de la meme pierre, pas comme incrustation.",
+    "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-montagne01/CIN-MONTAGNE01.png",
+    "sourceLibraryId": "libfile_2a316d6ce1388191b2a548a52e7cee86"
+  }
+}
