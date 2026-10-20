@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "misAJour": "2026-10-19",
+  "misAJour": "2026-10-20",
   "cible": 270,
   "vueParVariante": 1,
   "matieres": [
@@ -29,81 +29,131 @@
           "matiereId": "bengal",
           "fichier": "cin1-bengal.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "9ae0b32901f1bd02fff75bcc50a9ccfbdf5168347fe6c75f1777d5e3747a4993",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2978027,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "cin1-rozabeta.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "23488166393802d30ff44eaf3980ef52fa330a5d02917289f81bd4581eca3f35",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2744399,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "cin1-paradiso.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "c0ee463eb6e95b3778635274cfee19ec405f0c68015b8044c0e37d0ac93cab75",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2807215,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "cin1-jablanica.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "5e704c546a3644b53f4c437761a3f5a35a95530ffa1ce5a426c6baf7be0720d8",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2889929,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "cin1-royal.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "a37d24afa5f6ee159a8d03d5264b6622aeba0adfcf398e25484e1bb52603b444",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2899841,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
           "fichier": "cin1-vizag-blue.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "9b4c4825e905a8730c9e7c0c467486ad9b823c0ff88bb68ed8dcffff64e206ec",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2760617,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "cin1-viscount-white.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "e60eb725877e4056e0b9d0d418867304d8e56fb4a20d3f35ff97b2441fd43ebd",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2715913,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "cin1-rosso-porrino.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "7a8e85608b08a9eafbe23c3a9173465d6d1ac399252bda1015fe457a14cea8f9",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2685073,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "cin1-egipat.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "9ed6368690b81bcb8a3f0baeb53562492f8f7529de40d35a4bb8da4e0baeaa58",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2896845,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "cin1-marmara.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "c0312935ec95d4113920b391cee28f18676fe9a301cd82981be219c7283ef59c",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2333338,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -120,81 +170,131 @@
           "matiereId": "bengal",
           "fichier": "arques-bengal.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "91c680c77c3ccd1b0258d33c6a3b77262ffbcf6d7608edf4be0d09ae7b49301a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3172303,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "arques-rozabeta.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "45a9d1af794256198763dc32b5b2db16005e336ce05da308f4c3280d108a0406",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3016440,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "arques-paradiso.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "b7ed22d0d4ea35139375920ee9349f47d83cb03a47ee239610629287672705ad",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3039424,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "arques-jablanica.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "8954af9420626d65325dc7ba23d39e3a17cba94cf6eb0f110af509eb264d7569",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3094228,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "arques-royal.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "81182142a7694b31f38f909bc7b5159e6a2f78fcb4c06ef82c3dfa9113101ac9",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3113538,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
           "fichier": "arques-vizag-blue.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "0177b0092e8248a3ad594cb343bf3845fb7709d859b39087f142b7dacfad7e25",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2942183,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "arques-viscount-white.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "a693d1829450a724e75c2eb1d991dbc3b6e4b1794bddc029e0ce41e8ab9faa73",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2922095,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "arques-rosso-porrino.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "42d8a624e5ba5b7c59d7736de38483e3dd35b6cace585b693b3ef72bd3f67e49",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2971181,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "arques-egipat.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "6b1bf09be93da883706fcef9df25e50c228a6dd015c2388c489f3b50d2c991df",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3093180,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "arques-marmara.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "6fa386a12f21b2582d0c3095a223fd2984bc626af57eba323ae591671cdcb79c",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2465252,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -211,81 +311,131 @@
           "matiereId": "bengal",
           "fichier": "almandin-bengal.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "4151306da43ca23dc2761aa12a92fc5ee3bb720b947ff8f8c10c39207490a8e3",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2471154,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "almandin-rozabeta.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "ea8867e38b74f2c77fdbfa070f6171d9e8a07f6036a2c9d74b354019d0900720",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2492628,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "almandin-paradiso.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "759fe08b1e9ec3f3a1f8b00a4410dc8c5419a1cda8d92833120b68c6fb0248bd",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2612297,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "almandin-jablanica.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "4c1ae274f79098f7b79295b08098f35210028c0e3da9c2565331db919043f735",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2536186,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "almandin-royal.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "220221ef7e7c67369dbfa93d2c2a4e4070e2b90980a1a899c496507612a1dc43",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2599765,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
           "fichier": "almandin-vizag-blue.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "27c3cff9b3e679889a7806a7e200ad56a657659471d01a76b1f4513468ea9c8a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2507081,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "almandin-viscount-white.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "3796d5de06f018dd5216c760dcce121e1b21b951d444274e8f8368bc91c436e1",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2535848,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "almandin-rosso-porrino.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "f64195b38d39501e4597652067cd328724743d6303f3d0785b4b4221750fd076",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2493310,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "almandin-egipat.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "63ec92fcd46fdc94fb094a95da3160c75ead82842d7f291fe35cda59e893d3ac",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2638294,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "almandin-marmara.png",
           "statut": "archive-documente",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "sha256": "f90803df8527738f7159ac693d956befd75837b9b32494c4a1c2fbcecc5b968e",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2220268,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -301,82 +451,132 @@
         {
           "matiereId": "bengal",
           "fichier": "4-pieces-stele-doucine-avec-base-bengal.png",
-          "statut": "genere-transfert-a-verifier",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "73faa4b18f4fd158033eebdf9595b25e51ff6ce3908d768a998c9dca9a964cb2",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2897843,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "4-pieces-stele-doucine-avec-base-rozabeta.png",
-          "statut": "genere-transfert-a-verifier",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "a54ef61b692a72b3a15ed2012d3fe4ccce7f15a1fe86c9225758962f4aa738de",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2942741,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "4-pieces-stele-doucine-avec-base-paradiso.png",
-          "statut": "genere-transfert-a-verifier",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "2524e67294b9f014be7aef7be9975f6fb345af752515c06780d6a73d1e04b386",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2957604,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "4-pieces-stele-doucine-avec-base-jablanica.png",
-          "statut": "genere-transfert-a-verifier",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "6c13e6d327cfa8fb5ed7e854f2628a3f75c8614b80d339a2ae23558ba483678a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2921508,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "4-pieces-stele-doucine-avec-base-royal.png",
-          "statut": "genere-transfert-a-verifier",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "b7042592d55fb2c75a2784edb0d3998f28468f8a53bf27b6f095407cf35909bb",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2952889,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
           "fichier": "4-pieces-stele-doucine-avec-base-vizag-blue.png",
-          "statut": "genere-transfert-a-verifier",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "a40efcdcbc2d0332078f68172f345518b2e9711cc2c044507e60e92dbbba21e6",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2901939,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "4-pieces-stele-doucine-avec-base-viscount-white.png",
-          "statut": "genere-transfert-a-verifier",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "96fe70999bd43ab8edad06e9130ad33fe34826867835ecfc9f456d7fc26c4374",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2831670,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "4-pieces-stele-doucine-avec-base-rosso-porrino.png",
-          "statut": "genere-transfert-a-verifier",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "a8ac86b37df4c32e07178781c77af0e6b45cef4757dda80f553f8a3f227a50d5",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2829847,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "4-pieces-stele-doucine-avec-base-egipat.png",
-          "statut": "genere-transfert-a-verifier",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "b3765556cc040737a8339ac4546ea8c353f321322f3b48e8f392d75fbc2526b3",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3017025,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "4-pieces-stele-doucine-avec-base-marmara.png",
-          "statut": "genere-transfert-a-verifier",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "1a75eb81d87be20f184169318e353cd0269e048924b15201f6ef5cfa434dfb23",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2343866,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -392,42 +592,68 @@
         {
           "matiereId": "bengal",
           "fichier": "5-pieces-jardiniere-en-closoir-bengal.png",
-          "statut": "genere-a-archiver",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "9bc4a69d392ec9312d19b3f9eecf2619acbbf8ec64ee49db2e320fc71a07766b",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2999435,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "5-pieces-jardiniere-en-closoir-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "2591e072cb6ca5dcb75de58a30619e77329e63b1a1914582e4a1bc5a668462d5",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2948472,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "5-pieces-jardiniere-en-closoir-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "8738816b1e57d5ff7bef85ccfbf4f71c9ff6e8e3b549d567dbc50cae7a85c4b8",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3001655,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "5-pieces-jardiniere-en-closoir-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "90d1e2619f7d17043cf4e3dcf9be9d205a874943ed01f2f7b3a9dfe12046403e",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2983954,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "5-pieces-jardiniere-en-closoir-royal.png",
-          "statut": "a-generer",
+          "statut": "transfert-partiel-source-a-retrouver",
           "sha256": null,
           "dimensionsPx": null,
-          "validationConfigurateur": false
+          "validationConfigurateur": false,
+          "transfertPartiel": {
+            "fichier": "5-pieces-jardiniere-en-closoir-royal.png.part",
+            "tailleOctets": 2700000,
+            "sha256Partiel": "5bb2132e2e46427fbb401b4bd30227b33660b7be82d8ecb777d4fb3aa4a9d813",
+            "sourceCompleteRetrouvee": false
+          }
         },
         {
           "matiereId": "vizag-blue",
@@ -483,10 +709,15 @@
         {
           "matiereId": "bengal",
           "fichier": "4-pieces-sans-stele-bengal.png",
-          "statut": "genere-a-archiver",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "866349669396da95426e2e8407036913c133791ed4e01f33345769cb3321e356",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2567857,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
@@ -574,10 +805,15 @@
         {
           "matiereId": "bengal",
           "fichier": "tombale-simple-200x100x10-bengal.png",
-          "statut": "genere-a-archiver",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "4bd48fee5cdb35f07c7a5611b129156bf7d4f67b0bf708d7b6ae19f277062e67",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2512983,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
@@ -2473,5 +2709,24 @@
         }
       ]
     }
-  ]
+  ],
+  "bilanVerifie": {
+    "dateControle": "2026-10-20T08:31:49.860711+00:00",
+    "imagesCompletes": 46,
+    "imagesInventorieesAvecHash": 46,
+    "transfertsPartiels": 1,
+    "combinaisonsRestantes": 224,
+    "aGenererSansFichierPartiel": 223,
+    "modelesComplets": 4,
+    "modelesPartiels": 3,
+    "modelesNonCommences": 20,
+    "imagesValideesConfigurateur": 0,
+    "aucuneNouvelleGenerationPendantAudit": true
+  },
+  "prochaineAction": {
+    "modeleId": "5-pieces-jardiniere-en-closoir",
+    "matiereId": "royal",
+    "action": "Retrouver la source complete, comparer le prefixe puis reprendre le transfert partiel ; a defaut regenerer. Ensuite vizag-blue, viscount-white, rosso-porrino, egipat, marmara.",
+    "sourceCompleteRetrouvee": false
+  }
 }

@@ -17,52 +17,126 @@
     {
       "matiereId": "bengal",
       "image": "almandin-bengal.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "4151306da43ca23dc2761aa12a92fc5ee3bb720b947ff8f8c10c39207490a8e3",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2471154,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "rozabeta",
       "image": "almandin-rozabeta.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "ea8867e38b74f2c77fdbfa070f6171d9e8a07f6036a2c9d74b354019d0900720",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2492628,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "paradiso",
       "image": "almandin-paradiso.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "759fe08b1e9ec3f3a1f8b00a4410dc8c5419a1cda8d92833120b68c6fb0248bd",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2612297,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "jablanica",
       "image": "almandin-jablanica.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "4c1ae274f79098f7b79295b08098f35210028c0e3da9c2565331db919043f735",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2536186,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "royal",
       "image": "almandin-royal.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "220221ef7e7c67369dbfa93d2c2a4e4070e2b90980a1a899c496507612a1dc43",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2599765,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "vizag-blue",
       "image": "almandin-vizag-blue.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png",
+      "sha256": "27c3cff9b3e679889a7806a7e200ad56a657659471d01a76b1f4513468ea9c8a",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2507081,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "viscount-white",
       "image": "almandin-viscount-white.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png",
+      "sha256": "3796d5de06f018dd5216c760dcce121e1b21b951d444274e8f8368bc91c436e1",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2535848,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "rosso-porrino",
       "image": "almandin-rosso-porrino.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png",
+      "sha256": "f64195b38d39501e4597652067cd328724743d6303f3d0785b4b4221750fd076",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2493310,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "egipat",
       "image": "almandin-egipat.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png",
+      "sha256": "63ec92fcd46fdc94fb094a95da3160c75ead82842d7f291fe35cda59e893d3ac",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2638294,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "marmara",
       "image": "almandin-marmara.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png",
+      "sha256": "f90803df8527738f7159ac693d956befd75837b9b32494c4a1c2fbcecc5b968e",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2220268,
+      "integritePngVerifiee": true
     }
-  ]
+  ],
+  "dernierControleIntegrite": "2026-10-20T08:31:49.860711+00:00",
+  "variantesPresentes": 10,
+  "variantesCibles": 10,
+  "validationConfigurateur": false
 }

@@ -1,0 +1,568 @@
+{
+  "dateControle": "2026-10-20T08:31:49.860711+00:00",
+  "methode": "Signature PNG, CRC de chaque chunk, IEND, decompression zlib complete et taille des pixels ; SHA256 des fichiers locaux. Pas de nouvelle comparaison aux sources originales ni de validation visuelle ou metrique.",
+  "imagesCompletes": [
+    {
+      "modeleId": "cin1",
+      "matiereId": "bengal",
+      "fichier": "pilotes/cineraire/cin1/v1/cin1-bengal.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2978027,
+      "sha256": "9ae0b32901f1bd02fff75bcc50a9ccfbdf5168347fe6c75f1777d5e3747a4993",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "cin1",
+      "matiereId": "rozabeta",
+      "fichier": "pilotes/cineraire/cin1/v1/cin1-rozabeta.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2744399,
+      "sha256": "23488166393802d30ff44eaf3980ef52fa330a5d02917289f81bd4581eca3f35",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "cin1",
+      "matiereId": "paradiso",
+      "fichier": "pilotes/cineraire/cin1/v1/cin1-paradiso.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2807215,
+      "sha256": "c0ee463eb6e95b3778635274cfee19ec405f0c68015b8044c0e37d0ac93cab75",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "cin1",
+      "matiereId": "jablanica",
+      "fichier": "pilotes/cineraire/cin1/v1/cin1-jablanica.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2889929,
+      "sha256": "5e704c546a3644b53f4c437761a3f5a35a95530ffa1ce5a426c6baf7be0720d8",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "cin1",
+      "matiereId": "royal",
+      "fichier": "pilotes/cineraire/cin1/v1/cin1-royal.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2899841,
+      "sha256": "a37d24afa5f6ee159a8d03d5264b6622aeba0adfcf398e25484e1bb52603b444",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "cin1",
+      "matiereId": "vizag-blue",
+      "fichier": "pilotes/cineraire/cin1/v1/cin1-vizag-blue.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2760617,
+      "sha256": "9b4c4825e905a8730c9e7c0c467486ad9b823c0ff88bb68ed8dcffff64e206ec",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "cin1",
+      "matiereId": "viscount-white",
+      "fichier": "pilotes/cineraire/cin1/v1/cin1-viscount-white.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2715913,
+      "sha256": "e60eb725877e4056e0b9d0d418867304d8e56fb4a20d3f35ff97b2441fd43ebd",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "cin1",
+      "matiereId": "rosso-porrino",
+      "fichier": "pilotes/cineraire/cin1/v1/cin1-rosso-porrino.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2685073,
+      "sha256": "7a8e85608b08a9eafbe23c3a9173465d6d1ac399252bda1015fe457a14cea8f9",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "cin1",
+      "matiereId": "egipat",
+      "fichier": "pilotes/cineraire/cin1/v1/cin1-egipat.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2896845,
+      "sha256": "9ed6368690b81bcb8a3f0baeb53562492f8f7529de40d35a4bb8da4e0baeaa58",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "cin1",
+      "matiereId": "marmara",
+      "fichier": "pilotes/cineraire/cin1/v1/cin1-marmara.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2333338,
+      "sha256": "c0312935ec95d4113920b391cee28f18676fe9a301cd82981be219c7283ef59c",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "arques",
+      "matiereId": "bengal",
+      "fichier": "pilotes/funeraire/arques/v1/arques-bengal.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3172303,
+      "sha256": "91c680c77c3ccd1b0258d33c6a3b77262ffbcf6d7608edf4be0d09ae7b49301a",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "arques",
+      "matiereId": "rozabeta",
+      "fichier": "pilotes/funeraire/arques/v1/arques-rozabeta.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3016440,
+      "sha256": "45a9d1af794256198763dc32b5b2db16005e336ce05da308f4c3280d108a0406",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "arques",
+      "matiereId": "paradiso",
+      "fichier": "pilotes/funeraire/arques/v1/arques-paradiso.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3039424,
+      "sha256": "b7ed22d0d4ea35139375920ee9349f47d83cb03a47ee239610629287672705ad",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "arques",
+      "matiereId": "jablanica",
+      "fichier": "pilotes/funeraire/arques/v1/arques-jablanica.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3094228,
+      "sha256": "8954af9420626d65325dc7ba23d39e3a17cba94cf6eb0f110af509eb264d7569",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "arques",
+      "matiereId": "royal",
+      "fichier": "pilotes/funeraire/arques/v1/arques-royal.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3113538,
+      "sha256": "81182142a7694b31f38f909bc7b5159e6a2f78fcb4c06ef82c3dfa9113101ac9",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "arques",
+      "matiereId": "vizag-blue",
+      "fichier": "pilotes/funeraire/arques/v1/arques-vizag-blue.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2942183,
+      "sha256": "0177b0092e8248a3ad594cb343bf3845fb7709d859b39087f142b7dacfad7e25",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "arques",
+      "matiereId": "viscount-white",
+      "fichier": "pilotes/funeraire/arques/v1/arques-viscount-white.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2922095,
+      "sha256": "a693d1829450a724e75c2eb1d991dbc3b6e4b1794bddc029e0ce41e8ab9faa73",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "arques",
+      "matiereId": "rosso-porrino",
+      "fichier": "pilotes/funeraire/arques/v1/arques-rosso-porrino.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2971181,
+      "sha256": "42d8a624e5ba5b7c59d7736de38483e3dd35b6cace585b693b3ef72bd3f67e49",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "arques",
+      "matiereId": "egipat",
+      "fichier": "pilotes/funeraire/arques/v1/arques-egipat.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3093180,
+      "sha256": "6b1bf09be93da883706fcef9df25e50c228a6dd015c2388c489f3b50d2c991df",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "arques",
+      "matiereId": "marmara",
+      "fichier": "pilotes/funeraire/arques/v1/arques-marmara.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2465252,
+      "sha256": "6fa386a12f21b2582d0c3095a223fd2984bc626af57eba323ae591671cdcb79c",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "almandin",
+      "matiereId": "bengal",
+      "fichier": "pilotes/funeraire/almandin/v1/almandin-bengal.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2471154,
+      "sha256": "4151306da43ca23dc2761aa12a92fc5ee3bb720b947ff8f8c10c39207490a8e3",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "almandin",
+      "matiereId": "rozabeta",
+      "fichier": "pilotes/funeraire/almandin/v1/almandin-rozabeta.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2492628,
+      "sha256": "ea8867e38b74f2c77fdbfa070f6171d9e8a07f6036a2c9d74b354019d0900720",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "almandin",
+      "matiereId": "paradiso",
+      "fichier": "pilotes/funeraire/almandin/v1/almandin-paradiso.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2612297,
+      "sha256": "759fe08b1e9ec3f3a1f8b00a4410dc8c5419a1cda8d92833120b68c6fb0248bd",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "almandin",
+      "matiereId": "jablanica",
+      "fichier": "pilotes/funeraire/almandin/v1/almandin-jablanica.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2536186,
+      "sha256": "4c1ae274f79098f7b79295b08098f35210028c0e3da9c2565331db919043f735",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "almandin",
+      "matiereId": "royal",
+      "fichier": "pilotes/funeraire/almandin/v1/almandin-royal.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2599765,
+      "sha256": "220221ef7e7c67369dbfa93d2c2a4e4070e2b90980a1a899c496507612a1dc43",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "almandin",
+      "matiereId": "vizag-blue",
+      "fichier": "pilotes/funeraire/almandin/v1/almandin-vizag-blue.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2507081,
+      "sha256": "27c3cff9b3e679889a7806a7e200ad56a657659471d01a76b1f4513468ea9c8a",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "almandin",
+      "matiereId": "viscount-white",
+      "fichier": "pilotes/funeraire/almandin/v1/almandin-viscount-white.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2535848,
+      "sha256": "3796d5de06f018dd5216c760dcce121e1b21b951d444274e8f8368bc91c436e1",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "almandin",
+      "matiereId": "rosso-porrino",
+      "fichier": "pilotes/funeraire/almandin/v1/almandin-rosso-porrino.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2493310,
+      "sha256": "f64195b38d39501e4597652067cd328724743d6303f3d0785b4b4221750fd076",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "almandin",
+      "matiereId": "egipat",
+      "fichier": "pilotes/funeraire/almandin/v1/almandin-egipat.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2638294,
+      "sha256": "63ec92fcd46fdc94fb094a95da3160c75ead82842d7f291fe35cda59e893d3ac",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "almandin",
+      "matiereId": "marmara",
+      "fichier": "pilotes/funeraire/almandin/v1/almandin-marmara.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2220268,
+      "sha256": "f90803df8527738f7159ac693d956befd75837b9b32494c4a1c2fbcecc5b968e",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "4-pieces-stele-doucine-avec-base",
+      "matiereId": "bengal",
+      "fichier": "pilotes/funeraire/4-pieces-stele-doucine-avec-base/v1/4-pieces-stele-doucine-avec-base-bengal.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2897843,
+      "sha256": "73faa4b18f4fd158033eebdf9595b25e51ff6ce3908d768a998c9dca9a964cb2",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "4-pieces-stele-doucine-avec-base",
+      "matiereId": "rozabeta",
+      "fichier": "pilotes/funeraire/4-pieces-stele-doucine-avec-base/v1/4-pieces-stele-doucine-avec-base-rozabeta.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2942741,
+      "sha256": "a54ef61b692a72b3a15ed2012d3fe4ccce7f15a1fe86c9225758962f4aa738de",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "4-pieces-stele-doucine-avec-base",
+      "matiereId": "paradiso",
+      "fichier": "pilotes/funeraire/4-pieces-stele-doucine-avec-base/v1/4-pieces-stele-doucine-avec-base-paradiso.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2957604,
+      "sha256": "2524e67294b9f014be7aef7be9975f6fb345af752515c06780d6a73d1e04b386",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "4-pieces-stele-doucine-avec-base",
+      "matiereId": "jablanica",
+      "fichier": "pilotes/funeraire/4-pieces-stele-doucine-avec-base/v1/4-pieces-stele-doucine-avec-base-jablanica.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2921508,
+      "sha256": "6c13e6d327cfa8fb5ed7e854f2628a3f75c8614b80d339a2ae23558ba483678a",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "4-pieces-stele-doucine-avec-base",
+      "matiereId": "royal",
+      "fichier": "pilotes/funeraire/4-pieces-stele-doucine-avec-base/v1/4-pieces-stele-doucine-avec-base-royal.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2952889,
+      "sha256": "b7042592d55fb2c75a2784edb0d3998f28468f8a53bf27b6f095407cf35909bb",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "4-pieces-stele-doucine-avec-base",
+      "matiereId": "vizag-blue",
+      "fichier": "pilotes/funeraire/4-pieces-stele-doucine-avec-base/v1/4-pieces-stele-doucine-avec-base-vizag-blue.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2901939,
+      "sha256": "a40efcdcbc2d0332078f68172f345518b2e9711cc2c044507e60e92dbbba21e6",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "4-pieces-stele-doucine-avec-base",
+      "matiereId": "viscount-white",
+      "fichier": "pilotes/funeraire/4-pieces-stele-doucine-avec-base/v1/4-pieces-stele-doucine-avec-base-viscount-white.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2831670,
+      "sha256": "96fe70999bd43ab8edad06e9130ad33fe34826867835ecfc9f456d7fc26c4374",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "4-pieces-stele-doucine-avec-base",
+      "matiereId": "rosso-porrino",
+      "fichier": "pilotes/funeraire/4-pieces-stele-doucine-avec-base/v1/4-pieces-stele-doucine-avec-base-rosso-porrino.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2829847,
+      "sha256": "a8ac86b37df4c32e07178781c77af0e6b45cef4757dda80f553f8a3f227a50d5",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "4-pieces-stele-doucine-avec-base",
+      "matiereId": "egipat",
+      "fichier": "pilotes/funeraire/4-pieces-stele-doucine-avec-base/v1/4-pieces-stele-doucine-avec-base-egipat.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3017025,
+      "sha256": "b3765556cc040737a8339ac4546ea8c353f321322f3b48e8f392d75fbc2526b3",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "4-pieces-stele-doucine-avec-base",
+      "matiereId": "marmara",
+      "fichier": "pilotes/funeraire/4-pieces-stele-doucine-avec-base/v1/4-pieces-stele-doucine-avec-base-marmara.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2343866,
+      "sha256": "1a75eb81d87be20f184169318e353cd0269e048924b15201f6ef5cfa434dfb23",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "5-pieces-jardiniere-en-closoir",
+      "matiereId": "bengal",
+      "fichier": "pilotes/funeraire/5-pieces-jardiniere-en-closoir/v1/5-pieces-jardiniere-en-closoir-bengal.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2999435,
+      "sha256": "9bc4a69d392ec9312d19b3f9eecf2619acbbf8ec64ee49db2e320fc71a07766b",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "5-pieces-jardiniere-en-closoir",
+      "matiereId": "rozabeta",
+      "fichier": "pilotes/funeraire/5-pieces-jardiniere-en-closoir/v1/5-pieces-jardiniere-en-closoir-rozabeta.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2948472,
+      "sha256": "2591e072cb6ca5dcb75de58a30619e77329e63b1a1914582e4a1bc5a668462d5",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "5-pieces-jardiniere-en-closoir",
+      "matiereId": "paradiso",
+      "fichier": "pilotes/funeraire/5-pieces-jardiniere-en-closoir/v1/5-pieces-jardiniere-en-closoir-paradiso.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3001655,
+      "sha256": "8738816b1e57d5ff7bef85ccfbf4f71c9ff6e8e3b549d567dbc50cae7a85c4b8",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "5-pieces-jardiniere-en-closoir",
+      "matiereId": "jablanica",
+      "fichier": "pilotes/funeraire/5-pieces-jardiniere-en-closoir/v1/5-pieces-jardiniere-en-closoir-jablanica.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2983954,
+      "sha256": "90d1e2619f7d17043cf4e3dcf9be9d205a874943ed01f2f7b3a9dfe12046403e",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "4-pieces-sans-stele",
+      "matiereId": "bengal",
+      "fichier": "pilotes/funeraire/4-pieces-sans-stele/v1/4-pieces-sans-stele-bengal.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2567857,
+      "sha256": "866349669396da95426e2e8407036913c133791ed4e01f33345769cb3321e356",
+      "integritePngVerifiee": true
+    },
+    {
+      "modeleId": "tombale-simple-200x100x10",
+      "matiereId": "bengal",
+      "fichier": "pilotes/funeraire/tombale-simple-200x100x10/v1/tombale-simple-200x100x10-bengal.png",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2512983,
+      "sha256": "4bd48fee5cdb35f07c7a5611b129156bf7d4f67b0bf708d7b6ae19f277062e67",
+      "integritePngVerifiee": true
+    }
+  ],
+  "transfertsPartiels": [
+    {
+      "modeleId": "5-pieces-jardiniere-en-closoir",
+      "matiereId": "royal",
+      "fichier": "5-pieces-jardiniere-en-closoir-royal.png.part",
+      "tailleOctets": 2700000,
+      "sha256Partiel": "5bb2132e2e46427fbb401b4bd30227b33660b7be82d8ecb777d4fb3aa4a9d813",
+      "sourceCompleteRetrouvee": false
+    }
+  ]
+}

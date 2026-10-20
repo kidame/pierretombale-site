@@ -17,52 +17,126 @@
     {
       "matiereId": "bengal",
       "image": "arques-bengal.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "91c680c77c3ccd1b0258d33c6a3b77262ffbcf6d7608edf4be0d09ae7b49301a",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3172303,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "rozabeta",
       "image": "arques-rozabeta.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "45a9d1af794256198763dc32b5b2db16005e336ce05da308f4c3280d108a0406",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3016440,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "paradiso",
       "image": "arques-paradiso.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "b7ed22d0d4ea35139375920ee9349f47d83cb03a47ee239610629287672705ad",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3039424,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "jablanica",
       "image": "arques-jablanica.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "8954af9420626d65325dc7ba23d39e3a17cba94cf6eb0f110af509eb264d7569",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3094228,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "royal",
       "image": "arques-royal.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "81182142a7694b31f38f909bc7b5159e6a2f78fcb4c06ef82c3dfa9113101ac9",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3113538,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "vizag-blue",
       "image": "arques-vizag-blue.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png",
+      "sha256": "0177b0092e8248a3ad594cb343bf3845fb7709d859b39087f142b7dacfad7e25",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2942183,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "viscount-white",
       "image": "arques-viscount-white.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png",
+      "sha256": "a693d1829450a724e75c2eb1d991dbc3b6e4b1794bddc029e0ce41e8ab9faa73",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2922095,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "rosso-porrino",
       "image": "arques-rosso-porrino.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png",
+      "sha256": "42d8a624e5ba5b7c59d7736de38483e3dd35b6cace585b693b3ef72bd3f67e49",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2971181,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "egipat",
       "image": "arques-egipat.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png",
+      "sha256": "6b1bf09be93da883706fcef9df25e50c228a6dd015c2388c489f3b50d2c991df",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3093180,
+      "integritePngVerifiee": true
     },
     {
       "matiereId": "marmara",
       "image": "arques-marmara.png",
-      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png"
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png",
+      "sha256": "6fa386a12f21b2582d0c3095a223fd2984bc626af57eba323ae591671cdcb79c",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2465252,
+      "integritePngVerifiee": true
     }
-  ]
+  ],
+  "dernierControleIntegrite": "2026-10-20T08:31:49.860711+00:00",
+  "variantesPresentes": 10,
+  "variantesCibles": 10,
+  "validationConfigurateur": false
 }

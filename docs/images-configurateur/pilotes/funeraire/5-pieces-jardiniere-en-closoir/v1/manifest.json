@@ -1,0 +1,73 @@
+{
+  "modeleId": "5-pieces-jardiniere-en-closoir",
+  "referenceInterne": "5 PIECES JARDINIERE EN CLOSOIR",
+  "famille": "funeraire",
+  "nomPublic": null,
+  "sourceLibraryId": "libfile_e51231eab77081918bdc4c42b475d355",
+  "version": 1,
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "5-pieces-jardiniere-en-closoir-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "9bc4a69d392ec9312d19b3f9eecf2619acbbf8ec64ee49db2e320fc71a07766b",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2999435,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "5-pieces-jardiniere-en-closoir-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "2591e072cb6ca5dcb75de58a30619e77329e63b1a1914582e4a1bc5a668462d5",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2948472,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "5-pieces-jardiniere-en-closoir-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "8738816b1e57d5ff7bef85ccfbf4f71c9ff6e8e3b549d567dbc50cae7a85c4b8",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3001655,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "5-pieces-jardiniere-en-closoir-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "90d1e2619f7d17043cf4e3dcf9be9d205a874943ed01f2f7b3a9dfe12046403e",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2983954,
+      "integritePngVerifiee": true
+    }
+  ],
+  "sourcePrompts": "../../../../prompts-serie.json",
+  "promptsExactsRetrouves": false,
+  "dernierControleIntegrite": "2026-10-20T08:31:49.860711+00:00",
+  "variantesPresentes": 4,
+  "variantesCibles": 10,
+  "validationConfigurateur": false
+}

@@ -1,0 +1,37 @@
+{
+  "modeleId": "4-pieces-sans-stele",
+  "referenceInterne": "4 PIECES SANS STELE",
+  "famille": "funeraire",
+  "nomPublic": null,
+  "sourceLibraryId": "libfile_c75412893ebc8191871be7200a366d7d",
+  "version": 1,
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "4-pieces-sans-stele-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "866349669396da95426e2e8407036913c133791ed4e01f33345769cb3321e356",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2567857,
+      "integritePngVerifiee": true
+    }
+  ],
+  "sourcePrompts": "../../../../prompts-serie.json",
+  "promptsExactsRetrouves": false,
+  "dernierControleIntegrite": "2026-10-20T08:31:49.860711+00:00",
+  "variantesPresentes": 1,
+  "variantesCibles": 10,
+  "validationConfigurateur": false
+}

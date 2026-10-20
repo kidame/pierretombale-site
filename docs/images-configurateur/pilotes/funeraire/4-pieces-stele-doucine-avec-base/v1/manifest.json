@@ -1,0 +1,145 @@
+{
+  "modeleId": "4-pieces-stele-doucine-avec-base",
+  "referenceInterne": "4 PIECES STELE DOUCINE AVEC BASE",
+  "famille": "funeraire",
+  "nomPublic": null,
+  "sourceLibraryId": "libfile_467841a15f6c8191b4e85bad81391b5d",
+  "version": 1,
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "4-pieces-stele-doucine-avec-base-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "73faa4b18f4fd158033eebdf9595b25e51ff6ce3908d768a998c9dca9a964cb2",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2897843,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "4-pieces-stele-doucine-avec-base-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "a54ef61b692a72b3a15ed2012d3fe4ccce7f15a1fe86c9225758962f4aa738de",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2942741,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "4-pieces-stele-doucine-avec-base-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "2524e67294b9f014be7aef7be9975f6fb345af752515c06780d6a73d1e04b386",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2957604,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "4-pieces-stele-doucine-avec-base-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "6c13e6d327cfa8fb5ed7e854f2628a3f75c8614b80d339a2ae23558ba483678a",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2921508,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "royal",
+      "image": "4-pieces-stele-doucine-avec-base-royal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "b7042592d55fb2c75a2784edb0d3998f28468f8a53bf27b6f095407cf35909bb",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2952889,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "vizag-blue",
+      "image": "4-pieces-stele-doucine-avec-base-vizag-blue.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png",
+      "sha256": "a40efcdcbc2d0332078f68172f345518b2e9711cc2c044507e60e92dbbba21e6",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2901939,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "viscount-white",
+      "image": "4-pieces-stele-doucine-avec-base-viscount-white.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png",
+      "sha256": "96fe70999bd43ab8edad06e9130ad33fe34826867835ecfc9f456d7fc26c4374",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2831670,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rosso-porrino",
+      "image": "4-pieces-stele-doucine-avec-base-rosso-porrino.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png",
+      "sha256": "a8ac86b37df4c32e07178781c77af0e6b45cef4757dda80f553f8a3f227a50d5",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2829847,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "egipat",
+      "image": "4-pieces-stele-doucine-avec-base-egipat.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png",
+      "sha256": "b3765556cc040737a8339ac4546ea8c353f321322f3b48e8f392d75fbc2526b3",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3017025,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "marmara",
+      "image": "4-pieces-stele-doucine-avec-base-marmara.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png",
+      "sha256": "1a75eb81d87be20f184169318e353cd0269e048924b15201f6ef5cfa434dfb23",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2343866,
+      "integritePngVerifiee": true
+    }
+  ],
+  "sourcePrompts": "../../../../prompts-serie.json",
+  "promptsExactsRetrouves": false,
+  "dernierControleIntegrite": "2026-10-20T08:31:49.860711+00:00",
+  "variantesPresentes": 10,
+  "variantesCibles": 10,
+  "validationConfigurateur": false
+}

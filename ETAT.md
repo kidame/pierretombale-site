@@ -44,6 +44,14 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 20.10.2026, Codex : audit des images demande par Thomas. 46 PNG complets controles
+  (CRC, IEND, decompression, SHA256), 1254 x 1254 ; cible documentaire 27 x 10 = 270.
+  Suivi-serie.json et 7 manifestes synchronises ; README ajoutes aux 4 dossiers manquants,
+  46 images inventoriees au lieu de 30. Prompts exacts des 4 derniers dossiers non retrouves.
+  Royal jardiniere : .png.part 2700000 octets, hors total, source complete a retrouver ;
+  prochaine action = recuperer/reprendre ce transfert, sinon regenerer, puis 5 autres matieres.
+  Rapport : docs/images-configurateur/AUDIT-2026-10-20.md. 224 images completes manquent.
+  Aucune nouvelle generation, validation configurateur, modification runtime ou publication.
 - 19.10.2026, Codex : plan de reprise persistant cree dans
   docs/images-configurateur/REPRISE-SERIE.md et suivi-serie.json (270 combinaisons).
   Priorite : finir le transfert doucine, archiver trois masters, puis poursuivre la serie.

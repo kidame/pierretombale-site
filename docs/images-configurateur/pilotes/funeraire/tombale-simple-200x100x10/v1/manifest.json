@@ -1,0 +1,37 @@
+{
+  "modeleId": "tombale-simple-200x100x10",
+  "referenceInterne": "TOMBALE SIMPLE 200X100X10",
+  "famille": "funeraire",
+  "nomPublic": null,
+  "sourceLibraryId": "libfile_a22d31330dc881919a61702a37a3a6d2",
+  "version": 1,
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "tombale-simple-200x100x10-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "4bd48fee5cdb35f07c7a5611b129156bf7d4f67b0bf708d7b6ae19f277062e67",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2512983,
+      "integritePngVerifiee": true
+    }
+  ],
+  "sourcePrompts": "../../../../prompts-serie.json",
+  "promptsExactsRetrouves": false,
+  "dernierControleIntegrite": "2026-10-20T08:31:49.860711+00:00",
+  "variantesPresentes": 1,
+  "variantesCibles": 10,
+  "validationConfigurateur": false
+}
