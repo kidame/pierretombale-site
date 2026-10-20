@@ -2707,42 +2707,67 @@
         {
           "matiereId": "bengal",
           "fichier": "cin-esperanza-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "d5ee26f29653533f64e826058d9f87050fe8c1389f5123a37b70e86f828566d8",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3192906,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "cin-esperanza-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "71492b95b7f3aaf31288cff7b90f8a3c4b938925e1e48eaf1dbc39f10ff31e41",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3091622,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "cin-esperanza-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "0b1860deaabcb15f851fcf7fdbcd6db17f9bad13aea3cb178829986901dadb59",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3156554,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "cin-esperanza-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "f566bb58f5c8533e176affee867ebc88a79672ca4d9c92fd858015a3834d802c",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3125104,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "cin-esperanza-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "06404cd4aba0757a23e1587615e20545191f5a5bca438d261b755a3b7fd9aa31",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3161511,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -3425,15 +3450,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T23:23:04.915638+00:00",
-    "imagesCompletes": 190,
-    "combinaisonsRestantes": 80,
+    "dateControle": "2026-10-20T23:35:03.697908+00:00",
+    "imagesCompletes": 195,
+    "combinaisonsRestantes": 75,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "cin-esperanza",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
