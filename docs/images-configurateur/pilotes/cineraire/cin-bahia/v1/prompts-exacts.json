@@ -55,6 +55,61 @@
         "royal-texture-v1.png"
       ],
       "controleVisuel": "Stele rectangulaire et dalle superieure seules declinees en granit sombre a grains noirs denses et gris argente. Semelle debordante et marche arriere gardent leur pierre claire a gros cristaux. Silhouette, joints, epaisseurs et cadrage frontal du master conserves. Pas de gravure ni accessoire. Pilote non calibre."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a straight rectangular upright headstone, a wide rear transverse step, and two stacked rectangular base slabs. Image 2 is only the vizag-blue stone reference. Change ONLY only the main upright headstone and the upper rectangular horizontal slab, which are blue-grey granite in the source to the exact material of image 2: cool silver-grey granite, slightly blue, flowing charcoal mineral clouds and sparse fine burgundy-brown specks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and the full rear transverse step in their original light grey-white coarse crystalline stone. Preserve both material boundaries and all joints. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not turn the two materials into a single stone. The headstone top and sides remain straight, with no added curves, arch, ornament or inscription. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:30:35.494593+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-c7b81b41-1d5b-4253-abd4-88a9e34c52b6.png",
+      "sha256": "81daf7ccf85de0e1646fc64340fe2b0bcdb363ce441ccaa2cc244ab3a467a7e7",
+      "references": [
+        "cin-bahia-bengal.png",
+        "vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "Stele rectangulaire et dalle superieure seules declinees en granit gris froid veine de sombre avec points brun-bordeaux. Pierre claire a gros cristaux de la semelle et de la marche arriere conservee. Cadrage frontal, joints, forme et epaisseurs du master conserves, sans accessoire ni gravure. Controle visuel pilote, dimensions physiques et grain non calibres."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a straight rectangular upright headstone, a wide rear transverse step, and two stacked rectangular base slabs. Image 2 is only the viscount-white stone reference. Change ONLY only the main upright headstone and the upper rectangular horizontal slab, which are blue-grey granite in the source to the exact material of image 2: luminous white and pale grey granite, fine dark mineral flecks and soft flowing grey clouds. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and the full rear transverse step in their original light grey-white coarse crystalline stone. Preserve both material boundaries and all joints. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not turn the two materials into a single stone. The headstone top and sides remain straight, with no added curves, arch, ornament or inscription. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:32:03.708860+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-4ea43ba6-540c-4809-8b19-5c558ebf3641.png",
+      "sha256": "4576d0704ad27d19052eaf3322ec5aea8e11c35cf87365f8b060b8d56e3d735f",
+      "references": [
+        "cin-bahia-bengal.png",
+        "viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "Stele rectangulaire et dalle superieure seules declinees en granit blanc-gris finement mouchete de noir. Pierre claire a gros cristaux de la semelle et de la marche arriere conservee. Cadrage frontal, joints, forme et epaisseurs du master conserves, sans accessoire ni gravure. Controle visuel pilote, dimensions physiques et grain non calibres."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a straight rectangular upright headstone, a wide rear transverse step, and two stacked rectangular base slabs. Image 2 is only the rosso-porrino stone reference. Change ONLY only the main upright headstone and the upper rectangular horizontal slab, which are blue-grey granite in the source to the exact material of image 2: salmon pink feldspar, grey quartz, black flecks and cream-white mineral grains. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and the full rear transverse step in their original light grey-white coarse crystalline stone. Preserve both material boundaries and all joints. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not turn the two materials into a single stone. The headstone top and sides remain straight, with no added curves, arch, ornament or inscription. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:32:15.169231+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-bb906d8e-29c5-4724-a72c-29c449be793b.png",
+      "sha256": "f78541b1a17e0f70076f24915217ba49ffea867217126fa9cc50adfce741e8fe",
+      "references": [
+        "cin-bahia-bengal.png",
+        "rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "Stele rectangulaire et dalle superieure seules declinees en granit rose saumon avec quartz gris et grains noirs. Pierre claire a gros cristaux de la semelle et de la marche arriere conservee. Cadrage frontal, joints, forme et epaisseurs du master conserves, sans accessoire ni gravure. Controle visuel pilote, dimensions physiques et grain non calibres."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a straight rectangular upright headstone, a wide rear transverse step, and two stacked rectangular base slabs. Image 2 is only the egipat stone reference. Change ONLY only the main upright headstone and the upper rectangular horizontal slab, which are blue-grey granite in the source to the exact material of image 2: neutral medium-grey salt-and-pepper granite with dense small black and white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and the full rear transverse step in their original light grey-white coarse crystalline stone. Preserve both material boundaries and all joints. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not turn the two materials into a single stone. The headstone top and sides remain straight, with no added curves, arch, ornament or inscription. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:32:25.156438+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-0959d2bb-3b07-403f-be89-d0daef322907.png",
+      "sha256": "ff0e3ffa9de082c9d184687f76f62481adb3690514b9959185773905737da287",
+      "references": [
+        "cin-bahia-bengal.png",
+        "egipat-texture-v1.png"
+      ],
+      "controleVisuel": "Stele rectangulaire et dalle superieure seules declinees en granit gris sel et poivre. Pierre claire a gros cristaux de la semelle et de la marche arriere conservee. Cadrage frontal, joints, forme et epaisseurs du master conserves, sans accessoire ni gravure. Controle visuel pilote, dimensions physiques et grain non calibres."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a straight rectangular upright headstone, a wide rear transverse step, and two stacked rectangular base slabs. Image 2 is only the marmara stone reference. Change ONLY only the main upright headstone and the upper rectangular horizontal slab, which are blue-grey granite in the source to the exact material of image 2: white crystalline marble with broad softly parallel grey bands and finer darker grey veins. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the lower projecting plinth and the full rear transverse step in their original light grey-white coarse crystalline stone. Preserve both material boundaries and all joints. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not turn the two materials into a single stone. The headstone top and sides remain straight, with no added curves, arch, ornament or inscription. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:32:36.645266+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-a9a292e0-2250-4989-a59c-fb1866039db1.png",
+      "sha256": "1367f3391d002c67b1096b864e05a8e9f9e691e9c715a286a3172aa6a43664e1",
+      "references": [
+        "cin-bahia-bengal.png",
+        "marmara-texture-v1.png"
+      ],
+      "controleVisuel": "Stele rectangulaire et dalle superieure seules declinees en marbre blanc a bandes grises paralleles. Pierre claire a gros cristaux de la semelle et de la marche arriere conservee. Cadrage frontal, joints, forme et epaisseurs du master conserves, sans accessoire ni gravure. Controle visuel pilote, dimensions physiques et grain non calibres."
     }
   }
 }

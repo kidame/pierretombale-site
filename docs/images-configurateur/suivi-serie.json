@@ -1503,42 +1503,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "cin-bahia-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "81daf7ccf85de0e1646fc64340fe2b0bcdb363ce441ccaa2cc244ab3a467a7e7",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2910718,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "cin-bahia-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "4576d0704ad27d19052eaf3322ec5aea8e11c35cf87365f8b060b8d56e3d735f",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2843357,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "cin-bahia-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "f78541b1a17e0f70076f24915217ba49ffea867217126fa9cc50adfce741e8fe",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2802782,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "cin-bahia-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "ff0e3ffa9de082c9d184687f76f62481adb3690514b9959185773905737da287",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2951449,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "cin-bahia-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "1367f3391d002c67b1096b864e05a8e9f9e691e9c715a286a3172aa6a43664e1",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2482752,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -1549,7 +1574,7 @@
       "sourceLibraryId": "libfile_6d912d4257d48191ba48a95e0c5fbb59",
       "dossier": "pilotes/cineraire/cin-aquarius/v1",
       "ordre": 12,
-      "notes": "Geometrie et zones physiques a valider.",
+      "notes": "Dalle de base rectangulaire, socle arriere a deux niveaux. Stele asymetrique aux flancs galbes, sommet en vague descendant vers la droite; petit epaulement concave a gauche sous le point haut. Vase et bambou sont amovibles. Leurs reflets doivent aussi disparaitre. Aucun bicolore structurel identifie. Geometrie atelier et zones physiques a valider.",
       "variantes": [
         {
           "matiereId": "bengal",
@@ -3000,15 +3025,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T12:26:35.817252+00:00",
-    "imagesCompletes": 105,
-    "combinaisonsRestantes": 165,
+    "dateControle": "2026-10-20T12:32:36.645266+00:00",
+    "imagesCompletes": 110,
+    "combinaisonsRestantes": 160,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "cin-bahia",
-    "matiereId": "vizag-blue",
+    "modeleId": "cin-aquarius",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3024,56 +3049,57 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T12:27:04.881917+00:00",
+    "dateFin": "2026-10-20T12:33:18.106780+00:00",
     "combinaisons": [
       {
         "modeleId": "cin-bahia",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "cin-bahia",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "cin-bahia",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "cin-bahia",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "cin-bahia",
-        "matiereId": "royal"
+        "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 100,
-    "totalApres": 105,
+    "totalAvant": 105,
+    "totalApres": 110,
     "statut": "termine",
+    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
   },
   "prochainLot": [
     {
-      "modeleId": "cin-bahia",
-      "matiereId": "vizag-blue"
+      "modeleId": "cin-aquarius",
+      "matiereId": "bengal"
     },
     {
-      "modeleId": "cin-bahia",
-      "matiereId": "viscount-white"
+      "modeleId": "cin-aquarius",
+      "matiereId": "rozabeta"
     },
     {
-      "modeleId": "cin-bahia",
-      "matiereId": "rosso-porrino"
+      "modeleId": "cin-aquarius",
+      "matiereId": "paradiso"
     },
     {
-      "modeleId": "cin-bahia",
-      "matiereId": "egipat"
+      "modeleId": "cin-aquarius",
+      "matiereId": "jablanica"
     },
     {
-      "modeleId": "cin-bahia",
-      "matiereId": "marmara"
+      "modeleId": "cin-aquarius",
+      "matiereId": "royal"
     }
   ]
 }
