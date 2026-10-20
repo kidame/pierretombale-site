@@ -1,0 +1,23 @@
+{
+  "library_file_id": "libfile_2b452dada3f88191bd2a1162a8c3132e",
+  "current_version_number": 0,
+  "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/musulman-4/MUSULMAN 4.png",
+  "source_file_name": "MUSULMAN 4.png",
+  "inspection_pending": false,
+  "geometry": "Longue semelle rectangulaire debordante, cadre sureleve ouvert, deux longs rails aux extremites avant arrondies, traverse basse a l'avant, remplissage central en gravier. Stele arriere haute a sommet en arc bulbeux pointu, sur marche transversale.",
+  "fixed_features": [
+    "Cadre ouvert et cavite centrale avec gravier",
+    "Profil ogival/bulbeux de la stele",
+    "Marches et traverses du monument"
+  ],
+  "removable_accessories": [],
+  "material_zones": "Pierre principale sombre mouchetee. Partie superieure de stele claire, delimitee par une silhouette sombre de mosquees et un croissant.",
+  "ambiguity": "L'image ne permet pas de trancher si le champ clair et le motif de mosquees sont une incrustation ou une gravure/illustration. Le contour exterieur de la stele est structurel.",
+  "generation_note": "Conserver la cavite et son gravier, ne pas fermer par une dalle pleine. Ne pas transformer le motif religieux en nouvelle geometrie.",
+  "reference_dimensions_px": [
+    1448,
+    1086
+  ],
+  "library_xattr_verified": true,
+  "decisionPilote": "Conserver le cadre ouvert, le gravier et les rails a bouts avant arrondis. Conserver la stele ogivale. Traiter le dessin de mosquees et son champ clair comme decor de surface optionnel a retirer ; interpretation a valider sur fiche atelier, car gravure/incrustation ne se distinguent pas sur la source."
+}

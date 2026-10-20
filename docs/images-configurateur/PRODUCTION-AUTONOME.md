@@ -95,3 +95,11 @@ Pas de push implicite, publication, build ou modification de granits.json.
 Rapport bref : images ajoutees, total archive, prochain modele et tout blocage reel.
 A 270/270 : verifier la couverture 27x10 et les manifestes, fermer le recepteur,
 desactiver cette automation via automations.update(is_enabled=false), puis livrer le bilan final.
+
+## References et memoire pendant les lots enchaines
+
+Pour les fichiers locaux utilises comme references, lire view_image avec detail=original si une miniature apparait. Verifier le contenu, puis fournir les chemins locaux a imagegen quand toutes les references sont locales. Sinon, reemettre exactement le master et la texture, dans cet ordre, avant num_last_images_to_include=2.
+
+Apres l accuse final de sauvegarde, conserver chemin, hash, prompt et controle visuel ; liberer les grandes donnees base64 temporaires pour ne pas accumuler toute la serie en memoire. Le PNG original et sa copie VPS restent intacts.
+
+Les blocs de transfert de 512000 caracteres base64 ont ete verifies pendant cette continuation. Les envois restent strictement sequentiels. Lire l accuse final et ne compter l image qu apres validation SHA256 et PNG par le recepteur.

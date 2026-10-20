@@ -4,14 +4,14 @@ Autorisation Thomas, 19.10.2026 : poursuivre les 27 modeles en 10 matieres, une 
 
 ## Point de reprise
 
-Checkpoint 2026-10-20T11:30:25.501708+00:00 : 70/270 images archivees, 200 restantes.
+Checkpoint 2026-10-20T11:55:29.954107+00:00 : 75/270 images archivees, 195 restantes.
 7/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
 Le tableau AVANCEMENT.md est mis a jour automatiquement apres chaque archivage.
-Prochaine combinaison : musulman-4 / bengal.
+Prochaine combinaison : musulman-4 / vizag-blue.
 
-Clarification Thomas du 20.10.2026 a 13h05 : produire toute la serie.
+Clarification Thomas du 20.10.2026 a 13h48 : terminer le set de 10 variantes de chaque produit.
 Un lot de 5 est un checkpoint, jamais une consigne d arret. Enchainer les lots sans confirmation.
-Une seule generation simultanee ; inspecter puis archiver chaque resultat avant le suivant.
+Une seule generation simultanee, enchainement direct de 5 images avec sauvegardes locales. Transferts regroupes par lot et documentation par produit.
 Le dernier lot est entierement transfere et controle. Aucun transfert partiel de ce lot.
 La production active detient le verrou ; le recepteur peut rester ouvert entre les lots.
 Ne pas prendre cette note de checkpoint pour une preuve de generation en arriere-plan.

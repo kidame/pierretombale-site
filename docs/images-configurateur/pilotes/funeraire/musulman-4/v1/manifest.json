@@ -1,0 +1,92 @@
+{
+  "modeleId": "musulman-4",
+  "referenceInterne": "MUSULMAN 4",
+  "famille": "funeraire",
+  "sourceLibraryId": "libfile_2b452dada3f88191bd2a1162a8c3132e",
+  "nomPublic": null,
+  "version": 1,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "musulman-4-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "28ff4961c2c9f6d483d9ac57f9fd80a9d79dcefac1a488425997466de22f1153",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2786350,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "musulman-4-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "af9e0ff19c141aee49281fe2e353f6e890479c1119a659eea05cd6ffa1eaf28a",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2770349,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "musulman-4-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "ea028ac7dc35f33c77e4c73e3d445ab8e8045c6e8d3a67c91ccd04b1950e0775",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2831982,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "musulman-4-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "45faf92391a93374a7462cbf4f5309133a35c0939497c16c006cb05519b86f97",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2766258,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "royal",
+      "image": "musulman-4-royal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "f4ed1edbca55cf4587e141ff87be159d576699458d7817aefdc901be0106e24b",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2831813,
+      "integritePngVerifiee": true
+    }
+  ],
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantesPresentes": 5,
+  "variantesCibles": 10,
+  "dernierControleIntegrite": "2026-10-20T11:52:15.220877+00:00",
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "validationConfigurateur": false,
+  "promptsExactsDisponibles": [
+    "bengal",
+    "rozabeta",
+    "paradiso",
+    "jablanica",
+    "royal"
+  ],
+  "promptsExactsManquants": [],
+  "promptsExactsRetrouves": true
+}

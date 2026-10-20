@@ -22,3 +22,8 @@
 {"date": "2026-10-20T11:26:20.773055+00:00", "modeleId": "tombale-simple-200x100x10", "matiereId": "rosso-porrino", "sha256": "30e907e7325014159d630c88a644f9f3f88e875d9447e7b3427d194c651e3f37", "total": 68}
 {"date": "2026-10-20T11:28:07.617282+00:00", "modeleId": "tombale-simple-200x100x10", "matiereId": "egipat", "sha256": "b54af05d231aed283ccf6cd65ebcc32a0084d226a8a2b393bc30926f44aa8d0f", "total": 69}
 {"date": "2026-10-20T11:29:50.244542+00:00", "modeleId": "tombale-simple-200x100x10", "matiereId": "marmara", "sha256": "9d781147ecb7ebb93e8ae5b4891704b715bb0c6abc44ac95c57dfe0edf952e41", "total": 70}
+{"date": "2026-10-20T11:32:35.430983+00:00", "modeleId": "musulman-4", "matiereId": "bengal", "sha256": "28ff4961c2c9f6d483d9ac57f9fd80a9d79dcefac1a488425997466de22f1153", "total": 71}
+{"date": "2026-10-20T11:35:53.646270+00:00", "modeleId": "musulman-4", "matiereId": "rozabeta", "sha256": "af9e0ff19c141aee49281fe2e353f6e890479c1119a659eea05cd6ffa1eaf28a", "total": 72}
+{"date": "2026-10-20T11:38:36.337292+00:00", "modeleId": "musulman-4", "matiereId": "paradiso", "sha256": "ea028ac7dc35f33c77e4c73e3d445ab8e8045c6e8d3a67c91ccd04b1950e0775", "total": 73}
+{"date": "2026-10-20T11:45:56.987734+00:00", "modeleId": "musulman-4", "matiereId": "jablanica", "sha256": "45faf92391a93374a7462cbf4f5309133a35c0939497c16c006cb05519b86f97", "total": 74}
+{"date": "2026-10-20T11:52:15.220877+00:00", "modeleId": "musulman-4", "matiereId": "royal", "sha256": "f4ed1edbca55cf4587e141ff87be159d576699458d7817aefdc901be0106e24b", "total": 75}

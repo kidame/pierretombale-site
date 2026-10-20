@@ -1,0 +1,60 @@
+{
+  "mode": "imagegen-integre",
+  "variantes": {
+    "bengal": {
+      "prompt": "Use case: product-mockup. Image 1 is the exact monument design reference MUSULMAN 4, image 2 is only the BENGAL stone reference. Create its clean frontal catalogue master in Bengal granite. Preserve all structural components and proportions: long wide thin rectangular base; raised open rectangular grave frame; two thick side rails with smoothly rounded front ends; lower front crossbar and recessed front ledge; rear transverse steps; tall upright headstone with straight lower sides, angular shoulders and pointed bulbous arch at the top. Keep the central cavity OPEN with its natural brown and grey gravel infill. All cut stone parts use image 2's polished black Bengal granite and fine silver crystalline grains. Remove optional surface decoration, including the mosque skyline, crescent and pale etched sky panel, leaving a plain undecorated stone face; preserve the complete outer headstone shape. No added parts, flowers, vases or text. Camera exactly centered on longitudinal axis, no left/right yaw, front headstone face parallel to image plane. Use near-orthographic projection with a modest elevation only to reveal frame and gravel, not a three-quarter view. Entire object visible with balanced margins. Uniform pale grey studio background, soft contact shadow, gentle light, no glare hiding stone. Single square image requested 2048x2048. This is the fixed geometry master for nine subsequent material-only edits.",
+      "date": "2026-10-20T11:32:35.430983+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-92a5b36f-31aa-4e8b-8eb8-e5c586ee3c96.png",
+      "sha256": "28ff4961c2c9f6d483d9ac57f9fd80a9d79dcefac1a488425997466de22f1153",
+      "references": [
+        "libfile_2b452dada3f88191bd2a1162a8c3132e",
+        "bengal-texture-v1.png"
+      ],
+      "controleVisuel": "Source et resultat compares visuellement : cadre ouvert avec gravier, deux rails aux bouts avant arrondis, traverse et marche avant, marches arriere et silhouette ogivale conserves. Motif mosquee et champ clair retires comme decor optionnel, interpretation consignee. Vue axiale, perspective residuelle. Pilote non calibre."
+    },
+    "rozabeta": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated open-frame Muslim grave monument, with two rounded-front side rails, recessed front crossbar and ledge, rear steps and an upright pointed bulbous-arch headstone. Image 2 is only the rozabeta stone reference. Change ONLY all granite parts of the base, rails, front crossbars, rear steps and headstone to the exact material of image 2: light grey-white granite with soft salmon-pink feldspar crystals and fine black mineral flecks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the central open cavity and its brown and grey gravel unchanged. The gravel is fixed infill, not the selected stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not fill the gravel cavity with a solid slab. Preserve the curved top and stepped shoulders of the headstone. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T11:35:53.646270+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-8c9caf76-b8b9-467f-bdb6-9ad8162b25a2.png",
+      "sha256": "af9e0ff19c141aee49281fe2e353f6e890479c1119a659eea05cd6ffa1eaf28a",
+      "references": [
+        "musulman-4-bengal.png",
+        "rozabeta-texture-v1.png"
+      ],
+      "controleVisuel": "Stele ogivale, cadre ouvert, rails et marches conformes visuellement au master. Gravier brun et gris conserve. Pierre claire a grains roses et noirs, conforme a la reference Rozabeta. Pilote non calibre."
+    },
+    "paradiso": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated open-frame Muslim grave monument, with two rounded-front side rails, recessed front crossbar and ledge, rear steps and an upright pointed bulbous-arch headstone. Image 2 is only the paradiso stone reference. Change ONLY all granite parts of the base, rails, front crossbars, rear steps and headstone to the exact material of image 2: grey granite with fine black minerals, copper salmon grains, softly flowing white and dark mineral bands. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the central open cavity and its brown and grey gravel unchanged. The gravel is fixed infill, not the selected stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not fill the gravel cavity with a solid slab. Preserve the curved top and stepped shoulders of the headstone. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T11:38:36.337292+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-3552c968-f764-4adf-8496-a736cadf347f.png",
+      "sha256": "ea028ac7dc35f33c77e4c73e3d445ab8e8045c6e8d3a67c91ccd04b1950e0775",
+      "references": [
+        "musulman-4-bengal.png",
+        "paradiso-texture-v1.png"
+      ],
+      "controleVisuel": "Stele ogivale, cadre ouvert, rails et marches conformes visuellement au master. Gravier brun et gris conserve. Pierre grise a cristaux saumon et bandes minerales claires et sombres. Pilote non calibre."
+    },
+    "jablanica": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated open-frame Muslim grave monument, with two rounded-front side rails, recessed front crossbar and ledge, rear steps and an upright pointed bulbous-arch headstone. Image 2 is only the jablanica stone reference. Change ONLY all granite parts of the base, rails, front crossbars, rear steps and headstone to the exact material of image 2: dark grey granite densely packed with black minerals, silvery grey and translucent white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the central open cavity and its brown and grey gravel unchanged. The gravel is fixed infill, not the selected stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not fill the gravel cavity with a solid slab. Preserve the curved top and stepped shoulders of the headstone. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T11:45:56.987734+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-bba84c1f-96b9-4016-bb9a-a94bafa733ed.png",
+      "sha256": "45faf92391a93374a7462cbf4f5309133a35c0939497c16c006cb05519b86f97",
+      "references": [
+        "musulman-4-bengal.png",
+        "jablanica-texture-v1.png"
+      ],
+      "controleVisuel": "Stele ogivale, cadre ouvert, rails arrondis et marches conformes visuellement au master. Gravier naturel conserve. Granit gris sombre a cristaux noirs, gris et blancs. Pilote non calibre."
+    },
+    "royal": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated open-frame Muslim grave monument, with two rounded-front side rails, recessed front crossbar and ledge, rear steps and an upright pointed bulbous-arch headstone. Image 2 is only the royal stone reference. Change ONLY all granite parts of the base, rails, front crossbars, rear steps and headstone to the exact material of image 2: neutral dark granite with dense small black minerals and irregular silvery grey-white crystals in a subtly cloudy pattern. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Keep the central open cavity and its brown and grey gravel unchanged. The gravel is fixed infill, not the selected stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Do not fill the gravel cavity with a solid slab. Preserve the curved top and stepped shoulders of the headstone. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T11:52:15.220877+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-1d3644ec-5f6f-4f68-9173-5d21e2c5c5d7.png",
+      "sha256": "f4ed1edbca55cf4587e141ff87be159d576699458d7817aefdc901be0106e24b",
+      "references": [
+        "musulman-4-bengal.png",
+        "royal-texture-v1.png"
+      ],
+      "controleVisuel": "Stele ogivale, cadre ouvert, rails arrondis et marches conformes visuellement au master. Gravier naturel conserve. Granit sombre neutre, cristaux argent et blancs irreguliers. Pilote non calibre."
+    }
+  }
+}
