@@ -74,12 +74,86 @@
       ],
       "tailleOctets": 2545389,
       "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "vizag-blue",
+      "image": "4-pieces-sans-stele-vizag-blue.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png",
+      "sha256": "9da52ccf679538cd3b5bf8ccdfce4edae6ae592a3233661daf2f895ef834ebc7",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2461710,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "viscount-white",
+      "image": "4-pieces-sans-stele-viscount-white.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png",
+      "sha256": "70905dc0b73bc268472d088f55b78884911834b78c0dea795bc3440cb4509d7a",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2477881,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rosso-porrino",
+      "image": "4-pieces-sans-stele-rosso-porrino.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png",
+      "sha256": "3b1aa2d7dc56aeab4238d2a440fb324cdd160abac9fec55190bf3fa25bb115b4",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2478752,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "egipat",
+      "image": "4-pieces-sans-stele-egipat.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png",
+      "sha256": "d7cf5d71f644955d3ac02ead2ebd1bdbb5233deee816d786119c049fe03bf610",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2587963,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "marmara",
+      "image": "4-pieces-sans-stele-marmara.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png",
+      "sha256": "5a65c4c444b3c594c50cc6bb64de6705e642a8318dfc426ffc49f631002119b8",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2067577,
+      "integritePngVerifiee": true
     }
   ],
   "sourcePrompts": "../../../../prompts-serie.json",
   "promptsExactsRetrouves": false,
-  "dernierControleIntegrite": "2026-10-20T09:07:40.090873+00:00",
-  "variantesPresentes": 5,
+  "dernierControleIntegrite": "2026-10-20T10:40:33.960785+00:00",
+  "variantesPresentes": 10,
   "variantesCibles": 10,
-  "validationConfigurateur": false
+  "validationConfigurateur": false,
+  "promptsExactsDisponibles": [
+    "rozabeta",
+    "paradiso",
+    "jablanica",
+    "royal",
+    "vizag-blue",
+    "viscount-white",
+    "rosso-porrino",
+    "egipat",
+    "marmara"
+  ],
+  "promptsExactsManquants": [
+    "bengal"
+  ]
 }

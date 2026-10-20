@@ -44,6 +44,61 @@
         "royal-texture-v1.png"
       ],
       "controleVisuel": "Composition, composants et silhouette conserves a l'oeil ; controle pixel et calibration non realises."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Funeral monument product photograph, Vizag Blue material variant. Image 1 is the fixed geometry Bengal master to edit, a low horizontal monument of stepped rectangular stone slabs without any upright headstone. Image 2 is ONLY the Vizag Blue stone reference. Replace all stone surfaces with the stone of image 2, matching its cool pale grey to blue-grey crystalline background, dark charcoal mineral clusters, cloudy flowing mineral pattern and fine reddish-brown specks, with realistic grain scale and a natural polished finish. Preserve exactly every slab shape, thickness, joint, step, silhouette, camera, framing, scale, perspective, uniform pale grey background and soft contact shadow from image 1. No upright headstone, extra slab, new component, engraving, text, decoration, flowers, vase, logo or watermark. Only the material changes. One single square image, requested 2048x2048.",
+      "date": "2026-10-20T10:32:10.490997+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-08553710-823c-4e18-9cbc-51f7bd45196c.png",
+      "sha256": "9da52ccf679538cd3b5bf8ccdfce4edae6ae592a3233661daf2f895ef834ebc7",
+      "references": [
+        "4-pieces-sans-stele-bengal.png",
+        "vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "Silhouette, gradins, epaisseurs apparentes, cadrage et fond conserves a l'oeil; texture grise a inclusions rouge-brun conforme a la reference visuelle. Pas de controle au pixel ni de calibration."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Funeral monument product photograph, Viscount White material variant. Image 1 is the fixed geometry Bengal master to edit, a low horizontal monument of stepped rectangular stone slabs without any upright headstone. Image 2 is ONLY the Viscount White stone reference. Replace all stone surfaces with the stone of image 2: luminous white and pale silver-grey crystalline stone with fine black and charcoal flecks and subtle flowing grey mineral clouds, preserving the reference's realistic fine grain scale and polished natural finish. Preserve exactly every slab shape, thickness, joint, step, silhouette, camera, framing, scale, perspective, uniform pale grey background and soft contact shadow from image 1. No upright headstone, extra slab, new component, engraving, text, decoration, flowers, vase, logo or watermark. Only the material changes. One single square image, requested 2048x2048.",
+      "date": "2026-10-20T10:34:08.000640+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-cfea32c7-1461-4e57-b685-fafc9e263649.png",
+      "sha256": "70905dc0b73bc268472d088f55b78884911834b78c0dea795bc3440cb4509d7a",
+      "references": [
+        "4-pieces-sans-stele-bengal.png",
+        "viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "Silhouette, gradins, epaisseurs apparentes, cadrage et fond conserves a l'oeil; pierre blanche a nuances grises et points noirs conforme visuellement a la texture fournie. Contours au pixel et calibration non verifies."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Funeral monument product photograph, Rosso Porrino material variant. Image 1 is the fixed geometry Bengal master to edit, a low horizontal monument of stepped rectangular stone slabs without any upright headstone. Image 2 is ONLY the Rosso Porrino stone reference. Replace all stone surfaces with the stone of image 2: natural salmon-pink feldspar crystals interspersed with translucent medium-grey quartz, black mineral flecks and pale cream-white grains. Match the reference's mineral texture, color balance, realistic grain scale and polished natural finish. Preserve exactly every slab shape, thickness, joint, step, silhouette, camera, framing, scale, perspective, uniform pale grey background and soft contact shadow from image 1. No upright headstone, extra slab, new component, engraving, text, decoration, flowers, vase, logo or watermark. Only the material changes. One single square image, requested 2048x2048.",
+      "date": "2026-10-20T10:36:07.426977+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-4461c0af-3b49-44fb-a1cf-01bda4f24b3e.png",
+      "sha256": "3b1aa2d7dc56aeab4238d2a440fb324cdd160abac9fec55190bf3fa25bb115b4",
+      "references": [
+        "4-pieces-sans-stele-bengal.png",
+        "rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "Silhouette, gradins, epaisseurs apparentes, cadrage et fond conserves a l'oeil; granit rose saumon avec quartz gris et grains noirs conforme visuellement a la texture fournie. Contours au pixel et calibration non verifies."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Funeral monument product photograph, Egipat material variant. Image 1 is the fixed geometry Bengal master to edit, a low horizontal monument of stepped rectangular stone slabs without any upright headstone. Image 2 is ONLY the Egipat stone reference. Replace all stone surfaces with the stone of image 2: neutral light-to-medium grey salt-and-pepper granite with densely scattered small black crystalline grains and white mineral crystals, an evenly mottled natural texture without colored veins. Match the reference's color balance, realistic mineral grain scale and polished natural finish. Preserve exactly every slab shape, thickness, joint, step, silhouette, camera, framing, scale, perspective, uniform pale grey background and soft contact shadow from image 1. No upright headstone, extra slab, new component, engraving, text, decoration, flowers, vase, logo or watermark. Only the material changes. One single square image, requested 2048x2048.",
+      "date": "2026-10-20T10:38:27.733304+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-66ce8f65-29f1-4687-a836-927fb8b240d9.png",
+      "sha256": "d7cf5d71f644955d3ac02ead2ebd1bdbb5233deee816d786119c049fe03bf610",
+      "references": [
+        "4-pieces-sans-stele-bengal.png",
+        "egipat-texture-v1.png"
+      ],
+      "controleVisuel": "Silhouette, gradins, epaisseurs apparentes, cadrage et fond conserves a l'oeil; granit gris poivre et sel a grains noirs et blancs conforme visuellement a la texture fournie. Contours au pixel et calibration non verifies."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Funeral monument product photograph, Marmara material variant. Image 1 is the fixed geometry Bengal master to edit, a low horizontal monument of stepped rectangular stone slabs without any upright headstone. Image 2 is ONLY the Marmara stone reference. Replace all stone surfaces with the pale crystalline white marble-like stone of image 2: broad soft grey parallel mineral bands with narrower darker grey veins and a subtle sugary crystalline texture, matching its restrained white-grey palette and natural polished finish. On the top surfaces run these natural bands along the monument's length, following each surface's perspective; carry the stone character naturally across the slab edges. Preserve exactly every slab shape, thickness, joint, step, silhouette, camera, framing, scale, perspective, uniform pale grey background and soft contact shadow from image 1. No upright headstone, extra slab, new component, engraving, text, decoration, flowers, vase, logo or watermark. Only the material changes. One single square image, requested 2048x2048.",
+      "date": "2026-10-20T10:40:33.960785+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-37c04668-8d0b-45b1-9005-5cdfa81bc5d0.png",
+      "sha256": "5a65c4c444b3c594c50cc6bb64de6705e642a8318dfc426ffc49f631002119b8",
+      "references": [
+        "4-pieces-sans-stele-bengal.png",
+        "marmara-texture-v1.png"
+      ],
+      "controleVisuel": "Silhouette, gradins, epaisseurs apparentes, cadrage et fond conserves a l'oeil; pierre blanche a bandes grises longitudinales conforme au caractere de la texture fournie. Orientation du veinage choisie pour ce pilote, a valider avec l'atelier. Contours au pixel et calibration non verifies."
     }
   }
 }

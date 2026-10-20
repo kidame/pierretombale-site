@@ -5,17 +5,27 @@ Autorisation Thomas, 19.10.2026 : poursuivre les 27 modeles en 10 matieres, une 
 ## Point de reprise
 
 Registre unique : `suivi-serie.json` (27 modeles, 270 combinaisons). Les statuts distinguent generation, archivage et validation configurateur. Un fichier present n'est pas automatiquement valide.
-Etat verifie a la reprise du 20.10.2026 : 56 images completes archivees, 214 restantes.
-Le modele 4-pieces-sans-stele est a 5/10 : Bengal, Rozabeta, Paradiso, Jablanica, Royal.
-Le bilan conversationnel de 55/270 etait anterieur au dernier archivage Royal.
-Prochain lot strictement limite a 5 nouvelles images : vizag-blue, viscount-white,
-rosso-porrino, egipat, marmara pour terminer ce modele.
-Point de controle : registre, 56 PNG presents, manifeste et integrite des 5 PNG sans stele verifies.
-Le tableau AVANCEMENT.md est genere apres chaque archivage par scripts/serie-images.py.
-La reprise automatique est en pause selon automations.peek du 20.10.2026.
-Dernier passage enregistre : 2026-10-20T09:05:22.684674+00:00. Cause de la pause non etablie ici.
-Sa consigne a ete reduite a 5 images maximum ; aucun redemarrage automatique effectue.
-Voir automation-production.json. La session manuelle utilise le verrou exclusif existant.
+Etat courant apres le lot borne du 20.10.2026 : 61 images completes archivees, 209 restantes.
+Six modeles complets : CIN1, ARQUES, ALMANDIN, doucine avec base, jardiniere et 4 pieces sans stele.
+Tombale simple : 1/10. Les 20 autres modeles n'ont pas encore de variante archivee.
+Le bilan de 55/270 cite par Thomas precedait Royal ; le point de depart verifie etait 56/270.
+Cinq nouvelles variantes sans stele ajoutees : vizag-blue, viscount-white, rosso-porrino, egipat, marmara.
+Le modele 4-pieces-sans-stele est maintenant a 10/10 ; aucun nouveau modele lance dans ce passage.
+Tous les transferts du lot sont termines, PNG et SHA256 verifies ; aucune generation en cours.
+Le tableau AVANCEMENT.md est mis a jour automatiquement apres chaque archivage.
+
+Prochain lot, maximum 5 nouvelles images, sur tombale-simple-200x100x10 :
+rozabeta, paradiso, jablanica, royal, vizag-blue. Partir de son master Bengal existant.
+Le registre conserve prochaineAction, prochainLot et dernierLot pour reprendre sans re-audit complet.
+
+La reprise automatique a ete observee en pause le 20.10.2026, dernier passage enregistre
+2026-10-20T09:05:22.684674+00:00. Cause de la pause non etablie ici.
+Sa consigne est desormais bornee a 5 images ; elle reste en pause, sans promesse de production en fond.
+Voir automation-production.json et PRODUCTION-AUTONOME.md. Recepteur du lot manuel ferme.
+
+Incident mineur de lecture : read_process_output(offset=0) a une fois affiche No output alors que
+le bloc etait ecrit. La taille partielle puis la lecture offset=-3 ont confirme l'accuse ;
+reprise a l'offset exact, aucune regeneration ni perte. Procedure completee.
 
 ## Regles de continuation
 

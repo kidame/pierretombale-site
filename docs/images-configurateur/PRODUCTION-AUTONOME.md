@@ -57,7 +57,9 @@ Couper la partie base64 en blocs de 256000 caracteres, multiples de 4.
 Offset en octets = debutDuBlocBase64 / 4 * 3.
 Chaque bloc est une ligne JSON envoyee par interact_with_process avec :
 wait_for_prompt=false, timeout_ms=1000. IMPORTANT : true fait planter la detection par regex sur gros blocs.
-Lire les accuses de reception avec read_process_output ; verifier chaque erreur et le resultat final.
+Lire les accuses de reception avec read_process_output(offset=-3, length=3) ; verifier chaque erreur, l offset attendu et le resultat final.
+Le curseur offset=0 a parfois renvoye No output alors que le bloc etait ecrit ; relire la fin avant toute reprise.
+Un accuse ancien ne suffit pas : son offset doit couvrir le bloc envoye, ou contenir archive pour le dernier bloc.
 Protocole JSON de chaque bloc :
 {
   "modeleId":"<id>", "matiereId":"<id>",

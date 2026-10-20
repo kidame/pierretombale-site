@@ -44,6 +44,17 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 20.10.2026, Codex : lot de 5 termine et archive, total reel 61/270 (56 au depart).
+  4-pieces-sans-stele termine 10/10 : Vizag Blue, Viscount White, Rosso Porrino,
+  Egipat et Marmara ajoutes par imagegen integre, une generation puis un archivage a la fois.
+  Chaque PNG controle (SHA256, CRC, IEND, decompression, dimensions) et inspecte visuellement.
+  Registre, AVANCEMENT.md, manifeste, README et prompts exacts a jour ; limites pilote
+  1254 px et calibration absente conservees. Six modeles complets, tombale simple 1/10,
+  vingt autres non commences, 209 images restantes.
+  Prochain lot de 5 : tombale-simple-200x100x10 / rozabeta, paradiso, jablanica, royal,
+  vizag-blue depuis son Bengal. Recepteur ferme, aucune generation en cours.
+  Automation deja en pause, consigne corrigee a maximum 5, reste en pause.
+  Aucun build, changement runtime ou publication.
 - 20.10.2026, Codex : reprise bornee demandee par Thomas, 5 nouvelles images maximum.
   Etat reel retrouve : 56/270, modele sans stele 5/10 ; quatre variantes precedentes
   et tableau AVANCEMENT.md presents mais non commites, conserves dans ce checkpoint.

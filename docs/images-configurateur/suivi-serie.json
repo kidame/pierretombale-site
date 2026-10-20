@@ -798,42 +798,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "4-pieces-sans-stele-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "9da52ccf679538cd3b5bf8ccdfce4edae6ae592a3233661daf2f895ef834ebc7",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2461710,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "4-pieces-sans-stele-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "70905dc0b73bc268472d088f55b78884911834b78c0dea795bc3440cb4509d7a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2477881,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "4-pieces-sans-stele-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "3b1aa2d7dc56aeab4238d2a440fb324cdd160abac9fec55190bf3fa25bb115b4",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2478752,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "4-pieces-sans-stele-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "d7cf5d71f644955d3ac02ead2ebd1bdbb5233deee816d786119c049fe03bf610",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2587963,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "4-pieces-sans-stele-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "5a65c4c444b3c594c50cc6bb64de6705e642a8318dfc426ffc49f631002119b8",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2067577,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -2755,15 +2780,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T09:07:40.090873+00:00",
-    "imagesCompletes": 56,
-    "combinaisonsRestantes": 214,
+    "dateControle": "2026-10-20T10:40:33.960785+00:00",
+    "imagesCompletes": 61,
+    "combinaisonsRestantes": 209,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "4-pieces-sans-stele",
-    "matiereId": "vizag-blue",
+    "modeleId": "tombale-simple-200x100x10",
+    "matiereId": "rozabeta",
     "action": "Produire depuis la base Bengal puis archiver avant la variante suivante."
   },
   "productionParPassage": {
@@ -2771,5 +2796,44 @@
     "generationSimultanee": 1,
     "archivageApresChaqueImage": true,
     "decisionUtilisateur": "2026-10-20"
-  }
+  },
+  "dernierLot": {
+    "dateFin": "2026-10-20T10:41:37.286633+00:00",
+    "modeleId": "4-pieces-sans-stele",
+    "matieres": [
+      "vizag-blue",
+      "viscount-white",
+      "rosso-porrino",
+      "egipat",
+      "marmara"
+    ],
+    "imagesAjoutees": 5,
+    "totalAvant": 56,
+    "totalApres": 61,
+    "statut": "termine",
+    "generationEnCours": false,
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par le recepteur; inspection visuelle de chaque resultat"
+  },
+  "prochainLot": [
+    {
+      "modeleId": "tombale-simple-200x100x10",
+      "matiereId": "rozabeta"
+    },
+    {
+      "modeleId": "tombale-simple-200x100x10",
+      "matiereId": "paradiso"
+    },
+    {
+      "modeleId": "tombale-simple-200x100x10",
+      "matiereId": "jablanica"
+    },
+    {
+      "modeleId": "tombale-simple-200x100x10",
+      "matiereId": "royal"
+    },
+    {
+      "modeleId": "tombale-simple-200x100x10",
+      "matiereId": "vizag-blue"
+    }
+  ]
 }

@@ -1,8 +1,8 @@
 # Avancement des images
 
-Mis a jour : 2026-10-20T09:07:40.090873+00:00
+Mis a jour : 2026-10-20T10:40:33.960785+00:00
 
-Images completes archivees : 56/270.
+Images completes archivees : 61/270.
 Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 
 | Famille | Modele interne | Completes | Statut |
@@ -12,7 +12,7 @@ Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 | funeraire | ALMANDIN | 10/10 | Lot complet |
 | funeraire | 4 PIECES STELE DOUCINE AVEC BASE | 10/10 | Lot complet |
 | funeraire | 5 PIECES JARDINIERE EN CLOSOIR | 10/10 | Lot complet |
-| funeraire | 4 PIECES SANS STELE | 5/10 | En cours |
+| funeraire | 4 PIECES SANS STELE | 10/10 | Lot complet |
 | funeraire | TOMBALE SIMPLE 200X100X10 | 1/10 | En cours |
 | funeraire | MUSULMAN 4 | 0/10 | A produire |
 | cineraire | CIN8 | 0/10 | A produire |
@@ -35,6 +35,6 @@ Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 | funeraire | CORAZON | 0/10 | A produire |
 | funeraire | DOUCEUR | 0/10 | A produire |
 
-Prochaine action : {'modeleId': '4-pieces-sans-stele', 'matiereId': 'vizag-blue', 'action': 'Produire depuis la base Bengal puis archiver avant la variante suivante.'}
+Prochaine action : {'modeleId': 'tombale-simple-200x100x10', 'matiereId': 'rozabeta', 'action': 'Produire depuis la base Bengal puis archiver avant la variante suivante.'}
 
 Source de verite detaillee : suivi-serie.json. Prompts exacts et SHA256 dans chaque dossier.
