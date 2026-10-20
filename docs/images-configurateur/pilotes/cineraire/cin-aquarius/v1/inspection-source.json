@@ -1,0 +1,38 @@
+{
+  "library_file_id": "libfile_6d912d4257d48191ba48a95e0c5fbb59",
+  "current_version_number": 0,
+  "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-aquarius/CIN-AQUARIUS.png",
+  "source_file_name": "CIN-AQUARIUS.png",
+  "inspection_pending": false,
+  "geometry": "Dalle de base rectangulaire, socle arriere a deux niveaux. Stele asymetrique aux flancs galbes, sommet en vague descendant vers la droite; petit epaulement concave a gauche sous le point haut.",
+  "fixed_features": [
+    "Contour asymetrique en vague de la stele",
+    "Socle arriere a deux niveaux et base"
+  ],
+  "removable_accessories": [
+    "Vase spherique a petit col a l'avant gauche",
+    "Tige de bambou et feuilles"
+  ],
+  "material_zones": "Pierre sombre mouchetee sur l'ensemble mineral de la reference.",
+  "ambiguity": "La tige et le vase se refletent sur la stele; ces reflets doivent disparaitre avec les accessoires.",
+  "generation_note": "Retirer le vase, le bambou et leurs reflets; conserver la silhouette exacte de la stele.",
+  "reference_dimensions_px": [
+    1448,
+    1086
+  ],
+  "library_xattr_verified": true,
+  "decisionPilote": "Vase et bambou sont amovibles. Leurs reflets doivent aussi disparaitre. Aucun bicolore structurel identifie.",
+  "specificationGeneration": {
+    "id": "cin-aquarius",
+    "family": "cineraire",
+    "geometry": "a compact cinerary monument with a rectangular base slab, a rear support in two levels, and an asymmetric curved upright headstone whose wave-shaped top slopes down to the right",
+    "stoneAreas": "all stone surfaces of the base, the two rear support levels and the curved upright headstone",
+    "fixedAreas": "Preserve all stone components, the two support levels and the asymmetric headstone outline as fixed geometry.",
+    "extraConstraints": "Keep the highest point on the left, the small concave shoulder below it and the descending wave toward the right. Do not make the headstone symmetrical or rectangular.",
+    "masterDescription": "Preserve the rectangular base slab and the two stacked support levels under the rear headstone. The upright has curved sides, a high left point with a concave shoulder below it, and a wave-shaped top descending toward the right. Preserve its thickness, all curves and both support levels.",
+    "removeDescription": "Remove the round vase with its small neck at the front left, the bamboo stalk and leaves, and all their reflections in the headstone and slab. Fill the vacated area with plain matching stone.",
+    "interpretationNote": "Vase et bambou sont amovibles. Leurs reflets doivent aussi disparaitre. Aucun bicolore structurel identifie.",
+    "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-aquarius/CIN-AQUARIUS.png",
+    "sourceLibraryId": "libfile_6d912d4257d48191ba48a95e0c5fbb59"
+  }
+}

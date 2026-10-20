@@ -1579,42 +1579,67 @@
         {
           "matiereId": "bengal",
           "fichier": "cin-aquarius-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "df0343f30a1016233663eb13a49ea66a4e368363951a91ed28413ce82d33b70e",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2973025,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "cin-aquarius-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "1a54cb3f513d83a40084131e1f26fa78b0637c74fed9fc9127389f5f94c988de",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2881081,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "cin-aquarius-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "130c281dcf26bd62bcd45b79a7d65e7ad51a4357cc2b25c5ddadbf0dffd6a517",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3059445,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "cin-aquarius-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "f9385899aa85c1c30e255027dc9bec185d0c059602f9814c196f70c7aeb12a14",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3038005,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "cin-aquarius-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "19c3961e3a95ed67fee2dee0d9947fc7804cd7482899798dd30ac758d1c38b42",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3022536,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -3025,15 +3050,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T12:32:36.645266+00:00",
-    "imagesCompletes": 110,
-    "combinaisonsRestantes": 160,
+    "dateControle": "2026-10-20T12:39:03.563783+00:00",
+    "imagesCompletes": 115,
+    "combinaisonsRestantes": 155,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "cin-aquarius",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3049,57 +3074,56 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T12:33:18.106780+00:00",
+    "dateFin": "2026-10-20T12:39:42.432929+00:00",
     "combinaisons": [
       {
-        "modeleId": "cin-bahia",
-        "matiereId": "vizag-blue"
+        "modeleId": "cin-aquarius",
+        "matiereId": "bengal"
       },
       {
-        "modeleId": "cin-bahia",
-        "matiereId": "viscount-white"
+        "modeleId": "cin-aquarius",
+        "matiereId": "rozabeta"
       },
       {
-        "modeleId": "cin-bahia",
-        "matiereId": "rosso-porrino"
+        "modeleId": "cin-aquarius",
+        "matiereId": "paradiso"
       },
       {
-        "modeleId": "cin-bahia",
-        "matiereId": "egipat"
+        "modeleId": "cin-aquarius",
+        "matiereId": "jablanica"
       },
       {
-        "modeleId": "cin-bahia",
-        "matiereId": "marmara"
+        "modeleId": "cin-aquarius",
+        "matiereId": "royal"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 105,
-    "totalApres": 110,
+    "totalAvant": 110,
+    "totalApres": 115,
     "statut": "termine",
-    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
+    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
   },
   "prochainLot": [
     {
       "modeleId": "cin-aquarius",
-      "matiereId": "bengal"
+      "matiereId": "vizag-blue"
     },
     {
       "modeleId": "cin-aquarius",
-      "matiereId": "rozabeta"
+      "matiereId": "viscount-white"
     },
     {
       "modeleId": "cin-aquarius",
-      "matiereId": "paradiso"
+      "matiereId": "rosso-porrino"
     },
     {
       "modeleId": "cin-aquarius",
-      "matiereId": "jablanica"
+      "matiereId": "egipat"
     },
     {
       "modeleId": "cin-aquarius",
-      "matiereId": "royal"
+      "matiereId": "marmara"
     }
   ]
 }

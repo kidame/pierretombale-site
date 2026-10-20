@@ -1,0 +1,60 @@
+{
+  "mode": "imagegen-integre",
+  "variantes": {
+    "bengal": {
+      "prompt": "Use case: product-mockup. Image 1 is the exact monument design reference for cin-aquarius. Image 2 is only the BENGAL stone reference. Create one clean frontal catalogue master, preserving the complete design and every structural component and proportion. Preserve the rectangular base slab and the two stacked support levels under the rear headstone. The upright has curved sides, a high left point with a concave shoulder below it, and a wave-shaped top descending toward the right. Preserve its thickness, all curves and both support levels. Change all stone surfaces of the base, the two rear support levels and the curved upright headstone to the exact polished black Bengal granite with natural silver and grey crystalline grain from image 2. Preserve all stone components, the two support levels and the asymmetric headstone outline as fixed geometry. Remove the round vase with its small neck at the front left, the bamboo stalk and leaves, and all their reflections in the headstone and slab. Fill the vacated area with plain matching stone. Camera exactly centered on the longitudinal axis, no left or right yaw, main front upright surface parallel to image plane. Use parallel orthographic projection with modest elevation only to reveal the base, no three-quarter view. Entire monument visible with balanced margins. Uniform pale grey studio background and soft contact shadow, gentle light, no glare obscuring surfaces. Do not invent components, text, ornaments, flowers, plants, vases or watermarks. Single square image requested 2048x2048. Fixed geometry master for nine material-only edits.",
+      "date": "2026-10-20T12:38:23.476400+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-75692c71-1d9c-4300-ade9-739a94fbf4a3.png",
+      "sha256": "df0343f30a1016233663eb13a49ea66a4e368363951a91ed28413ce82d33b70e",
+      "references": [
+        "libfile_6d912d4257d48191ba48a95e0c5fbb59",
+        "bengal-texture-v1.png"
+      ],
+      "controleVisuel": "Source AQUARIUS inspectee. Stele a cotes courbes, epaule concave en haut a gauche et sommet ondule descendant a droite conservee. Dalle et niveaux de support arriere presents. Vase, bambou et reflets retires. Master Bengal frontal sur fond gris clair, sans gravure. Pilote non calibre."
+    },
+    "rozabeta": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a rectangular base slab, a rear support in two levels, and an asymmetric curved upright headstone whose wave-shaped top slopes down to the right. Image 2 is only the rozabeta stone reference. Change ONLY all stone surfaces of the base, the two rear support levels and the curved upright headstone to the exact material of image 2: light grey-white granite with soft salmon-pink feldspar crystals and fine black mineral flecks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve all stone components, the two support levels and the asymmetric headstone outline as fixed geometry. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Keep the highest point on the left, the small concave shoulder below it and the descending wave toward the right. Do not make the headstone symmetrical or rectangular. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:38:33.602683+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-f2bf21c1-46eb-4cfd-9c77-6a9c82f913c7.png",
+      "sha256": "1a54cb3f513d83a40084131e1f26fa78b0637c74fed9fc9127389f5f94c988de",
+      "references": [
+        "cin-aquarius-bengal.png",
+        "rozabeta-texture-v1.png"
+      ],
+      "controleVisuel": "Contour asymetrique de la stele, epaule concave gauche, sommet ondule, cotes courbes, dalle et supports arriere conserves. Cadrage frontal identique au master, sans vase, bambou, gravure ni reflets des accessoires. Matiere : granit blanc-gris et rose saumon mouchete de noir. Pilote non calibre."
+    },
+    "paradiso": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a rectangular base slab, a rear support in two levels, and an asymmetric curved upright headstone whose wave-shaped top slopes down to the right. Image 2 is only the paradiso stone reference. Change ONLY all stone surfaces of the base, the two rear support levels and the curved upright headstone to the exact material of image 2: grey granite with fine black minerals, copper salmon grains, softly flowing white and dark mineral bands. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve all stone components, the two support levels and the asymmetric headstone outline as fixed geometry. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Keep the highest point on the left, the small concave shoulder below it and the descending wave toward the right. Do not make the headstone symmetrical or rectangular. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:38:43.205557+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-74574463-f8e9-4382-8533-4ceee0a5eb99.png",
+      "sha256": "130c281dcf26bd62bcd45b79a7d65e7ad51a4357cc2b25c5ddadbf0dffd6a517",
+      "references": [
+        "cin-aquarius-bengal.png",
+        "paradiso-texture-v1.png"
+      ],
+      "controleVisuel": "Contour asymetrique de la stele, epaule concave gauche, sommet ondule, cotes courbes, dalle et supports arriere conserves. Cadrage frontal identique au master, sans vase, bambou, gravure ni reflets des accessoires. Matiere : granit gris/cuivre saumon a veines claires et sombres. Pilote non calibre."
+    },
+    "jablanica": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a rectangular base slab, a rear support in two levels, and an asymmetric curved upright headstone whose wave-shaped top slopes down to the right. Image 2 is only the jablanica stone reference. Change ONLY all stone surfaces of the base, the two rear support levels and the curved upright headstone to the exact material of image 2: dark grey granite densely packed with black minerals, silvery grey and translucent white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve all stone components, the two support levels and the asymmetric headstone outline as fixed geometry. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Keep the highest point on the left, the small concave shoulder below it and the descending wave toward the right. Do not make the headstone symmetrical or rectangular. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:38:53.253268+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-b793bec5-2580-42d6-8ad7-1f54d5bd2aed.png",
+      "sha256": "f9385899aa85c1c30e255027dc9bec185d0c059602f9814c196f70c7aeb12a14",
+      "references": [
+        "cin-aquarius-bengal.png",
+        "jablanica-texture-v1.png"
+      ],
+      "controleVisuel": "Contour asymetrique de la stele, epaule concave gauche, sommet ondule, cotes courbes, dalle et supports arriere conserves. Cadrage frontal identique au master, sans vase, bambou, gravure ni reflets des accessoires. Matiere : granit gris sombre a cristaux argentes et mineraux noirs. Pilote non calibre."
+    },
+    "royal": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for a compact cinerary monument with a rectangular base slab, a rear support in two levels, and an asymmetric curved upright headstone whose wave-shaped top slopes down to the right. Image 2 is only the royal stone reference. Change ONLY all stone surfaces of the base, the two rear support levels and the curved upright headstone to the exact material of image 2: neutral dark granite with dense small black minerals and irregular silvery grey-white crystals in a subtly cloudy pattern. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve all stone components, the two support levels and the asymmetric headstone outline as fixed geometry. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. Keep the highest point on the left, the small concave shoulder below it and the descending wave toward the right. Do not make the headstone symmetrical or rectangular. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-20T12:39:03.563783+00:00",
+      "sourceLocale": "/workspace/scratch/fc8dfd468718/generated_images/exec-502af738-6e5e-4029-ab8a-fcdaa507b1e4.png",
+      "sha256": "19c3961e3a95ed67fee2dee0d9947fc7804cd7482899798dd30ac758d1c38b42",
+      "references": [
+        "cin-aquarius-bengal.png",
+        "royal-texture-v1.png"
+      ],
+      "controleVisuel": "Contour asymetrique de la stele, epaule concave gauche, sommet ondule, cotes courbes, dalle et supports arriere conserves. Cadrage frontal identique au master, sans vase, bambou, gravure ni reflets des accessoires. Matiere : granit sombre, noir et gris argente a grain dense. Pilote non calibre."
+    }
+  }
+}
