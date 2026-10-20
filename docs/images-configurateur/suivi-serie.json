@@ -1297,42 +1297,67 @@
         {
           "matiereId": "bengal",
           "fichier": "cin-nivora-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "509fc42a38416732d5c2659f0b9102da471f985d970ec34fc5ae513bfa407472",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2495893,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "cin-nivora-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "1520b283d9745808821880767142b796f25a3af2dceeeaa25a7e12afec0e3ab5",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2449562,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "cin-nivora-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "a7cd0e9254ab7874f989212c524109e2848ae3f692b049043a61b15237fa4173",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2509798,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "cin-nivora-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "d1f748057ca2418577e0ac28b0db957b44d0eff4a4773f17fc90a6422fbfb41a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2481494,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "cin-nivora-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "8ef18006a643e5f9601a1ee046229e37dcae5c586277dbe95a10e19f1ad5913f",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2488115,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -2925,15 +2950,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T12:08:54.606541+00:00",
-    "imagesCompletes": 90,
-    "combinaisonsRestantes": 180,
+    "dateControle": "2026-10-20T12:14:39.812542+00:00",
+    "imagesCompletes": 95,
+    "combinaisonsRestantes": 175,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "cin-nivora",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -2949,57 +2974,56 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T12:09:35.255654+00:00",
+    "dateFin": "2026-10-20T12:15:59.303307+00:00",
     "combinaisons": [
       {
-        "modeleId": "cin8",
-        "matiereId": "vizag-blue"
+        "modeleId": "cin-nivora",
+        "matiereId": "bengal"
       },
       {
-        "modeleId": "cin8",
-        "matiereId": "viscount-white"
+        "modeleId": "cin-nivora",
+        "matiereId": "rozabeta"
       },
       {
-        "modeleId": "cin8",
-        "matiereId": "rosso-porrino"
+        "modeleId": "cin-nivora",
+        "matiereId": "paradiso"
       },
       {
-        "modeleId": "cin8",
-        "matiereId": "egipat"
+        "modeleId": "cin-nivora",
+        "matiereId": "jablanica"
       },
       {
-        "modeleId": "cin8",
-        "matiereId": "marmara"
+        "modeleId": "cin-nivora",
+        "matiereId": "royal"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 85,
-    "totalApres": 90,
+    "totalAvant": 90,
+    "totalApres": 95,
     "statut": "termine",
-    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
+    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
   },
   "prochainLot": [
     {
       "modeleId": "cin-nivora",
-      "matiereId": "bengal"
+      "matiereId": "vizag-blue"
     },
     {
       "modeleId": "cin-nivora",
-      "matiereId": "rozabeta"
+      "matiereId": "viscount-white"
     },
     {
       "modeleId": "cin-nivora",
-      "matiereId": "paradiso"
+      "matiereId": "rosso-porrino"
     },
     {
       "modeleId": "cin-nivora",
-      "matiereId": "jablanica"
+      "matiereId": "egipat"
     },
     {
       "modeleId": "cin-nivora",
-      "matiereId": "royal"
+      "matiereId": "marmara"
     }
   ]
 }

@@ -1,0 +1,36 @@
+{
+  "library_file_id": "libfile_555f2952e5208191bd8b2c71e1434091",
+  "current_version_number": 0,
+  "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/cin-nivora/CIN-NIVORA.png",
+  "source_file_name": "CIN-NIVORA.png",
+  "inspection_pending": false,
+  "geometry": "Deux dalles rectangulaires superposees avec semelle debordante, marche transversale arriere. Grande stele circulaire en acier ajoure dessine un arbre avec racines, branches et feuilles. Petit coeur epais en granit devant a gauche.",
+  "fixed_features": [
+    "Grande couronne circulaire en acier ajoure et arbre de vie",
+    "Marches/dalles de pierre",
+    "Petit coeur en pierre a conserver par prudence comme composant du modele"
+  ],
+  "removable_accessories": [],
+  "material_zones": "Pierre sombre a gros cristaux sur dalles, marche et petit coeur; acier gris anthracite pour la stele ajouree.",
+  "ambiguity": "Le petit coeur est une piece separee; la fixation ne se voit pas. Il pourrait etre une plaque personnalisee amovible, mais ce n'est pas un vase ou une fleur.",
+  "generation_note": "CONSERVER L'ACIER AJOURE, sa couleur et ses vides. Ne pas remplacer l'arbre ajoure par une plaque pleine ou par du granit.",
+  "reference_dimensions_px": [
+    1448,
+    1086
+  ],
+  "library_xattr_verified": true,
+  "decisionPilote": "Arbre en acier ajoure conserve entierement, sans changement de matiere. Le petit coeur separe est conserve par prudence comme composant du modele; sa fixation n'est pas visible. Seules les pieces en pierre varient.",
+  "specificationGeneration": {
+    "id": "cin-nivora",
+    "family": "cineraire",
+    "geometry": "a compact cinerary monument with two stacked rectangular stone slabs, a rear transverse stone step, a large circular openwork steel tree headpiece, and a small thick upright stone heart at the front left",
+    "stoneAreas": "only the stone surfaces of the two base slabs, rear step and small upright heart; never the steel tree or its circular frame",
+    "fixedAreas": "Keep the entire circular openwork tree in anthracite grey steel, including its rim, roots, trunk, branches, leaves, metallic reflections and every open gap. Preserve the small upright heart in its exact position.",
+    "extraConstraints": "The tree is real pierced metal, not a stone slab, engraving, printed picture or filled disc. Do not fill any openings or remove the small heart.",
+    "masterDescription": "Preserve the two stacked rectangular base slabs with the wider lower plinth and narrower upper slab, the transverse step at the back, the large circular steel ring filled by an openwork tree with roots, branches and leaves, and the thick upright stone heart near the front-left of the ring. Preserve all actual cutout spaces and the silhouette of every steel part.",
+    "removeDescription": "There are no flowers or vases to remove. Keep the upright stone heart as part of this pilot model.",
+    "interpretationNote": "Arbre en acier ajoure conserve entierement, sans changement de matiere. Le petit coeur separe est conserve par prudence comme composant du modele; sa fixation n'est pas visible. Seules les pieces en pierre varient.",
+    "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/cin-nivora/CIN-NIVORA.png",
+    "sourceLibraryId": "libfile_555f2952e5208191bd8b2c71e1434091"
+  }
+}
