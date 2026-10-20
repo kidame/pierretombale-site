@@ -8,7 +8,7 @@ Registre unique : `suivi-serie.json` (27 modeles, 270 combinaisons). Les statuts
 Etat courant apres production du 20.10.2026 : 52 images completes archivees. Jardiniere terminee 10/10 ; six nouvelles variantes Royal, Vizag Blue, Viscount White, Rosso Porrino, Egipat, Marmara. 218 images restent a obtenir.
 Prochaine combinaison : 4-pieces-sans-stele / rozabeta, depuis sa base Bengal existante, puis ses huit autres matieres.
 Le transfert Royal tronque a ete conserve sous transferts-interrompus/ ; une nouvelle sortie complete le remplace. Aucun blocage de quota rencontre pendant ce lot.
-Execution autonome et protocole de transfert testes : PRODUCTION-AUTONOME.md. Script : scripts/serie-images.py. Reprise planifiee a raccorder apres ce commit.
+Execution autonome et protocole de transfert testes : PRODUCTION-AUTONOME.md. Script : scripts/serie-images.py. Reprise automatique activee, toutes les heures ; premiere execution prevue le 20.10.2026 a 11h01 Europe/Zurich, non encore verifiee. Identifiant et consigne dans automation-production.json.
 
 ## Regles de continuation
 

@@ -49,7 +49,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   Transfert reprenable stdin/stdout sans port, verrou exclusif et mise a jour par image :
   scripts/serie-images.py ; procedure docs/images-configurateur/PRODUCTION-AUTONOME.md.
   Prochaine combinaison : 4-pieces-sans-stele / rozabeta. Aucun build ni changement runtime.
-  Automatisation de reprise demandee par Thomas, raccordement a suivre apres ce commit.
+  Automatisation de reprise activee, toutes les heures, maximum 10 images/35 min par passage.
+  Premiere reprise prevue le 20.10.2026 a 11h01 Europe/Zurich ; premiere execution non encore verifiee.
+  Configuration conservee dans docs/images-configurateur/automation-production.json.
 - 20.10.2026, Codex : audit des images demande par Thomas. 46 PNG complets controles
   (CRC, IEND, decompression, SHA256), 1254 x 1254 ; cible documentaire 27 x 10 = 270.
   Suivi-serie.json et 7 manifestes synchronises ; README ajoutes aux 4 dossiers manquants,
