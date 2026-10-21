@@ -1,8 +1,8 @@
 # Avancement des images
 
-Mis a jour : 2026-10-21T09:44:32.565699+00:00
+Mis a jour : 2026-10-21T09:50:42.571109+00:00
 
-Images completes archivees : 235/270.
+Images completes archivees : 240/270.
 Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 
 | Famille | Modele interne | Completes | Statut |
@@ -30,11 +30,11 @@ Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 | funeraire | TANGO | 10/10 | Lot complet |
 | funeraire | AVENTURI | 10/10 | Lot complet |
 | funeraire | QUIETUDE | 10/10 | Lot complet |
-| funeraire | ARBRE DE VIE | 5/10 | En cours |
+| funeraire | ARBRE DE VIE | 10/10 | Lot complet |
 | funeraire | ELIGIE | 0/10 | A produire |
 | funeraire | CORAZON | 0/10 | A produire |
 | funeraire | DOUCEUR | 0/10 | A produire |
 
-Prochaine action : {'modeleId': 'arbre-de-vie', 'matiereId': 'vizag-blue', 'action': 'Produire les variantes restantes du produit par lots de 5, puis archiver le lot'}
+Prochaine action : {'modeleId': 'eligie', 'matiereId': 'bengal', 'action': 'Produire les variantes restantes du produit par lots de 5, puis archiver le lot'}
 
 Source de verite detaillee : suivi-serie.json. Prompts exacts et SHA256 dans chaque dossier.

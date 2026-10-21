@@ -3336,42 +3336,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "arbre-de-vie-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "467988f520e42c2450352bd78ffc8ff7be4cd95c2107ea77bd64c26b86bd7873",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2882414,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "arbre-de-vie-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "6ae445a1376412206f91461c34adcbb0fea04f14bcf67054e03c4795ae4d7b0e",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2865238,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "arbre-de-vie-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "444644f01adc82d68ed3e532b75cc8758f5a3b43cc4344f8b0b9b681b7eb9dbd",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2917026,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "arbre-de-vie-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "8681bce02247b74137ce50a7b490a14a99b74b4d8e132132f89ca62ad2fc4fb6",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3125537,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "arbre-de-vie-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "e5e248b0e34f886ea672b00c8fe851f080711832443c21b14783b9b399a2aa1c",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2374604,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -3650,15 +3675,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-21T09:44:32.565699+00:00",
-    "imagesCompletes": 235,
-    "combinaisonsRestantes": 35,
+    "dateControle": "2026-10-21T09:50:42.571109+00:00",
+    "imagesCompletes": 240,
+    "combinaisonsRestantes": 30,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "arbre-de-vie",
-    "matiereId": "vizag-blue",
+    "modeleId": "eligie",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3674,56 +3699,57 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-21T09:44:33.149439+00:00",
+    "dateFin": "2026-10-21T09:50:43.003796+00:00",
     "combinaisons": [
       {
         "modeleId": "arbre-de-vie",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "arbre-de-vie",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "arbre-de-vie",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "arbre-de-vie",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "arbre-de-vie",
-        "matiereId": "royal"
+        "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 230,
-    "totalApres": 235,
+    "totalAvant": 235,
+    "totalApres": 240,
     "statut": "termine",
+    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
   },
   "prochainLot": [
     {
-      "modeleId": "arbre-de-vie",
-      "matiereId": "vizag-blue"
+      "modeleId": "eligie",
+      "matiereId": "bengal"
     },
     {
-      "modeleId": "arbre-de-vie",
-      "matiereId": "viscount-white"
+      "modeleId": "eligie",
+      "matiereId": "rozabeta"
     },
     {
-      "modeleId": "arbre-de-vie",
-      "matiereId": "rosso-porrino"
+      "modeleId": "eligie",
+      "matiereId": "paradiso"
     },
     {
-      "modeleId": "arbre-de-vie",
-      "matiereId": "egipat"
+      "modeleId": "eligie",
+      "matiereId": "jablanica"
     },
     {
-      "modeleId": "arbre-de-vie",
-      "matiereId": "marmara"
+      "modeleId": "eligie",
+      "matiereId": "royal"
     }
   ]
 }
