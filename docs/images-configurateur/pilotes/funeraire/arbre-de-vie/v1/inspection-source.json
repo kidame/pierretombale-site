@@ -1,0 +1,35 @@
+{
+  "library_file_id": "libfile_58008a5f3e088191863e1c4b4f8959e7",
+  "current_version_number": 0,
+  "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/arbre-de-vie/ARBRE DE VIE.png",
+  "source_file_name": "ARBRE DE VIE.png",
+  "inspection_pending": false,
+  "geometry": "Long monument a dalle rectangulaire, cadres lateraux et marche frontale. Chanfreins importants a l'avant. Stele large asymetrique : sommet gauche decoupe en festons suivant une couronne d'arbre, sommet droit en vague basse; flancs incurves.",
+  "fixed_features": [
+    "Decoupe festonnee du sommet gauche et silhouette de la stele; cadre, marche et chanfreins. Aucun element ajoure ni disque metallique."
+  ],
+  "removable_accessories": [],
+  "material_zones": "Pierre principale sombre/bleutee. Les chanfreins avant paraissent tres clairs, mais une autre matiere n'est pas certaine.",
+  "ambiguity": "Les zones claires des chanfreins peuvent provenir de la finition et des reflets. Conserver les plans et aretes sans inventer des inserts independants. Garder les festons si la gravure est retiree.",
+  "surface_decoration": "Grand arbre grave blanc sur la partie gauche de la stele; motif de surface, pas arbre en acier ajoure.",
+  "reference_dimensions_px": [
+    1448,
+    1086
+  ],
+  "library_xattr_verified": true,
+  "decisionPilote": "Arbre grave en surface de pierre pleine, distinct de NIVORA en acier ajoure. Gravure retiree, festons conserves. Chanfreins clairs interpretes comme finition/reflets de la meme pierre, sans ajout d'inserts.",
+  "specificationGeneration": {
+    "id": "arbre-de-vie",
+    "family": "funeraire",
+    "geometry": "an elongated funerary monument with a rectangular slab, side rails, a recessed front step, prominent front bevels and a broad asymmetric solid-stone headstone with a scalloped upper-left outline",
+    "stoneAreas": "all stone surfaces of the base, frame, steps, slab, bevels, rear support and solid headstone",
+    "fixedAreas": "Preserve every scallop in the headstone's upper-left silhouette, the lower wave on its right, all curved flanks and the broad front bevel planes. The headstone remains solid stone.",
+    "extraConstraints": "This is not an openwork metal tree or a circular steel panel. Do not create holes, separate tree branches, new material inserts or metal elements. Light bevel highlights remain reflections on the same stone.",
+    "masterDescription": "Preserve the wide rectangular lowest plinth, long rectangular slab, lateral frame, recessed front step and substantial sloping bevels at the front. Keep the broad solid upright with an asymmetric outline: a scalloped crown-like upper-left region, lower wavy upper-right region and curved sides. Preserve each scallop as real stone geometry.",
+    "removeDescription": "Remove only the large white engraved tree on the headstone face and its reflections. Leave the solid stone face and scalloped outer contour intact.",
+    "interpretationNote": "Arbre grave en surface de pierre pleine, distinct de NIVORA en acier ajoure. Gravure retiree, festons conserves. Chanfreins clairs interpretes comme finition/reflets de la meme pierre, sans ajout d'inserts.",
+    "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/arbre-de-vie/ARBRE DE VIE.png",
+    "sourceLibraryId": "libfile_58008a5f3e088191863e1c4b4f8959e7",
+    "masterPath": "/workspace/scratch/f881999a3473/generated_images/exec-3a32d6e9-352e-4aab-a0c9-fbcca9e75dd3.png"
+  }
+}

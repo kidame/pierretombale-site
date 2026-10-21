@@ -1,0 +1,60 @@
+{
+  "mode": "imagegen-integre",
+  "variantes": {
+    "bengal": {
+      "prompt": "Use case: product-mockup. Image 1 is the exact monument design reference for arbre-de-vie. Image 2 is only the BENGAL stone reference. Create one clean frontal catalogue master, preserving the complete design and every structural component and proportion. Preserve the wide rectangular lowest plinth, long rectangular slab, lateral frame, recessed front step and substantial sloping bevels at the front. Keep the broad solid upright with an asymmetric outline: a scalloped crown-like upper-left region, lower wavy upper-right region and curved sides. Preserve each scallop as real stone geometry. Change all stone surfaces of the base, frame, steps, slab, bevels, rear support and solid headstone to the exact polished black Bengal granite with natural silver and grey crystalline grain from image 2. Preserve every scallop in the headstone's upper-left silhouette, the lower wave on its right, all curved flanks and the broad front bevel planes. The headstone remains solid stone. Remove only the large white engraved tree on the headstone face and its reflections. Leave the solid stone face and scalloped outer contour intact. Camera exactly centered on the longitudinal axis, no left or right yaw, main front upright surface parallel to image plane. Use parallel orthographic projection with modest elevation only to reveal the base, no three-quarter view. Entire monument visible with balanced margins. Uniform pale grey studio background and soft contact shadow, gentle light, no glare obscuring surfaces. Do not invent components, text, ornaments, flowers, plants, vases or watermarks. Single square image requested 2048x2048. Fixed geometry master for nine material-only edits.",
+      "date": "2026-10-21T09:44:21.119045+00:00",
+      "sourceLocale": "/workspace/scratch/f881999a3473/generated_images/exec-3a32d6e9-352e-4aab-a0c9-fbcca9e75dd3.png",
+      "sha256": "41d08db045dc8133b5f5b407d9dd4c04d60d559d4211ec35ac35d07b6810065c",
+      "references": [
+        "libfile_58008a5f3e088191863e1c4b4f8959e7",
+        "bengal-texture-v1.png"
+      ],
+      "controleVisuel": "Base inspectee : stele pleine a couronne festonnee gauche conservee, gravure arbre retiree, chanfreins avant et marches visibles. Vue axiale, perspective residuelle. Pilote non calibre."
+    },
+    "rozabeta": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated funerary monument with a rectangular slab, side rails, a recessed front step, prominent front bevels and a broad asymmetric solid-stone headstone with a scalloped upper-left outline. Image 2 is only the rozabeta stone reference. Change ONLY all stone surfaces of the base, frame, steps, slab, bevels, rear support and solid headstone to the exact material of image 2: light grey-white granite with soft salmon-pink feldspar crystals and fine black mineral flecks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve every scallop in the headstone's upper-left silhouette, the lower wave on its right, all curved flanks and the broad front bevel planes. The headstone remains solid stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. This is not an openwork metal tree or a circular steel panel. Do not create holes, separate tree branches, new material inserts or metal elements. Light bevel highlights remain reflections on the same stone. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-21T09:44:23.996979+00:00",
+      "sourceLocale": "/workspace/scratch/f881999a3473/generated_images/exec-6b422894-21b4-4b65-9d0a-0566df155023.png",
+      "sha256": "e120b1cf271edb894b7e1bf51640b0a11de1e09444e49926d91470e304f18ba0",
+      "references": [
+        "arbre-de-vie-bengal.png",
+        "rozabeta-texture-v1.png"
+      ],
+      "controleVisuel": "Inspection visuelle : couronne festonnee, stele pleine, chanfreins, dalle et marches conserves. Matiere correspondante, gravure absente. Echelle du grain et calibration restent a valider."
+    },
+    "paradiso": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated funerary monument with a rectangular slab, side rails, a recessed front step, prominent front bevels and a broad asymmetric solid-stone headstone with a scalloped upper-left outline. Image 2 is only the paradiso stone reference. Change ONLY all stone surfaces of the base, frame, steps, slab, bevels, rear support and solid headstone to the exact material of image 2: grey granite with fine black minerals, copper salmon grains, softly flowing white and dark mineral bands. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve every scallop in the headstone's upper-left silhouette, the lower wave on its right, all curved flanks and the broad front bevel planes. The headstone remains solid stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. This is not an openwork metal tree or a circular steel panel. Do not create holes, separate tree branches, new material inserts or metal elements. Light bevel highlights remain reflections on the same stone. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-21T09:44:26.950793+00:00",
+      "sourceLocale": "/workspace/scratch/f881999a3473/generated_images/exec-d49592f9-a93e-46e3-b122-126c269cd54e.png",
+      "sha256": "33b84abc8877fd8cce5b226d04d20b6184df581a8f4ec99db1378e73d74d4940",
+      "references": [
+        "arbre-de-vie-bengal.png",
+        "paradiso-texture-v1.png"
+      ],
+      "controleVisuel": "Inspection visuelle : couronne festonnee, stele pleine, chanfreins, dalle et marches conserves. Matiere correspondante, gravure absente. Echelle du grain et calibration restent a valider."
+    },
+    "jablanica": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated funerary monument with a rectangular slab, side rails, a recessed front step, prominent front bevels and a broad asymmetric solid-stone headstone with a scalloped upper-left outline. Image 2 is only the jablanica stone reference. Change ONLY all stone surfaces of the base, frame, steps, slab, bevels, rear support and solid headstone to the exact material of image 2: dark grey granite densely packed with black minerals, silvery grey and translucent white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve every scallop in the headstone's upper-left silhouette, the lower wave on its right, all curved flanks and the broad front bevel planes. The headstone remains solid stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. This is not an openwork metal tree or a circular steel panel. Do not create holes, separate tree branches, new material inserts or metal elements. Light bevel highlights remain reflections on the same stone. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-21T09:44:29.416593+00:00",
+      "sourceLocale": "/workspace/scratch/f881999a3473/generated_images/exec-24e3694f-d280-42e1-8d60-c536ecf5ab80.png",
+      "sha256": "27c41689c3f09baf81eea2dd6fc79b7251d098c49d262fc448c4930e73ccb4eb",
+      "references": [
+        "arbre-de-vie-bengal.png",
+        "jablanica-texture-v1.png"
+      ],
+      "controleVisuel": "Inspection visuelle : couronne festonnee, stele pleine, chanfreins, dalle et marches conserves. Matiere correspondante, gravure absente. Echelle du grain et calibration restent a valider."
+    },
+    "royal": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated funerary monument with a rectangular slab, side rails, a recessed front step, prominent front bevels and a broad asymmetric solid-stone headstone with a scalloped upper-left outline. Image 2 is only the royal stone reference. Change ONLY all stone surfaces of the base, frame, steps, slab, bevels, rear support and solid headstone to the exact material of image 2: neutral dark granite with dense small black minerals and irregular silvery grey-white crystals in a subtly cloudy pattern. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve every scallop in the headstone's upper-left silhouette, the lower wave on its right, all curved flanks and the broad front bevel planes. The headstone remains solid stone. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. This is not an openwork metal tree or a circular steel panel. Do not create holes, separate tree branches, new material inserts or metal elements. Light bevel highlights remain reflections on the same stone. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-21T09:44:32.565699+00:00",
+      "sourceLocale": "/workspace/scratch/f881999a3473/generated_images/exec-81545d28-0f2f-44be-b8a1-491c4bd76837.png",
+      "sha256": "5ca0301be70ef74c4ae7f71fe42ae4ef308cb9cb50f6fabf495641a9b8a58f6a",
+      "references": [
+        "arbre-de-vie-bengal.png",
+        "royal-texture-v1.png"
+      ],
+      "controleVisuel": "Inspection visuelle : couronne festonnee, stele pleine, chanfreins, dalle et marches conserves. Matiere correspondante, gravure absente. Echelle du grain et calibration restent a valider."
+    }
+  }
+}

@@ -3266,47 +3266,72 @@
       "sourceLibraryId": "libfile_58008a5f3e088191863e1c4b4f8959e7",
       "dossier": "pilotes/funeraire/arbre-de-vie/v1",
       "ordre": 24,
-      "notes": "Geometrie et zones physiques a valider.",
+      "notes": "Long monument a dalle rectangulaire, cadres lateraux et marche frontale. Chanfreins importants a l'avant. Stele large asymetrique : sommet gauche decoupe en festons suivant une couronne d'arbre, sommet droit en vague basse; flancs incurves. Arbre grave en surface de pierre pleine, distinct de NIVORA en acier ajoure. Gravure retiree, festons conserves. Chanfreins clairs interpretes comme finition/reflets de la meme pierre, sans ajout d'inserts. Geometrie atelier et zones physiques a valider.",
       "variantes": [
         {
           "matiereId": "bengal",
           "fichier": "arbre-de-vie-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "41d08db045dc8133b5f5b407d9dd4c04d60d559d4211ec35ac35d07b6810065c",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2979471,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "arbre-de-vie-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "e120b1cf271edb894b7e1bf51640b0a11de1e09444e49926d91470e304f18ba0",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2937537,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "arbre-de-vie-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "33b84abc8877fd8cce5b226d04d20b6184df581a8f4ec99db1378e73d74d4940",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3023599,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "arbre-de-vie-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "27c41689c3f09baf81eea2dd6fc79b7251d098c49d262fc448c4930e73ccb4eb",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3022186,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "arbre-de-vie-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "5ca0301be70ef74c4ae7f71fe42ae4ef308cb9cb50f6fabf495641a9b8a58f6a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 3003495,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -3625,15 +3650,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-21T09:38:23.006882+00:00",
-    "imagesCompletes": 230,
-    "combinaisonsRestantes": 40,
+    "dateControle": "2026-10-21T09:44:32.565699+00:00",
+    "imagesCompletes": 235,
+    "combinaisonsRestantes": 35,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "arbre-de-vie",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3649,57 +3674,56 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-21T09:38:52.975382+00:00",
+    "dateFin": "2026-10-21T09:44:33.149439+00:00",
     "combinaisons": [
       {
-        "modeleId": "quietude",
-        "matiereId": "vizag-blue"
+        "modeleId": "arbre-de-vie",
+        "matiereId": "bengal"
       },
       {
-        "modeleId": "quietude",
-        "matiereId": "viscount-white"
+        "modeleId": "arbre-de-vie",
+        "matiereId": "rozabeta"
       },
       {
-        "modeleId": "quietude",
-        "matiereId": "rosso-porrino"
+        "modeleId": "arbre-de-vie",
+        "matiereId": "paradiso"
       },
       {
-        "modeleId": "quietude",
-        "matiereId": "egipat"
+        "modeleId": "arbre-de-vie",
+        "matiereId": "jablanica"
       },
       {
-        "modeleId": "quietude",
-        "matiereId": "marmara"
+        "modeleId": "arbre-de-vie",
+        "matiereId": "royal"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 225,
-    "totalApres": 230,
+    "totalAvant": 230,
+    "totalApres": 235,
     "statut": "termine",
-    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
+    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
   },
   "prochainLot": [
     {
       "modeleId": "arbre-de-vie",
-      "matiereId": "bengal"
+      "matiereId": "vizag-blue"
     },
     {
       "modeleId": "arbre-de-vie",
-      "matiereId": "rozabeta"
+      "matiereId": "viscount-white"
     },
     {
       "modeleId": "arbre-de-vie",
-      "matiereId": "paradiso"
+      "matiereId": "rosso-porrino"
     },
     {
       "modeleId": "arbre-de-vie",
-      "matiereId": "jablanica"
+      "matiereId": "egipat"
     },
     {
       "modeleId": "arbre-de-vie",
-      "matiereId": "royal"
+      "matiereId": "marmara"
     }
   ]
 }

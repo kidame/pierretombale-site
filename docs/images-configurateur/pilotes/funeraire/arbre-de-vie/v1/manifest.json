@@ -1,0 +1,83 @@
+{
+  "modeleId": "arbre-de-vie",
+  "referenceInterne": "ARBRE DE VIE",
+  "famille": "funeraire",
+  "sourceLibraryId": "libfile_58008a5f3e088191863e1c4b4f8959e7",
+  "nomPublic": null,
+  "version": 1,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "arbre-de-vie-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "41d08db045dc8133b5f5b407d9dd4c04d60d559d4211ec35ac35d07b6810065c",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2979471,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "arbre-de-vie-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "e120b1cf271edb894b7e1bf51640b0a11de1e09444e49926d91470e304f18ba0",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2937537,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "arbre-de-vie-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "33b84abc8877fd8cce5b226d04d20b6184df581a8f4ec99db1378e73d74d4940",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3023599,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "arbre-de-vie-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "27c41689c3f09baf81eea2dd6fc79b7251d098c49d262fc448c4930e73ccb4eb",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3022186,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "royal",
+      "image": "arbre-de-vie-royal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "5ca0301be70ef74c4ae7f71fe42ae4ef308cb9cb50f6fabf495641a9b8a58f6a",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 3003495,
+      "integritePngVerifiee": true
+    }
+  ],
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantesPresentes": 5,
+  "variantesCibles": 10,
+  "dernierControleIntegrite": "2026-10-21T09:44:32.565699+00:00",
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "validationConfigurateur": false
+}
