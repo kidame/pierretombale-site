@@ -55,6 +55,61 @@
         "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/royal-texture-v1.png"
       ],
       "controleVisuel": "TANGO royal: deux steles voilees, tablette fixe vide, dalle noire avec inserts courbes, traverses, bordures et marches preserves; zones noires fixes conservees; vase et fleurs absents. Cadrage trois-quarts sur fond gris. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed TANGO Bengal geometry and framing master. Image 2 is only the Vizag Blue granite reference. Change ONLY every Bengal-speckled variable stone zone in image 1 to the exact material of image 2: flowing silver-grey, charcoal and white mineral waves with scattered deep rust-red crystals. Variable zones are the shorter left headstone leaf, outer border of the taller right leaf, fixed empty shelf, curved inlay strips across the slab, rear crosspiece, side kerbs, recessed foot area, front steps and lower perimeter base. Preserve exactly the polished near-black fixed core of the tall right leaf and polished near-black main grave slab. Preserve every outline, cavity, fixed insert, thickness, step, angle, proportion, camera viewpoint, square framing, lighting, shadows and neutral grey background. Shelf remains empty; no vase, flowers, engraving, text, ornament, plaque, people, watermark or extra object. One square 2048x2048 image.",
+      "date": "2026-10-21T00:04:22.291198+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-81646a13-859b-43ca-8577-8e197f414e6f.png",
+      "sha256": "443545c6374e3fd44e92e000b5b333d713b3daa2a9b9896ab83cb7190937c124",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-c931a6be-b6b5-4939-9c39-b302ac1417ed.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "TANGO vizag-blue: deux steles voilees, tablette fixe vide, dalle noire avec inserts courbes, traverses, bordures et marches preserves; zones noires fixes conservees; vase et fleurs absents. Cadrage trois-quarts sur fond gris. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed TANGO Bengal geometry and framing master. Image 2 is only the Viscount White granite reference. Change ONLY every Bengal-speckled variable stone zone in image 1 to the exact material of image 2: creamy white granite with soft flowing light-grey waves, fine black specks and occasional warm beige grains. Variable zones are the shorter left headstone leaf, outer border of the taller right leaf, fixed empty shelf, curved inlay strips across the slab, rear crosspiece, side kerbs, recessed foot area, front steps and lower perimeter base. Preserve exactly the polished near-black fixed core of the tall right leaf and polished near-black main grave slab. Preserve every outline, cavity, fixed insert, thickness, step, angle, proportion, camera viewpoint, square framing, lighting, shadows and neutral grey background. Shelf remains empty; no vase, flowers, engraving, text, ornament, plaque, people, watermark or extra object. One square 2048x2048 image.",
+      "date": "2026-10-21T00:04:32.604884+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-dec6cb15-241d-489c-9edb-ac1e2e68bfea.png",
+      "sha256": "2fc89071d6ff5b9312444e001271b18e5e2201a3105ba0de384b86f5e951dbd1",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-c931a6be-b6b5-4939-9c39-b302ac1417ed.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "TANGO viscount-white: deux steles voilees, tablette fixe vide, dalle noire avec inserts courbes, traverses, bordures et marches preserves; zones noires fixes conservees; vase et fleurs absents. Cadrage trois-quarts sur fond gris. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed TANGO Bengal geometry and framing master. Image 2 is only the Rosso Porrino granite reference. Change ONLY every Bengal-speckled variable stone zone in image 1 to the exact material of image 2: salmon-pink feldspar, grey quartz, black flecks and cream-white mineral grains. Variable zones are the shorter left headstone leaf, outer border of the taller right leaf, fixed empty shelf, curved inlay strips across the slab, rear crosspiece, side kerbs, recessed foot area, front steps and lower perimeter base. Preserve exactly the polished near-black fixed core of the tall right leaf and polished near-black main grave slab. Preserve every outline, cavity, fixed insert, thickness, step, angle, proportion, camera viewpoint, square framing, lighting, shadows and neutral grey background. Shelf remains empty; no vase, flowers, engraving, text, ornament, plaque, people, watermark or extra object. One square 2048x2048 image.",
+      "date": "2026-10-21T00:04:42.895934+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-38cdfb9f-1c52-4069-b4e5-2a53a979d396.png",
+      "sha256": "cf8880f8a3013aec98e6fa7f456e4d72657d8dc95fdfabf2c2913b7bd4678c42",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-c931a6be-b6b5-4939-9c39-b302ac1417ed.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "TANGO rosso-porrino: deux steles voilees, tablette fixe vide, dalle noire avec inserts courbes, traverses, bordures et marches preserves; zones noires fixes conservees; vase et fleurs absents. Cadrage trois-quarts sur fond gris. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed TANGO Bengal geometry and framing master. Image 2 is only the Egipat granite reference. Change ONLY every Bengal-speckled variable stone zone in image 1 to the exact material of image 2: neutral medium-grey salt-and-pepper granite with dense small black and white crystals. Variable zones are the shorter left headstone leaf, outer border of the taller right leaf, fixed empty shelf, curved inlay strips across the slab, rear crosspiece, side kerbs, recessed foot area, front steps and lower perimeter base. Preserve exactly the polished near-black fixed core of the tall right leaf and polished near-black main grave slab. Preserve every outline, cavity, fixed insert, thickness, step, angle, proportion, camera viewpoint, square framing, lighting, shadows and neutral grey background. Shelf remains empty; no vase, flowers, engraving, text, ornament, plaque, people, watermark or extra object. One square 2048x2048 image.",
+      "date": "2026-10-21T00:04:52.446286+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-16e6dd7f-be51-4682-9bf2-9e1c9ee633a3.png",
+      "sha256": "2c99a0c18279bc3a1d21a16961d5317406b8126736e332961745e2b49ec69322",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-c931a6be-b6b5-4939-9c39-b302ac1417ed.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/egipat-texture-v1.png"
+      ],
+      "controleVisuel": "TANGO egipat: deux steles voilees, tablette fixe vide, dalle noire avec inserts courbes, traverses, bordures et marches preserves; zones noires fixes conservees; vase et fleurs absents. Cadrage trois-quarts sur fond gris. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed TANGO Bengal geometry and framing master. Image 2 is only the Marmara marble reference. Change ONLY every Bengal-speckled variable stone zone in image 1 to the exact material of image 2: white crystalline marble with broad softly parallel grey bands and finer darker grey veins. Variable zones are the shorter left headstone leaf, outer border of the taller right leaf, fixed empty shelf, curved inlay strips across the slab, rear crosspiece, side kerbs, recessed foot area, front steps and lower perimeter base. Preserve exactly the polished near-black fixed core of the tall right leaf and polished near-black main grave slab. Preserve every outline, cavity, fixed insert, thickness, step, angle, proportion, camera viewpoint, square framing, lighting, shadows and neutral grey background. Shelf remains empty; no vase, flowers, engraving, text, ornament, plaque, people, watermark or extra object. One square 2048x2048 image.",
+      "date": "2026-10-21T00:04:59.494039+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-9c08d790-4550-4a29-b71b-9aeaf6d24361.png",
+      "sha256": "9a1f894404cd686c0babebf63782e5f6e77e207963920ca25e82ea45245b1f7f",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-c931a6be-b6b5-4939-9c39-b302ac1417ed.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/marmara-texture-v1.png"
+      ],
+      "controleVisuel": "TANGO marmara: deux steles voilees, tablette fixe vide, dalle noire avec inserts courbes, traverses, bordures et marches preserves; zones noires fixes conservees; vase et fleurs absents. Cadrage trois-quarts sur fond gris. Sans texte ni accessoire. Pilote 1254 px non calibre."
     }
   }
 }

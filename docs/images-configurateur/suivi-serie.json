@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "misAJour": "2026-10-20",
+  "misAJour": "2026-10-21",
   "cible": 270,
   "vueParVariante": 1,
   "matieres": [
@@ -2913,42 +2913,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "tango-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "443545c6374e3fd44e92e000b5b333d713b3daa2a9b9896ab83cb7190937c124",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2559563,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "tango-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "2fc89071d6ff5b9312444e001271b18e5e2201a3105ba0de384b86f5e951dbd1",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2500805,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "tango-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "cf8880f8a3013aec98e6fa7f456e4d72657d8dc95fdfabf2c2913b7bd4678c42",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2465805,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "tango-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "2c99a0c18279bc3a1d21a16961d5317406b8126736e332961745e2b49ec69322",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2627560,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "tango-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "9a1f894404cd686c0babebf63782e5f6e77e207963920ca25e82ea45245b1f7f",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2161355,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -3500,15 +3525,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-20T23:55:39.490871+00:00",
-    "imagesCompletes": 205,
-    "combinaisonsRestantes": 65,
+    "dateControle": "2026-10-21T00:04:59.494039+00:00",
+    "imagesCompletes": 210,
+    "combinaisonsRestantes": 60,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "tango",
-    "matiereId": "vizag-blue",
+    "modeleId": "aventuri",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
