@@ -1,0 +1,35 @@
+{
+  "library_file_id": "libfile_e597b5b7f9688191a0e018189ad32d88",
+  "current_version_number": 0,
+  "reference_path": "/workspace/scratch/fc8dfd468718/references-modeles/quietude/QUIETUDE.png",
+  "source_file_name": "QUIETUDE.png",
+  "inspection_pending": false,
+  "geometry": "Long monument avec dalle rectangulaire, cadres lateraux a bouts avant arrondis, marche en retrait. Stele asymetrique a sommet en vague et grande echancrure circulaire ouverte sur le cote gauche; flanc droit courbe.",
+  "fixed_features": [
+    "Contour de stele avec l'echancrure circulaire, support arriere et profils de cadre. Oiseau bleu clair et branche colores apparaissent appliques sur la face, au bord de l'echancrure, sans vase."
+  ],
+  "removable_accessories": [],
+  "material_zones": "Pierre principale sombre uniforme; decorations colorees sur la stele.",
+  "ambiguity": "Fixation de l'oiseau non visible; il ne ressemble pas a un accessoire simplement pose sur la tombale. Si les motifs decoratifs sont retires, conserver exactement l'echancrure et le contour de la stele.",
+  "surface_decoration": "Oiseau, branche feuillue et paysage d'eau. Une partie parait en relief rapporte.",
+  "reference_dimensions_px": [
+    1448,
+    1086
+  ],
+  "library_xattr_verified": true,
+  "decisionPilote": "Oiseau et branche semblent appliques et partiellement en relief; traites comme decor optionnel retire. Le contour de pierre et l'echancrure ouverte a gauche sont conserves. Fixation precise du decor inconnue. Vue trois-quarts de la base recuperee conservee; non orthographique. Cinq prompts originaux absents, documentes dans recovery.json.",
+  "specificationGeneration": {
+    "id": "quietude",
+    "family": "funeraire",
+    "geometry": "an elongated funerary monument with a rectangular top slab, rounded-front side rails, a recessed front step and an asymmetric wave-topped headstone with a large circular cutout opening to the left",
+    "stoneAreas": "all stone surfaces of the base, rails, steps, slab, rear support and asymmetric headstone",
+    "fixedAreas": "Preserve the headstone's entire outer silhouette and its left-opening circular cutout, including the upper curved transition into the opening. Keep all rails and support levels.",
+    "extraConstraints": "The cutout is an actual open space extending to the left edge; do not close it into a hole, fill it with granite or reverse it to the right.",
+    "masterDescription": "Preserve the projecting rectangular plinth, long rectangular top slab, two raised side rails with rounded front ends, recessed front step and transverse rear support. Keep the asymmetric headstone with a high wave on the left, lower right top, curved right flank and large circular notch that opens at its left edge. Preserve the exact compound curves surrounding that open notch.",
+    "removeDescription": "Remove the optional applied bird and branch decoration, the colored leaves and water scene, and their reflections. Keep all underlying stone and the open circular cutout unchanged.",
+    "interpretationNote": "Oiseau et branche semblent appliques et partiellement en relief; traites comme decor optionnel retire. Le contour de pierre et l'echancrure ouverte a gauche sont conserves. Fixation precise du decor inconnue. Vue trois-quarts de la base recuperee conservee; non orthographique. Cinq prompts originaux absents, documentes dans recovery.json.",
+    "referencePath": "/workspace/scratch/fc8dfd468718/references-modeles/quietude/QUIETUDE.png",
+    "sourceLibraryId": "libfile_e597b5b7f9688191a0e018189ad32d88",
+    "masterPath": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-ea29c955-69af-4ace-b397-eaa7a6a16632.png"
+  }
+}

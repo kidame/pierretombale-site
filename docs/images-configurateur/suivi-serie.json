@@ -3125,7 +3125,7 @@
       "sourceLibraryId": "libfile_e597b5b7f9688191a0e018189ad32d88",
       "dossier": "pilotes/funeraire/quietude/v1",
       "ordre": 23,
-      "notes": "Geometrie et zones physiques a valider.",
+      "notes": "Long monument avec dalle rectangulaire, cadres lateraux a bouts avant arrondis, marche en retrait. Stele asymetrique a sommet en vague et grande echancrure circulaire ouverte sur le cote gauche; flanc droit courbe. Oiseau et branche semblent appliques et partiellement en relief; traites comme decor optionnel retire. Le contour de pierre et l'echancrure ouverte a gauche sont conserves. Fixation precise du decor inconnue. Vue trois-quarts de la base recuperee conservee; non orthographique. Cinq prompts originaux absents, documentes dans recovery.json. Geometrie atelier et zones physiques a valider.",
       "variantes": [
         {
           "matiereId": "bengal",
@@ -3195,42 +3195,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "quietude-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "f114b5e09806f9fce01d53288040d366f48ecb8260a75c22013ec448c59201d7",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2712175,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "quietude-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "2f2b9e26351bedb9d3b49c1948766672644728072fd7fad6927394681720dac0",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2687086,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "quietude-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "fd50eaa1d61a1076c6f65e1504333c187c4286e11f9d6016030214fadc7b1c82",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2614644,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "quietude-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "92125c9d3b48c9fb7a1d97fb844aac1d7e6f37b1d72c452bc7617a6456139e7a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2827981,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "quietude-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "07e3b9b85c839bf4aa5c5a8e2e59a2207fdf58717a125cafd4a15f265658644a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2344893,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -3600,15 +3625,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-21T09:33:27.182416+00:00",
-    "imagesCompletes": 225,
-    "combinaisonsRestantes": 45,
+    "dateControle": "2026-10-21T09:38:23.006882+00:00",
+    "imagesCompletes": 230,
+    "combinaisonsRestantes": 40,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "quietude",
-    "matiereId": "vizag-blue",
+    "modeleId": "arbre-de-vie",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3624,56 +3649,57 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-21T09:34:18.321757+00:00",
+    "dateFin": "2026-10-21T09:38:52.975382+00:00",
     "combinaisons": [
       {
         "modeleId": "quietude",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "quietude",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "quietude",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "quietude",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "quietude",
-        "matiereId": "royal"
+        "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 220,
-    "totalApres": 225,
+    "totalAvant": 225,
+    "totalApres": 230,
     "statut": "termine",
+    "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
   },
   "prochainLot": [
     {
-      "modeleId": "quietude",
-      "matiereId": "vizag-blue"
+      "modeleId": "arbre-de-vie",
+      "matiereId": "bengal"
     },
     {
-      "modeleId": "quietude",
-      "matiereId": "viscount-white"
+      "modeleId": "arbre-de-vie",
+      "matiereId": "rozabeta"
     },
     {
-      "modeleId": "quietude",
-      "matiereId": "rosso-porrino"
+      "modeleId": "arbre-de-vie",
+      "matiereId": "paradiso"
     },
     {
-      "modeleId": "quietude",
-      "matiereId": "egipat"
+      "modeleId": "arbre-de-vie",
+      "matiereId": "jablanica"
     },
     {
-      "modeleId": "quietude",
-      "matiereId": "marmara"
+      "modeleId": "arbre-de-vie",
+      "matiereId": "royal"
     }
   ]
 }

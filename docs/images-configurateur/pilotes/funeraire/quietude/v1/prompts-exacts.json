@@ -2,7 +2,7 @@
   "mode": "imagegen-integre",
   "variantes": {
     "bengal": {
-      "prompt": "PROMPT ORIGINAL NON RETROUVE. Image recuperee sans regeneration depuis la session precedente, identifiee par son ordre de generation et sa texture. Voir recovery.json.",
+      "prompt": null,
       "date": "2026-10-21T09:33:13.337752+00:00",
       "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-ea29c955-69af-4ace-b397-eaa7a6a16632.png",
       "sha256": "c2ee585b2f8503d5d02eeb275883bd61e7cde2d41af930cdb1f0316f1fcae246",
@@ -10,10 +10,12 @@
         "libfile_e597b5b7f9688191a0e018189ad32d88",
         "bengal-texture-v1.png"
       ],
-      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides."
+      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides.",
+      "promptOriginalRetrouve": false,
+      "noteRecuperation": "Image anterieure recuperee sans regeneration; prompt non retrouve."
     },
     "rozabeta": {
-      "prompt": "PROMPT ORIGINAL NON RETROUVE. Image recuperee sans regeneration depuis la session precedente, identifiee par son ordre de generation et sa texture. Voir recovery.json.",
+      "prompt": null,
       "date": "2026-10-21T09:33:17.445581+00:00",
       "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-03dd0276-3590-4f1f-8190-3c216d282d61.png",
       "sha256": "969e838075a4e7832fcd6bbda4d0f368e641dd2930ab7247b71d3ae4c69b22e0",
@@ -21,10 +23,12 @@
         "quietude-bengal.png",
         "rozabeta-texture-v1.png"
       ],
-      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides."
+      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides.",
+      "promptOriginalRetrouve": false,
+      "noteRecuperation": "Image anterieure recuperee sans regeneration; prompt non retrouve."
     },
     "paradiso": {
-      "prompt": "PROMPT ORIGINAL NON RETROUVE. Image recuperee sans regeneration depuis la session precedente, identifiee par son ordre de generation et sa texture. Voir recovery.json.",
+      "prompt": null,
       "date": "2026-10-21T09:33:20.968814+00:00",
       "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-5b71fda6-7ca2-4ff0-9b63-d740579ca0bb.png",
       "sha256": "1f80da75a16341de7f948e34b5b8dba18124fd4e741a13520a6e7bfbb7ddb9b9",
@@ -32,10 +36,12 @@
         "quietude-bengal.png",
         "paradiso-texture-v1.png"
       ],
-      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides."
+      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides.",
+      "promptOriginalRetrouve": false,
+      "noteRecuperation": "Image anterieure recuperee sans regeneration; prompt non retrouve."
     },
     "jablanica": {
-      "prompt": "PROMPT ORIGINAL NON RETROUVE. Image recuperee sans regeneration depuis la session precedente, identifiee par son ordre de generation et sa texture. Voir recovery.json.",
+      "prompt": null,
       "date": "2026-10-21T09:33:24.271140+00:00",
       "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-190c0a1c-80a3-4b0f-a116-1205c4681b97.png",
       "sha256": "38d77ea4e0f186c84c759cb102cb746bdef269da44fade111f12aafa3e579136",
@@ -43,10 +49,12 @@
         "quietude-bengal.png",
         "jablanica-texture-v1.png"
       ],
-      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides."
+      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides.",
+      "promptOriginalRetrouve": false,
+      "noteRecuperation": "Image anterieure recuperee sans regeneration; prompt non retrouve."
     },
     "royal": {
-      "prompt": "PROMPT ORIGINAL NON RETROUVE. Image recuperee sans regeneration depuis la session precedente, identifiee par son ordre de generation et sa texture. Voir recovery.json.",
+      "prompt": null,
       "date": "2026-10-21T09:33:27.182416+00:00",
       "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-6fa27716-cecb-4025-b701-14b36d069222.png",
       "sha256": "d6b117860fe78ac3c76f669a995d773a44236287b0b9836d0370dd8a3d303030",
@@ -54,7 +62,64 @@
         "quietude-bengal.png",
         "royal-texture-v1.png"
       ],
-      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides."
+      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides.",
+      "promptOriginalRetrouve": false,
+      "noteRecuperation": "Image anterieure recuperee sans regeneration; prompt non retrouve."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated funerary monument with a rectangular top slab, rounded-front side rails, a recessed front step and an asymmetric wave-topped headstone with a large circular cutout opening to the left. Image 2 is only the vizag-blue stone reference. Change ONLY all stone surfaces of the base, rails, steps, slab, rear support and asymmetric headstone to the exact material of image 2: cool silver-grey granite, slightly blue, flowing charcoal mineral clouds and sparse fine burgundy-brown specks. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve the headstone's entire outer silhouette and its left-opening circular cutout, including the upper curved transition into the opening. Keep all rails and support levels. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The cutout is an actual open space extending to the left edge; do not close it into a hole, fill it with granite or reverse it to the right. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-21T09:38:13.071810+00:00",
+      "sourceLocale": "/workspace/scratch/f881999a3473/generated_images/exec-ac5ee02a-b379-4dfa-ac1a-372a403bae21.png",
+      "sha256": "f114b5e09806f9fce01d53288040d366f48ecb8260a75c22013ec448c59201d7",
+      "references": [
+        "quietude-bengal.png",
+        "vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "Inspection visuelle du PNG : matiere correspondante, echancrure circulaire ouverte a gauche, dalle et rails conserves; decor absent. Cadrage trois-quarts repris du Bengal recupere. Pilote non calibre; micro-contours et couleurs physiques a valider."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated funerary monument with a rectangular top slab, rounded-front side rails, a recessed front step and an asymmetric wave-topped headstone with a large circular cutout opening to the left. Image 2 is only the viscount-white stone reference. Change ONLY all stone surfaces of the base, rails, steps, slab, rear support and asymmetric headstone to the exact material of image 2: luminous white and pale grey granite, fine dark mineral flecks and soft flowing grey clouds. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve the headstone's entire outer silhouette and its left-opening circular cutout, including the upper curved transition into the opening. Keep all rails and support levels. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The cutout is an actual open space extending to the left edge; do not close it into a hole, fill it with granite or reverse it to the right. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-21T09:38:15.700427+00:00",
+      "sourceLocale": "/workspace/scratch/f881999a3473/generated_images/exec-5d2c03cd-641c-45d1-9414-5a00fd26d29f.png",
+      "sha256": "2f2b9e26351bedb9d3b49c1948766672644728072fd7fad6927394681720dac0",
+      "references": [
+        "quietude-bengal.png",
+        "viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "Inspection visuelle du PNG : matiere correspondante, echancrure circulaire ouverte a gauche, dalle et rails conserves; decor absent. Cadrage trois-quarts repris du Bengal recupere. Pilote non calibre; micro-contours et couleurs physiques a valider."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated funerary monument with a rectangular top slab, rounded-front side rails, a recessed front step and an asymmetric wave-topped headstone with a large circular cutout opening to the left. Image 2 is only the rosso-porrino stone reference. Change ONLY all stone surfaces of the base, rails, steps, slab, rear support and asymmetric headstone to the exact material of image 2: salmon pink feldspar, grey quartz, black flecks and cream-white mineral grains. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve the headstone's entire outer silhouette and its left-opening circular cutout, including the upper curved transition into the opening. Keep all rails and support levels. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The cutout is an actual open space extending to the left edge; do not close it into a hole, fill it with granite or reverse it to the right. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-21T09:38:18.068120+00:00",
+      "sourceLocale": "/workspace/scratch/f881999a3473/generated_images/exec-0270bf68-389b-4ec8-801d-03ef18d1673e.png",
+      "sha256": "fd50eaa1d61a1076c6f65e1504333c187c4286e11f9d6016030214fadc7b1c82",
+      "references": [
+        "quietude-bengal.png",
+        "rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "Inspection visuelle du PNG : matiere correspondante, echancrure circulaire ouverte a gauche, dalle et rails conserves; decor absent. Cadrage trois-quarts repris du Bengal recupere. Pilote non calibre; micro-contours et couleurs physiques a valider."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated funerary monument with a rectangular top slab, rounded-front side rails, a recessed front step and an asymmetric wave-topped headstone with a large circular cutout opening to the left. Image 2 is only the egipat stone reference. Change ONLY all stone surfaces of the base, rails, steps, slab, rear support and asymmetric headstone to the exact material of image 2: neutral medium-grey salt-and-pepper granite with dense small black and white crystals. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve the headstone's entire outer silhouette and its left-opening circular cutout, including the upper curved transition into the opening. Keep all rails and support levels. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The cutout is an actual open space extending to the left edge; do not close it into a hole, fill it with granite or reverse it to the right. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-21T09:38:20.861400+00:00",
+      "sourceLocale": "/workspace/scratch/f881999a3473/generated_images/exec-b9efd7b8-1682-4d4e-ae41-5118135b1993.png",
+      "sha256": "92125c9d3b48c9fb7a1d97fb844aac1d7e6f37b1d72c452bc7617a6456139e7a",
+      "references": [
+        "quietude-bengal.png",
+        "egipat-texture-v1.png"
+      ],
+      "controleVisuel": "Inspection visuelle du PNG : matiere correspondante, echancrure circulaire ouverte a gauche, dalle et rails conserves; decor absent. Cadrage trois-quarts repris du Bengal recupere. Pilote non calibre; micro-contours et couleurs physiques a valider."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed Bengal geometry and framing master for an elongated funerary monument with a rectangular top slab, rounded-front side rails, a recessed front step and an asymmetric wave-topped headstone with a large circular cutout opening to the left. Image 2 is only the marmara stone reference. Change ONLY all stone surfaces of the base, rails, steps, slab, rear support and asymmetric headstone to the exact material of image 2: white crystalline marble with broad softly parallel grey bands and finer darker grey veins. Match natural colors, vein pattern and realistic grain size, polished surface with gentle highlights. Preserve the headstone's entire outer silhouette and its left-opening circular cutout, including the upper curved transition into the opening. Keep all rails and support levels. Preserve exactly every structural component, silhouette, thickness, opening, joint, crop, camera, scale, pale grey background and soft contact shadows. The cutout is an actual open space extending to the left edge; do not close it into a hole, fill it with granite or reverse it to the right. Do not add parts, engraving, text, optional decoration, flowers, plants, vases, logos or watermarks. One single square image requested 2048x2048.",
+      "date": "2026-10-21T09:38:23.006882+00:00",
+      "sourceLocale": "/workspace/scratch/f881999a3473/generated_images/exec-e94df647-1b70-48a9-9b84-3a5a5a4b8f9b.png",
+      "sha256": "07e3b9b85c839bf4aa5c5a8e2e59a2207fdf58717a125cafd4a15f265658644a",
+      "references": [
+        "quietude-bengal.png",
+        "marmara-texture-v1.png"
+      ],
+      "controleVisuel": "Inspection visuelle du PNG : matiere correspondante, echancrure circulaire ouverte a gauche, dalle et rails conserves; decor absent. Cadrage trois-quarts repris du Bengal recupere. Pilote non calibre; micro-contours et couleurs physiques a valider."
     }
   }
 }
