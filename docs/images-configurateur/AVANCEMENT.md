@@ -1,8 +1,8 @@
 # Avancement des images
 
-Mis a jour : 2026-10-21T00:29:32.800830+00:00
+Mis a jour : 2026-10-21T09:33:27.182416+00:00
 
-Images completes archivees : 220/270.
+Images completes archivees : 225/270.
 Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 
 | Famille | Modele interne | Completes | Statut |
@@ -29,12 +29,12 @@ Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 | cineraire | CIN-ESPERANZA | 10/10 | Lot complet |
 | funeraire | TANGO | 10/10 | Lot complet |
 | funeraire | AVENTURI | 10/10 | Lot complet |
-| funeraire | QUIETUDE | 0/10 | A produire |
+| funeraire | QUIETUDE | 5/10 | En cours |
 | funeraire | ARBRE DE VIE | 0/10 | A produire |
 | funeraire | ELIGIE | 0/10 | A produire |
 | funeraire | CORAZON | 0/10 | A produire |
 | funeraire | DOUCEUR | 0/10 | A produire |
 
-Prochaine action : {'modeleId': 'quietude', 'matiereId': 'bengal', 'action': 'Produire les variantes restantes du produit par lots de 5, puis archiver le lot'}
+Prochaine action : {'modeleId': 'quietude', 'matiereId': 'vizag-blue', 'action': 'Produire les variantes restantes du produit par lots de 5, puis archiver le lot'}
 
 Source de verite detaillee : suivi-serie.json. Prompts exacts et SHA256 dans chaque dossier.

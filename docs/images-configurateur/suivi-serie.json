@@ -3130,42 +3130,67 @@
         {
           "matiereId": "bengal",
           "fichier": "quietude-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "c2ee585b2f8503d5d02eeb275883bd61e7cde2d41af930cdb1f0316f1fcae246",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2769841,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "quietude-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "969e838075a4e7832fcd6bbda4d0f368e641dd2930ab7247b71d3ae4c69b22e0",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2615901,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "quietude-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "1f80da75a16341de7f948e34b5b8dba18124fd4e741a13520a6e7bfbb7ddb9b9",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2628628,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "quietude-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "38d77ea4e0f186c84c759cb102cb746bdef269da44fade111f12aafa3e579136",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2729241,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "quietude-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "d6b117860fe78ac3c76f669a995d773a44236287b0b9836d0370dd8a3d303030",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2597163,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -3575,15 +3600,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-21T00:29:32.800830+00:00",
-    "imagesCompletes": 220,
-    "combinaisonsRestantes": 50,
+    "dateControle": "2026-10-21T09:33:27.182416+00:00",
+    "imagesCompletes": 225,
+    "combinaisonsRestantes": 45,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "quietude",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3599,56 +3624,56 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-20T22:11:55.165057+00:00",
+    "dateFin": "2026-10-21T09:34:18.321757+00:00",
     "combinaisons": [
       {
-        "modeleId": "cin-saturne",
+        "modeleId": "quietude",
+        "matiereId": "bengal"
+      },
+      {
+        "modeleId": "quietude",
+        "matiereId": "rozabeta"
+      },
+      {
+        "modeleId": "quietude",
+        "matiereId": "paradiso"
+      },
+      {
+        "modeleId": "quietude",
+        "matiereId": "jablanica"
+      },
+      {
+        "modeleId": "quietude",
         "matiereId": "royal"
-      },
-      {
-        "modeleId": "cin-saturne",
-        "matiereId": "vizag-blue"
-      },
-      {
-        "modeleId": "cin-saturne",
-        "matiereId": "viscount-white"
-      },
-      {
-        "modeleId": "cin-saturne",
-        "matiereId": "rosso-porrino"
-      },
-      {
-        "modeleId": "cin-saturne",
-        "matiereId": "egipat"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 174,
-    "totalApres": 179,
+    "totalAvant": 220,
+    "totalApres": 225,
     "statut": "termine",
     "continuationAutomatique": true,
     "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
   },
   "prochainLot": [
     {
-      "modeleId": "cin-saturne",
+      "modeleId": "quietude",
+      "matiereId": "vizag-blue"
+    },
+    {
+      "modeleId": "quietude",
+      "matiereId": "viscount-white"
+    },
+    {
+      "modeleId": "quietude",
+      "matiereId": "rosso-porrino"
+    },
+    {
+      "modeleId": "quietude",
+      "matiereId": "egipat"
+    },
+    {
+      "modeleId": "quietude",
       "matiereId": "marmara"
-    },
-    {
-      "modeleId": "cin-ovae",
-      "matiereId": "bengal"
-    },
-    {
-      "modeleId": "cin-ovae",
-      "matiereId": "rozabeta"
-    },
-    {
-      "modeleId": "cin-ovae",
-      "matiereId": "paradiso"
-    },
-    {
-      "modeleId": "cin-ovae",
-      "matiereId": "jablanica"
     }
   ]
 }

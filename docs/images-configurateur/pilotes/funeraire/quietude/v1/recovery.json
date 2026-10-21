@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-21T09:34:18.098Z",
+  "origin": "Reprise de la conversation f3c2c0ef33e6",
+  "files": [
+    {
+      "matiereId": "bengal",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-ea29c955-69af-4ace-b397-eaa7a6a16632.png"
+    },
+    {
+      "matiereId": "rozabeta",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-03dd0276-3590-4f1f-8190-3c216d282d61.png"
+    },
+    {
+      "matiereId": "paradiso",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-5b71fda6-7ca2-4ff0-9b63-d740579ca0bb.png"
+    },
+    {
+      "matiereId": "jablanica",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-190c0a1c-80a3-4b0f-a116-1205c4681b97.png"
+    },
+    {
+      "matiereId": "royal",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-6fa27716-cecb-4025-b701-14b36d069222.png"
+    }
+  ],
+  "promptOriginalRetrouve": false,
+  "controle": "Cinq images vues individuellement. Echancrure a gauche et geometrie conservees. Vue trois-quarts non calibree. Aucune regeneration."
+}

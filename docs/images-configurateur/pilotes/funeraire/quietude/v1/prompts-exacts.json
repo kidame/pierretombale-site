@@ -1,0 +1,60 @@
+{
+  "mode": "imagegen-integre",
+  "variantes": {
+    "bengal": {
+      "prompt": "PROMPT ORIGINAL NON RETROUVE. Image recuperee sans regeneration depuis la session precedente, identifiee par son ordre de generation et sa texture. Voir recovery.json.",
+      "date": "2026-10-21T09:33:13.337752+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-ea29c955-69af-4ace-b397-eaa7a6a16632.png",
+      "sha256": "c2ee585b2f8503d5d02eeb275883bd61e7cde2d41af930cdb1f0316f1fcae246",
+      "references": [
+        "libfile_e597b5b7f9688191a0e018189ad32d88",
+        "bengal-texture-v1.png"
+      ],
+      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides."
+    },
+    "rozabeta": {
+      "prompt": "PROMPT ORIGINAL NON RETROUVE. Image recuperee sans regeneration depuis la session precedente, identifiee par son ordre de generation et sa texture. Voir recovery.json.",
+      "date": "2026-10-21T09:33:17.445581+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-03dd0276-3590-4f1f-8190-3c216d282d61.png",
+      "sha256": "969e838075a4e7832fcd6bbda4d0f368e641dd2930ab7247b71d3ae4c69b22e0",
+      "references": [
+        "quietude-bengal.png",
+        "rozabeta-texture-v1.png"
+      ],
+      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides."
+    },
+    "paradiso": {
+      "prompt": "PROMPT ORIGINAL NON RETROUVE. Image recuperee sans regeneration depuis la session precedente, identifiee par son ordre de generation et sa texture. Voir recovery.json.",
+      "date": "2026-10-21T09:33:20.968814+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-5b71fda6-7ca2-4ff0-9b63-d740579ca0bb.png",
+      "sha256": "1f80da75a16341de7f948e34b5b8dba18124fd4e741a13520a6e7bfbb7ddb9b9",
+      "references": [
+        "quietude-bengal.png",
+        "paradiso-texture-v1.png"
+      ],
+      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides."
+    },
+    "jablanica": {
+      "prompt": "PROMPT ORIGINAL NON RETROUVE. Image recuperee sans regeneration depuis la session precedente, identifiee par son ordre de generation et sa texture. Voir recovery.json.",
+      "date": "2026-10-21T09:33:24.271140+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-190c0a1c-80a3-4b0f-a116-1205c4681b97.png",
+      "sha256": "38d77ea4e0f186c84c759cb102cb746bdef269da44fade111f12aafa3e579136",
+      "references": [
+        "quietude-bengal.png",
+        "jablanica-texture-v1.png"
+      ],
+      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides."
+    },
+    "royal": {
+      "prompt": "PROMPT ORIGINAL NON RETROUVE. Image recuperee sans regeneration depuis la session precedente, identifiee par son ordre de generation et sa texture. Voir recovery.json.",
+      "date": "2026-10-21T09:33:27.182416+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-6fa27716-cecb-4025-b701-14b36d069222.png",
+      "sha256": "d6b117860fe78ac3c76f669a995d773a44236287b0b9836d0370dd8a3d303030",
+      "references": [
+        "quietude-bengal.png",
+        "royal-texture-v1.png"
+      ],
+      "controleVisuel": "Image recuperee inspectee : echancrure ouverte a gauche, decor retire, dalle, rails et marches conserves. Vue trois-quarts, non orthographique; contours et calibration non valides."
+    }
+  }
+}
