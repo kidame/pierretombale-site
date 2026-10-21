@@ -162,3 +162,8 @@
 {"date": "2026-10-21T00:04:42.895934+00:00", "modeleId": "tango", "matiereId": "rosso-porrino", "sha256": "cf8880f8a3013aec98e6fa7f456e4d72657d8dc95fdfabf2c2913b7bd4678c42", "total": 208}
 {"date": "2026-10-21T00:04:52.446286+00:00", "modeleId": "tango", "matiereId": "egipat", "sha256": "2c99a0c18279bc3a1d21a16961d5317406b8126736e332961745e2b49ec69322", "total": 209}
 {"date": "2026-10-21T00:04:59.494039+00:00", "modeleId": "tango", "matiereId": "marmara", "sha256": "9a1f894404cd686c0babebf63782e5f6e77e207963920ca25e82ea45245b1f7f", "total": 210}
+{"date": "2026-10-21T00:16:46.755510+00:00", "modeleId": "aventuri", "matiereId": "bengal", "sha256": "75ba7463eaa51a5708ec0ceeaedc47d7f5a8578e00b9f54b5d49c3427b000c66", "total": 211}
+{"date": "2026-10-21T00:16:56.373053+00:00", "modeleId": "aventuri", "matiereId": "rozabeta", "sha256": "2d78f64066ebbfe57edd38e8d3a371a53b5aa4601a91ad107a69f30c599bf586", "total": 212}
+{"date": "2026-10-21T00:17:05.448979+00:00", "modeleId": "aventuri", "matiereId": "paradiso", "sha256": "823a62516a779c5c294db1e281a4cfba1e9b4b4c94e8c3b4bd1bd9e05513a493", "total": 213}
+{"date": "2026-10-21T00:17:14.103888+00:00", "modeleId": "aventuri", "matiereId": "jablanica", "sha256": "e0951050da2dc018815c203209d18868868f6b6a0e9beaf012dc9ade33a13667", "total": 214}
+{"date": "2026-10-21T00:17:24.424065+00:00", "modeleId": "aventuri", "matiereId": "royal", "sha256": "a784d8b285d2be45ee58142be3a4269fcd67bf75fc31baff86f45123cdadb1d2", "total": 215}

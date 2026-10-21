@@ -2989,42 +2989,67 @@
         {
           "matiereId": "bengal",
           "fichier": "aventuri-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "75ba7463eaa51a5708ec0ceeaedc47d7f5a8578e00b9f54b5d49c3427b000c66",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2720146,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "aventuri-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "2d78f64066ebbfe57edd38e8d3a371a53b5aa4601a91ad107a69f30c599bf586",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2556282,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "aventuri-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "823a62516a779c5c294db1e281a4cfba1e9b4b4c94e8c3b4bd1bd9e05513a493",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2624484,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "aventuri-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "e0951050da2dc018815c203209d18868868f6b6a0e9beaf012dc9ade33a13667",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2587837,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "aventuri-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "a784d8b285d2be45ee58142be3a4269fcd67bf75fc31baff86f45123cdadb1d2",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2621431,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -3525,15 +3550,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-21T00:04:59.494039+00:00",
-    "imagesCompletes": 210,
-    "combinaisonsRestantes": 60,
+    "dateControle": "2026-10-21T00:17:24.424065+00:00",
+    "imagesCompletes": 215,
+    "combinaisonsRestantes": 55,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "aventuri",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
