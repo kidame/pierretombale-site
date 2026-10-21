@@ -22,10 +22,12 @@ Autorisation Thomas, 19.10.2026 : poursuivre les 27 modeles en 10 matieres, une 
 
 ## Point de reprise
 
-Checkpoint 2026-10-20T13:21:22.969665+00:00 : 160/270 images archivees, 110 restantes.
-16/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
+Checkpoint 2026-10-21T00:32:04Z : 220/270 images archivees, 50 restantes.
+22/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
 Le tableau AVANCEMENT.md est mis a jour automatiquement apres chaque archivage.
-Prochaine combinaison : cin-montagne02 / bengal.
+Dernier produit termine : AVENTURI, 10/10 variantes archivees. Le passage a ajoute 41 images, de 179 a 220.
+Prochaine combinaison : quietude / bengal.
+Le recepteur a ete arrete proprement apres confirmation du total ; aucun transfert partiel en attente.
 
 Clarification Thomas du 20.10.2026 a 13h48 : terminer le set de 10 variantes de chaque produit.
 Un lot de 5 est un checkpoint, jamais une consigne d arret. Enchainer les lots sans confirmation.
