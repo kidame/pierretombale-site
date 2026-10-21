@@ -55,6 +55,61 @@
         "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/royal-texture-v1.png"
       ],
       "controleVisuel": "AVENTURI royal: stele rectangulaire, bande decorative a vagues, dalle, murs lateraux, marches et base preserves; rails noirs fixes conserves; fleurs absentes. Cadrage trois-quarts sur fond gris. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed AVENTURI Bengal geometry and framing master. Image 2 is only the Vizag Blue granite reference. Change ONLY every Bengal-speckled variable stone zone in image 1 to the exact material of image 2: flowing silver-grey, charcoal and white mineral waves with scattered deep rust-red crystals. Variable zones are the rectangular headstone panels above and below the decorative band, broad grave slab, thick side walls, front risers, recessed foot surface and full perimeter base. Preserve exactly the near-black fixed front rail, near-black rear rail, and the decorative horizontal headstone band with its black strip and repeating pale interlocking wave inserts. Preserve every outline, cavity, joint, thickness, step, proportion, camera viewpoint, square framing, lighting, shadows and neutral grey background. Keep the monument empty; no flowers, vase, engraving, text, plaque, portrait, people, watermark or extra object. One square 2048x2048 image.",
+      "date": "2026-10-21T00:28:54.736364+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-f6e1cbae-e7bf-4f2a-b281-2bc136965fb1.png",
+      "sha256": "c32365bd6d04f78a7eb4d1ae5f632882cbb726454ede0faf11c2961304760dfd",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-9e5f4575-a7fe-4f0a-a593-37bbf53a92dc.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "AVENTURI vizag-blue: stele rectangulaire, bande decorative a vagues, dalle, murs lateraux, marches et base preserves; rails noirs fixes conserves; fleurs absentes. Cadrage trois-quarts sur fond gris. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed AVENTURI Bengal geometry and framing master. Image 2 is only the Viscount White granite reference. Change ONLY every Bengal-speckled variable stone zone in image 1 to the exact material of image 2: creamy white granite with soft flowing light-grey waves, fine black specks and occasional warm beige grains. Variable zones are the rectangular headstone panels above and below the decorative band, broad grave slab, thick side walls, front risers, recessed foot surface and full perimeter base. Preserve exactly the near-black fixed front rail, near-black rear rail, and the decorative horizontal headstone band with its black strip and repeating pale interlocking wave inserts. Preserve every outline, cavity, joint, thickness, step, proportion, camera viewpoint, square framing, lighting, shadows and neutral grey background. Keep the monument empty; no flowers, vase, engraving, text, plaque, portrait, people, watermark or extra object. One square 2048x2048 image.",
+      "date": "2026-10-21T00:29:04.450769+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-48ffa4d6-be1d-4bbf-9ce8-1a6d03de1a84.png",
+      "sha256": "ebf8b42bf1dd19a96409d7257f2a310952799507f99179b9ec39a35aeeafa63d",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-9e5f4575-a7fe-4f0a-a593-37bbf53a92dc.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "AVENTURI viscount-white: stele rectangulaire, bande decorative a vagues, dalle, murs lateraux, marches et base preserves; rails noirs fixes conserves; fleurs absentes. Cadrage trois-quarts sur fond gris. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed AVENTURI Bengal geometry and framing master. Image 2 is only the Rosso Porrino granite reference. Change ONLY every Bengal-speckled variable stone zone in image 1 to the exact material of image 2: salmon-pink feldspar, grey quartz, black flecks and cream-white mineral grains. Variable zones are the rectangular headstone panels above and below the decorative band, broad grave slab, thick side walls, front risers, recessed foot surface and full perimeter base. Preserve exactly the near-black fixed front rail, near-black rear rail, and the decorative horizontal headstone band with its black strip and repeating pale interlocking wave inserts. Preserve every outline, cavity, joint, thickness, step, proportion, camera viewpoint, square framing, lighting, shadows and neutral grey background. Keep the monument empty; no flowers, vase, engraving, text, plaque, portrait, people, watermark or extra object. One square 2048x2048 image.",
+      "date": "2026-10-21T00:29:14.440566+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-f04ae23d-34fa-4c96-9a7d-bdf50be74f31.png",
+      "sha256": "c4c2f94d74912614d160fa4df4094048accecb1e7f876764d688338fc3c3c980",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-9e5f4575-a7fe-4f0a-a593-37bbf53a92dc.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "AVENTURI rosso-porrino: stele rectangulaire, bande decorative a vagues, dalle, murs lateraux, marches et base preserves; rails noirs fixes conserves; fleurs absentes. Cadrage trois-quarts sur fond gris. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed AVENTURI Bengal geometry and framing master. Image 2 is only the Egipat granite reference. Change ONLY every Bengal-speckled variable stone zone in image 1 to the exact material of image 2: neutral medium-grey salt-and-pepper granite with dense small black and white crystals. Variable zones are the rectangular headstone panels above and below the decorative band, broad grave slab, thick side walls, front risers, recessed foot surface and full perimeter base. Preserve exactly the near-black fixed front rail, near-black rear rail, and the decorative horizontal headstone band with its black strip and repeating pale interlocking wave inserts. Preserve every outline, cavity, joint, thickness, step, proportion, camera viewpoint, square framing, lighting, shadows and neutral grey background. Keep the monument empty; no flowers, vase, engraving, text, plaque, portrait, people, watermark or extra object. One square 2048x2048 image.",
+      "date": "2026-10-21T00:29:24.331421+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-416fb5ba-5ff2-4551-9f8d-5db245a30c63.png",
+      "sha256": "b2d879e5aa5d382ac5a6c1278bd457b0ad524ae0532d8ffd652697f7d4826d27",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-9e5f4575-a7fe-4f0a-a593-37bbf53a92dc.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/egipat-texture-v1.png"
+      ],
+      "controleVisuel": "AVENTURI egipat: stele rectangulaire, bande decorative a vagues, dalle, murs lateraux, marches et base preserves; rails noirs fixes conserves; fleurs absentes. Cadrage trois-quarts sur fond gris. Sans texte ni accessoire. Pilote 1254 px non calibre."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Image 1 is the fixed AVENTURI Bengal geometry and framing master. Image 2 is only the Marmara marble reference. Change ONLY every Bengal-speckled variable stone zone in image 1 to the exact material of image 2: white crystalline marble with broad softly parallel grey bands and finer darker grey veins. Variable zones are the rectangular headstone panels above and below the decorative band, broad grave slab, thick side walls, front risers, recessed foot surface and full perimeter base. Preserve exactly the near-black fixed front rail, near-black rear rail, and the decorative horizontal headstone band with its black strip and repeating pale interlocking wave inserts. Preserve every outline, cavity, joint, thickness, step, proportion, camera viewpoint, square framing, lighting, shadows and neutral grey background. Keep the monument empty; no flowers, vase, engraving, text, plaque, portrait, people, watermark or extra object. One square 2048x2048 image.",
+      "date": "2026-10-21T00:29:32.800830+00:00",
+      "sourceLocale": "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-2770b3ee-dace-428e-a9ec-de05476c4ad8.png",
+      "sha256": "7fcde69651623dd84a2d6a1394611804f3086ea691144bacb55fc7c12cf878d1",
+      "references": [
+        "/workspace/scratch/f3c2c0ef33e6/generated_images/exec-9e5f4575-a7fe-4f0a-a593-37bbf53a92dc.png",
+        "/home/kumo/atelier/repos/pierretombale-site/docs/images-configurateur/matieres/2026-10-19/textures-v1/marmara-texture-v1.png"
+      ],
+      "controleVisuel": "AVENTURI marmara: stele rectangulaire, bande decorative a vagues, dalle, murs lateraux, marches et base preserves; rails noirs fixes conserves; fleurs absentes. Cadrage trois-quarts sur fond gris. Sans texte ni accessoire. Pilote 1254 px non calibre."
     }
   }
 }

@@ -3054,42 +3054,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "aventuri-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "c32365bd6d04f78a7eb4d1ae5f632882cbb726454ede0faf11c2961304760dfd",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2528261,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "aventuri-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "ebf8b42bf1dd19a96409d7257f2a310952799507f99179b9ec39a35aeeafa63d",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2519959,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "aventuri-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "c4c2f94d74912614d160fa4df4094048accecb1e7f876764d688338fc3c3c980",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2509540,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "aventuri-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "b2d879e5aa5d382ac5a6c1278bd457b0ad524ae0532d8ffd652697f7d4826d27",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2649267,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "aventuri-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "7fcde69651623dd84a2d6a1394611804f3086ea691144bacb55fc7c12cf878d1",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2193284,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -3550,15 +3575,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-21T00:17:24.424065+00:00",
-    "imagesCompletes": 215,
-    "combinaisonsRestantes": 55,
+    "dateControle": "2026-10-21T00:29:32.800830+00:00",
+    "imagesCompletes": 220,
+    "combinaisonsRestantes": 50,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "aventuri",
-    "matiereId": "vizag-blue",
+    "modeleId": "quietude",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
