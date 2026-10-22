@@ -1,10 +1,13 @@
 /**
  * LE RENDU KONVA : L'APERCU, ET RIEN QUE L'APERCU.
  *
- * Deux couches, pas plus :
+ * Trois couches, dans cet ordre :
  *   - le FOND, une `Konva.Image` = le visuel 1200 px du modele dans la matiere
  *     courante, recadre sur la stele (`crop` = `vueStelePx`) et mis a l'echelle
  *     de la largeur du cadre ;
+ *   - les MOTIFS, vide ici : la couche est creee et mise a l'echelle par ce
+ *     fichier, mais c'est `motifs.ts` qui la remplit. Elle est SOUS le texte,
+ *     parce qu'une inscription ne doit jamais passer derriere un ornement ;
  *   - le TEXTE, un `Konva.Text` centre, deplacable a la souris ou au doigt,
  *     borne a la zone gravable.
  *
@@ -15,16 +18,18 @@
  * deplace rien (voir `echelle.ts`).
  *
  * CE QU'IL NE FAIT PAS : il ne lit aucun controle de la page (c'est
- * `index.ts`), ne garde pas l'etat (c'est `etat.ts`), ne calcule aucun prix et
- * n'exporte pas d'image (passes D et E). Une seule zone de texte en passe B ;
- * les trois zones et les motifs viennent en passe C.
+ * `index.ts`), ne garde pas l'etat (c'est `etat.ts`), ne dessine aucun motif
+ * (c'est `motifs.ts`), ne calcule aucun prix et n'exporte pas d'image (passes D
+ * et E). Une seule zone de texte ; les trois zones viennent en passe C2.
  */
 import type { Echelle, Point, Taille } from "./echelle";
 import type { EtatConfigurateur, Position } from "./etat";
 
-type ModuleKonva = (typeof import("konva"))["default"];
-type Stage = InstanceType<ModuleKonva["Stage"]>;
-type Layer = InstanceType<ModuleKonva["Layer"]>;
+/* Les types de Konva, exportes une seule fois : `motifs.ts` travaille sur la
+   couche de ce fichier et ne redeclare pas la meme chose. */
+export type ModuleKonva = (typeof import("konva"))["default"];
+export type Stage = InstanceType<ModuleKonva["Stage"]>;
+export type Layer = InstanceType<ModuleKonva["Layer"]>;
 type NoeudTexte = InstanceType<ModuleKonva["Text"]>;
 type NoeudImage = InstanceType<ModuleKonva["Image"]>;
 
@@ -48,6 +53,15 @@ export interface Rendu {
   /** Recalcule l'echelle d'affichage et redessine (fenetre redimensionnee). */
   redimensionne(): void;
   detruit(): void;
+  /** La scene, pour qui doit ecouter les clics hors motif (`motifs.ts`). */
+  stage: Stage;
+  /** La couche des motifs : vide, sous le texte, deja a l'echelle. */
+  coucheMotifs: Layer;
+  /**
+   * Pixels du canvas par pixel de l'image servie. Change a chaque
+   * redimensionnement de la fenetre : a lire, jamais a garder.
+   */
+  affichage(): number;
 }
 
 /** Interligne de la gravure. Une valeur, un seul endroit. */
@@ -76,8 +90,11 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
   const stage: Stage = new konva.Stage({ container: conteneur, width: 1, height: 1 });
 
   const coucheFond: Layer = new konva.Layer({ listening: false });
+  /* L'ordre d'ajout fait l'ordre d'empilement : fond, motifs, texte. */
+  const coucheMotifs: Layer = new konva.Layer();
   const coucheTexte: Layer = new konva.Layer();
   stage.add(coucheFond);
+  stage.add(coucheMotifs);
   stage.add(coucheTexte);
 
   /* `image: undefined` : le fond existe avant son visuel, pose au premier
@@ -147,11 +164,15 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
       height: echelle.vue.hauteur,
     });
 
-    coucheTexte.scale({ x: affichage, y: affichage });
-    coucheTexte.position({
-      x: -echelle.vue.x * affichage,
-      y: -echelle.vue.y * affichage,
-    });
+    /* Motifs et texte partagent la meme transformation : leurs coordonnees sont
+       celles de l'image servie, quelle que soit la taille du cadre. */
+    for (const couche of [coucheMotifs, coucheTexte]) {
+      couche.scale({ x: affichage, y: affichage });
+      couche.position({
+        x: -echelle.vue.x * affichage,
+        y: -echelle.vue.y * affichage,
+      });
+    }
   }
 
   function placeTexte(position: Position | null): void {
@@ -189,5 +210,8 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
     detruit() {
       stage.destroy();
     },
+    stage,
+    coucheMotifs,
+    affichage: () => affichage,
   };
 }

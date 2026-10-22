@@ -27,6 +27,9 @@ import {
   type Product,
 } from "@/data/products";
 import { breadcrumbSchema } from "@/data/seo";
+/* Le nombre maximal de motifs est decide par le script (une seule constante) :
+   la page le lit pour ecrire sa phrase, elle ne le redeclare pas. */
+import { MAX_MOTIFS } from "@/scripts/configurateur/motifs";
 import { MENTION_PRIX_PROVISOIRE, prixAffiche, prixEstProvisoire } from "@/data/tarifs";
 
 /* Le configurateur visuel d un modele : /personnaliser/<slug>/.
@@ -459,6 +462,9 @@ const donneesConfigurateur = {
             <p class="cfg-label" id="cfg-poses-label">Sur votre stèle</p>
             <ul class="cfg-poses-liste" aria-labelledby="cfg-poses-label" data-liste-motifs></ul>
             <p class="cfg-aide" data-motifs-vide>Aucun motif pour l'instant, c'est facultatif.</p>
+            <p class="cfg-aide" data-motifs-plein hidden>
+              {MAX_MOTIFS} motifs au maximum sur une stèle. Retirez-en un pour en ajouter un autre.
+            </p>
           </div>
 
           <p class="cfg-aide">
