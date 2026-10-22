@@ -192,3 +192,8 @@
 {"date": "2026-10-21T09:50:37.177074+00:00", "modeleId": "arbre-de-vie", "matiereId": "rosso-porrino", "sha256": "444644f01adc82d68ed3e532b75cc8758f5a3b43cc4344f8b0b9b681b7eb9dbd", "total": 238}
 {"date": "2026-10-21T09:50:39.845471+00:00", "modeleId": "arbre-de-vie", "matiereId": "egipat", "sha256": "8681bce02247b74137ce50a7b490a14a99b74b4d8e132132f89ca62ad2fc4fb6", "total": 239}
 {"date": "2026-10-21T09:50:42.571109+00:00", "modeleId": "arbre-de-vie", "matiereId": "marmara", "sha256": "e5e248b0e34f886ea672b00c8fe851f080711832443c21b14783b9b399a2aa1c", "total": 240}
+{"date": "2026-10-22T08:33:56.819339+00:00", "modeleId": "eligie", "matiereId": "bengal", "sha256": "ae42400a174b7c4a5be2062c5c293a6bbaf508feaa83334d722f8646fa64d994", "total": 241}
+{"date": "2026-10-22T08:34:11.463234+00:00", "modeleId": "eligie", "matiereId": "rozabeta", "sha256": "a26d3da091a77ed8829b2ae426206755d6a06e700d0067480956a0be36750da0", "total": 242}
+{"date": "2026-10-22T08:34:24.150802+00:00", "modeleId": "eligie", "matiereId": "paradiso", "sha256": "c987c2b846712ded7f5be49467b040273374e51db7bf42f0be3a4ee548427118", "total": 243}
+{"date": "2026-10-22T08:34:36.148148+00:00", "modeleId": "eligie", "matiereId": "jablanica", "sha256": "59b343a31d18c4cab9104c63019f54453abf15a5e1e633e9fd68b4f91bdf7bc3", "total": 244}
+{"date": "2026-10-22T08:34:48.725848+00:00", "modeleId": "eligie", "matiereId": "royal", "sha256": "c335b2666d873c933d5efb286f919afb93e56705df4bb334e8dec188f2c22f26", "total": 245}

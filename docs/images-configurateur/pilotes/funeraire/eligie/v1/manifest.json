@@ -1,0 +1,83 @@
+{
+  "modeleId": "eligie",
+  "referenceInterne": "ELIGIE",
+  "famille": "funeraire",
+  "sourceLibraryId": "libfile_401b577ce0a081918b4b3312dec11478",
+  "nomPublic": null,
+  "version": 1,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "eligie-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "ae42400a174b7c4a5be2062c5c293a6bbaf508feaa83334d722f8646fa64d994",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2987575,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "eligie-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "a26d3da091a77ed8829b2ae426206755d6a06e700d0067480956a0be36750da0",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2790219,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "eligie-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "c987c2b846712ded7f5be49467b040273374e51db7bf42f0be3a4ee548427118",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2807670,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "eligie-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "59b343a31d18c4cab9104c63019f54453abf15a5e1e633e9fd68b4f91bdf7bc3",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2904600,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "royal",
+      "image": "eligie-royal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "c335b2666d873c933d5efb286f919afb93e56705df4bb334e8dec188f2c22f26",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2838888,
+      "integritePngVerifiee": true
+    }
+  ],
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantesPresentes": 5,
+  "variantesCibles": 10,
+  "dernierControleIntegrite": "2026-10-22T08:34:48.725848+00:00",
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "validationConfigurateur": false
+}
