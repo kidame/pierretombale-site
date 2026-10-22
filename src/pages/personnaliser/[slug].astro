@@ -3,6 +3,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { pageTitle } from "@/config/site";
 import { getCalibration } from "@/data/calibrations";
 import { vignetteMatiere } from "@/data/granits";
+import { motifsParFamille } from "@/data/motifs";
+import { motifsConfigurateur, svgMotif } from "@/data/motifs-svg";
 import {
   FINITION_APERCU_DEFAUT,
   finitions,
@@ -42,8 +44,13 @@ import { MENTION_PRIX_PROVISOIRE, prixAffiche, prixEstProvisoire } from "@/data/
    (voir `src/scripts/configurateur/`). Le script est charge par cette page
    SEULEMENT, en import dynamique ; Konva n entre dans aucune autre page.
 
-   CE QUI N Y EST PAS ENCORE : les motifs, les 3 zones de texte, le prix
-   calcule, l export PNG et le branchement sur /devis/ (passes C a E du
+   PASSE C1 : les motifs. Les cartes de selection montrent le SVG INLINE (lu
+   au build par `src/data/motifs-svg.ts`), colore par le CSS ; la geometrie des
+   dessins part dans le meme JSON de configuration que la calibration, donc le
+   canvas ne telecharge aucun SVG a l execution.
+
+   CE QUI N Y EST PAS ENCORE : les 3 zones de texte (passe C2), le prix
+   calcule, l export PNG et le branchement sur /devis/ (passes D et E du
    backlog).
 
    UNE PAGE PAR MODELE CALIBRE. Tant qu il n y a qu un fichier dans
@@ -151,6 +158,11 @@ const filAriane = breadcrumbSchema(
    sur /devis/ : c est la premiere ligne que les familles saisissent. */
 const hauteurDefaut = hauteursParDefaut.nom;
 
+/* Les motifs, groupes par famille (familles vides exclues). Les SVG sont lus
+   au build : la page les ecrit en clair dans les cartes, et leur geometrie
+   part dans le JSON du canvas. */
+const groupesMotifs = motifsParFamille();
+
 /* LA CONFIGURATION DU CANVAS, INLINEE EN JSON AU BUILD (passe B).
    Le script du configurateur ne lit que ce bloc : il n importe ni les donnees
    d Astro, ni le contenu Markdown, et ne refait aucun calcul de cadrage. Tout
@@ -168,6 +180,9 @@ const donneesConfigurateur = {
     couleur: finition.couleurApercu,
     aide: finition.aide,
   })),
+  /* La bibliotheque de motifs, geometrie comprise (`d` et viewBox en mm) : le
+     canvas pose un `Konva.Path` sans rien telecharger. */
+  motifs: motifsConfigurateur(),
   defauts: {
     matiere: visuel.matiere,
     policeId: POLICE_DEFAUT,
@@ -359,10 +374,102 @@ const donneesConfigurateur = {
           </button>
         </section>
 
-        {/* ------------------------------------------------------- 3 Le devis */}
+        {/* ------------------------------------------------------ 3 Les motifs */}
+        <section class="cfg-etape" aria-labelledby="etape-motifs">
+          <h2 class="cfg-etape-titre" id="etape-motifs">
+            <span class="cfg-numero mono" aria-hidden="true">3</span> Les motifs
+          </h2>
+          <p class="cfg-aide">
+            Facultatif. Un motif est gravé dans la même finition que les lettres. Choisissez-en un :
+            il se pose sur la stèle, et vous le déplacez où vous voulez.
+          </p>
+
+          {/* Sans JavaScript, aucune pastille n est allumee et les quatre
+              familles restent affichees a la suite, chacune sous son titre : la
+              liste des motifs se lit en entier. Le script allume la premiere
+              pastille et n affiche plus qu une famille a la fois. */}
+          <div class="cfg-familles" role="group" aria-label="Familles de motifs">
+            {
+              groupesMotifs.map(({ famille }) => (
+                <button
+                  type="button"
+                  class="cfg-famille"
+                  data-famille-motifs={famille.id}
+                  aria-pressed="false"
+                >
+                  {famille.nom}
+                </button>
+              ))
+            }
+          </div>
+
+          {
+            groupesMotifs.map(({ famille, motifs }) => (
+              <div class="cfg-groupe" data-groupe-motifs={famille.id}>
+                <h3 class="cfg-groupe-titre mono" data-groupe-titre>
+                  {famille.nom}
+                </h3>
+
+                <div class="cfg-motifs">
+                  {motifs.map((motif) => (
+                    <button
+                      type="button"
+                      class="cfg-motif"
+                      data-motif={motif.id}
+                      data-nom={motif.nom}
+                    >
+                      <span class="cfg-motif-vue" set:html={svgMotif(motif.id)} />
+                      <span class="cfg-motif-nom">{motif.nom}</span>
+                    </button>
+                  ))}
+
+                  {/* Le sur demande, dans chaque famille : c est la reponse a
+                      tout ce que la base ne contient pas (section 5 de
+                      docs/MOTIFS-BIBLIOTHEQUE.md). L icone est un crayon
+                      dessine a la main, deux traits, aucune police d icones. */}
+                  <button type="button" class="cfg-motif cfg-motif-demande" data-motif-demande>
+                    <span class="cfg-motif-vue" aria-hidden="true">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        focusable="false"
+                      >
+                        <path d="M4 20l4.2-1.1L20.2 6.9a1.6 1.6 0 0 0 0-2.3l-1.8-1.8a1.6 1.6 0 0 0-2.3 0L4.1 14.8 3 19l1 1z" />
+                        <path d="M14.8 4.6l4.6 4.6" />
+                      </svg>
+                    </span>
+                    <span class="cfg-motif-nom">Un motif à vous</span>
+                    <span class="cfg-motif-sous">
+                      Décrivez-le ou envoyez une image, nous le dessinons
+                    </span>
+                  </button>
+                </div>
+              </div>
+            ))
+          }
+
+          {/* Les motifs poses. Les lignes sont ecrites par le script : sans
+              JavaScript rien ne se pose, donc la liste reste vide et sa phrase
+              d attente suffit. */}
+          <div class="cfg-poses">
+            <p class="cfg-label" id="cfg-poses-label">Sur votre stèle</p>
+            <ul class="cfg-poses-liste" aria-labelledby="cfg-poses-label" data-liste-motifs></ul>
+            <p class="cfg-aide" data-motifs-vide>Aucun motif pour l'instant, c'est facultatif.</p>
+          </div>
+
+          <p class="cfg-aide">
+            Déplacez le motif sur la stèle ; les coins permettent de le redimensionner.
+          </p>
+        </section>
+
+        {/* ------------------------------------------------------- 4 Le devis */}
         <section class="cfg-etape" aria-labelledby="etape-devis">
           <h2 class="cfg-etape-titre" id="etape-devis">
-            <span class="cfg-numero mono" aria-hidden="true">3</span> Votre devis
+            <span class="cfg-numero mono" aria-hidden="true">4</span> Votre devis
           </h2>
           <p class="cfg-prix mono">Prix indicatif : {prix}</p>
           {prixProvisoire && <p class="cfg-aide">{MENTION_PRIX_PROVISOIRE}</p>}
@@ -703,6 +810,199 @@ const donneesConfigurateur = {
       border-color: var(--cfg-accent);
       background: var(--surface);
       font-weight: 500;
+    }
+
+    /* ------------------------------------------------------------- Motifs */
+
+    .cfg-familles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .cfg-famille {
+      min-height: 3rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: var(--canvas);
+      font-size: 0.9375rem;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .cfg-famille:hover {
+      border-color: var(--ink);
+    }
+
+    .cfg-famille:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    .cfg-famille[aria-pressed="true"] {
+      border-width: 2px;
+      border-color: var(--cfg-accent);
+      background: var(--surface);
+      font-weight: 500;
+    }
+
+    .cfg-groupe {
+      margin-top: 1.5rem;
+    }
+
+    .cfg-groupe-titre {
+      font-size: 0.8125rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cfg-motifs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    /* Une carte fait au moins 48 px de haut, et le SVG tient dans un carre au
+       fond neutre : le dessin est monochrome en anthracite, donc la couleur
+       vient du CSS (`fill="currentColor"` dans le SVG inline). */
+    .cfg-motif {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.375rem;
+      min-height: 3rem;
+      padding: 0.375rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--canvas);
+      cursor: pointer;
+    }
+
+    .cfg-motif-vue {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      aspect-ratio: 1;
+      padding: 0.5rem;
+      border-radius: 2px;
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    .cfg-motif-vue svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .cfg-motif-nom {
+      font-size: 0.8125rem;
+      line-height: 1.25;
+      text-align: center;
+      color: var(--ink);
+    }
+
+    .cfg-motif-sous {
+      font-size: 0.75rem;
+      line-height: 1.3;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* La carte du sur demande porte une phrase : elle prend deux colonnes
+       plutot que de casser la grille en mots coupes. */
+    .cfg-motif-demande {
+      grid-column: span 2;
+      border-style: dashed;
+      border-color: var(--cfg-accent);
+    }
+
+    .cfg-motif:hover {
+      border-color: var(--ink);
+    }
+
+    .cfg-motif:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    .cfg-poses {
+      margin-top: 1.75rem;
+    }
+
+    .cfg-poses-liste {
+      display: grid;
+      gap: 0.625rem;
+      margin: 0.75rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .cfg-poses-liste:empty {
+      display: none;
+    }
+
+    .cfg-pose {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 0.75rem;
+      padding: 0.625rem 0.75rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+    }
+
+    .cfg-pose-nom {
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .cfg-pose-taille {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .cfg-pose-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+      margin-left: auto;
+    }
+
+    .cfg-pose-bouton {
+      min-height: 3rem;
+      padding: 0.375rem 0.75rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--canvas);
+      font-size: 0.875rem;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .cfg-pose-bouton:hover:not(:disabled) {
+      border-color: var(--ink);
+    }
+
+    .cfg-pose-bouton:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    .cfg-pose-bouton:disabled {
+      color: var(--muted);
+      cursor: default;
+    }
+
+    .cfg-pose-bouton[aria-pressed="true"] {
+      border-width: 2px;
+      border-color: var(--cfg-accent);
+      background: var(--surface);
     }
 
     .cfg-bouton {
