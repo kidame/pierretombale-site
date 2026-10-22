@@ -253,6 +253,25 @@ export const lignesInscription: LigneInscription[] = [
 /** Longueur maximale d'une ligne, en caractères. */
 export const LIGNE_LONGUEUR_MAX = 60;
 
+/* ------------------------------------------------- Zones du configurateur */
+
+/**
+ * Les bornes du configurateur visuel (`/personnaliser/<slug>/`), décidées le
+ * 14.10.2026 : trois zones de texte libres au maximum, 120 caractères et
+ * quatre lignes par zone. Elles vivent ici, et pas dans le code du canvas,
+ * pour qu'une correction du graveur soit une correction d'un seul chiffre
+ * (principe de maintenabilité, `docs/DECISIONS-ET-ETAT.md`).
+ *
+ * **À confirmer avec celui qui grave**, comme le reste de ce fichier.
+ */
+export const ZONES_MAX = 3;
+
+/** Longueur maximale d'une zone de texte du configurateur, en caractères. */
+export const ZONE_LONGUEUR_MAX = 120;
+
+/** Nombre de lignes maximum dans une zone du configurateur. */
+export const ZONE_LIGNES_MAX = 4;
+
 /**
  * Mention obligatoire sous tout aperçu, ici comme dans le configurateur à
  * venir : un aperçu n'engage personne, seul le bon à tirer engage.

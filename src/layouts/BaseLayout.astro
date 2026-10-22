@@ -14,6 +14,18 @@ interface Props {
   image?: ImageMetadata | string;
   /** Sort la page des index de recherche (devis, 404, apercus). */
   noindex?: boolean;
+  /**
+   * Valeur brute de `<meta name="robots">`, quand « noindex,nofollow » ne
+   * convient pas. Le configurateur utilise « noindex,follow » : la page est
+   * trop mince pour etre indexee, mais ses liens doivent etre suivis.
+   */
+  robots?: string;
+  /**
+   * Adresse canonique a declarer, si ce n est pas celle de la page. Chemin
+   * absolu depuis la racine. Sert aux pages minces qui renvoient vers une page
+   * de reference (le configurateur renvoie vers la fiche du modele).
+   */
+  canonical?: string;
   includeHeader?: boolean;
   includeFooter?: boolean;
 }
@@ -23,12 +35,15 @@ const {
   description = siteConfig.description,
   image,
   noindex = false,
+  robots,
+  canonical,
   includeHeader = true,
   includeFooter = true,
 } = Astro.props;
 
 const origin = Astro.site ?? Astro.url.origin;
-const canonicalUrl = new URL(Astro.url.pathname, origin);
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, origin);
+const robotsContent = robots ?? (noindex ? "noindex,nofollow" : null);
 
 // Visuel de partage : celui de la page s il existe (photo de fiche), sinon la
 // carte par defaut siteConfig.socialImage (public/og-image.png, 1200x630, nom
@@ -54,7 +69,7 @@ const ogImage = social ? new URL(social.src, origin).href : null;
     <meta name="theme-color" content={siteConfig.themeColor} />
     <link rel="canonical" href={canonicalUrl.href} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    {robotsContent && <meta name="robots" content={robotsContent} />}
 
     <link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin />
 

@@ -10,8 +10,9 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 3. Les reponses de Thomas s'integrent quand elles arrivent, sans arreter le sprint en cours.
 
 ## Sprint en cours : configurateur, modele pilote Douceur
-- [>] Passe A : donnees de calibration (src/data/calibrations/<modeleId>.json) + page
-      /personnaliser/<slug>/ statique, sans canvas, indexable - Claude - debloque
+- [x] Passe A : donnees de calibration (src/data/calibrations/<modeleId>.json) + page
+      /personnaliser/<slug>/ statique, sans canvas - Claude - fait le 22.10.2026
+      (la page est en noindex, follow : trop mince en v1, canonique vers la fiche)
 - [ ] Passe B : ilot Konva, fond = image du modele dans la matiere choisie, 1 zone de texte
       deplacable dans la zone gravable, police, hauteur en cm, finition - agent kumo-run
 - [ ] Passe C : 3 zones, motifs SVG, finitions - agent

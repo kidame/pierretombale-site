@@ -1,0 +1,704 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { pageTitle } from "@/config/site";
+import { getCalibration } from "@/data/calibrations";
+import { vignetteMatiere } from "@/data/granits";
+import {
+  FINITION_APERCU_DEFAUT,
+  finitions,
+  hauteurLabel,
+  hauteursLettresMm,
+  hauteursParDefaut,
+  MENTION_APERCU,
+  POLICE_DEFAUT,
+  polices,
+  ZONE_LONGUEUR_MAX,
+} from "@/data/personnalisation";
+import {
+  altVisuel,
+  FAMILLE_LABELS,
+  familleUrl,
+  getProducts,
+  imagesDuModele,
+  productUrl,
+  visuelModele,
+  type Product,
+} from "@/data/products";
+import { breadcrumbSchema } from "@/data/seo";
+import { MENTION_PRIX_PROVISOIRE, prixAffiche, prixEstProvisoire } from "@/data/tarifs";
+
+/* Le configurateur visuel d un modele : /personnaliser/<slug>/.
+
+   PASSE A (22.10.2026) : tout ce que cette page montre est STATIQUE et lisible
+   sans JavaScript. L apercu est une vraie <img>, cadree sur la stele par les
+   coordonnees de `src/data/calibrations/<modeleId>.json` et un simple
+   `overflow: hidden` ; les choix (matiere, texte, police, hauteur, finition)
+   sont de vrais controles HTML. Sans JavaScript ils ne font rien : la page
+   reste une presentation du modele avec un lien vers le devis, et c est
+   volontaire (regle de `docs/CONFIGURATEUR-FUTUR.md` : « une page dont le
+   contenu n existe qu en JavaScript n existe pas »).
+
+   PASSE B : un ilot Konva remplace l apercu statique et branche les controles
+   (voir `src/scripts/configurateur/`). Le script est charge par cette page
+   SEULEMENT, en import dynamique ; Konva n entre dans aucune autre page.
+
+   CE QUI N Y EST PAS ENCORE : les motifs, les 3 zones de texte, le prix
+   calcule, l export PNG et le branchement sur /devis/ (passes C a E du
+   backlog).
+
+   UNE PAGE PAR MODELE CALIBRE. Tant qu il n y a qu un fichier dans
+   `src/data/calibrations/`, cette page n existe que pour Douceur. Deposer un
+   JSON de plus suffit a en creer une autre.
+
+   NOINDEX, FOLLOW : la page est mince en v1 (peu de texte propre, beaucoup
+   d interface). Le canonique renvoie vers la fiche du modele, qui porte la
+   description, les caracteristiques et le JSON-LD Product. */
+
+/* LES POLICES DE GRAVURE NE SE CHARGENT QUE SUR LES PAGES QUI LES MONTRENT.
+   Ces six imports sont les memes que ceux de `src/pages/devis.astro`, et ils
+   sont ICI, dans la page : jamais dans `BaseLayout.astro` ni dans
+   `src/styles.css`, sinon les 23 autres pages telechargeraient 140 Ko de
+   polices pour rien. Les familles CSS correspondantes vivent dans
+   `src/data/personnalisation.ts`. */
+import "@fontsource/cinzel/latin-400.css";
+import "@fontsource/marcellus/latin-400.css";
+import "@fontsource/eb-garamond/latin-400.css";
+import "@fontsource/jost/latin-400.css";
+import "@fontsource/great-vibes/latin-400.css";
+import "@fontsource/pinyon-script/latin-400.css";
+
+export async function getStaticPaths() {
+  const products = await getProducts();
+
+  /* Un modele sans calibration n a pas de page : l apercu serait un cadrage
+     invente. La liste grandit toute seule avec les fichiers de
+     `src/data/calibrations/`. */
+  return products
+    .filter((product) => getCalibration(product.modeleId) !== undefined)
+    .map((product) => ({ params: { slug: product.slug }, props: { product } }));
+}
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+
+/* `getStaticPaths` ne garde que les modeles calibres : la calibration existe
+   forcement ici. */
+const calibration = getCalibration(product.modeleId)!;
+
+const origin = Astro.site ?? new URL(Astro.url.origin);
+const urlFiche = productUrl(product);
+
+const visuel = visuelModele(product);
+
+/* Les matieres qui ont un visuel pour ce modele, comme sur la fiche : une
+   matiere sans photo d echantillon n aurait qu une pastille vide. */
+const matieres = imagesDuModele(product)
+  .map((granit) => ({ granit, vignette: vignetteMatiere(granit) }))
+  .filter((entree): entree is { granit: (typeof entree)["granit"]; vignette: string } =>
+    Boolean(entree.vignette),
+  );
+
+/* Racine des chemins de visuel, comme sur la fiche : le script recompose
+   `-1200.webp` au lieu de porter un chemin par pastille. */
+const racineVisuel = `/images/modeles/${product.modeleId}/${product.modeleId}`;
+
+/* CADRAGE DE L APERCU, SANS UNE LIGNE DE JAVASCRIPT.
+   Le conteneur prend le rapport de `vueStelePx` ; l image, agrandie et
+   decalee, place exactement cette zone dans le conteneur. Les pourcentages
+   suffisent, donc le cadrage tient a n importe quelle largeur :
+   - largeur de l image = largeur de l image source / largeur de la vue ;
+   - decalage = position de la vue dans l image, en part de l image (le
+     `translate` d un element se compte sur SA propre taille).
+   Le facteur 1200/1254 n apparait pas : il se simplifie dans les deux
+   rapports. Il sert en revanche au canvas (voir echelle.ts). */
+const vue = calibration.vueStelePx;
+const largeurImagePct = (calibration.imagePx.largeur / vue.largeur) * 100;
+const decalageXPct = (vue.x / calibration.imagePx.largeur) * 100;
+const decalageYPct = (vue.y / calibration.imagePx.hauteur) * 100;
+
+/* `--cfg-ratio` sert a plafonner la HAUTEUR de l apercu sur telephone sans
+   jamais entrer en conflit avec `aspect-ratio` : on borne la largeur, et la
+   hauteur suit (voir `.cfg-cadre` dans le style de la page). */
+const styleCadre =
+  `aspect-ratio: ${vue.largeur} / ${vue.hauteur}; ` +
+  `--cfg-ratio: ${(vue.largeur / vue.hauteur).toFixed(4)};`;
+const styleImage =
+  `width: ${largeurImagePct.toFixed(3)}%; ` +
+  `transform: translate(-${decalageXPct.toFixed(3)}%, -${decalageYPct.toFixed(3)}%);`;
+
+const prix = prixAffiche(product.slug);
+const prixProvisoire = prixEstProvisoire(product.slug);
+
+const titre = pageTitle(`Personnaliser ${product.name}`);
+const metaDescription =
+  `Composez l'inscription sur le modèle ${product.name} : matière, texte, ` +
+  `style d'écriture, taille des lettres. Aperçu indicatif, devis gratuit.`;
+
+const filAriane = breadcrumbSchema(
+  [
+    { name: "Accueil", path: "/" },
+    { name: FAMILLE_LABELS[product.famille], path: familleUrl(product.famille) },
+    { name: product.name, path: urlFiche },
+    { name: "Personnaliser", path: `/personnaliser/${product.slug}/` },
+  ],
+  origin,
+);
+
+/* La hauteur de lettres proposee par defaut est celle d un nom (5 cm), comme
+   sur /devis/ : c est la premiere ligne que les familles saisissent. */
+const hauteurDefaut = hauteursParDefaut.nom;
+---
+
+<BaseLayout
+  title={titre}
+  description={metaDescription}
+  image={`${racineVisuel}-${visuel.matiere}-1200.webp`}
+  robots="noindex,follow"
+  canonical={urlFiche}
+>
+  <main id="main-content" class="shell cfg">
+    <nav class="cfg-fil mono" aria-label="Fil d'Ariane">
+      <a href="/" class="link">Accueil</a>
+      <span aria-hidden="true">/</span>
+      <a href={familleUrl(product.famille)} class="link">{FAMILLE_LABELS[product.famille]}</a>
+      <span aria-hidden="true">/</span>
+      <a href={urlFiche} class="link">{product.name}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Personnaliser</span>
+    </nav>
+
+    <p class="label">Personnalisation</p>
+    <h1 class="type-h2 cfg-titre">Personnaliser {product.name}</h1>
+    <p class="type-lead cfg-chapeau">
+      Choisissez la matière, écrivez l'inscription et voyez l'effet sur la stèle. Rien n'est
+      engagé : vous terminez par une demande de devis, gratuite et sans engagement.
+    </p>
+
+    <div class="cfg-grille">
+      {/* ------------------------------------------------------------ Apercu */}
+      <div>
+        <div class="cfg-colle">
+          <div class="cfg-cadre" style={styleCadre} data-apercu>
+            {/* L apercu statique de la passe A. La passe B le masque des que
+                le canvas est pret, pour ne pas afficher deux fois la stele. */}
+            <div class="cfg-statique" data-apercu-statique>
+              <img
+                src={`${racineVisuel}-${visuel.matiere}-1200.webp`}
+                alt={`Stèle du modèle ${altVisuel(product, visuel.matiere)}`}
+                width="1200"
+                height="1200"
+                style={styleImage}
+                loading="eager"
+                decoding="sync"
+                fetchpriority="high"
+                data-apercu-image
+              />
+            </div>
+            <div class="cfg-canvas" data-apercu-canvas></div>
+          </div>
+
+          <p class="cfg-legende mono">
+            Aperçu de la stèle · <span data-matiere-nom>{visuel.nomMatiere}</span>
+          </p>
+        </div>
+
+        <p class="cfg-mention">{MENTION_APERCU}</p>
+      </div>
+
+      {/* ------------------------------------------------------------ Choix */}
+      <div class="cfg-choix">
+        {/* ---------------------------------------------------- 1 La matiere */}
+        <section class="cfg-etape" aria-labelledby="etape-matiere">
+          <h2 class="cfg-etape-titre" id="etape-matiere">
+            <span class="cfg-numero mono" aria-hidden="true">1</span> La matière
+          </h2>
+          <p class="cfg-aide">
+            Les teintes de l'écran sont approximatives : la pierre se juge sur un échantillon.
+          </p>
+
+          <div class="cfg-pastilles" role="group" aria-label="Choisir la matière">
+            {
+              matieres.map(({ granit, vignette }) => (
+                <button
+                  type="button"
+                  class="cfg-pastille"
+                  data-matiere={granit.id}
+                  data-nom={granit.nom}
+                  data-alt={`Stèle du modèle ${altVisuel(product, granit.id)}`}
+                  aria-pressed={granit.id === visuel.matiere ? "true" : "false"}
+                >
+                  <img
+                    src={vignette}
+                    alt={granit.nom}
+                    width="160"
+                    height="160"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="cfg-pastille-nom">{granit.nom}</span>
+                </button>
+              ))
+            }
+          </div>
+
+          <p class="cfg-aide">
+            <a href="/nos-granits/" class="link">Voir toutes nos matières</a>
+          </p>
+        </section>
+
+        {/* ------------------------------------------------- 2 L inscription */}
+        <section class="cfg-etape" aria-labelledby="etape-inscription">
+          <h2 class="cfg-etape-titre" id="etape-inscription">
+            <span class="cfg-numero mono" aria-hidden="true">2</span> L'inscription
+          </h2>
+
+          <div class="cfg-champ">
+            <label class="cfg-label" for="cfg-texte">Texte à graver</label>
+            <p class="cfg-aide" id="cfg-texte-aide">
+              Le nom, les dates, quelques mots. Passez à la ligne pour séparer les lignes ; le
+              texte est centré sur la stèle.
+            </p>
+            <textarea
+              class="cfg-textarea"
+              id="cfg-texte"
+              name="texte"
+              rows="4"
+              maxlength={ZONE_LONGUEUR_MAX}
+              aria-describedby="cfg-texte-aide cfg-compteur"
+              data-texte></textarea>
+            <p class="cfg-compteur mono" id="cfg-compteur">
+              <span data-compteur>0</span> / {ZONE_LONGUEUR_MAX} caractères
+            </p>
+          </div>
+
+          <div class="cfg-champ">
+            <label class="cfg-label" for="cfg-police">Style d'écriture</label>
+            <select class="cfg-select" id="cfg-police" name="police" data-police>
+              {
+                polices.map((police) => (
+                  <option value={police.id} selected={police.id === POLICE_DEFAUT}>
+                    {police.nom}
+                  </option>
+                ))
+              }
+            </select>
+          </div>
+
+          <div class="cfg-champ">
+            <label class="cfg-label" for="cfg-hauteur">Taille des lettres</label>
+            <select class="cfg-select" id="cfg-hauteur" name="hauteur" data-hauteur>
+              {
+                hauteursLettresMm.map((mm) => (
+                  <option value={mm} selected={mm === hauteurDefaut}>
+                    {hauteurLabel(mm)}
+                  </option>
+                ))
+              }
+            </select>
+          </div>
+
+          <div class="cfg-champ">
+            <p class="cfg-label" id="cfg-finition-label">Finition des lettres</p>
+            <div class="cfg-finitions" role="group" aria-labelledby="cfg-finition-label">
+              {
+                finitions.map((finition) => (
+                  <button
+                    type="button"
+                    class="cfg-finition"
+                    data-finition={finition.id}
+                    data-couleur={finition.couleurApercu}
+                    aria-pressed={finition.id === FINITION_APERCU_DEFAUT ? "true" : "false"}
+                  >
+                    <span
+                      class="cfg-finition-teinte"
+                      style={`background-color: ${finition.couleurApercu};`}
+                      aria-hidden="true"></span>
+                    <span>{finition.nom}</span>
+                  </button>
+                ))
+              }
+            </div>
+            <p class="cfg-aide">
+              {finitions.find((finition) => finition.id === FINITION_APERCU_DEFAUT)?.aide}
+            </p>
+          </div>
+
+          {/* Recentrer n a de sens qu avec le canvas : sans JavaScript, le
+              bouton reste cache (la regle `[hidden]` du bloc de style ci-dessous
+              gagne contre le `display` de `.cfg-bouton`). */}
+          <button type="button" class="cfg-bouton" data-recentrer hidden>
+            Recentrer le texte
+          </button>
+        </section>
+
+        {/* ------------------------------------------------------- 3 Le devis */}
+        <section class="cfg-etape" aria-labelledby="etape-devis">
+          <h2 class="cfg-etape-titre" id="etape-devis">
+            <span class="cfg-numero mono" aria-hidden="true">3</span> Votre devis
+          </h2>
+          <p class="cfg-prix mono">Prix indicatif : {prix}</p>
+          {prixProvisoire && <p class="cfg-aide">{MENTION_PRIX_PROVISOIRE}</p>}
+          <p class="cfg-aide">
+            La gravure, la pose au cimetière et les démarches sont comprises dans le devis.
+          </p>
+          <a href="/devis/" class="btn btn-primary cfg-devis">Demander un devis</a>
+          <p class="cfg-aide">
+            <a href={urlFiche} class="link">Revenir à la fiche {product.name}</a>
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  {/* Tout l habillage de cette page est ICI, en CSS de page, et non en classes
+      utilitaires Tailwind : la feuille Tailwind est UNIQUE et partagee par
+      toutes les pages du site, donc une classe inedite utilisee ici
+      alourdirait les 24 autres pages. Les couleurs sont les jetons existants
+      du theme (`src/styles.css`) ; le seul ajout est `--cfg-accent`, un bronze
+      mat local a cette page, demande par la direction design des maquettes. Il
+      ne porte jamais de petit texte : bordures, pastilles et reperes
+      seulement. */}
+  <style>
+    .cfg {
+      --cfg-accent: #8a6a3c;
+      padding-bottom: 5rem;
+    }
+
+    [hidden] {
+      display: none;
+    }
+
+    .cfg-fil {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-block: 1.5rem;
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    .cfg-fil [aria-current] {
+      color: var(--ink);
+    }
+
+    .cfg-titre {
+      margin-top: 0.75rem;
+    }
+
+    .cfg-chapeau {
+      margin-top: 1.25rem;
+      max-width: 52ch;
+    }
+
+    .cfg-grille {
+      display: grid;
+      gap: 2.5rem;
+      align-items: start;
+      margin-top: 2.5rem;
+      border-top: 1px solid var(--line);
+      padding-top: 2rem;
+    }
+
+    /* L apercu reste visible pendant la saisie. Sur telephone il se colle sous
+       l en-tete, en hauteur reduite : sans cela, la famille tape son texte sans
+       voir l effet (adaptation 8 de la direction design). */
+    .cfg-colle {
+      position: sticky;
+      top: 4.5rem;
+      z-index: 1;
+      background: var(--canvas);
+      padding-bottom: 0.75rem;
+    }
+
+    .cfg-cadre {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      margin-inline: auto;
+      background: var(--surface);
+    }
+
+    /* Sur telephone, l apercu colle en haut ne doit pas manger l ecran pendant
+       la saisie : sa hauteur est plafonnee a un tiers du viewport. On borne la
+       LARGEUR (hauteur x rapport de la vue), jamais la hauteur : un
+       `aspect-ratio` et une hauteur imposee se contrediraient, et le cadrage de
+       la stele, calcule en pourcentages de la largeur, serait faux. */
+    @media (max-width: 63.999rem) {
+      .cfg-cadre {
+        max-width: calc(34vh * var(--cfg-ratio));
+      }
+    }
+
+    @media (min-width: 64rem) {
+      .cfg-grille {
+        grid-template-columns: 7fr 5fr;
+        gap: 3rem;
+      }
+
+      .cfg-colle {
+        top: 7rem;
+      }
+    }
+
+    .cfg-statique,
+    .cfg-canvas {
+      position: absolute;
+      inset: 0;
+    }
+
+    .cfg-statique img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: auto;
+      max-width: none;
+      transform-origin: top left;
+    }
+
+    .cfg-legende {
+      margin-top: 0.625rem;
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    .cfg-legende span {
+      color: var(--ink);
+    }
+
+    .cfg-mention {
+      margin-top: 1rem;
+      max-width: 60ch;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .cfg-choix {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    .cfg-etape {
+      border-top: 1px solid var(--line);
+      padding-top: 1.5rem;
+    }
+
+    .cfg-etape-titre {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      font-size: 1.375rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    .cfg-numero {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      flex: none;
+      border: 1px solid var(--cfg-accent);
+      border-radius: 999px;
+      font-size: 0.875rem;
+      color: var(--ink);
+    }
+
+    .cfg-aide {
+      margin-top: 0.75rem;
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .cfg-champ {
+      margin-top: 1.5rem;
+    }
+
+    .cfg-label {
+      display: block;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .cfg-textarea,
+    .cfg-select {
+      display: block;
+      width: 100%;
+      margin-top: 0.625rem;
+      padding: 0.75rem 0.875rem;
+      min-height: 3rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--canvas);
+      font: inherit;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .cfg-textarea {
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    .cfg-textarea:focus-visible,
+    .cfg-select:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 1px;
+      border-color: var(--ink);
+    }
+
+    .cfg-compteur {
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .cfg-pastilles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    /* 48 px au moins, et jamais la couleur seule : la matiere choisie porte une
+       bordure epaisse et son nom passe en anthracite. */
+    .cfg-pastille {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.375rem;
+      width: 4.5rem;
+      padding: 0.25rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--canvas);
+      cursor: pointer;
+    }
+
+    .cfg-pastille img {
+      display: block;
+      width: 3.25rem;
+      height: 3.25rem;
+      border-radius: 999px;
+      object-fit: cover;
+    }
+
+    .cfg-pastille-nom {
+      font-size: 0.75rem;
+      line-height: 1.2;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .cfg-pastille:hover {
+      border-color: var(--ink);
+    }
+
+    .cfg-pastille:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    .cfg-pastille[aria-pressed="true"] {
+      border-width: 2px;
+      border-color: var(--cfg-accent);
+      background: var(--surface);
+    }
+
+    .cfg-pastille[aria-pressed="true"] .cfg-pastille-nom {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .cfg-finitions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .cfg-finition {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      min-height: 3rem;
+      padding: 0.5rem 0.875rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--canvas);
+      font-size: 1rem;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .cfg-finition-teinte {
+      display: block;
+      width: 1.25rem;
+      height: 1.25rem;
+      flex: none;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+    }
+
+    .cfg-finition:hover {
+      border-color: var(--ink);
+    }
+
+    .cfg-finition:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    .cfg-finition[aria-pressed="true"] {
+      border-width: 2px;
+      border-color: var(--cfg-accent);
+      background: var(--surface);
+      font-weight: 500;
+    }
+
+    .cfg-bouton {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      margin-top: 1.5rem;
+      padding: 0.625rem 1.25rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--canvas);
+      font-size: 1rem;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .cfg-bouton:hover {
+      border-color: var(--ink);
+    }
+
+    .cfg-bouton:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    .cfg-prix {
+      margin-top: 1rem;
+      font-size: 1.125rem;
+      color: var(--ink);
+    }
+
+    .cfg-devis {
+      display: flex;
+      width: 100%;
+      min-height: 3.25rem;
+      margin-top: 1.5rem;
+    }
+  </style>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
+</BaseLayout>
