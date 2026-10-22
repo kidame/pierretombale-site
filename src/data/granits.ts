@@ -85,6 +85,32 @@ export function granitsDisponibles(): Granit[] {
   return granits.filter((granit) => granit.disponible);
 }
 
+/**
+ * Les photos d'échantillon vivent dans `public/images/matieres`, en deux
+ * largeurs : `<id>-480.webp` (celle que porte `photo` dans le JSON) et
+ * `<id>-160.webp`. La convention de nommage n'est écrite qu'ici.
+ */
+const LARGEURS_PHOTO = { grande: 480, vignette: 160 } as const;
+
+/** Chemin de la vignette 160 px, ou `null` s'il n'y a pas de photo. */
+export function vignetteMatiere(granit: Granit): string | null {
+  return (
+    granit.photo?.replace(`-${LARGEURS_PHOTO.grande}.webp`, `-${LARGEURS_PHOTO.vignette}.webp`) ??
+    null
+  );
+}
+
+/** `src` et `srcset` de la photo d'un granit, ou `null` s'il n'en a pas. */
+export function photoMatiere(granit: Granit): { src: string; srcset: string } | null {
+  const vignette = vignetteMatiere(granit);
+  if (!granit.photo || !vignette) return null;
+
+  return {
+    src: granit.photo,
+    srcset: `${vignette} ${LARGEURS_PHOTO.vignette}w, ${granit.photo} ${LARGEURS_PHOTO.grande}w`,
+  };
+}
+
 /** Titre d'un groupe de granits de même teinte. */
 export const TEINTE_PLURIEL: Record<Teinte, string> = {
   noir: "Granits noirs",

@@ -15,8 +15,8 @@ import { prixAffiche } from "@/data/tarifs";
  * de la page filtrent la grille, EN JAVASCRIPT SEULEMENT. Sans JavaScript,
  * toutes les cartes restent la, groupees par famille sous un sous-titre.
  *
- * Les vignettes viennent de `productVisuel` (premiere image de la fiche, sinon
- * silhouette provisoire) : un nouveau modele ou une nouvelle image apparait ici
+ * Les vignettes viennent de `visuelModele` (le visuel du modele dans la matiere
+ * que sa fiche presente) : un nouveau modele ou une nouvelle image apparait ici
  * sans toucher au formulaire.
  */
 interface Props {
@@ -79,11 +79,10 @@ const groupes = FAMILLES.map((famille) => ({
             />
             <ProductImage
               product={modele}
-              width={480}
-              height={600}
+              sizes="(min-width: 40rem) 30vw, 45vw"
               loading="lazy"
               alt=""
-              class="aspect-[4/5] w-full object-cover"
+              class="aspect-square w-full object-contain"
             />
             <span class="carte-coche" aria-hidden="true">Choisi</span>
             <span class="carte-nom">{modele.name}</span>

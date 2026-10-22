@@ -106,11 +106,11 @@ export const siteConfig = {
    */
   featured: {
     /** Les trois cartes de la grille de l'accueil. */
-    homepageGrid: ["stele-doucine-classique", "stele-arrondie", "stele-cineraire-droite"],
+    homepageGrid: ["4-pieces-stele-doucine-avec-base", "douceur", "aquarius"],
     /** Le modèle qui a sa propre section sur l'accueil. */
-    homepageSolo: "monument-avec-jardiniere",
+    homepageSolo: "5-pieces-jardiniere-en-closoir",
     /** Le modèle montré au bas du menu mobile. */
-    mobileMenu: "stele-coeur",
+    mobileMenu: "corazon",
   },
 } as const;
 

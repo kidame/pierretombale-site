@@ -1,17 +1,18 @@
 ---
-import { Image } from "astro:assets";
 import ProductCard from "@/components/ProductCard.astro";
 import ProductImage from "@/components/ProductImage.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { siteConfig, titreFiche } from "@/config/site";
-import { nomGranit } from "@/data/granits";
+import { nomGranit, vignetteMatiere } from "@/data/granits";
 import {
   FAMILLE_LABELS,
   GAMME_LABELS,
+  altVisuel,
   familleUrl,
+  imagesDuModele,
   productUrl,
-  productVisuel,
   tronque,
+  visuelModele,
   type Product,
 } from "@/data/products";
 import { breadcrumbSchema } from "@/data/seo";
@@ -36,6 +37,25 @@ const granitsPossibles = product.granitsPossibles.includes("tous")
   ? "Tous nos granits"
   : product.granitsPossibles.map((id) => nomGranit(id)).join(", ");
 
+/* Le visuel presente et les matieres dans lesquelles ce modele existe en
+   image. La rangee de pastilles ne propose que celles-la : jamais une matiere
+   dont le visuel n existe pas. */
+const visuel = visuelModele(product);
+
+/* Une matiere sans photo d echantillon n a pas de pastille : elle resterait
+   un bouton vide. `src/data/granits.json` et `public/images/matieres` doivent
+   donc rester en phase. */
+const matieres = imagesDuModele(product)
+  .map((granit) => ({ granit, vignette: vignetteMatiere(granit) }))
+  .filter((entree): entree is { granit: (typeof entree)["granit"]; vignette: string } =>
+    Boolean(entree.vignette),
+  );
+
+/* Racine des chemins de visuel de ce modele, pour le petit script de la page :
+   il recompose `-320/-640/-1200.webp` au lieu de porter trois chemins par
+   pastille dans le HTML. */
+const racineVisuel = `/images/modeles/${product.modeleId}/${product.modeleId}`;
+
 const specs: Array<[string, string]> = [
   ["Dimensions", product.dimensions],
   ["Famille", FAMILLE_LABELS[product.famille]],
@@ -47,7 +67,6 @@ const specs: Array<[string, string]> = [
   ...(product.options.length
     ? ([["Options", product.options.join(", ")]] as Array<[string, string]>)
     : []),
-  ["Granit présenté", nomGranit(product.granitPresente)],
   ["Granits possibles", granitsPossibles],
 ];
 
@@ -68,14 +87,17 @@ const prixProvisoire = prixEstProvisoire(product.slug);
    gravure et de la pose). `offreJsonLd` retourne null dans ce cas. */
 const offre = offreJsonLd(product.slug);
 
+/* Une seule image dans les donnees structurees : la plus grande largeur du
+   visuel presente, en URL absolue (Google n accepte pas de chemin relatif).
+   Les autres matieres ne sont pas des produits differents. */
+const imageJsonLd = new URL(`${racineVisuel}-${visuel.matiere}-1200.webp`, origin).href;
+
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   name: product.name,
   description: product.description,
-  image: (product.images.length ? product.images : [productVisuel(product).image]).map(
-    (image) => new URL(image.src, origin).href,
-  ),
+  image: imageJsonLd,
   brand: { "@type": "Brand", name: siteConfig.name },
   material: nomGranit(product.granitPresente),
   url,
@@ -92,11 +114,7 @@ const filAriane = breadcrumbSchema(
 );
 ---
 
-<BaseLayout
-  title={titre}
-  description={metaDescription}
-  image={product.images[0]}
->
+<BaseLayout title={titre} description={metaDescription} image={`${racineVisuel}-${visuel.matiere}-1200.webp`}>
   <main id="main-content" class="shell">
     <nav class="mono flex gap-2 py-6 text-[0.6875rem] uppercase tracking-[0.05em] text-muted" aria-label="Fil d'Ariane">
       <a href="/" class="link">Accueil</a>
@@ -108,63 +126,59 @@ const filAriane = breadcrumbSchema(
 
     <div class="grid items-start gap-x-12 gap-y-10 border-t border-line pt-8 lg:grid-cols-12">
       {/* ------------------------------------------------------------ Visuels */}
-      <section class="lg:col-span-7" aria-label={`Visuels de ${product.name}`} data-product-gallery>
-        <div class="relative overflow-hidden bg-surface">
-          {
-            product.images.length === 0 ? (
-              <ProductImage
-                product={product}
-                width={1440}
-                height={1800}
-                loading="eager"
-                decoding="sync"
-                class="aspect-[4/5] w-full object-contain"
-              />
-            ) : (
-              product.images.map((image, index) => (
-                <div class:list={["gallery-panel", index !== 0 && "is-hidden"]} data-gallery-panel={index}>
-                  <Image
-                    src={image}
-                    alt={`${product.name} — vue ${index + 1} sur ${product.images.length}`}
-                    width={1440}
-                    height={1800}
-                    format="webp"
-                    loading={index === 0 ? "eager" : "lazy"}
-                    decoding={index === 0 ? "sync" : "async"}
-                    class="aspect-[4/5] w-full object-cover"
-                  />
-                </div>
-              ))
-            )
-          }
+      <section
+        class="lg:col-span-7"
+        aria-label={`Visuel de ${product.name}`}
+        data-visuel-modele
+        data-racine={racineVisuel}
+      >
+        {/* Le visuel est le plus grand element de la fiche : charge tot
+            (`eager`, `fetchpriority="high"`) et jamais en differe. */}
+        <div class="overflow-hidden bg-surface">
+          <ProductImage
+            product={product}
+            sizes="(min-width: 1024px) 58vw, 100vw"
+            loading="eager"
+            decoding="sync"
+            fetchpriority="high"
+            class="aspect-square w-full object-contain"
+          />
         </div>
 
+        <p class="mono mt-3 text-[0.6875rem] uppercase tracking-[0.05em] text-muted">
+          Granit présenté : <span class="text-ink" data-matiere-nom>{visuel.nomMatiere}</span> — image de
+          présentation, la teinte se juge sur la pierre
+        </p>
+
+        {/* Changer de matiere : de vrais boutons, utiles au clavier. SANS
+            JAVASCRIPT la fiche reste complete (le visuel presente est deja la)
+            et chaque bouton ne fait rien : c est pourquoi la rangee n est pas
+            annoncee comme un choix obligatoire. */}
         {
-          product.images.length === 0 ? (
-            <p class="mono mt-3 text-[0.6875rem] uppercase tracking-[0.05em] text-muted">
-              Visuel à venir — photographies de nos réalisations en préparation
-            </p>
-          ) : (
-            <div class="mt-3 grid grid-cols-3 gap-3" role="group" aria-label="Choisir un visuel">
-              {product.images.map((image, index) => (
-                <button
-                  type="button"
-                  class="gallery-thumb overflow-hidden bg-surface"
-                  data-gallery-thumb={index}
-                  aria-label={`Afficher la vue ${index + 1}`}
-                  aria-pressed={index === 0 ? "true" : "false"}
-                >
-                  <Image
-                    src={image}
-                    alt=""
-                    width={360}
-                    height={360}
-                    format="webp"
-                    loading="lazy"
-                    class="aspect-square w-full object-cover"
-                  />
-                </button>
-              ))}
+          matieres.length > 1 && (
+            <div class="mt-6" role="group" aria-label={`Voir ${product.name} dans une autre matière`}>
+              <p class="label">Voir dans une autre matière</p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                {matieres.map(({ granit, vignette }) => (
+                  <button
+                    type="button"
+                    class="pastille-matiere"
+                    data-matiere={granit.id}
+                    data-alt={altVisuel(product, granit.id)}
+                    data-nom={granit.nom}
+                    aria-pressed={granit.id === visuel.matiere ? "true" : "false"}
+                  >
+                    <img
+                      src={vignette}
+                      alt={granit.nom}
+                      width="160"
+                      height="160"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
           )
         }
@@ -230,56 +244,66 @@ const filAriane = breadcrumbSchema(
     </section>
   </main>
 
+  {/* Habillage des pastilles ecrit ici, pas en utilitaires Tailwind : la
+      feuille Tailwind est unique et partagee par tout le site, alors que ce
+      bloc ne part qu avec les fiches. 48 px au moins, bordure epaisse sur la
+      matiere presentee (jamais la couleur seule). */}
   <style>
-    .gallery-panel.is-hidden {
-      display: none;
+    .pastille-matiere {
+      display: block;
+      overflow: hidden;
+      width: 3.5rem;
+      height: 3.5rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background-color: var(--surface);
+      cursor: pointer;
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-      .gallery-panel:not(.is-hidden) {
-        animation: panel-in 600ms var(--ease-out-expo) both;
-      }
-
-      @keyframes panel-in {
-        from {
-          opacity: 0;
-          transform: scale(1.015);
-        }
-      }
+    .pastille-matiere img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .gallery-thumb {
-      box-shadow: inset 0 0 0 1px var(--line);
-      transition: box-shadow 260ms ease;
+    .pastille-matiere:hover {
+      border-color: var(--ink);
     }
 
-    .gallery-thumb:hover {
-      box-shadow: inset 0 0 0 1px var(--line-strong);
+    .pastille-matiere:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
     }
 
-    .gallery-thumb[aria-pressed="true"] {
-      box-shadow: inset 0 0 0 2px var(--accent);
+    .pastille-matiere[aria-pressed="true"] {
+      border-width: 3px;
+      border-color: var(--ink);
     }
   </style>
 
   <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
 
+  {/* Changement de matiere : on remplace src, srcset, alt et le nom affiche.
+      Les trois largeurs se recomposent depuis `data-racine`, comme
+      `visuelModele` les construit dans src/data/products.ts. */}
   <script is:inline>
     (() => {
-      const gallery = document.querySelector("[data-product-gallery]");
-      if (!gallery) return;
+      const vue = document.querySelector("[data-visuel-modele]");
+      const img = vue && vue.querySelector("img[srcset]");
+      const nom = vue && vue.querySelector("[data-matiere-nom]");
+      const choix = vue ? vue.querySelectorAll("[data-matiere]") : [];
+      if (!img || !choix.length) return;
 
-      const panels = Array.from(gallery.querySelectorAll("[data-gallery-panel]"));
-      const thumbs = Array.from(gallery.querySelectorAll("[data-gallery-thumb]"));
-
-      thumbs.forEach((thumb) => {
-        thumb.addEventListener("click", () => {
-          const active = thumb.dataset.galleryThumb;
-          panels.forEach((panel) => panel.classList.toggle("is-hidden", panel.dataset.galleryPanel !== active));
-          thumbs.forEach((button) => {
-            button.setAttribute("aria-pressed", String(button === thumb));
-          });
+      choix.forEach((bouton) => {
+        bouton.addEventListener("click", () => {
+          const base = vue.dataset.racine + "-" + bouton.dataset.matiere;
+          img.src = base + "-640.webp";
+          img.srcset = base + "-320.webp 320w, " + base + "-640.webp 640w, " + base + "-1200.webp 1200w";
+          img.alt = bouton.dataset.alt;
+          if (nom) nom.textContent = bouton.dataset.nom;
+          choix.forEach((autre) => autre.setAttribute("aria-pressed", String(autre === bouton)));
         });
       });
     })();

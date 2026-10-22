@@ -28,13 +28,15 @@ const reference = index === undefined ? undefined : String(index + 1).padStart(2
   style={revealDelay ? `--reveal-delay:${revealDelay}ms` : undefined}
 >
   <div class="overflow-hidden bg-surface">
+    {/* Les visuels sont carres et le monument y tient tout entier : `contain`,
+        jamais `cover`, sinon la stele se fait couper. La grille montre au plus
+        3 cartes par ligne, d ou le `sizes` en tiers de fenetre. */}
     <ProductImage
       product={product}
-      width={1024}
-      height={1280}
+      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
       loading={eager ? "eager" : "lazy"}
       decoding={eager ? "sync" : "async"}
-      class="aspect-[4/5] w-full object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-[1.04]"
+      class="aspect-square w-full object-contain transition-transform duration-[1100ms] ease-out group-hover:scale-[1.04]"
     />
   </div>
 

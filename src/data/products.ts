@@ -1,8 +1,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
-import { nomGranit } from "@/data/granits";
+import { granitsDisponibles, nomGranit, type Granit } from "@/data/granits";
+import imagesModeles from "@/data/images-modeles.json";
 import { prixAffiche, verifieSlugsTarifs } from "@/data/tarifs";
-import placeholderMonument from "@/assets/placeholder-monument.svg";
-import placeholderCineraire from "@/assets/placeholder-cineraire.svg";
 
 type ProductEntry = CollectionEntry<"products">;
 export type Product = ProductEntry["data"] & { slug: string; description: string };
@@ -123,32 +122,106 @@ export function getRelated(products: Product[], slug: string, limit = 3): Produc
 /**
  * Les filtres du catalogue viennent de la gamme annoncee, pas des fiches
  * presentes : une gamme sans modele reste proposee (le catalogue se remplit
- * au fil des visuels de l atelier), dans un ordre fixe.
+ * au fil des visuels disponibles), dans un ordre fixe.
  */
 export const FAMILLES: Famille[] = ["monument", "cineraire"];
 
 export const GAMMES: Gamme[] = ["classique", "contemporain", "prestige", "musulman"];
 
+/* ------------------------------------------------------------- Les visuels */
+
 /**
- * Visuel a afficher pour un modele : sa premiere image si elle existe, sinon
- * le visuel provisoire de sa famille. Les placeholders sont des SVG, que l on
- * sert tels quels plutot que de les passer au pipeline d images.
+ * LES VISUELS NE PASSENT PAS PAR LE PIPELINE D IMAGES D ASTRO.
+ *
+ * Les 270 images (27 modeles x 10 matieres) sont deja derivees en trois
+ * largeurs dans `public/images/modeles/<modeleId>/`, par
+ * `scripts/images-modeles.py`. Astro les sert telles quelles : rien a
+ * reencoder au build, et une image remplacee dans public/ n a pas besoin d un
+ * nouveau build pour changer d aspect.
+ *
+ * `src/data/images-modeles.json` dit, pour chaque `modeleId`, quelles matieres
+ * existent. C est la seule source : les chemins se construisent ici et nulle
+ * part ailleurs.
  */
-export function productVisuel(product: Product): {
-  image: ImageMetadata;
-  provisoire: boolean;
+interface EntreeImages {
+  famille: string;
+  matieres: string[];
+}
+
+const indexImages = imagesModeles as Record<string, EntreeImages>;
+
+/** Les largeurs derivees pour chaque visuel, en pixels. Images carrees. */
+const LARGEURS_VISUEL = [320, 640, 1200] as const;
+
+/** Largeur de l attribut `src` : le repli pour un navigateur sans `srcset`. */
+const LARGEUR_VISUEL = 640;
+
+export interface VisuelModele {
+  src: string;
+  /** Les trois largeurs en descripteurs `w`, pour que le navigateur choisisse. */
+  srcset: string;
+  width: number;
+  height: number;
   alt: string;
-} {
-  const image = product.images[0];
-  if (image) {
-    return { image, provisoire: false, alt: `${product.name} — ${product.shortDescription}` };
+  /** Id de la matiere montree. */
+  matiere: string;
+  /** Son nom commercial, tel qu il s affiche. */
+  nomMatiere: string;
+}
+
+function cheminVisuel(modeleId: string, matiere: string, largeur: number): string {
+  return `/images/modeles/${modeleId}/${modeleId}-${matiere}-${largeur}.webp`;
+}
+
+/**
+ * Texte alternatif d un visuel. En francais, avec les accents, et toujours
+ * dans le meme ordre : le modele, ce que c est, la matiere, le cadrage. C est
+ * aussi ce que le script de la fiche reecrit quand on change de matiere.
+ */
+export function altVisuel(product: Product, matiere: string): string {
+  return `${product.name}, ${FAMILLE_SINGULIER[product.famille]} en ${nomGranit(matiere)}, vue de face`;
+}
+
+/**
+ * Le visuel d un modele dans une matiere donnee (par defaut celle que la fiche
+ * presente). Une matiere qui n a pas d image pour ce modele arrete le build :
+ * mieux vaut une erreur qu une image manquante sur le site.
+ */
+export function visuelModele(
+  product: Product,
+  matiere: string = product.granitPresente,
+): VisuelModele {
+  const matieres = indexImages[product.modeleId]?.matieres ?? [];
+
+  if (!matieres.includes(matiere)) {
+    throw new Error(
+      `Aucune image pour le modele "${product.modeleId}" en "${matiere}". ` +
+        `Matieres disponibles dans src/data/images-modeles.json : ${matieres.join(", ") || "aucune"}.`,
+    );
   }
 
   return {
-    image: product.famille === "cineraire" ? placeholderCineraire : placeholderMonument,
-    provisoire: true,
-    alt: `Visuel à venir : ${product.name}, ${FAMILLE_SINGULIER[product.famille]} en granit ${nomGranit(product.granitPresente)}`,
+    src: cheminVisuel(product.modeleId, matiere, LARGEUR_VISUEL),
+    srcset: LARGEURS_VISUEL.map(
+      (largeur) => `${cheminVisuel(product.modeleId, matiere, largeur)} ${largeur}w`,
+    ).join(", "),
+    width: LARGEUR_VISUEL,
+    height: LARGEUR_VISUEL,
+    alt: altVisuel(product, matiere),
+    matiere,
+    nomMatiere: nomGranit(matiere),
   };
+}
+
+/**
+ * Les matieres dans lesquelles ce modele a un visuel, dans l ordre de
+ * `src/data/granits.json`. Croisement de l index des images et des granits
+ * DISPONIBLES : retirer un granit du catalogue le retire aussitot des fiches,
+ * sans toucher aux images.
+ */
+export function imagesDuModele(product: Product): Granit[] {
+  const matieres = indexImages[product.modeleId]?.matieres ?? [];
+  return granitsDisponibles().filter((granit) => matieres.includes(granit.id));
 }
 
 /** Resout un slug de configuration, en faisant echouer le build s il n existe pas. */

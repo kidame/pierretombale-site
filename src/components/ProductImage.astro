@@ -1,58 +1,59 @@
 ---
-import { Image } from "astro:assets";
-import { productVisuel, type Product } from "@/data/products";
+import { visuelModele, type Product } from "@/data/products";
 
 /**
- * Le visuel d un modele : sa premiere image, ou le visuel provisoire de sa
- * famille tant que l atelier n a pas fourni de photo. Le provisoire est un SVG,
- * servi tel quel ; les photos passent par le pipeline d images d Astro.
+ * Le visuel d un modele, dans une matiere (par defaut celle que la fiche
+ * presente). Une seule balise <img> : les trois largeurs sont deja derivees
+ * dans public/images/modeles, donc rien ne passe par `astro:assets` et le
+ * build ne reencode aucune image.
+ *
+ * Les images sont CARREES. La classe passee par la page decide du cadrage
+ * (`aspect-square object-contain` montre le monument entier) ; `width` et
+ * `height` restent les dimensions reelles, pour que le navigateur reserve la
+ * place avant le telechargement.
+ *
+ * `sizes` est la largeur que l image occupera : par defaut la moitie de la
+ * fenetre a partir de 768 px, toute la fenetre en dessous. Une page qui pose
+ * l image dans une colonne plus etroite doit le dire, sinon le navigateur
+ * telecharge trop grand.
  */
 interface Props {
   product: Product;
-  width: number;
-  height: number;
+  /** Matiere montree. Defaut : `granitPresente` de la fiche. */
+  matiere?: string;
+  sizes?: string;
   class?: string;
   loading?: "eager" | "lazy";
   decoding?: "sync" | "async";
-  /** Remplace le texte alternatif par defaut (image decorative : passer ""). */
+  /** "high" pour le visuel principal d une fiche (il est son plus grand element). */
+  fetchpriority?: "high" | "low" | "auto";
+  /** Remplace le texte alternatif genere (image decorative : passer ""). */
   alt?: string;
 }
 
 const {
   product,
-  width,
-  height,
+  matiere,
+  sizes = "(min-width: 768px) 50vw, 100vw",
   class: className,
   loading = "lazy",
   decoding = "async",
+  fetchpriority,
   alt,
 } = Astro.props;
 
-const visuel = productVisuel(product);
-const texte = alt ?? visuel.alt;
+const visuel = visuelModele(product, matiere);
 ---
 
-{
-  visuel.provisoire ? (
-    <img
-      src={visuel.image.src}
-      alt={texte}
-      width={width}
-      height={height}
-      loading={loading}
-      decoding={decoding}
-      class={className}
-    />
-  ) : (
-    <Image
-      src={visuel.image}
-      alt={texte}
-      width={width}
-      height={height}
-      format="webp"
-      loading={loading}
-      decoding={decoding}
-      class={className}
-    />
-  )
-}
+<img
+  src={visuel.src}
+  srcset={visuel.srcset}
+  sizes={sizes}
+  width={visuel.width}
+  height={visuel.height}
+  alt={alt ?? visuel.alt}
+  loading={loading}
+  decoding={decoding}
+  fetchpriority={fetchpriority}
+  class={className}
+/>

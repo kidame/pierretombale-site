@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { pageTitle } from "@/config/site";
-import { granitsParTeinte } from "@/data/granits";
+import { granitsParTeinte, photoMatiere } from "@/data/granits";
 import { familleUrl } from "@/data/products";
 import { breadcrumbSchema } from "@/data/seo";
 
@@ -13,7 +13,15 @@ import { breadcrumbSchema } from "@/data/seo";
 
 const origin = Astro.site ?? new URL(Astro.url.origin);
 
-const groupes = granitsParTeinte();
+/* Chaque granit avec son visuel deja resolu (src + srcset), pour que le
+   gabarit n appelle `photoMatiere` qu une fois par granit. La photo est
+   servie telle quelle depuis public/images/matieres : rien ne passe par le
+   pipeline d images. */
+const groupes = granitsParTeinte().map((groupe) => ({
+  ...groupe,
+  granits: groupe.granits.map((granit) => ({ ...granit, visuel: photoMatiere(granit) })),
+}));
+
 const nombre = groupes.reduce((total, groupe) => total + groupe.granits.length, 0);
 
 const filAriane = breadcrumbSchema(
@@ -59,9 +67,27 @@ const filAriane = breadcrumbSchema(
               <p class="label mt-3">
                 {groupe.granits.length === 1 ? "1 granit" : `${groupe.granits.length} granits`}
               </p>
-              <ul class="type-body mt-4 text-[0.9375rem]">
+              <ul class="mt-5 grid gap-6">
                 {groupe.granits.map((granit) => (
-                  <li>{granit.nom}</li>
+                  <li class="flex gap-4">
+                    {granit.visuel && (
+                      <img
+                        src={granit.visuel.src}
+                        srcset={granit.visuel.srcset}
+                        sizes="96px"
+                        alt={`Granit ${granit.nom}`}
+                        width="480"
+                        height="480"
+                        loading="lazy"
+                        decoding="async"
+                        class="size-24 shrink-0 bg-surface object-cover"
+                      />
+                    )}
+                    <div class="min-w-0">
+                      <p class="text-[0.9375rem] font-medium">{granit.nom}</p>
+                      <p class="type-body mt-1 text-[0.875rem] text-muted">{granit.description}</p>
+                    </div>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -70,8 +96,9 @@ const filAriane = breadcrumbSchema(
       </div>
 
       <p class="type-body mt-14 max-w-[52ch] text-[0.9375rem] text-muted" data-reveal>
-        Les pastilles de couleur sont des repères approximatifs. Une teinte se juge sur la pierre : nous vous
-        montrons les granits retenus avant de commander.
+        Les photos et les pastilles de couleur sont des repères : une teinte, un grain et un veinage se
+        jugent sur la pierre, et varient d'un bloc à l'autre. Nous vous montrons les granits retenus avant
+        de commander.
       </p>
     </section>
 

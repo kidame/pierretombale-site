@@ -116,8 +116,7 @@ const featuredProduct = requireProduct(await getProducts(), siteConfig.featured.
       <div class="overflow-hidden bg-surface">
         <ProductImage
           product={featuredProduct}
-          width={900}
-          height={560}
+          sizes="(min-width: 768px) 40vw, 100vw"
           class="aspect-[16/10] max-h-[28dvh] w-full object-contain transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
         />
       </div>
