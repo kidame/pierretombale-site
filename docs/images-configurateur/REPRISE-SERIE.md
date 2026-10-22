@@ -22,18 +22,18 @@ Autorisation Thomas, 19.10.2026 : poursuivre les 27 modeles en 10 matieres, une 
 
 ## Point de reprise
 
-Checkpoint 2026-10-22T08:46:11.376285+00:00 : 250/270 images archivees, 20 restantes.
-25/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
+Checkpoint 2026-10-22T10:08:37.134527+00:00 : 260/270 images archivees, 10 restantes.
+26/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
 Le tableau AVANCEMENT.md est mis a jour automatiquement apres chaque archivage.
-Prochaine combinaison : corazon / bengal.
+Prochaine combinaison : douceur / bengal.
 
 Clarification Thomas du 20.10.2026 a 13h48 : terminer le set de 10 variantes de chaque produit.
 Un lot de 5 est un checkpoint, jamais une consigne d arret. Enchainer les lots sans confirmation.
 Une seule generation simultanee, enchainement direct de 5 images avec sauvegardes locales. Transferts regroupes par lot et documentation par produit.
 Le dernier lot est entierement transfere et controle. Aucun transfert partiel de ce lot.
-Session du 22.10.2026 terminee : ELIGIE 10/10. Recepteur ferme normalement, aucun transfert partiel ni generation active dans cette session.
+La production active detient le verrou ; le recepteur peut rester ouvert entre les lots.
 Ne pas prendre cette note de checkpoint pour une preuve de generation en arriere-plan.
-Etat de la reprise planifiee non recontrole pendant cette session ; aucun traitement en arriere-plan affirme.
+Etat actuel de la reprise planifiee non reverifie pendant cette session ; production active dans la conversation.
 Voir automation-production.json et PRODUCTION-AUTONOME.md.
 
 Les champs dernierLot et prochainLot sont actualises a chaque checkpoint ; prochaineAction est actualisee apres chaque image.

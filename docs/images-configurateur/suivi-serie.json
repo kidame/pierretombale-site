@@ -3548,7 +3548,7 @@
       "sourceLibraryId": "libfile_30d8624b06e481918aeab26c87e6c46f",
       "dossier": "pilotes/funeraire/corazon/v1",
       "ordre": 26,
-      "notes": "Geometrie et zones physiques a valider.",
+      "notes": "Coeur asymetrique avec lobe gauche plus haut et pointe basse a gauche ; trois courbes en eventail sous le coeur, support, dalle, rails arrondis, marche et plinthe conserves. Gravures de croix et fleurs supprimees. Une base Bengal fixe pour les neuf editions de matiere. Vue frontale centree avec convergence perspective residuelle, non strictement orthographique. Dix PNG originaux de 1254 x 1254, sans agrandissement artificiel ; calibration et format final >=1600 non valides.",
       "variantes": [
         {
           "matiereId": "bengal",
@@ -3618,42 +3618,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "corazon-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "7cb83aa5dd2a5cb46d9aacb123949e8099acd638619ad4ea40d7db692fa11a0e",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2768192,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "corazon-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "2ba0868013ecd4427d47f9ac52c06dc115395e5b85ef598d526bbd027dfbd44b",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2809737,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "corazon-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "1791346ab2e8fcf5a0d0b16ced58fa880bd954f916d5be4a1ccf9249bb13dbb1",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2751314,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "corazon-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "5900681e863c841afacf5c11c18ed0086b2493548c3006cb29f57b1d48caa1d4",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2892557,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "corazon-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "d63c12ef9c36f5cff81e7645bd78806568aacaaac99004c0cbe76bba929bfe16",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2359940,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -3750,15 +3775,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-22T09:59:47.456502+00:00",
-    "imagesCompletes": 255,
-    "combinaisonsRestantes": 15,
+    "dateControle": "2026-10-22T10:07:48.348458+00:00",
+    "imagesCompletes": 260,
+    "combinaisonsRestantes": 10,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "corazon",
-    "matiereId": "vizag-blue",
+    "modeleId": "douceur",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3774,67 +3799,66 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-22T10:00:13.318824+00:00",
+    "dateFin": "2026-10-22T10:08:37.134527+00:00",
     "combinaisons": [
       {
         "modeleId": "corazon",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "corazon",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "corazon",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "corazon",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "corazon",
-        "matiereId": "royal"
+        "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 250,
-    "totalApres": 255,
+    "totalAvant": 255,
+    "totalApres": 260,
     "statut": "termine",
     "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
   },
   "prochainLot": [
     {
-      "modeleId": "corazon",
-      "matiereId": "vizag-blue"
+      "modeleId": "douceur",
+      "matiereId": "bengal"
     },
     {
-      "modeleId": "corazon",
-      "matiereId": "viscount-white"
+      "modeleId": "douceur",
+      "matiereId": "rozabeta"
     },
     {
-      "modeleId": "corazon",
-      "matiereId": "rosso-porrino"
+      "modeleId": "douceur",
+      "matiereId": "paradiso"
     },
     {
-      "modeleId": "corazon",
-      "matiereId": "egipat"
+      "modeleId": "douceur",
+      "matiereId": "jablanica"
     },
     {
-      "modeleId": "corazon",
-      "matiereId": "marmara"
+      "modeleId": "douceur",
+      "matiereId": "royal"
     }
   ],
   "dernierProduit": {
-    "modeleId": "eligie",
-    "imagesAjoutees": 10,
-    "totalAvant": 240,
-    "totalApres": 250,
-    "statut": "termine",
-    "recepteurFerme": true,
-    "generationEnCours": false,
-    "dateFin": "2026-10-22T08:46:11.381886+00:00"
+    "modeleId": "corazon",
+    "dateFin": "2026-10-22T10:08:37.138140+00:00",
+    "variantesArchivees": 10,
+    "totalAvant": 250,
+    "totalApres": 260,
+    "prochainModele": "douceur",
+    "calibrationValidee": false
   }
 }

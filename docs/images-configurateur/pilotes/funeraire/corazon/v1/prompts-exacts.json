@@ -55,6 +55,61 @@
         "matieres/2026-10-19/textures-v1/royal-texture-v1.png"
       ],
       "controleVisuel": "Controle visuel: coeur asymetrique, trois courbes en eventail, support, dalle, rails, marche et plinthe conserves ; gravures supprimees ; matiere coherente avec la texture et cadrage stable entre variantes. Vue frontale centree avec convergence perspective residuelle ; projection non strictement orthographique. PNG original 1254 x 1254 ; calibration, echelle du grain et format final >=1600 non valides."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Asset: CORAZON funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 is the target stone texture reference. Change ONLY all stone surfaces to the target material. Preserve the exact silhouette and structure: asymmetrical heart headstone, higher left lobe, lower-left point, exactly three stacked tapering curved fan forms below the heart with rounded right tips, rear support, raised rectangular slab, rounded front ends of both side rails, recessed front step, broad rectangular plinth. Preserve every component, junction, thickness, bevel, the crop, camera angle, axial frontal view, scale, lighting, reflections, shadows and pale grey studio background of image 1. No added or removed structural pieces. No text, engraving, symbols, flowers, vase or loose accessories. Faithfully match image 2's color, mineral pattern and realistic grain scale, with restrained polished reflections on all stone parts. Keep the whole object visible with identical margins. Requested square 2048 x 2048. Material: VIZAG BLUE: subdued blue-grey, light grey and charcoal clouded flowing bands, sparse rust/burgundy grains, as in image 2; no bright blue.",
+      "date": "2026-10-22T10:06:58.852401+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-cd18c311-0c4b-42f1-b9bd-c0b016e72077.png",
+      "sha256": "7cb83aa5dd2a5cb46d9aacb123949e8099acd638619ad4ea40d7db692fa11a0e",
+      "references": [
+        "pilotes/funeraire/corazon/v1/corazon-bengal.png",
+        "matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "Controle visuel: coeur asymetrique, trois courbes en eventail, support, dalle, rails, marche et plinthe conserves ; gravures supprimees ; matiere coherente avec la texture et cadrage stable entre variantes. Vue frontale centree avec convergence perspective residuelle ; projection non strictement orthographique. PNG original 1254 x 1254 ; calibration, echelle du grain et format final >=1600 non valides."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Asset: CORAZON funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 is the target stone texture reference. Change ONLY all stone surfaces to the target material. Preserve the exact silhouette and structure: asymmetrical heart headstone, higher left lobe, lower-left point, exactly three stacked tapering curved fan forms below the heart with rounded right tips, rear support, raised rectangular slab, rounded front ends of both side rails, recessed front step, broad rectangular plinth. Preserve every component, junction, thickness, bevel, the crop, camera angle, axial frontal view, scale, lighting, reflections, shadows and pale grey studio background of image 1. No added or removed structural pieces. No text, engraving, symbols, flowers, vase or loose accessories. Faithfully match image 2's color, mineral pattern and realistic grain scale, with restrained polished reflections on all stone parts. Keep the whole object visible with identical margins. Requested square 2048 x 2048. Material: VISCOUNT WHITE: milky white and pale grey granite, fine black speckles and subtle flowing grey grain, as in image 2, no dramatic marble veins.",
+      "date": "2026-10-22T10:07:11.946087+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-7ac6cf55-ec11-4602-83cc-8ae50204ff56.png",
+      "sha256": "2ba0868013ecd4427d47f9ac52c06dc115395e5b85ef598d526bbd027dfbd44b",
+      "references": [
+        "pilotes/funeraire/corazon/v1/corazon-bengal.png",
+        "matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "Controle visuel: coeur asymetrique, trois courbes en eventail, support, dalle, rails, marche et plinthe conserves ; gravures supprimees ; matiere coherente avec la texture et cadrage stable entre variantes. Vue frontale centree avec convergence perspective residuelle ; projection non strictement orthographique. PNG original 1254 x 1254 ; calibration, echelle du grain et format final >=1600 non valides."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Asset: CORAZON funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 is the target stone texture reference. Change ONLY all stone surfaces to the target material. Preserve the exact silhouette and structure: asymmetrical heart headstone, higher left lobe, lower-left point, exactly three stacked tapering curved fan forms below the heart with rounded right tips, rear support, raised rectangular slab, rounded front ends of both side rails, recessed front step, broad rectangular plinth. Preserve every component, junction, thickness, bevel, the crop, camera angle, axial frontal view, scale, lighting, reflections, shadows and pale grey studio background of image 1. No added or removed structural pieces. No text, engraving, symbols, flowers, vase or loose accessories. Faithfully match image 2's color, mineral pattern and realistic grain scale, with restrained polished reflections on all stone parts. Keep the whole object visible with identical margins. Requested square 2048 x 2048. Material: ROSSO PORRINO: dominant salmon-pink feldspar crystals, grey quartz, sparse white crystals and small black flecks, stronger pink than Rozabeta, exact image 2 character.",
+      "date": "2026-10-22T10:07:23.929731+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-ea38e2e4-0da6-46ff-8bdd-72273de04fbb.png",
+      "sha256": "1791346ab2e8fcf5a0d0b16ced58fa880bd954f916d5be4a1ccf9249bb13dbb1",
+      "references": [
+        "pilotes/funeraire/corazon/v1/corazon-bengal.png",
+        "matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "Controle visuel: coeur asymetrique, trois courbes en eventail, support, dalle, rails, marche et plinthe conserves ; gravures supprimees ; matiere coherente avec la texture et cadrage stable entre variantes. Vue frontale centree avec convergence perspective residuelle ; projection non strictement orthographique. PNG original 1254 x 1254 ; calibration, echelle du grain et format final >=1600 non valides."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Asset: CORAZON funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 is the target stone texture reference. Change ONLY all stone surfaces to the target material. Preserve the exact silhouette and structure: asymmetrical heart headstone, higher left lobe, lower-left point, exactly three stacked tapering curved fan forms below the heart with rounded right tips, rear support, raised rectangular slab, rounded front ends of both side rails, recessed front step, broad rectangular plinth. Preserve every component, junction, thickness, bevel, the crop, camera angle, axial frontal view, scale, lighting, reflections, shadows and pale grey studio background of image 1. No added or removed structural pieces. No text, engraving, symbols, flowers, vase or loose accessories. Faithfully match image 2's color, mineral pattern and realistic grain scale, with restrained polished reflections on all stone parts. Keep the whole object visible with identical margins. Requested square 2048 x 2048. Material: EGIPAT: light-to-medium neutral grey salt-and-pepper granite with white/grey crystals and black mineral clusters, exact image 2 texture.",
+      "date": "2026-10-22T10:07:36.220913+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-770ed8a3-4ae2-4b4a-a13a-82e2557e0301.png",
+      "sha256": "5900681e863c841afacf5c11c18ed0086b2493548c3006cb29f57b1d48caa1d4",
+      "references": [
+        "pilotes/funeraire/corazon/v1/corazon-bengal.png",
+        "matieres/2026-10-19/textures-v1/egipat-texture-v1.png"
+      ],
+      "controleVisuel": "Controle visuel: coeur asymetrique, trois courbes en eventail, support, dalle, rails, marche et plinthe conserves ; gravures supprimees ; matiere coherente avec la texture et cadrage stable entre variantes. Vue frontale centree avec convergence perspective residuelle ; projection non strictement orthographique. PNG original 1254 x 1254 ; calibration, echelle du grain et format final >=1600 non valides."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Asset: CORAZON funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 is the target stone texture reference. Change ONLY all stone surfaces to the target material. Preserve the exact silhouette and structure: asymmetrical heart headstone, higher left lobe, lower-left point, exactly three stacked tapering curved fan forms below the heart with rounded right tips, rear support, raised rectangular slab, rounded front ends of both side rails, recessed front step, broad rectangular plinth. Preserve every component, junction, thickness, bevel, the crop, camera angle, axial frontal view, scale, lighting, reflections, shadows and pale grey studio background of image 1. No added or removed structural pieces. No text, engraving, symbols, flowers, vase or loose accessories. Faithfully match image 2's color, mineral pattern and realistic grain scale, with restrained polished reflections on all stone parts. Keep the whole object visible with identical margins. Requested square 2048 x 2048. Material: MARMARA: soft white and pale grey crystalline stone crossed by a few broad gently undulating parallel cool-grey bands, exact image 2; no mottled granite, no branching black veins.",
+      "date": "2026-10-22T10:07:48.348458+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-84cb7c93-3f52-4942-bfeb-b91656b4a02d.png",
+      "sha256": "d63c12ef9c36f5cff81e7645bd78806568aacaaac99004c0cbe76bba929bfe16",
+      "references": [
+        "pilotes/funeraire/corazon/v1/corazon-bengal.png",
+        "matieres/2026-10-19/textures-v1/marmara-texture-v1.png"
+      ],
+      "controleVisuel": "Controle visuel: coeur asymetrique, trois courbes en eventail, support, dalle, rails, marche et plinthe conserves ; gravures supprimees ; matiere coherente avec la texture et cadrage stable entre variantes. Vue frontale centree avec convergence perspective residuelle ; projection non strictement orthographique. PNG original 1254 x 1254 ; calibration, echelle du grain et format final >=1600 non valides."
     }
   }
 }

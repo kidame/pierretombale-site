@@ -1,8 +1,8 @@
 # Avancement des images
 
-Mis a jour : 2026-10-22T09:59:47.456502+00:00
+Mis a jour : 2026-10-22T10:07:48.348458+00:00
 
-Images completes archivees : 255/270.
+Images completes archivees : 260/270.
 Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 
 | Famille | Modele interne | Completes | Statut |
@@ -32,9 +32,9 @@ Une vue par variante, 10 matieres par modele. Pilotes non calibres.
 | funeraire | QUIETUDE | 10/10 | Lot complet |
 | funeraire | ARBRE DE VIE | 10/10 | Lot complet |
 | funeraire | ELIGIE | 10/10 | Lot complet |
-| funeraire | CORAZON | 5/10 | En cours |
+| funeraire | CORAZON | 10/10 | Lot complet |
 | funeraire | DOUCEUR | 0/10 | A produire |
 
-Prochaine action : {'modeleId': 'corazon', 'matiereId': 'vizag-blue', 'action': 'Produire les variantes restantes du produit par lots de 5, puis archiver le lot'}
+Prochaine action : {'modeleId': 'douceur', 'matiereId': 'bengal', 'action': 'Produire les variantes restantes du produit par lots de 5, puis archiver le lot'}
 
 Source de verite detaillee : suivi-serie.json. Prompts exacts et SHA256 dans chaque dossier.
