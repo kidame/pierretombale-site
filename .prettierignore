@@ -11,3 +11,4 @@ bun.lock
 # rendrait les relectures de catalogue illisibles.
 src/data/granits.json
 src/data/images-modeles.json
+src/data/motifs.json
