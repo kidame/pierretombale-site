@@ -63,10 +63,14 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 <!-- images-checkpoint -->
-- Checkpoint images 2026-10-22T10:08:37.134527+00:00 : 260/270 archivees, 10 restantes.
-  26/27 modeles complets. Prochaine image : douceur / bengal.
-  Produits complets de 10 variantes, deux lots de 5, generations successives puis transferts groupes.
-  Suivi detaille : docs/images-configurateur/AVANCEMENT.md et suivi-serie.json.
+- Cloture images 2026-10-22T10:32:09.980077+00:00 : 270/270 PNG pilotes archives sur le VPS.
+  27/27 modeles complets, 10 matieres chacun ; 14 funeraires et 13 cineraires.
+  Derniers produits : ELIGIE, CORAZON et DOUCEUR, 10/10 chacun.
+  Couverture, manifestes, fichiers et dimensions verifies ; aucun transfert partiel.
+  Recepteur ferme, aucune generation active, automation de production desactivee.
+  Originaux 1254 x 1254 ; calibration et resolution finale >=1600 restent a traiter.
+  224 prompts exacts disponibles ; 46 appels historiques non retrouves.
+  Details : docs/images-configurateur/CONTROLE-FINAL-270.json et REPRISE-SERIE.md.
 <!-- /images-checkpoint -->
 - 20.10.2026 13h05, Thomas : clarification prioritaire, produire les 270 images,
   lots de 5 automatiquement enchaines. Ne plus arreter une session a la fin d'un lot.

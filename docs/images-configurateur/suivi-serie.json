@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "misAJour": "2026-10-22",
+  "misAJour": "2026-10-22T10:32:09.980077+00:00",
   "cible": 270,
   "vueParVariante": 1,
   "matieres": [
@@ -3689,7 +3689,7 @@
       "sourceLibraryId": "libfile_8844feb2cea88191b81c32c9c5442950",
       "dossier": "pilotes/funeraire/douceur/v1",
       "ordre": 27,
-      "notes": "Geometrie et zones physiques a valider.",
+      "notes": "Stele en bouclier avec flancs courbes, sommet asymetrique plus haut a gauche et petites epaules ; dalle, rails courbes avec retours avant/arriere, marche en retrait et plinthe conserves. Vase, fleurs et tous leurs reflets supprimes. Une base Bengal fixe pour les neuf editions de matiere. Vue frontale masquant certains profils et moulures laterales ; equivalence exacte a valider. Convergence perspective residuelle, non strictement orthographique. Dix PNG originaux de 1254 x 1254, sans agrandissement artificiel ; calibration et format final >=1600 non valides.",
       "variantes": [
         {
           "matiereId": "bengal",
@@ -3759,57 +3759,80 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "douceur-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "8a2e43fe88ecdb4831ec668ebadb473e7278d1c64ae94e1cb34bb286eefbce7a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2771862,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "douceur-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "1b3bd94dca7501f2862c39e4238660e34388986ebfcffba6160a92e25a0d8ac2",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2789825,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "douceur-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "87fc72b6ee9b356948d20b0c4f57357f2d4f1961b2610cf4615c95082248d01b",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2853935,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "douceur-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "482fa6759fa156015c0a59e7b0068fe32ed430e737606776b1d9c3b0350a1949",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2894567,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "douceur-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "3ce70610e2a3e9efac092db85b85a4073977a622bdb0fbae714a8dcb813196a0",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2301011,
+          "integritePngVerifiee": true
         }
       ]
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-22T10:17:57.130135+00:00",
-    "imagesCompletes": 265,
-    "combinaisonsRestantes": 5,
+    "dateControle": "2026-10-22T10:27:30.694381+00:00",
+    "imagesCompletes": 270,
+    "combinaisonsRestantes": 0,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "douceur",
-    "matiereId": "vizag-blue",
-    "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
+    "action": "Serie pilote complete 270/270. Validation geometrique, calibration configurateur et resolution finale >=1600 a traiter dans une phase distincte."
   },
   "productionParPassage": {
     "tailleLot": 5,
@@ -3824,66 +3847,56 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-22T10:18:19.739709+00:00",
+    "dateFin": "2026-10-22T10:32:09.980077+00:00",
     "combinaisons": [
       {
         "modeleId": "douceur",
-        "matiereId": "bengal"
+        "matiereId": "vizag-blue"
       },
       {
         "modeleId": "douceur",
-        "matiereId": "rozabeta"
+        "matiereId": "viscount-white"
       },
       {
         "modeleId": "douceur",
-        "matiereId": "paradiso"
+        "matiereId": "rosso-porrino"
       },
       {
         "modeleId": "douceur",
-        "matiereId": "jablanica"
+        "matiereId": "egipat"
       },
       {
         "modeleId": "douceur",
-        "matiereId": "royal"
+        "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 260,
-    "totalApres": 265,
+    "totalAvant": 265,
+    "totalApres": 270,
     "statut": "termine",
     "generationEnCours": false,
-    "continuationAutomatique": true,
-    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
+    "continuationAutomatique": false,
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
   },
-  "prochainLot": [
-    {
-      "modeleId": "douceur",
-      "matiereId": "vizag-blue"
-    },
-    {
-      "modeleId": "douceur",
-      "matiereId": "viscount-white"
-    },
-    {
-      "modeleId": "douceur",
-      "matiereId": "rosso-porrino"
-    },
-    {
-      "modeleId": "douceur",
-      "matiereId": "egipat"
-    },
-    {
-      "modeleId": "douceur",
-      "matiereId": "marmara"
-    }
-  ],
+  "prochainLot": [],
   "dernierProduit": {
-    "modeleId": "corazon",
-    "dateFin": "2026-10-22T10:08:37.138140+00:00",
+    "modeleId": "douceur",
+    "dateFin": "2026-10-22T10:32:09.980077+00:00",
     "variantesArchivees": 10,
-    "totalAvant": 250,
-    "totalApres": 260,
-    "prochainModele": "douceur",
+    "totalAvant": 260,
+    "totalApres": 270,
+    "prochainModele": null,
     "calibrationValidee": false
+  },
+  "clotureProduction": {
+    "date": "2026-10-22T10:32:09.980077+00:00",
+    "imagesArchivees": 270,
+    "modelesComplets": 27,
+    "matieresParModele": 10,
+    "recepteurFerme": true,
+    "automationDesactivee": true,
+    "automationId": "6ad72d8362808191bdf84b02a4177125",
+    "controleFinal": "CONTROLE-FINAL-270.json",
+    "validationConfigurateur": false
   }
 }

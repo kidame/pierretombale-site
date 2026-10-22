@@ -1,4 +1,17 @@
 # Production autonome des 270 images
+
+<!-- serie-pilote-complete -->
+
+## Production pilote terminee
+
+Etat confirme le 2026-10-22T10:32:09.980077+00:00 : 270/270 images archivees, 27 modeles x 10 matieres.
+Le recepteur est ferme et l automation de production est desactivee.
+Aucune variante pilote ne reste a generer. Calibration et resolution finale
+restent une phase distincte. Voir CONTROLE-FINAL-270.json et REPRISE-SERIE.md.
+La procedure ci-dessous est conservee comme historique de production.
+
+<!-- /serie-pilote-complete -->
+
 <!-- protocole-produit-10:debut -->
 ## Protocole de production actif
 

@@ -65,19 +65,97 @@
       ],
       "tailleOctets": 2923169,
       "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "vizag-blue",
+      "image": "douceur-vizag-blue.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png",
+      "sha256": "8a2e43fe88ecdb4831ec668ebadb473e7278d1c64ae94e1cb34bb286eefbce7a",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2771862,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "viscount-white",
+      "image": "douceur-viscount-white.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png",
+      "sha256": "1b3bd94dca7501f2862c39e4238660e34388986ebfcffba6160a92e25a0d8ac2",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2789825,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rosso-porrino",
+      "image": "douceur-rosso-porrino.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png",
+      "sha256": "87fc72b6ee9b356948d20b0c4f57357f2d4f1961b2610cf4615c95082248d01b",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2853935,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "egipat",
+      "image": "douceur-egipat.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png",
+      "sha256": "482fa6759fa156015c0a59e7b0068fe32ed430e737606776b1d9c3b0350a1949",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2894567,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "marmara",
+      "image": "douceur-marmara.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png",
+      "sha256": "3ce70610e2a3e9efac092db85b85a4073977a622bdb0fbae714a8dcb813196a0",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2301011,
+      "integritePngVerifiee": true
     }
   ],
   "statut": "pilote-a-valider",
   "vuesParVariante": 1,
   "calibration": null,
   "contoursPixelValides": false,
-  "variantesPresentes": 5,
+  "variantesPresentes": 10,
   "variantesCibles": 10,
-  "dernierControleIntegrite": "2026-10-22T10:17:57.130135+00:00",
+  "dernierControleIntegrite": "2026-10-22T10:27:30.694381+00:00",
   "dimensionsPx": [
     1254,
     1254
   ],
   "conformeResolutionFinale": false,
-  "validationConfigurateur": false
+  "validationConfigurateur": false,
+  "promptsExactsDisponibles": [
+    "bengal",
+    "rozabeta",
+    "paradiso",
+    "jablanica",
+    "royal",
+    "vizag-blue",
+    "viscount-white",
+    "rosso-porrino",
+    "egipat",
+    "marmara"
+  ],
+  "promptsExactsManquants": [],
+  "promptsExactsRetrouves": true,
+  "notesModele": "Stele en bouclier avec flancs courbes, sommet asymetrique plus haut a gauche et petites epaules ; dalle, rails courbes avec retours avant/arriere, marche en retrait et plinthe conserves. Vase, fleurs et tous leurs reflets supprimes. Une base Bengal fixe pour les neuf editions de matiere. Vue frontale masquant certains profils et moulures laterales ; equivalence exacte a valider. Convergence perspective residuelle, non strictement orthographique. Dix PNG originaux de 1254 x 1254, sans agrandissement artificiel ; calibration et format final >=1600 non valides.",
+  "modeDeGeneration": "imagegen-integre",
+  "baseMateriau": "bengal",
+  "calibrationValidee": false
 }

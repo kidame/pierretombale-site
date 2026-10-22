@@ -1,0 +1,627 @@
+{
+  "date": "2026-10-22T10:29:40.830149+00:00",
+  "modelesComplets": 27,
+  "imagesPresentes": 270,
+  "matieresParModele": 10,
+  "vuesParVariante": 1,
+  "familles": {
+    "cineraire": 13,
+    "funeraire": 14
+  },
+  "totalOctets": 737322990,
+  "dimensionsPx": {
+    "1254x1254": 270
+  },
+  "manifesteRegistreTaillesDimensionsConcordants": true,
+  "sha256ReverifiesCetteSession": 20,
+  "modelesSha256Reverifies": [
+    "corazon",
+    "douceur"
+  ],
+  "integriteNouveauxPng": "SHA256, CRC PNG, IEND, decompression et dimensions verifies par recepteur avant archivage",
+  "promptsExactsDisponibles": 224,
+  "promptsExactsManquantsHistoriques": 46,
+  "partiels": [],
+  "anomalies": [],
+  "validationConfigurateur": false,
+  "resolutionFinaleMinimale1600Atteinte": false,
+  "modeles": [
+    {
+      "modeleId": "cin1",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin1/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 0,
+      "promptsExactsManquants": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ]
+    },
+    {
+      "modeleId": "arques",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/arques/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 0,
+      "promptsExactsManquants": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ]
+    },
+    {
+      "modeleId": "almandin",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/almandin/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 0,
+      "promptsExactsManquants": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ]
+    },
+    {
+      "modeleId": "4-pieces-stele-doucine-avec-base",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/4-pieces-stele-doucine-avec-base/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 0,
+      "promptsExactsManquants": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ]
+    },
+    {
+      "modeleId": "5-pieces-jardiniere-en-closoir",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/5-pieces-jardiniere-en-closoir/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 6,
+      "promptsExactsManquants": [
+        "bengal",
+        "jablanica",
+        "paradiso",
+        "rozabeta"
+      ]
+    },
+    {
+      "modeleId": "4-pieces-sans-stele",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/4-pieces-sans-stele/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 9,
+      "promptsExactsManquants": [
+        "bengal"
+      ]
+    },
+    {
+      "modeleId": "tombale-simple-200x100x10",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/tombale-simple-200x100x10/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 9,
+      "promptsExactsManquants": [
+        "bengal"
+      ]
+    },
+    {
+      "modeleId": "musulman-4",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/musulman-4/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "cin8",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin8/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "cin-nivora",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin-nivora/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "cin-bahia",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin-bahia/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "cin-aquarius",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin-aquarius/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "cin-montagne01",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin-montagne01/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "cin-nautis",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin-nautis/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "cin-aloria",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin-aloria/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "cin-tombale",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin-tombale/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "cin-montagne02",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin-montagne02/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "cin-saturne",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin-saturne/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "cin-ovae",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin-ovae/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "cin-esperanza",
+      "famille": "cineraire",
+      "dossier": "pilotes/cineraire/cin-esperanza/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "tango",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/tango/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "aventuri",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/aventuri/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "quietude",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/quietude/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "arbre-de-vie",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/arbre-de-vie/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "eligie",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/eligie/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "corazon",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/corazon/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    },
+    {
+      "modeleId": "douceur",
+      "famille": "funeraire",
+      "dossier": "pilotes/funeraire/douceur/v1",
+      "variantes": 10,
+      "matieres": [
+        "bengal",
+        "egipat",
+        "jablanica",
+        "marmara",
+        "paradiso",
+        "rosso-porrino",
+        "royal",
+        "rozabeta",
+        "viscount-white",
+        "vizag-blue"
+      ],
+      "promptsExactsDisponibles": 10,
+      "promptsExactsManquants": []
+    }
+  ],
+  "recepteurFerme": true,
+  "automationDesactivee": true,
+  "automationId": "6ad72d8362808191bdf84b02a4177125",
+  "automationMiseAJour": "2026-10-22T10:30:09.852074+00:00"
+}

@@ -55,6 +55,61 @@
         "matieres/2026-10-19/textures-v1/royal-texture-v1.png"
       ],
       "controleVisuel": "Controle visuel: stele bouclier au sommet asymetrique, petites epaules, dalle, rails courbes et retours avant/arriere, marche et plinthe presents ; vase, bouquet et leurs reflets supprimes ; cadrage stable entre variantes. Vue frontale masquant certains profils et moulures laterales ; equivalence geometrique exacte non confirmee. Perspective residuelle, non strictement orthographique. PNG original 1254 x 1254 ; calibration, echelle du grain et format final >=1600 non valides."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Asset: DOUCEUR funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 is the target stone texture reference. Change ONLY all stone surfaces to the target material. Preserve the exact silhouette and structure: broad shield-shaped headstone with asymmetric wavy top, small upper shoulders and bulging sides, long rectangular slab with softened edges, two large curved side rails with rounded curled returns front and rear and longitudinal mouldings, recessed front step and rectangular plinth. Preserve every component, junction, thickness, bevel, the crop, camera angle, axial frontal view, scale, lighting, reflections, shadows and pale grey studio background of image 1. No added or removed structural pieces. No text, engraving, symbols, flowers, vase or loose accessories. Faithfully match image 2's color, mineral pattern and realistic grain scale, with restrained polished reflections on all stone parts. Keep the whole object visible with identical margins. Requested square 2048 x 2048. Material: VIZAG BLUE: subdued blue-grey, light grey and charcoal clouded flowing bands, sparse rust/burgundy grains, as in image 2; no bright blue.",
+      "date": "2026-10-22T10:26:42.479701+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-d377d12f-9057-45bc-bf15-f0a251c1bac1.png",
+      "sha256": "8a2e43fe88ecdb4831ec668ebadb473e7278d1c64ae94e1cb34bb286eefbce7a",
+      "references": [
+        "pilotes/funeraire/douceur/v1/douceur-bengal.png",
+        "matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "Controle visuel: stele bouclier au sommet asymetrique, petites epaules, dalle, rails courbes et retours avant/arriere, marche et plinthe presents ; vase, bouquet et leurs reflets supprimes ; cadrage stable entre variantes. Vue frontale masquant certains profils et moulures laterales ; equivalence geometrique exacte non confirmee. Perspective residuelle, non strictement orthographique. PNG original 1254 x 1254 ; calibration, echelle du grain et format final >=1600 non valides."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Asset: DOUCEUR funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 is the target stone texture reference. Change ONLY all stone surfaces to the target material. Preserve the exact silhouette and structure: broad shield-shaped headstone with asymmetric wavy top, small upper shoulders and bulging sides, long rectangular slab with softened edges, two large curved side rails with rounded curled returns front and rear and longitudinal mouldings, recessed front step and rectangular plinth. Preserve every component, junction, thickness, bevel, the crop, camera angle, axial frontal view, scale, lighting, reflections, shadows and pale grey studio background of image 1. No added or removed structural pieces. No text, engraving, symbols, flowers, vase or loose accessories. Faithfully match image 2's color, mineral pattern and realistic grain scale, with restrained polished reflections on all stone parts. Keep the whole object visible with identical margins. Requested square 2048 x 2048. Material: VISCOUNT WHITE: milky white and pale grey granite, fine black speckles and subtle flowing grey grain, as in image 2, no dramatic marble veins.",
+      "date": "2026-10-22T10:26:55.694595+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-57f8aedf-17c7-4629-a207-192a7e45635f.png",
+      "sha256": "1b3bd94dca7501f2862c39e4238660e34388986ebfcffba6160a92e25a0d8ac2",
+      "references": [
+        "pilotes/funeraire/douceur/v1/douceur-bengal.png",
+        "matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "Controle visuel: stele bouclier au sommet asymetrique, petites epaules, dalle, rails courbes et retours avant/arriere, marche et plinthe presents ; vase, bouquet et leurs reflets supprimes ; cadrage stable entre variantes. Vue frontale masquant certains profils et moulures laterales ; equivalence geometrique exacte non confirmee. Perspective residuelle, non strictement orthographique. PNG original 1254 x 1254 ; calibration, echelle du grain et format final >=1600 non valides."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Asset: DOUCEUR funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 is the target stone texture reference. Change ONLY all stone surfaces to the target material. Preserve the exact silhouette and structure: broad shield-shaped headstone with asymmetric wavy top, small upper shoulders and bulging sides, long rectangular slab with softened edges, two large curved side rails with rounded curled returns front and rear and longitudinal mouldings, recessed front step and rectangular plinth. Preserve every component, junction, thickness, bevel, the crop, camera angle, axial frontal view, scale, lighting, reflections, shadows and pale grey studio background of image 1. No added or removed structural pieces. No text, engraving, symbols, flowers, vase or loose accessories. Faithfully match image 2's color, mineral pattern and realistic grain scale, with restrained polished reflections on all stone parts. Keep the whole object visible with identical margins. Requested square 2048 x 2048. Material: ROSSO PORRINO: dominant salmon-pink feldspar crystals, grey quartz, sparse white crystals and small black flecks, stronger pink than Rozabeta, exact image 2 character.",
+      "date": "2026-10-22T10:27:08.572198+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-61f8eac6-495d-45b1-b676-7d3dad151475.png",
+      "sha256": "87fc72b6ee9b356948d20b0c4f57357f2d4f1961b2610cf4615c95082248d01b",
+      "references": [
+        "pilotes/funeraire/douceur/v1/douceur-bengal.png",
+        "matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "Controle visuel: stele bouclier au sommet asymetrique, petites epaules, dalle, rails courbes et retours avant/arriere, marche et plinthe presents ; vase, bouquet et leurs reflets supprimes ; cadrage stable entre variantes. Vue frontale masquant certains profils et moulures laterales ; equivalence geometrique exacte non confirmee. Perspective residuelle, non strictement orthographique. PNG original 1254 x 1254 ; calibration, echelle du grain et format final >=1600 non valides."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Asset: DOUCEUR funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 is the target stone texture reference. Change ONLY all stone surfaces to the target material. Preserve the exact silhouette and structure: broad shield-shaped headstone with asymmetric wavy top, small upper shoulders and bulging sides, long rectangular slab with softened edges, two large curved side rails with rounded curled returns front and rear and longitudinal mouldings, recessed front step and rectangular plinth. Preserve every component, junction, thickness, bevel, the crop, camera angle, axial frontal view, scale, lighting, reflections, shadows and pale grey studio background of image 1. No added or removed structural pieces. No text, engraving, symbols, flowers, vase or loose accessories. Faithfully match image 2's color, mineral pattern and realistic grain scale, with restrained polished reflections on all stone parts. Keep the whole object visible with identical margins. Requested square 2048 x 2048. Material: EGIPAT: light-to-medium neutral grey salt-and-pepper granite with white/grey crystals and black mineral clusters, exact image 2 texture.",
+      "date": "2026-10-22T10:27:20.944882+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-27523854-8f45-4763-92a5-dd1abb00520e.png",
+      "sha256": "482fa6759fa156015c0a59e7b0068fe32ed430e737606776b1d9c3b0350a1949",
+      "references": [
+        "pilotes/funeraire/douceur/v1/douceur-bengal.png",
+        "matieres/2026-10-19/textures-v1/egipat-texture-v1.png"
+      ],
+      "controleVisuel": "Controle visuel: stele bouclier au sommet asymetrique, petites epaules, dalle, rails courbes et retours avant/arriere, marche et plinthe presents ; vase, bouquet et leurs reflets supprimes ; cadrage stable entre variantes. Vue frontale masquant certains profils et moulures laterales ; equivalence geometrique exacte non confirmee. Perspective residuelle, non strictement orthographique. PNG original 1254 x 1254 ; calibration, echelle du grain et format final >=1600 non valides."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Asset: DOUCEUR funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 is the target stone texture reference. Change ONLY all stone surfaces to the target material. Preserve the exact silhouette and structure: broad shield-shaped headstone with asymmetric wavy top, small upper shoulders and bulging sides, long rectangular slab with softened edges, two large curved side rails with rounded curled returns front and rear and longitudinal mouldings, recessed front step and rectangular plinth. Preserve every component, junction, thickness, bevel, the crop, camera angle, axial frontal view, scale, lighting, reflections, shadows and pale grey studio background of image 1. No added or removed structural pieces. No text, engraving, symbols, flowers, vase or loose accessories. Faithfully match image 2's color, mineral pattern and realistic grain scale, with restrained polished reflections on all stone parts. Keep the whole object visible with identical margins. Requested square 2048 x 2048. Material: MARMARA: soft white and pale grey crystalline stone crossed by a few broad gently undulating parallel cool-grey bands, exact image 2; no mottled granite, no branching black veins.",
+      "date": "2026-10-22T10:27:30.694381+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-94795721-62fd-46f0-b979-97834dc34f16.png",
+      "sha256": "3ce70610e2a3e9efac092db85b85a4073977a622bdb0fbae714a8dcb813196a0",
+      "references": [
+        "pilotes/funeraire/douceur/v1/douceur-bengal.png",
+        "matieres/2026-10-19/textures-v1/marmara-texture-v1.png"
+      ],
+      "controleVisuel": "Controle visuel: stele bouclier au sommet asymetrique, petites epaules, dalle, rails courbes et retours avant/arriere, marche et plinthe presents ; vase, bouquet et leurs reflets supprimes ; cadrage stable entre variantes. Vue frontale masquant certains profils et moulures laterales ; equivalence geometrique exacte non confirmee. Perspective residuelle, non strictement orthographique. PNG original 1254 x 1254 ; calibration, echelle du grain et format final >=1600 non valides."
     }
   }
 }

@@ -22,21 +22,31 @@ Autorisation Thomas, 19.10.2026 : poursuivre les 27 modeles en 10 matieres, une 
 
 ## Point de reprise
 
-Checkpoint 2026-10-22T10:08:37.134527+00:00 : 260/270 images archivees, 10 restantes.
-26/27 modeles complets. Le registre suivi-serie.json et AVANCEMENT.md sont les sources du compte courant.
-Le tableau AVANCEMENT.md est mis a jour automatiquement apres chaque archivage.
-Prochaine combinaison : douceur / bengal.
+Cloture de la production pilote : 2026-10-22T10:32:09.980077+00:00.
+270/270 PNG archives sur le VPS ; 27/27 modeles complets, 10 matieres et une vue par variante.
+Repartition : 14 modeles funeraires et 13 modeles cineraires.
+Toutes les combinaisons du registre sont presentes. Aucun transfert partiel.
+Les manifestes concordent avec le registre, les tailles et les dimensions des fichiers.
+Controle detaille : CONTROLE-FINAL-270.json.
 
-Clarification Thomas du 20.10.2026 a 13h48 : terminer le set de 10 variantes de chaque produit.
-Un lot de 5 est un checkpoint, jamais une consigne d arret. Enchainer les lots sans confirmation.
-Une seule generation simultanee, enchainement direct de 5 images avec sauvegardes locales. Transferts regroupes par lot et documentation par produit.
-Le dernier lot est entierement transfere et controle. Aucun transfert partiel de ce lot.
-La production active detient le verrou ; le recepteur peut rester ouvert entre les lots.
-Ne pas prendre cette note de checkpoint pour une preuve de generation en arriere-plan.
-Etat actuel de la reprise planifiee non reverifie pendant cette session ; production active dans la conversation.
-Voir automation-production.json et PRODUCTION-AUTONOME.md.
+Derniers produits termines : ELIGIE, CORAZON, DOUCEUR, chacun a 10/10.
+Derniere session de continuation : 20 nouvelles images CORAZON et DOUCEUR, de 250 a 270.
+Les 20 empreintes SHA256 ont ete reverifiees face aux sources locales.
+Le recepteur a ete ferme proprement. Aucune generation active.
+L automation Produire les 270 variantes est desactivee, confirmation is_enabled=false.
+Les champs dernierLot, dernierProduit, prochainLot et prochaineAction sont a jour.
 
-Les champs dernierLot et prochainLot sont actualises a chaque checkpoint ; prochaineAction est actualisee apres chaque image.
+Limites explicites : les 270 PNG originaux font 1254 x 1254 ; le format final minimal
+de 1600 px reste a produire. Aucun agrandissement artificiel.
+Calibration, geometrie atelier, zones physiques, contours au pixel, couleurs et
+echelle du grain restent a valider avant integration definitive.
+224 prompts exacts sont disponibles dans les dossiers ; 46 appels des premieres
+archives ne sont pas retrouves dans prompts-exacts.json. Cette lacune historique
+est detaillee dans le controle final. Aucun prompt ancien n a ete invente.
+
+La production des pilotes est terminee. La prochaine phase est la validation et
+la calibration des images produit/configurateur.
+Les regles ci-dessous documentent la procedure suivie pendant la production.
 
 ## Regles de continuation
 
