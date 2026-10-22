@@ -3,7 +3,7 @@
 Projet commun à trois associés, bénéfices à parts égales. Le site est construit avec Claude Code. Le repo ne contient pas encore de code : tout est à construire.
 
 ## À lire avant toute chose
-1. `docs/DECISIONS-ET-ETAT.md` : décisions prises, ce qui manque, calendrier à jour. Il fait foi si la spec dit autre chose.
+1. `docs/DECISIONS-ET-ETAT.md (journal) et docs/BACKLOG.md (ce qui reste, dans l ordre)` : décisions prises, ce qui manque, calendrier à jour. Il fait foi si la spec dit autre chose.
 2. `docs/SPEC-BUILD-SITE.md` : le document maître (stack décidée, arborescence des pages, configurateur, pipeline commande vers atelier, ordre de build en 7 étapes, placeholders).
 
 La spec commence par un avertissement : `docs/production-spec-pierretombalech.json` contient des valeurs provisoires (téléphone, NPA, siège, nom). Ne les recopie jamais dans le site.
