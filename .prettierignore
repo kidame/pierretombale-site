@@ -5,3 +5,9 @@ dist
 pnpm-lock.yaml
 package-lock.json
 bun.lock
+
+# Donnees tenues a la main ou par scripts/images-modeles.py : une ligne par
+# entree, volontairement large. Prettier les eclaterait sur 7 lignes chacune et
+# rendrait les relectures de catalogue illisibles.
+src/data/granits.json
+src/data/images-modeles.json

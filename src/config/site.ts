@@ -95,7 +95,9 @@ export const siteConfig = {
    * attendu là et nulle part ailleurs. Les mentions légales viendront s'y
    * ajouter quand les coordonnées de l'entreprise seront connues.
    */
-  footerLegal: [{ label: "Protection des données", href: "/protection-des-donnees/" }] satisfies NavItem[],
+  footerLegal: [
+    { label: "Protection des données", href: "/protection-des-donnees/" },
+  ] satisfies NavItem[],
 
   /**
    * Les modèles mis en avant. Chaque valeur est un nom de fichier de

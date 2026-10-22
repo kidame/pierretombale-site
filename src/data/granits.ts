@@ -28,6 +28,12 @@ export interface Granit {
   disponible: boolean;
   /** Chemin d'une photo d'échantillon, `null` tant qu'il n'y en a pas. */
   photo: string | null;
+  /**
+   * Une phrase sur l'aspect de la pierre (teinte, grain, veinage), affichée sur
+   * /nos-granits/. Aucune origine géographique : voir « Règles de
+   * communication du site » dans docs/DECISIONS-ET-ETAT.md.
+   */
+  description: string;
 }
 
 function estTeinte(valeur: string): valeur is Teinte {
@@ -49,6 +55,13 @@ function lireGranits(): Granit[] {
       throw new Error(`src/data/granits.json : l'identifiant "${entree.id}" apparaît deux fois.`);
     }
     vus.add(entree.id);
+
+    if (!entree.description?.trim()) {
+      throw new Error(
+        `src/data/granits.json : le granit "${entree.id}" n'a pas de "description". ` +
+          `Une phrase sur la teinte et le grain, sans origine géographique.`,
+      );
+    }
 
     return { ...entree, teinte: entree.teinte, photo: entree.photo ?? null };
   });

@@ -84,7 +84,8 @@ function lirePrix(valeur: PrixOuProvisoire | null, ou: string): PrixOuProvisoire
     if (!estMontant(valeur.min) || !estMontant(valeur.max)) {
       erreur(`${ou} : "min" et "max" doivent être des montants positifs.`);
     }
-    if (valeur.min > valeur.max) erreur(`${ou} : "min" (${valeur.min}) dépasse "max" (${valeur.max}).`);
+    if (valeur.min > valeur.max)
+      erreur(`${ou} : "min" (${valeur.min}) dépasse "max" (${valeur.max}).`);
     return valeur;
   }
 
@@ -151,7 +152,9 @@ export function prixEstProvisoire(slug: string): boolean {
  * plafond connu et s'affiche lui aussi en « Dès n CHF ».
  */
 export function fourchetteAffichee(slugs: readonly string[]): string {
-  const prix = slugs.map(prixRetenu).filter((valeur): valeur is PrixOuProvisoire => valeur !== null);
+  const prix = slugs
+    .map(prixRetenu)
+    .filter((valeur): valeur is PrixOuProvisoire => valeur !== null);
   if (prix.length === 0) return PRIX_SUR_DEMANDE;
 
   const bas = Math.min(...prix.map((valeur) => ("des" in valeur ? valeur.des : valeur.min)));

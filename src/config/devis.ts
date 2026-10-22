@@ -91,8 +91,7 @@ export const messagesDevis = {
   envoiInactif:
     "L'envoi en ligne sera bientôt disponible. Votre demande n'a pas été transmise : merci de revenir dans quelques jours.",
   envoiEnCours: "Envoi en cours…",
-  erreurReseau:
-    "Votre demande n'a pas pu être transmise. Merci de réessayer dans un instant.",
+  erreurReseau: "Votre demande n'a pas pu être transmise. Merci de réessayer dans un instant.",
   erreurSaisie: "Merci de corriger les champs signalés ci-dessous.",
   brouillonRetrouve: "Nous avons retrouvé votre brouillon.",
 } as const;

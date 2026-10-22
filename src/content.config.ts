@@ -2,17 +2,31 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { granitIds } from "./data/granits";
+import imagesModeles from "./data/images-modeles.json";
+
+/** Les modeles qui ont leurs visuels derives dans public/images/modeles. */
+const modeleIds = Object.keys(imagesModeles);
 
 /**
  * Un fichier Markdown par modele dans src/content/products.
  * Le nom du fichier sert de slug. Aucun prix dans les fiches : les prix vivent
  * dans src/data/tarifs.json, par slug, et s affichent via `prixAffiche`.
+ *
+ * Les visuels ne sont PAS declares dans les fiches : ils vivent dans
+ * public/images/modeles/<modeleId>/, une image par matiere et par largeur, et
+ * src/data/images-modeles.json en tient l index. Une fiche ne porte donc que
+ * son `modeleId` ; le reste se deduit (cf. `visuelModele` dans
+ * src/data/products.ts).
  */
 const products = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/products" }),
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       name: z.string(),
+      /** Identifiant du jeu de visuels. Doit exister dans src/data/images-modeles.json. */
+      modeleId: z.string().refine((id) => modeleIds.includes(id), {
+        message: `modele inconnu : utiliser une cle de src/data/images-modeles.json (${modeleIds.join(", ")})`,
+      }),
       /** monument = 100 x 200 cm, cineraire = 60 x 60 cm. */
       famille: z.enum(["monument", "cineraire"]),
       gamme: z.enum(["classique", "contemporain", "prestige", "musulman"]),
@@ -38,8 +52,6 @@ const products = defineCollection({
           message: `granit inconnu : utiliser des ids de src/data/granits.json, ou ["tous"]`,
         }),
       shortDescription: z.string(),
-      /** Photos ou rendus du modele. Vide tant qu on n a que des visuels provisoires. */
-      images: z.array(image()).default([]),
       order: z.number().int().nonnegative().default(999),
     }),
 });
