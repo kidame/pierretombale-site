@@ -8,8 +8,9 @@
  *      prennent une liste de poses et en rendent une autre. C'est `index.ts`
  *      qui les branche sur l'etat.
  *   2. `creeMotifs`, le rendu : un `Konva.Path` par motif pose sur la couche
- *      que `rendu.ts` a preparee (SOUS le texte), plus UN SEUL
- *      `Konva.Transformer` partage qui habille le motif selectionne.
+ *      que `rendu.ts` a preparee (SOUS le texte), le cadre en pointilles du
+ *      motif sur demande, plus UN SEUL `Konva.Transformer` partage qui habille
+ *      ce qui est selectionne, motif ou cadre.
  *
  * LES UNITES, ENCORE
  * L'etat est en CENTIMETRES DE PIERRE. Le dessin, lui, vient d'un SVG dont la
@@ -34,7 +35,6 @@ import type { EtatConfigurateur, MotifPose, MotifSurDemande } from "./etat";
 import type { Layer, ModuleKonva, Stage } from "./rendu";
 
 type NoeudChemin = InstanceType<ModuleKonva["Path"]>;
-type Groupe = InstanceType<ModuleKonva["Group"]>;
 type NoeudCadre = InstanceType<ModuleKonva["Rect"]>;
 type NoeudTexte = InstanceType<ModuleKonva["Text"]>;
 type Transformateur = InstanceType<ModuleKonva["Transformer"]>;
@@ -95,6 +95,9 @@ export const ERREUR_FICHIER_LOURD =
 
 /** Taille des poignees du transformateur, en pixels a l'ecran. */
 const POIGNEE_PX = 11;
+
+/** Le libelle « Motif a creer », en pixels a l'ecran lui aussi. */
+const LIBELLE_PX = 15;
 
 /** Hauteur reelle d'un motif pose a cette largeur, dessin oblige. */
 export function hauteurCmMotif(motif: MotifCatalogue, largeurCm: number): number {
@@ -262,6 +265,18 @@ export function demandeCentree(echelle: Echelle): MotifSurDemande {
   );
 }
 
+/**
+ * La place et la taille du cadre « Motif a creer » apres un deplacement ou un
+ * redimensionnement. La description et le fichier, eux, ne viennent jamais du
+ * canvas : c'est `index.ts` qui les conserve.
+ */
+export interface GeometrieDemande {
+  xCm: number;
+  yCm: number;
+  largeurCm: number;
+  hauteurCm: number;
+}
+
 /** Retourne une pose horizontalement. */
 export function basculeMiroir(liste: MotifPose[], cle: string): MotifPose[] {
   return liste.map((pose) => (pose.cle === cle ? { ...pose, miroir: !pose.miroir } : pose));
@@ -281,10 +296,16 @@ export interface OptionsMotifs {
   affichage: () => number;
   /** Le bronze de la page : poignees et cadres, jamais le dessin lui-meme. */
   couleurAccent: string;
+  /** La pile de polices de l'interface, pour le libelle « Motif a creer ». */
+  policeInterface: string;
   /** La famille a deplace ou redimensionne une pose : elle part dans l'etat. */
   surPose: (pose: MotifPose) => void;
+  /** Idem pour le cadre du motif sur demande (`CLE_DEMANDE`). */
+  surDemande: (geometrie: GeometrieDemande) => void;
   /** Touche Suppr ou Retour arriere sur le motif selectionne. */
   surRetrait: (cle: string) => void;
+  /** La selection a change, d'ou qu'elle vienne : la liste de la page suit. */
+  surSelection: (cle: string | null) => void;
 }
 
 export interface RenduMotifs {
@@ -292,6 +313,8 @@ export interface RenduMotifs {
   dessine(etat: EtatConfigurateur, couleur: string): void;
   /** Selectionne une pose (ou rien) : le transformateur suit. */
   selectionne(cle: string | null): void;
+  /** Ce qui est selectionne : `CLE_DEMANDE`, une cle de pose, ou rien. */
+  selection(): string | null;
   /** Les poignees gardent leur taille a l'ecran quand la fenetre change. */
   redimensionne(): void;
   detruit(): void;
@@ -303,6 +326,13 @@ export function creeMotifs(konva: ModuleKonva, options: OptionsMotifs): RenduMot
 
   const noeuds = new Map<string, NoeudChemin>();
   let selection: string | null = null;
+
+  /* Le cadre « Motif a creer » et son libelle. Deux noeuds plutot qu'un groupe :
+     le cadre porte le deplacement et le transformateur, le libelle n'ecoute
+     rien et se recentre apres chaque mouvement. Dans un groupe, le
+     transformateur aurait aussi etire le texte. */
+  let cadreDemande: NoeudCadre | null = null;
+  let libelleDemande: NoeudTexte | null = null;
 
   const curseur = (valeur: string) => {
     conteneur.style.cursor = valeur;
@@ -324,10 +354,12 @@ export function creeMotifs(konva: ModuleKonva, options: OptionsMotifs): RenduMot
     return typeof id === "string" ? motifs.get(id) : undefined;
   }
 
-  /* UN SEUL transformateur pour tous les motifs : Konva le deplace d'un noeud a
-     l'autre. Les coins seulement, jamais de rotation (une gravure de travers ne
-     se rattrape pas), et le rapport largeur/hauteur est conserve : un motif
-     etire ne ressemble plus a son dessin. */
+  /* UN SEUL transformateur pour tout ce qui se redimensionne : Konva le deplace
+     d'un noeud a l'autre. Les coins seulement, jamais de rotation (une gravure
+     de travers ne se rattrape pas). Le rapport largeur/hauteur est conserve
+     pour un MOTIF (un dessin etire ne ressemble plus a rien) et libre pour le
+     CADRE sur demande (c'est une place reservee, pas un dessin) : `keepRatio`
+     bascule avec la selection, voir `majTransformateur`. */
   const transformateur: Transformateur = new konva.Transformer({
     keepRatio: true,
     rotateEnabled: false,
@@ -338,18 +370,38 @@ export function creeMotifs(konva: ModuleKonva, options: OptionsMotifs): RenduMot
     anchorCornerRadius: 2,
     ignoreStroke: true,
     boundBoxFunc: (ancienne, nouvelle) => {
-      const noeud = transformateur.nodes()[0] as NoeudChemin | undefined;
-      const motif = noeud ? motifDuNoeud(noeud) : undefined;
-      if (!motif) return nouvelle;
-
+      const noeud = transformateur.nodes()[0];
       const affichage = options.affichage();
-      const minPx = echelle.cmVersPx(motif.largeurMinCm) * affichage;
-      const maxPx =
-        Math.min(echelle.cmVersPx(motif.largeurMaxCm), echelle.zone.largeur) * affichage;
+
+      /* Les bornes de taille, en pixels du canvas : celles du dessin pour un
+         motif, le seul minimum gravable pour le cadre sur demande. */
+      let minLargeur: number;
+      let maxLargeur: number;
+      let minHauteur: number;
+
+      if (noeud && noeud === cadreDemande) {
+        minLargeur = echelle.cmVersPx(DEMANDE_MIN_CM) * affichage;
+        minHauteur = minLargeur;
+        maxLargeur = echelle.zone.largeur * affichage;
+      } else {
+        const motif = noeud ? motifDuNoeud(noeud as NoeudChemin) : undefined;
+        if (!motif) return nouvelle;
+
+        minLargeur = echelle.cmVersPx(motif.largeurMinCm) * affichage;
+        minHauteur = 0;
+        maxLargeur =
+          Math.min(echelle.cmVersPx(motif.largeurMaxCm), echelle.zone.largeur) * affichage;
+      }
 
       /* Hors des tailles gravables : on refuse le mouvement plutot que de
          corriger la boite, sinon la poignee « colle » et saute. */
-      if (nouvelle.width < minPx || nouvelle.width > maxPx) return ancienne;
+      if (
+        nouvelle.width < minLargeur ||
+        nouvelle.width > maxLargeur ||
+        nouvelle.height < minHauteur
+      ) {
+        return ancienne;
+      }
 
       /* Un demi-pixel de tolerance : sans lui, un motif cale contre le bord de
          la zone ne peut plus etre redimensionne du tout. */
@@ -441,9 +493,136 @@ export function creeMotifs(konva: ModuleKonva, options: OptionsMotifs): RenduMot
     return noeud;
   }
 
+  /* ------------------------------------- Le cadre « Motif a creer » (C1) */
+
+  /** Le cadre tel que le canvas le porte maintenant, en cm de pierre. */
+  function geometrieDemande(cadre: NoeudCadre): GeometrieDemande {
+    const coin = echelle.cmDepuisPoint({ x: cadre.x(), y: cadre.y() });
+    return {
+      xCm: coin.xCm,
+      yCm: coin.yCm,
+      largeurCm: echelle.pxVersCm(cadre.width() * Math.abs(cadre.scaleX())),
+      hauteurCm: echelle.pxVersCm(cadre.height() * Math.abs(cadre.scaleY())),
+    };
+  }
+
+  /**
+   * Le libelle recouvre exactement le cadre (`verticalAlign` fait le reste), et
+   * garde sa taille a l'ecran. Un cadre trop petit pour le lire le cache
+   * plutot que de laisser du texte deborder sur la gravure.
+   */
+  function placeLibelle(): void {
+    if (!cadreDemande || !libelleDemande) return;
+
+    const taille = LIBELLE_PX / (options.affichage() || 1);
+    libelleDemande.setAttrs({
+      x: cadreDemande.x(),
+      y: cadreDemande.y(),
+      width: cadreDemande.width(),
+      height: cadreDemande.height(),
+      fontSize: taille,
+      fontFamily: options.policeInterface,
+      fill: options.couleurAccent,
+    });
+    libelleDemande.visible(
+      cadreDemande.height() >= taille * 2.5 && cadreDemande.width() >= taille * 5,
+    );
+  }
+
+  function creeDemande(): void {
+    const cadre: NoeudCadre = new konva.Rect({
+      draggable: true,
+      /* `transparent` et non pas rien du tout : Konva ne rend saisissable que
+         l'interieur d'une forme REMPLIE, et le cadre doit s'attraper partout,
+         pas seulement sur son trait. */
+      fill: "transparent",
+      stroke: options.couleurAccent,
+      perfectDrawEnabled: false,
+      shadowForStrokeEnabled: false,
+      /* `strokeScaleEnabled: false` : Konva dessine alors le trait en pixels de
+         L'ECRAN, sans tenir compte de l'echelle de la couche. Le pointille a
+         donc la meme allure dans un cadre de 320 px et sur un grand ecran, et
+         ces deux chiffres se lisent en pixels d'ecran. */
+      strokeWidth: 2,
+      dash: [10, 7],
+      strokeScaleEnabled: false,
+      dragBoundFunc: (position) => {
+        const affichage = options.affichage();
+        const local = {
+          x: (position.x - couche.x()) / affichage,
+          y: (position.y - couche.y()) / affichage,
+        };
+        const borne = echelle.borne(local, {
+          largeur: cadre.width() * Math.abs(cadre.scaleX()),
+          hauteur: cadre.height() * Math.abs(cadre.scaleY()),
+        });
+
+        return {
+          x: borne.x * affichage + couche.x(),
+          y: borne.y * affichage + couche.y(),
+        };
+      },
+    });
+    cadre.setAttr("motifCle", CLE_DEMANDE);
+
+    const libelle: NoeudTexte = new konva.Text({
+      text: "Motif à créer",
+      align: "center",
+      verticalAlign: "middle",
+      /* Le libelle n'ecoute rien : un clic dessus attrape le cadre qui est
+         dessous, et le transformateur n'habille jamais le texte. */
+      listening: false,
+    });
+
+    cadre.on("mouseenter", () => curseur("grab"));
+    cadre.on("mouseleave", () => curseur("default"));
+    cadre.on("dragstart", () => curseur("grabbing"));
+    cadre.on("dragmove", () => placeLibelle());
+    cadre.on("dragend", () => {
+      curseur("grab");
+      options.surDemande(geometrieDemande(cadre));
+    });
+
+    /* Le transformateur pose une ECHELLE sur le noeud. Pour un rectangle, on la
+       repasse aussitot en largeur et hauteur : sinon le trait pointille
+       s'etirerait et le libelle avec lui. */
+    cadre.on("transform", () => {
+      cadre.setAttrs({
+        width: Math.max(1, cadre.width() * cadre.scaleX()),
+        height: Math.max(1, cadre.height() * cadre.scaleY()),
+        scaleX: 1,
+        scaleY: 1,
+      });
+      placeLibelle();
+    });
+    cadre.on("transformend", () => options.surDemande(geometrieDemande(cadre)));
+
+    couche.add(cadre);
+    couche.add(libelle);
+    cadreDemande = cadre;
+    libelleDemande = libelle;
+  }
+
+  function retireDemande(): void {
+    cadreDemande?.destroy();
+    libelleDemande?.destroy();
+    cadreDemande = null;
+    libelleDemande = null;
+  }
+
+  /** Le noeud selectionne, motif ou cadre sur demande. */
+  function noeudSelectionne(): NoeudChemin | NoeudCadre | null {
+    if (!selection) return null;
+    if (selection === CLE_DEMANDE) return cadreDemande;
+    return noeuds.get(selection) ?? null;
+  }
+
   function majTransformateur(): void {
-    const noeud = selection ? noeuds.get(selection) : undefined;
+    const noeud = noeudSelectionne();
     if (noeud) {
+      /* Le cadre sur demande se deforme librement ; un motif garde ses
+         proportions. Un seul transformateur, deux comportements. */
+      transformateur.keepRatio(selection !== CLE_DEMANDE);
       transformateur.nodes([noeud]);
       transformateur.moveToTop();
     } else {
@@ -482,22 +661,59 @@ export function creeMotifs(konva: ModuleKonva, options: OptionsMotifs): RenduMot
 
   function selectionne(cle: string | null): void {
     if (selection === cle) return;
+    /* Rien a selectionner tant que le cadre n'existe pas : un transformateur
+       pose sur du vide laisserait des poignees orphelines. */
+    if (cle === CLE_DEMANDE && !cadreDemande) return;
+
     selection = cle;
     majTransformateur();
     couche.batchDraw();
+    options.surSelection(selection);
   }
 
   ajustePoignees();
 
   return {
     dessine(etat, couleur) {
+      let selectionPerdue = false;
+
       /* Les poses disparues emportent leur noeud : rien ne reste derriere. */
       const vivantes = new Set(etat.motifs.map((pose) => pose.cle));
       for (const [cle, noeud] of noeuds) {
         if (vivantes.has(cle)) continue;
         noeud.destroy();
         noeuds.delete(cle);
-        if (selection === cle) selection = null;
+        if (selection === cle) {
+          selection = null;
+          selectionPerdue = true;
+        }
+      }
+
+      /* LE CADRE SUR DEMANDE. Il n'y en a jamais qu'un, et il ne porte pas la
+         couleur de la finition : ce n'est pas une gravure, c'est une place
+         reservee, d'ou le bronze de la page. */
+      if (!etat.motifSurDemande) {
+        if (cadreDemande) retireDemande();
+        if (selection === CLE_DEMANDE) {
+          selection = null;
+          selectionPerdue = true;
+        }
+      } else {
+        if (!cadreDemande) creeDemande();
+
+        const coin = echelle.pointDepuisCm({
+          xCm: etat.motifSurDemande.xCm,
+          yCm: etat.motifSurDemande.yCm,
+        });
+        cadreDemande?.setAttrs({
+          x: coin.x,
+          y: coin.y,
+          width: echelle.cmVersPx(etat.motifSurDemande.largeurCm),
+          height: echelle.cmVersPx(etat.motifSurDemande.hauteurCm),
+          scaleX: 1,
+          scaleY: 1,
+        });
+        placeLibelle();
       }
 
       for (const pose of etat.motifs) {
@@ -526,21 +742,26 @@ export function creeMotifs(konva: ModuleKonva, options: OptionsMotifs): RenduMot
       }
 
       /* L'ordre du calque suit l'ordre de la liste : le dernier pose passe
-         devant, et le transformateur reste au-dessus de tout. */
+         devant, et le transformateur reste au-dessus de tout. Le cadre sur
+         demande reste dessous : il n'a pas de dessin a cacher. */
       for (const pose of etat.motifs) noeuds.get(pose.cle)?.moveToTop();
 
       majTransformateur();
       couche.batchDraw();
+      if (selectionPerdue) options.surSelection(null);
     },
     selectionne,
+    selection: () => selection,
     redimensionne() {
       ajustePoignees();
+      placeLibelle();
       couche.batchDraw();
     },
     detruit() {
       window.removeEventListener("keydown", surTouche);
       stage.off(".motifs");
       transformateur.destroy();
+      retireDemande();
       for (const noeud of noeuds.values()) noeud.destroy();
       noeuds.clear();
     },
