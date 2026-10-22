@@ -3553,42 +3553,67 @@
         {
           "matiereId": "bengal",
           "fichier": "corazon-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "12740431d37d814d7158540acc92af869eeee33900f46cd93f620520648c2f78",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2847387,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "corazon-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "004f24dc824caf0e48bf54fabbfb417c1e287584c787785240d0116197327b22",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2827402,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "corazon-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "c12c683d0931a230445f82f42ae25fd527c719563c281eeb7f41c926c58bf15f",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2888026,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "corazon-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "d1edffe7bb88aea09bda8d6cbd1dda2344c0cf1752e2a7700ae011fc1aabfefc",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2912152,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "corazon-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "4b0dcdc3f6851f83ed665a170c4e4a5a653194116b38a7383e01dd34bd625745",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2859981,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -3725,15 +3750,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-22T08:43:45.572560+00:00",
-    "imagesCompletes": 250,
-    "combinaisonsRestantes": 20,
+    "dateControle": "2026-10-22T09:59:47.456502+00:00",
+    "imagesCompletes": 255,
+    "combinaisonsRestantes": 15,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "corazon",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3749,58 +3774,57 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-22T08:46:11.376285+00:00",
+    "dateFin": "2026-10-22T10:00:13.318824+00:00",
     "combinaisons": [
       {
-        "modeleId": "eligie",
-        "matiereId": "vizag-blue"
+        "modeleId": "corazon",
+        "matiereId": "bengal"
       },
       {
-        "modeleId": "eligie",
-        "matiereId": "viscount-white"
+        "modeleId": "corazon",
+        "matiereId": "rozabeta"
       },
       {
-        "modeleId": "eligie",
-        "matiereId": "rosso-porrino"
+        "modeleId": "corazon",
+        "matiereId": "paradiso"
       },
       {
-        "modeleId": "eligie",
-        "matiereId": "egipat"
+        "modeleId": "corazon",
+        "matiereId": "jablanica"
       },
       {
-        "modeleId": "eligie",
-        "matiereId": "marmara"
+        "modeleId": "corazon",
+        "matiereId": "royal"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 245,
-    "totalApres": 250,
+    "totalAvant": 250,
+    "totalApres": 255,
     "statut": "termine",
     "generationEnCours": false,
-    "continuationAutomatique": false,
-    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle",
-    "noteFin": "Demande de cette session : terminer ELIGIE. Les 10 variantes sont archivees ; recepteur ferme. Prochaine combinaison CORAZON / Bengal."
+    "continuationAutomatique": true,
+    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
   },
   "prochainLot": [
     {
       "modeleId": "corazon",
-      "matiereId": "bengal"
+      "matiereId": "vizag-blue"
     },
     {
       "modeleId": "corazon",
-      "matiereId": "rozabeta"
+      "matiereId": "viscount-white"
     },
     {
       "modeleId": "corazon",
-      "matiereId": "paradiso"
+      "matiereId": "rosso-porrino"
     },
     {
       "modeleId": "corazon",
-      "matiereId": "jablanica"
+      "matiereId": "egipat"
     },
     {
       "modeleId": "corazon",
-      "matiereId": "royal"
+      "matiereId": "marmara"
     }
   ],
   "dernierProduit": {

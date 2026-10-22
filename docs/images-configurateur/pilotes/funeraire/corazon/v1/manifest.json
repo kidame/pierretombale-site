@@ -1,0 +1,83 @@
+{
+  "modeleId": "corazon",
+  "referenceInterne": "CORAZON",
+  "famille": "funeraire",
+  "sourceLibraryId": "libfile_30d8624b06e481918aeab26c87e6c46f",
+  "nomPublic": null,
+  "version": 1,
+  "variantes": [
+    {
+      "matiereId": "bengal",
+      "image": "corazon-bengal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/bengal-texture-v1.png",
+      "sha256": "12740431d37d814d7158540acc92af869eeee33900f46cd93f620520648c2f78",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2847387,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rozabeta",
+      "image": "corazon-rozabeta.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rozabeta-texture-v1.png",
+      "sha256": "004f24dc824caf0e48bf54fabbfb417c1e287584c787785240d0116197327b22",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2827402,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "paradiso",
+      "image": "corazon-paradiso.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/paradiso-texture-v1.png",
+      "sha256": "c12c683d0931a230445f82f42ae25fd527c719563c281eeb7f41c926c58bf15f",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2888026,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "jablanica",
+      "image": "corazon-jablanica.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/jablanica-texture-v1.png",
+      "sha256": "d1edffe7bb88aea09bda8d6cbd1dda2344c0cf1752e2a7700ae011fc1aabfefc",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2912152,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "royal",
+      "image": "corazon-royal.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/royal-texture-v1.png",
+      "sha256": "4b0dcdc3f6851f83ed665a170c4e4a5a653194116b38a7383e01dd34bd625745",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2859981,
+      "integritePngVerifiee": true
+    }
+  ],
+  "statut": "pilote-a-valider",
+  "vuesParVariante": 1,
+  "calibration": null,
+  "contoursPixelValides": false,
+  "variantesPresentes": 5,
+  "variantesCibles": 10,
+  "dernierControleIntegrite": "2026-10-22T09:59:47.456502+00:00",
+  "dimensionsPx": [
+    1254,
+    1254
+  ],
+  "conformeResolutionFinale": false,
+  "validationConfigurateur": false
+}
