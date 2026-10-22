@@ -3694,42 +3694,67 @@
         {
           "matiereId": "bengal",
           "fichier": "douceur-bengal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "5ad575cfc6a3f27392d7843446eb82d40b190847c3d376664c87803bf84f63c7",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2887461,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rozabeta",
           "fichier": "douceur-rozabeta.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "94646628c7cef0dd270d493e71ef626574c2a006db93ebc7a3a74129cde91c9b",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2855187,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "paradiso",
           "fichier": "douceur-paradiso.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "34a175aaa4f168801e7704df719f0aaa6582985582a51f62313010ee2dc8e8b2",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2829860,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "jablanica",
           "fichier": "douceur-jablanica.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "3999a31401e555719d37183fe456760c1520c14beabb92236a1866f939138d27",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2920721,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "royal",
           "fichier": "douceur-royal.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "eb2083d38613f536fb9e2fb03c7adb8ca8f733e47ddceb4db87f3a145f0a280b",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2923169,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "vizag-blue",
@@ -3775,15 +3800,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-22T10:07:48.348458+00:00",
-    "imagesCompletes": 260,
-    "combinaisonsRestantes": 10,
+    "dateControle": "2026-10-22T10:17:57.130135+00:00",
+    "imagesCompletes": 265,
+    "combinaisonsRestantes": 5,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
     "modeleId": "douceur",
-    "matiereId": "bengal",
+    "matiereId": "vizag-blue",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3799,57 +3824,57 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-22T10:08:37.134527+00:00",
+    "dateFin": "2026-10-22T10:18:19.739709+00:00",
     "combinaisons": [
       {
-        "modeleId": "corazon",
-        "matiereId": "vizag-blue"
+        "modeleId": "douceur",
+        "matiereId": "bengal"
       },
       {
-        "modeleId": "corazon",
-        "matiereId": "viscount-white"
+        "modeleId": "douceur",
+        "matiereId": "rozabeta"
       },
       {
-        "modeleId": "corazon",
-        "matiereId": "rosso-porrino"
+        "modeleId": "douceur",
+        "matiereId": "paradiso"
       },
       {
-        "modeleId": "corazon",
-        "matiereId": "egipat"
+        "modeleId": "douceur",
+        "matiereId": "jablanica"
       },
       {
-        "modeleId": "corazon",
-        "matiereId": "marmara"
+        "modeleId": "douceur",
+        "matiereId": "royal"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 255,
-    "totalApres": 260,
+    "totalAvant": 260,
+    "totalApres": 265,
     "statut": "termine",
     "generationEnCours": false,
     "continuationAutomatique": true,
-    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
+    "controle": "Inspection visuelle, SHA256 et PNG par recepteur"
   },
   "prochainLot": [
     {
       "modeleId": "douceur",
-      "matiereId": "bengal"
+      "matiereId": "vizag-blue"
     },
     {
       "modeleId": "douceur",
-      "matiereId": "rozabeta"
+      "matiereId": "viscount-white"
     },
     {
       "modeleId": "douceur",
-      "matiereId": "paradiso"
+      "matiereId": "rosso-porrino"
     },
     {
       "modeleId": "douceur",
-      "matiereId": "jablanica"
+      "matiereId": "egipat"
     },
     {
       "modeleId": "douceur",
-      "matiereId": "royal"
+      "matiereId": "marmara"
     }
   ],
   "dernierProduit": {

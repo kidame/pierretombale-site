@@ -212,3 +212,8 @@
 {"date": "2026-10-22T10:07:23.929731+00:00", "modeleId": "corazon", "matiereId": "rosso-porrino", "sha256": "1791346ab2e8fcf5a0d0b16ced58fa880bd954f916d5be4a1ccf9249bb13dbb1", "total": 258}
 {"date": "2026-10-22T10:07:36.220913+00:00", "modeleId": "corazon", "matiereId": "egipat", "sha256": "5900681e863c841afacf5c11c18ed0086b2493548c3006cb29f57b1d48caa1d4", "total": 259}
 {"date": "2026-10-22T10:07:48.348458+00:00", "modeleId": "corazon", "matiereId": "marmara", "sha256": "d63c12ef9c36f5cff81e7645bd78806568aacaaac99004c0cbe76bba929bfe16", "total": 260}
+{"date": "2026-10-22T10:17:03.783383+00:00", "modeleId": "douceur", "matiereId": "bengal", "sha256": "5ad575cfc6a3f27392d7843446eb82d40b190847c3d376664c87803bf84f63c7", "total": 261}
+{"date": "2026-10-22T10:17:17.332355+00:00", "modeleId": "douceur", "matiereId": "rozabeta", "sha256": "94646628c7cef0dd270d493e71ef626574c2a006db93ebc7a3a74129cde91c9b", "total": 262}
+{"date": "2026-10-22T10:17:30.057313+00:00", "modeleId": "douceur", "matiereId": "paradiso", "sha256": "34a175aaa4f168801e7704df719f0aaa6582985582a51f62313010ee2dc8e8b2", "total": 263}
+{"date": "2026-10-22T10:17:44.119825+00:00", "modeleId": "douceur", "matiereId": "jablanica", "sha256": "3999a31401e555719d37183fe456760c1520c14beabb92236a1866f939138d27", "total": 264}
+{"date": "2026-10-22T10:17:57.130135+00:00", "modeleId": "douceur", "matiereId": "royal", "sha256": "eb2083d38613f536fb9e2fb03c7adb8ca8f733e47ddceb4db87f3a145f0a280b", "total": 265}
