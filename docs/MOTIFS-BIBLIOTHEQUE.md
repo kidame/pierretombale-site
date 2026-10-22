@@ -90,7 +90,7 @@ le bon a tirer montre le resultat. Aucune promesse de delai ni de prix sur le si
 
 ## 7. Chaine de production retenue (22.10.2026)
 Image generee par ChatGPT (prompt : noir pur sur blanc pur, style pochoir, 2048 px) ->
-
+python3 scripts/vectoriser-motif.py public/motifs image.png FAMILLE-NOM LARGEUR_MM
 (potrace, seuil 128, nettoyage des miettes, simplification, 1 unite = 1 mm) -> ligne dans
 src/data/motifs.json. Controle visuel en blanc sur pierre sombre et en noir sur pierre claire.
 Premiers resultats : rose, lys, edelweiss, olivier, ble, chene, croix latine, colombe, mains
