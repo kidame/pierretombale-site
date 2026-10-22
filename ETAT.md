@@ -62,6 +62,11 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 22.10.2026, Claude : reception des 270 images pilotes (27 modeles x 10 matieres, 1254 px,
+  705 Mo). Verdict : exploitables comme fonds, geometrie identique entre matieres (une calibration
+  par modele). Manques : pas de vue stele, pas de calibration cm/px, 10 matieres sans
+  correspondance avec granits.json (13), 27 modeles sans correspondance avec les 12 fiches, poids
+  git. Detail : docs/images-configurateur/RECEPTION-CONFIGURATEUR-2026-10-22.md. Aucun code.
 <!-- images-checkpoint -->
 - Cloture images 2026-10-22T10:32:09.980077+00:00 : 270/270 PNG pilotes archives sur le VPS.
   27/27 modeles complets, 10 matieres chacun ; 14 funeraires et 13 cineraires.
