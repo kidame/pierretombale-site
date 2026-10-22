@@ -1,0 +1,21 @@
+{
+  "_commentaire": "Bibliotheque de motifs du configurateur. Ajouter un motif = deposer le SVG dans public/motifs/ (regles : docs/MOTIFS-BIBLIOTHEQUE.md, outil : scripts/vectoriser-motif.py) et une ligne ici. largeurCm = taille par defaut sur la stele ; largeurMinCm garde les details gravables. Prix : tarifs.json quand la grille existera. Les 4 motifs manquants (sapin, coeur, papillon, infini) arrivent avec les images de ChatGPT.",
+  "familles": [
+    { "id": "fleurs", "nom": "Fleurs et végétaux", "ordre": 1 },
+    { "id": "foi", "nom": "Foi", "ordre": 2 },
+    { "id": "nature", "nom": "Nature et région", "ordre": 3 },
+    { "id": "souvenir", "nom": "Souvenir", "ordre": 4 }
+  ],
+  "motifs": [
+    { "id": "rose", "nom": "Rose", "famille": "fleurs", "fichier": "/motifs/fleurs-rose.svg", "largeurCm": 12, "largeurMinCm": 10, "largeurMaxCm": 30, "symetrie": true, "motsCles": ["fleur", "amour"], "disponible": true },
+    { "id": "lys", "nom": "Lys", "famille": "fleurs", "fichier": "/motifs/fleurs-lys.svg", "largeurCm": 12, "largeurMinCm": 10, "largeurMaxCm": 30, "symetrie": false, "motsCles": ["fleur", "pureté"], "disponible": true },
+    { "id": "edelweiss", "nom": "Edelweiss", "famille": "fleurs", "fichier": "/motifs/fleurs-edelweiss.svg", "largeurCm": 10, "largeurMinCm": 8, "largeurMaxCm": 25, "symetrie": false, "motsCles": ["fleur", "montagne", "suisse"], "disponible": true },
+    { "id": "olivier", "nom": "Branche d'olivier", "famille": "fleurs", "fichier": "/motifs/fleurs-olivier.svg", "largeurCm": 20, "largeurMinCm": 12, "largeurMaxCm": 40, "symetrie": true, "motsCles": ["paix", "branche"], "disponible": true },
+    { "id": "ble", "nom": "Épis de blé", "famille": "fleurs", "fichier": "/motifs/fleurs-ble.svg", "largeurCm": 12, "largeurMinCm": 10, "largeurMaxCm": 25, "symetrie": true, "motsCles": ["blé", "campagne", "récolte"], "disponible": true },
+    { "id": "chene", "nom": "Feuille de chêne", "famille": "fleurs", "fichier": "/motifs/fleurs-chene.svg", "largeurCm": 10, "largeurMinCm": 8, "largeurMaxCm": 25, "symetrie": true, "motsCles": ["chêne", "force", "longévité"], "disponible": true },
+    { "id": "croix-latine", "nom": "Croix latine", "famille": "foi", "fichier": "/motifs/foi-croix-latine.svg", "largeurCm": 12, "largeurMinCm": 6, "largeurMaxCm": 40, "symetrie": false, "motsCles": ["croix", "chrétien"], "disponible": true },
+    { "id": "colombe", "nom": "Colombe", "famille": "foi", "fichier": "/motifs/foi-colombe.svg", "largeurCm": 15, "largeurMinCm": 10, "largeurMaxCm": 35, "symetrie": true, "motsCles": ["paix", "oiseau", "âme"], "disponible": true },
+    { "id": "mains-jointes", "nom": "Mains jointes", "famille": "foi", "fichier": "/motifs/foi-mains-jointes.svg", "largeurCm": 12, "largeurMinCm": 8, "largeurMaxCm": 25, "symetrie": true, "motsCles": ["prière"], "disponible": true },
+    { "id": "montagne", "nom": "Montagne", "famille": "nature", "fichier": "/motifs/nature-montagne.svg", "largeurCm": 25, "largeurMinCm": 15, "largeurMaxCm": 50, "symetrie": true, "motsCles": ["montagne", "alpes", "jura"], "disponible": true }
+  ]
+}

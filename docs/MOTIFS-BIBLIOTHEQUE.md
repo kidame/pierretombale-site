@@ -87,3 +87,13 @@ le bon a tirer montre le resultat. Aucune promesse de delai ni de prix sur le si
 2. Claude cree motifs.json et branche la passe C : familles, pose, deplacement, taille en cm,
    miroir, "Un motif a vous".
 3. Les prix par motif attendent la grille de l'atelier (passe D).
+
+## 7. Chaine de production retenue (22.10.2026)
+Image generee par ChatGPT (prompt : noir pur sur blanc pur, style pochoir, 2048 px) ->
+
+(potrace, seuil 128, nettoyage des miettes, simplification, 1 unite = 1 mm) -> ligne dans
+src/data/motifs.json. Controle visuel en blanc sur pierre sombre et en noir sur pierre claire.
+Premiers resultats : rose, lys, edelweiss, olivier, ble, chene, croix latine, colombe, mains
+jointes, montagne. Les vides blancs les plus fins (nervures) font 0,3 a 0,6 mm a la largeur
+par defaut : le graveur dira si c est sablable ou s il faut poser ces motifs plus grands
+(largeurMinCm a ajuster).

@@ -15,15 +15,16 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       (la page est en noindex, follow : trop mince en v1, canonique vers la fiche)
 - [x] Passe B : ilot Konva, fond = image du modele dans la matiere choisie, 1 zone de texte
       deplacable dans la zone gravable, police, hauteur en cm, finition - agent kumo-run
-- [>] Passe C : 3 zones, motifs SVG, finitions, carte "Un motif a vous" - agent - attend les
-      14 SVG de base (docs/MOTIFS-BIBLIOTHEQUE.md) ou des provisoires de Claude
+- [>] Passe C : 3 zones, motifs SVG, finitions, carte "Un motif a vous" - agent - 10 motifs
+      prets, debloquee
 - [ ] Passe D : prix indicatif en direct (tarifs.json) - agent - attend la grille de prix
 - [ ] Passe E : export PNG + JSON de scene, branchement sur /devis/ - agent - attend E6
 - [ ] Passe F : avertissement avant de quitter, brouillon, mobile - agent
 - [ ] Etendre aux 26 autres modeles : un fichier de calibration par modele - Claude + Thomas
 
 ## En attente de Thomas (n'arrete rien)
-- [!] 14 motifs SVG de base dessines par Thomas (regles : docs/MOTIFS-BIBLIOTHEQUE.md)
+- [>] Motifs SVG : 10 sur 14 vectorises depuis les images ChatGPT (public/motifs, src/data/motifs.json) ;
+      restent sapin, coeur, papillon, infini (images a produire, puis scripts/vectoriser-motif.py)
 - [!] Noms publics des 27 modeles (une ligne `name:` par fiche a changer)
 - [!] Nature des matieres : Marmara granit ou marbre -> vocabulaire "granits" ou "matieres"
 - [!] Dimensions reelles par modele (`dimensions:` par fiche) et largeur de stele en cm
