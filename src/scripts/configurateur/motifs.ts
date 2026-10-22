@@ -30,10 +30,13 @@
  * texte (c'est `rendu.ts`), et ne calcule aucun prix.
  */
 import type { Echelle } from "./echelle";
-import type { EtatConfigurateur, MotifPose } from "./etat";
+import type { EtatConfigurateur, MotifPose, MotifSurDemande } from "./etat";
 import type { Layer, ModuleKonva, Stage } from "./rendu";
 
 type NoeudChemin = InstanceType<ModuleKonva["Path"]>;
+type Groupe = InstanceType<ModuleKonva["Group"]>;
+type NoeudCadre = InstanceType<ModuleKonva["Rect"]>;
+type NoeudTexte = InstanceType<ModuleKonva["Text"]>;
 type Transformateur = InstanceType<ModuleKonva["Transformer"]>;
 
 /**
@@ -63,6 +66,32 @@ export const MAX_MOTIFS = 6;
 
 /** Ce qu'ajoutent ou retirent les boutons « Plus grand » et « Moins grand ». */
 export const PAS_TAILLE_CM = 1;
+
+/* ------------------------------------------- Le motif sur demande (C1) */
+
+/** La cle de pose du cadre « Motif a creer ». Il n'y en a jamais qu'un. */
+export const CLE_DEMANDE = "sur-demande";
+
+/** Le cadre a dessiner part carre, a une taille courante de gravure. */
+export const DEMANDE_LARGEUR_CM = 15;
+export const DEMANDE_HAUTEUR_CM = 15;
+
+/** Plus petit, le cadre ne dirait plus rien ni a la famille ni au graveur. */
+export const DEMANDE_MIN_CM = 5;
+
+/** Longueur de la description, comme les champs libres de /devis/. */
+export const DESCRIPTION_MAX = 300;
+
+/** 8 Mo et un seul fichier : la meme limite que le formulaire de devis. */
+export const FICHIER_MAX_OCTETS = 8 * 1024 * 1024;
+
+/** Ce que nous savons relire pour dessiner un motif. */
+export const FICHIER_EXTENSIONS = ".jpg,.jpeg,.png,.pdf,.svg";
+
+/** Le message affiche quand le fichier depasse `FICHIER_MAX_OCTETS`. */
+export const ERREUR_FICHIER_LOURD =
+  "Ce fichier dépasse 8 Mo. Envoyez-en un plus léger, ou décrivez-nous votre idée : " +
+  "nous pouvons aussi vous rappeler pour en parler.";
 
 /** Taille des poignees du transformateur, en pixels a l'ecran. */
 const POIGNEE_PX = 11;
@@ -190,6 +219,47 @@ export function changeLargeur(
       echelle,
     );
   });
+}
+
+/** Ramene le cadre « Motif a creer » dans la zone gravable. */
+export function borneDemande(demande: MotifSurDemande, echelle: Echelle): MotifSurDemande {
+  const zoneLargeurCm = echelle.pxVersCm(echelle.zone.largeur);
+  const zoneHauteurCm = echelle.pxVersCm(echelle.zone.hauteur);
+
+  const largeurCm = Math.min(
+    Math.max(demande.largeurCm, DEMANDE_MIN_CM),
+    Math.max(DEMANDE_MIN_CM, zoneLargeurCm),
+  );
+  const hauteurCm = Math.min(
+    Math.max(demande.hauteurCm, DEMANDE_MIN_CM),
+    Math.max(DEMANDE_MIN_CM, zoneHauteurCm),
+  );
+
+  return {
+    ...demande,
+    largeurCm,
+    hauteurCm,
+    xCm: Math.min(Math.max(demande.xCm, 0), Math.max(0, zoneLargeurCm - largeurCm)),
+    yCm: Math.min(Math.max(demande.yCm, 0), Math.max(0, zoneHauteurCm - hauteurCm)),
+  };
+}
+
+/** Un cadre « Motif a creer » vide, au centre de la zone gravable. */
+export function demandeCentree(echelle: Echelle): MotifSurDemande {
+  const zoneLargeurCm = echelle.pxVersCm(echelle.zone.largeur);
+  const zoneHauteurCm = echelle.pxVersCm(echelle.zone.hauteur);
+
+  return borneDemande(
+    {
+      description: "",
+      fichier: null,
+      xCm: (zoneLargeurCm - DEMANDE_LARGEUR_CM) / 2,
+      yCm: (zoneHauteurCm - DEMANDE_HAUTEUR_CM) / 2,
+      largeurCm: DEMANDE_LARGEUR_CM,
+      hauteurCm: DEMANDE_HAUTEUR_CM,
+    },
+    echelle,
+  );
 }
 
 /** Retourne une pose horizontalement. */

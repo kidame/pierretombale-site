@@ -83,6 +83,7 @@ export async function demarre(): Promise<void> {
     finitionId: donnees.defauts.finitionId,
     position: null,
     motifs: [],
+    motifSurDemande: null,
   });
 
   /* ------------------------------------------------------- Les controles */
@@ -232,14 +233,26 @@ export async function demarre(): Promise<void> {
 
     const moins = boutonPose("Moins grand", `Reduire le motif ${motif.nom}`, () =>
       etat.maj({
-        motifs: changeLargeur(etat.lire().motifs, pose.cle, -PAS_TAILLE_CM, catalogueMotifs, echelle),
+        motifs: changeLargeur(
+          etat.lire().motifs,
+          pose.cle,
+          -PAS_TAILLE_CM,
+          catalogueMotifs,
+          echelle,
+        ),
       }),
     );
     moins.disabled = pose.largeurCm <= motif.largeurMinCm;
 
     const plus = boutonPose("Plus grand", `Agrandir le motif ${motif.nom}`, () =>
       etat.maj({
-        motifs: changeLargeur(etat.lire().motifs, pose.cle, PAS_TAILLE_CM, catalogueMotifs, echelle),
+        motifs: changeLargeur(
+          etat.lire().motifs,
+          pose.cle,
+          PAS_TAILLE_CM,
+          catalogueMotifs,
+          echelle,
+        ),
       }),
     );
     plus.disabled = pose.largeurCm >= largeurMaxCm(motif, echelle);
