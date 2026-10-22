@@ -63,10 +63,11 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 <!-- images-checkpoint -->
-- Checkpoint images 2026-10-21T09:50:43.003796+00:00 : 240/270 archivees, 30 restantes.
-  24/27 modeles complets. Prochaine image : eligie / bengal.
+- Checkpoint images 2026-10-22T08:46:11.376285+00:00 : 250/270 archivees, 20 restantes.
+  25/27 modeles complets. Prochaine image : corazon / bengal.
   Produits complets de 10 variantes, deux lots de 5, generations successives puis transferts groupes.
   Suivi detaille : docs/images-configurateur/AVANCEMENT.md et suivi-serie.json.
+  ELIGIE 10/10 termine le 22.10.2026 ; recepteur ferme, aucune generation active dans cette session.
 <!-- /images-checkpoint -->
 - 20.10.2026 13h05, Thomas : clarification prioritaire, produire les 270 images,
   lots de 5 automatiquement enchaines. Ne plus arreter une session a la fin d'un lot.

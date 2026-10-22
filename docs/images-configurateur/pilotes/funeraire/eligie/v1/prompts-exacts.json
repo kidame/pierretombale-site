@@ -55,6 +55,61 @@
         "matieres/2026-10-19/textures-v1/royal-texture-v1.png"
       ],
       "controleVisuel": "Contours, cadrage et composants visuellement conserves depuis Bengal; aile noire gauche inchangee, rose absente. Royal sombre a cristaux gris/argentes conforme a la reference. Calibration non validee."
+    },
+    "vizag-blue": {
+      "prompt": "Use case: precise-object-edit. Asset: ELIGIE funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 the target stone texture. Change ONLY the main stone material on the base, rails, front step, bevel under slab, top slab, rear support and broad RIGHT headstone panel. The narrower sculpted LEFT headstone wing is a permanent BICOLOUR insert: retain it as the same plain polished near-solid black stone, completely unchanged. Keep exact silhouette of both curved headstone wings, their overlap, wavy upper contours, all slab thicknesses, components, crop, camera, scale, lighting, shadows and pale grey background from image 1. No added or removed structure, no rose, inscription, flowers, vase, decorations. Faithfully match color and realistic mineral grain scale of image 2, softly polished with restrained reflections. Requested single square 2048x2048 image. Material: VIZAG BLUE stone exactly as image 2: flowing clouded blue-grey, light grey and charcoal mineral bands with sparse subtle deep rust/burgundy specks. Follow the actual subdued sample colors, not bright blue. Preserve broad natural swirls at realistic slab scale.",
+      "date": "2026-10-22T08:43:01.430813+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-372d7cbe-abc4-4c13-9cd9-a290536d6e9f.png",
+      "sha256": "d1bcf4cafd693349be96b98cae746820f4c3fd10c5a8f80828911df6c1fe7d4a",
+      "references": [
+        "pilotes/funeraire/eligie/v1/eligie-bengal.png",
+        "matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png"
+      ],
+      "controleVisuel": "Contours, cadrage et composants visuellement conserves depuis Bengal; aile noire gauche inchangee, rose absente. Nuages gris/bleutes discrets et veinage avec grains bordeaux conformes a la reference. Calibration non validee."
+    },
+    "viscount-white": {
+      "prompt": "Use case: precise-object-edit. Asset: ELIGIE funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 the target stone texture. Change ONLY the main stone material on the base, rails, front step, bevel under slab, top slab, rear support and broad RIGHT headstone panel. The narrower sculpted LEFT headstone wing is a permanent BICOLOUR insert: retain it as the same plain polished near-solid black stone, completely unchanged. Keep exact silhouette of both curved headstone wings, their overlap, wavy upper contours, all slab thicknesses, components, crop, camera, scale, lighting, shadows and pale grey background from image 1. No added or removed structure, no rose, inscription, flowers, vase, decorations. Faithfully match color and realistic mineral grain scale of image 2, softly polished with restrained reflections. Requested single square 2048x2048 image. Material: VISCOUNT WHITE granite exactly as image 2: predominantly milky white and pale grey crystalline stone with fine black speckles and subtle flowing grey grain, no dramatic invented black marble veins. Preserve the soft light neutral palette and realistic fine mineral texture.",
+      "date": "2026-10-22T08:43:12.946865+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-0ede62fa-c7b5-4b93-9306-5cd05ab3a616.png",
+      "sha256": "465a1d536d667323fce46087f148850ec2ff5cd603d190bde71bc25aa0a810c5",
+      "references": [
+        "pilotes/funeraire/eligie/v1/eligie-bengal.png",
+        "matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png"
+      ],
+      "controleVisuel": "Contours, cadrage et composants visuellement conserves depuis Bengal; aile noire gauche inchangee, rose absente. Pierre claire blanche/grise a fines ponctuations noires conforme a la reference. Calibration non validee."
+    },
+    "rosso-porrino": {
+      "prompt": "Use case: precise-object-edit. Asset: ELIGIE funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 the target stone texture. Change ONLY the main stone material on the base, rails, front step, bevel under slab, top slab, rear support and broad RIGHT headstone panel. The narrower sculpted LEFT headstone wing is a permanent BICOLOUR insert: retain it as the same plain polished near-solid black stone, completely unchanged. Keep exact silhouette of both curved headstone wings, their overlap, wavy upper contours, all slab thicknesses, components, crop, camera, scale, lighting, shadows and pale grey background from image 1. No added or removed structure, no rose, inscription, flowers, vase, decorations. Faithfully match color and realistic mineral grain scale of image 2, softly polished with restrained reflections. Requested single square 2048x2048 image. Material: ROSSO PORRINO granite exactly as image 2: dominant warm salmon-pink feldspar with grey quartz clusters, sparse white crystals and black mineral flecks. Match the stronger salmon proportion and natural crystal structure of the supplied sample, with realistic scale.",
+      "date": "2026-10-22T08:43:25.227731+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-229cbfb4-ed17-4b80-8771-0f3bbc442d31.png",
+      "sha256": "aad8763e6497f28931f0f22c5086e60dcf4882073e930337c14ea9464b870a71",
+      "references": [
+        "pilotes/funeraire/eligie/v1/eligie-bengal.png",
+        "matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png"
+      ],
+      "controleVisuel": "Contours, cadrage et composants visuellement conserves depuis Bengal; aile noire gauche inchangee, rose absente. Texture dominante saumon, quartz gris et grains noirs conforme a la reference. Calibration non validee."
+    },
+    "egipat": {
+      "prompt": "Use case: precise-object-edit. Asset: ELIGIE funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 the target stone texture. Change ONLY the main stone material on the base, rails, front step, bevel under slab, top slab, rear support and broad RIGHT headstone panel. The narrower sculpted LEFT headstone wing is a permanent BICOLOUR insert: retain it as the same plain polished near-solid black stone, completely unchanged. Keep exact silhouette of both curved headstone wings, their overlap, wavy upper contours, all slab thicknesses, components, crop, camera, scale, lighting, shadows and pale grey background from image 1. No added or removed structure, no rose, inscription, flowers, vase, decorations. Faithfully match color and realistic mineral grain scale of image 2, softly polished with restrained reflections. Requested single square 2048x2048 image. Material: EGIPAT granite exactly as image 2: light-to-medium neutral grey salt-and-pepper stone, dense small white/grey crystals and irregular black mineral clusters. Preserve the provided sample appearance and natural grain scale, without blue, beige or pink tint.",
+      "date": "2026-10-22T08:43:36.587038+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-38c0f96e-c0fb-4009-ab2c-7e230744b148.png",
+      "sha256": "b5ecb6834950fb13f3de98ecee551022d405a3ac8cc1a9e784c51f0cdeca4ac9",
+      "references": [
+        "pilotes/funeraire/eligie/v1/eligie-bengal.png",
+        "matieres/2026-10-19/textures-v1/egipat-texture-v1.png"
+      ],
+      "controleVisuel": "Contours, cadrage et composants visuellement conserves depuis Bengal; aile noire gauche inchangee, rose absente. Texture gris clair/blanc a amas noirs conforme a la reference. Calibration non validee."
+    },
+    "marmara": {
+      "prompt": "Use case: precise-object-edit. Asset: ELIGIE funerary monument catalog/configurator pilot. Image 1 is the fixed BENGAL geometry and framing master, image 2 the target stone texture. Change ONLY the main stone material on the base, rails, front step, bevel under slab, top slab, rear support and broad RIGHT headstone panel. The narrower sculpted LEFT headstone wing is a permanent BICOLOUR insert: retain it as the same plain polished near-solid black stone, completely unchanged. Keep exact silhouette of both curved headstone wings, their overlap, wavy upper contours, all slab thicknesses, components, crop, camera, scale, lighting, shadows and pale grey background from image 1. No added or removed structure, no rose, inscription, flowers, vase, decorations. Faithfully match color and realistic mineral grain scale of image 2, softly polished with restrained reflections. Requested single square 2048x2048 image. Material: MARMARA stone exactly as image 2: crystalline soft white and pale grey marble-like stone with a few broad, gently undulating parallel cool grey bands. Use restrained straight-to-wavy banding and fine crystalline texture, no black speckled granite and no ornate branching veins. Keep the permanent left headstone wing black.",
+      "date": "2026-10-22T08:43:45.572560+00:00",
+      "sourceLocale": "/workspace/scratch/5d886051d92f/generated_images/exec-2a7e09ef-ef97-41c5-a01c-cadd785c65fa.png",
+      "sha256": "60ef8a30671b2a592fa898e9f442013ca494e16fa94a89769e7ec02a0ef3527c",
+      "references": [
+        "pilotes/funeraire/eligie/v1/eligie-bengal.png",
+        "matieres/2026-10-19/textures-v1/marmara-texture-v1.png"
+      ],
+      "controleVisuel": "Contours, cadrage et composants visuellement conserves depuis Bengal; aile noire gauche inchangee, rose absente. Pierre blanche a bandes grises paralleles conforme a la reference Marmara. Calibration non validee."
     }
   }
 }

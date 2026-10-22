@@ -65,19 +65,98 @@
       ],
       "tailleOctets": 2838888,
       "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "vizag-blue",
+      "image": "eligie-vizag-blue.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/vizag-blue-texture-v1.png",
+      "sha256": "d1bcf4cafd693349be96b98cae746820f4c3fd10c5a8f80828911df6c1fe7d4a",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2769666,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "viscount-white",
+      "image": "eligie-viscount-white.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/viscount-white-texture-v1.png",
+      "sha256": "465a1d536d667323fce46087f148850ec2ff5cd603d190bde71bc25aa0a810c5",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2674152,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "rosso-porrino",
+      "image": "eligie-rosso-porrino.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/rosso-porrino-texture-v1.png",
+      "sha256": "aad8763e6497f28931f0f22c5086e60dcf4882073e930337c14ea9464b870a71",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2732637,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "egipat",
+      "image": "eligie-egipat.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/egipat-texture-v1.png",
+      "sha256": "b5ecb6834950fb13f3de98ecee551022d405a3ac8cc1a9e784c51f0cdeca4ac9",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2913117,
+      "integritePngVerifiee": true
+    },
+    {
+      "matiereId": "marmara",
+      "image": "eligie-marmara.png",
+      "textureSelecteur": "../../../../matieres/2026-10-19/textures-v1/marmara-texture-v1.png",
+      "sha256": "60ef8a30671b2a592fa898e9f442013ca494e16fa94a89769e7ec02a0ef3527c",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "tailleOctets": 2234835,
+      "integritePngVerifiee": true
     }
   ],
   "statut": "pilote-a-valider",
   "vuesParVariante": 1,
   "calibration": null,
   "contoursPixelValides": false,
-  "variantesPresentes": 5,
+  "variantesPresentes": 10,
   "variantesCibles": 10,
-  "dernierControleIntegrite": "2026-10-22T08:34:48.725848+00:00",
+  "dernierControleIntegrite": "2026-10-22T08:43:45.572560+00:00",
   "dimensionsPx": [
     1254,
     1254
   ],
   "conformeResolutionFinale": false,
-  "validationConfigurateur": false
+  "validationConfigurateur": false,
+  "promptsExactsDisponibles": [
+    "bengal",
+    "rozabeta",
+    "paradiso",
+    "jablanica",
+    "royal",
+    "vizag-blue",
+    "viscount-white",
+    "rosso-porrino",
+    "egipat",
+    "marmara"
+  ],
+  "promptsExactsManquants": [],
+  "promptsExactsRetrouves": true,
+  "notesModele": "ELIGIE : deux panneaux de stele galbes superposes, aile noire gauche structurelle conservee dans les 10 variantes. Rose gravee et son reflet retires. Base, rails a bouts avant inclines, dalle, chanfrein inferieur et marche frontale conserves. Une base Bengal ; neuf editions directes de cette meme base. Perspective residuelle, geometrie physique, zones gravables, couleurs et echelle du grain a valider.",
+  "modeDeGeneration": "imagegen-integre",
+  "baseMateriau": "bengal",
+  "insertFixe": "Aile noire gauche de la stele, conservee sur les 10 images",
+  "calibrationValidee": false
 }

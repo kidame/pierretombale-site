@@ -3407,7 +3407,7 @@
       "sourceLibraryId": "libfile_401b577ce0a081918b4b3312dec11478",
       "dossier": "pilotes/funeraire/eligie/v1",
       "ordre": 25,
-      "notes": "Geometrie et zones physiques a valider.",
+      "notes": "ELIGIE : deux panneaux de stele galbes superposes, aile noire gauche structurelle conservee dans les 10 variantes. Rose gravee et son reflet retires. Base, rails a bouts avant inclines, dalle, chanfrein inferieur et marche frontale conserves. Une base Bengal ; neuf editions directes de cette meme base. Perspective residuelle, geometrie physique, zones gravables, couleurs et echelle du grain a valider.",
       "variantes": [
         {
           "matiereId": "bengal",
@@ -3477,42 +3477,67 @@
         {
           "matiereId": "vizag-blue",
           "fichier": "eligie-vizag-blue.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "d1bcf4cafd693349be96b98cae746820f4c3fd10c5a8f80828911df6c1fe7d4a",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2769666,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "viscount-white",
           "fichier": "eligie-viscount-white.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "465a1d536d667323fce46087f148850ec2ff5cd603d190bde71bc25aa0a810c5",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2674152,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "rosso-porrino",
           "fichier": "eligie-rosso-porrino.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "aad8763e6497f28931f0f22c5086e60dcf4882073e930337c14ea9464b870a71",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2732637,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "egipat",
           "fichier": "eligie-egipat.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "b5ecb6834950fb13f3de98ecee551022d405a3ac8cc1a9e784c51f0cdeca4ac9",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2913117,
+          "integritePngVerifiee": true
         },
         {
           "matiereId": "marmara",
           "fichier": "eligie-marmara.png",
-          "statut": "a-generer",
-          "sha256": null,
-          "dimensionsPx": null,
-          "validationConfigurateur": false
+          "statut": "archive-documente",
+          "sha256": "60ef8a30671b2a592fa898e9f442013ca494e16fa94a89769e7ec02a0ef3527c",
+          "dimensionsPx": [
+            1254,
+            1254
+          ],
+          "validationConfigurateur": false,
+          "tailleOctets": 2234835,
+          "integritePngVerifiee": true
         }
       ]
     },
@@ -3700,15 +3725,15 @@
     }
   ],
   "bilanVerifie": {
-    "dateControle": "2026-10-22T08:34:48.725848+00:00",
-    "imagesCompletes": 245,
-    "combinaisonsRestantes": 25,
+    "dateControle": "2026-10-22T08:43:45.572560+00:00",
+    "imagesCompletes": 250,
+    "combinaisonsRestantes": 20,
     "imagesValideesConfigurateur": 0,
     "controle": "archive par image, PNG et SHA256"
   },
   "prochaineAction": {
-    "modeleId": "eligie",
-    "matiereId": "vizag-blue",
+    "modeleId": "corazon",
+    "matiereId": "bengal",
     "action": "Produire les variantes restantes du produit par lots de 5, puis archiver le lot"
   },
   "productionParPassage": {
@@ -3724,57 +3749,68 @@
     "produitCompletAvantChangement": true
   },
   "dernierLot": {
-    "dateFin": "2026-10-21T09:50:43.003796+00:00",
+    "dateFin": "2026-10-22T08:46:11.376285+00:00",
     "combinaisons": [
       {
-        "modeleId": "arbre-de-vie",
+        "modeleId": "eligie",
         "matiereId": "vizag-blue"
       },
       {
-        "modeleId": "arbre-de-vie",
+        "modeleId": "eligie",
         "matiereId": "viscount-white"
       },
       {
-        "modeleId": "arbre-de-vie",
+        "modeleId": "eligie",
         "matiereId": "rosso-porrino"
       },
       {
-        "modeleId": "arbre-de-vie",
+        "modeleId": "eligie",
         "matiereId": "egipat"
       },
       {
-        "modeleId": "arbre-de-vie",
+        "modeleId": "eligie",
         "matiereId": "marmara"
       }
     ],
     "imagesAjoutees": 5,
-    "totalAvant": 235,
-    "totalApres": 240,
+    "totalAvant": 245,
+    "totalApres": 250,
     "statut": "termine",
     "generationEnCours": false,
-    "continuationAutomatique": true,
-    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle"
+    "continuationAutomatique": false,
+    "controle": "SHA256, CRC PNG, IEND, decompression et dimensions par recepteur; inspection visuelle",
+    "noteFin": "Demande de cette session : terminer ELIGIE. Les 10 variantes sont archivees ; recepteur ferme. Prochaine combinaison CORAZON / Bengal."
   },
   "prochainLot": [
     {
-      "modeleId": "eligie",
+      "modeleId": "corazon",
       "matiereId": "bengal"
     },
     {
-      "modeleId": "eligie",
+      "modeleId": "corazon",
       "matiereId": "rozabeta"
     },
     {
-      "modeleId": "eligie",
+      "modeleId": "corazon",
       "matiereId": "paradiso"
     },
     {
-      "modeleId": "eligie",
+      "modeleId": "corazon",
       "matiereId": "jablanica"
     },
     {
-      "modeleId": "eligie",
+      "modeleId": "corazon",
       "matiereId": "royal"
     }
-  ]
+  ],
+  "dernierProduit": {
+    "modeleId": "eligie",
+    "imagesAjoutees": 10,
+    "totalAvant": 240,
+    "totalApres": 250,
+    "statut": "termine",
+    "recepteurFerme": true,
+    "generationEnCours": false,
+    "dateFin": "2026-10-22T08:46:11.381886+00:00"
+  }
 }
