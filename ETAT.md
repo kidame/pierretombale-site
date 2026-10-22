@@ -62,6 +62,20 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 22.10.2026, Claude + agent claude (kumo-run, 80 tours atteints, fini a la main) : LE CATALOGUE REEL
+  REMPLACE LE PROVISOIRE. 27 fiches dans src/content/products (champ `modeleId` = dossier image,
+  noms publics a faire corriger par Thomas), 10 matieres dans src/data/granits.json (champ
+  `description`), images web derivees par `scripts/images-modeles.py` (public/images/modeles,
+  810 WebP en 1200/640/320, 71 Mo ; public/images/matieres 480/160) avec index
+  src/data/images-modeles.json valide par le schema. Plus de pipeline astro:assets : ProductImage
+  est un <img> avec srcset et alt genere ("Douceur, monument funeraire en Bengal, vue de face").
+  Fiche : rangee de pastilles pour changer de matiere (script inline < 1 Ko, aria-pressed), JSON-LD
+  Product avec image 1200. Accueil : featured -> 4-pieces-stele-doucine-avec-base, douceur,
+  aquarius, 5-pieces-jardiniere-en-closoir, corazon. Build + astro check 0 erreur ; pages produit
+  6 Ko html gz, 0 Ko JS, 2,4 Ko css. Verifie au navigateur de test : fiche douceur (changement
+  de matiere OK), liste cineraires mobile. Les 270 PNG sources restent dans le depot (decision
+  de Thomas). A trancher par Thomas : Marmara est-il un granit (sinon vocabulaire "matieres") ;
+  dimensions reelles par modele ; noms publics. Commits 11be6b7, 74159b2, aa4015b.
 - 22.10.2026, Claude : reception des 270 images pilotes (27 modeles x 10 matieres, 1254 px,
   705 Mo). Verdict : exploitables comme fonds, geometrie identique entre matieres (une calibration
   par modele). Manques : pas de vue stele, pas de calibration cm/px, 10 matieres sans
@@ -629,6 +643,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
 ## Prochaine etape
+CATALOGUE : faire corriger par Thomas les noms publics, les dimensions et la nature des matieres
+(granit ou non) ; republier l apercu apres chaque correction. Puis configurateur passe A sur douceur.
+
 TEST PAR THOMAS AVEC UN PROCHE AGE, SUR UN TELEPHONE (sa decision du 14.10.2026, prealable a E6).
 E5 est terminee : plus rien n est a construire sur `/devis/` avant ce test. Ce qu il faut regarder :
 le parcours complet en 4 etapes sur un ecran de 390 px, les etapes 2 et 3 sautees selon le type de
