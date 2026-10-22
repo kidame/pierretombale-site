@@ -150,6 +150,31 @@ const filAriane = breadcrumbSchema(
 /* La hauteur de lettres proposee par defaut est celle d un nom (5 cm), comme
    sur /devis/ : c est la premiere ligne que les familles saisissent. */
 const hauteurDefaut = hauteursParDefaut.nom;
+
+/* LA CONFIGURATION DU CANVAS, INLINEE EN JSON AU BUILD (passe B).
+   Le script du configurateur ne lit que ce bloc : il n importe ni les donnees
+   d Astro, ni le contenu Markdown, et ne refait aucun calcul de cadrage. Tout
+   vient des sources existantes (calibration, images, polices, finitions), donc
+   corriger une donnee suffit a corriger l apercu. */
+const donneesConfigurateur = {
+  calibration,
+  matieres: matieres.map(({ granit }) => ({
+    id: granit.id,
+    image: `${racineVisuel}-${granit.id}-1200.webp`,
+  })),
+  polices: polices.map((police) => ({ id: police.id, famille: police.famille })),
+  finitions: finitions.map((finition) => ({
+    id: finition.id,
+    couleur: finition.couleurApercu,
+    aide: finition.aide,
+  })),
+  defauts: {
+    matiere: visuel.matiere,
+    policeId: POLICE_DEFAUT,
+    hauteurMm: hauteurDefaut,
+    finitionId: FINITION_APERCU_DEFAUT,
+  },
+};
 ---
 
 <BaseLayout
@@ -179,7 +204,7 @@ const hauteurDefaut = hauteursParDefaut.nom;
 
     <div class="cfg-grille">
       {/* ------------------------------------------------------------ Apercu */}
-      <div>
+      <div class="cfg-apercu-col">
         <div class="cfg-colle">
           <div class="cfg-cadre" style={styleCadre} data-apercu>
             {/* L apercu statique de la passe A. La passe B le masque des que
@@ -321,7 +346,7 @@ const hauteurDefaut = hauteursParDefaut.nom;
                 ))
               }
             </div>
-            <p class="cfg-aide">
+            <p class="cfg-aide" data-finition-aide>
               {finitions.find((finition) => finition.id === FINITION_APERCU_DEFAUT)?.aide}
             </p>
           </div>
@@ -430,6 +455,18 @@ const hauteurDefaut = hauteursParDefaut.nom;
       .cfg-cadre {
         max-width: calc(34vh * var(--cfg-ratio));
       }
+
+      /* Pour que le collage fonctionne, le bloc colle doit avoir un parent
+         plus haut que lui : sur telephone la grille redevient un simple flux
+         et la colonne apercu disparait (display: contents), le parent est
+         alors toute la grille, choix compris. */
+      .cfg-grille {
+        display: block;
+      }
+
+      .cfg-apercu-col {
+        display: contents;
+      }
     }
 
     @media (min-width: 64rem) {
@@ -440,6 +477,12 @@ const hauteurDefaut = hauteursParDefaut.nom;
 
       .cfg-colle {
         top: 7rem;
+      }
+
+      /* Sur grand ecran la colonne apercu s etire sur toute la hauteur de la
+         ligne : le bloc colle peut alors suivre les choix en defilant. */
+      .cfg-apercu-col {
+        align-self: stretch;
       }
     }
 
@@ -701,4 +744,27 @@ const hauteurDefaut = hauteursParDefaut.nom;
   </style>
 
   <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
+
+  {/* La configuration du canvas, lue par `src/scripts/configurateur/index.ts`.
+      Un bloc de donnees, pas du code : `type="application/json"`. */}
+  <script
+    is:inline
+    type="application/json"
+    data-donnees-configurateur
+    set:html={JSON.stringify(donneesConfigurateur)}
+  />
+
+  {/* L ILOT KONVA. Ce `<script>` est compile et minifie par Astro (contrairement
+      a un `is:inline`), et Konva arrive par IMPORT DYNAMIQUE depuis
+      `index.ts` : il part dans son propre fichier, demande par cette page
+      seulement, apres les polices de gravure. Aucune autre page du site ne le
+      telecharge. Si quoi que ce soit echoue, la page reste celle de la passe A :
+      l apercu statique n est masque qu une fois le canvas dessine. */}
+  <script>
+    import { demarre } from "@/scripts/configurateur";
+
+    demarre().catch((erreur) => {
+      console.error("Configurateur indisponible, apercu statique conserve :", erreur);
+    });
+  </script>
 </BaseLayout>

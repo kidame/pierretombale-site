@@ -62,6 +62,19 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 22.10.2026, agent claude (kumo-run, 80 tours atteints) + Claude : CONFIGURATEUR PASSES A ET B
+  SUR DOUCEUR. Passe A (1c9de6e) : src/data/calibrations.ts valide les JSON de
+  src/data/calibrations/, page /personnaliser/<slug>/ statique (noindex, canonical vers la fiche),
+  lien "Personnaliser ce modele" sur la fiche des modeles calibres. Passe B : konva 10.9.0 en
+  import dynamique, src/scripts/configurateur/{etat,echelle,polices,rendu,index}.ts ; fond = image
+  1200 de la matiere, cadre sur vueStelePx ; un texte centre, deplacable dans la zone gravable,
+  police/hauteur cm/finition en direct ; attente de document.fonts.load. Corrections a la main :
+  types HTMLDivElement (astro check), apercu colle sur mobile (cfg-grille en bloc + colonne en
+  display: contents, sinon le sticky n avait pas de parent assez haut). Verifie au navigateur :
+  texte sur la stele, changement de matiere, mobile 390 px avec apercu colle. Poids
+  /personnaliser/douceur/ : 6,9 Ko html gz, 2,8 Ko js propre gz + konva en chunk separe, 2,7 Ko
+  css ; aucune autre page ne bouge. Reste : C (3 zones, motifs), D (prix), E (export, envoi),
+  F (brouillon, avertissement), extension aux 26 modeles (un JSON de calibration chacun).
 - 22.10.2026, Claude + agent claude (kumo-run, 80 tours atteints, fini a la main) : LE CATALOGUE REEL
   REMPLACE LE PROVISOIRE. 27 fiches dans src/content/products (champ `modeleId` = dossier image,
   noms publics a faire corriger par Thomas), 10 matieres dans src/data/granits.json (champ

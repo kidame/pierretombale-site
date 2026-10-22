@@ -13,9 +13,9 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - [x] Passe A : donnees de calibration (src/data/calibrations/<modeleId>.json) + page
       /personnaliser/<slug>/ statique, sans canvas - Claude - fait le 22.10.2026
       (la page est en noindex, follow : trop mince en v1, canonique vers la fiche)
-- [ ] Passe B : ilot Konva, fond = image du modele dans la matiere choisie, 1 zone de texte
+- [x] Passe B : ilot Konva, fond = image du modele dans la matiere choisie, 1 zone de texte
       deplacable dans la zone gravable, police, hauteur en cm, finition - agent kumo-run
-- [ ] Passe C : 3 zones, motifs SVG, finitions - agent
+- [>] Passe C : 3 zones, motifs SVG, finitions - agent
 - [ ] Passe D : prix indicatif en direct (tarifs.json) - agent - attend la grille de prix
 - [ ] Passe E : export PNG + JSON de scene, branchement sur /devis/ - agent - attend E6
 - [ ] Passe F : avertissement avant de quitter, brouillon, mobile - agent
