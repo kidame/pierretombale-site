@@ -8,8 +8,12 @@
  *   - les MOTIFS, vide ici : la couche est creee et mise a l'echelle par ce
  *     fichier, mais c'est `motifs.ts` qui la remplit. Elle est SOUS le texte,
  *     parce qu'une inscription ne doit jamais passer derriere un ornement ;
- *   - le TEXTE, un `Konva.Text` centre, deplacable a la souris ou au doigt,
- *     borne a la zone gravable.
+ *   - le TEXTE, UN `Konva.Text` PAR ZONE (trois au plus), chacun centre dans sa
+ *     largeur, deplacable a la souris ou au doigt, borne a la zone gravable, et
+ *     dessine avec SA police, SA taille de lettres et SA couleur de finition.
+ *     La zone active porte en plus un cadre fin bronze, SANS poignees : la
+ *     taille des lettres se regle au centimetre dans la page, jamais en etirant
+ *     un bloc de texte (une gravure ne se deforme pas).
  *
  * LE SYSTEME DE COORDONNEES. La couche du texte porte une transformation
  * (echelle + decalage) qui la fait travailler en PIXELS DE L'IMAGE SERVIE :
@@ -19,8 +23,8 @@
  *
  * CE QU'IL NE FAIT PAS : il ne lit aucun controle de la page (c'est
  * `index.ts`), ne garde pas l'etat (c'est `etat.ts`), ne dessine aucun motif
- * (c'est `motifs.ts`), ne calcule aucun prix et n'exporte pas d'image (passes D
- * et E). Une seule zone de texte ; les trois zones viennent en passe C2.
+ * (c'est `motifs.ts`), ne fabrique aucune zone (c'est `zones.ts`), ne calcule
+ * aucun prix et n'exporte pas d'image (passes D et E).
  */
 import type { Echelle, Point, Taille } from "./echelle";
 import type { EtatConfigurateur, Position, ZoneTexte } from "./etat";
@@ -33,6 +37,7 @@ export type Stage = InstanceType<ModuleKonva["Stage"]>;
 export type Layer = InstanceType<ModuleKonva["Layer"]>;
 type NoeudTexte = InstanceType<ModuleKonva["Text"]>;
 type NoeudImage = InstanceType<ModuleKonva["Image"]>;
+type NoeudCadre = InstanceType<ModuleKonva["Rect"]>;
 
 export interface OptionsRendu {
   /** L'element de la page qui recoit le canvas. Sa largeur fait l'echelle. */
@@ -44,8 +49,12 @@ export interface OptionsRendu {
   familleDePolice: (policeId: string) => string;
   /** Couleur d'apercu pour un identifiant de finition. */
   couleurDeFinition: (finitionId: string) => string;
-  /** Appele quand la famille a deplace le texte : la position part dans l'etat. */
-  surDeplacement: (position: Position) => void;
+  /** Le bronze de la page : le cadre de la zone active, jamais la gravure. */
+  couleurAccent: string;
+  /** La famille a deplace une zone : sa position part dans l'etat. */
+  surDeplacement: (cle: string, position: Position) => void;
+  /** La famille a touche un texte sur l'apercu : sa zone devient active. */
+  surZoneActive: (cle: string) => void;
 }
 
 export interface Rendu {
@@ -104,46 +113,90 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
      Elle ne vit QUE dans ce fichier. */
   let affichage = 1;
 
-  const texte: NoeudTexte = new konva.Text({
-    text: "",
-    align: "center",
-    lineHeight: INTERLIGNE,
-    fontSize: 10,
-    draggable: true,
-    /* Le texte ne sort jamais de la zone gravable : la borne est appliquee
-       pendant le deplacement, pas apres. Konva donne et attend des coordonnees
-       ABSOLUES (celles du stage), d'ou l'aller-retour par la transformation de
-       la couche. */
-    dragBoundFunc: (pos) => {
-      const local: Point = {
-        x: (pos.x - coucheTexte.x()) / affichage,
-        y: (pos.y - coucheTexte.y()) / affichage,
-      };
-      const borne = echelle.borne(local, tailleTexte());
-      return {
-        x: borne.x * affichage + coucheTexte.x(),
-        y: borne.y * affichage + coucheTexte.y(),
-      };
-    },
-  });
-  coucheTexte.add(texte);
+  /* Un noeud par zone, retrouve par sa cle : une zone retiree emporte son
+     noeud, et une zone qui reste garde le sien (donc sa place a l'ecran). */
+  const noeuds = new Map<string, NoeudTexte>();
 
-  function tailleTexte(): Taille {
-    return { largeur: texte.width(), hauteur: texte.height() };
-  }
+  /* LE CADRE DE LA ZONE ACTIVE. Il n'ecoute rien (un clic passe au texte qui
+     est dessous) et n'a AUCUNE poignee : la taille d'une gravure se regle en
+     centimetres dans la page, pas en etirant un bloc. `strokeScaleEnabled` a
+     `false` fait dessiner le trait en pixels de l'ECRAN : un cadre fin reste
+     fin, quelle que soit la taille de l'apercu. */
+  const cadreActif: NoeudCadre = new konva.Rect({
+    listening: false,
+    visible: false,
+    stroke: options.couleurAccent,
+    strokeWidth: 1,
+    strokeScaleEnabled: false,
+    cornerRadius: 2,
+    perfectDrawEnabled: false,
+    shadowForStrokeEnabled: false,
+  });
+  coucheTexte.add(cadreActif);
+
+  /** La zone dont le cadre est affiche. `null` : aucun cadre. */
+  let cleActive: string | null = null;
 
   /* Curseur en main sur le texte : c'est le seul indice qui dit qu'on peut le
      deplacer. Sur un ecran tactile il ne coute rien. */
   const curseur = (valeur: string) => {
     conteneur.style.cursor = valeur;
   };
-  texte.on("mouseenter", () => curseur("grab"));
-  texte.on("mouseleave", () => curseur("default"));
-  texte.on("dragstart", () => curseur("grabbing"));
-  texte.on("dragend", () => {
-    curseur("grab");
-    options.surDeplacement(echelle.cmDepuisPoint({ x: texte.x(), y: texte.y() }));
-  });
+
+  function tailleDuNoeud(noeud: NoeudTexte): Taille {
+    return { largeur: noeud.width(), hauteur: noeud.height() };
+  }
+
+  function noeudDeZone(cle: string): NoeudTexte {
+    const connu = noeuds.get(cle);
+    if (connu) return connu;
+
+    const noeud: NoeudTexte = new konva.Text({
+      text: "",
+      align: "center",
+      lineHeight: INTERLIGNE,
+      fontSize: 10,
+      draggable: true,
+      /* Le texte ne sort jamais de la zone gravable : la borne est appliquee
+         pendant le deplacement, pas apres. Konva donne et attend des
+         coordonnees ABSOLUES (celles du stage), d'ou l'aller-retour par la
+         transformation de la couche. */
+      dragBoundFunc: (pos) => {
+        const local: Point = {
+          x: (pos.x - coucheTexte.x()) / affichage,
+          y: (pos.y - coucheTexte.y()) / affichage,
+        };
+        const borne = echelle.borne(local, tailleDuNoeud(noeud));
+        return {
+          x: borne.x * affichage + coucheTexte.x(),
+          y: borne.y * affichage + coucheTexte.y(),
+        };
+      },
+    });
+
+    noeud.on("mouseenter", () => curseur("grab"));
+    noeud.on("mouseleave", () => curseur("default"));
+    /* Toucher un texte sur l'apercu rend sa zone active : l'onglet et les
+       controles de la page suivent, et la famille modifie ce qu'elle voit. */
+    noeud.on("click tap", () => options.surZoneActive(cle));
+    noeud.on("dragstart", () => {
+      curseur("grabbing");
+      options.surZoneActive(cle);
+    });
+    /* Le cadre colle au texte pendant tout le deplacement. */
+    noeud.on("dragmove", () => {
+      placeCadre();
+      coucheTexte.batchDraw();
+    });
+    noeud.on("dragend", () => {
+      curseur("grab");
+      options.surDeplacement(cle, echelle.cmDepuisPoint({ x: noeud.x(), y: noeud.y() }));
+    });
+
+    coucheTexte.add(noeud);
+    noeuds.set(cle, noeud);
+    return noeud;
+  }
 
   function ajusteTaille(): void {
     const largeur = Math.max(1, Math.round(conteneur.clientWidth));
@@ -174,14 +227,31 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
   }
 
   /* Les deux axes sont independants : un `null` centre la zone sur cet axe. */
-  function placeTexte(zone: ZoneTexte): void {
-    const taille = tailleTexte();
+  function placeTexte(noeud: NoeudTexte, zone: ZoneTexte): void {
+    const taille = tailleDuNoeud(noeud);
     const centre = echelle.centre(taille);
     const coin: Point = {
       x: zone.xCm === null ? centre.x : echelle.pointDepuisCm({ xCm: zone.xCm, yCm: 0 }).x,
       y: zone.yCm === null ? centre.y : echelle.pointDepuisCm({ xCm: 0, yCm: zone.yCm }).y,
     };
-    texte.position(echelle.borne(coin, taille));
+    noeud.position(echelle.borne(coin, taille));
+  }
+
+  /** Le cadre bronze suit le texte de la zone active, avec une petite marge. */
+  function placeCadre(): void {
+    const noeud = cleActive ? noeuds.get(cleActive) : undefined;
+    if (!noeud || !noeud.visible()) {
+      cadreActif.visible(false);
+      return;
+    }
+    const marge = echelle.cmVersPx(0.6);
+    cadreActif.setAttrs({
+      x: noeud.x() - marge,
+      y: noeud.y() - marge,
+      width: noeud.width() + marge * 2,
+      height: noeud.height() + marge * 2,
+      visible: true,
+    });
   }
 
   ajusteTaille();
@@ -191,11 +261,18 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
       const image = await chargeImage(options.imagePourMatiere(etat.matiere), cache);
       fond.image(image);
 
-      /* Une seule zone dessinee ici : les trois zones arrivent dans la suite de
-         la passe C2. */
-      const zone = etat.zones[0];
-      if (zone) {
-        texte.setAttrs({
+      /* Les zones retirees emportent leur noeud. */
+      const cles = new Set(etat.zones.map((zone) => zone.cle));
+      for (const [cle, noeud] of noeuds) {
+        if (!cles.has(cle)) {
+          noeud.destroy();
+          noeuds.delete(cle);
+        }
+      }
+
+      for (const zone of etat.zones) {
+        const noeud = noeudDeZone(zone.cle);
+        noeud.setAttrs({
           text: zone.texte,
           /* Les hauteurs de lettres sont en millimetres dans les donnees (c'est
              l'unite du metier et celle du devis) ; le canvas travaille en cm. */
@@ -203,11 +280,16 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
           fontFamily: options.familleDePolice(zone.policeId),
           fill: options.couleurDeFinition(zone.finitionId),
         });
-
         /* Un texte vide laisserait une poignee invisible au milieu de la stele. */
-        texte.visible(zone.texte.trim().length > 0);
-        placeTexte(zone);
+        noeud.visible(zone.texte.trim().length > 0);
+        placeTexte(noeud, zone);
       }
+
+      /* Le cadre ne sert que s'il y a plusieurs zones : avec une seule, il n'y
+         a rien a distinguer. */
+      cleActive = etat.zones.length > 1 ? etat.zoneActive : null;
+      placeCadre();
+      cadreActif.moveToTop();
 
       stage.batchDraw();
     },

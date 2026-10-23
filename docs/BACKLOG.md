@@ -17,7 +17,7 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       deplacable dans la zone gravable, police, hauteur en cm, finition - agent kumo-run
 - [x] Passe C1 : motifs (10 SVG, familles, pose, deplacement, taille cm, miroir, carte
       "Un motif a vous" avec description + fichier 8 Mo) - commits a8d156b a 0130cb4
-- [ ] Passe C2 : 3 zones de texte multilignes (police, hauteur, finition par zone) - agent
+- [x] Passe C2 : 3 zones de texte multilignes (police, hauteur, finition par zone)
 - [ ] Passe D : prix indicatif en direct (tarifs.json) - agent - attend la grille de prix
 - [ ] Passe E : export PNG + JSON de scene, branchement sur /devis/ - agent - attend E6
 - [ ] Passe F : avertissement avant de quitter, brouillon, mobile - agent

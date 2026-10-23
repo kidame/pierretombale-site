@@ -62,6 +62,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 23.10.2026, agent claude (80 tours atteints) + Claude : CONFIGURATEUR PASSE C2, 3 ZONES DE TEXTE.
+  Etat en zones (src/data/configurateur.ts : 3 zones, 120 caracteres, 4 lignes ; zones.ts),
+  onglets Zone 1 a 3, ajout ("3 zones sur 3" a la limite), suppression, message 4 lignes au plus.
+  rendu.ts termine a la main : un Konva.Text par zone (police, taille cm, finition propres),
+  deplacable et borne, cadre bronze sur la zone active (si plusieurs zones), clic sur un texte =
+  zone active, noeuds detruits avec leur zone. Les motifs prennent la finition de la zone 1.
+  Verifie au navigateur (3 zones, polices differentes). Restent D (prix), E (export + envoi), F.
 - 22.10.2026, agent claude (2 runs, 80 tours chacun) + Claude : CONFIGURATEUR PASSE C1, MOTIFS.
   src/data/motifs.ts valide motifs.json au build, motifs-svg.ts extrait viewBox et path des SVG
   (inline dans le JSON de la page, aucun fetch). Section 3 "Les motifs" (etapes renumerotees :

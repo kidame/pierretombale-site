@@ -670,13 +670,18 @@ export async function demarre(): Promise<void> {
     imagePourMatiere: (matiere) => imagesParMatiere.get(matiere) ?? "",
     familleDePolice: (policeId) => famillesParPolice.get(policeId) ?? "serif",
     couleurDeFinition: (finitionId) => couleursParFinition.get(finitionId) ?? "#ffffff",
-    surDeplacement: (position) =>
+    couleurAccent:
+      getComputedStyle(cadre).getPropertyValue("--cfg-accent").trim() || ACCENT_DE_SECOURS,
+    surDeplacement: (cle, position) =>
       etat.maj({
-        zones: majZone(etat.lire().zones, etat.lire().zoneActive, {
+        zones: majZone(etat.lire().zones, cle, {
           xCm: position.xCm,
           yCm: position.yCm,
         }),
       }),
+    surZoneActive: (cle) => {
+      if (etat.lire().zoneActive !== cle) etat.maj({ zoneActive: cle });
+    },
   });
 
   /* Le bronze des poignees et du cadre « Motif a creer » vient du CSS de la
