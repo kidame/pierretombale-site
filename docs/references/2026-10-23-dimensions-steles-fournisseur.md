@@ -18,9 +18,9 @@ Prix = "a partir de", TTC, en EUR, prix publics conseilles du fournisseur (pas l
 | Almandin | sans stele | 5 pieces, h 15, arrondi avant ; tombale ep 8 | 4059 |
 | 4 pieces sans stele | sans stele | 4 pieces, h 15 ; tombale a pente 180 x 80 x 8/10 | 3998 |
 | Tombale simple 200x100x10 | sans stele | dalle 200 x 100 x 10 | 3646 |
-| Arbre de vie | page introuvable (lien du catalogue casse) | - | - |
-| Quietude | page non trouvee | - | - |
-| 5 pieces jardiniere en closoir | page non trouvee | - | - |
+| Quietude | 95 x 90 x 10 | 5 pieces, h 15 ; tombale 5/7 | 5766 |
+| Arbre de vie | 95 x 85 x 10 | 5 pieces, h 15 ; tombale 5/7 | 5371 |
+| 5 pieces jardiniere en closoir | stele doucine 90/85 x 70 x 10 | 5 pieces, h 15, jardiniere avant ; tombale a pente 5/7 | 4062 |
 
 ## Monuments cineraires (60 x 60 cm)
 Les pages cineraires ne donnent PAS les dimensions de stele, seulement le format.
@@ -36,7 +36,9 @@ Les pages cineraires ne donnent PAS les dimensions de stele, seulement le format
 | CIN-Nautis | 1324 | 46 |
 | CIN-Aquarius | 1355 | 32 |
 | CIN-Nivora | 2046 | 46 |
-| CIN Bahia, CIN8, CIN1 | pages non trouvees | - |
+| CIN Bahia | 1522 | 32 |
+| CIN8 | 1176 | 46 |
+| CIN1 | 1146 | 46 |
 
 ## Pages
 - douceur : /reference/ref-douceur-douceur ; corazon : ref-corazon-corazon ; arques : ref-arques-arques
@@ -44,6 +46,9 @@ Les pages cineraires ne donnent PAS les dimensions de stele, seulement le format
 - aventuri : ref-aventuri-avent ; tango : ref-tango-tango ; eligie : ref-eligie-eligie
 - almandin : ref-almandin-alman ; 4 pieces sans stele : ref-4-pieces-sans-stele-4psstfi
 - tombale simple : ref-tombale-simple-200x100x10-tblfi
+- quietude : ref-quietude-f25659_2 ; arbre de vie : ref-arbre-de-vie-f10881_2 (liens fournis par Thomas)
+- 5 pieces jardiniere : ref-5-pieces-jardiniere-en-closoir-5pjclosfi
+- cin bahia : ref-cin-bahia-60x60-cinbahia060 ; cin8 : ref-cin8-60x60-cin8-60x60 ; cin1 : ref-cin1-60x60-cin1-60x60
 - cineraires : ref-cin-<nom>-60x60-cin-<code>60x60 (esperanza : espe, aquarius : aqua, tombale : tombfi)
 Toutes sous https://www.granitsmaffre.com/reference/
 
@@ -51,4 +56,6 @@ Toutes sous https://www.granitsmaffre.com/reference/
 - Douceur : stele 80 cm de large (et non 60 suppose) : calibration corrigee.
 - 6 autres modeles ont maintenant une largeur reelle : Corazon 90, Arques 90, 4 pieces doucine 90,
   Musulman 4 : 65, Aventuri 65, Tango (deux steles 51 et 34).
-- Restent sans largeur : Eligie, Arbre de vie, Quietude, 5 pieces jardiniere, et les 13 cineraires.
+- Ajouts du 23.10 (liens de Thomas) : Quietude 95, Arbre de vie 95, 5 pieces jardiniere 90/85.
+- Restent sans largeur : Eligie (hauteur 80 seulement) et les 13 cineraires (les fiches cineraires ne
+  donnent que le format 60 x 60).
