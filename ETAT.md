@@ -62,6 +62,14 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 23.10.2026, Claude : DECISIONS THOMAS : Tango grave sur ses deux steles ; les motifs se placent
+  librement dans le cadre jaune (stele entiere), le texte reste dans les zones rouges. Code :
+  echelle.ts gere plusieurs surfaces de texte (`zoneGravablePx` = rectangle ou liste) et un cadre
+  des motifs (`zoneMotifsPx`, defaut `stele.cadrePx`) ; une zone de texte reste dans la surface la
+  plus proche ; zone 2 de Tango sur la petite stele. Nouveau motif pose SOUS le texte (rapetisse
+  pour tenir, sinon en bas de la zone), les suivants a gauche puis a droite. Tango publie (10
+  modeles). Limites : une seule echelle par monument (raccourci de la petite stele de Tango non
+  corrige) ; l export de scene (passe E) ne dit pas encore sur quelle stele est chaque zone.
 - 23.10.2026, Claude : CONFIGURATEUR ETENDU A 9 MODELES. Calibrations provisoires tracees a l oeil
   sur les images 1200 (grilles), largeurs de stele des fiches fournisseur : corazon 90, arques 90,
   4 pieces doucine 90, 5 pieces jardiniere 90, musulman-4 65, arbre-de-vie 95, aventuri 65,

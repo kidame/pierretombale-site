@@ -52,8 +52,18 @@ export interface Calibration {
     largeurCm: number;
     forme?: string;
   };
-  /** Ou la gravure peut aller : toujours a l'interieur de `stele.cadrePx`. */
-  zoneGravablePx: RectanglePx;
+  /**
+   * Ou le TEXTE peut aller (rouge sur la planche de controle). Dans le JSON,
+   * `zoneGravablePx` est un rectangle, ou une liste quand le monument a
+   * plusieurs steles gravables (Tango) ; ici, toujours une liste, la premiere
+   * surface en tete (origine des cm).
+   */
+  zonesGravablesPx: RectanglePx[];
+  /**
+   * Ou les MOTIFS peuvent aller, librement (jaune) : `zoneMotifsPx` du JSON,
+   * sinon `stele.cadrePx`. Contient toutes les surfaces de texte.
+   */
+  zoneMotifsPx: RectanglePx;
   /** Le cadrage de l'apercu : la stele et un peu d'air autour. */
   vueStelePx: RectanglePx;
   perspective?: string;
@@ -161,14 +171,30 @@ function lireCalibration(chemin: string, brut: unknown): Calibration {
     );
   }
 
-  /* La zone gravable est bornee par la stele, pas seulement par l'image :
+  /* Le cadre des motifs : la stele par defaut, ou une surface plus large
+     quand le monument a plusieurs steles. */
+  const champs = brut as Record<string, unknown>;
+  const motifsDefaut = champs.zoneMotifsPx === undefined;
+  const zoneMotifsPx = motifsDefaut
+    ? cadrePx
+    : lireRectangle(fichier, champs.zoneMotifsPx, "zoneMotifsPx", cadreImage, "l'image");
+
+  /* Le texte est borne par le cadre des motifs, pas seulement par l'image :
      du texte qui depasse la pierre n'est pas gravable. */
-  const zoneGravablePx = lireRectangle(
-    fichier,
-    donnees.zoneGravablePx,
-    "zoneGravablePx",
-    cadrePx,
-    "stele.cadrePx",
+  const zonesBrutes = Array.isArray(champs.zoneGravablePx)
+    ? (champs.zoneGravablePx as unknown[])
+    : [champs.zoneGravablePx];
+  if (zonesBrutes.length === 0) {
+    erreur(fichier, `"zoneGravablePx" ne peut pas etre une liste vide.`);
+  }
+  const zonesGravablesPx = zonesBrutes.map((rect, rang) =>
+    lireRectangle(
+      fichier,
+      rect,
+      zonesBrutes.length > 1 ? `zoneGravablePx[${rang}]` : "zoneGravablePx",
+      zoneMotifsPx,
+      motifsDefaut ? "stele.cadrePx" : "zoneMotifsPx",
+    ),
   );
 
   const vueStelePx = lireRectangle(
@@ -191,7 +217,8 @@ function lireCalibration(chemin: string, brut: unknown): Calibration {
     commentaire: donnees.commentaire,
     imagePx: { largeur: image.largeur, hauteur: image.hauteur },
     stele: { cadrePx, largeurCm: donnees.stele.largeurCm, forme: donnees.stele.forme },
-    zoneGravablePx,
+    zonesGravablesPx,
+    zoneMotifsPx,
     vueStelePx,
     perspective: donnees.perspective,
   };

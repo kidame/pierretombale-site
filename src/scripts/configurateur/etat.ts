@@ -61,6 +61,11 @@ export interface ZoneTexte {
    */
   xCm: number | null;
   yCm: number | null;
+  /**
+   * La surface de texte (la stele) ou la zone se centre quand `xCm` ou `yCm`
+   * vaut `null` : 0, la premiere, sauf sur un monument a plusieurs steles.
+   */
+  surface?: number;
 }
 
 /**

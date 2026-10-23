@@ -114,7 +114,7 @@ export function hauteurCmMotif(motif: MotifCatalogue, largeurCm: number): number
  * depasse a l'oeil, et la famille le voit.
  */
 export function largeurMaxCm(motif: MotifCatalogue, echelle: Echelle): number {
-  const zoneLargeurCm = echelle.pxVersCm(echelle.zone.largeur);
+  const zoneLargeurCm = echelle.cadreCm.largeur;
   return Math.max(motif.largeurMinCm, Math.min(motif.largeurMaxCm, zoneLargeurCm));
 }
 
@@ -125,8 +125,8 @@ export function largeurMaxCm(motif: MotifCatalogue, echelle: Echelle): number {
  * de ce qui est possible.
  */
 export function bornePose(pose: MotifPose, motif: MotifCatalogue, echelle: Echelle): MotifPose {
-  const zoneLargeurCm = echelle.pxVersCm(echelle.zone.largeur);
-  const zoneHauteurCm = echelle.pxVersCm(echelle.zone.hauteur);
+  const zoneLargeurCm = echelle.cadreCm.largeur;
+  const zoneHauteurCm = echelle.cadreCm.hauteur;
 
   const largeurCm = Math.min(
     Math.max(pose.largeurCm, motif.largeurMinCm),
@@ -137,8 +137,14 @@ export function bornePose(pose: MotifPose, motif: MotifCatalogue, echelle: Echel
   return {
     ...pose,
     largeurCm,
-    xCm: Math.min(Math.max(pose.xCm, 0), Math.max(0, zoneLargeurCm - largeurCm)),
-    yCm: Math.min(Math.max(pose.yCm, 0), Math.max(0, zoneHauteurCm - hauteurCm)),
+    xCm: Math.min(
+      Math.max(pose.xCm, echelle.cadreCm.x),
+      echelle.cadreCm.x + Math.max(0, zoneLargeurCm - largeurCm),
+    ),
+    yCm: Math.min(
+      Math.max(pose.yCm, echelle.cadreCm.y),
+      echelle.cadreCm.y + Math.max(0, zoneHauteurCm - hauteurCm),
+    ),
   };
 }
 
@@ -151,19 +157,50 @@ export function nouvelleCle(prefixe: string): string {
   return `${prefixe}-${derniereCle}`;
 }
 
-/** Une pose au centre de la zone gravable, a la largeur par defaut du motif. */
-export function poseCentree(motif: MotifCatalogue, echelle: Echelle): MotifPose {
-  const zoneLargeurCm = echelle.pxVersCm(echelle.zone.largeur);
-  const zoneHauteurCm = echelle.pxVersCm(echelle.zone.hauteur);
-  const hauteurCm = hauteurCmMotif(motif, motif.largeurCm);
+/** L'ecart entre deux motifs poses cote a cote par defaut. */
+const ECART_ENTRE_MOTIFS_CM = 2;
+
+/**
+ * Une nouvelle pose, a la largeur par defaut du motif, centree sur la premiere
+ * surface de texte : SOUS LE TEXTE (`basTexteCm`, le bas du bloc le plus bas)
+ * quand le cadre des motifs a encore la place, sinon calee en bas de la
+ * surface. Les poses suivantes (`rang`) s'ecartent a gauche puis a droite pour
+ * ne pas s'empiler. La famille deplace ensuite le motif ou elle veut dans le
+ * cadre des motifs.
+ */
+export function poseCentree(
+  motif: MotifCatalogue,
+  echelle: Echelle,
+  rang = 0,
+  basTexteCm: number | null = null,
+): MotifPose {
+  const texteLargeurCm = echelle.pxVersCm(echelle.zone.largeur);
+  const texteHauteurCm = echelle.pxVersCm(echelle.zone.hauteur);
+
+  /* Sous le texte : le motif rapetisse pour tenir avant le bas du cadre, sans
+     passer sous sa largeur minimale. S'il ne tient pas, il se cale en bas de
+     la surface de texte (et la famille le deplace). */
+  let largeurCm = motif.largeurCm;
+  let yCm = texteHauteurCm - hauteurCmMotif(motif, largeurCm);
+  if (basTexteCm !== null) {
+    const sousTexte = basTexteCm + ECART_ENTRE_MOTIFS_CM / 2;
+    const place = echelle.cadreCm.y + echelle.cadreCm.hauteur - sousTexte;
+    const largeurQuiTient = (place * motif.largeurMm) / motif.hauteurMm;
+    if (largeurQuiTient >= motif.largeurMinCm) {
+      largeurCm = Math.min(largeurCm, largeurQuiTient);
+      yCm = sousTexte;
+    }
+  }
+  const pas = largeurCm + ECART_ENTRE_MOTIFS_CM;
+  const decalage = rang === 0 ? 0 : (rang % 2 === 1 ? -1 : 1) * Math.ceil(rang / 2) * pas;
 
   return bornePose(
     {
       cle: nouvelleCle(motif.id),
       id: motif.id,
-      xCm: (zoneLargeurCm - motif.largeurCm) / 2,
-      yCm: (zoneHauteurCm - hauteurCm) / 2,
-      largeurCm: motif.largeurCm,
+      xCm: (texteLargeurCm - largeurCm) / 2 + decalage,
+      yCm,
+      largeurCm,
       miroir: false,
     },
     motif,
@@ -176,9 +213,10 @@ export function ajouteMotif(
   liste: MotifPose[],
   motif: MotifCatalogue,
   echelle: Echelle,
+  basTexteCm: number | null = null,
 ): MotifPose[] {
   if (liste.length >= MAX_MOTIFS) return liste;
-  return [...liste, poseCentree(motif, echelle)];
+  return [...liste, poseCentree(motif, echelle, liste.length, basTexteCm)];
 }
 
 /** La liste sans la pose `cle`. */
@@ -229,8 +267,8 @@ export function changeLargeur(
 
 /** Ramene le cadre « Motif a creer » dans la zone gravable. */
 export function borneDemande(demande: MotifSurDemande, echelle: Echelle): MotifSurDemande {
-  const zoneLargeurCm = echelle.pxVersCm(echelle.zone.largeur);
-  const zoneHauteurCm = echelle.pxVersCm(echelle.zone.hauteur);
+  const zoneLargeurCm = echelle.cadreCm.largeur;
+  const zoneHauteurCm = echelle.cadreCm.hauteur;
 
   const largeurCm = Math.min(
     Math.max(demande.largeurCm, DEMANDE_MIN_CM),
@@ -245,22 +283,28 @@ export function borneDemande(demande: MotifSurDemande, echelle: Echelle): MotifS
     ...demande,
     largeurCm,
     hauteurCm,
-    xCm: Math.min(Math.max(demande.xCm, 0), Math.max(0, zoneLargeurCm - largeurCm)),
-    yCm: Math.min(Math.max(demande.yCm, 0), Math.max(0, zoneHauteurCm - hauteurCm)),
+    xCm: Math.min(
+      Math.max(demande.xCm, echelle.cadreCm.x),
+      echelle.cadreCm.x + Math.max(0, zoneLargeurCm - largeurCm),
+    ),
+    yCm: Math.min(
+      Math.max(demande.yCm, echelle.cadreCm.y),
+      echelle.cadreCm.y + Math.max(0, zoneHauteurCm - hauteurCm),
+    ),
   };
 }
 
-/** Un cadre « Motif a creer » vide, au centre de la zone gravable. */
+/** Un cadre « Motif a creer » vide, centre en bas de la premiere surface de texte. */
 export function demandeCentree(echelle: Echelle): MotifSurDemande {
-  const zoneLargeurCm = echelle.pxVersCm(echelle.zone.largeur);
-  const zoneHauteurCm = echelle.pxVersCm(echelle.zone.hauteur);
+  const texteLargeurCm = echelle.pxVersCm(echelle.zone.largeur);
+  const texteHauteurCm = echelle.pxVersCm(echelle.zone.hauteur);
 
   return borneDemande(
     {
       description: "",
       fichier: null,
-      xCm: (zoneLargeurCm - DEMANDE_LARGEUR_CM) / 2,
-      yCm: (zoneHauteurCm - DEMANDE_HAUTEUR_CM) / 2,
+      xCm: (texteLargeurCm - DEMANDE_LARGEUR_CM) / 2,
+      yCm: texteHauteurCm - DEMANDE_HAUTEUR_CM,
       largeurCm: DEMANDE_LARGEUR_CM,
       hauteurCm: DEMANDE_HAUTEUR_CM,
     },
@@ -345,10 +389,10 @@ export function creeMotifs(konva: ModuleKonva, options: OptionsMotifs): RenduMot
   function zoneCanvas(): { x: number; y: number; largeur: number; hauteur: number } {
     const affichage = options.affichage();
     return {
-      x: echelle.zone.x * affichage + couche.x(),
-      y: echelle.zone.y * affichage + couche.y(),
-      largeur: echelle.zone.largeur * affichage,
-      hauteur: echelle.zone.hauteur * affichage,
+      x: echelle.cadre.x * affichage + couche.x(),
+      y: echelle.cadre.y * affichage + couche.y(),
+      largeur: echelle.cadre.largeur * affichage,
+      hauteur: echelle.cadre.hauteur * affichage,
     };
   }
 
@@ -385,7 +429,7 @@ export function creeMotifs(konva: ModuleKonva, options: OptionsMotifs): RenduMot
       if (noeud && noeud === cadreDemande) {
         minLargeur = echelle.cmVersPx(DEMANDE_MIN_CM) * affichage;
         minHauteur = minLargeur;
-        maxLargeur = echelle.zone.largeur * affichage;
+        maxLargeur = echelle.cadre.largeur * affichage;
       } else {
         const motif = noeud ? motifDuNoeud(noeud as NoeudChemin) : undefined;
         if (!motif) return nouvelle;
@@ -393,7 +437,7 @@ export function creeMotifs(konva: ModuleKonva, options: OptionsMotifs): RenduMot
         minLargeur = echelle.cmVersPx(motif.largeurMinCm) * affichage;
         minHauteur = 0;
         maxLargeur =
-          Math.min(echelle.cmVersPx(motif.largeurMaxCm), echelle.zone.largeur) * affichage;
+          Math.min(echelle.cmVersPx(motif.largeurMaxCm), echelle.cadre.largeur) * affichage;
       }
 
       /* Hors des tailles gravables : on refuse le mouvement plutot que de
@@ -471,7 +515,7 @@ export function creeMotifs(konva: ModuleKonva, options: OptionsMotifs): RenduMot
           largeur: Math.abs(noeud.scaleX()) * motif.largeurMm,
           hauteur: Math.abs(noeud.scaleY()) * motif.hauteurMm,
         };
-        const borne = echelle.borne(local, taille);
+        const borne = echelle.borneMotif(local, taille);
 
         return {
           x: borne.x * affichage + couche.x(),
@@ -555,7 +599,7 @@ export function creeMotifs(konva: ModuleKonva, options: OptionsMotifs): RenduMot
           x: (position.x - couche.x()) / affichage,
           y: (position.y - couche.y()) / affichage,
         };
-        const borne = echelle.borne(local, {
+        const borne = echelle.borneMotif(local, {
           largeur: cadre.width() * Math.abs(cadre.scaleX()),
           hauteur: cadre.height() * Math.abs(cadre.scaleY()),
         });

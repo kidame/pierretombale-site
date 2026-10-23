@@ -21,11 +21,12 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - [ ] Passe D : prix indicatif en direct (tarifs.json) - agent - attend la grille de prix
 - [ ] Passe E : export PNG + JSON de scene, branchement sur /devis/ - agent - attend E6
 - [ ] Passe F : avertissement avant de quitter, brouillon, mobile - agent
-- [>] Etendre aux autres modeles : 9 funeraires calibres (provisoire) le 23.10.2026 - Claude
-      Restent : Tango (en attente, vue de 3/4), Eligie (largeur inconnue), Almandin, 4 pieces sans
+- [>] Etendre aux autres modeles : 10 funeraires calibres (provisoire) le 23.10.2026 - Claude
+      Restent : Eligie (largeur inconnue), Almandin, 4 pieces sans
       stele, Tombale simple (pas de stele : a decider), les 13 cineraires (largeurs inconnues)
 - [ ] Graveur : valider les zones gravables des 9 modeles (planche de controle) - Thomas
-- [ ] Motifs ajoutes : les poser sous le texte, pas au centre (chevauchement) - Claude
+- [x] Motifs ajoutes : poses sous le texte, libres dans le cadre jaune - Claude - 23.10.2026
+- [ ] Passe E : exporter la stele (surface) de chaque zone de texte (Tango) - agent
 
 ## En attente de Thomas (n'arrete rien)
 - [>] Motifs SVG : 10 sur 14 vectorises depuis les images ChatGPT (public/motifs, src/data/motifs.json) ;

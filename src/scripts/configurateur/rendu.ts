@@ -74,6 +74,11 @@ export interface Rendu {
    * redimensionnement de la fenetre : a lire, jamais a garder.
    */
   affichage(): number;
+  /**
+   * Le bas du bloc de texte le plus bas de la premiere surface, en px de
+   * l'image servie, ou `null` sans texte : un nouveau motif se pose dessous.
+   */
+  basDuTexte(): number | null;
 }
 
 function chargeImage(url: string, cache: Map<string, HTMLImageElement>): Promise<HTMLImageElement> {
@@ -231,7 +236,7 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
   /* Les deux axes sont independants : un `null` centre la zone sur cet axe. */
   function placeTexte(noeud: NoeudTexte, zone: ZoneTexte): void {
     const taille = tailleDuNoeud(noeud);
-    const centre = echelle.centre(taille);
+    const centre = echelle.centre(taille, zone.surface ?? 0);
     const coin: Point = {
       x: zone.xCm === null ? centre.x : echelle.pointDepuisCm({ xCm: zone.xCm, yCm: 0 }).x,
       y: zone.yCm === null ? centre.y : echelle.pointDepuisCm({ xCm: 0, yCm: zone.yCm }).y,
@@ -294,11 +299,14 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
       const depassent = etat.zones
         .filter((zone) => {
           const noeud = noeuds.get(zone.cle);
+          if (!noeud || !noeud.visible()) return false;
+          const surface = echelle.surfaceDe(
+            { x: noeud.x(), y: noeud.y() },
+            { largeur: noeud.width(), hauteur: noeud.height() },
+          );
           return (
-            !!noeud &&
-            noeud.visible() &&
-            (noeud.width() > echelle.zone.largeur + tolerance ||
-              noeud.height() > echelle.zone.hauteur + tolerance)
+            noeud.width() > surface.largeur + tolerance ||
+            noeud.height() > surface.hauteur + tolerance
           );
         })
         .map((zone) => zone.cle);
@@ -322,5 +330,19 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
     stage,
     coucheMotifs,
     affichage: () => affichage,
+    basDuTexte() {
+      let bas: number | null = null;
+      for (const noeud of noeuds.values()) {
+        if (!noeud.visible()) continue;
+        const surface = echelle.surfaceDe(
+          { x: noeud.x(), y: noeud.y() },
+          { largeur: noeud.width(), hauteur: noeud.height() },
+        );
+        if (surface !== echelle.zone) continue;
+        const y = noeud.y() + noeud.height();
+        bas = bas === null ? y : Math.max(bas, y);
+      }
+      return bas;
+    },
   };
 }

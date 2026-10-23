@@ -534,7 +534,9 @@ export async function demarre(): Promise<void> {
       if (!motif) return;
 
       const avant = etat.lire().motifs;
-      const apres = ajouteMotif(avant, motif, echelle);
+      const bas = vues.basDuTexte();
+      const basTexteCm = bas === null ? null : echelle.cmDepuisPoint({ x: 0, y: bas }).yCm;
+      const apres = ajouteMotif(avant, motif, echelle, basTexteCm);
       /* Stele pleine : `ajouteMotif` rend la meme liste, le message le dit. */
       if (apres.length === avant.length) return;
 

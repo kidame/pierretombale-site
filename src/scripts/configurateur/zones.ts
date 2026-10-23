@@ -166,18 +166,25 @@ export function ajouteZone(
 ): ZoneTexte[] {
   if (!peutAjouterZone(zones)) return zones;
 
-  const precedente = zones[zones.length - 1];
+  /* Un monument a plusieurs steles (Tango) : chaque nouvelle zone va d'abord
+     sur une stele encore vide, centree ; ensuite sous la derniere zone de la
+     premiere stele. */
+  const surface = zones.length < echelle.surfaces.length ? zones.length : 0;
+  const memeSurface = zones.filter((zone) => (zone.surface ?? 0) === surface);
+  const precedente = memeSurface[memeSurface.length - 1];
+  const modele = zones[zones.length - 1];
   const nouvelle: ZoneTexte = {
     cle: nouvelleCleZone(),
     texte: "",
     /* La nouvelle zone reprend l'ecriture et la finition de la precedente :
        une inscription garde son unite, et la famille change ce qu'elle veut. */
-    policeId: precedente?.policeId ?? defauts.policeId,
+    policeId: modele?.policeId ?? defauts.policeId,
     hauteurMm: hauteurSuggeree(defauts, zones.length),
-    finitionId: precedente?.finitionId ?? defauts.finitionId,
+    finitionId: modele?.finitionId ?? defauts.finitionId,
     alignement: ALIGNEMENT_ZONE,
     xCm: null,
     yCm: null,
+    surface,
   };
 
   return [

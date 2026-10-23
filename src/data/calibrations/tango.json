@@ -1,0 +1,47 @@
+{
+  "modeleId": "tango",
+  "version": 2,
+  "statut": "provisoire",
+  "commentaire": "2 steles : 51 x 65 x 10 et 34 x 90 x 6 (fiche fournisseur). Les deux sont gravables (Thomas, 23.10.2026) : surface 1 = face polie de la grande stele, surface 2 = petite stele. Echelle prise sur la grande stele (34 cm). Zones tracees a l oeil, a faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 873,
+      "y": 52,
+      "largeur": 170,
+      "hauteur": 428
+    },
+    "largeurCm": 34,
+    "forme": "double"
+  },
+  "zoneGravablePx": [
+    {
+      "x": 897,
+      "y": 146,
+      "largeur": 120,
+      "hauteur": 293
+    },
+    {
+      "x": 711,
+      "y": 209,
+      "largeur": 105,
+      "hauteur": 240
+    }
+  ],
+  "vueStelePx": {
+    "x": 650,
+    "y": 31,
+    "largeur": 450,
+    "hauteur": 470
+  },
+  "perspective": "VUE DE 3/4 : le texte plat ne suit pas l angle ; la petite stele parait plus etroite qu elle n est (raccourci), a valider",
+  "zoneMotifsPx": {
+    "x": 698,
+    "y": 52,
+    "largeur": 347,
+    "hauteur": 431
+  }
+}
