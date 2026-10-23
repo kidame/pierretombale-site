@@ -45,6 +45,8 @@ import {
   type MotifCatalogue,
   type RenduMotifs,
 } from "./motifs";
+import { brancheInscription } from "./formulaire";
+import { creeMesureur } from "./mesure";
 import { attendPolices } from "./polices";
 import { creeRendu } from "./rendu";
 import {
@@ -352,6 +354,26 @@ export async function demarre(): Promise<void> {
       if (finitionId) changeZoneActive({ finitionId });
     });
   }
+
+  /* ----------------------------------- L'inscription guidee (23.10.2026) */
+
+  /* Le mesureur lit les polices de gravure : il est refait quand elles sont
+     chargees (plus bas), et la composition reprend avec les vraies largeurs. */
+  const familleDe = (policeId: string) => famillesParPolice.get(policeId) ?? "serif";
+  const capitaleDe = (policeId: string) => capitalesParPolice.get(policeId) ?? CAPITALE_MOYENNE;
+  let mesureur = creeMesureur(familleDe, capitaleDe);
+  /* Le rendu du texte n'existe qu'avec Konva : le mode est applique a son
+     arrivee. */
+  let vuesTexte: { autoriseDeplacement(oui: boolean): void } | null = null;
+  const formulaire = brancheInscription({
+    etat,
+    echelle,
+    mesureur: () => mesureur,
+    policeId: donnees.defauts.policeId,
+    finitionId: donnees.defauts.finitionId,
+    aidesParFinition,
+    surMode: (mode) => vuesTexte?.autoriseDeplacement(mode === "libre"),
+  });
 
   /* ------------------------------------------------------------ Les motifs */
 
@@ -667,6 +689,8 @@ export async function demarre(): Promise<void> {
   /* Les polices d'abord : un canvas dessine avec une police de remplacement ne
      se redessine pas tout seul quand la vraie arrive. */
   await attendPolices(donnees.polices.map((police) => police.famille));
+  mesureur = creeMesureur(familleDe, capitaleDe);
+  formulaire.recompose();
 
   const konva = (await import("konva")).default;
 
@@ -752,6 +776,9 @@ export async function demarre(): Promise<void> {
       majListeMotifs(etat.lire());
     },
   });
+
+  vuesTexte = vues;
+  vues.autoriseDeplacement(formulaire.mode() === "libre");
 
   /* L'etat change, l'apercu suit. Le fond attend parfois une image, les motifs
      jamais : ils se redessinent tout de suite. */

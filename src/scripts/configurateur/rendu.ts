@@ -81,6 +81,8 @@ export interface Rendu {
    * l'image servie, ou `null` sans texte : un nouveau motif se pose dessous.
    */
   basDuTexte(): number | null;
+  /** `false` : le texte ne se deplace plus a la main (inscription guidee). */
+  autoriseDeplacement(oui: boolean): void;
 }
 
 function chargeImage(url: string, cache: Map<string, HTMLImageElement>): Promise<HTMLImageElement> {
@@ -146,6 +148,11 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
   /** La zone dont le cadre est affiche. `null` : aucun cadre. */
   let cleActive: string | null = null;
 
+  /** Le texte se deplace-t-il a la main ? Non en mode guide (`formulaire.ts`). */
+  let deplacable = true;
+  /** Le dernier etat dessine : le mode peut changer sans que l'etat change. */
+  let dernierEtat: EtatConfigurateur | null = null;
+
   /* Curseur en main sur le texte : c'est le seul indice qui dit qu'on peut le
      deplacer. Sur un ecran tactile il ne coute rien. */
   const curseur = (valeur: string) => {
@@ -165,7 +172,7 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
       align: "center",
       lineHeight: INTERLIGNE,
       fontSize: 10,
-      draggable: true,
+      draggable: deplacable,
       /* Le texte ne sort jamais de la zone gravable : la borne est appliquee
          pendant le deplacement, pas apres. Konva donne et attend des
          coordonnees ABSOLUES (celles du stage), d'ou l'aller-retour par la
@@ -183,7 +190,7 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
       },
     });
 
-    noeud.on("mouseenter", () => curseur("grab"));
+    noeud.on("mouseenter", () => curseur(deplacable ? "grab" : "default"));
     noeud.on("mouseleave", () => curseur("default"));
     /* Toucher un texte sur l'apercu rend sa zone active : l'onglet et les
        controles de la page suivent, et la famille modifie ce qu'elle voit. */
@@ -318,7 +325,8 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
 
       /* Le cadre ne sert que s'il y a plusieurs zones : avec une seule, il n'y
          a rien a distinguer. */
-      cleActive = etat.zones.length > 1 ? etat.zoneActive : null;
+      dernierEtat = etat;
+      cleActive = deplacable && etat.zones.length > 1 ? etat.zoneActive : null;
       placeCadre();
       cadreActif.moveToTop();
 
@@ -334,6 +342,16 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
     stage,
     coucheMotifs,
     affichage: () => affichage,
+    autoriseDeplacement(oui) {
+      deplacable = oui;
+      for (const noeud of noeuds.values()) noeud.draggable(oui);
+      /* Le cadre de la zone active n'a de sens qu'en mise en page libre. */
+      cleActive =
+        oui && dernierEtat && dernierEtat.zones.length > 1 ? dernierEtat.zoneActive : null;
+      placeCadre();
+      cadreActif.moveToTop();
+      stage.batchDraw();
+    },
     basDuTexte() {
       let bas: number | null = null;
       for (const noeud of noeuds.values()) {

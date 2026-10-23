@@ -23,6 +23,7 @@ import {
   ESPACES_CM,
   LARGEUR_UTILE,
   misesEnPage,
+  NOM_UNE_LIGNE_MIN_MM,
   PHRASE_LIGNES_MAX,
   PREFIXE_NOM_DE_NAISSANCE,
   SEPARATEUR_DATES,
@@ -146,6 +147,12 @@ function blocsDe(inscription: Inscription, mesureur: Mesureur, surfaces: number)
         lignes: [ligneNom],
         variantes: (max, h) => {
           if (tous([ligneNom], max, h)) return [ligneNom];
+          /* Une taille plus petite, mais encore grande, le garde sur une ligne :
+             la boucle y descendra. */
+          const uneLigneAilleurs = tailles.nom.some(
+            (t) => t < h && t >= NOM_UNE_LIGNE_MIN_MM && tous([ligneNom], max, t),
+          );
+          if (uneLigneAilleurs) return null;
           /* Trop long sur une ligne : prenom au-dessus du NOM. */
           if (prenom && nom && tous([prenom, nom], max, h)) return [prenom, nom];
           return null;
@@ -230,6 +237,20 @@ export function compose(
     }
   }
 
+  /* 1 bis. La hierarchie : les dates d'une personne restent plus petites que
+     son nom (un cran au moins), quand leur liste le permet. */
+  for (const dates of blocs.filter((bloc) => bloc.role === "dates")) {
+    const nom = blocs.find((bloc) => bloc.role === "nom" && bloc.personne === dates.personne);
+    if (!nom) continue;
+    while (
+      dates.tailles[dates.rang] >= nom.tailles[nom.rang] &&
+      dates.rang < dates.tailles.length - 1
+    ) {
+      dates.rang += 1;
+      ajuste(dates);
+    }
+  }
+
   const hauteurBloc = (bloc: Bloc) =>
     mesureur.hauteurBlocCm(bloc.lignes.length, police, bloc.tailles[bloc.rang]);
   const espaceAvant = (bloc: Bloc, precedent: Bloc | undefined) =>
@@ -245,14 +266,18 @@ export function compose(
       0,
     );
 
-  /* 2. La hauteur : on descend d'un cran, la phrase d'abord. */
+  /* 2. La hauteur : on descend d'un cran le PLUS GRAND texte, pour garder la
+     hierarchie (nom >= dates >= phrase) sans ecraser la phrase ; a egalite, la
+     phrase d'abord, puis les dates, puis le nom. */
+  const priorite: Record<RoleTexte, number> = { phrase: 0, dates: 1, nom: 2 };
   surfacesCm.forEach((surface, numero) => {
     while (hauteurPile(numero) > surface.hauteur) {
-      const reductible = (["phrase", "dates", "nom"] as RoleTexte[])
-        .map((role) =>
-          pile(numero).find((bloc) => bloc.role === role && bloc.rang < bloc.tailles.length - 1),
-        )
-        .find(Boolean);
+      const reductible = pile(numero)
+        .filter((bloc) => bloc.rang < bloc.tailles.length - 1)
+        .sort(
+          (a, b) =>
+            b.tailles[b.rang] - a.tailles[a.rang] || priorite[a.role] - priorite[b.role],
+        )[0];
       if (!reductible) {
         tient = false;
         break;

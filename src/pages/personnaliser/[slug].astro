@@ -4,6 +4,12 @@ import { pageTitle } from "@/config/site";
 import { getCalibration } from "@/data/calibrations";
 /* Les bornes des zones de texte : 3 zones, 120 caracteres, 4 lignes. */
 import { ZONE_LIGNES_MAX, ZONE_LONGUEUR_MAX, ZONES_MAX } from "@/data/configurateur";
+import {
+  MISE_EN_PAGE_DEFAUT,
+  misesEnPage,
+  PHRASE_LONGUEUR_MAX,
+  phrasesSuggerees,
+} from "@/data/inscription";
 import { vignetteMatiere } from "@/data/granits";
 import { motifsParFamille } from "@/data/motifs";
 import { motifsConfigurateur } from "@/data/motifs-svg";
@@ -322,8 +328,183 @@ const donneesConfigurateur = {
             <span class="cfg-numero mono" aria-hidden="true">2</span> L'inscription
           </h2>
           <p class="cfg-aide">
-            Chaque zone peut avoir sa police, sa taille et sa finition.
+            Remplissez les champs : la mise en page et la taille des lettres se font toutes seules,
+            dans les tailles d'un graveur. Vous pourrez ensuite placer le texte vous-même.
           </p>
+
+          {/* L INSCRIPTION GUIDEE (23.10.2026) : des champs, une mise en page, et
+              `composition.ts` compose les zones de texte. La mise en page libre
+              (les zones de la passe C2) reste derriere le bouton
+              « Placer le texte moi-même ». Sans JavaScript, ces champs restent
+              inertes, comme le reste des controles. */}
+          <div class="cfg-guide" data-guide>
+            <fieldset class="cfg-champ cfg-groupe-champs">
+              <legend class="cfg-label">Mise en page</legend>
+              <div class="cfg-mises-en-page">
+                {
+                  misesEnPage.map((miseEnPage) => (
+                    <label class="cfg-mise-en-page">
+                      <input
+                        type="radio"
+                        name="mise-en-page"
+                        value={miseEnPage.id}
+                        checked={miseEnPage.id === MISE_EN_PAGE_DEFAUT}
+                        data-mise-en-page
+                      />
+                      <span class="cfg-mise-en-page-texte">
+                        <span class="cfg-mise-en-page-nom">{miseEnPage.nom}</span>
+                        <span class="cfg-mise-en-page-aide">{miseEnPage.description}</span>
+                      </span>
+                    </label>
+                  ))
+                }
+              </div>
+            </fieldset>
+
+            {
+              [0, 1].map((rang) => (
+                <fieldset
+                  class="cfg-champ cfg-groupe-champs cfg-personne"
+                  data-personne={rang}
+                  hidden={rang === 1}
+                >
+                  <legend class="cfg-label" data-personne-titre>
+                    {rang === 0 ? "La personne" : "La deuxième personne"}
+                  </legend>
+                  <div class="cfg-champs-personne">
+                    <label class="cfg-sous-champ">
+                      <span>Prénom</span>
+                      <input class="cfg-input" type="text" autocomplete="off" data-p="prenom" />
+                    </label>
+                    <label class="cfg-sous-champ">
+                      <span>Nom</span>
+                      <input class="cfg-input" type="text" autocomplete="off" data-p="nom" />
+                    </label>
+                    <label class="cfg-sous-champ cfg-sous-champ-large">
+                      <span>
+                        Nom de jeune fille <span class="cfg-facultatif">(facultatif)</span>
+                      </span>
+                      <input
+                        class="cfg-input"
+                        type="text"
+                        autocomplete="off"
+                        data-p="nomJeuneFille"
+                      />
+                    </label>
+                    <label class="cfg-sous-champ">
+                      <span>Naissance</span>
+                      <input
+                        class="cfg-input"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="1948 ou 12.03.1948"
+                        data-p="naissance"
+                      />
+                    </label>
+                    <label class="cfg-sous-champ">
+                      <span>Décès</span>
+                      <input
+                        class="cfg-input"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="2026 ou 05.01.2026"
+                        data-p="deces"
+                      />
+                    </label>
+                  </div>
+                </fieldset>
+              ))
+            }
+
+            <div class="cfg-champ">
+              <label class="cfg-label" for="cfg-phrase">
+                Une phrase <span class="cfg-facultatif">(facultatif)</span>
+              </label>
+              <p class="cfg-aide" id="cfg-phrase-aide">
+                Quelques mots suffisent. La phrase passe à la ligne toute seule.
+              </p>
+              <textarea
+                class="cfg-textarea"
+                id="cfg-phrase"
+                rows="3"
+                maxlength={PHRASE_LONGUEUR_MAX}
+                aria-describedby="cfg-phrase-aide cfg-phrase-compteur"
+                data-phrase></textarea>
+              <p class="cfg-compteur mono" id="cfg-phrase-compteur">
+                <span data-phrase-compteur>0</span> / {PHRASE_LONGUEUR_MAX} caractères
+              </p>
+              <details class="cfg-idees">
+                <summary class="cfg-idees-titre">Des idées de phrases</summary>
+                {
+                  phrasesSuggerees.map((groupe) => (
+                    <div class="cfg-idees-groupe">
+                      <p class="cfg-idees-theme">{groupe.theme}</p>
+                      <div class="cfg-idees-liste">
+                        {groupe.phrases.map((phrase) => (
+                          <button type="button" class="cfg-idee" data-idee={phrase}>
+                            {phrase}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))
+                }
+              </details>
+            </div>
+
+            <div class="cfg-champ">
+              <label class="cfg-label" for="cfg-g-police">Style d'écriture</label>
+              <select class="cfg-select" id="cfg-g-police" data-g-police>
+                {
+                  polices.map((police) => (
+                    <option value={police.id} selected={police.id === POLICE_DEFAUT}>
+                      {police.nom}
+                    </option>
+                  ))
+                }
+              </select>
+            </div>
+
+            <div class="cfg-champ">
+              <p class="cfg-label" id="cfg-g-finition-label">Finition des lettres</p>
+              <div class="cfg-finitions" role="group" aria-labelledby="cfg-g-finition-label">
+                {
+                  finitions.map((finition) => (
+                    <button
+                      type="button"
+                      class="cfg-finition"
+                      data-g-finition={finition.id}
+                      aria-pressed={finition.id === FINITION_APERCU_DEFAUT ? "true" : "false"}
+                    >
+                      <span
+                        class="cfg-finition-teinte"
+                        style={`background-color: ${finition.couleurApercu};`}
+                        aria-hidden="true"></span>
+                      <span>{finition.nom}</span>
+                    </button>
+                  ))
+                }
+              </div>
+              <p class="cfg-aide" data-g-finition-aide>
+                {finitions.find((finition) => finition.id === FINITION_APERCU_DEFAUT)?.aide}
+              </p>
+            </div>
+
+            <p class="cfg-aide" role="status" data-guide-tailles></p>
+            <p class="cfg-erreur" role="status" data-guide-tient></p>
+            <button type="button" class="cfg-bouton" data-vers-libre hidden>
+              Placer le texte moi-même
+            </button>
+          </div>
+
+          <div class="cfg-libre" data-libre hidden>
+            <p class="cfg-aide">
+              Mise en page libre : chaque zone a sa police, sa taille et sa finition, et se
+              déplace sur l'aperçu.
+            </p>
+            <button type="button" class="cfg-bouton" data-vers-guide>
+              Revenir à la mise en page automatique
+            </button>
 
           {/* LES ONGLETS DE ZONES N EXISTENT QU AVEC LE JAVASCRIPT. Sans lui,
               aucune zone ne s ajoute ni ne se supprime : la page garde un seul
@@ -446,6 +627,7 @@ const donneesConfigurateur = {
             <button type="button" class="cfg-bouton" data-recentrer hidden>
               Recentrer le texte
             </button>
+          </div>
           </div>
         </section>
 
@@ -1369,6 +1551,168 @@ const donneesConfigurateur = {
        son `[hidden]`. */
     .cfg-bouton[hidden] {
       display: none;
+    }
+
+    /* ------------------------------------------- L inscription guidee */
+    .cfg-groupe-champs {
+      min-width: 0;
+      margin-inline: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .cfg-groupe-champs > legend {
+      padding: 0;
+    }
+
+    .cfg-mises-en-page {
+      display: grid;
+      gap: 0.625rem;
+      margin-top: 0.75rem;
+    }
+
+    .cfg-mise-en-page {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--canvas);
+      cursor: pointer;
+    }
+
+    .cfg-mise-en-page:has(input:checked) {
+      border-color: var(--ink);
+      box-shadow: inset 0 0 0 1px var(--ink);
+    }
+
+    .cfg-mise-en-page input {
+      flex: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-top: 0.125rem;
+      accent-color: var(--ink);
+    }
+
+    .cfg-mise-en-page-texte {
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    .cfg-mise-en-page-nom {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .cfg-mise-en-page-aide {
+      font-size: 0.9375rem;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .cfg-champs-personne {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.875rem 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .cfg-sous-champ {
+      display: grid;
+      gap: 0.375rem;
+      font-size: 0.9375rem;
+      color: var(--ink);
+    }
+
+    .cfg-sous-champ-large {
+      grid-column: 1 / -1;
+    }
+
+    .cfg-input {
+      display: block;
+      width: 100%;
+      min-height: 3rem;
+      padding: 0.625rem 0.875rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--canvas);
+      font: inherit;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .cfg-input::placeholder {
+      color: var(--muted);
+    }
+
+    .cfg-input:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 1px;
+      border-color: var(--ink);
+    }
+
+    .cfg-facultatif {
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .cfg-idees {
+      margin-top: 0.5rem;
+    }
+
+    .cfg-idees-titre {
+      padding: 0.625rem 0;
+      font-size: 1rem;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .cfg-idees-theme {
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .cfg-idees-liste {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .cfg-idee {
+      min-height: 2.75rem;
+      padding: 0.5rem 0.875rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: var(--canvas);
+      font-size: 0.9375rem;
+      text-align: left;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .cfg-idee:hover {
+      border-color: var(--ink);
+    }
+
+    .cfg-idee:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    /* Meme regle que `.cfg-bouton[hidden]` : ces blocs declarent `display`. */
+    .cfg-personne[hidden],
+    .cfg-guide[hidden],
+    .cfg-libre[hidden] {
+      display: none;
+    }
+
+    @media (max-width: 30rem) {
+      .cfg-champs-personne {
+        grid-template-columns: 1fr;
+      }
     }
 
     .cfg-prix {

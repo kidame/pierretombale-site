@@ -82,6 +82,12 @@ export const ESPACES_CM = {
   entreBlocs: 3.5,
 };
 
+/**
+ * Un nom reste sur UNE ligne tant qu'une taille d'au moins ce chiffre (mm) le
+ * permet : « Camille MARTIN » en 4 cm se lit mieux que sur deux lignes en 5.
+ */
+export const NOM_UNE_LIGNE_MIN_MM = 30;
+
 /** Part de la largeur de la zone gravable qu'une ligne peut occuper. */
 export const LARGEUR_UTILE = 0.95;
 
