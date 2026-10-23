@@ -53,6 +53,7 @@ import {
   lignesPleines,
   majZone,
   MESSAGE_LIGNES_MAX,
+  messageDepassement,
   peutAjouterZone,
   premiereZone,
   retireZone,
@@ -178,6 +179,7 @@ export async function demarre(): Promise<void> {
   const boutonAjouterZone = document.querySelector<HTMLButtonElement>("[data-zone-ajouter]");
   const boutonSupprimerZone = document.querySelector<HTMLButtonElement>("[data-zone-supprimer]");
   const messageLignes = document.querySelector<HTMLElement>("[data-zone-lignes]");
+  const messageDepasse = document.querySelector<HTMLElement>("[data-zone-depasse]");
 
   /** Le rang (0, 1, 2) de la zone active dans la liste. */
   function rangActif(valeur: EtatConfigurateur): number {
@@ -695,6 +697,13 @@ export async function demarre(): Promise<void> {
       }),
     surZoneActive: (cle) => {
       if (etat.lire().zoneActive !== cle) etat.maj({ zoneActive: cle });
+    },
+    surDepassement: (cles) => {
+      if (!messageDepasse) return;
+      const zones = etat.lire().zones;
+      const numeros = cles.map((cle) => zones.findIndex((zone) => zone.cle === cle) + 1);
+      const texte = numeros.length === 0 ? "" : messageDepassement(numeros, zones.length);
+      if (messageDepasse.textContent !== texte) messageDepasse.textContent = texte;
     },
   });
 

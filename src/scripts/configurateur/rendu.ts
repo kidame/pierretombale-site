@@ -55,6 +55,8 @@ export interface OptionsRendu {
   surDeplacement: (cle: string, position: Position) => void;
   /** La famille a touche un texte sur l'apercu : sa zone devient active. */
   surZoneActive: (cle: string) => void;
+  /** Apres chaque dessin : les zones dont le texte deborde de la surface gravable. */
+  surDepassement?: (cles: string[]) => void;
 }
 
 export interface Rendu {
@@ -284,6 +286,23 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
         noeud.visible(zone.texte.trim().length > 0);
         placeTexte(noeud, zone);
       }
+
+      /* Un texte qui deborde reste visible (voir `echelle.borne`) ; on le
+         signale pour que la famille raccourcisse ou reduise les lettres. Un
+         demi-centimetre de tolerance evite l'alerte au pixel pres. */
+      const tolerance = echelle.cmVersPx(0.5);
+      const depassent = etat.zones
+        .filter((zone) => {
+          const noeud = noeuds.get(zone.cle);
+          return (
+            !!noeud &&
+            noeud.visible() &&
+            (noeud.width() > echelle.zone.largeur + tolerance ||
+              noeud.height() > echelle.zone.hauteur + tolerance)
+          );
+        })
+        .map((zone) => zone.cle);
+      options.surDepassement?.(depassent);
 
       /* Le cadre ne sert que s'il y a plusieurs zones : avec une seule, il n'y
          a rien a distinguer. */

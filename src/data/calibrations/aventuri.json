@@ -1,0 +1,33 @@
+{
+  "modeleId": "aventuri",
+  "version": 1,
+  "statut": "provisoire",
+  "commentaire": "Stele 65 x 85, 3 parties (fiche fournisseur). Zone sous le bandeau ondule. Zone gravable tracee a l oeil, a faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 771,
+      "y": 73,
+      "largeur": 295,
+      "hauteur": 378
+    },
+    "largeurCm": 65,
+    "forme": "droite"
+  },
+  "zoneGravablePx": {
+    "x": 789,
+    "y": 199,
+    "largeur": 259,
+    "hauteur": 230
+  },
+  "vueStelePx": {
+    "x": 732,
+    "y": 42,
+    "largeur": 376,
+    "hauteur": 439
+  },
+  "perspective": "vue de 3/4 du monument, stele presque de face ; ecart faible"
+}

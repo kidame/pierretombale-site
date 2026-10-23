@@ -31,6 +31,17 @@ const ESPACE_ENTRE_ZONES_CM = 1.5;
 /** Le message affiche quand la famille depasse `ZONE_LIGNES_MAX` lignes. */
 export const MESSAGE_LIGNES_MAX = `${ZONE_LIGNES_MAX} lignes au plus par zone.`;
 
+/** Le message affiche quand un texte deborde de la surface gravable. */
+export function messageDepassement(numeros: number[], totalZones: number): string {
+  const sujet =
+    totalZones <= 1
+      ? "Le texte dépasse"
+      : numeros.length === 1
+        ? `Le texte de la zone ${numeros[0]} dépasse`
+        : `Les textes des zones ${numeros.join(" et ")} dépassent`;
+  return `${sujet} la surface gravable de la stèle. Réduisez la hauteur des lettres ou passez à la ligne.`;
+}
+
 /** Ce qu'une nouvelle zone reprend quand aucune zone ne la precede. */
 export interface DefautsZone {
   policeId: string;

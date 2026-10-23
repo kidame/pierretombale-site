@@ -1,0 +1,33 @@
+{
+  "modeleId": "5-pieces-jardiniere-en-closoir",
+  "version": 1,
+  "statut": "provisoire",
+  "commentaire": "Stele 90/85 x 70 x 10 (fiche fournisseur). Zone gravable tracee a l oeil, a faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 402,
+      "y": 52,
+      "largeur": 519,
+      "hauteur": 418
+    },
+    "largeurCm": 90,
+    "forme": "doucine"
+  },
+  "zoneGravablePx": {
+    "x": 428,
+    "y": 152,
+    "largeur": 467,
+    "hauteur": 293
+  },
+  "vueStelePx": {
+    "x": 361,
+    "y": 16,
+    "largeur": 606,
+    "hauteur": 491
+  },
+  "perspective": "face quasi frontale ; pas de correction en v1"
+}

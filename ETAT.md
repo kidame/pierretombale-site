@@ -62,6 +62,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 23.10.2026, Claude : CONFIGURATEUR ETENDU A 9 MODELES. Calibrations provisoires tracees a l oeil
+  sur les images 1200 (grilles), largeurs de stele des fiches fournisseur : corazon 90, arques 90,
+  4 pieces doucine 90, 5 pieces jardiniere 90, musulman-4 65, arbre-de-vie 95, aventuri 65,
+  quietude 95 (+ douceur 80). Quietude et Aventuri sont des vues de 3/4 : texte plat, ecart visible
+  sur Quietude. Tango mis en attente (docs/images-configurateur/calibrations-en-attente/).
+  Nouveau : message "Le texte depasse la surface gravable" (rendu.ts surDepassement, zones.ts
+  messageDepassement, data-zone-depasse). Verifie au navigateur de test sur les 9 pages.
 - 23.10.2026, Claude : fiches recues de Thomas (27 captures de fiches produit, encombrement et
   etiquettes). Encombrements confirmes (100 x 200 et 60 x 60) sauf Quietude 101 x 200. Corrige selon
   les etiquettes : prie-Dieu (Almandin, Corazon, Douceur, Eligie, Arbre de vie, Quietude, Tango),
