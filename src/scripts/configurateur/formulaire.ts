@@ -44,6 +44,12 @@ export interface FormulaireInscription {
   recompose(): void;
   mode(): ModeInscription;
   lit(): Inscription;
+  /**
+   * Remet les champs et le mode d'un brouillon (passe F). En mode libre, les
+   * zones sont remises par l'appelant, apres coup : le formulaire ne les
+   * recompose pas.
+   */
+  restaure(sauve: Inscription, mode: ModeInscription): void;
 }
 
 const LIBELLES_ROLES = { nom: "nom", dates: "dates", phrase: "phrase" } as const;
@@ -188,17 +194,56 @@ export function brancheInscription(options: OptionsInscription): FormulaireInscr
   }
 
   /* ---------------------------------------------------------- Modes */
-  function changeMode(suivant: ModeInscription): void {
+  function appliqueMode(suivant: ModeInscription): void {
     mode = suivant;
     if (blocGuide) blocGuide.hidden = mode !== "guide";
     if (blocLibre) blocLibre.hidden = mode !== "libre";
     options.surMode(mode);
-    if (mode === "guide") {
-      recompose();
-      versLibre?.focus();
-    } else {
-      document.querySelector<HTMLButtonElement>("[data-zone-onglet]")?.focus();
+    if (mode === "guide") recompose();
+  }
+
+  /** Le changement voulu par la famille : le focus suit le bloc affiche. */
+  function changeMode(suivant: ModeInscription): void {
+    appliqueMode(suivant);
+    if (mode === "guide") versLibre?.focus();
+    else document.querySelector<HTMLButtonElement>("[data-zone-onglet]")?.focus();
+  }
+
+  function restaure(sauve: Inscription, modeSauve: ModeInscription): void {
+    const connue = misesEnPage.some((m) => m.id === sauve.miseEnPage);
+    inscription.miseEnPage = connue ? sauve.miseEnPage : MISE_EN_PAGE_DEFAUT;
+    for (const radio of radios) radio.checked = radio.value === inscription.miseEnPage;
+
+    fiches.forEach((fiche, rang) => {
+      const personne = sauve.personnes?.[rang];
+      for (const champ of fiche.querySelectorAll<HTMLInputElement>("[data-p]")) {
+        const cle = champ.dataset.p as keyof Personne;
+        const valeur = typeof personne?.[cle] === "string" ? personne[cle] : "";
+        champ.value = valeur;
+        inscription.personnes[rang][cle] = valeur;
+      }
+    });
+
+    if (champPhrase) champPhrase.value = typeof sauve.phrase === "string" ? sauve.phrase : "";
+    majPhrase();
+
+    if (choixPolice && [...choixPolice.options].some((o) => o.value === sauve.policeId)) {
+      choixPolice.value = sauve.policeId;
+      inscription.policeId = sauve.policeId;
     }
+    const finition = finitions.find((bouton) => bouton.dataset.gFinition === sauve.finitionId);
+    if (finition) {
+      inscription.finitionId = sauve.finitionId;
+      for (const autre of finitions) {
+        autre.setAttribute("aria-pressed", String(autre === finition));
+      }
+      if (aideFinition) {
+        aideFinition.textContent = options.aidesParFinition.get(sauve.finitionId) ?? "";
+      }
+    }
+
+    majFiches();
+    appliqueMode(modeSauve === "libre" ? "libre" : "guide");
   }
 
   if (versLibre) {
@@ -213,6 +258,7 @@ export function brancheInscription(options: OptionsInscription): FormulaireInscr
   return {
     recompose,
     mode: () => mode,
+    restaure,
     lit: () => ({
       ...inscription,
       personnes: [{ ...inscription.personnes[0] }, { ...inscription.personnes[1] }],

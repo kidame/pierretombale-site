@@ -283,6 +283,14 @@ const donneesConfigurateur = {
 
       {/* ------------------------------------------------------------ Choix */}
       <div class="cfg-choix">
+        {/* LE BROUILLON (passe F, `brouillon.ts`) : pose par le script seulement.
+            Sans JavaScript, rien n est garde, donc rien a annoncer. */}
+        <div class="cfg-brouillon" data-brouillon hidden>
+          <p class="cfg-brouillon-texte" data-brouillon-texte></p>
+          <button type="button" class="cfg-bouton" data-brouillon-effacer hidden>
+            Tout effacer et recommencer
+          </button>
+        </div>
         {/* ---------------------------------------------------- 1 La matiere */}
         <section class="cfg-etape" aria-labelledby="etape-matiere">
           <h2 class="cfg-etape-titre" id="etape-matiere">
@@ -1703,6 +1711,25 @@ const donneesConfigurateur = {
     }
 
     /* Meme regle que `.cfg-bouton[hidden]` : ces blocs declarent `display`. */
+    .cfg-brouillon {
+      margin-bottom: 2rem;
+      padding: 1rem 1.125rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--canvas);
+    }
+
+    .cfg-brouillon-texte {
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .cfg-brouillon .cfg-bouton {
+      margin-top: 0.875rem;
+    }
+
+    .cfg-brouillon[hidden],
     .cfg-personne[hidden],
     .cfg-guide[hidden],
     .cfg-libre[hidden] {
