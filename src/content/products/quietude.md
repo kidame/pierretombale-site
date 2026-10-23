@@ -3,12 +3,12 @@ name: Quiétude
 modeleId: quietude
 famille: monument
 gamme: contemporain
-dimensions: 100 x 200 cm
+dimensions: 101 x 200 cm
 stele: true
 bicolore: false
 lignes: courbes
 motifs: []
-options: []
+options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Stèle en vague échancrée sur dalle plate et large.
 order: 110

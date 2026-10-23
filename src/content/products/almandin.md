@@ -2,16 +2,16 @@
 name: Almandin
 modeleId: almandin
 famille: monument
-gamme: classique
+gamme: contemporain
 dimensions: 100 x 200 cm
 stele: false
 bicolore: false
 lignes: droites
 motifs: []
-options: [vase]
+options: [prie-dieu]
 granitPresente: bengal
-shortDescription: Monument bas à dalle étagée, bénitier et vase intégrés.
+shortDescription: Monument bas à dalle étagée, sans stèle, avec prie-Dieu.
 order: 70
 ---
 
-Un monument sans stèle, où la dalle supérieure porte un bénitier et un vase taillés dans la même matière. Les marches avant donnent du relief à l'ensemble, qui reste bas.
+Un monument sans stèle : la dalle supérieure porte un prie-Dieu taillé dans la même matière, et les marches avant donnent du relief à l'ensemble, qui reste bas. L'inscription se grave sur la dalle.

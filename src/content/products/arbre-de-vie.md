@@ -6,9 +6,9 @@ gamme: contemporain
 dimensions: 100 x 200 cm
 stele: true
 bicolore: false
-lignes: courbes
+lignes: droites
 motifs: [arbre]
-options: []
+options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Stèle découpée en feuille, dalle sur rails à retours.
 order: 90

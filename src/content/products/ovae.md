@@ -5,7 +5,7 @@ famille: cineraire
 gamme: contemporain
 dimensions: 60 x 60 cm
 stele: true
-bicolore: false
+bicolore: true
 lignes: courbes
 motifs: []
 options: []

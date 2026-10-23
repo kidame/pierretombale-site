@@ -8,7 +8,7 @@ stele: true
 bicolore: false
 lignes: courbes
 motifs: [coeur]
-options: []
+options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Stèle en coeur posée sur une base aux plis sculptés.
 order: 100

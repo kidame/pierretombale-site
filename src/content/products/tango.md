@@ -2,13 +2,13 @@
 name: Tango
 modeleId: tango
 famille: monument
-gamme: prestige
+gamme: contemporain
 dimensions: 100 x 200 cm
 stele: true
 bicolore: true
 lignes: courbes
 motifs: []
-options: []
+options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Stèle double en deux matières, dalle noire polie à nervures.
 order: 140

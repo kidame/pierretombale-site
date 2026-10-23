@@ -2,7 +2,7 @@
 name: Aventuri
 modeleId: aventuri
 famille: monument
-gamme: contemporain
+gamme: prestige
 dimensions: 100 x 200 cm
 stele: true
 bicolore: true

@@ -62,6 +62,12 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 23.10.2026, Claude : fiches recues de Thomas (27 captures de fiches produit, encombrement et
+  etiquettes). Encombrements confirmes (100 x 200 et 60 x 60) sauf Quietude 101 x 200. Corrige selon
+  les etiquettes : prie-Dieu (Almandin, Corazon, Douceur, Eligie, Arbre de vie, Quietude, Tango),
+  Almandin sans benitier ni vase, Arbre de vie lignes droites, Aventuri prestige, Tango contemporain,
+  Ovae bicolore. Les captures ne donnent PAS la largeur des steles : calibration toujours provisoire.
+  Captures non versees au depot (contenu tiers).
 - 23.10.2026, Claude : POIDS DE /personnaliser/ RAMENE DE 70 A 9 KO GZ. Les traces des motifs etaient
   inlines deux fois (vignettes SVG + JSON). Vignettes en masque CSS sur le SVG public (mis en cache),
   JSON sans le trace d, lu par fetch dans index.ts au chargement du canvas. Rendu identique verifie.

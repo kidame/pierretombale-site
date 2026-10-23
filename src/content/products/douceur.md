@@ -8,7 +8,7 @@ stele: true
 bicolore: false
 lignes: courbes
 motifs: []
-options: []
+options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Stèle en bouclier aux flancs courbes, dalle entourée de rails arrondis.
 order: 10

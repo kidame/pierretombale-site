@@ -8,7 +8,7 @@ stele: true
 bicolore: true
 lignes: courbes
 motifs: []
-options: []
+options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Stèle courbe en deux matières, dalle sur rails à retours.
 order: 120
