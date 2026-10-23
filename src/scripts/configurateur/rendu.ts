@@ -47,6 +47,8 @@ export interface OptionsRendu {
   imagePourMatiere: (matiere: string) => string;
   /** Pile CSS de police pour un identifiant de police. */
   familleDePolice: (policeId: string) => string;
+  /** Hauteur de la majuscule en fraction de la taille de police. */
+  capitaleDePolice: (policeId: string) => number;
   /** Couleur d'apercu pour un identifiant de finition. */
   couleurDeFinition: (finitionId: string) => string;
   /** Le bronze de la page : le cadre de la zone active, jamais la gravure. */
@@ -283,7 +285,9 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
           text: zone.texte,
           /* Les hauteurs de lettres sont en millimetres dans les donnees (c'est
              l'unite du metier et celle du devis) ; le canvas travaille en cm. */
-          fontSize: echelle.cmVersPx(zone.hauteurMm / 10),
+          /* ... et le metier mesure la MAJUSCULE : la taille de police est
+             donc la hauteur voulue divisee par la capitale de la police. */
+          fontSize: echelle.cmVersPx(zone.hauteurMm / 10 / options.capitaleDePolice(zone.policeId)),
           fontFamily: options.familleDePolice(zone.policeId),
           fill: options.couleurDeFinition(zone.finitionId),
         });

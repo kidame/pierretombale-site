@@ -38,6 +38,14 @@ export interface Police {
   style: StylePolice;
   /** Pile CSS à appliquer. Le nom doit correspondre au `font-family` du paquet @fontsource. */
   famille: string;
+  /**
+   * Hauteur de la MAJUSCULE en fraction de la taille de police (sCapHeight /
+   * unitsPerEm du fichier, mesuré le 23.10.2026). Le métier mesure la hauteur
+   * des lettres sur la majuscule : « 3 cm » veut dire une capitale de 3 cm, soit
+   * une taille de police de 3 / capitale. Sans ce rapport, l'aperçu montrait
+   * des lettres 25 à 35 % trop petites.
+   */
+  capitale: number;
 }
 
 /**
@@ -51,36 +59,42 @@ export const polices: Police[] = [
     nom: "Cinzel",
     style: "lapidaire",
     famille: '"Cinzel", Georgia, serif',
+    capitale: 0.70,
   },
   {
     id: "marcellus",
     nom: "Marcellus",
     style: "lapidaire",
     famille: '"Marcellus", Georgia, serif',
+    capitale: 0.70,
   },
   {
     id: "eb-garamond",
     nom: "EB Garamond",
     style: "romain",
     famille: '"EB Garamond", Georgia, serif',
+    capitale: 0.65,
   },
   {
     id: "jost",
     nom: "Jost",
     style: "baton",
     famille: '"Jost", Helvetica, Arial, sans-serif',
+    capitale: 0.70,
   },
   {
     id: "great-vibes",
     nom: "Great Vibes",
     style: "anglaise",
     famille: '"Great Vibes", cursive',
+    capitale: 0.75,
   },
   {
     id: "pinyon-script",
     nom: "Pinyon Script",
     style: "anglaise",
     famille: '"Pinyon Script", cursive',
+    capitale: 0.68,
   },
 ];
 
@@ -105,7 +119,7 @@ export function getPolice(id: string): Police | undefined {
  * (3 à 6 cm), repris de la spec : la gravure se facture à la lettre, et la
  * hauteur en est le premier critère.
  */
-export const hauteursLettresMm = [30, 40, 50, 60] as const;
+export const hauteursLettresMm = [15, 20, 25, 30, 40, 50, 60] as const;
 
 export type HauteurLettresMm = (typeof hauteursLettresMm)[number];
 
@@ -113,7 +127,7 @@ export type HauteurLettresMm = (typeof hauteursLettresMm)[number];
 export const hauteursParDefaut = {
   nom: 50,
   dates: 40,
-  epitaphe: 30,
+  epitaphe: 20,
 } as const;
 
 /**
@@ -123,7 +137,7 @@ export const hauteursParDefaut = {
  * les centimètres se représentent mieux à la lecture.
  */
 export function hauteurLabel(mm: number): string {
-  return `${mm / 10} cm`;
+  return `${String(mm / 10).replace(".", ",")} cm`;
 }
 
 /* ------------------------------------------------------------- Finitions */

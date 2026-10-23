@@ -57,6 +57,7 @@ import {
   peutAjouterZone,
   premiereZone,
   retireZone,
+  CAPITALE_MOYENNE,
   type DefautsZone,
 } from "./zones";
 
@@ -72,7 +73,7 @@ export interface DonneesConfigurateur {
   /** Chemin du visuel 1200 px par matiere. */
   matieres: Array<{ id: string; image: string }>;
   /** Pile CSS par police, dans l'ordre de `personnalisation.ts`. */
-  polices: Array<{ id: string; famille: string }>;
+  polices: Array<{ id: string; famille: string; capitale: number }>;
   /** Couleur d'apercu et phrase d'aide par finition. */
   finitions: Array<{ id: string; couleur: string; aide: string }>;
   /** La bibliotheque de motifs, geometrie des dessins comprise. */
@@ -95,6 +96,7 @@ export async function demarre(): Promise<void> {
 
   const imagesParMatiere = new Map(donnees.matieres.map((m) => [m.id, m.image]));
   const famillesParPolice = new Map(donnees.polices.map((p) => [p.id, p.famille]));
+  const capitalesParPolice = new Map(donnees.polices.map((p) => [p.id, p.capitale]));
   const couleursParFinition = new Map(donnees.finitions.map((f) => [f.id, f.couleur]));
   const aidesParFinition = new Map(donnees.finitions.map((f) => [f.id, f.aide]));
   const catalogueMotifs = new Map(donnees.motifs.map((motif) => [motif.id, motif]));
@@ -687,6 +689,7 @@ export async function demarre(): Promise<void> {
     echelle,
     imagePourMatiere: (matiere) => imagesParMatiere.get(matiere) ?? "",
     familleDePolice: (policeId) => famillesParPolice.get(policeId) ?? "serif",
+    capitaleDePolice: (policeId) => capitalesParPolice.get(policeId) ?? CAPITALE_MOYENNE,
     couleurDeFinition: (finitionId) => couleursParFinition.get(finitionId) ?? "#ffffff",
     couleurAccent:
       getComputedStyle(cadre).getPropertyValue("--cfg-accent").trim() || ACCENT_DE_SECOURS,

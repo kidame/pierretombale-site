@@ -18,11 +18,15 @@
  * de `src/data/personnalisation.ts`).
  */
 
+/* 23.10.2026 (Thomas, inscription guidee, version audacieuse) : 6 zones pour la
+   mise en page « Couple » (2 noms, 2 dates, 1 phrase), 200 caracteres et
+   6 lignes pour qu'une epitaphe de 30 mots tienne. */
+
 /** Nombre de zones de texte au maximum sur une stele. */
-export const ZONES_MAX = 3;
+export const ZONES_MAX = 6;
 
 /** Longueur maximale d'une zone de texte, en caracteres. */
-export const ZONE_LONGUEUR_MAX = 120;
+export const ZONE_LONGUEUR_MAX = 200;
 
 /** Nombre de lignes au maximum dans une zone de texte. */
-export const ZONE_LIGNES_MAX = 4;
+export const ZONE_LIGNES_MAX = 6;

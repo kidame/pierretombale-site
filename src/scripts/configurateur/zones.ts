@@ -25,6 +25,13 @@ import { ALIGNEMENT_ZONE, type ZoneTexte } from "./etat";
  */
 export const INTERLIGNE = 1.25;
 
+/**
+ * La majuscule fait environ 70 % de la taille de police (0,65 a 0,75 selon la
+ * police, voir `capitale` dans `personnalisation.ts`). Sert aux estimations
+ * de hauteur de bloc, et de repli quand une police n'a pas de valeur.
+ */
+export const CAPITALE_MOYENNE = 0.7;
+
 /** Ce qu'une nouvelle zone laisse de blanc sous la precedente, en cm. */
 const ESPACE_ENTRE_ZONES_CM = 1.5;
 
@@ -93,7 +100,7 @@ export function lignesPleines(texte: string): boolean {
  */
 export function hauteurBlocCm(zone: ZoneTexte): number {
   const lignes = Math.max(1, lignesDeZone(zone.texte).length);
-  return lignes * (zone.hauteurMm / 10) * INTERLIGNE;
+  return lignes * (zone.hauteurMm / 10 / CAPITALE_MOYENNE) * INTERLIGNE;
 }
 
 function zoneGravableHauteurCm(echelle: Echelle): number {

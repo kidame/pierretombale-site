@@ -197,7 +197,11 @@ const donneesConfigurateur = {
     id: granit.id,
     image: `${racineVisuel}-${granit.id}-1200.webp`,
   })),
-  polices: polices.map((police) => ({ id: police.id, famille: police.famille })),
+  polices: polices.map((police) => ({
+    id: police.id,
+    famille: police.famille,
+    capitale: police.capitale,
+  })),
   finitions: finitions.map((finition) => ({
     id: finition.id,
     couleur: finition.couleurApercu,
