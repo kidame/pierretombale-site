@@ -2,11 +2,11 @@
   "modeleId": "douceur",
   "version": 1,
   "statut": "provisoire",
-  "commentaire": "Trace a la main par Claude le 22.10.2026 sur douceur-bengal.png (1254 x 1254). Les cm sont une hypothese tant que les associes n ont pas donne la largeur reelle de la stele. Toutes les coordonnees sont en pixels de l image source 1254 ; le code convertit selon la taille affichee.",
+  "commentaire": "Trace a la main par Claude le 22.10.2026 sur douceur-bengal.png (1254 x 1254). Largeur de stele 80 cm (fiche fournisseur, stele 80 x 79 x 10). Zone gravable tracee a l oeil, a faire valider par le graveur. Toutes les coordonnees sont en pixels de l image source 1254 ; le code convertit selon la taille affichee.",
   "imagePx": { "largeur": 1254, "hauteur": 1254 },
   "stele": {
     "cadrePx": { "x": 410, "y": 75, "largeur": 430, "hauteur": 387 },
-    "largeurCm": 60,
+    "largeurCm": 80,
     "forme": "bouclier"
   },
   "zoneGravablePx": { "x": 455, "y": 150, "largeur": 340, "hauteur": 280 },
