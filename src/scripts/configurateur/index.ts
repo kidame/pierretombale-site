@@ -19,7 +19,13 @@
  */
 import type { Calibration } from "@/data/calibrations";
 import { creeEchelle } from "./echelle";
-import { creeEtat, type EtatConfigurateur, type MotifPose, type MotifSurDemande } from "./etat";
+import {
+  creeEtat,
+  type EtatConfigurateur,
+  type MotifPose,
+  type MotifSurDemande,
+  type ZoneTexte,
+} from "./etat";
 import {
   ajouteMotif,
   basculeMiroir,
@@ -40,6 +46,7 @@ import {
 } from "./motifs";
 import { attendPolices } from "./polices";
 import { creeRendu } from "./rendu";
+import { majZone, premiereZone, type DefautsZone } from "./zones";
 
 /** Le bronze de la page, a defaut de pouvoir le lire dans le CSS. */
 const ACCENT_DE_SECOURS = "#8a6a3c";
@@ -61,8 +68,9 @@ export interface DonneesConfigurateur {
   defauts: {
     matiere: string;
     policeId: string;
-    hauteurMm: number;
     finitionId: string;
+    /** Une hauteur de lettres suggeree par rang de zone, en millimetres. */
+    hauteursMmParZone: number[];
   };
 }
 
@@ -83,16 +91,31 @@ export async function demarre(): Promise<void> {
      poser un motif n'attend donc pas Konva. */
   const echelle = creeEchelle(donnees.calibration);
 
+  /* Ce qu'une zone reprend quand rien ne la precede. Les hauteurs de lettres
+     viennent de la page (`hauteursParDefaut` de `personnalisation.ts`). */
+  const defautsZone: DefautsZone = {
+    policeId: donnees.defauts.policeId,
+    finitionId: donnees.defauts.finitionId,
+    hauteursMm: donnees.defauts.hauteursMmParZone,
+  };
+
+  /* L'etat part avec UNE zone de texte, comme la page que le visiteur voit
+     avant que ce script tourne. La famille en ajoute si elle veut. */
+  const zoneInitiale = premiereZone(defautsZone);
+
   const etat = creeEtat({
     matiere: donnees.defauts.matiere,
-    texte: "",
-    policeId: donnees.defauts.policeId,
-    hauteurMm: donnees.defauts.hauteurMm,
-    finitionId: donnees.defauts.finitionId,
-    position: null,
+    zones: [zoneInitiale],
+    zoneActive: zoneInitiale.cle,
     motifs: [],
     motifSurDemande: null,
   });
+
+  /** La zone que les controles de la page modifient. */
+  function changeZoneActive(changement: Partial<ZoneTexte>): void {
+    const valeur = etat.lire();
+    etat.maj({ zones: majZone(valeur.zones, valeur.zoneActive, changement) });
+  }
 
   /* ------------------------------------------------------- Les controles */
 
@@ -139,7 +162,7 @@ export async function demarre(): Promise<void> {
   if (champTexte) {
     const majTexte = () => {
       if (compteur) compteur.textContent = String(champTexte.value.length);
-      etat.maj({ texte: champTexte.value });
+      changeZoneActive({ texte: champTexte.value });
     };
     champTexte.addEventListener("input", majTexte);
     /* Un navigateur peut restaurer la valeur d'un champ au retour en arriere. */
@@ -147,12 +170,12 @@ export async function demarre(): Promise<void> {
   }
 
   choixPolice?.addEventListener("change", () => {
-    etat.maj({ policeId: choixPolice.value });
+    changeZoneActive({ policeId: choixPolice.value });
   });
 
   choixHauteur?.addEventListener("change", () => {
     const hauteurMm = Number(choixHauteur.value);
-    if (Number.isFinite(hauteurMm) && hauteurMm > 0) etat.maj({ hauteurMm });
+    if (Number.isFinite(hauteurMm) && hauteurMm > 0) changeZoneActive({ hauteurMm });
   });
 
   for (const bouton of boutonsFinition) {
@@ -162,7 +185,7 @@ export async function demarre(): Promise<void> {
 
       allume(boutonsFinition, bouton);
       if (aideFinition) aideFinition.textContent = aidesParFinition.get(finitionId) ?? "";
-      etat.maj({ finitionId });
+      changeZoneActive({ finitionId });
     });
   }
 
@@ -487,7 +510,13 @@ export async function demarre(): Promise<void> {
     imagePourMatiere: (matiere) => imagesParMatiere.get(matiere) ?? "",
     familleDePolice: (policeId) => famillesParPolice.get(policeId) ?? "serif",
     couleurDeFinition: (finitionId) => couleursParFinition.get(finitionId) ?? "#ffffff",
-    surDeplacement: (position) => etat.maj({ position }),
+    surDeplacement: (position) =>
+      etat.maj({
+        zones: majZone(etat.lire().zones, etat.lire().zoneActive, {
+          xCm: position.xCm,
+          yCm: position.yCm,
+        }),
+      }),
   });
 
   /* Le bronze des poignees et du cadre « Motif a creer » vient du CSS de la
@@ -500,7 +529,10 @@ export async function demarre(): Promise<void> {
      variable elle-meme n'existe pas a l'execution. */
   const policeInterface = getComputedStyle(document.body).fontFamily || POLICE_INTERFACE_DE_SECOURS;
 
-  const couleurFinition = (finitionId: string) => couleursParFinition.get(finitionId) ?? "#ffffff";
+  /* Un motif est grave dans la meme finition que les lettres. Avec plusieurs
+     zones il faut en choisir une : c'est celle de la ZONE 1, la principale. */
+  const couleurMotifs = (valeur: EtatConfigurateur) =>
+    couleursParFinition.get(valeur.zones[0]?.finitionId ?? "") ?? "#ffffff";
 
   vuesMotifs = creeMotifs(konva, {
     couche: vues.coucheMotifs,
@@ -532,20 +564,22 @@ export async function demarre(): Promise<void> {
      jamais : ils se redessinent tout de suite. */
   let enCours: Promise<void> = Promise.resolve();
   const dessine = (valeur: EtatConfigurateur) => {
-    vuesMotifs?.dessine(valeur, couleurFinition(valeur.finitionId));
+    vuesMotifs?.dessine(valeur, couleurMotifs(valeur));
     enCours = enCours.then(() => vues.dessine(valeur)).catch(() => undefined);
   };
   etat.abonner(dessine);
 
   await vues.dessine(etat.lire());
-  vuesMotifs.dessine(etat.lire(), couleurFinition(etat.lire().finitionId));
+  vuesMotifs.dessine(etat.lire(), couleurMotifs(etat.lire()));
 
   /* Le canvas affiche quelque chose : l'apercu statique peut disparaitre. */
   if (statique) statique.hidden = true;
 
   if (boutonRecentrer) {
     boutonRecentrer.hidden = false;
-    boutonRecentrer.addEventListener("click", () => etat.maj({ position: null }));
+    /* Recentrer ne touche QUE l'horizontale : la hauteur du bloc sur la stele
+       est un choix de la famille, pas un accident a corriger. */
+    boutonRecentrer.addEventListener("click", () => changeZoneActive({ xCm: null }));
   }
 
   /* Fenetre redimensionnee (ou telephone tourne) : l'echelle d'affichage

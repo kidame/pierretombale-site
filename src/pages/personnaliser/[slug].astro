@@ -2,6 +2,8 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { pageTitle } from "@/config/site";
 import { getCalibration } from "@/data/calibrations";
+/* Les bornes des zones de texte : 3 zones, 120 caracteres, 4 lignes. */
+import { ZONE_LONGUEUR_MAX, ZONES_MAX } from "@/data/configurateur";
 import { vignetteMatiere } from "@/data/granits";
 import { motifsParFamille } from "@/data/motifs";
 import { motifsConfigurateur, svgMotif } from "@/data/motifs-svg";
@@ -14,7 +16,6 @@ import {
   MENTION_APERCU,
   POLICE_DEFAUT,
   polices,
-  ZONE_LONGUEUR_MAX,
 } from "@/data/personnalisation";
 import {
   altVisuel,
@@ -162,9 +163,23 @@ const filAriane = breadcrumbSchema(
   origin,
 );
 
-/* La hauteur de lettres proposee par defaut est celle d un nom (5 cm), comme
-   sur /devis/ : c est la premiere ligne que les familles saisissent. */
-const hauteurDefaut = hauteursParDefaut.nom;
+/* UNE HAUTEUR DE LETTRES SUGGEREE PAR ZONE, en millimetres : le nom en grand,
+   les dates plus petites, l epitaphe plus discrete encore. Ce sont les memes
+   defauts que /devis/ (`hauteursParDefaut`). Si ZONES_MAX grandit, les zones
+   suivantes reprennent la derniere hauteur de la liste. */
+const hauteursSuggerees = [
+  hauteursParDefaut.nom,
+  hauteursParDefaut.dates,
+  hauteursParDefaut.epitaphe,
+];
+const hauteursMmParZone = Array.from(
+  { length: ZONES_MAX },
+  (_, rang) => hauteursSuggerees[Math.min(rang, hauteursSuggerees.length - 1)],
+);
+
+/* La zone 1 est celle d un nom (5 cm) : c est ce que les familles saisissent
+   en premier, et c est la hauteur que montre le select au chargement. */
+const hauteurDefaut = hauteursMmParZone[0];
 
 /* Les motifs, groupes par famille (familles vides exclues). Les SVG sont lus
    au build : la page les ecrit en clair dans les cartes, et leur geometrie
@@ -194,8 +209,8 @@ const donneesConfigurateur = {
   defauts: {
     matiere: visuel.matiere,
     policeId: POLICE_DEFAUT,
-    hauteurMm: hauteurDefaut,
     finitionId: FINITION_APERCU_DEFAUT,
+    hauteursMmParZone,
   },
 };
 ---

@@ -23,7 +23,8 @@
  * et E). Une seule zone de texte ; les trois zones viennent en passe C2.
  */
 import type { Echelle, Point, Taille } from "./echelle";
-import type { EtatConfigurateur, Position } from "./etat";
+import type { EtatConfigurateur, Position, ZoneTexte } from "./etat";
+import { INTERLIGNE } from "./zones";
 
 /* Les types de Konva, exportes une seule fois : `motifs.ts` travaille sur la
    couche de ce fichier et ne redeclare pas la meme chose. */
@@ -63,9 +64,6 @@ export interface Rendu {
    */
   affichage(): number;
 }
-
-/** Interligne de la gravure. Une valeur, un seul endroit. */
-const INTERLIGNE = 1.25;
 
 function chargeImage(url: string, cache: Map<string, HTMLImageElement>): Promise<HTMLImageElement> {
   const connue = cache.get(url);
@@ -175,9 +173,14 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
     }
   }
 
-  function placeTexte(position: Position | null): void {
+  /* Les deux axes sont independants : un `null` centre la zone sur cet axe. */
+  function placeTexte(zone: ZoneTexte): void {
     const taille = tailleTexte();
-    const coin = position ? echelle.pointDepuisCm(position) : echelle.centre(taille);
+    const centre = echelle.centre(taille);
+    const coin: Point = {
+      x: zone.xCm === null ? centre.x : echelle.pointDepuisCm({ xCm: zone.xCm, yCm: 0 }).x,
+      y: zone.yCm === null ? centre.y : echelle.pointDepuisCm({ xCm: 0, yCm: zone.yCm }).y,
+    };
     texte.position(echelle.borne(coin, taille));
   }
 
@@ -188,18 +191,23 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
       const image = await chargeImage(options.imagePourMatiere(etat.matiere), cache);
       fond.image(image);
 
-      texte.setAttrs({
-        text: etat.texte,
-        /* Les hauteurs de lettres sont en millimetres dans les donnees (c'est
-           l'unite du metier et celle du devis) ; le canvas travaille en cm. */
-        fontSize: echelle.cmVersPx(etat.hauteurMm / 10),
-        fontFamily: options.familleDePolice(etat.policeId),
-        fill: options.couleurDeFinition(etat.finitionId),
-      });
+      /* Une seule zone dessinee ici : les trois zones arrivent dans la suite de
+         la passe C2. */
+      const zone = etat.zones[0];
+      if (zone) {
+        texte.setAttrs({
+          text: zone.texte,
+          /* Les hauteurs de lettres sont en millimetres dans les donnees (c'est
+             l'unite du metier et celle du devis) ; le canvas travaille en cm. */
+          fontSize: echelle.cmVersPx(zone.hauteurMm / 10),
+          fontFamily: options.familleDePolice(zone.policeId),
+          fill: options.couleurDeFinition(zone.finitionId),
+        });
 
-      /* Un texte vide laisserait une poignee invisible au milieu de la stele. */
-      texte.visible(etat.texte.trim().length > 0);
-      placeTexte(etat.position);
+        /* Un texte vide laisserait une poignee invisible au milieu de la stele. */
+        texte.visible(zone.texte.trim().length > 0);
+        placeTexte(zone);
+      }
 
       stage.batchDraw();
     },
