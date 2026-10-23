@@ -137,6 +137,21 @@ Le dossier des associés (`analyses/2026-08-17-dossier-opportunite-pierretombale
   - Chaque passe (A a F de l etude) est un commit isole, testable seul, avec le script
     scripts/poids-pages.py comme garde-fou : on peut revenir en arriere passe par passe.
 
+## Inscription guidee (Thomas, 23.10.2026, version audacieuse)
+- La famille remplit des champs (prenom, nom, nom de jeune fille, naissance, deces, phrase) et
+  choisit une mise en page : Classique, Dedicace en haut, Deux personnes. Le site compose seul.
+- Tailles du metier, mesurees sur la MAJUSCULE : la plus grande qui tient. Reperes de recherche
+  (a confirmer par le graveur) : noms 3 a 6 cm, chiffres 3 cm, phrase 1,5 a 3 cm, epitaphe de
+  10 a 30 mots. Choix proposes : 1,5 / 2 / 2,5 / 3 / 4 / 5 / 6 cm.
+- Regles de composition : nom sur une ligne tant qu'une taille >= 3 cm le permet, dates plus
+  petites que le nom, phrase coupee entre les mots (5 lignes au plus), en cas de manque de
+  hauteur le plus grand texte descend d'abord.
+- Mise en page libre (zones deplacables, 6 au plus, 200 caracteres, 6 lignes) derriere le bouton
+  "Placer le texte moi-meme". Le texte ne se deplace pas en mode guide.
+- Tout se regle dans `src/data/inscription.ts` (mises en page, tailles par role, espaces, phrases).
+- A demander au graveur : hauteur mesuree sur la majuscule ? plus petite lettre en sablage ?
+  le signe de deces (croix) est-il grave ? (absent des polices web actuelles)
+
 ## Où retrouver quoi
 - `docs/SPEC-BUILD-SITE.md` : la spec de build, avec l'avertissement sur les valeurs provisoires du production-spec.
 - `analyses/2026-08-17-niche-pierre-tombale-ne.md` : l'analyse de marché complète, sections 1 à 15. Les données sont dans `analyses/data/`.

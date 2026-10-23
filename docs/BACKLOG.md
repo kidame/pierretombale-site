@@ -28,7 +28,12 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - [x] Motifs ajoutes : poses sous le texte, libres dans le cadre jaune - Claude - 23.10.2026
 - [ ] Passe E : exporter la stele (surface) de chaque zone de texte (Tango) - agent
 
+- [x] Inscription guidee : formulaire, mise en page auto, tailles du metier - Claude - 23.10.2026
+- [ ] Passe E : joindre les champs saisis (`formulaire.lit()`) a la demande de devis - agent
+- [ ] Passe F : garder les champs de l inscription dans le brouillon - agent
+
 ## En attente de Thomas (n'arrete rien)
+- [ ] Graveur : hauteur sur la majuscule ? plus petite lettre ? signe de deces (croix) ? - Thomas
 - [>] Motifs SVG : 10 sur 14 vectorises depuis les images ChatGPT (public/motifs, src/data/motifs.json) ;
       restent sapin, coeur, papillon, infini (images a produire, puis scripts/vectoriser-motif.py)
 - [!] Noms publics des 27 modeles (une ligne `name:` par fiche a changer)

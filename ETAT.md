@@ -62,6 +62,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 23.10.2026, Claude : INSCRIPTION GUIDEE (decision Thomas, version audacieuse). Audit : l apercu
+  appliquait la hauteur a la taille de police, majuscules 25 a 35 % trop petites -> rapport
+  `capitale` par police (c7fea28). Tailles 1,5/2/2,5 cm ajoutees. Moteur pur composition.ts +
+  mesure.ts + data/inscription.ts (23bfdeb). Formulaire guide formulaire.ts, 3 mises en page,
+  idees de phrases, bascule libre/guide (cb74859). Verifie au navigateur : Douceur, Musulman,
+  Arques en couple, Tango en couple (une personne par stele), mobile. Limites : champs saisis non
+  gardes dans l etat (passe E/F a brancher via `formulaire.lit()`), pas de signe de deces.
 - 23.10.2026, Claude : DECISIONS THOMAS : Tango grave sur ses deux steles ; les motifs se placent
   librement dans le cadre jaune (stele entiere), le texte reste dans les zones rouges. Code :
   echelle.ts gere plusieurs surfaces de texte (`zoneGravablePx` = rectangle ou liste) et un cadre
