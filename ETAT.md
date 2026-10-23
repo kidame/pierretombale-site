@@ -62,6 +62,15 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 22.10.2026, agent claude (2 runs, 80 tours chacun) + Claude : CONFIGURATEUR PASSE C1, MOTIFS.
+  src/data/motifs.ts valide motifs.json au build, motifs-svg.ts extrait viewBox et path des SVG
+  (inline dans le JSON de la page, aucun fetch). Section 3 "Les motifs" (etapes renumerotees :
+  1 Matiere, 2 Inscription, 3 Motifs, 4 Votre devis), cartes SVG par famille, Konva.Path par
+  motif sous le calque texte, Transformer partage (taille min/max en cm), miroir, Suppr, max 6.
+  "Un motif a vous" : cadre en pointilles "Motif a creer" sur la stele + description 300 car. +
+  fichier 8 Mo, etat motifSurDemande, sceneEnCm() prete pour E. Corrections a la main : etat
+  initial motifSurDemande, styles de la liste "Sur votre stele" en :global (lignes creees par le
+  script), carte sur demande compacte. Verifie au navigateur (1280 et 390 px). Reste C2 (3 zones).
 - 22.10.2026, agent claude (kumo-run, 80 tours atteints) + Claude : CONFIGURATEUR PASSES A ET B
   SUR DOUCEUR. Passe A (1c9de6e) : src/data/calibrations.ts valide les JSON de
   src/data/calibrations/, page /personnaliser/<slug>/ statique (noindex, canonical vers la fiche),
