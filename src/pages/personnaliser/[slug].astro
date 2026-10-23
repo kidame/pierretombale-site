@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { pageTitle } from "@/config/site";
 import { getCalibration } from "@/data/calibrations";
 /* Les bornes des zones de texte : 3 zones, 120 caracteres, 4 lignes. */
-import { ZONE_LONGUEUR_MAX, ZONES_MAX } from "@/data/configurateur";
+import { ZONE_LIGNES_MAX, ZONE_LONGUEUR_MAX, ZONES_MAX } from "@/data/configurateur";
 import { vignetteMatiere } from "@/data/granits";
 import { motifsParFamille } from "@/data/motifs";
 import { motifsConfigurateur, svgMotif } from "@/data/motifs-svg";
@@ -317,84 +317,131 @@ const donneesConfigurateur = {
           <h2 class="cfg-etape-titre" id="etape-inscription">
             <span class="cfg-numero mono" aria-hidden="true">2</span> L'inscription
           </h2>
+          <p class="cfg-aide">
+            Chaque zone peut avoir sa police, sa taille et sa finition.
+          </p>
 
-          <div class="cfg-champ">
-            <label class="cfg-label" for="cfg-texte">Texte à graver</label>
-            <p class="cfg-aide" id="cfg-texte-aide">
-              Le nom, les dates, quelques mots. Passez à la ligne pour séparer les lignes ; le
-              texte est centré sur la stèle.
-            </p>
-            <textarea
-              class="cfg-textarea"
-              id="cfg-texte"
-              name="texte"
-              rows="4"
-              maxlength={ZONE_LONGUEUR_MAX}
-              aria-describedby="cfg-texte-aide cfg-compteur"
-              data-texte></textarea>
-            <p class="cfg-compteur mono" id="cfg-compteur">
-              <span data-compteur>0</span> / {ZONE_LONGUEUR_MAX} caractères
-            </p>
-          </div>
-
-          <div class="cfg-champ">
-            <label class="cfg-label" for="cfg-police">Style d'écriture</label>
-            <select class="cfg-select" id="cfg-police" name="police" data-police>
+          {/* LES ONGLETS DE ZONES N EXISTENT QU AVEC LE JAVASCRIPT. Sans lui,
+              aucune zone ne s ajoute ni ne se supprime : la page garde un seul
+              bloc de controles, celui de la zone 1, et des onglets inertes ne
+              feraient que tromper. Le script leve `hidden`, pose
+              `role="tabpanel"` sur le bloc de controles et montre les onglets
+              des zones qui existent. */}
+          <div class="cfg-zones" data-zones hidden>
+            <div class="cfg-onglets" role="tablist" aria-label="Zones de texte">
               {
-                polices.map((police) => (
-                  <option value={police.id} selected={police.id === POLICE_DEFAUT}>
-                    {police.nom}
-                  </option>
-                ))
-              }
-            </select>
-          </div>
-
-          <div class="cfg-champ">
-            <label class="cfg-label" for="cfg-hauteur">Taille des lettres</label>
-            <select class="cfg-select" id="cfg-hauteur" name="hauteur" data-hauteur>
-              {
-                hauteursLettresMm.map((mm) => (
-                  <option value={mm} selected={mm === hauteurDefaut}>
-                    {hauteurLabel(mm)}
-                  </option>
-                ))
-              }
-            </select>
-          </div>
-
-          <div class="cfg-champ">
-            <p class="cfg-label" id="cfg-finition-label">Finition des lettres</p>
-            <div class="cfg-finitions" role="group" aria-labelledby="cfg-finition-label">
-              {
-                finitions.map((finition) => (
+                Array.from({ length: ZONES_MAX }, (_, rang) => rang + 1).map((numero) => (
                   <button
                     type="button"
-                    class="cfg-finition"
-                    data-finition={finition.id}
-                    data-couleur={finition.couleurApercu}
-                    aria-pressed={finition.id === FINITION_APERCU_DEFAUT ? "true" : "false"}
+                    class="cfg-onglet"
+                    role="tab"
+                    id={`cfg-zone-onglet-${numero}`}
+                    aria-controls="cfg-zone-panneau"
+                    aria-selected={numero === 1 ? "true" : "false"}
+                    tabindex={numero === 1 ? 0 : -1}
+                    hidden={numero !== 1}
+                    data-zone-onglet={numero}
                   >
-                    <span
-                      class="cfg-finition-teinte"
-                      style={`background-color: ${finition.couleurApercu};`}
-                      aria-hidden="true"></span>
-                    <span>{finition.nom}</span>
+                    Zone {numero}
                   </button>
                 ))
               }
             </div>
-            <p class="cfg-aide" data-finition-aide>
-              {finitions.find((finition) => finition.id === FINITION_APERCU_DEFAUT)?.aide}
-            </p>
+
+            <div class="cfg-zones-actions">
+              <button type="button" class="cfg-bouton" data-zone-ajouter>
+                + Ajouter une zone
+              </button>
+              <button type="button" class="cfg-bouton" data-zone-supprimer hidden>
+                Supprimer cette zone
+              </button>
+            </div>
           </div>
 
-          {/* Recentrer n a de sens qu avec le canvas : sans JavaScript, le
-              bouton reste cache (la regle `[hidden]` du bloc de style ci-dessous
-              gagne contre le `display` de `.cfg-bouton`). */}
-          <button type="button" class="cfg-bouton" data-recentrer hidden>
-            Recentrer le texte
-          </button>
+          <div id="cfg-zone-panneau" data-zone-panneau>
+            <div class="cfg-champ">
+              <label class="cfg-label" for="cfg-texte">Texte à graver</label>
+              <p class="cfg-aide" id="cfg-texte-aide">
+                Le nom, les dates, quelques mots. Passez à la ligne pour séparer les lignes ({
+                  ZONE_LIGNES_MAX
+                } au plus) ; le texte est centré sur la stèle.
+              </p>
+              <textarea
+                class="cfg-textarea"
+                id="cfg-texte"
+                name="texte"
+                rows={ZONE_LIGNES_MAX}
+                maxlength={ZONE_LONGUEUR_MAX}
+                aria-describedby="cfg-texte-aide cfg-compteur"
+                data-texte></textarea>
+              <p class="cfg-compteur mono" id="cfg-compteur">
+                <span data-compteur>0</span> / {ZONE_LONGUEUR_MAX} caractères
+              </p>
+              {/* Le message reste dans la page, vide : un `role="status"` deja
+                  la est annonce des qu il se remplit, alors qu un message
+                  cree au moment du blocage ne l est pas toujours. */}
+              <p class="cfg-aide" role="status" data-zone-lignes></p>
+            </div>
+
+            <div class="cfg-champ">
+              <label class="cfg-label" for="cfg-police">Style d'écriture</label>
+              <select class="cfg-select" id="cfg-police" name="police" data-police>
+                {
+                  polices.map((police) => (
+                    <option value={police.id} selected={police.id === POLICE_DEFAUT}>
+                      {police.nom}
+                    </option>
+                  ))
+                }
+              </select>
+            </div>
+
+            <div class="cfg-champ">
+              <label class="cfg-label" for="cfg-hauteur">Taille des lettres</label>
+              <select class="cfg-select" id="cfg-hauteur" name="hauteur" data-hauteur>
+                {
+                  hauteursLettresMm.map((mm) => (
+                    <option value={mm} selected={mm === hauteurDefaut}>
+                      {hauteurLabel(mm)}
+                    </option>
+                  ))
+                }
+              </select>
+            </div>
+
+            <div class="cfg-champ">
+              <p class="cfg-label" id="cfg-finition-label">Finition des lettres</p>
+              <div class="cfg-finitions" role="group" aria-labelledby="cfg-finition-label">
+                {
+                  finitions.map((finition) => (
+                    <button
+                      type="button"
+                      class="cfg-finition"
+                      data-finition={finition.id}
+                      data-couleur={finition.couleurApercu}
+                      aria-pressed={finition.id === FINITION_APERCU_DEFAUT ? "true" : "false"}
+                    >
+                      <span
+                        class="cfg-finition-teinte"
+                        style={`background-color: ${finition.couleurApercu};`}
+                        aria-hidden="true"></span>
+                      <span>{finition.nom}</span>
+                    </button>
+                  ))
+                }
+              </div>
+              <p class="cfg-aide" data-finition-aide>
+                {finitions.find((finition) => finition.id === FINITION_APERCU_DEFAUT)?.aide}
+              </p>
+            </div>
+
+            {/* Recentrer n a de sens qu avec le canvas : sans JavaScript, le
+                bouton reste cache (regle `.cfg-bouton[hidden]` du bloc de style
+                ci-dessous). Il recentre la zone active horizontalement. */}
+            <button type="button" class="cfg-bouton" data-recentrer hidden>
+              Recentrer le texte
+            </button>
+          </div>
         </section>
 
         {/* ------------------------------------------------------ 3 Les motifs */}
@@ -797,6 +844,68 @@ const donneesConfigurateur = {
       margin-top: 0.5rem;
       font-size: 0.875rem;
       color: var(--muted);
+    }
+
+    /* Vide, une aide ne doit pas laisser sa marge derriere elle : c est le cas
+       du message « 4 lignes au plus » tant que rien n est bloque. */
+    .cfg-aide:empty {
+      display: none;
+    }
+
+    /* ------------------------------------------- Les zones de texte (C2) */
+
+    .cfg-zones {
+      margin-top: 1.25rem;
+    }
+
+    .cfg-onglets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* 48 px de haut, et jamais la couleur seule : la zone active porte une
+       bordure epaisse bronze et un fond teinte. */
+    .cfg-onglet {
+      min-height: 3rem;
+      padding: 0.5rem 1.125rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--canvas);
+      font: inherit;
+      font-size: 0.9375rem;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .cfg-onglet:hover {
+      border-color: var(--ink);
+    }
+
+    .cfg-onglet:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    .cfg-onglet[aria-selected="true"] {
+      border-width: 2px;
+      border-color: var(--cfg-accent);
+      background: var(--surface);
+      font-weight: 500;
+    }
+
+    .cfg-zones-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    /* Les deux boutons sont dans une rangee : la marge haute du bouton seul
+       n a plus de sens ici. */
+    .cfg-zones-actions .cfg-bouton {
+      margin-top: 0;
+      font-size: 0.9375rem;
     }
 
     .cfg-pastilles {
@@ -1223,6 +1332,21 @@ const donneesConfigurateur = {
     .cfg-bouton:focus-visible {
       outline: 2px solid var(--ink);
       outline-offset: 2px;
+    }
+
+    .cfg-bouton:disabled {
+      border-color: var(--line);
+      color: var(--muted);
+      cursor: default;
+    }
+
+    /* `[hidden]` (regle en tete de ce bloc) et `.cfg-bouton` ont la MEME
+       specificite : sans cette regle, placee APRES, le `display` du bouton
+       gagnerait par l ordre d ecriture et un bouton `hidden` resterait visible.
+       A RETENIR : toute classe de ce bloc qui declare `display` doit prevoir
+       son `[hidden]`. */
+    .cfg-bouton[hidden] {
+      display: none;
     }
 
     .cfg-prix {
