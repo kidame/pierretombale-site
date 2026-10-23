@@ -1,0 +1,113 @@
+{
+  "_commentaire": "INTERNE, jamais publie : fiche produit publique du fournisseur pour chacun des 27 modeles (releve du 23.10.2026). Cle = modeleId (dossier image).",
+  "modeles": {
+    "douceur": {
+      "slugSite": "douceur",
+      "url": "https://www.granitsmaffre.com/reference/ref-douceur-douceur"
+    },
+    "corazon": {
+      "slugSite": "corazon",
+      "url": "https://www.granitsmaffre.com/reference/ref-corazon-corazon"
+    },
+    "arques": {
+      "slugSite": "arques",
+      "url": "https://www.granitsmaffre.com/reference/ref-arques-arques"
+    },
+    "eligie": {
+      "slugSite": "eligie",
+      "url": "https://www.granitsmaffre.com/reference/ref-eligie-eligie"
+    },
+    "tango": {
+      "slugSite": "tango",
+      "url": "https://www.granitsmaffre.com/reference/ref-tango-tango"
+    },
+    "aventuri": {
+      "slugSite": "aventuri",
+      "url": "https://www.granitsmaffre.com/reference/ref-aventuri-avent"
+    },
+    "quietude": {
+      "slugSite": "quietude",
+      "url": "https://www.granitsmaffre.com/reference/ref-quietude-f25659_2"
+    },
+    "arbre-de-vie": {
+      "slugSite": "arbre-de-vie",
+      "url": "https://www.granitsmaffre.com/reference/ref-arbre-de-vie-f10881_2"
+    },
+    "almandin": {
+      "slugSite": "almandin",
+      "url": "https://www.granitsmaffre.com/reference/ref-almandin-alman"
+    },
+    "musulman-4": {
+      "slugSite": "musulman",
+      "url": "https://www.granitsmaffre.com/reference/ref-musulman-4-musu4"
+    },
+    "4-pieces-sans-stele": {
+      "slugSite": "4-pieces-sans-stele",
+      "url": "https://www.granitsmaffre.com/reference/ref-4-pieces-sans-stele-4psstfi"
+    },
+    "4-pieces-stele-doucine-avec-base": {
+      "slugSite": "4-pieces-stele-doucine-avec-base",
+      "url": "https://www.granitsmaffre.com/reference/ref-4-pieces-stele-doucine-avec-base-4pbfi"
+    },
+    "5-pieces-jardiniere-en-closoir": {
+      "slugSite": "5-pieces-jardiniere-en-closoir",
+      "url": "https://www.granitsmaffre.com/reference/ref-5-pieces-jardiniere-en-closoir-5pjclosfi"
+    },
+    "tombale-simple-200x100x10": {
+      "slugSite": "tombale-simple",
+      "url": "https://www.granitsmaffre.com/reference/ref-tombale-simple-200x100x10-tblfi"
+    },
+    "cin1": {
+      "slugSite": "coeur",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin1-60x60-cin1-60x60"
+    },
+    "cin8": {
+      "slugSite": "coeur-sur-vague",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin8-60x60-cin8-60x60"
+    },
+    "cin-aquarius": {
+      "slugSite": "aquarius",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin-aquarius-60x60-cin-aqua60x60"
+    },
+    "cin-ovae": {
+      "slugSite": "ovae",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin-ovae-60x60-cin-ovae60x60"
+    },
+    "cin-esperanza": {
+      "slugSite": "esperanza",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin-esperanza-60x60-cin-espe60x60"
+    },
+    "cin-aloria": {
+      "slugSite": "aloria",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin-aloria-60x60-cin-aloria60x60"
+    },
+    "cin-bahia": {
+      "slugSite": "bahia",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin-bahia-60x60-cinbahia060"
+    },
+    "cin-montagne01": {
+      "slugSite": "montagne-1",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin-montagne01-60x60-cin-montagne0160x60"
+    },
+    "cin-montagne02": {
+      "slugSite": "montagne-2",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin-montagne02-60x60-cin-montagne0260x60"
+    },
+    "cin-nautis": {
+      "slugSite": "nautis",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin-nautis-60x60-cin-nautis60x60"
+    },
+    "cin-saturne": {
+      "slugSite": "saturne",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin-saturne-60x60-cin-saturne60x60"
+    },
+    "cin-nivora": {
+      "slugSite": "nivora",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin-nivora-60x60-cin-nivora60x60"
+    },
+    "cin-tombale": {
+      "slugSite": "dalle-cineraire",
+      "url": "https://www.granitsmaffre.com/reference/ref-cin-tombale-60x60-cin-tombfi60x60"
+    }
+  }
+}
