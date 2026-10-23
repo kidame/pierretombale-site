@@ -62,6 +62,14 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 23.10.2026, Claude : PASSE F + DOCUMENTATION. Brouillon par modele dans le localStorage
+  (brouillon.ts : matiere, champs, mode, zones, motifs, description du motif sur demande ; 90 j ;
+  reprise avant le premier dessin ; "Tout effacer et recommencer" ; avertissement avant de
+  quitter seulement si le stockage est refuse). Page protection des donnees completee.
+  composition.ts : noms de meme taille a deux personnes, dates toujours sous le nom (aussi apres
+  la descente en hauteur). Nouveau guide docs/CONFIGURATEUR.md (architecture, conventions,
+  recettes, verification, publication, limites). Outils : scripts/verifie-configurateur.sh
+  (controle des 10 modeles au navigateur de test, planche) et scripts/mesure-polices.py.
 - 23.10.2026, Claude : INSCRIPTION GUIDEE (decision Thomas, version audacieuse). Audit : l apercu
   appliquait la hauteur a la taille de police, majuscules 25 a 35 % trop petites -> rapport
   `capitale` par police (c7fea28). Tailles 1,5/2/2,5 cm ajoutees. Moteur pur composition.ts +

@@ -20,7 +20,8 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - [x] Passe C2 : 3 zones de texte multilignes (police, hauteur, finition par zone)
 - [ ] Passe D : prix indicatif en direct (tarifs.json) - agent - attend la grille de prix
 - [ ] Passe E : export PNG + JSON de scene, branchement sur /devis/ - agent - attend E6
-- [ ] Passe F : avertissement avant de quitter, brouillon, mobile - agent
+- [x] Passe F : brouillon sur l appareil (90 j), reprise, "Tout effacer", avertissement si le
+      navigateur refuse de garder - Claude - 23.10.2026
 - [>] Etendre aux autres modeles : 10 funeraires calibres (provisoire) le 23.10.2026 - Claude
       Restent : Eligie (largeur inconnue), Almandin, 4 pieces sans
       stele, Tombale simple (pas de stele : a decider), les 13 cineraires (largeurs inconnues)
@@ -30,7 +31,8 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 
 - [x] Inscription guidee : formulaire, mise en page auto, tailles du metier - Claude - 23.10.2026
 - [ ] Passe E : joindre les champs saisis (`formulaire.lit()`) a la demande de devis - agent
-- [ ] Passe F : garder les champs de l inscription dans le brouillon - agent
+- [ ] Tests automatiques de composition.ts (pur) - agent
+- [ ] Sortir de index.ts (950 lignes) le branchement des motifs et du brouillon - agent
 
 ## En attente de Thomas (n'arrete rien)
 - [ ] Graveur : hauteur sur la majuscule ? plus petite lettre ? signe de deces (croix) ? - Thomas
@@ -59,3 +61,7 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
   lancer `python3 scripts/images-modeles.py`, rebuild.
 - Prix d'un modele : src/data/tarifs.json.
 - Polices, hauteurs, finitions, motifs : src/data/personnalisation.ts.
+- Configurateur (calibration d'un modele, mise en page automatique, tailles, phrases proposees,
+  nouvelle police, brouillon) : recettes de docs/CONFIGURATEUR.md, section 4.
+- Verifier le configurateur sur tous les modeles : scripts/verifie-configurateur.sh (section 5 du
+  guide). Mesurer une police : scripts/mesure-polices.py.

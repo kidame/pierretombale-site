@@ -237,19 +237,34 @@ export function compose(
     }
   }
 
-  /* 1 bis. La hierarchie : les dates d'une personne restent plus petites que
-     son nom (un cran au moins), quand leur liste le permet. */
-  for (const dates of blocs.filter((bloc) => bloc.role === "dates")) {
-    const nom = blocs.find((bloc) => bloc.role === "nom" && bloc.personne === dates.personne);
-    if (!nom) continue;
-    while (
-      dates.tailles[dates.rang] >= nom.tailles[nom.rang] &&
-      dates.rang < dates.tailles.length - 1
-    ) {
-      dates.rang += 1;
-      ajuste(dates);
+  /* La coherence, appelee apres chaque etape (elle ne fait que REDUIRE, donc
+     ne casse jamais ce qui tenait) :
+       - deux personnes : leurs noms ont la meme taille, leurs dates aussi ;
+       - les dates d'une personne restent un cran sous son nom, si possible. */
+  const harmonise = () => {
+    for (const role of ["nom", "dates"] as RoleTexte[]) {
+      const memes = blocs.filter((bloc) => bloc.role === role);
+      const plusPetit = Math.min(...memes.map((bloc) => bloc.tailles[bloc.rang]));
+      for (const bloc of memes) {
+        while (bloc.tailles[bloc.rang] > plusPetit && bloc.rang < bloc.tailles.length - 1) {
+          bloc.rang += 1;
+        }
+        ajuste(bloc);
+      }
     }
-  }
+    for (const dates of blocs.filter((bloc) => bloc.role === "dates")) {
+      const nom = blocs.find((bloc) => bloc.role === "nom" && bloc.personne === dates.personne);
+      if (!nom) continue;
+      while (
+        dates.tailles[dates.rang] >= nom.tailles[nom.rang] &&
+        dates.rang < dates.tailles.length - 1
+      ) {
+        dates.rang += 1;
+        ajuste(dates);
+      }
+    }
+  };
+  harmonise();
 
   const hauteurBloc = (bloc: Bloc) =>
     mesureur.hauteurBlocCm(bloc.lignes.length, police, bloc.tailles[bloc.rang]);
@@ -286,6 +301,9 @@ export function compose(
       ajuste(reductible);
     }
   });
+
+  /* La descente en hauteur a pu remettre un nom a la taille de ses dates. */
+  harmonise();
 
   /* 3. Les positions : chaque pile centree sur sa stele. */
   const zones: ZoneTexte[] = [];
