@@ -62,6 +62,11 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 23.10.2026, Claude : POIDS DE /personnaliser/ RAMENE DE 70 A 9 KO GZ. Les traces des motifs etaient
+  inlines deux fois (vignettes SVG + JSON). Vignettes en masque CSS sur le SVG public (mis en cache),
+  JSON sans le trace d, lu par fetch dans index.ts au chargement du canvas. Rendu identique verifie.
+  A reprendre : un nouveau motif se pose encore au centre et peut recouvrir le nom (placement sous le
+  texte demande en C1, non fait).
 - 23.10.2026, agent claude (80 tours atteints) + Claude : CONFIGURATEUR PASSE C2, 3 ZONES DE TEXTE.
   Etat en zones (src/data/configurateur.ts : 3 zones, 120 caracteres, 4 lignes ; zones.ts),
   onglets Zone 1 a 3, ajout ("3 zones sur 3" a la limite), suppression, message 4 lignes au plus.

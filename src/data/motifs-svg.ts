@@ -34,8 +34,15 @@ export interface GeometrieMotif {
   d: string;
 }
 
-/** Ce que la page inline pour le canvas : les donnees plus la geometrie. */
-export interface MotifConfigurateur extends GeometrieMotif {
+/**
+ * Ce que la page inline pour le canvas : les donnees et la viewBox, SANS le
+ * trace. Le `d` (plusieurs Ko par motif) est lu dans le fichier SVG par le
+ * navigateur, une fois, en cache : inliner dix traces faisait peser la page
+ * 70 Ko compresses (mesure du 23.10.2026).
+ */
+export interface MotifConfigurateur extends Omit<GeometrieMotif, "d"> {
+  /** Chemin public du SVG, ex. /motifs/fleurs-rose.svg. */
+  fichier: string;
   id: string;
   nom: string;
   famille: string;
@@ -129,7 +136,9 @@ export function motifsConfigurateur(): MotifConfigurateur[] {
       largeurMinCm: motif.largeurMinCm,
       largeurMaxCm: motif.largeurMaxCm,
       symetrie: motif.symetrie,
-      ...geometrie,
+      fichier: motif.fichier,
+      largeurMm: geometrie.largeurMm,
+      hauteurMm: geometrie.hauteurMm,
     };
   });
 }

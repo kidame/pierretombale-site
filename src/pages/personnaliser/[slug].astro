@@ -6,7 +6,7 @@ import { getCalibration } from "@/data/calibrations";
 import { ZONE_LIGNES_MAX, ZONE_LONGUEUR_MAX, ZONES_MAX } from "@/data/configurateur";
 import { vignetteMatiere } from "@/data/granits";
 import { motifsParFamille } from "@/data/motifs";
-import { motifsConfigurateur, svgMotif } from "@/data/motifs-svg";
+import { motifsConfigurateur } from "@/data/motifs-svg";
 import {
   FINITION_APERCU_DEFAUT,
   finitions,
@@ -203,8 +203,8 @@ const donneesConfigurateur = {
     couleur: finition.couleurApercu,
     aide: finition.aide,
   })),
-  /* La bibliotheque de motifs, geometrie comprise (`d` et viewBox en mm) : le
-     canvas pose un `Konva.Path` sans rien telecharger. */
+  /* La bibliotheque de motifs : donnees et viewBox en mm. Le trace lui-meme
+     est lu dans le SVG public au chargement du canvas (voir index.ts). */
   motifs: motifsConfigurateur(),
   defauts: {
     matiere: visuel.matiere,
@@ -488,7 +488,12 @@ const donneesConfigurateur = {
                       data-motif={motif.id}
                       data-nom={motif.nom}
                     >
-                      <span class="cfg-motif-vue" set:html={svgMotif(motif.id)} />
+                      <span class="cfg-motif-vue" aria-hidden="true">
+                        <span
+                          class="cfg-motif-masque"
+                          style={`--motif: url(${motif.fichier})`}
+                        />
+                      </span>
                       <span class="cfg-motif-nom">{motif.nom}</span>
                     </button>
                   ))}
@@ -1091,6 +1096,18 @@ const donneesConfigurateur = {
       border-radius: 2px;
       background: var(--surface);
       color: var(--ink);
+    }
+
+    /* La vignette : le SVG public sert de MASQUE sur un aplat de la couleur du
+       texte. Meme rendu que le SVG inline, mais le fichier se met en cache et
+       la page ne porte pas les traces. */
+    .cfg-motif-masque {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: currentColor;
+      -webkit-mask: var(--motif) center / contain no-repeat;
+      mask: var(--motif) center / contain no-repeat;
     }
 
     .cfg-motif-vue svg {

@@ -54,6 +54,9 @@ export interface MotifCatalogue {
   symetrie: boolean;
   largeurMm: number;
   hauteurMm: number;
+  /** Chemin public du SVG : le trace y est lu au chargement du canvas. */
+  fichier: string;
+  /** Le trace en mm. Vide tant que le SVG n est pas lu (ou s il est illisible). */
   d: string;
 }
 

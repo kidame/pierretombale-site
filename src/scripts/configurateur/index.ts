@@ -664,6 +664,20 @@ export async function demarre(): Promise<void> {
 
   const konva = (await import("konva")).default;
 
+  /* Les traces des motifs : lus dans les SVG publics (deja en cache par les
+     vignettes), en parallele avec Konva. Un fichier illisible retire son motif
+     du canvas sans casser le reste. */
+  await Promise.all(
+    [...catalogueMotifs.values()].map(async (motif) => {
+      try {
+        const source = await (await fetch(motif.fichier)).text();
+        motif.d = /\sd="([^"]+)"/.exec(source)?.[1] ?? "";
+      } catch {
+        motif.d = "";
+      }
+    }),
+  );
+
   const vues = creeRendu(konva, {
     conteneur: cadre,
     echelle,
