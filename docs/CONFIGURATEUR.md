@@ -50,9 +50,11 @@ dans `src/scripts/configurateur/`. Corriger une donnée suffit à corriger l'ape
 
 | Fichier | Rôle | Touche au DOM ? |
 |---|---|---|
-| `index.ts` | Le branchement : lit le JSON de la page, crée l'état, branche chaque contrôle, charge Konva, reprend le brouillon | oui (seul avec `formulaire.ts`) |
+| `index.ts` | Le chef d'orchestre : lit le JSON de la page, crée l'état, branche la matière et les zones libres, appelle les trois modules ci-dessous, charge Konva | oui |
+| `panneau-motifs.ts` | Les contrôles de l'étape 3 : familles, liste « Sur votre stèle », motif sur demande | oui |
+| `reprise.ts` | Le brouillon sur la page : reprise, message, « Tout effacer », sauvegarde, avertissement | oui |
 | `etat.ts` | Le magasin : l'état (matière, zones, motifs), `maj`, `abonner`, et `sceneEnCm()` pour l'export | non |
-| `formulaire.ts` | Le formulaire de l'inscription guidée, les deux modes | oui |
+| `formulaire.ts` | Le formulaire de l'inscription guidée, les deux modes, `restaure()` pour le brouillon | oui |
 | `composition.ts` | **Pur.** Champs saisis → zones de texte (tailles, coupures, positions) | non |
 | `mesure.ts` | La largeur réelle d'un texte dans une police (canvas hors écran) | non |
 | `zones.ts` | Les zones du mode libre : ajouter, retirer, bornes de lignes, messages | non |
@@ -70,7 +72,8 @@ champ « Nom » (formulaire.ts)
   -> etat.maj({ zones })                          etat.ts
   -> abonnés : rendu.dessine()   (Konva)          rendu.ts
                motifs.dessine()                   motifs.ts
-               sauvegarde du brouillon (500 ms)   index.ts + brouillon.ts
+               liste des motifs                   panneau-motifs.ts
+               sauvegarde du brouillon (500 ms)   reprise.ts + brouillon.ts
 ```
 
 La page `src/pages/personnaliser/[slug].astro` construit tout au build : le HTML des contrôles
@@ -192,6 +195,14 @@ d'un champ : incrémenter `VERSION_BROUILLON` (les anciens brouillons sont alors
 
 ## 5. Vérifier un changement
 
+0. **Tests** : `npm test` (vitest, quelques secondes). Ils vérifient les règles du code pur avec
+   les vraies calibrations : composition (`tests/composition.test.ts` : ordre des blocs,
+   capitales, largeur et hauteur sur chaque modèle, hiérarchie des tailles, nom sur une ligne,
+   coupure des phrases, dédicace, deux personnes, cas impossible), échelle et bornes des motifs
+   (`tests/echelle.test.ts`). **Une règle changée = son test changé dans le même commit.** Un
+   nouveau modèle calibré est testé tout seul (les tests bouclent sur `modelesCalibres()`).
+   Le mesureur de test est fictif (0,8 em par caractère) : les largeurs exactes d'une police se
+   contrôlent au point 2.
 1. Build plafonné (VPS partagé) :
    `systemd-run --user --wait -p MemoryMax=1200M --collect bash -c "npm run build && npx astro check"`
    (en tâche de fond avec un fichier témoin si le pont MCP est utilisé).
@@ -220,7 +231,9 @@ est effacé juste après. **Jamais de jeton dans le dépôt.**
 - **Une donnée = un endroit.** Une valeur métier dans le code est un défaut : la sortir dans
   `src/data/`.
 - **Les fonctions de calcul restent pures** (`composition.ts`, `echelle.ts`, les fonctions de
-  `motifs.ts` et `zones.ts`) : elles se testent sans navigateur.
+  `motifs.ts` et `zones.ts`) : elles se testent sans navigateur, dans `tests/`.
+- **Un fichier de branchement par étape de la page** (`formulaire.ts`, `panneau-motifs.ts`,
+  `reprise.ts`) : `index.ts` ne fait que les appeler. Une nouvelle étape = un nouveau fichier.
 - **CSS** : toute classe qui déclare `display` doit avoir sa règle `[hidden]` (sinon un bloc
   caché reste visible) ; les éléments créés par le script se stylent avec `:global(...)`.
 - **Performance** : Konva en import dynamique, tracés des motifs lus dans les SVG publics (pas
@@ -240,6 +253,6 @@ est effacé juste après. **Jamais de jeton dans le dépôt.**
 | Signe † absent des polices web | Sous-ensemble de polices élargi, ou motif « croix » |
 | « née » seulement (champ « Nom de jeune fille ») | Un choix née / né, ou « nom de naissance » |
 | Polices web ≠ polices du graveur (écart de largeur 10 à 20 %) | Valider sur bon à tirer ; à terme, les polices de l'atelier |
-| `index.ts` dépasse 950 lignes | Sortir le branchement des motifs et du brouillon dans leurs propres fichiers |
-| Pas de tests automatiques | `composition.ts` est pur : premier candidat à des tests (vitest) |
+| Les zones du mode libre sont encore branchées dans `index.ts` | Les sortir dans un `panneau-zones.ts`, comme les motifs |
+| Les tests ne couvrent que le code pur | Le rendu et les branchements se contrôlent au navigateur (`verifie-configurateur.sh`) |
 | Calibrations tracées à l'oeil, statut provisoire | Validation du graveur, planche par modèle |

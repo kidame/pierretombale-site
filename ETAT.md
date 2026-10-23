@@ -62,6 +62,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 23.10.2026, Claude : TESTS ET DECOUPAGE. vitest 5.0.5 (devDependency exacte), `npm test` :
+  62 tests (tests/composition.test.ts, tests/echelle.test.ts, outils dans tests/commun.ts), sur
+  les vraies calibrations ; verifie par mutation (harmonise() retire -> 8 echecs). index.ts
+  956 -> 530 lignes : panneau-motifs.ts (etape 3) et reprise.ts (brouillon sur la page). Bug
+  corrige au passage : cliquer un motif avant la fin du chargement de Konva levait une erreur.
+  Verifie : build, astro check, verifie-configurateur.sh (douceur, tango, musulman), motifs
+  (clic precoce, miroir, retrait, motif sur demande). Guide docs/CONFIGURATEUR.md a jour.
 - 23.10.2026, Claude : PASSE F + DOCUMENTATION. Brouillon par modele dans le localStorage
   (brouillon.ts : matiere, champs, mode, zones, motifs, description du motif sur demande ; 90 j ;
   reprise avant le premier dessin ; "Tout effacer et recommencer" ; avertissement avant de

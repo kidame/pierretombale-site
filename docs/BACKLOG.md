@@ -31,8 +31,9 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 
 - [x] Inscription guidee : formulaire, mise en page auto, tailles du metier - Claude - 23.10.2026
 - [ ] Passe E : joindre les champs saisis (`formulaire.lit()`) a la demande de devis - agent
-- [ ] Tests automatiques de composition.ts (pur) - agent
-- [ ] Sortir de index.ts (950 lignes) le branchement des motifs et du brouillon - agent
+- [x] Tests automatiques (vitest, `npm test`) : composition, echelle, bornes des motifs - Claude
+- [x] index.ts decoupe (956 -> 530 lignes) : panneau-motifs.ts, reprise.ts - Claude
+- [ ] Sortir les zones du mode libre de index.ts (panneau-zones.ts) - agent
 
 ## En attente de Thomas (n'arrete rien)
 - [ ] Graveur : hauteur sur la majuscule ? plus petite lettre ? signe de deces (croix) ? - Thomas
