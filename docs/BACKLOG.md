@@ -60,11 +60,12 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       [x] Guide docs/MISE-EN-LIGNE.md ; build local et controle HTML/sitemaps reussis.
       [x] Accord et premiers push main + main:live : 74f568d, refs distantes verifiees.
       [ ] Projet Pages sur live et variables Prod/Preview.
-      [ ] Premier build Cloudflare (mesurer clone + build), apercus prives avec Access.
+      [x] Premier deploiement pages.dev accessible ; HTTP, en-tetes et sitemaps controles.
+      [ ] Relever duree clone/build et branche live ; apercus prives avec Access.
       [ ] Inventaire DNS Infomaniak, zone Cloudflare Free, NS, deux domaines, 301, HTTPS.
       [ ] Recette HTTP et navigateur, Lighthouse mobile, Search Console et deux sitemaps.
       [ ] Nettoyage tmp/apercu et apercu-extras uniquement apres accord de Thomas.
-      Premiers push effectues ; deploiement Cloudflare non confirme. E7 non termine, E6 hors mission.
+      Premiers push effectues ; premier deploiement pages.dev confirme, domaine pas encore raccorde. E7 non termine, E6 hors mission.
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
 - [ ] Accueil : remplacer les 5 rendus IA (public/images/accueil/) par de vraies photos des realisations (hero sombre, gros plan matiere, gros plan gravure) - Thomas
 - [x] Images : audit du 26.10.2026 - Claude. Deja en place : noms de fichiers parlants

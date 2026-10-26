@@ -35,7 +35,8 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 - Cible : projet Pages pierretombale-site, depot kidame/pierretombale-site via application GitHub.
   Compte Cloudflare cree par Thomas via Google ; depot visible dans l'assistant Pages.
-  IMPORTANT : la creation du projet n'est PAS encore validee, aucun build Cloudflare execute.
+  Premier deploiement reussi : https://pierretombale-site.pages.dev/ controle en HTTPS.
+  Branche live et duree du build a confirmer dans le tableau de bord.
 - Canonique confirme : https://www.pierretombale.ch. Redirection du domaine nu vers www en 301
   a configurer apres l'inventaire DNS Infomaniak et le rattachement des deux domaines.
 - Organisation : main = previsualisations, live = production. Travail uniquement sur main.
@@ -53,6 +54,15 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 
 ## Derniere session
+- 26.10.2026, Codex : PREMIER DEPLOIEMENT PAGES CONFIRME par Thomas et controle HTTP.
+  https://pierretombale-site.pages.dev/ : HTTPS valide, 200, X-Robots-Tag noindex,
+  quatre en-tetes de securite presents. robots et deux sitemaps : 200, domaine absolu www.
+  Catalogue funeraire, fiche Douceur, granits, devis, personnaliser/Douceur : 200.
+  URL inexistante : 404 ; /404 explicitement : 200 (fichier de page servi directement).
+  urllib Python recoit 403/1010, curl fonctionne ; pas de changement de securite Cloudflare.
+  Restent : duree du premier clone/build et branche live a confirmer dans le tableau de bord,
+  variables Preview et Access, inventaire DNS Infomaniak, domaines/301/HTTPS, test canvas/polices,
+  Lighthouse et Search Console. Prochaine action utilisateur : afficher toute la zone DNS.
 - 26.10.2026, Codex : PREMIERS PUSH EFFECTUES APRES ACCORD EXPLICITE de Thomas.
   git push origin main puis git push origin main:live reussis ; verification ls-remote :
   les deux branches pointent sur 74f568d. Aucun changement DNS ni clic Deploy effectue.
