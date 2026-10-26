@@ -3,9 +3,10 @@
 @source "./**/*.{astro,js,ts,md}";
 
 /* ---------------------------------------------------------------------------
-   Fonts — self-hosted, latin + latin-ext only.
-   Archivo (variable 100–900) carries display and UI.
-   IBM Plex Mono (400) carries labels, indices and spec data.
+   Polices - auto-hebergees, latin + latin-ext seulement.
+   Archivo (variable 100-900) porte le texte courant et l interface.
+   IBM Plex Mono (400) ne sert plus qu aux chiffres et aux donnees (.mono).
+   Le serif des titres (EB Garamond, 400) est importe dans BaseLayout.astro.
 --------------------------------------------------------------------------- */
 
 @font-face {
@@ -55,38 +56,48 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Design tokens
-   Every colour, radius and easing the theme uses is declared here. Retheme the
-   whole site by editing this block — nothing below hardcodes a colour.
+   Jetons de design (direction des maquettes du 26.10.2026)
+   Toutes les couleurs, le rayon et les courbes du site sont declares ici.
+   Changer l allure du site = modifier ce bloc, rien en dessous ne code une
+   couleur en dur.
+
+   Deux ambiances :
+   - IVOIRE (defaut) : fond ivoire, texte anthracite, accent bronze mat.
+   - NUIT (classe .nuit, plus bas) : fond anthracite chaud, texte ivoire.
+     Elle redefinit les memes jetons, donc tous les composants (boutons,
+     liens, titres, textes) s y adaptent sans regle supplementaire.
+
+   Le bronze ne porte JAMAIS de petit texte (environ 4,5:1 sur ivoire,
+   limite) : bordures, filets, pastilles et grands reperes seulement.
+   Les contrastes texte sont notes dans docs/DESIGN.md.
 --------------------------------------------------------------------------- */
 
 :root {
-  /* Surfaces — cool gallery greys */
-  --canvas: #f4f4f2;
-  --surface: #eaeae7;
-  --surface-strong: #dededa;
+  /* Surfaces : ivoire chaud */
+  --canvas: #f6f3ec;
+  --surface: #ece8df;
+  --surface-strong: #e0dbd0;
 
-  /* Text */
-  --ink: #101010;
-  --muted: #5a5a56;
+  /* Texte : anthracite, jamais de noir pur */
+  --ink: #1c1b19;
+  --muted: #55524b;
 
-  /* Accent — oiled walnut. Warm against the cool greys, and it ties into the
-     timber in the photography. 5.7:1 on canvas, 6.3:1 for white on accent. */
-  --accent: #8a5322;
-  --accent-ink: #ffffff;
+  /* Accent unique : bronze mat */
+  --accent: #8a6a3c;
+  --accent-ink: #fffdf8;
 
-  /* Hairlines */
-  --line: color-mix(in oklab, var(--ink) 13%, transparent);
-  --line-strong: color-mix(in oklab, var(--ink) 26%, transparent);
+  /* Filets */
+  --line: color-mix(in oklab, var(--ink) 14%, transparent);
+  --line-strong: color-mix(in oklab, var(--ink) 30%, transparent);
 
-  /* Geometry — architectural: square by default */
+  /* Geometrie : angles droits */
   --radius: 0px;
 
-  /* Motion */
+  /* Mouvement (uniquement les survols) */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 
-  /* Layout */
+  /* Mise en page */
   --gutter: 1.5rem;
   --shell: 96rem;
 }
@@ -99,6 +110,7 @@
 
 @theme inline {
   --font-sans: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "EB Garamond", Garamond, Georgia, "Times New Roman", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
   --color-canvas: var(--canvas);
@@ -149,17 +161,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Paper grain. Purely decorative, never intercepts input. */
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    pointer-events: none;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
   ::selection {
     background: var(--accent);
     color: var(--accent-ink);
@@ -196,83 +197,127 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Typography scale
-   Fluid, tightly tracked, single family. Emphasis comes from scale and space
-   rather than from colour or italics.
+   Typographie
+   Titres en serif classique (EB Garamond 400), texte courant en sans net.
+   Public de 50 a 80 ans : texte courant 17 px, aucune capitale en dessous de
+   13 px, aucun mono sur l interface.
 --------------------------------------------------------------------------- */
 
 @layer components {
-  /* Sized to sit in a column beside the hero image rather than span the page. */
   .type-hero {
-    font-size: clamp(2.75rem, 4.9vw, 4.5rem);
-    line-height: 0.95;
-    letter-spacing: -0.038em;
-    font-weight: 500;
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 8.5vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    font-weight: 400;
     text-wrap: balance;
   }
-
   .type-h1 {
-    font-size: clamp(2.75rem, 8vw, 6.5rem);
-    line-height: 0.88;
-    letter-spacing: -0.04em;
-    font-weight: 500;
+    font-family: var(--font-serif);
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.005em;
+    font-weight: 400;
     text-wrap: balance;
   }
-
   .type-h2 {
-    font-size: clamp(2rem, 4.6vw, 3.75rem);
-    line-height: 0.94;
-    letter-spacing: -0.035em;
-    font-weight: 500;
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4.2vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+    font-weight: 400;
     text-wrap: balance;
   }
-
   .type-h3 {
-    font-size: clamp(1.375rem, 2.2vw, 1.875rem);
-    line-height: 1.06;
-    letter-spacing: -0.025em;
-    font-weight: 500;
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+    line-height: 1.2;
+    font-weight: 400;
     text-wrap: balance;
   }
-
   .type-lead {
-    font-size: clamp(1.0625rem, 1.35vw, 1.375rem);
-    line-height: 1.5;
-    letter-spacing: -0.011em;
+    font-size: clamp(1.125rem, 1.4vw, 1.3125rem);
+    line-height: 1.55;
     color: var(--muted);
     text-wrap: pretty;
   }
-
   .type-body {
-    line-height: 1.65;
-    letter-spacing: -0.006em;
+    font-size: 1.0625rem;
+    line-height: 1.7;
     color: var(--muted);
     text-wrap: pretty;
   }
-
-  /* Technical caption for spec terms, form labels and column headings — never
-     as a section eyebrow above a headline. Mono at normal tracking, so it
-     reads as data rather than decoration. */
+  /* Petite legende en capitales espacees : sur-titre d une section, intitule
+     d une donnee. 13 px au minimum, jamais en bronze. */
   .label {
     display: inline-flex;
     align-items: baseline;
     gap: 0.6em;
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    line-height: 1;
-    letter-spacing: 0.06em;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
   }
-
+  /* Chiffres et donnees techniques seulement. */
   .mono {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.01em;
   }
 
-  /* ---- Controls ---------------------------------------------------------- */
+  /* Marque : capitales serif espacees + mention de la zone. */
+  .logo {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--ink);
+    text-align: center;
+  }
+  .logo-nom {
+    padding-left: 0.26em;
+    font-family: var(--font-serif);
+    font-size: 1.1875rem;
+    line-height: 1;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+  }
+  .logo-sous {
+    padding-left: 0.32em;
+    font-size: 0.75rem;
+    line-height: 1;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  @media (min-width: 1024px) {
+    .logo-nom {
+      font-size: 1.625rem;
+    }
+  }
 
+  /* ---- Ambiance nuit ------------------------------------------------------
+     A poser sur une section, l en-tete ou le pied de page. Redefinit les
+     jetons : les composants enfants se recolorent seuls. Le bronze s eclaircit
+     pour rester lisible sur fond sombre. --line et --line-strong sont
+     redeclares ici : un color-mix de :root garderait les valeurs de l ivoire. */
+  .nuit {
+    --canvas: #131211;
+    --surface: #1c1a18;
+    --surface-strong: #262320;
+    --ink: #f4f0e8;
+    --muted: #cdc7ba;
+    --accent: #c0a06a;
+    --accent-ink: #131211;
+    --line: color-mix(in oklab, #f4f0e8 16%, transparent);
+    --line-strong: color-mix(in oklab, #f4f0e8 36%, transparent);
+    background-color: var(--canvas);
+    color: var(--ink);
+  }
+
+  /* ---- Boutons ----------------------------------------------------------- */
   .btn {
     position: relative;
     display: inline-flex;
@@ -281,17 +326,18 @@
     gap: 0.75rem;
     overflow: hidden;
     isolation: isolate;
-    padding: 1.0625rem 2rem;
+    min-height: 3.25rem;
+    padding: 0.875rem 2rem;
     border-radius: var(--radius);
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.09em;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.12em;
+    text-align: center;
     text-transform: uppercase;
-    white-space: nowrap;
     transition: color 320ms var(--ease-out-quart);
   }
-
-  /* Accent panel wipes up from the baseline on hover. */
+  /* Panneau bronze qui monte depuis le bas au survol. */
   .btn::before {
     content: "";
     position: absolute;
@@ -302,299 +348,129 @@
     transform-origin: bottom;
     transition: transform 420ms var(--ease-out-expo);
   }
-
   .btn:hover::before,
   .btn:focus-visible::before {
     transform: scaleY(1);
   }
-
   .btn-primary {
     background: var(--ink);
     color: var(--canvas);
   }
-
   .btn-primary:hover,
   .btn-primary:focus-visible {
     color: var(--accent-ink);
   }
-
   .btn-outline {
     color: var(--ink);
-    box-shadow: inset 0 0 0 1px var(--line-strong);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 55%, transparent);
     transition:
       color 320ms var(--ease-out-quart),
       box-shadow 320ms var(--ease-out-quart);
   }
-
-  /* The rule recolours with the fill, so the accent panel never buries it. */
   .btn-outline:hover,
   .btn-outline:focus-visible {
     color: var(--accent-ink);
     box-shadow: inset 0 0 0 1px var(--accent);
   }
-
   .btn:disabled {
     opacity: 0.45;
     pointer-events: none;
   }
-
-  /* Text link with an underline that wipes in from the left.
-     The rule is painted across the element box, so the element must hug its
-     text: `fit-content` shrink-wraps it wherever it has been blockified (a
-     flex item, or an explicit `block`) and is simply ignored while it is
-     inline. Without it a block-level link underlines its whole column. */
+  /* Lien de texte souligne en permanence : un lien doit se voir sans survol. */
   .link {
     width: fit-content;
     max-width: 100%;
-    background-image: linear-gradient(currentColor, currentColor);
-    background-repeat: no-repeat;
-    background-position: 0 100%;
-    background-size: 0% 1px;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.28em;
+    text-decoration-color: color-mix(in oklab, currentColor 45%, transparent);
     transition:
-      background-size 380ms var(--ease-out-expo),
-      color 240ms ease;
+      color 240ms ease,
+      text-decoration-color 240ms ease;
   }
-
   .link:hover,
   .link:focus-visible {
-    background-size: 100% 1px;
     color: var(--accent);
+    text-decoration-color: currentColor;
   }
-
   .link-mono {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.06em;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   }
-
-  /* Filter / toggle chip. */
+  /* Bouton de filtre. */
   .chip {
-    padding: 0.5rem 0.9375rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 1.125rem;
     border-radius: var(--radius);
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    font-size: 0.9375rem;
     color: var(--muted);
-    box-shadow: inset 0 0 0 1px var(--line);
+    box-shadow: inset 0 0 0 1px var(--line-strong);
     transition:
       color 220ms ease,
       background-color 220ms ease,
       box-shadow 220ms ease;
   }
-
   .chip:hover {
     color: var(--ink);
-    box-shadow: inset 0 0 0 1px var(--line-strong);
+    box-shadow: inset 0 0 0 1px var(--ink);
   }
-
   .chip[aria-pressed="true"] {
     background: var(--ink);
     color: var(--canvas);
     box-shadow: inset 0 0 0 1px var(--ink);
   }
-
-  /* Underlined form field — no boxes, keeps the architectural line language. */
+  /* Champ de formulaire : boite complete, 48 px de haut, texte 16 px. */
   .field {
     width: 100%;
-    padding: 0.75rem 0;
-    background: transparent;
-    border-bottom: 1px solid var(--line-strong);
-    border-radius: 0;
-    font-size: 0.9375rem;
+    min-height: 3rem;
+    padding: 0.75rem 0.875rem;
+    background: var(--canvas);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    font-size: 1rem;
     color: var(--ink);
     transition: border-color 240ms ease;
   }
-
   .field::placeholder {
-    color: color-mix(in oklab, var(--muted) 60%, transparent);
+    color: color-mix(in oklab, var(--muted) 70%, transparent);
   }
-
-  .field:focus {
-    outline: none;
-    border-bottom-color: var(--accent);
-  }
-
   .field:focus-visible {
-    outline: none;
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-color: var(--ink);
   }
-
   .field-label {
     display: block;
-    font-family: var(--font-mono);
-    font-size: 0.625rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink);
   }
-
-  /* Spec band cell. Separation comes from the band's own top and bottom rules
-     and from spacing — no vertical dividers between cells. */
+  /* Cellule de la bande de reperes. Separation par les filets et l espace. */
   .fact {
     padding-block: 1.75rem;
     padding-right: 1.5rem;
   }
-
   .fact:nth-child(n + 3) {
     border-top: 1px solid var(--line);
     padding-top: 1.5rem;
   }
-
   @media (min-width: 768px) {
     .fact:nth-child(n + 3) {
       border-top: 0;
       padding-top: 1.75rem;
     }
   }
-
-  /* Page shell + full-bleed hairline used as section divider. */
+  /* Gabarit de page + filet pleine largeur entre deux sections. */
   .shell {
     width: 100%;
     max-width: var(--shell);
     margin-inline: auto;
     padding-inline: 1.5rem;
   }
-
   .rule {
     height: 1px;
     width: 100%;
     background: var(--line);
-    transform-origin: left;
-  }
-
-  /* Sticky header. Solid — never translucent — so type never scrolls through
-     it. Where scroll-driven animation is supported it starts transparent over
-     the hero and fills in solid as the page moves; everywhere else it is solid
-     from the start. */
-  .site-header {
-    background-color: var(--canvas);
-    border-bottom: 1px solid var(--line);
-  }
-}
-
-/* ---------------------------------------------------------------------------
-   Motion
-   `data-motion="on"` is set by an inline head script only when JS is available
-   and the user has not asked for reduced motion. Without it every reveal
-   target renders in its final state, so no-JS and reduced-motion visitors see
-   complete, static content.
---------------------------------------------------------------------------- */
-
-@media (prefers-reduced-motion: no-preference) {
-  [data-motion="on"] [data-reveal] {
-    opacity: 0;
-    transform: translate3d(0, 1.75rem, 0);
-    transition:
-      opacity 850ms var(--ease-out-expo),
-      transform 850ms var(--ease-out-expo);
-    transition-delay: var(--reveal-delay, 0ms);
-  }
-
-  [data-motion="on"] [data-reveal="fade"] {
-    transform: none;
-  }
-
-  /* Image reveal: the frame unmasks upward.
-     The clip lives on a child wrapper, never on the observed element — a
-     target clipped to zero height reports an empty intersection rectangle and
-     the observer would never fire for it. That child must be a plain wrapper
-     around the image, not the image itself: this rule sets the `transition`
-     shorthand, which would otherwise replace any transition the image needs
-     for its own hover. */
-  [data-motion="on"] [data-reveal="mask"] {
-    opacity: 1;
-    transform: none;
-  }
-
-  [data-motion="on"] [data-reveal="mask"] > * {
-    clip-path: inset(0 0 100% 0);
-    transition: clip-path 1100ms var(--ease-out-expo);
-    transition-delay: var(--reveal-delay, 0ms);
-  }
-
-  [data-motion="on"] [data-reveal="mask"].is-in > * {
-    clip-path: inset(0 0 0 0);
-  }
-
-  /* Hairline that draws itself left to right. Scaled through a pseudo-element
-     for the same reason the mask clips a child: a target scaled to zero width
-     has an empty intersection rectangle and would never be observed. */
-  [data-motion="on"] [data-reveal="line"] {
-    opacity: 1;
-    transform: none;
-    background: transparent;
-  }
-
-  [data-motion="on"] [data-reveal="line"]::after {
-    content: "";
-    display: block;
-    height: 100%;
-    background: var(--line);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 1100ms var(--ease-out-expo);
-    transition-delay: var(--reveal-delay, 0ms);
-  }
-
-  [data-motion="on"] [data-reveal="line"].is-in::after {
-    transform: scaleX(1);
-  }
-
-  [data-motion="on"] [data-reveal].is-in {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* Hero entrance runs on CSS alone so above-the-fold content never waits on
-     the observer. */
-  .hero-in {
-    animation: hero-in 950ms var(--ease-out-expo) both;
-    animation-delay: var(--reveal-delay, 0ms);
-  }
-
-  @keyframes hero-in {
-    from {
-      opacity: 0;
-      transform: translate3d(0, 1.5rem, 0);
-    }
-  }
-
-  /* Scroll-driven effects. Zero JS where the browser supports them; silently
-     absent where it does not. */
-  @supports (animation-timeline: view()) {
-    .parallax {
-      animation: parallax linear both;
-      animation-timeline: view();
-      animation-range: entry 0% exit 100%;
-    }
-
-    @keyframes parallax {
-      from {
-        transform: translate3d(0, -3.5%, 0) scale(1.1);
-      }
-      to {
-        transform: translate3d(0, 3.5%, 0) scale(1.1);
-      }
-    }
-  }
-
-  @supports (animation-timeline: scroll()) {
-    .site-header {
-      animation: header-settle linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0 96px;
-    }
-
-    @keyframes header-settle {
-      from {
-        background-color: transparent;
-        border-bottom-color: transparent;
-      }
-      to {
-        background-color: var(--canvas);
-        border-bottom-color: var(--line);
-      }
-    }
   }
 }

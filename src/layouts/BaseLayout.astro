@@ -1,6 +1,8 @@
 ---
 import "../styles.css";
 import archivoLatin from "@/assets/fonts/archivo-latin-wght-normal.woff2?url";
+import "@fontsource/eb-garamond/latin-400.css";
+import garamondLatin from "@fontsource/eb-garamond/files/eb-garamond-latin-400-normal.woff2?url";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import { siteConfig } from "@/config/site";
@@ -28,6 +30,8 @@ interface Props {
   canonical?: string;
   includeHeader?: boolean;
   includeFooter?: boolean;
+  /** Colle le pied de page a la section sombre qui le precede (accueil). */
+  footerJoint?: boolean;
 }
 
 const {
@@ -39,6 +43,7 @@ const {
   canonical,
   includeHeader = true,
   includeFooter = true,
+  footerJoint = false,
 } = Astro.props;
 
 const origin = Astro.site ?? Astro.url.origin;
@@ -72,6 +77,7 @@ const ogImage = social ? new URL(social.src, origin).href : null;
     {robotsContent && <meta name="robots" content={robotsContent} />}
 
     <link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={garamondLatin} as="font" type="font/woff2" crossorigin />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -88,17 +94,6 @@ const ogImage = social ? new URL(social.src, origin).href : null;
     {ogImage && <meta name="twitter:image" content={ogImage} />}
     {social?.alt && <meta name="twitter:image:alt" content={social.alt} />}
 
-    <script is:inline>
-      // On active l animation au defilement avant le premier rendu, pour qu un
-      // element a devoiler ne soit jamais visible une fraction de seconde.
-      // Sans ce drapeau, chaque cible [data-reveal] s affiche telle quelle.
-      if (
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches === false &&
-        "IntersectionObserver" in window
-      ) {
-        document.documentElement.dataset.motion = "on";
-      }
-    </script>
   </head>
   <body>
     <a
@@ -109,35 +104,7 @@ const ogImage = social ? new URL(social.src, origin).href : null;
     </a>
     {includeHeader && <SiteHeader currentPath={Astro.url.pathname} />}
     <slot />
-    {includeFooter && <SiteFooter />}
+    {includeFooter && <SiteFooter joint={footerJoint} />}
 
-    <script is:inline>
-      // Devoilement au defilement. Chaque cible cesse d etre observee des
-      // qu elle est apparue : l observateur ne coute plus rien ensuite.
-      (() => {
-        if (document.documentElement.dataset.motion !== "on") return;
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              if (!entry.isIntersecting) continue;
-              entry.target.classList.add("is-in");
-              observer.unobserve(entry.target);
-            }
-          },
-          { rootMargin: "0px 0px -8% 0px", threshold: 0 },
-        );
-
-        const observeAll = () => {
-          document.querySelectorAll("[data-reveal]:not(.is-in)").forEach((node) => observer.observe(node));
-        };
-
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", observeAll);
-        } else {
-          observeAll();
-        }
-      })();
-    </script>
   </body>
 </html>

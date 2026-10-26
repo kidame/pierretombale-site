@@ -2,13 +2,20 @@
 import { entreprise, renseigne } from "@/config/entreprise";
 import { siteConfig } from "@/config/site";
 
+interface Props {
+  /** Colle le pied de page a la section sombre qui le precede (accueil). */
+  joint?: boolean;
+}
+
+const { joint = false } = Astro.props;
+
 const year = new Date().getFullYear();
 
 const columns = siteConfig.footerColumns;
 
-/* Les coordonnées viennent de src/config/entreprise.ts et sont toutes à `null`
-   au départ : on n'affiche que celles qui existent, et le bloc entier
-   disparaît tant qu'on n'en connaît aucune. Jamais de faux numéro ni de lien
+/* Les coordonnees viennent de src/config/entreprise.ts et sont toutes a `null`
+   au depart : on n affiche que celles qui existent, et le bloc entier
+   disparait tant qu on n en connait aucune. Jamais de faux numero ni de lien
    mort dans le pied de page. */
 const lignesContact = [
   renseigne(entreprise.telephone)
@@ -24,40 +31,40 @@ const adresse = [
 ].filter(renseigne);
 ---
 
-<footer class="mt-24 border-t border-line md:mt-36">
-  {/* ----------------------------------------------------------------- Liens */}
-  <div class="shell pt-16">
-    <div class="grid gap-12 md:grid-cols-12 md:gap-8">
-      <div class="md:col-span-5">
-        <p class="text-[0.9375rem] font-semibold uppercase tracking-[-0.01em]">{siteConfig.name}</p>
-        <p class="type-body mt-4 max-w-[34ch] text-[0.9375rem]">{siteConfig.footerBlurb}</p>
-
-        {
-          (lignesContact.length > 0 || adresse.length > 0) && (
-            <address class="mt-5 space-y-1 text-[0.9375rem] not-italic text-muted">
-              {adresse.length > 0 && <p>{adresse.join(", ")}</p>}
-              {lignesContact.map((ligne) => (
-                <p>
-                  <a href={ligne.href} class="link">
-                    {ligne.label}
-                  </a>
-                </p>
-              ))}
-            </address>
-          )
-        }
-      </div>
+<footer class:list={["pied nuit", !joint && "pied-espace"]}>
+  <div class="shell pied-contenu">
+    <div class="pied-marque">
+      <a href="/" class="logo" aria-label={`${siteConfig.name}, accueil`}>
+        <span class="logo-nom">{siteConfig.name}</span>
+        <span class="logo-sous">Suisse romande</span>
+      </a>
+      <p class="type-body pied-texte">{siteConfig.footerBlurb}</p>
 
       {
+        (lignesContact.length > 0 || adresse.length > 0) && (
+          <address class="pied-adresse">
+            {adresse.length > 0 && <p>{adresse.join(", ")}</p>}
+            {lignesContact.map((ligne) => (
+              <p>
+                <a href={ligne.href} class="link">
+                  {ligne.label}
+                </a>
+              </p>
+            ))}
+          </address>
+        )
+      }
+    </div>
+
+    <div class="pied-colonnes">
+      {
         columns.map((column) => (
-          <nav class="md:col-span-2 md:last:col-span-3" aria-label={column.heading}>
+          <nav aria-label={column.heading}>
             <h2 class="label">{column.heading}</h2>
-            <ul class="mt-5 space-y-2.5">
+            <ul class="pied-liens">
               {column.links.map((link) => (
                 <li>
-                  <a href={link.href} class="link text-[0.9375rem] text-muted">
-                    {link.label}
-                  </a>
+                  <a href={link.href}>{link.label}</a>
                 </li>
               ))}
             </ul>
@@ -66,17 +73,14 @@ const adresse = [
       }
     </div>
 
-    <div class="mt-20 flex flex-wrap items-center justify-between gap-4 border-t border-line py-8">
-      <p class="mono text-[0.6875rem] uppercase tracking-[0.05em] text-muted">
-        © {year} {siteConfig.name}
-      </p>
-      <ul class="flex flex-wrap gap-6">
+    <div class="pied-bas">
+      <p>Val-de-Travers · Neuchâtel · Suisse romande</p>
+      <ul class="pied-legal">
+        <li>© {year} {siteConfig.name}</li>
         {
           siteConfig.footerLegal.map((link) => (
             <li>
-              <a href={link.href} class="link link-mono text-[0.6875rem] uppercase text-muted">
-                {link.label}
-              </a>
+              <a href={link.href}>{link.label}</a>
             </li>
           ))
         }
@@ -84,3 +88,105 @@ const adresse = [
     </div>
   </div>
 </footer>
+
+<style>
+  .pied-espace {
+    margin-top: 6rem;
+  }
+
+  @media (min-width: 1024px) {
+    .pied-espace {
+      margin-top: 9rem;
+    }
+  }
+
+  .pied-contenu {
+    padding-block: 4rem 2rem;
+  }
+
+  .pied-marque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .pied-texte {
+    max-width: 38ch;
+    margin-top: 1.5rem;
+  }
+
+  .pied-adresse {
+    margin-top: 1.25rem;
+    font-style: normal;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .pied-colonnes {
+    display: grid;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .pied-colonnes {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 40rem;
+      margin-inline: auto;
+      text-align: left;
+    }
+  }
+
+  .pied-liens {
+    margin-top: 1rem;
+  }
+
+  .pied-liens a,
+  .pied-legal a {
+    display: inline-block;
+    padding-block: 0.4rem;
+    color: var(--muted);
+    transition: color 240ms ease;
+  }
+
+  .pied-liens a:hover,
+  .pied-legal a:hover {
+    color: var(--ink);
+  }
+
+  .pied-bas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.9375rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .pied-legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .pied-bas {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    .pied-legal {
+      justify-content: flex-end;
+    }
+  }
+</style>

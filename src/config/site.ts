@@ -42,8 +42,8 @@ export const siteConfig = {
   /** <title> par défaut, pour une page qui n'en fournit pas. */
   defaultTitle: "Pierres tombales et monuments en granit | PierreTombale.ch",
 
-  /** Couleur de thème du navigateur. À garder en phase avec `--canvas` dans src/styles.css. */
-  themeColor: "#f4f4f2",
+  /** Couleur de thème du navigateur : celle de l'en-tête sombre (`.nuit` dans src/styles.css). */
+  themeColor: "#131211",
 
   /** Carte de partage par defaut (reseaux sociaux), PNG 1200x630 dans public/.
    *  Porte le nom provisoire "PierreTombale.ch" : a regenerer avec le nom definitif. */
@@ -57,9 +57,10 @@ export const siteConfig = {
   navigation: [
     { label: "Monuments funéraires", href: "/monuments-funeraires/" },
     { label: "Monuments cinéraires", href: "/monuments-cineraires-cavurnes/" },
+    { label: "Matières", href: "/nos-granits/" },
     { label: "Prix", href: "/prix-pierre-tombale-suisse/" },
-    { label: "Qui sommes-nous", href: "/a-propos/" },
-    { label: "Demander un devis", href: "/devis/" },
+    { label: "La maison", href: "/a-propos/" },
+    { label: "Votre projet", href: "/devis/" },
   ] satisfies NavItem[],
 
   /** Court paragraphe de la première colonne du pied de page. */
@@ -105,10 +106,12 @@ export const siteConfig = {
    * fait échouer le build plutôt que d'afficher une section vide.
    */
   featured: {
-    /** Les trois cartes de la grille de l'accueil. */
-    homepageGrid: ["4-pieces-stele-doucine-avec-base", "douceur", "aquarius"],
-    /** Le modèle qui a sa propre section sur l'accueil. */
-    homepageSolo: "5-pieces-jardiniere-en-closoir",
+    /** Les trois modeles montres sur l'accueil : le hero, puis une carte par famille. */
+    homepageVitrine: {
+      hero: "douceur",
+      monument: "4-pieces-stele-doucine-avec-base",
+      cineraire: "aquarius",
+    },
     /** Le modèle montré au bas du menu mobile. */
     mobileMenu: "corazon",
   },

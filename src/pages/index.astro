@@ -1,37 +1,29 @@
 ---
-import ProductCard from "@/components/ProductCard.astro";
 import ProductImage from "@/components/ProductImage.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import visuelProvisoire from "@/assets/visuel-provisoire.svg";
 import { adressePostaleJsonLd, entreprise, renseigne } from "@/config/entreprise";
 import { pageTitle, siteConfig } from "@/config/site";
-import { granitsDisponibles, nomGranit } from "@/data/granits";
-import {
-  FAMILLE_LABELS,
-  GAMMES,
-  GAMME_LABELS,
-  altVisuel,
-  familleUrl,
-  getProducts,
-  productUrl,
-  requireProduct,
-} from "@/data/products";
-import { MENTION_PRIX_PROVISOIRE, prixAffiche, prixEstProvisoire } from "@/data/tarifs";
+import { nomGranit } from "@/data/granits";
+import { familleUrl, getProducts, requireProduct } from "@/data/products";
+
+/* ACCUEIL, selon la maquette du 26.10.2026 (docs/DESIGN.md).
+   Sections : hero sombre, collection (2 familles), matiere, personnalisation,
+   parcours en 4 etapes, appel final. Les modeles montres viennent de
+   siteConfig.featured.homepageVitrine : changer un modele = changer un slug
+   dans src/config/site.ts. */
 
 const products = await getProducts();
-const featured = siteConfig.featured.homepageGrid.map((slug) => requireProduct(products, slug));
-const solo = requireProduct(products, siteConfig.featured.homepageSolo);
+const vitrine = siteConfig.featured.homepageVitrine;
+const modeleHero = requireProduct(products, vitrine.hero);
+const modeleFuneraire = requireProduct(products, vitrine.monument);
+const modeleCineraire = requireProduct(products, vitrine.cineraire);
+
+/* Matieres montrees : une sombre pour le hero et la famille funeraire, une
+   claire pour la famille cineraire. Identifiants de src/data/granits.json. */
+const matiereSombre = "bengal";
+const matiereClaire = "egipat";
 
 const siteUrl = (Astro.site ?? new URL(Astro.url.origin)).href;
-
-const granits = granitsDisponibles();
-
-const facts = [
-  { value: String(products.length).padStart(2, "0"), label: "Modèles au catalogue" },
-  { value: String(granits.length).padStart(2, "0"), label: "Granits proposés" },
-  { value: String(GAMMES.length).padStart(2, "0"), label: "Gammes" },
-  { value: "Suisse romande", label: "Zone d'intervention" },
-];
 
 /* Le parcours d une famille, en quatre etapes. Les mots comptent : rien n est
    grave sans bon a tirer valide, et la pose est faite par l entreprise
@@ -59,26 +51,10 @@ const etapes = [
   },
 ];
 
-/* La liste des granits ne s affiche plus ici : elle a sa page, /nos-granits/,
-   construite depuis src/data/granits.json. L accueil n en garde que le nombre
-   (dans les reperes) et le lien. */
-
-const soloSpecs: Array<[string, string]> = [
-  ["Dimensions", solo.dimensions],
-  ["Famille", FAMILLE_LABELS[solo.famille]],
-  ["Granit présenté", nomGranit(solo.granitPresente)],
-  ["Prix", prixAffiche(solo.slug)],
-];
-
-/* La grille de modeles et le modele mis en avant affichent des prix : la
-   mention n apparait qu une fois par section, pas sur chaque carte. */
-const mentionGrille = featured.some((product) => prixEstProvisoire(product.slug));
-const mentionSolo = prixEstProvisoire(solo.slug);
-
-/* Organization : seules les coordonnées connues sont publiées. Tant que
-   src/config/entreprise.ts est à `null`, la fiche se limite au nom et à
-   l'adresse du site. Une adresse ou un téléphone inventés dans les données
-   structurées se retrouveraient dans la fiche Google de l'entreprise. */
+/* Organization : seules les coordonnees connues sont publiees. Tant que
+   src/config/entreprise.ts est a `null`, la fiche se limite au nom et a
+   l adresse du site. Une adresse ou un telephone inventes dans les donnees
+   structurees se retrouveraient dans la fiche Google de l entreprise. */
 const adressePostale = adressePostaleJsonLd();
 
 const organizationSchema = {
@@ -95,202 +71,468 @@ const organizationSchema = {
 <BaseLayout
   title={pageTitle("Monuments funéraires et cinéraires")}
   description="Monuments funéraires et monuments cinéraires en granit massif, réalisés sur mesure pour la Suisse romande. Conseil, gravure et pose compris dans le devis."
+  footerJoint
 >
   <main id="main-content">
     {/* ---------------------------------------------------------------- Hero */}
-    <section class="shell grid items-center gap-x-12 gap-y-10 pb-4 pt-8 md:grid-cols-12 md:pb-10 md:pt-12">
-      <div class="hero-in md:col-span-5">
-        <h1 class="type-hero">Monuments funéraires et cinéraires en granit</h1>
-        <p class="type-lead mt-7 max-w-[42ch]">
-          Monuments funéraires et monuments cinéraires en granit massif, réalisés sur mesure et posés par nos
-          soins. Le conseil, la gravure et la pose sont compris dans le devis.
-        </p>
-        <div class="mt-9 flex flex-wrap gap-3">
-          <a href="/devis/" class="btn btn-primary">Demander un devis</a>
-          <a href={familleUrl("monument")} class="btn btn-outline">Monuments funéraires</a>
-          <a href={familleUrl("cineraire")} class="btn btn-outline">Monuments cinéraires</a>
-        </div>
-      </div>
-
-      <figure class="hero-in md:col-span-7" style="--reveal-delay:120ms">
-        <div class="overflow-hidden bg-surface">
-          <img
-            src={visuelProvisoire.src}
-            alt=""
-            width={1600}
-            height={1400}
-            loading="eager"
-            decoding="sync"
-            class="aspect-[4/3] w-full object-cover md:aspect-[8/7]"
-          />
-        </div>
-        <figcaption class="mono mt-3 flex justify-between gap-4 text-[0.625rem] uppercase tracking-[0.05em] text-muted">
-          <span>Visuel provisoire</span>
-          <span>Photographies de nos réalisations à venir</span>
-        </figcaption>
-      </figure>
-    </section>
-
-    {/* Spec band */}
-    <div class="mt-14 border-y border-line md:mt-20">
-      <dl class="shell grid grid-cols-2 md:grid-cols-4">
-        {
-          facts.map((fact, index) => (
-            <div class="fact" data-reveal style={`--reveal-delay:${index * 70}ms`}>
-              <dt class="label">{fact.label}</dt>
-              <dd class="mt-2.5 text-2xl font-medium tracking-[-0.03em] md:text-3xl">{fact.value}</dd>
-            </div>
-          ))
-        }
-      </dl>
-    </div>
-
-    {/* ----------------------------------------------- Comment ca se passe */}
-    <section class="shell mt-24 md:mt-36">
-      <div class="rule" data-reveal="line"></div>
-      <h2 class="type-h2 mt-8 max-w-[18ch]" data-reveal>Comment ça se passe</h2>
-      <p class="type-body mt-6 max-w-[52ch]" data-reveal>
-        Nous accompagnons les familles de A à Z, avec un seul interlocuteur du premier rendez-vous au suivi
-        après la pose.
-      </p>
-
-      <ol class="mt-12 grid gap-x-8 gap-y-12 md:mt-14 md:grid-cols-4">
-        {
-          etapes.map((etape, index) => (
-            <li class="border-t border-line pt-6" data-reveal style={`--reveal-delay:${index * 110}ms`}>
-              <p class="label">Étape {index + 1}</p>
-              <h3 class="type-h3 mt-3">{etape.titre}</h3>
-              <p class="type-body mt-4 text-[0.9375rem]">{etape.texte}</p>
-            </li>
-          ))
-        }
-      </ol>
-
-      <p class="mt-10" data-reveal>
-        <a href="/a-propos/" class="link link-mono text-muted">Qui sommes-nous</a>
-      </p>
-    </section>
-
-    {/* ------------------------------------------------------ Quelques modeles */}
-    <section class="shell mt-24 md:mt-36">
-      <div class="rule" data-reveal="line"></div>
-      <div class="mt-8 flex flex-wrap items-end justify-between gap-x-8 gap-y-4" data-reveal>
-        <h2 class="type-h2 max-w-[14ch]">Quelques modèles du catalogue</h2>
-        <div class="flex flex-wrap items-end gap-x-7 gap-y-2">
-          <a href={familleUrl("monument")} class="link link-mono pb-1.5 text-muted">
-            {FAMILLE_LABELS.monument}
-          </a>
-          <a href={familleUrl("cineraire")} class="link link-mono pb-1.5 text-muted">
-            {FAMILLE_LABELS.cineraire}
-          </a>
-          <a href="/prix-pierre-tombale-suisse/" class="link link-mono pb-1.5 text-muted">Prix</a>
-        </div>
-      </div>
-
-      <div class="mt-12 grid gap-x-8 gap-y-14 md:mt-14 md:grid-cols-3">
-        {
-          featured.map((product, index) => (
-            <ProductCard product={product} index={index} revealDelay={index * 110} />
-          ))
-        }
-      </div>
-
-      {
-        mentionGrille && (
-          <p class="mono mt-8 text-[0.6875rem] uppercase tracking-[0.05em] text-muted" data-reveal>
-            {MENTION_PRIX_PROVISOIRE}
+    <section class="nuit hero" aria-labelledby="hero-titre">
+      <div class="shell hero-grille">
+        <div class="hero-texte">
+          <p class="label">L'art du souvenir</p>
+          <h1 id="hero-titre" class="type-hero">Ce qui demeure.</h1>
+          <p class="type-lead">Un hommage façonné pour traverser le temps.</p>
+          <p class="hero-precision">
+            Monuments funéraires et cinéraires en granit, pour les familles de Suisse romande.
           </p>
-        )
-      }
+        </div>
+        <figure class="hero-visuel">
+          <ProductImage
+            product={modeleHero}
+            matiere={matiereSombre}
+            sizes="(min-width: 1024px) 40rem, 100vw"
+            loading="eager"
+            fetchpriority="high"
+            class="hero-img"
+          />
+        </figure>
+        <div class="hero-cta">
+          <a href={familleUrl("monument")} class="btn btn-outline">Découvrir les monuments</a>
+        </div>
+      </div>
     </section>
 
-    {/* ------------------------------------------------ Le modele mis en avant */}
-    <section class="mt-24 md:mt-36">
-      <div class="shell grid items-center gap-10 md:grid-cols-12 md:gap-12">
-        <div class="md:col-span-7 lg:col-span-8">
-          <a
-            href={productUrl(solo)}
-            class="group block overflow-hidden bg-surface"
-            data-reveal="mask"
-            aria-label={`${solo.name} — ${solo.shortDescription}`}
-          >
-            {/* L enveloppe porte le decoupage du devoilement, pour que l image
-                garde sa propre transition au survol (cf. les notes sur les
-                masques dans src/styles.css). */}
-            <div>
+    {/* ---------------------------------------------------------- Collection */}
+    <section class="collection" aria-labelledby="collection-titre">
+      <div class="shell">
+        <header class="titre-centre">
+          <p class="label">La collection</p>
+          <h2 id="collection-titre" class="type-h2">La justesse des lignes.</h2>
+        </header>
+
+        <div class="collection-grille">
+          <a href={familleUrl("monument")} class="carte">
+            <div class="carte-image">
               <ProductImage
-                product={solo}
-                sizes="(min-width: 768px) 58vw, 100vw"
-                alt={altVisuel(solo, solo.granitPresente)}
-                class="aspect-square w-full object-contain transition-transform duration-[1100ms] ease-out group-hover:scale-[1.04] md:aspect-[16/11]"
+                product={modeleFuneraire}
+                matiere={matiereSombre}
+                sizes="(min-width: 768px) 40vw, 100vw"
+                class="carte-img"
               />
             </div>
+            <h3 class="type-h3">Monuments funéraires</h3>
+            <span class="lien-trait">Découvrir<span class="trait" aria-hidden="true"></span></span>
           </a>
-        </div>
 
-        <div class="md:col-span-5 lg:col-span-4" data-reveal style="--reveal-delay:140ms">
-          <p class="label">{FAMILLE_LABELS[solo.famille]} · {GAMME_LABELS[solo.gamme]}</p>
-          <h2 class="type-h2 mt-5">{solo.name}</h2>
-          <p class="type-body mt-6 max-w-[44ch]">{solo.description}</p>
-
-          <dl class="mono mt-9 border-t border-line text-[0.8125rem]">
-            {
-              soloSpecs.map(([term, value]) => (
-                <div class="flex justify-between gap-6 border-b border-line py-3">
-                  <dt class="text-muted">{term}</dt>
-                  <dd class="text-right">{value}</dd>
-                </div>
-              ))
-            }
-          </dl>
-
-          {
-            mentionSolo && (
-              <p class="mono mt-4 text-[0.6875rem] uppercase tracking-[0.05em] text-muted">
-                {MENTION_PRIX_PROVISOIRE}
-              </p>
-            )
-          }
-
-          <a href={productUrl(solo)} class="btn btn-primary mt-9">Voir ce modèle</a>
+          <a href={familleUrl("cineraire")} class="carte">
+            <div class="carte-image">
+              <ProductImage
+                product={modeleCineraire}
+                matiere={matiereClaire}
+                sizes="(min-width: 768px) 40vw, 100vw"
+                class="carte-img"
+              />
+            </div>
+            <h3 class="type-h3">Monuments cinéraires</h3>
+            <span class="lien-trait">Découvrir<span class="trait" aria-hidden="true"></span></span>
+          </a>
         </div>
       </div>
     </section>
 
-    {/* ------------------------------------------------------------- Granits */}
-    <section class="shell mt-24 md:mt-36">
-      <div class="rule" data-reveal="line"></div>
-      <h2 class="type-h2 mt-8 max-w-[18ch]" data-reveal>Chaque modèle se décline dans nos granits</h2>
-      <p class="type-body mt-6 max-w-[52ch]" data-reveal>
-        Le granit présenté sur un visuel n'est qu'un exemple : le même modèle se taille dans les autres teintes.
-        La liste évolue selon les granits disponibles.
-      </p>
-      <p class="mt-8" data-reveal>
-        <a href="/nos-granits/" class="link link-mono text-muted">Nos granits, par teinte</a>
-      </p>
+    {/* ------------------------------------------------------------- Matiere */}
+    <section class="nuit bande matiere" aria-labelledby="matiere-titre">
+      <div class="bande-visuel matiere-visuel">
+        <img
+          src="/images/matieres/bengal-480.webp"
+          srcset="/images/matieres/bengal-160.webp 160w, /images/matieres/bengal-480.webp 480w"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          width="480"
+          height="480"
+          alt={`Granit ${nomGranit("bengal")}, surface polie vue de près`}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="bande-texte">
+        <p class="label">La matière, dans son essence</p>
+        <h2 id="matiere-titre" class="type-h2">La noblesse du granit.</h2>
+        <p class="type-lead">Des nuances singulières. Des finitions choisies avec soin.</p>
+        <a href="/nos-granits/" class="btn btn-outline">Explorer les matières</a>
+      </div>
     </section>
 
-    {/* --------------------------------------------- Zone d intervention */}
-    <section class="shell mt-24 md:mt-36">
-      <div class="rule" data-reveal="line"></div>
-      <div class="mt-8 grid gap-8 md:grid-cols-12">
-        <div class="md:col-span-5" data-reveal>
-          <h2 class="type-h2 max-w-[14ch]">Où nous intervenons</h2>
-        </div>
-        <div class="md:col-span-6 md:col-start-7" data-reveal style="--reveal-delay:120ms">
-          <p class="type-body">
-            Au Val-de-Travers d'abord, puis dans tout le canton de Neuchâtel, et plus largement en Suisse
-            romande. Pour un cimetière plus éloigné, demandez-nous.
-          </p>
-          <div class="mt-9 flex flex-wrap gap-3">
-            <a href="/devis/" class="btn btn-primary">Demander un devis</a>
-            <a href={familleUrl("monument")} class="btn btn-outline">Monuments funéraires</a>
-            <a href={familleUrl("cineraire")} class="btn btn-outline">Monuments cinéraires</a>
-          </div>
-        </div>
+    {/* ------------------------------------------------------ Personnalisation */}
+    <section class="nuit bande detail" aria-labelledby="detail-titre">
+      <div class="bande-texte">
+        <p class="label">Un hommage personnel</p>
+        <h2 id="detail-titre" class="type-h2">Chaque détail compte.</h2>
+        <p class="type-lead">La matière, les mots, le dessin. Composez un monument à son image.</p>
+        <a href={familleUrl("monument")} class="btn btn-outline">Personnaliser un monument</a>
+      </div>
+      <div
+        class="bande-visuel detail-visuel"
+        role="img"
+        aria-label="Branche d'olivier gravée dans le granit : exemple de motif"
+      >
+        <span class="detail-motif" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    {/* ------------------------------------------------------- Comment ca se passe */}
+    <section class="etapes" aria-labelledby="etapes-titre">
+      <div class="shell">
+        <header class="titre-centre">
+          <p class="label">Notre accompagnement</p>
+          <h2 id="etapes-titre" class="type-h2">Comment ça se passe</h2>
+        </header>
+        <ol class="etapes-liste">
+          {
+            etapes.map((etape, index) => (
+              <li>
+                <p class="label">Étape {index + 1}</p>
+                <h3 class="type-h3">{etape.titre}</h3>
+                <p class="type-body">{etape.texte}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    {/* --------------------------------------------------------- Appel final */}
+    <section class="nuit appel" aria-labelledby="appel-titre">
+      <div class="shell">
+        <h2 id="appel-titre" class="type-h2">Votre histoire mérite notre attention.</h2>
+        <a href="/devis/" class="lien-trait">Parlons de votre projet<span class="trait" aria-hidden="true"></span></a>
+        <p class="appel-zone">
+          Au Val-de-Travers, dans le canton de Neuchâtel et en Suisse romande. Pour un cimetière plus éloigné,
+          demandez-nous.
+        </p>
       </div>
     </section>
   </main>
 
   <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)}></script>
 </BaseLayout>
+
+<style>
+  /* Rythme vertical commun des sections claires. */
+  .collection,
+  .etapes {
+    padding-block: clamp(4rem, 9vw, 7rem);
+  }
+
+  .titre-centre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  /* ---- Hero ---------------------------------------------------------------
+     Telephone : texte, visuel, puis bouton. Ordinateur : texte et bouton a
+     gauche, visuel a droite sur deux rangees. */
+  .hero-grille {
+    display: grid;
+    gap: 2rem;
+    padding-block: 2.5rem 3.5rem;
+  }
+
+  .hero-texte {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .hero-texte .type-lead {
+    max-width: 30ch;
+    color: var(--ink);
+  }
+
+  .hero-precision {
+    max-width: 38ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .hero-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .hero-cta .btn {
+      width: auto;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-grille {
+      grid-template-columns: 5fr 7fr;
+      grid-template-areas:
+        "texte visuel"
+        "cta visuel";
+      grid-template-rows: auto auto;
+      align-content: center;
+      column-gap: 4rem;
+      row-gap: 2.5rem;
+      padding-block: 3rem 5rem;
+    }
+
+    .hero-texte {
+      grid-area: texte;
+      align-self: end;
+    }
+
+    .hero-visuel {
+      grid-area: visuel;
+      justify-self: end;
+      width: 100%;
+      max-width: 40rem;
+    }
+
+    .hero-cta {
+      grid-area: cta;
+      align-self: start;
+    }
+  }
+
+  /* ---- Collection -------------------------------------------------------- */
+  .collection-grille {
+    display: grid;
+    gap: 3rem;
+    max-width: 72rem;
+    margin: 3rem auto 0;
+  }
+
+  @media (min-width: 768px) {
+    .collection-grille {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.5rem;
+      margin-top: 4rem;
+    }
+  }
+
+  .carte {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .carte-image {
+    width: 100%;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .carte-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    transition: transform 900ms var(--ease-out-expo);
+  }
+
+  .carte:hover .carte-img,
+  .carte:focus-visible .carte-img {
+    transform: scale(1.03);
+  }
+
+  .carte .type-h3 {
+    margin-top: 0.75rem;
+  }
+
+  /* "Decouvrir ----" : zone de clic de 48 px, filet bronze. */
+  .lien-trait {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: 0.875rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    transition: color 240ms ease;
+  }
+
+  .lien-trait:hover,
+  .lien-trait:focus-visible {
+    color: var(--accent);
+  }
+
+  .trait {
+    display: inline-block;
+    width: 2.75rem;
+    height: 1px;
+    background: currentColor;
+    transition: width 420ms var(--ease-out-expo);
+  }
+
+  .carte:hover .trait,
+  .lien-trait:hover .trait {
+    width: 4rem;
+  }
+
+  /* ---- Bandes sombres : image d un cote, texte de l autre ------------------ */
+  .bande {
+    display: grid;
+  }
+
+  .bande-visuel {
+    position: relative;
+    min-height: 16rem;
+    overflow: hidden;
+  }
+
+  .bande-texte {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: 3.5rem var(--gutter) 4rem;
+  }
+
+  .bande-texte .type-lead {
+    max-width: 32ch;
+    color: var(--ink);
+  }
+
+  .bande-texte .btn {
+    margin-top: 0.75rem;
+  }
+
+  @media (max-width: 639px) {
+    .bande-texte .btn {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .bande {
+      grid-template-columns: 1fr 1fr;
+      min-height: 30rem;
+    }
+
+    .bande-texte {
+      padding: 5rem clamp(3rem, 7vw, 7rem);
+    }
+  }
+
+  .matiere-visuel img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85);
+  }
+
+  /* Le granit se fond dans le fond sombre du texte. */
+  @media (min-width: 1024px) {
+    .matiere-visuel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, transparent 55%, var(--canvas));
+    }
+  }
+
+  /* Personnalisation : sur telephone le visuel passe sous le texte comme sur la
+     maquette mobile ; sur ordinateur le texte est a gauche. */
+  .detail {
+    background-color: var(--surface);
+  }
+
+  .detail-visuel {
+    background-color: #2a2724;
+    background-image:
+      linear-gradient(135deg, rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.5)), url("/images/matieres/royal-480.webp");
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Motif en masque : le trace de public/motifs, vu comme une gravure. */
+  .detail-motif {
+    position: absolute;
+    inset: 10%;
+    background-color: rgb(244 240 232 / 0.78);
+    -webkit-mask: url("/motifs/fleurs-olivier.svg") center / contain no-repeat;
+    mask: url("/motifs/fleurs-olivier.svg") center / contain no-repeat;
+    transform: rotate(-28deg);
+  }
+
+  @media (min-width: 1024px) {
+    .detail-visuel {
+      order: 2;
+    }
+  }
+
+  /* ---- Parcours ----------------------------------------------------------- */
+  .etapes-liste {
+    display: grid;
+    gap: 2.5rem;
+    max-width: 72rem;
+    margin: 3.5rem auto 0;
+  }
+
+  .etapes-liste li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--accent);
+  }
+
+  @media (min-width: 768px) {
+    .etapes-liste {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 3rem 2.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .etapes-liste {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  /* ---- Appel final --------------------------------------------------------- */
+  .appel {
+    padding-block: clamp(4rem, 9vw, 6.5rem);
+    text-align: center;
+  }
+
+  .appel .shell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .appel .lien-trait {
+    border-bottom: 0;
+  }
+
+  .appel-zone {
+    max-width: 44ch;
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+</style>

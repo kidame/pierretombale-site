@@ -64,7 +64,12 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       AVIF = -40 % mais encodage lourd) - a faire d un coup, quand les images seront definitives,
       pour ne pas gonfler l historique git deux fois - Claude
 - [ ] Images : remplacer les visuels provisoires (accueil, a-propos) par de vraies photos avec alt
-- [ ] Design : appliquer la direction des maquettes au site entier
+- [>] Design : direction des maquettes sur le site entier (reference : docs/DESIGN.md)
+      [x] jetons, typographie, boutons, en-tete, pied, accueil - Claude - 26.10.2026
+      [ ] legendes mono restantes -> `label` dans fiches, catalogue, prix, granits, FAQ, a-propos - Claude
+      [ ] gabarits de ces pages selon les maquettes (a fournir : fiche, catalogue, prix, granits) - Thomas
+      [ ] vraies photos pour l accueil (hero sombre, gros plan matiere, gros plan gravure) - Thomas
+      [ ] page /personnaliser/ (index des 22 modeles) + entree Personnalisation du menu - Thomas decide
 
 ## Comment changer une chose courante
 - Renommer un modele : `name:` dans src/content/products/<slug>.md. Le slug (URL) ne change pas.

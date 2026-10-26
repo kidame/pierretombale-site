@@ -5,7 +5,7 @@ import { getProducts, productUrl, requireProduct } from "@/data/products";
 import { prixAffiche } from "@/data/tarifs";
 
 interface Props {
-  /** Current pathname, used to mark the active nav item. */
+  /** Chemin de la page, pour marquer l element de menu actif. */
   currentPath?: string;
 }
 
@@ -13,27 +13,46 @@ const { currentPath = "/" } = Astro.props;
 
 const isActive = (href: string) => (href === "/" ? currentPath === "/" : currentPath.startsWith(href));
 
+/* Le lien vers le devis ("Votre projet") se range a droite sur ordinateur, les
+   autres sont centres. Les libelles et adresses viennent de siteConfig. */
 const navItems = siteConfig.navigation;
+const navCentre = navItems.filter((item) => item.href !== "/devis/");
+const lienProjet = navItems.find((item) => item.href === "/devis/");
 const featuredProduct = requireProduct(await getProducts(), siteConfig.featured.mobileMenu);
 ---
 
-<header class="site-header sticky top-0 z-50">
-  <nav class="shell flex h-[4.5rem] items-center justify-between gap-6" aria-label="Navigation principale">
-    <a
-      href="/"
-      class="-m-2 p-2 text-[0.9375rem] font-semibold uppercase tracking-[-0.01em] transition-colors hover:text-accent"
-      aria-label={`${siteConfig.name}, accueil`}
-    >
-      {siteConfig.name}
+<header class="site-header nuit">
+  <div class="shell en-tete">
+    <a href="/" class="logo" aria-label={`${siteConfig.name}, accueil`}>
+      <span class="logo-nom">{siteConfig.name}</span>
+      <span class="logo-sous">Suisse romande</span>
     </a>
 
-    <ul class="hidden items-center gap-9 md:flex">
+    <button
+      type="button"
+      class="menu-ouvrir"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      data-mobile-menu-open
+    >
+      <span class="sr-only">Ouvrir le menu</span>
+      <span class="menu-barres" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+  </div>
+
+  <nav class="shell nav-bureau" aria-label="Navigation principale">
+    <span aria-hidden="true"></span>
+    <ul>
       {
-        navItems.map((item) => (
+        navCentre.map((item) => (
           <li>
             <a
               href={item.href}
-              class:list={["nav-link link-mono", isActive(item.href) && "is-current"]}
+              class:list={["nav-link", isActive(item.href) && "is-current"]}
               aria-current={isActive(item.href) ? "page" : undefined}
             >
               {item.label}
@@ -42,64 +61,43 @@ const featuredProduct = requireProduct(await getProducts(), siteConfig.featured.
         ))
       }
     </ul>
-
-    <div class="flex items-center gap-1">
-      <button
-        type="button"
-        class="-mr-2 inline-flex size-10 items-center justify-center transition-colors hover:text-accent md:hidden"
-        aria-controls="mobile-menu"
-        aria-expanded="false"
-        data-mobile-menu-open
-      >
-        <span class="sr-only">Ouvrir le menu</span>
-        <span class="flex w-[1.125rem] flex-col gap-[5px]" aria-hidden="true">
-          <span class="h-px w-full bg-current"></span>
-          <span class="h-px w-full bg-current"></span>
-        </span>
-      </button>
-    </div>
+    {
+      lienProjet && (
+        <a
+          href={lienProjet.href}
+          class:list={["nav-link nav-projet", isActive(lienProjet.href) && "is-current"]}
+          aria-current={isActive(lienProjet.href) ? "page" : undefined}
+        >
+          {lienProjet.label}
+        </a>
+      )
+    }
   </nav>
 </header>
 
-<div
-  id="mobile-menu"
-  class="fixed inset-0 z-[60] h-dvh bg-canvas md:hidden"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Menu du site"
-  data-mobile-menu
-  hidden
->
-  <div class="flex h-full flex-col px-[var(--gutter)] pb-8 pt-0">
-    <div class="flex h-[4.5rem] shrink-0 items-center justify-between">
-      <span class="text-[0.9375rem] font-semibold uppercase tracking-[-0.01em]">Menu</span>
-      <button
-        type="button"
-        class="-mr-2 inline-flex size-10 items-center justify-center transition-colors hover:text-accent"
-        data-mobile-menu-close
-      >
+<div id="mobile-menu" class="nuit menu-mobile" role="dialog" aria-modal="true" aria-label="Menu du site" data-mobile-menu hidden>
+  <div class="menu-interieur">
+    <div class="menu-haut">
+      <span class="logo-nom">Menu</span>
+      <button type="button" class="menu-fermer" data-mobile-menu-close>
         <span class="sr-only">Fermer le menu</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
           <path d="M5 5l14 14"></path>
           <path d="M19 5L5 19"></path>
         </svg>
       </button>
     </div>
 
-    <ul class="mt-6 border-t border-line">
+    <ul class="menu-liste">
       {
         navItems.map((item, index) => (
-          <li class="menu-item border-b border-line" style={`--i:${index}`}>
+          <li class="menu-item" style={`--i:${index}`}>
             <a
               href={item.href}
-              class:list={[
-                "flex items-baseline gap-4 py-5 transition-colors hover:text-accent",
-                !isActive(item.href) && "text-muted",
-              ]}
+              class:list={["menu-lien", isActive(item.href) && "is-current"]}
               aria-current={isActive(item.href) ? "page" : undefined}
               data-mobile-menu-link
             >
-              <span class="mono text-[0.6875rem] text-accent">{String(index + 1).padStart(2, "0")}</span>
               <span class="type-h3">{item.label}</span>
             </a>
           </li>
@@ -107,53 +105,225 @@ const featuredProduct = requireProduct(await getProducts(), siteConfig.featured.
       }
     </ul>
 
-    <a
-      href={productUrl(featuredProduct)}
-      class="menu-item group mt-auto block pt-8"
-      style={`--i:${navItems.length}`}
-      data-mobile-menu-link
-    >
-      <div class="overflow-hidden bg-surface">
-        <ProductImage
-          product={featuredProduct}
-          sizes="(min-width: 768px) 40vw, 100vw"
-          class="aspect-[16/10] max-h-[28dvh] w-full object-contain transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
-        />
+    <a href={productUrl(featuredProduct)} class="menu-item menu-vitrine" style={`--i:${navItems.length}`} data-mobile-menu-link>
+      <div class="menu-vitrine-image">
+        <ProductImage product={featuredProduct} sizes="(min-width: 768px) 40vw, 100vw" class="menu-vitrine-img" />
       </div>
-      <div class="mt-3 flex items-baseline justify-between gap-4">
-        <p class="label">Au catalogue — {featuredProduct.name}</p>
-        <p class="mono shrink-0 text-[0.6875rem]">{prixAffiche(featuredProduct.slug)}</p>
+      <div class="menu-vitrine-legende">
+        <p class="label">Au catalogue : {featuredProduct.name}</p>
+        <p class="mono">{prixAffiche(featuredProduct.slug)}</p>
       </div>
     </a>
   </div>
 </div>
 
 <style>
+  /* Sur telephone et tablette l en-tete reste colle en haut (72 px : le
+     configurateur colle son apercu juste dessous). A partir de 1024 px il
+     passe sur deux rangees, logo puis menu, et defile avec la page. */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .en-tete {
+    position: relative;
+    display: flex;
+    height: 4.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-ouvrir {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    display: inline-flex;
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    color: var(--ink);
+    transition: color 240ms ease;
+  }
+
+  .menu-ouvrir:hover {
+    color: var(--accent);
+  }
+
+  .menu-barres {
+    display: flex;
+    width: 1.5rem;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .menu-barres span {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+  }
+
+  .nav-bureau {
+    display: none;
+  }
+
   .nav-link {
     display: inline-block;
+    padding-block: 0.5rem;
+    font-size: 0.9375rem;
+    letter-spacing: 0.04em;
     color: var(--muted);
     transition: color 240ms ease;
   }
 
-  .nav-link:hover {
-    color: var(--ink);
-  }
-
+  .nav-link:hover,
   .nav-link.is-current {
     color: var(--ink);
   }
 
-  /* Active route is marked with an accent rule, not colour alone. */
+  /* La page active se marque par un filet bronze, pas par la couleur seule. */
   .nav-link.is-current::after {
     content: "";
     display: block;
     height: 1px;
-    margin-top: 5px;
+    margin-top: 4px;
     background: var(--accent);
   }
 
-  [data-mobile-menu][hidden] {
+  @media (min-width: 1024px) {
+    .site-header {
+      position: static;
+    }
+
+    .en-tete {
+      height: auto;
+      padding-block: 1.75rem 1.25rem;
+    }
+
+    .menu-ouvrir {
+      display: none;
+    }
+
+    .nav-bureau {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding-bottom: 1.5rem;
+    }
+
+    .nav-bureau ul {
+      display: flex;
+      gap: 2.75rem;
+    }
+
+    .nav-projet {
+      justify-self: end;
+      padding-left: 1.5rem;
+      border-left: 1px solid var(--line-strong);
+      color: var(--ink);
+    }
+  }
+
+  /* ---- Menu plein ecran (telephone et tablette) --------------------------- */
+  .menu-mobile {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    height: 100dvh;
+    overflow-y: auto;
+  }
+
+  .menu-mobile[hidden] {
     display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .menu-mobile {
+      display: none;
+    }
+  }
+
+  .menu-interieur {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    padding: 0 var(--gutter) 2rem;
+  }
+
+  .menu-haut {
+    display: flex;
+    height: 4.5rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu-fermer {
+    display: inline-flex;
+    width: 3rem;
+    height: 3rem;
+    margin-right: -0.75rem;
+    align-items: center;
+    justify-content: center;
+    transition: color 240ms ease;
+  }
+
+  .menu-fermer:hover {
+    color: var(--accent);
+  }
+
+  .menu-liste {
+    margin-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .menu-item {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .menu-lien {
+    display: block;
+    padding-block: 1.125rem;
+    color: var(--muted);
+    transition: color 240ms ease;
+  }
+
+  .menu-lien:hover,
+  .menu-lien.is-current {
+    color: var(--ink);
+  }
+
+  .menu-vitrine {
+    display: block;
+    margin-top: auto;
+    padding-top: 2rem;
+    border-bottom: 0;
+  }
+
+  .menu-vitrine-image {
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .menu-vitrine-img {
+    display: block;
+    width: 100%;
+    max-height: 26dvh;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+  }
+
+  .menu-vitrine-legende {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    font-size: 0.9375rem;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -161,22 +331,9 @@ const featuredProduct = requireProduct(await getProducts(), siteConfig.featured.
       animation: menu-in 320ms var(--ease-out-expo) both;
     }
 
-    [data-mobile-menu]:not([hidden]) .menu-item {
-      animation: menu-item-in 620ms var(--ease-out-expo) both;
-      animation-delay: calc(120ms + var(--i, 0) * 55ms);
-    }
-
     @keyframes menu-in {
       from {
         opacity: 0;
-        clip-path: inset(0 0 100% 0);
-      }
-    }
-
-    @keyframes menu-item-in {
-      from {
-        opacity: 0;
-        transform: translate3d(0, 1.25rem, 0);
       }
     }
   }
@@ -245,7 +402,7 @@ const featuredProduct = requireProduct(await getProducts(), siteConfig.featured.
     });
 
     window.addEventListener("resize", () => {
-      if (!menu.hidden && window.matchMedia("(min-width: 768px)").matches) {
+      if (!menu.hidden && window.matchMedia("(min-width: 1024px)").matches) {
         closeMenu({ restoreFocus: false });
       }
     });

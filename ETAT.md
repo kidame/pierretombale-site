@@ -62,6 +62,27 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 26.10.2026, Claude : DESIGN DES MAQUETTES, PASSE 1 (jetons, en-tete, pied, accueil). Thomas a fourni
+  les maquettes de l accueil (ordinateur + mobile : hero sombre, collection ivoire, matiere, personnalisation,
+  appel). Reference : docs/DESIGN.md. Fait : src/styles.css (ivoire #f6f3ec, anthracite #1c1b19, bronze
+  #8a6a3c ; ambiance `.nuit` qui redefinit les memes jetons ; EB Garamond pour les titres ; labels et
+  boutons passes du mono 11 px au sans 13-14 px, boutons 52 px, champs en boite, liens soulignes ; grain
+  et apparition au defilement RETIRES, donc deux scripts en moins dans BaseLayout). SiteHeader (logo
+  centre, menu Monuments funeraires / cineraires / Matieres / Prix / La maison + Votre projet a droite,
+  burger sous 1024 px, en-tete colle a 72 px sur mobile pour le configurateur), SiteFooter (sombre, prop
+  `joint`), accueil reecrit (siteConfig.featured.homepageVitrine remplace homepageGrid et homepageSolo),
+  navigation de site.ts, theme-color. Le parcours en 4 etapes est GARDE (absent de la maquette). H1 poetique
+  "Ce qui demeure." : le mot-cle est dans le chapo sous le titre et dans le title/meta.
+  Mesures (poids-pages.py) : css partage 6849 -> 7048 o gz, html accueil 6119 -> 4228, js en ligne
+  1615 -> 872 ; coute +23 Ko de police (EB Garamond) sur chaque page, prechargee. Build 60 pages, astro check
+  0 erreur (1 hint ancien, reprise.ts), 62 tests, grep des mots interdits vide. Verifie au navigateur sur
+  accueil, fiche, devis, configurateur en 1280/390 (+1024 et menu mobile pour l accueil).
+  LIMITES : images de l accueil PROVISOIRES (nos rendus sont sur gris clair, pas dans des scenes sombres) ;
+  legendes mono restantes dans les gabarits des fiches, catalogue, prix, granits, FAQ, a-propos ; pas de
+  page /personnaliser/ (index) donc le bouton Personnaliser mene au catalogue funeraire et le menu n a
+  pas d entree Personnalisation. PIEGES : `systemd-run --user` veut `-d --setenv=PATH=$PATH` pour trouver
+  npm et le dossier (sinon code 254 en 138 ms) ; sa sortie va au journal (journalctl --user -u <unite>)
+  sauf avec `--pipe`. Captures : scripts/capture-pages.sh (pleine page, 1280 et 390).
 - 26.10.2026, Claude : panneau-zones.ts (mode libre sorti de index.ts, qui passe a 347 lignes et
   ne fait plus que relier les panneaux au rendu). Build, astro check, 62 tests, mode libre
   verifie au navigateur (onglets, ajout, 5 lignes, depassement par zone, suppression, recentrer,
