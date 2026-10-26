@@ -39,8 +39,8 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - Canonique confirme : https://www.pierretombale.ch. Redirection du domaine nu vers www en 301
   a configurer apres l'inventaire DNS Infomaniak et le rattachement des deux domaines.
 - Organisation : main = previsualisations, live = production. Travail uniquement sur main.
-  live sera creee depuis main ; aucun premier push sans accord explicite de Thomas.
-  Aucun push GitHub effectue pendant cette mission a ce stade.
+  Premier push autorise par Thomas puis effectue : origin/main et origin/live au commit 74f568d.
+  Branche de travail locale toujours main ; deploiement Cloudflare encore a lancer par Thomas.
 - Parametres prepares : Astro, npm run build, dist, Node 22 ; SITE=https://www.pierretombale.ch
   pour Production ET Preview. Guide complet : docs/MISE-EN-LIGNE.md.
 - Previews privees : Cloudflare Access reste a activer et tester sur alias main et URL de commit.
@@ -48,11 +48,17 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - Netlify abandonne pour les prochaines publications. Ancien lien conserve comme archive :
   https://pt-apercu-k7q2.netlify.app. Ne plus reconstruire ni republier cette copie.
   tmp/apercu et tmp/apercu-extras conserves ; suppression uniquement apres accord de Thomas.
-- Restent : premier push autorise, premier build Cloudflare (clone ~754 Mo de sources a mesurer),
+- Restent : selection de live dans Pages, premier build Cloudflare (clone ~754 Mo de sources a mesurer),
   Access, DNS/HTTPS/redirection, controles du configurateur, Lighthouse mobile et Search Console.
 
 
 ## Derniere session
+- 26.10.2026, Codex : PREMIERS PUSH EFFECTUES APRES ACCORD EXPLICITE de Thomas.
+  git push origin main puis git push origin main:live reussis ; verification ls-remote :
+  les deux branches pointent sur 74f568d. Aucun changement DNS ni clic Deploy effectue.
+  Prochaine action : rafraichir la liste des branches dans Pages, choisir live,
+  verifier Astro / npm run build / dist / NODE_VERSION=22 / SITE canonique puis Save and Deploy.
+  Compte rendu commite localement apres les push ; aucune nouvelle version du site dans ce commit.
 - 26.10.2026, Codex : PREPARATION E7 VALIDEE LOCALEMENT, PAS EN LIGNE.
   docs/MISE-EN-LIGNE.md ajoute (branches, variables, Access, DNS, rollback, echec de build, E6).
   Build npm run build avec SITE canonique sous Node v22.23.2 : succes, 5,38 s avec le lanceur,
