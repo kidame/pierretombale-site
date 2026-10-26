@@ -51,6 +51,8 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - [ ] E6 : fonction Cloudflare /api/devis + Resend (spec docs/devis-contrat.md)
 - [ ] E7 : deploiement Cloudflare Pages, domaine, Search Console
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
+- [ ] Images : descriptions (alt et legendes) de toutes les images, noms de fichiers parlants,
+      poids et formats (demande de Thomas du 22.10.2026) - Claude
 - [ ] Design : appliquer la direction des maquettes au site entier
 
 ## Comment changer une chose courante
