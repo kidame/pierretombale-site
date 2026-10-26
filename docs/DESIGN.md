@@ -49,3 +49,30 @@ on recode, on ne reproduit pas leurs images.
   `gravure-900`. Les originaux ne sont pas dans le depot. Les `alt` disent "illustration" pour ne
   pas presenter ces rendus comme des photos. A remplacer par de vraies photos des realisations
   quand elles existent : changer les fichiers (memes noms) ou les `src` de index.astro.
+
+## Fiche produit : maquettes du 26.10.2026 (ANALYSE, pas encore appliquee)
+Maquettes ordinateur + mobile de la fiche Douceur fournies par Thomas. Gabarit concerne :
+`src/components/FicheModele.astro` (partage par les deux familles, 27 modeles, 10 matieres chacun).
+Ecarts maquette / fiche actuelle :
+- Mobile : titre, accroche, puis image (aujourd'hui : image d'abord). Ordinateur : galerie 7/12 a gauche,
+  colonne choix a droite (famille, titre tres grand, accroche, granit, boutons).
+- Accroche courte par modele ("Une courbe delicate. Une presence intemporelle.") : champ a creer dans
+  src/content/products (27 textes a faire valider). Repli generique possible.
+- Choix du granit dans la colonne de droite : tuiles carrees (coche sur la matiere choisie), nom au-dessus,
+  lien "Decouvrir les granits" + mention "La teinte definitive se choisit sur un echantillon" (deja en place).
+  Aujourd'hui : pastilles rondes sous l image. Le script de changement de matiere est a adapter, pas a refaire.
+- Bouton principal "Personnaliser ce modele" (noir), puis lien "Demander un conseil" + "Devis gratuit, sans
+  engagement". Seuls 22 modeles sur 27 ont une calibration : les 5 autres gardent "Demander un devis" en principal.
+- Absents de la maquette : prix, "Comment est calcule le prix", tableau de caracteristiques, paragraphe de
+  description, "D'autres modeles a voir". A DECIDER avant de les retirer (prix : decision du 13.10, estimations).
+- Ajoutes par la maquette : trois etapes "Un hommage a votre image" (matiere, mots, motif), deux accordeons
+  ("Dimensions et possibilites", "Pose et accompagnement"), bande sombre "Chaque detail compte", appel
+  "Votre projet commence par un echange", barre fixe en bas sur mobile (nom + Personnaliser).
+- Galerie : 3 vignettes + "Agrandir" sur la maquette ; nous n avons QU UNE image par matiere. Normal : on
+  n affiche pas de vignettes factices.
+- Menu de la maquette : Monuments / Matieres / Personnalisation / La maison : revient a la question ouverte
+  de la page /personnaliser/ (index) dans la zone interdite du configurateur.
+- Ecart de teinte : le Bengal des maquettes (noir, veines bronze) ne ressemble pas au Bengal de notre catalogue
+  (gris moucheté). A trancher : quelle image est la reference.
+Contraintes a garder : configurateur et champs du devis intacts, canoniques www, JSON-LD Product et fil d Ariane,
+CSS de page (pas de nouvelle classe Tailwind), pas de JS decoratif, cibles tactiles 48 px.

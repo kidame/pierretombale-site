@@ -52,6 +52,10 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 26.10.2026, Claude : ANALYSE DE LA FICHE PRODUIT selon les maquettes (ordinateur + mobile, modele Douceur).
+  Aucun code touche. Ecarts, contraintes et decisions a prendre dans docs/DESIGN.md ("Fiche produit").
+  Capture de la fiche actuelle : 1280 et 390 px. Prochaine etape : reponses de Thomas (prix, "D'autres
+  modeles", accroches, images), puis passe 1 = structure et style de FicheModele.astro avec l image unique.
 - 26.10.2026, Claude (20 h) : REPRISE APRES MISE EN LIGNE. Faits de Thomas consignes (production
   sur www.pierretombale.ch, 301, Access, Search Console). Controles HTTP faits depuis le VPS :
   200 sur /, configurateur et robots ; pas de noindex sur le domaine ; 404 reelle ; sitemaps
