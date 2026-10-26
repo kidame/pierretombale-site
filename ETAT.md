@@ -83,6 +83,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   pas d entree Personnalisation. PIEGES : `systemd-run --user` veut `-d --setenv=PATH=$PATH` pour trouver
   npm et le dossier (sinon code 254 en 138 ms) ; sa sortie va au journal (journalctl --user -u <unite>)
   sauf avec `--pipe`. Captures : scripts/capture-pages.sh (pleine page, 1280 et 390).
+  APERCU NETLIFY NON REPUBLIE : tmp/apercu est pret (copie de dist + _headers, robots.txt, netlify.toml)
+  mais la commande npx a usage unique (jeton temporaire dans la ligne de commande) a ete refusee par le
+  garde-fou. A lancer avec l accord de Thomas ; l apercu en ligne montre encore l ancien site.
 - 26.10.2026, Claude : panneau-zones.ts (mode libre sorti de index.ts, qui passe a 347 lignes et
   ne fait plus que relier les panneaux au rendu). Build, astro check, 62 tests, mode libre
   verifie au navigateur (onglets, ajout, 5 lignes, depassement par zone, suppression, recentrer,
