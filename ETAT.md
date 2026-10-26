@@ -62,6 +62,10 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 26.10.2026, Claude : panneau-zones.ts (mode libre sorti de index.ts, qui passe a 347 lignes et
+  ne fait plus que relier les panneaux au rendu). Build, astro check, 62 tests, mode libre
+  verifie au navigateur (onglets, ajout, 5 lignes, depassement par zone, suppression, recentrer,
+  retour au mode guide). Pousse sur GitHub a la demande de Thomas (129 commits).
 - 26.10.2026, Claude : 12 MODELES CALIBRES DE PLUS (22 au total) avec les largeurs reelles du
   configurateur 3D du fournisseur : eligie (2 steles 52 + 35, surfaces multiples), cin1, cin8,
   cin-aquarius, cin-ovae, cin-esperanza, cin-aloria (+ lame), cin-bahia, cin-montagne01/02,

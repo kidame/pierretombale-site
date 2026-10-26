@@ -51,7 +51,8 @@ dans `src/scripts/configurateur/`. Corriger une donnée suffit à corriger l'ape
 
 | Fichier | Rôle | Touche au DOM ? |
 |---|---|---|
-| `index.ts` | Le chef d'orchestre : lit le JSON de la page, crée l'état, branche la matière et les zones libres, appelle les trois modules ci-dessous, charge Konva | oui |
+| `index.ts` | Le chef d'orchestre (350 lignes) : lit le JSON de la page, crée l'état, branche la matière, appelle les quatre panneaux ci-dessous, charge Konva, envoie vers le devis | oui |
+| `panneau-zones.ts` | Le mode libre : onglets de zones, texte, police, taille, finition, recentrer, message de dépassement | oui |
 | `panneau-motifs.ts` | Les contrôles de l'étape 3 : familles, liste « Sur votre stèle », motif sur demande | oui |
 | `reprise.ts` | Le brouillon sur la page : reprise, message, « Tout effacer », sauvegarde, avertissement | oui |
 | `etat.ts` | Le magasin : l'état (matière, zones, motifs), `maj`, `abonner`, et `sceneEnCm()` pour l'export | non |
@@ -235,8 +236,9 @@ est effacé juste après. **Jamais de jeton dans le dépôt.**
   `src/data/`.
 - **Les fonctions de calcul restent pures** (`composition.ts`, `echelle.ts`, les fonctions de
   `motifs.ts` et `zones.ts`) : elles se testent sans navigateur, dans `tests/`.
-- **Un fichier de branchement par étape de la page** (`formulaire.ts`, `panneau-motifs.ts`,
-  `reprise.ts`) : `index.ts` ne fait que les appeler. Une nouvelle étape = un nouveau fichier.
+- **Un fichier de branchement par panneau de la page** (`formulaire.ts`, `panneau-zones.ts`,
+  `panneau-motifs.ts`, `reprise.ts`) : `index.ts` ne fait que les appeler et les relier au
+  rendu. Un nouveau panneau = un nouveau fichier, jamais des lignes de plus dans `index.ts`.
 - **CSS** : toute classe qui déclare `display` doit avoir sa règle `[hidden]` (sinon un bloc
   caché reste visible) ; les éléments créés par le script se stylent avec `:global(...)`.
 - **Performance** : Konva en import dynamique, tracés des motifs lus dans les SVG publics (pas
@@ -255,6 +257,5 @@ est effacé juste après. **Jamais de jeton dans le dépôt.**
 | Signe † absent des polices web | Sous-ensemble de polices élargi, ou motif « croix » |
 | « née » seulement (champ « Nom de jeune fille ») | Un choix née / né, ou « nom de naissance » |
 | Polices web ≠ polices du graveur (écart de largeur 10 à 20 %) | Valider sur bon à tirer ; à terme, les polices de l'atelier |
-| Les zones du mode libre sont encore branchées dans `index.ts` | Les sortir dans un `panneau-zones.ts`, comme les motifs |
 | Les tests ne couvrent que le code pur | Le rendu et les branchements se contrôlent au navigateur (`verifie-configurateur.sh`) |
 | Calibrations tracées à l'oeil, statut provisoire | Validation du graveur, planche par modèle |
