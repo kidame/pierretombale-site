@@ -743,33 +743,30 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   bloc localStorage "atelier-ko-cart" et tiroir dans `src/layouts/BaseLayout.astro`, references dans
   `SiteHeader.astro`, `src/pages/products/[slug].astro`, `src/config/site.ts`, `src/styles.css`.
 
-## Prochaine etape
-CATALOGUE : faire corriger par Thomas les noms publics, les dimensions et la nature des matieres
-(granit ou non) ; republier l apercu apres chaque correction. Puis configurateur passe A sur douceur.
+## Prochaine etape (mis a jour le 26.10.2026)
 
-TEST PAR THOMAS AVEC UN PROCHE AGE, SUR UN TELEPHONE (sa decision du 14.10.2026, prealable a E6).
-E5 est terminee : plus rien n est a construire sur `/devis/` avant ce test. Ce qu il faut regarder :
-le parcours complet en 4 etapes sur un ecran de 390 px, les etapes 2 et 3 sautees selon le type de
-demande, le retour arriere qui conserve les reponses, le rechargement qui reprend a la meme etape, les
-boutons et les cases assez grands pour un pouce age, et le recapitulatif qui se relit sans lunettes.
-Ce qui n a PAS pu etre essaye dans la session : rien dans un navigateur (il n y en a pas).
-Si la page doit maigrir ou si le script devient difficile a tenir : l extraire dans
-`src/scripts/devis.ts` (section 9 de `docs/SPEC-DEVIS-ETAPES.md`) le ferait minifier ; il pese
-13146 octets gz en ligne, surtout des commentaires.
+OU EN EST LE SITE. Catalogue de 27 modeles en 10 matieres, formulaire de devis en 4 etapes (E5),
+configurateur visuel sur 22 modeles (inscription guidee, mise en page libre, motifs, brouillon,
+export vers le devis), 62 tests (`npm test`), apercu en ligne sur Netlify. Le detail de ce qui reste,
+dans l ordre, est dans `docs/BACKLOG.md` ; le configurateur se modifie avec `docs/CONFIGURATEUR.md`.
 
-ENSUITE E6 : ENVOI DU DEVIS. Fonction Cloudflare Pages `functions/api/devis.ts` + Resend (PAS de n8n,
-decision de Thomas du 13.10.2026), adresse de destination en variable d environnement, Turnstile.
-Tout est specifie dans `docs/devis-contrat.md`, y compris les 12 champs d inscription, `finition`,
-`motif` et `gravure_precisions` ajoutes en E5 (valeurs autorisees = ids de
-`src/data/personnalisation.ts`, que la fonction importe au lieu d en recopier les listes).
-Il restera a passer `envoiActif` a true dans `src/config/devis.ts` et a poser le widget Turnstile a
-l emplacement commente de la page devis. Aucun secret dans le depot.
-PREREQUIS A OBTENIR DE THOMAS AVANT DE COMMENCER : le nom de domaine achete et son DNS verifie chez
-Resend (SPF/DKIM), un compte Resend dont il saisit lui-meme la cle dans Cloudflare, et l adresse de
-destination des demandes. Sans eux, la fonction ne peut pas etre essayee pour de vrai.
-Ensuite E7 : deploiement Cloudflare Pages.
-Le configurateur visuel (Konva) n est plus une etape du plan : il viendra apres la mise en ligne,
-en respectant docs/maquettes/configurateur/2026-10-14/DIRECTION-DESIGN.md (regles derivees des
-maquettes, points ouverts a trancher avant la passe B),
-selon `docs/CONFIGURATEUR-FUTUR.md` (inputs a obtenir d abord : dimensions mm par modele, zones de
-gravure, polices et finitions confirmees, visuels).
+DEBLOQUE, A FAIRE SANS ATTENDRE PERSONNE (au choix de Thomas) :
+- Design : appliquer la direction des maquettes a tout le site (seul le configurateur en profite).
+- SEO : pages par gamme, FAQ enrichie, maillage interne.
+- Fiches : reporter les cotes reelles (docs/references/geometrie-fournisseur.json) dans `dimensions:`.
+
+EN ATTENTE DE THOMAS (voir la liste complete dans docs/BACKLOG.md) :
+- Graveur : zones gravables des 22 modeles (planches), hauteur mesuree sur la majuscule, plus
+  petite lettre, signe de deces, Tango a 20-25 mm.
+- Images a refaire : Nivora, Nautis, Bahia, Esperanza. Les 4 modeles sans stele : vue de dessus ou
+  devis sans apercu.
+- Noms publics des modeles ; Marmara granit ou marbre ; grille de prix (passe D).
+- E6 ENVOI DU DEVIS : nom de domaine (DNS verifie chez Resend, SPF/DKIM), compte Resend dont Thomas
+  saisit lui-meme la cle dans Cloudflare, adresse de destination. Tout est specifie dans
+  `docs/devis-contrat.md` (y compris les deux champs du configurateur). Il restera a ecrire
+  `functions/api/devis.ts`, passer `envoiActif` a true et poser Turnstile. Aucun secret dans le depot.
+- Puis E7 : deploiement Cloudflare Pages, domaine, Search Console (sitemap des pages + des images).
+- Test par Thomas avec un proche age, sur un telephone de 390 px : /devis/ puis /personnaliser/.
+
+REGLES QUI NE CHANGENT PAS : rien ne part a l atelier sans bon a tirer ; prix indicatifs ; jamais le
+nom du fournisseur, ses liens ni ses prix sur le site (docs/references/ est interne).
