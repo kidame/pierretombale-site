@@ -4,8 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   // Domaine canonique, unique source des URL absolues (canonical, sitemap,
-  // JSON-LD). provisoire, nom non definitif : les noms de domaine sont encore
-  // libres au registre et le nom de l entreprise n est pas tranche.
+  // JSON-LD). Domaine confirme par Thomas le 26.10.2026.
+  // Cloudflare : SITE identique en production et en previsualisation.
   site: process.env.SITE ?? "https://www.pierretombale.ch",
   // /devis/ est une vraie page indexable depuis E4 passe 4 ; la page de
   // confirmation /devis/merci/ et les pages du configurateur /personnaliser/

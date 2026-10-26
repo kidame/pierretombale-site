@@ -1,0 +1,21 @@
+# En-tetes des pages et fichiers statiques ; les futures Functions gerent les leurs.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Frame-Options: SAMEORIGIN
+
+# Fichiers Astro avec empreinte dans le nom : un an.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images sans empreinte : sept jours. Renommer le fichier si son contenu change.
+/images/*
+  Cache-Control: public, max-age=604800
+
+# Ces deux regles ne correspondent JAMAIS au domaine personnalise.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex

@@ -62,6 +62,12 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 26.10.2026, Codex : PREPARATION CLOUDFLARE. .node-version = 22, public/_headers :
+  securite sur les fichiers statiques, cache Astro avec empreinte un an, images sept jours
+  (renommer les images remplacees pour changer leur URL). noindex limite aux hotes pages.dev,
+  jamais global sur le domaine personnalise. Valeur SITE par defaut inchangee :
+  https://www.pierretombale.ch ; commentaire du domaine confirme corrige.
+  Branche live absente du remote ; aucun push effectue. Build plafonne a verifier avant publication.
 - 26.10.2026, Codex : E7 DEMARRE, AUCUNE PUBLICATION. Domaine confirme par Thomas :
   pierretombale.ch, achete chez Infomaniak ; canonical retenu https://www.pierretombale.ch/.
   Aucune messagerie pour le moment (prevue plus tard). Compte Cloudflare cree par Thomas via Google (confirmation dans le chat).
