@@ -75,6 +75,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   (css de page), html accueil 4124 o gz. Build 60 pages, astro check 0 erreur, 62 tests, grep des mots
   interdits vide. Verifie au navigateur en 1280 et 390 (capture pleine page). A REMPLACER par de vraies
   photos des realisations quand elles existent (memes noms de fichiers, voir docs/DESIGN.md).
+  APERCU NETLIFY REPUBLIE avec cette version (https://pt-apercu-k7q2.netlify.app, noindex), par la procedure
+  de la section "Apercu en ligne" ; la commande npx a jeton temporaire a ete lancee sur demande expresse de
+  Thomas ("donne moi le lien"), le jeton n est ecrit dans aucun fichier.
 - 26.10.2026, Claude : DESIGN DES MAQUETTES, PASSE 1 (jetons, en-tete, pied, accueil). Thomas a fourni
   les maquettes de l accueil (ordinateur + mobile : hero sombre, collection ivoire, matiere, personnalisation,
   appel). Reference : docs/DESIGN.md. Fait : src/styles.css (ivoire #f6f3ec, anthracite #1c1b19, bronze
@@ -96,9 +99,7 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   pas d entree Personnalisation. PIEGES : `systemd-run --user` veut `-d --setenv=PATH=$PATH` pour trouver
   npm et le dossier (sinon code 254 en 138 ms) ; sa sortie va au journal (journalctl --user -u <unite>)
   sauf avec `--pipe`. Captures : scripts/capture-pages.sh (pleine page, 1280 et 390).
-  APERCU NETLIFY NON REPUBLIE : tmp/apercu est pret (copie de dist + _headers, robots.txt, netlify.toml)
-  mais la commande npx a usage unique (jeton temporaire dans la ligne de commande) a ete refusee par le
-  garde-fou. A lancer avec l accord de Thomas ; l apercu en ligne montre encore l ancien site.
+  APERCU NETLIFY : republie le 26.10.2026 (voir la session suivante).
 - 26.10.2026, Claude : panneau-zones.ts (mode libre sorti de index.ts, qui passe a 347 lignes et
   ne fait plus que relier les panneaux au rendu). Build, astro check, 62 tests, mode libre
   verifie au navigateur (onglets, ajout, 5 lignes, depassement par zone, suppression, recentrer,
