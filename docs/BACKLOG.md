@@ -99,3 +99,5 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - Poids des images et premier ecran : `python3 scripts/poids-images.py` (apres un build).
 - Verifier le configurateur sur tous les modeles : scripts/verifie-configurateur.sh (section 5 du
   guide). Mesurer une police : scripts/mesure-polices.py.
+
+<!-- E7 26.10.2026 : releve DNS avant migration dans docs/DNS-AVANT-MIGRATION.md ; import et comparaison Cloudflare restent a faire. -->

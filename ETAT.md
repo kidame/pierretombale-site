@@ -54,6 +54,10 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 
 ## Derniere session
+- 26.10.2026, Codex : releve de sept enregistrements DNS Infomaniak fourni par Thomas,
+  DKIM complet conserve dans docs/DNS-AVANT-MIGRATION.md. Aucun MX visible, pas de boite
+  e-mail selon Thomas. Prochaine etape : import Cloudflare Free et comparaison ; aucune
+  modification DNS effectuee. DNSSEC reste a verifier avant delegation.
 - 26.10.2026, Codex : PREMIER DEPLOIEMENT PAGES CONFIRME par Thomas et controle HTTP.
   https://pierretombale-site.pages.dev/ : HTTPS valide, 200, X-Robots-Tag noindex,
   quatre en-tetes de securite presents. robots et deux sitemaps : 200, domaine absolu www.
