@@ -6,7 +6,8 @@ rien casser. Les décisions et leur raison sont dans `docs/DECISIONS-ET-ETAT.md`
 avant la construction (performance, mobile, promesses de l'aperçu), toujours valables.
 
 Page : `/personnaliser/<slug>/`, une par modèle **calibré** (noindex, canonique vers la fiche).
-Aperçu de travail : https://pt-apercu-k7q2.netlify.app/personnaliser/douceur/
+Aperçu de travail : le dernier déploiement de `main` sur Cloudflare Pages (voir
+`docs/MISE-EN-LIGNE.md`) ; production : https://www.pierretombale.ch/personnaliser/douceur/
 
 ---
 
@@ -220,15 +221,11 @@ d'un champ : incrémenter `VERSION_BROUILLON` (les anciens brouillons sont alors
 4. Poids : la page doit rester légère (environ 9 Ko gz de HTML, Konva chargé à part).
    `python3 scripts/poids-pages.py` donne les chiffres.
 
-## 6. Publier l'aperçu
+## 6. Publier
 
-L'aperçu Netlify (`pt-apercu-k7q2`, noindex) se publie depuis une copie de `dist/` dans
-`/home/kumo/atelier/tmp/apercu`, qui garde `_headers`, `netlify.toml` et `robots.txt`. La
-commande de déploiement contient un jeton à usage unique : elle se demande au connecteur
-Netlify au moment de publier, s'exécute depuis un script temporaire dans `/tmp`, et ce script
-est effacé juste après. **Jamais de jeton dans le dépôt.**
-
----
+Plus de copie ni de jeton : le site se publie depuis GitHub par Cloudflare Pages. Un push sur
+`main` donne une prévisualisation ; `git push origin main:live` met en production, sur demande de
+Thomas. Tout est dans `docs/MISE-EN-LIGNE.md` (procédure, retour en arrière, build qui échoue).
 
 ## 7. Règles à garder
 

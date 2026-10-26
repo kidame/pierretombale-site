@@ -12,6 +12,16 @@ Projet commun à trois associés, bénéfices à parts égales. Le site est cons
 
 La spec commence par un avertissement : `docs/production-spec-pierretombalech.json` contient des valeurs provisoires (téléphone, NPA, siège, nom). Ne les recopie jamais dans le site.
 
+## Mise en ligne (depuis le 26.10.2026) : Cloudflare Pages, plus jamais Netlify
+- Production = branche `live` sur GitHub, servie sur https://www.pierretombale.ch (DNS en cours
+  de bascule) et https://pierretombale-site.pages.dev. Previsualisation = tout push sur `main`
+  (adresse dans Cloudflare > Deployments, alias main.pierretombale-site.pages.dev).
+- Previsualiser : `git push origin main`. Mettre en ligne : `git push origin main:live`, seulement
+  quand Thomas le demande. Revenir en arriere : Cloudflare > Deployments > Rollback.
+- Rien a copier a la main, aucun jeton, aucun script de deploiement : la procedure complete est
+  dans `docs/MISE-EN-LIGNE.md`. L ancien apercu Netlify (pt-apercu-k7q2) est une archive morte :
+  ne plus le republier, ne plus le citer comme apercu.
+
 ## Règles du projet
 - Stack figée : Astro 7, Tailwind 4, un seul îlot Konva.js sans framework pour le configurateur (decision du 14.10.2026), hébergement Cloudflare Pages. Pas de Shopify, pas de paiement en ligne en v1.
 - Coordonnées de l'entreprise (nom, téléphone, adresse) : un seul fichier `src/config/entreprise.ts`, valeurs `null` tant que les associés ne les ont pas fournies.
