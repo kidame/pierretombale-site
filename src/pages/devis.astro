@@ -226,6 +226,13 @@ const classeTitreEtape = "label etape-titre";
         class="mt-12 max-w-[62ch]"
         data-devis
       >
+        {/* LA STELE COMPOSEE SUR /personnaliser/ (passe E) : deux champs qui
+            s ajoutent au contrat sans rien remplacer (docs/devis-contrat.md,
+            « Configurateur »). Hors de tout fieldset : un fieldset replie
+            est desactive et ses champs ne partent pas. Remplis par
+            src/scripts/devis/scene.ts, vides sinon. */}
+        <input type="hidden" name="configurateur_scene" value="" />
+        <input type="file" name="configurateur_apercu" accept="image/jpeg" hidden tabindex="-1" aria-hidden="true" />
         {/* Barre de progression. Posee par le script seulement : sans
             JavaScript les quatre sections sont visibles a la suite, et
             annoncer une "etape 1 sur 4" serait faux. */}
@@ -343,6 +350,19 @@ const classeTitreEtape = "label etape-titre";
           <h2 class={classeTitreEtape} id="etape-2-titre" data-etape-titre tabindex="-1">
             {titreEtape(2)}
           </h2>
+
+          {/* Votre stele composee : pose par src/scripts/devis/scene.ts quand
+              une scene du configurateur attend dans le navigateur. */}
+          <div class="scene mt-6" data-scene hidden>
+            <p class="label">Votre stèle composée</p>
+            <img class="scene-image mt-3" alt="" data-scene-image hidden />
+            <p class="type-body mt-3 text-[0.9375rem]" data-scene-resume></p>
+            <p class="type-body mt-3 text-[0.9375rem]">
+              <a class="link" href="/personnaliser/" data-scene-modifier>Modifier la composition</a>
+              {" · "}
+              <button type="button" class="link" data-scene-retirer>Repartir du formulaire vide</button>
+            </p>
+          </div>
 
           <fieldset data-bloc="monument">
             {/* Famille et modele se choisissent a l oeil, plus dans deux listes
@@ -880,6 +900,26 @@ const classeTitreEtape = "label etape-titre";
       /devis/. Les classes Tailwind gardees ci-dessus servaient deja ailleurs
       dans le site : elles ne coutent rien de plus. */}
   <style>
+    /* La stele composee sur /personnaliser/ (passe E). */
+    .scene {
+      padding: 1rem 1.125rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 3px;
+      background: var(--canvas);
+    }
+
+    .scene-image {
+      display: block;
+      width: 100%;
+      max-width: 28rem;
+      border-radius: 3px;
+    }
+
+    .scene[hidden],
+    .scene-image[hidden] {
+      display: none;
+    }
+
     .grav-court {
       max-width: 24rem;
     }
@@ -1401,6 +1441,9 @@ const classeTitreEtape = "label etape-titre";
 
   <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
 
+  <script>
+    import "@/scripts/devis/scene";
+  </script>
   <script is:inline define:vars={{ reglages }}>
     (() => {
       const form = document.querySelector("[data-devis]");
@@ -2141,6 +2184,12 @@ const classeTitreEtape = "label etape-titre";
         const depart = voulue >= 1 && voulue <= DERNIERE && !etapeSautee(voulue) ? voulue : 1;
         montreEtape(depart, { focus: false });
       }
+
+      /* La page est prete : brouillon restaure, ?modele= pose. Les scripts
+         qui remplissent le formulaire APRES (la stele composee,
+         src/scripts/devis/scene.ts) attendent ce signal. */
+      form.dataset.pret = "true";
+      form.dispatchEvent(new CustomEvent("pt-devis-pret"));
 
       form.addEventListener("input", () => {
         majTout();

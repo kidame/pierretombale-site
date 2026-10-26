@@ -83,6 +83,12 @@ export interface Rendu {
   basDuTexte(): number | null;
   /** `false` : le texte ne se deplace plus a la main (inscription guidee). */
   autoriseDeplacement(oui: boolean): void;
+  /**
+   * L'apercu en JPEG (data URL), sans le cadre de la zone active, a la
+   * largeur de l'image servie quelle que soit la fenetre. `null` si le canvas
+   * refuse (image d'une autre origine, memoire).
+   */
+  capture(): string | null;
 }
 
 function chargeImage(url: string, cache: Map<string, HTMLImageElement>): Promise<HTMLImageElement> {
@@ -342,6 +348,22 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
     stage,
     coucheMotifs,
     affichage: () => affichage,
+    capture() {
+      const cadreVisible = cadreActif.visible();
+      cadreActif.visible(false);
+      try {
+        return stage.toDataURL({
+          mimeType: "image/jpeg",
+          quality: 0.85,
+          pixelRatio: echelle.vue.largeur / Math.max(1, stage.width()),
+        });
+      } catch {
+        return null;
+      } finally {
+        cadreActif.visible(cadreVisible);
+        stage.batchDraw();
+      }
+    },
     autoriseDeplacement(oui) {
       deplacable = oui;
       for (const noeud of noeuds.values()) noeud.draggable(oui);

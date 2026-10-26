@@ -303,6 +303,24 @@ Conséquences :
   cette liste, sans jamais remplacer les champs de texte : un PNG ne se relit pas, et c'est le texte
   qui part à la gravure.
 
+### Les deux champs du configurateur (passe E, 26.10.2026)
+
+Quand la famille arrive de `/personnaliser/<slug>/` par « Demander un devis avec cette stèle »,
+le script `src/scripts/devis/scene.ts` remplit les champs du contrat d'après sa composition
+(`modele`, `granit`, `typeDemande` = `nouveau`, `police`, `ligne1..4` avec leurs tailles,
+`finition`, `motif`, `gravure_precisions` avec le détail complet en cm) et ajoute **deux champs
+facultatifs** :
+
+| Nom | Type | Obligatoire | Notes |
+| --- | --- | --- | --- |
+| `configurateur_scene` | texte (JSON) | non | La scène en cm : `SceneDevis` de `src/scripts/configurateur/export.ts` (version, modèle, matière, mode, champs saisis, textes avec police/taille/finition/position/stèle, motifs avec taille et position, motif à créer, surfaces). Sans l'image. Vide quand la demande ne vient pas du configurateur. |
+| `configurateur_apercu` | fichier (`image/jpeg`) | non | L'aperçu tel que la famille l'a vu, 1200 px de large, 50 à 150 Ko. À joindre au courriel comme les `fichiers`, mais **hors du compte des 3 fichiers** et de leur taille totale. Absent sans JavaScript ou si le navigateur n'a pas pu le produire. |
+
+Règles pour la fonction : le texte des lignes et `gravure_precisions` font foi (un JPEG ne se relit
+pas) ; le JSON est là pour l'atelier et pour relire les positions ; un JSON illisible ou d'une
+autre `version` se transmet tel quel et se signale, sans refuser la demande. Les quatre lignes ne
+portent que les quatre premières lignes de la composition : le reste est dans les précisions.
+
 ## Ce qui reste à faire en E6
 
 - Écrire `functions/api/devis.ts` (Cloudflare Pages Functions).

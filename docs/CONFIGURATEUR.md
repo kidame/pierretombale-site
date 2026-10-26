@@ -23,7 +23,8 @@ Aperçu de travail : https://pt-apercu-k7q2.netlify.app/personnaliser/douceur/
      (les réglages à la main sont alors remplacés).
 3. **Les motifs** : 10 dessins en 4 familles, posés sous le texte, déplaçables et
    redimensionnables partout sur la stèle ; ou « Un motif à vous » (description + photo).
-4. **Le devis** : lien vers `/devis/` (l'envoi de la scène viendra en passe E).
+4. **Le devis** : « Demander un devis avec cette stèle » emporte la composition vers `/devis/`
+   (champs pré-remplis, aperçu, détail en cm dans les précisions). L'envoi réel attend E6.
 
 Tout est gardé sur l'appareil (brouillon, 90 jours) et repris à la visite suivante.
 
@@ -62,6 +63,8 @@ dans `src/scripts/configurateur/`. Corriger une donnée suffit à corriger l'ape
 | `rendu.ts` | Le dessin Konva du fond et du texte, l'alerte de dépassement | canvas |
 | `motifs.ts` | Les motifs : fonctions pures (poser, borner, agrandir) + leur rendu Konva | canvas |
 | `brouillon.ts` | Lire, écrire, effacer le brouillon (`localStorage`) | non |
+| `export.ts` | La scène pour le devis (`SceneDevis`, cm + aperçu JPEG), déposée en `sessionStorage` | non |
+| `../devis/scene.ts` | Côté `/devis/` : relit la scène, remplit les champs du contrat et les deux champs du configurateur | oui |
 | `polices.ts` | Attendre que les polices de gravure soient chargées | non |
 
 ### Le chemin d'une frappe
@@ -246,7 +249,6 @@ est effacé juste après. **Jamais de jeton dans le dépôt.**
 
 | Limite | Piste |
 |---|---|
-| Les champs de l'inscription guidée ne partent pas encore avec le devis | Passe E : joindre `formulaire.lit()` et `sceneEnCm()` |
 | Une seule échelle par monument : sur Tango, la petite stèle paraît plus étroite qu'en vrai | Une échelle par surface (`largeurCm` par zone) et un léger écrasement horizontal du texte |
 | Vues de 3/4 : texte plat | Images de face, ou une transformation de perspective par calibration |
 | Cadre des motifs rectangulaire : on peut poser un motif hors de la pierre sur les formes découpées | Un masque de la forme de la stèle (polygone dans la calibration) |

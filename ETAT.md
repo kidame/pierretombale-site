@@ -62,6 +62,14 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 26.10.2026, Claude : PASSE E (sans l envoi). export.ts construit `SceneDevis` (cm, stele par
+  texte, champs saisis, motifs, apercu JPEG 1200 px par `rendu.capture()`), deposee en
+  sessionStorage ; « Demander un devis avec cette stele » mene a /devis/?modele=&scene=1.
+  src/scripts/devis/scene.ts remplit les champs du contrat + `configurateur_scene` (JSON) et
+  `configurateur_apercu` (fichier), bloc « Votre stele composee » (apercu, modifier, retirer),
+  apres le signal `pt-devis-pret` du script de la page. Contrat mis a jour. Verifie au navigateur.
+  Aussi : geometrie des 27 modeles relevee dans le configurateur 3D du fournisseur
+  (docs/references/2026-10-26-geometrie-fournisseur.md) : Eligie et les cineraires ont leurs cotes.
 - 23.10.2026, Claude : TESTS ET DECOUPAGE. vitest 5.0.5 (devDependency exacte), `npm test` :
   62 tests (tests/composition.test.ts, tests/echelle.test.ts, outils dans tests/commun.ts), sur
   les vraies calibrations ; verifie par mutation (harmonise() retire -> 8 echecs). index.ts

@@ -199,8 +199,10 @@ const groupesMotifs = motifsParFamille();
    corriger une donnee suffit a corriger l apercu. */
 const donneesConfigurateur = {
   calibration,
+  modele: { modeleId: product.modeleId, slug: product.slug, nom: product.name },
   matieres: matieres.map(({ granit }) => ({
     id: granit.id,
+    nom: granit.nom,
     image: `${racineVisuel}-${granit.id}-1200.webp`,
   })),
   polices: polices.map((police) => ({
@@ -813,7 +815,12 @@ const donneesConfigurateur = {
           <p class="cfg-aide">
             La gravure, la pose au cimetière et les démarches sont comprises dans le devis.
           </p>
-          <a href="/devis/" class="btn btn-primary cfg-devis">Demander un devis</a>
+          <p class="cfg-aide">
+            Votre composition (texte, tailles, motifs, aperçu) est reprise dans la demande.
+          </p>
+          <a href={`/devis/?modele=${product.slug}`} class="btn btn-primary cfg-devis" data-vers-devis>
+            Demander un devis avec cette stèle
+          </a>
           <p class="cfg-aide">
             <a href={urlFiche} class="link">Revenir à la fiche {product.name}</a>
           </p>

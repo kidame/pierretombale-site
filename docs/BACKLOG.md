@@ -19,7 +19,8 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       "Un motif a vous" avec description + fichier 8 Mo) - commits a8d156b a 0130cb4
 - [x] Passe C2 : 3 zones de texte multilignes (police, hauteur, finition par zone)
 - [ ] Passe D : prix indicatif en direct (tarifs.json) - agent - attend la grille de prix
-- [ ] Passe E : export PNG + JSON de scene, branchement sur /devis/ - agent - attend E6
+- [x] Passe E : scene en cm + apercu JPEG vers /devis/, champs du contrat pre-remplis,
+      `configurateur_scene` et `configurateur_apercu` - Claude - 26.10.2026 (l envoi attend E6)
 - [x] Passe F : brouillon sur l appareil (90 j), reprise, "Tout effacer", avertissement si le
       navigateur refuse de garder - Claude - 23.10.2026
 - [>] Etendre aux autres modeles : 10 funeraires calibres (provisoire) le 23.10.2026 - Claude
@@ -27,10 +28,8 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       stele, Tombale simple (pas de stele : a decider), les 13 cineraires (largeurs inconnues)
 - [ ] Graveur : valider les zones gravables des 9 modeles (planche de controle) - Thomas
 - [x] Motifs ajoutes : poses sous le texte, libres dans le cadre jaune - Claude - 23.10.2026
-- [ ] Passe E : exporter la stele (surface) de chaque zone de texte (Tango) - agent
 
 - [x] Inscription guidee : formulaire, mise en page auto, tailles du metier - Claude - 23.10.2026
-- [ ] Passe E : joindre les champs saisis (`formulaire.lit()`) a la demande de devis - agent
 - [x] Tests automatiques (vitest, `npm test`) : composition, echelle, bornes des motifs - Claude
 - [x] index.ts decoupe (956 -> 530 lignes) : panneau-motifs.ts, reprise.ts - Claude
 - [ ] Sortir les zones du mode libre de index.ts (panneau-zones.ts) - agent

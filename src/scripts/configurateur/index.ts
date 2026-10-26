@@ -37,6 +37,7 @@ import {
   retireMotif,
   type MotifCatalogue,
 } from "./motifs";
+import { construitScene, deposeScene } from "./export";
 import { brancheInscription } from "./formulaire";
 import { branchePanneauMotifs } from "./panneau-motifs";
 import { brancheBrouillon } from "./reprise";
@@ -66,8 +67,10 @@ const POLICE_INTERFACE_DE_SECOURS = "Archivo, Helvetica, Arial, sans-serif";
 /** Ce que la page inline en JSON. Les valeurs viennent toutes de `src/data`. */
 export interface DonneesConfigurateur {
   calibration: Calibration;
-  /** Chemin du visuel 1200 px par matiere. */
-  matieres: Array<{ id: string; image: string }>;
+  /** Le modele de la page, pour le devis. */
+  modele: { modeleId: string; slug: string; nom: string };
+  /** Chemin du visuel 1200 px et nom de chaque matiere. */
+  matieres: Array<{ id: string; nom: string; image: string }>;
   /** Pile CSS par police, dans l'ordre de `personnalisation.ts`. */
   polices: Array<{ id: string; famille: string; capitale: number }>;
   /** Couleur d'apercu et phrase d'aide par finition. */
@@ -91,6 +94,7 @@ export async function demarre(): Promise<void> {
   const donnees = JSON.parse(balise.textContent) as DonneesConfigurateur;
 
   const imagesParMatiere = new Map(donnees.matieres.map((m) => [m.id, m.image]));
+  const nomsParMatiere = new Map(donnees.matieres.map((m) => [m.id, m.nom]));
   const famillesParPolice = new Map(donnees.polices.map((p) => [p.id, p.famille]));
   const capitalesParPolice = new Map(donnees.polices.map((p) => [p.id, p.capitale]));
   const couleursParFinition = new Map(donnees.finitions.map((f) => [f.id, f.couleur]));
@@ -517,6 +521,31 @@ export async function demarre(): Promise<void> {
        est un choix de la famille, pas un accident a corriger. */
     boutonRecentrer.addEventListener("click", () => changeZoneActive({ xCm: null }));
   }
+
+  /* ------------------------------------------- Vers le devis (passe E) */
+
+  /* Le lien « Demander un devis » emporte la scene : texte en cm, motifs,
+     champs saisis et une image de l'apercu, deposes pour `/devis/` (voir
+     `export.ts`). Sans JavaScript, le lien mene au formulaire vide : la
+     famille y retape son inscription. */
+  const lienDevis = document.querySelector<HTMLAnchorElement>("[data-vers-devis]");
+  lienDevis?.addEventListener("click", (evenement) => {
+    /* Les poignees d'un motif selectionne ne font pas partie de la stele. */
+    vuesMotifs.selectionne(null);
+    const scene = construitScene({
+      etat: etat.lire(),
+      echelle,
+      inscription: formulaire.lit(),
+      mode: formulaire.mode(),
+      modele: donnees.modele,
+      nomMatiere: (id) => nomsParMatiere.get(id) ?? id,
+      catalogue: catalogueMotifs,
+      apercu: vues.capture(),
+    });
+    if (!deposeScene(scene)) return;
+    evenement.preventDefault();
+    window.location.assign(`/devis/?modele=${encodeURIComponent(donnees.modele.slug)}&scene=1`);
+  });
 
   /* Fenetre redimensionnee (ou telephone tourne) : l'echelle d'affichage
      change, les coordonnees de la gravure non. Un seul recalcul par image. */
