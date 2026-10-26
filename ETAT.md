@@ -31,37 +31,40 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 3. Fin : remplir "Derniere session" et "Prochaine etape", commit local.
 4. Ne jamais laisser de travail non commite : l agent suivant ne saurait pas d ou il vient.
 
-## Apercu en ligne (demande de Thomas, 13.10.2026)
-- Lien : https://pt-apercu-k7q2.netlify.app (projet Netlify "pt-apercu-k7q2", compte Netlify de Thomas,
-  site id 4b456177-ffd3-42a8-bd14-bcc87aff0cb7). Public pour qui a le lien, non indexe.
-- Ce n est PAS la production (prevue sur Cloudflare Pages en E7). On y publie une COPIE de dist :
-  /home/kumo/atelier/tmp/apercu, a laquelle on ajoute `_headers` (X-Robots-Tag: noindex, nofollow),
-  un robots.txt "Disallow: /" et un netlify.toml (publish = ".", pas de build). Ces 3 fichiers ne
-  doivent jamais entrer dans le depot : ils bloqueraient l indexation du vrai site.
-- Republier : build a jour, recopier dist dans tmp/apercu (+ les 3 fichiers), puis l outil Netlify
-  "deploy-site" (connecteur Netlify) donne une commande npx a usage unique a lancer dans tmp/apercu.
-  Ne jamais ecrire cette commande (elle contient un jeton temporaire) dans un fichier du depot.
+## Apercu en ligne : migration Cloudflare Pages (26.10.2026)
 
-## Plan de build (option securisee, decidee le 13.10.2026)
-- [x] E1. Importer Atelier Ko (copie unique, MIT, commit 348433f du 17.08.2026), retirer panier et paiement, bouton "Demander un devis".
-- [x] E2. Adapter le schema produit : granit, type de monument, style, tradition. 3 modeles fictifs.
-      (passe A : schema metier et 12 fiches ; passe B : adresses SEO par famille.)
-- [x] E3. `src/config/entreprise.ts` et `src/data/tarifs.json` a null, affichage "prix sur demande".
-- [x] E4. Pages : accueil, catalogue, fiche, Nos granits, contact/devis (formulaire sans envoi reel).
-      (passe 1 : nettoyage du theme et SEO ; passe 2 : accueil et a-propos ; passe 3 : prix, granits,
-      FAQ ; passe 4 : devis, merci, protection des donnees.)
-- [x] E5. Personnalisation guidee dans le formulaire de devis (4 lignes d inscription, polices sur
-      echantillons, hauteur des lettres, finition, motif, apercu en direct du texte) ; configurateur
-      visuel reporte (voir `docs/CONFIGURATEUR-FUTUR.md`).
-      PASSE 3 TERMINEE (etapes + choix visuel).
-      (passe 1 : personnalisation guidee ; passe 2 : simplification pour les familles, police unique,
-      pastilles de granit, sections conditionnelles, brouillon ; passe 3 : choix visuel du modele en
-      cartes (A), parcours en 4 etapes avec recapitulatif (B), lisibilite et zones cliquables (C).)
-- [ ] E6. Envoi du devis : fonction Cloudflare Pages + Resend (pas de n8n), adresse en variable
-      d environnement, Turnstile. Aucun secret dans le repo. Suivre `docs/devis-contrat.md`.
-- [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
+- Cible : projet Pages pierretombale-site, depot kidame/pierretombale-site via application GitHub.
+  Compte Cloudflare cree par Thomas via Google ; depot visible dans l'assistant Pages.
+  IMPORTANT : la creation du projet n'est PAS encore validee, aucun build Cloudflare execute.
+- Canonique confirme : https://www.pierretombale.ch. Redirection du domaine nu vers www en 301
+  a configurer apres l'inventaire DNS Infomaniak et le rattachement des deux domaines.
+- Organisation : main = previsualisations, live = production. Travail uniquement sur main.
+  live sera creee depuis main ; aucun premier push sans accord explicite de Thomas.
+  Aucun push GitHub effectue pendant cette mission a ce stade.
+- Parametres prepares : Astro, npm run build, dist, Node 22 ; SITE=https://www.pierretombale.ch
+  pour Production ET Preview. Guide complet : docs/MISE-EN-LIGNE.md.
+- Previews privees : Cloudflare Access reste a activer et tester sur alias main et URL de commit.
+  Le noindex seul ne protege pas l'acces. _headers cible pages.dev sans bloquer le domaine public.
+- Netlify abandonne pour les prochaines publications. Ancien lien conserve comme archive :
+  https://pt-apercu-k7q2.netlify.app. Ne plus reconstruire ni republier cette copie.
+  tmp/apercu et tmp/apercu-extras conserves ; suppression uniquement apres accord de Thomas.
+- Restent : premier push autorise, premier build Cloudflare (clone ~754 Mo de sources a mesurer),
+  Access, DNS/HTTPS/redirection, controles du configurateur, Lighthouse mobile et Search Console.
+
 
 ## Derniere session
+- 26.10.2026, Codex : PREPARATION E7 VALIDEE LOCALEMENT, PAS EN LIGNE.
+  docs/MISE-EN-LIGNE.md ajoute (branches, variables, Access, DNS, rollback, echec de build, E6).
+  Build npm run build avec SITE canonique sous Node v22.23.2 : succes, 5,38 s avec le lanceur,
+  unite systemd pt-pages-build-20261026, MemoryMax=1200M, tache de fond avec temoin.
+  Controle dist : 60 HTML et 60 canonicals sur www ; 36 URLs dans sitemap-0.xml ;
+  sitemap images : 308 loc (pages et images). 24 meta noindex : 22 configurateurs, merci et 404.
+  robots Allow: / et deux sitemaps corrects ; _headers recopie, noindex HTTP limite a pages.dev ;
+  938 fichiers, maximum 277250 octets, aucun dossier docs publie. Formulaire toujours inactif.
+  Preuves locales : /home/kumo/atelier/tmp/pt-pages-preparation/{build-result.json,build.log,
+  controle-build.json}. Controles HTTP Cloudflare, DNS, Lighthouse et canvas en ligne NON faits.
+  Prochaine etape : regler l'ecran Pages ; accord explicite pour pousser main puis main:live,
+  avant de selectionner live et de valider le premier deploiement. E7 reste en cours, E6 intact.
 - 26.10.2026, Codex : PREPARATION CLOUDFLARE. .node-version = 22, public/_headers :
   securite sur les fichiers statiques, cache Astro avec empreinte un an, images sept jours
   (renommer les images remplacees pour changer leur URL). noindex limite aux hotes pages.dev,
@@ -803,7 +806,7 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 OU EN EST LE SITE. Catalogue de 27 modeles en 10 matieres, formulaire de devis en 4 etapes (E5),
 configurateur visuel sur 22 modeles (inscription guidee, mise en page libre, motifs, brouillon,
-export vers le devis), 62 tests (`npm test`), apercu en ligne sur Netlify. Le detail de ce qui reste,
+export vers le devis), 62 tests (`npm test`), migration de l'apercu Netlify vers Cloudflare Pages en cours. Le detail de ce qui reste,
 dans l ordre, est dans `docs/BACKLOG.md` ; le configurateur se modifie avec `docs/CONFIGURATEUR.md`.
 
 DEBLOQUE, A FAIRE SANS ATTENDRE PERSONNE (au choix de Thomas) :
@@ -817,11 +820,13 @@ EN ATTENTE DE THOMAS (voir la liste complete dans docs/BACKLOG.md) :
 - Images a refaire : Nivora, Nautis, Bahia, Esperanza. Les 4 modeles sans stele : vue de dessus ou
   devis sans apercu.
 - Noms publics des modeles ; Marmara granit ou marbre ; grille de prix (passe D).
-- E6 ENVOI DU DEVIS : nom de domaine (DNS verifie chez Resend, SPF/DKIM), compte Resend dont Thomas
+- E6 ENVOI DU DEVIS : domaine confirme pierretombale.ch ; verification Resend SPF/DKIM a faire,
+  compte Resend dont Thomas
   saisit lui-meme la cle dans Cloudflare, adresse de destination. Tout est specifie dans
   `docs/devis-contrat.md` (y compris les deux champs du configurateur). Il restera a ecrire
   `functions/api/devis.ts`, passer `envoiActif` a true et poser Turnstile. Aucun secret dans le depot.
-- Puis E7 : deploiement Cloudflare Pages, domaine, Search Console (sitemap des pages + des images).
+- E7 EN COURS, independant de E6 : preparation locale testee ; restent integration Cloudflare,
+  DNS, HTTPS, Access, recette en ligne et Search Console. Guide : docs/MISE-EN-LIGNE.md.
 - Test par Thomas avec un proche age, sur un telephone de 390 px : /devis/ puis /personnaliser/.
 
 REGLES QUI NE CHANGENT PAS : rien ne part a l atelier sans bon a tirer ; prix indicatifs ; jamais le

@@ -56,7 +56,14 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - [>] E7 : deploiement Cloudflare Pages, domaine, Search Console - Codex, 26.10.2026
       Domaine confirme ; aucune messagerie actuelle ; compte Cloudflare cree par Thomas via Google.
       Cible : canonical www.pierretombale.ch, main = apercus prives, live = production.
-      Configuration, DNS et verifications non faits. Aucun push sans instruction de Thomas.
+      [x] .node-version 22, _headers securite/cache/noindex limite a pages.dev, domaine confirme.
+      [x] Guide docs/MISE-EN-LIGNE.md ; build local et controle HTML/sitemaps reussis.
+      [ ] Accord de premier push main + main:live ; projet Pages et variables Prod/Preview.
+      [ ] Premier build Cloudflare (mesurer clone + build), apercus prives avec Access.
+      [ ] Inventaire DNS Infomaniak, zone Cloudflare Free, NS, deux domaines, 301, HTTPS.
+      [ ] Recette HTTP et navigateur, Lighthouse mobile, Search Console et deux sitemaps.
+      [ ] Nettoyage tmp/apercu et apercu-extras uniquement apres accord de Thomas.
+      Aucun push effectue ; E7 non termine. E6 reste hors mission.
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
 - [ ] Accueil : remplacer les 5 rendus IA (public/images/accueil/) par de vraies photos des realisations (hero sombre, gros plan matiere, gros plan gravure) - Thomas
 - [x] Images : audit du 26.10.2026 - Claude. Deja en place : noms de fichiers parlants

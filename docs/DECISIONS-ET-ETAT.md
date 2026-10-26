@@ -1,5 +1,15 @@
 # Décisions et état du projet PierreTombale.ch
 
+## Hebergement et domaine (Thomas, 26.10.2026)
+- pierretombale.ch est achete chez Infomaniak ; canonical https://www.pierretombale.ch.
+- Pas de messagerie pour le moment ; ajout prevu plus tard. Inventorier tous les DNS avant bascule.
+- Cloudflare Pages Free via application GitHub. main = apercus prives, live = production.
+- Netlify abandonne. E7 avance independamment de E6, le formulaire reste inactif.
+- Premier push live sur accord explicite ; aucun push sans instruction pendant cette mission.
+- Details operatoires : docs/MISE-EN-LIGNE.md. Ces decisions remplacent les mentions anciennes
+  de domaine non reserve et de calendrier dans ce document.
+
+
 ## Precision visuelle du configurateur (Thomas, 14.10.2026)
 - Motifs de gravure : SVG sans fond, egalement dans les apercus de selection.
 - Aucun medaillon. Cette decision prime sur les exemples visuels generes.
