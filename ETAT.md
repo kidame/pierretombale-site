@@ -54,6 +54,12 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 
 ## Derniere session
+- 26.10.2026, Codex : import Cloudflare compare (2 A, SPF, DMARC conformes).
+  DKIM ajoute par Thomas, correction du nom 20261022._domainkey confirmee par lui.
+  NS attribues : gracie.ns.cloudflare.com et steven.ns.cloudflare.com.
+  DNSSEC desactive dans Infomaniak selon Thomas ; controle public apres confirmation :
+  1.1.1.1 et 8.8.8.8 retournent encore le DS 63723, TTL 3600.
+  ATTENDRE le retrait du DS avant de changer les serveurs de noms.
 - 26.10.2026, Codex : releve de sept enregistrements DNS Infomaniak fourni par Thomas,
   DKIM complet conserve dans docs/DNS-AVANT-MIGRATION.md. Aucun MX visible, pas de boite
   e-mail selon Thomas. Prochaine etape : import Cloudflare Free et comparaison ; aucune

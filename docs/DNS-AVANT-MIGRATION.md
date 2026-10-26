@@ -28,3 +28,12 @@ Importer dans Cloudflare Free et comparer les A/TXT, notamment le DKIM.
 Les NS Infomaniak sont un releve historique : ne pas les recopier comme NS autoritaires
 au sommet de la zone Cloudflare. Verifier DNSSEC avant changement de delegation.
 Aucune modification DNS effectuee a cette etape.
+
+## Progression de la migration
+
+Cloudflare a importe les 2 A, SPF et DMARC, conformes aux captures.
+DKIM ajoute manuellement ; correction du nom avec point confirmee par Thomas.
+NS attribues : gracie.ns.cloudflare.com et steven.ns.cloudflare.com.
+DNSSEC desactive dans le Manager selon Thomas le 26.10.2026.
+Controle suivant via dig : DS 63723 encore present sur 1.1.1.1 et 8.8.8.8, TTL 3600.
+Ne pas changer la delegation tant que le retrait du DS ne se propage pas.

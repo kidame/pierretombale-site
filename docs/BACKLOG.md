@@ -101,3 +101,5 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
   guide). Mesurer une police : scripts/mesure-polices.py.
 
 <!-- E7 26.10.2026 : releve DNS avant migration dans docs/DNS-AVANT-MIGRATION.md ; import et comparaison Cloudflare restent a faire. -->
+
+<!-- E7 : import DNS compare, DKIM ajoute selon Thomas. DNSSEC desactive dans Manager mais DS encore visible sur 1.1.1.1 et 8.8.8.8 ; bascule NS en attente. -->
