@@ -1,0 +1,1744 @@
+{
+ "_commentaire": "INTERNE, jamais publie. Geometrie des 27 modeles lue le 26.10.2026 dans l'interface du configurateur 3D du fournisseur (portail.monumento.fr/api/reference/<code>). forme = [largeur, hauteur, epaisseur] en cm, dans le sens du fournisseur (une tombale : largeur, epaisseur, profondeur). features STELE = piece marquee stele par le fournisseur. base = encombrement en m (x, y, z, L, l, h).",
+ "modeles": {
+  "douceur": {
+   "code": "DOUCEUR",
+   "nom": "Douceur",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    1,
+    2,
+    0.24
+   ],
+   "pieces": [
+    {
+     "code": "F16",
+     "formeCm": [
+      "185",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F29",
+     "formeCm": [
+      "162",
+      "6",
+      "80"
+     ],
+     "features": []
+    },
+    {
+     "code": "F14",
+     "formeCm": [
+      "100",
+      "24",
+      "15"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "80.04",
+      "79",
+      "10"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F16",
+     "formeCm": [
+      "185",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F08",
+     "formeCm": [
+      "74",
+      "5",
+      "25"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "corazon": {
+   "code": "CORAZON",
+   "nom": "Corazon",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    1,
+    2,
+    0.15
+   ],
+   "pieces": [
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F29P",
+     "formeCm": [
+      "155",
+      "5.0/7.0",
+      "80"
+     ],
+     "features": []
+    },
+    {
+     "code": "F08",
+     "formeCm": [
+      "74",
+      "5",
+      "25"
+     ],
+     "features": []
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F15",
+     "formeCm": [
+      "95",
+      "13",
+      "15"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "90",
+      "90",
+      "10"
+     ],
+     "features": [
+      "STELE"
+     ]
+    }
+   ]
+  },
+  "arques": {
+   "code": "ARQUES",
+   "nom": "Arques",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    -2.00371e-32,
+    0,
+    1,
+    2,
+    0.12
+   ],
+   "pieces": [
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "12",
+      "12"
+     ],
+     "features": []
+    },
+    {
+     "code": "F08",
+     "formeCm": [
+      "76",
+      "5",
+      "35"
+     ],
+     "features": []
+    },
+    {
+     "code": "F29",
+     "formeCm": [
+      "160",
+      "5",
+      "82"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "90",
+      "75",
+      "10"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "76",
+      "12",
+      "12"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "76",
+      "7",
+      "11.4"
+     ],
+     "features": []
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "12",
+      "12"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "eligie": {
+   "code": "ELIGIE",
+   "nom": "Éligie",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    -2.25597e-17,
+    -9.9714e-17,
+    1,
+    2,
+    0.15
+   ],
+   "pieces": [
+    {
+     "code": "F14",
+     "formeCm": [
+      "85",
+      "8",
+      "20"
+     ],
+     "features": []
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F29",
+     "formeCm": [
+      "150",
+      "6",
+      "80"
+     ],
+     "features": []
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "35",
+      "90",
+      "12"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "10",
+      "10.93"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "52.06",
+      "90",
+      "9"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F08",
+     "formeCm": [
+      "74",
+      "5",
+      "35"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "tango": {
+   "code": "TANGO",
+   "nom": "Tango",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    -2.46519e-32,
+    0,
+    1,
+    2,
+    0.13
+   ],
+   "pieces": [
+    {
+     "code": "F251",
+     "formeCm": [
+      "34.15",
+      "90",
+      "6"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F08",
+     "formeCm": [
+      "76",
+      "5",
+      "28"
+     ],
+     "features": []
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "13",
+      "12"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "76",
+      "13",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "13",
+      "12"
+     ],
+     "features": []
+    },
+    {
+     "code": "F301",
+     "formeCm": [
+      "21",
+      "5",
+      "20"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F14",
+     "formeCm": [
+      "90",
+      "8",
+      "15"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "50.68",
+      "65",
+      "10"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "76",
+      "13",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F29",
+     "formeCm": [
+      "152",
+      "7",
+      "86"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "aventuri": {
+   "code": "AVENT",
+   "nom": "Aventuri",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    -5.60082e-17,
+    0,
+    1,
+    2,
+    0.15
+   ],
+   "pieces": [
+    {
+     "code": "F251",
+     "formeCm": [
+      "65",
+      "15",
+      "10"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F11",
+     "formeCm": [
+      "180",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "65",
+      "60",
+      "10"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F15",
+     "formeCm": [
+      "88",
+      "6",
+      "14"
+     ],
+     "features": []
+    },
+    {
+     "code": "F11",
+     "formeCm": [
+      "180",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F14",
+     "formeCm": [
+      "90",
+      "8",
+      "15"
+     ],
+     "features": []
+    },
+    {
+     "code": "F29",
+     "formeCm": [
+      "170",
+      "6",
+      "84"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "65",
+      "10",
+      "12"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F10",
+     "formeCm": [
+      "100",
+      "15",
+      "20"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "quietude": {
+   "code": "F25659_2",
+   "nom": "Quiétude",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    -9.18857e-17,
+    0,
+    1,
+    2,
+    0.15
+   ],
+   "pieces": [
+    {
+     "code": "F08",
+     "formeCm": [
+      "74",
+      "5",
+      "25"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "95",
+      "90",
+      "10"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F14",
+     "formeCm": [
+      "95",
+      "10",
+      "15"
+     ],
+     "features": []
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F29P",
+     "formeCm": [
+      "155",
+      "5.0/7.0",
+      "80"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "13"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "arbre-de-vie": {
+   "code": "F10881_2",
+   "nom": "Arbre de vie",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    0,
+    -0.001,
+    1,
+    2,
+    0.150008
+   ],
+   "pieces": [
+    {
+     "code": "F29P",
+     "formeCm": [
+      "160",
+      "7/5",
+      "82"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15.1",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "95",
+      "85",
+      "10"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F08",
+     "formeCm": [
+      "74",
+      "5",
+      "25"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F14",
+     "formeCm": [
+      "98",
+      "10",
+      "15"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "almandin": {
+   "code": "ALMAN",
+   "nom": "Almandin",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    1,
+    2,
+    0.15
+   ],
+   "pieces": [
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F08",
+     "formeCm": [
+      "74",
+      "5",
+      "25"
+     ],
+     "features": []
+    },
+    {
+     "code": "F30",
+     "formeCm": [
+      "170",
+      "8",
+      "84"
+     ],
+     "features": []
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "musulman-4": {
+   "code": "MUSU4",
+   "nom": "Musulman 4",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    0,
+    1.97215e-31,
+    1,
+    2,
+    0.15
+   ],
+   "pieces": [
+    {
+     "code": "F15",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F17",
+     "formeCm": [
+      "74",
+      "15",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F15",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "65",
+      "85",
+      "10"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F08",
+     "formeCm": [
+      "74",
+      "5",
+      "25"
+     ],
+     "features": []
+    },
+    {
+     "code": "F14",
+     "formeCm": [
+      "90",
+      "5",
+      "35"
+     ],
+     "features": []
+    },
+    {
+     "code": "F17",
+     "formeCm": [
+      "74",
+      "15",
+      "13"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "4-pieces-sans-stele": {
+   "code": "4PSSTFI",
+   "nom": "4 Pièces sans stèle",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    1,
+    2,
+    0.15
+   ],
+   "pieces": [
+    {
+     "code": "F11",
+     "formeCm": [
+      "187",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F30P",
+     "formeCm": [
+      "180",
+      "10.0/8.0",
+      "80"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F11",
+     "formeCm": [
+      "187",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F10",
+     "formeCm": [
+      "100",
+      "15",
+      "13"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "4-pieces-stele-doucine-avec-base": {
+   "code": "4PBFI",
+   "nom": "4 pièces stèle doucine avec base",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    1,
+    2,
+    0.15
+   ],
+   "pieces": [
+    {
+     "code": "F10",
+     "formeCm": [
+      "100",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F11",
+     "formeCm": [
+      "187",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F29P",
+     "formeCm": [
+      "175",
+      "5.0/7.0",
+      "80"
+     ],
+     "features": []
+    },
+    {
+     "code": "F14",
+     "formeCm": [
+      "95",
+      "10",
+      "15"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F32",
+     "formeCm": [
+      "90/85",
+      "70",
+      "10"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F11",
+     "formeCm": [
+      "187",
+      "15",
+      "13"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "5-pieces-jardiniere-en-closoir": {
+   "code": "5PJCLOSFI",
+   "nom": "5 pièces jardinière en closoir",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    -1.57156e-32,
+    -1.11941e-20,
+    1,
+    2,
+    0.15
+   ],
+   "pieces": [
+    {
+     "code": "F29P",
+     "formeCm": [
+      "155",
+      "5/7",
+      "80"
+     ],
+     "features": []
+    },
+    {
+     "code": "F17",
+     "formeCm": [
+      "74",
+      "15",
+      "5"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F12",
+     "formeCm": [
+      "74",
+      "15",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F09",
+     "formeCm": [
+      "200",
+      "15",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F32",
+     "formeCm": [
+      "90/85",
+      "70",
+      "10"
+     ],
+     "features": [
+      "STELE"
+     ]
+    }
+   ]
+  },
+  "tombale-simple-200x100x10": {
+   "code": "TBLFI",
+   "nom": "Tombale simple 200x100x10",
+   "famille": "Monument funéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    1,
+    2,
+    0.1
+   ],
+   "pieces": [
+    {
+     "code": "F30",
+     "formeCm": [
+      "200",
+      "10",
+      "100"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "cin1": {
+   "code": "CIN1-60X60",
+   "nom": "CIN1 60x60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    0.6,
+    0.6,
+    0.08
+   ],
+   "pieces": [
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "8",
+      "60"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "55",
+      "55",
+      "8"
+     ],
+     "features": [
+      "STELE"
+     ]
+    }
+   ]
+  },
+  "cin8": {
+   "code": "CIN8-60X60",
+   "nom": "CIN8 60X60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    0.6,
+    0.6,
+    0.08
+   ],
+   "pieces": [
+    {
+     "code": "F251",
+     "formeCm": [
+      "52",
+      "55",
+      "8"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "8",
+      "60"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "cin-aquarius": {
+   "code": "CIN-AQUA60X60",
+   "nom": "CIN-AQUARIUS 60X60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    0.6,
+    0.6,
+    0.05
+   ],
+   "pieces": [
+    {
+     "code": "F14",
+     "formeCm": [
+      "56",
+      "3",
+      "25"
+     ],
+     "features": []
+    },
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "5",
+      "60"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "55",
+      "55",
+      "8"
+     ],
+     "features": [
+      "STELE"
+     ]
+    }
+   ]
+  },
+  "cin-ovae": {
+   "code": "CIN-OVAE60X60",
+   "nom": "CIN-OVAE 60x60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    0.6,
+    0.6,
+    0.05
+   ],
+   "pieces": [
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "5",
+      "60"
+     ],
+     "features": []
+    },
+    {
+     "code": "F14",
+     "formeCm": [
+      "56",
+      "7",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F29",
+     "formeCm": [
+      "55",
+      "5",
+      "45"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "55",
+      "60",
+      "8"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F271",
+     "formeCm": [
+      "52.76",
+      "20.15",
+      "3"
+     ],
+     "features": [
+      "STELE"
+     ]
+    }
+   ]
+  },
+  "cin-esperanza": {
+   "code": "CIN-ESPE60X60",
+   "nom": "CIN-ESPERANZA 60X60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    6.01853e-36,
+    0,
+    0,
+    0.6,
+    0.6,
+    0.08
+   ],
+   "pieces": [
+    {
+     "code": "F30",
+     "formeCm": [
+      "28",
+      "5",
+      "25"
+     ],
+     "features": []
+    },
+    {
+     "code": "F14",
+     "formeCm": [
+      "52",
+      "8",
+      "15"
+     ],
+     "features": []
+    },
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "8",
+      "60"
+     ],
+     "features": []
+    },
+    {
+     "code": "F30",
+     "formeCm": [
+      "20",
+      "8",
+      "20"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "48",
+      "48",
+      "8"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "cin-aloria": {
+   "code": "CIN-ALORIA60X60",
+   "nom": "CIN-ALORIA 60x60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    0.6,
+    0.6,
+    0.05
+   ],
+   "pieces": [
+    {
+     "code": "F271",
+     "formeCm": [
+      "24.2",
+      "58.65",
+      "2"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "50",
+      "60",
+      "8"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F14",
+     "formeCm": [
+      "56",
+      "7",
+      "13"
+     ],
+     "features": []
+    },
+    {
+     "code": "F29",
+     "formeCm": [
+      "55",
+      "5",
+      "40"
+     ],
+     "features": []
+    },
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "5",
+      "60"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "cin-bahia": {
+   "code": "CINBAHIA060",
+   "nom": "Cin Bahia 60x60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    0.6,
+    0.6,
+    0.08
+   ],
+   "pieces": [
+    {
+     "code": "F25",
+     "formeCm": [
+      "30",
+      "50",
+      "8"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F29",
+     "formeCm": [
+      "81.41",
+      "3",
+      "28"
+     ],
+     "features": []
+    },
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "8",
+      "60"
+     ],
+     "features": []
+    },
+    {
+     "code": "F30",
+     "formeCm": [
+      "59",
+      "5",
+      "43"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "cin-montagne01": {
+   "code": "CIN-MONTAGNE0160X60",
+   "nom": "CIN-MONTAGNE01 60X60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    0.6,
+    0.6,
+    0.08
+   ],
+   "pieces": [
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "8",
+      "60"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "56",
+      "70",
+      "8"
+     ],
+     "features": [
+      "STELE"
+     ]
+    }
+   ]
+  },
+  "cin-montagne02": {
+   "code": "CIN-MONTAGNE0260X60",
+   "nom": "CIN-MONTAGNE02 60x60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    0.6,
+    0.6,
+    0.05
+   ],
+   "pieces": [
+    {
+     "code": "F14",
+     "formeCm": [
+      "54",
+      "6",
+      "10"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "48",
+      "60",
+      "8"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F29",
+     "formeCm": [
+      "52",
+      "4",
+      "45"
+     ],
+     "features": []
+    },
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "5",
+      "60"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "cin-nautis": {
+   "code": "CIN-NAUTIS60X60",
+   "nom": "CIN-NAUTIS 60x60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    0.599881,
+    0.6,
+    0.08
+   ],
+   "pieces": [
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "8",
+      "60"
+     ],
+     "features": []
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "54",
+      "54",
+      "8"
+     ],
+     "features": [
+      "STELE"
+     ]
+    }
+   ]
+  },
+  "cin-saturne": {
+   "code": "CIN-SATURNE60X60",
+   "nom": "CIN-SATURNE 60X60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    0,
+    -2.77556e-17,
+    0,
+    0.6,
+    0.6,
+    0.08
+   ],
+   "pieces": [
+    {
+     "code": "F25",
+     "formeCm": [
+      "40",
+      "55",
+      "8"
+     ],
+     "features": []
+    },
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "8",
+      "60"
+     ],
+     "features": []
+    },
+    {
+     "code": "F29",
+     "formeCm": [
+      "50",
+      "8",
+      "41"
+     ],
+     "features": []
+    },
+    {
+     "code": "F14",
+     "formeCm": [
+      "55",
+      "10",
+      "12"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "cin-nivora": {
+   "code": "CIN-NIVORA60X60",
+   "nom": "CIN-NIVORA 60x60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    0.6,
+    0.6,
+    0.1
+   ],
+   "pieces": [
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "10",
+      "60"
+     ],
+     "features": []
+    },
+    {
+     "code": "FDIV",
+     "formeCm": [
+      "58",
+      "57.96",
+      "8.5"
+     ],
+     "features": [
+      "STELE"
+     ]
+    },
+    {
+     "code": "F251",
+     "formeCm": [
+      "20",
+      "20",
+      "7"
+     ],
+     "features": []
+    }
+   ]
+  },
+  "cin-tombale": {
+   "code": "CIN-TOMBFI60X60",
+   "nom": "CIN-TOMBALE 60X60",
+   "famille": "Monument cinéraire",
+   "baseM": [
+    0,
+    0,
+    0,
+    0.6,
+    0.6,
+    0.1
+   ],
+   "pieces": [
+    {
+     "code": "F30",
+     "formeCm": [
+      "60",
+      "10",
+      "60"
+     ],
+     "features": []
+    }
+   ]
+  }
+ }
+}
