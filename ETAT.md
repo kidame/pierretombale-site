@@ -62,6 +62,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 26.10.2026, Claude : 12 MODELES CALIBRES DE PLUS (22 au total) avec les largeurs reelles du
+  configurateur 3D du fournisseur : eligie (2 steles 52 + 35, surfaces multiples), cin1, cin8,
+  cin-aquarius, cin-ovae, cin-esperanza, cin-aloria (+ lame), cin-bahia, cin-montagne01/02,
+  cin-nautis, cin-saturne. Zones tracees a l oeil sur grilles, planche de controle,
+  verifie-configurateur.sh sur les 12 (textes places, tailles 2 a 3 cm sur ces petites steles).
+  En attente : nivora (image sans rapport), cin-tombale et les 3 tombales (pas de stele). A
+  refaire : images nautis (marbre blanc), bahia et esperanza (proportions).
 - 26.10.2026, Claude : IMAGES. Audit (607 img dans dist : 575 avec alt, 561 lazy, toutes avec
   width/height et srcset sur les visuels). Ajoute : src/pages/sitemap-images.xml.ts (280 images
   reliees a leur fiche ou a Nos granits, legende = alt), robots.txt l annonce ; alt du modele mis

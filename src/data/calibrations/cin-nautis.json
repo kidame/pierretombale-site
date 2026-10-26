@@ -1,0 +1,33 @@
+{
+  "modeleId": "cin-nautis",
+  "version": 1,
+  "statut": "provisoire",
+  "commentaire": "Stele voile 54 x 54 x 8 (configurateur 3D du fournisseur). Zone a droite du mat, dans la grande voile ; notre image Bengal montre une pierre veinee claire, a verifier. A faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 314,
+      "y": 46,
+      "largeur": 709,
+      "hauteur": 767
+    },
+    "largeurCm": 54,
+    "forme": "voile"
+  },
+  "zoneGravablePx": {
+    "x": 686,
+    "y": 291,
+    "largeur": 255,
+    "hauteur": 314
+  },
+  "vueStelePx": {
+    "x": 261,
+    "y": 10,
+    "largeur": 815,
+    "hauteur": 836
+  },
+  "perspective": "face frontale ; image a verifier"
+}

@@ -1,0 +1,33 @@
+{
+  "modeleId": "cin-saturne",
+  "version": 1,
+  "statut": "provisoire",
+  "commentaire": "Stele 40 x 55 x 8 (configurateur 3D du fournisseur, piece F25). Zone dans l ovale sombre. A faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 384,
+      "y": 59,
+      "largeur": 475,
+      "hauteur": 638
+    },
+    "largeurCm": 40,
+    "forme": "droite"
+  },
+  "zoneGravablePx": {
+    "x": 441,
+    "y": 157,
+    "largeur": 291,
+    "hauteur": 441
+  },
+  "vueStelePx": {
+    "x": 334,
+    "y": 21,
+    "largeur": 575,
+    "hauteur": 732
+  },
+  "perspective": "face frontale"
+}

@@ -1,0 +1,33 @@
+{
+  "modeleId": "cin-ovae",
+  "version": 1,
+  "statut": "provisoire",
+  "commentaire": "Stele 55 x 60 x 8 (configurateur 3D du fournisseur). La plaque bicolore 53 x 20 du fournisseur n apparait pas sur notre image. A faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 307,
+      "y": 46,
+      "largeur": 679,
+      "hauteur": 651
+    },
+    "largeurCm": 55,
+    "forme": "ovale"
+  },
+  "zoneGravablePx": {
+    "x": 429,
+    "y": 175,
+    "largeur": 452,
+    "hauteur": 429
+  },
+  "vueStelePx": {
+    "x": 261,
+    "y": 10,
+    "largeur": 773,
+    "hauteur": 732
+  },
+  "perspective": "face quasi frontale"
+}

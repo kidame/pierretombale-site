@@ -23,10 +23,14 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       `configurateur_scene` et `configurateur_apercu` - Claude - 26.10.2026 (l envoi attend E6)
 - [x] Passe F : brouillon sur l appareil (90 j), reprise, "Tout effacer", avertissement si le
       navigateur refuse de garder - Claude - 23.10.2026
-- [>] Etendre aux autres modeles : 10 funeraires calibres (provisoire) le 23.10.2026 - Claude
-      Restent : Eligie (largeur inconnue), Almandin, 4 pieces sans
-      stele, Tombale simple (pas de stele : a decider), les 13 cineraires (largeurs inconnues)
-- [ ] Graveur : valider les zones gravables des 9 modeles (planche de controle) - Thomas
+- [x] Etendre aux autres modeles : 22 modeles calibres (provisoire) au 26.10.2026, cotes du
+      configurateur 3D du fournisseur (docs/references/2026-10-26-geometrie-fournisseur.md)
+- [ ] Les 5 sans calibration (voir docs/images-configurateur/calibrations-en-attente/README.md) :
+      Nivora (image a refaire), Dalle cineraire, Tombale simple, Almandin, 4 pieces sans stele
+      (gravure sur la tombale : vue de dessus a produire, ou devis sans apercu) - Thomas decide
+- [ ] Images a refaire : Nautis (notre "Bengal" montre un marbre blanc, texte invisible),
+      Bahia (stele trop large : 42 cm sur l image, 30 cm en vrai), Esperanza (trop haute) - Thomas
+- [ ] Graveur : valider les zones gravables des 22 modeles (planches de controle) - Thomas
 - [x] Motifs ajoutes : poses sous le texte, libres dans le cadre jaune - Claude - 23.10.2026
 
 - [x] Inscription guidee : formulaire, mise en page auto, tailles du metier - Claude - 23.10.2026
@@ -40,8 +44,8 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       restent sapin, coeur, papillon, infini (images a produire, puis scripts/vectoriser-motif.py)
 - [!] Noms publics des 27 modeles (une ligne `name:` par fiche a changer)
 - [!] Nature des matieres : Marmara granit ou marbre -> vocabulaire "granits" ou "matieres"
-- [!] Dimensions reelles par modele (`dimensions:` par fiche) et largeur de stele en cm
-      (`largeurSteleCm` dans la calibration)
+- [ ] Dimensions reelles par modele (`dimensions:` par fiche) : les cotes de toutes les pieces sont
+      dans docs/references/geometrie-fournisseur.json, a reporter dans les fiches - Claude
 - [!] E6 envoi du devis : nom de domaine, compte Resend, adresse de destination
 - [!] Relecture des 27 descriptions par un associe avant mise en ligne
 - [!] Test de /devis/ avec un proche age sur telephone

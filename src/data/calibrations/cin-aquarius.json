@@ -1,0 +1,33 @@
+{
+  "modeleId": "cin-aquarius",
+  "version": 1,
+  "statut": "provisoire",
+  "commentaire": "Stele 55 x 55 x 8 (configurateur 3D du fournisseur). Zone sous les epaules. A faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 268,
+      "y": 70,
+      "largeur": 743,
+      "hauteur": 696
+    },
+    "largeurCm": 55,
+    "forme": "bouclier"
+  },
+  "zoneGravablePx": {
+    "x": 372,
+    "y": 255,
+    "largeur": 534,
+    "hauteur": 442
+  },
+  "vueStelePx": {
+    "x": 219,
+    "y": 21,
+    "largeur": 836,
+    "hauteur": 794
+  },
+  "perspective": "face quasi frontale"
+}

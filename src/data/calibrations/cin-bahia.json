@@ -1,0 +1,33 @@
+{
+  "modeleId": "cin-bahia",
+  "version": 1,
+  "statut": "provisoire",
+  "commentaire": "Stele 30 x 50 x 8 (configurateur 3D du fournisseur). Notre image la montre plus large (env. 42 x 50) : echelle prise sur la largeur reelle, les lettres paraissent donc plus petites que sur l image. A refaire si l image est corrigee. A faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 407,
+      "y": 64,
+      "largeur": 441,
+      "hauteur": 581
+    },
+    "largeurCm": 30,
+    "forme": "droite"
+  },
+  "zoneGravablePx": {
+    "x": 452,
+    "y": 116,
+    "largeur": 349,
+    "hauteur": 488
+  },
+  "vueStelePx": {
+    "x": 355,
+    "y": 21,
+    "largeur": 543,
+    "hauteur": 669
+  },
+  "perspective": "face frontale ; proportions de l image fausses"
+}

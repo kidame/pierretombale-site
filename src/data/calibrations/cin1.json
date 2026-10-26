@@ -1,0 +1,33 @@
+{
+  "modeleId": "cin1",
+  "version": 1,
+  "statut": "provisoire",
+  "commentaire": "Stele coeur 55 x 55 x 8 (configurateur 3D du fournisseur). Le coeur est pose en biais : zone dans la partie large. A faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 227,
+      "y": 104,
+      "largeur": 923,
+      "hauteur": 836
+    },
+    "largeurCm": 55,
+    "forme": "coeur"
+  },
+  "zoneGravablePx": {
+    "x": 355,
+    "y": 314,
+    "largeur": 564,
+    "hauteur": 314
+  },
+  "vueStelePx": {
+    "x": 188,
+    "y": 63,
+    "largeur": 1003,
+    "hauteur": 920
+  },
+  "perspective": "face quasi frontale"
+}

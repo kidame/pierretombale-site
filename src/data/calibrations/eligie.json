@@ -1,0 +1,47 @@
+{
+  "modeleId": "eligie",
+  "version": 1,
+  "statut": "provisoire",
+  "commentaire": "2 steles (configurateur 3D du fournisseur) : claire 52 x 90 x 9 (surface 1, donne l echelle) et contre-stele sombre 35 x 90 x 12 (surface 2). Zones tracees a l oeil. A faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 568,
+      "y": 52,
+      "largeur": 297,
+      "hauteur": 429
+    },
+    "largeurCm": 52,
+    "forme": "double"
+  },
+  "zoneMotifsPx": {
+    "x": 418,
+    "y": 46,
+    "largeur": 447,
+    "hauteur": 436
+  },
+  "zoneGravablePx": [
+    {
+      "x": 604,
+      "y": 175,
+      "largeur": 232,
+      "hauteur": 289
+    },
+    {
+      "x": 441,
+      "y": 175,
+      "largeur": 122,
+      "hauteur": 284
+    }
+  ],
+  "vueStelePx": {
+    "x": 372,
+    "y": 11,
+    "largeur": 545,
+    "hauteur": 511
+  },
+  "perspective": "face quasi frontale ; pas de correction en v1"
+}

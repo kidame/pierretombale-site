@@ -1,0 +1,39 @@
+{
+  "modeleId": "cin-aloria",
+  "version": 1,
+  "statut": "provisoire",
+  "commentaire": "Stele 50 x 60 x 8 + lame sombre 24 x 59 x 2 (configurateur 3D du fournisseur). Zone sur la stele claire, sous la courbe. A faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 418,
+      "y": 46,
+      "largeur": 545,
+      "hauteur": 756
+    },
+    "largeurCm": 50,
+    "forme": "courbe"
+  },
+  "zoneMotifsPx": {
+    "x": 291,
+    "y": 46,
+    "largeur": 673,
+    "hauteur": 756
+  },
+  "zoneGravablePx": {
+    "x": 488,
+    "y": 302,
+    "largeur": 429,
+    "hauteur": 418
+  },
+  "vueStelePx": {
+    "x": 240,
+    "y": 10,
+    "largeur": 773,
+    "hauteur": 836
+  },
+  "perspective": "face quasi frontale"
+}

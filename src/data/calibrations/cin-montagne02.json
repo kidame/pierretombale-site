@@ -1,0 +1,33 @@
+{
+  "modeleId": "cin-montagne02",
+  "version": 1,
+  "statut": "provisoire",
+  "commentaire": "Stele 48 x 60 x 8 (configurateur 3D du fournisseur). Zone sous les cretes. A faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 336,
+      "y": 70,
+      "largeur": 686,
+      "hauteur": 673
+    },
+    "largeurCm": 48,
+    "forme": "montagne"
+  },
+  "zoneGravablePx": {
+    "x": 429,
+    "y": 348,
+    "largeur": 534,
+    "hauteur": 349
+  },
+  "vueStelePx": {
+    "x": 282,
+    "y": 21,
+    "largeur": 794,
+    "hauteur": 752
+  },
+  "perspective": "face frontale"
+}

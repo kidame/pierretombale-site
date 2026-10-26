@@ -1,0 +1,33 @@
+{
+  "modeleId": "cin8",
+  "version": 1,
+  "statut": "provisoire",
+  "commentaire": "Stele coeur 52 x 55 x 8 (configurateur 3D du fournisseur). Zone dans la partie large, au-dessus de la pointe. A faire valider par le graveur.",
+  "imagePx": {
+    "largeur": 1254,
+    "hauteur": 1254
+  },
+  "stele": {
+    "cadrePx": {
+      "x": 279,
+      "y": 46,
+      "largeur": 720,
+      "hauteur": 697
+    },
+    "largeurCm": 52,
+    "forme": "coeur"
+  },
+  "zoneGravablePx": {
+    "x": 418,
+    "y": 175,
+    "largeur": 441,
+    "hauteur": 371
+  },
+  "vueStelePx": {
+    "x": 230,
+    "y": 10,
+    "largeur": 815,
+    "hauteur": 773
+  },
+  "perspective": "face quasi frontale"
+}
