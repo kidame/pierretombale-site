@@ -53,19 +53,21 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 
 ## Ensuite
 - [ ] E6 : fonction Cloudflare /api/devis + Resend (spec docs/devis-contrat.md)
-- [>] E7 : deploiement Cloudflare Pages, domaine, Search Console - Codex, 26.10.2026
-      Domaine confirme ; aucune messagerie actuelle ; compte Cloudflare cree par Thomas via Google.
-      Cible : canonical www.pierretombale.ch, main = apercus prives, live = production.
-      [x] .node-version 22, _headers securite/cache/noindex limite a pages.dev, domaine confirme.
-      [x] Guide docs/MISE-EN-LIGNE.md ; build local et controle HTML/sitemaps reussis.
-      [x] Accord et premiers push main + main:live : 74f568d, refs distantes verifiees.
-      [ ] Projet Pages sur live et variables Prod/Preview.
-      [x] Premier deploiement pages.dev accessible ; HTTP, en-tetes et sitemaps controles.
-      [ ] Relever duree clone/build et branche live ; apercus prives avec Access.
-      [ ] Inventaire DNS Infomaniak, zone Cloudflare Free, NS, deux domaines, 301, HTTPS.
-      [ ] Recette HTTP et navigateur, Lighthouse mobile, Search Console et deux sitemaps.
+- [>] E7 : EN PRODUCTION le 26.10.2026 sur https://www.pierretombale.ch (Cloudflare Pages,
+      branche live) - Codex + Thomas
+      [x] .node-version 22, _headers, guide docs/MISE-EN-LIGNE.md, premiers push main + live.
+      [x] Projet Pages sur live, variables Prod/Preview, deploiement pages.dev.
+      [x] DNS : zone Cloudflare, NS basculees, DNSSEC retire avant bascule, www + domaine nu,
+          301 vers https://www (chemin et parametres conserves), HTTPS.
+      [x] Previsualisations privees : Cloudflare Access (hello.puglisi@gmail.com).
+      [x] Search Console : domaine valide, 2 sitemaps soumis ; garder le TXT de verification.
+      [x] Controles HTTP depuis le VPS (26.10, 20 h) : 200, pas de noindex sur le domaine, 404,
+          sitemaps, polices et chunk Konva, cache images, Access sur main.pages.dev.
+      [ ] Recette restante : controles visuels des pages en production, configurateur au
+          navigateur (canvas, polices, brouillon, export devis), Lighthouse mobile, SEO final
+          (indexation Google a confirmer dans Search Console).
       [ ] Nettoyage tmp/apercu et apercu-extras uniquement apres accord de Thomas.
-      Premiers push effectues ; premier deploiement pages.dev confirme, domaine pas encore raccorde. E7 non termine, E6 hors mission.
+      E7 n est coche qu apres la recette. E6 (envoi du devis) reste a faire.
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
 - [ ] Accueil : remplacer les 5 rendus IA (public/images/accueil/) par de vraies photos des realisations (hero sombre, gros plan matiere, gros plan gravure) - Thomas
 - [x] Images : audit du 26.10.2026 - Claude. Deja en place : noms de fichiers parlants

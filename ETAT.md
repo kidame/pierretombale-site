@@ -37,23 +37,28 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   Compte Cloudflare cree par Thomas via Google ; depot visible dans l'assistant Pages.
   Premier deploiement reussi : https://pierretombale-site.pages.dev/ controle en HTTPS.
   Branche live et duree du build a confirmer dans le tableau de bord.
-- Canonique confirme : https://www.pierretombale.ch. Redirection du domaine nu vers www en 301
-  a configurer apres l'inventaire DNS Infomaniak et le rattachement des deux domaines.
+- EN PRODUCTION depuis le 26.10.2026 (confirme par Thomas) : https://www.pierretombale.ch, projet
+  Pages pierretombale-site, branche live. Domaine nu et HTTP -> 301 vers https://www (chemin et
+  parametres conserves). Previsualisations de main protegees par Cloudflare Access
+  (hello.puglisi@gmail.com). Search Console : domaine valide, deux sitemaps soumis ("Operation
+  effectuee"), TXT google-site-verification a conserver. Indexation non confirmee.
 - Organisation : main = previsualisations, live = production. Travail uniquement sur main.
-  Premier push autorise par Thomas puis effectue : origin/main et origin/live au commit 74f568d.
-  Branche de travail locale toujours main ; deploiement Cloudflare encore a lancer par Thomas.
-- Parametres prepares : Astro, npm run build, dist, Node 22 ; SITE=https://www.pierretombale.ch
-  pour Production ET Preview. Guide complet : docs/MISE-EN-LIGNE.md.
-- Previews privees : Cloudflare Access reste a activer et tester sur alias main et URL de commit.
-  Le noindex seul ne protege pas l'acces. _headers cible pages.dev sans bloquer le domaine public.
-- Netlify abandonne pour les prochaines publications. Ancien lien conserve comme archive :
-  https://pt-apercu-k7q2.netlify.app. Ne plus reconstruire ni republier cette copie.
+  Push sur main et surtout sur live SEULEMENT sur demande explicite de Thomas.
+- Parametres : Astro, npm run build, dist, Node 22 ; SITE=https://www.pierretombale.ch en
+  Production ET Preview. Guide complet : docs/MISE-EN-LIGNE.md.
+- Netlify abandonne. Ancien lien conserve comme archive : https://pt-apercu-k7q2.netlify.app.
   tmp/apercu et tmp/apercu-extras conserves ; suppression uniquement apres accord de Thomas.
-- Restent : selection de live dans Pages, premier build Cloudflare (clone ~754 Mo de sources a mesurer),
-  Access, DNS/HTTPS/redirection, controles du configurateur, Lighthouse mobile et Search Console.
-
+- Recette restante (E7 pas encore coche) : controles visuels des pages en production,
+  configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 26.10.2026, Claude (20 h) : REPRISE APRES MISE EN LIGNE. Faits de Thomas consignes (production
+  sur www.pierretombale.ch, 301, Access, Search Console). Controles HTTP faits depuis le VPS :
+  200 sur /, configurateur et robots ; pas de noindex sur le domaine ; 404 reelle ; sitemaps
+  36 URL et 28 pages d images ; polices et chunk Konva servis ; cache images 7 jours ; preview
+  derriere Access. Restent : controles visuels, configurateur au navigateur en production,
+  Lighthouse mobile, SEO final. Pas de push (consigne de Thomas). Suite : design et UX selon ses
+  instructions, en preservant URL, canoniques, sitemaps, Access et configurateur.
 - 26.10.2026, Codex : import Cloudflare compare (2 A, SPF, DMARC conformes).
   DKIM ajoute par Thomas, correction du nom 20261022._domainkey confirmee par lui.
   NS attribues : gracie.ns.cloudflare.com et steven.ns.cloudflare.com.

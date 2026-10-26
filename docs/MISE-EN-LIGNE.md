@@ -1,7 +1,19 @@
 # Mise en ligne sur Cloudflare Pages
 
-Etat au 26.10.2026 : preparation locale. Aucun deploiement Cloudflare verifie.
-Le projet Pages n'est pas encore valide dans le tableau de bord. E7 reste en cours.
+Etat au 26.10.2026 (soir, confirme par Thomas) : EN PRODUCTION.
+- Production : https://www.pierretombale.ch (projet Pages pierretombale-site, branche live).
+- HTTP et HTTPS sans www redirigent en 301 vers HTTPS avec www, chemin et parametres conserves.
+- Previsualisations (main et autres branches) protegees par Cloudflare Access ; compte autorise :
+  hello.puglisi@gmail.com.
+- Search Console : propriete Domaine pierretombale.ch validee sur ce compte ; sitemap-index.xml et
+  sitemap-images.xml soumis, statut "Operation effectuee". Garder le TXT google-site-verification
+  dans la zone Cloudflare. Indexation Google pas encore confirmee.
+- Recette restante avant de declarer E7 termine : controles visuels, configurateur au navigateur,
+  Lighthouse mobile, verification SEO finale. Le formulaire de devis n'envoie rien (E6).
+- Verifie par Claude le 26.10 a 20 h (HTTP) : 200 sur /, /personnaliser/douceur/, robots.txt ;
+  aucun X-Robots-Tag sur le domaine, meta noindex seulement sur les configurateurs ; 404 reelle ;
+  sitemap pages 36 URL, sitemap images 28 pages ; polices de gravure et chunk Konva servis ;
+  cache images 7 jours ; main.pierretombale-site.pages.dev renvoie vers la connexion Access.
 Nom choisi dans l'ecran de creation : pierretombale-site.
 Domaine confirme, achete chez Infomaniak : pierretombale.ch.
 Adresse canonique : https://www.pierretombale.ch.
