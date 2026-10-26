@@ -62,6 +62,17 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 26.10.2026, Codex : E7 DEMARRE, AUCUNE PUBLICATION. Domaine confirme par Thomas :
+  pierretombale.ch, achete chez Infomaniak ; canonical retenu https://www.pierretombale.ch/.
+  Aucune messagerie pour le moment (prevue plus tard). Compte Cloudflare a creer par Thomas.
+  Lecture initiale des consignes, ETAT, backlog et historique ; main propre au commit b83f0d9,
+  pull --ff-only deja a jour. Organisation demandee : main = apercus, live = production.
+  Netlify abandonne pour les prochaines publications ; ancien apercu conserve provisoirement.
+  Prochaine action utilisateur : creer le compte Cloudflare et verifier son email.
+  Restent : preparation du depot, integration GitHub, protection privee des apercus (noindex
+  seul ne protege pas l acces), inventaire DNS Infomaniak, domaines, controles et Search Console.
+  Aucun push sans instruction de Thomas ; premier push main:live sur accord explicite.
+  Aucun nettoyage de tmp/apercu ou apercu-extras sans accord. E6 hors mission, envoi inactif.
 - 26.10.2026, Claude : IMAGES DE L ACCUEIL BRANCHEES (maquette). Thomas a fourni 5 visuels (hero, collection
   funeraire, collection cineraire, matiere, gravure) : ce sont des RENDUS IA, pas des photos de realisations.
   Encodes en WebP dans public/images/accueil/ (hero 700 et 1200 px, cartes 720, matiere 768, gravure 900 ;

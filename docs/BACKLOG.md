@@ -46,13 +46,17 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - [!] Nature des matieres : Marmara granit ou marbre -> vocabulaire "granits" ou "matieres"
 - [ ] Dimensions reelles par modele (`dimensions:` par fiche) : les cotes de toutes les pieces sont
       dans docs/references/geometrie-fournisseur.json, a reporter dans les fiches - Claude
-- [!] E6 envoi du devis : nom de domaine, compte Resend, adresse de destination
+- [!] E6 envoi du devis : domaine confirme (pierretombale.ch) ; restent compte Resend,
+      verification DNS SPF/DKIM, adresse de destination et Turnstile. Hors mission E7.
 - [!] Relecture des 27 descriptions par un associe avant mise en ligne
 - [!] Test de /devis/ avec un proche age sur telephone
 
 ## Ensuite
 - [ ] E6 : fonction Cloudflare /api/devis + Resend (spec docs/devis-contrat.md)
-- [ ] E7 : deploiement Cloudflare Pages, domaine, Search Console
+- [>] E7 : deploiement Cloudflare Pages, domaine, Search Console - Codex, 26.10.2026
+      Domaine confirme ; aucune messagerie actuelle ; compte Cloudflare a creer par Thomas.
+      Cible : canonical www.pierretombale.ch, main = apercus prives, live = production.
+      Configuration, DNS et verifications non faits. Aucun push sans instruction de Thomas.
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
 - [ ] Accueil : remplacer les 5 rendus IA (public/images/accueil/) par de vraies photos des realisations (hero sombre, gros plan matiere, gros plan gravure) - Thomas
 - [x] Images : audit du 26.10.2026 - Claude. Deja en place : noms de fichiers parlants
