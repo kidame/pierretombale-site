@@ -64,11 +64,12 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 ## Derniere session
 - 26.10.2026, Codex : E7 DEMARRE, AUCUNE PUBLICATION. Domaine confirme par Thomas :
   pierretombale.ch, achete chez Infomaniak ; canonical retenu https://www.pierretombale.ch/.
-  Aucune messagerie pour le moment (prevue plus tard). Compte Cloudflare a creer par Thomas.
+  Aucune messagerie pour le moment (prevue plus tard). Compte Cloudflare cree par Thomas via Google (confirmation dans le chat).
   Lecture initiale des consignes, ETAT, backlog et historique ; main propre au commit b83f0d9,
   pull --ff-only deja a jour. Organisation demandee : main = apercus, live = production.
   Netlify abandonne pour les prochaines publications ; ancien apercu conserve provisoirement.
-  Prochaine action utilisateur : creer le compte Cloudflare et verifier son email.
+  Prochaine action utilisateur : ouvrir Workers & Pages > Create application > Pages,
+  puis connecter GitHub. Aucun projet Pages cree ou deploiement confirme a ce stade.
   Restent : preparation du depot, integration GitHub, protection privee des apercus (noindex
   seul ne protege pas l acces), inventaire DNS Infomaniak, domaines, controles et Search Console.
   Aucun push sans instruction de Thomas ; premier push main:live sur accord explicite.

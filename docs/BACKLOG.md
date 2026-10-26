@@ -54,7 +54,7 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 ## Ensuite
 - [ ] E6 : fonction Cloudflare /api/devis + Resend (spec docs/devis-contrat.md)
 - [>] E7 : deploiement Cloudflare Pages, domaine, Search Console - Codex, 26.10.2026
-      Domaine confirme ; aucune messagerie actuelle ; compte Cloudflare a creer par Thomas.
+      Domaine confirme ; aucune messagerie actuelle ; compte Cloudflare cree par Thomas via Google.
       Cible : canonical www.pierretombale.ch, main = apercus prives, live = production.
       Configuration, DNS et verifications non faits. Aucun push sans instruction de Thomas.
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
