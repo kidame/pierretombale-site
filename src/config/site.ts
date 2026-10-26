@@ -106,12 +106,6 @@ export const siteConfig = {
    * fait échouer le build plutôt que d'afficher une section vide.
    */
   featured: {
-    /** Les trois modeles montres sur l'accueil : le hero, puis une carte par famille. */
-    homepageVitrine: {
-      hero: "douceur",
-      monument: "4-pieces-stele-doucine-avec-base",
-      cineraire: "aquarius",
-    },
     /** Le modèle montré au bas du menu mobile. */
     mobileMenu: "corazon",
   },

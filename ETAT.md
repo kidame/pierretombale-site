@@ -62,6 +62,19 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 26.10.2026, Claude : IMAGES DE L ACCUEIL BRANCHEES (maquette). Thomas a fourni 5 visuels (hero, collection
+  funeraire, collection cineraire, matiere, gravure) : ce sont des RENDUS IA, pas des photos de realisations.
+  Encodes en WebP dans public/images/accueil/ (hero 700 et 1200 px, cartes 720, matiere 768, gravure 900 ;
+  de 14 a 46 Ko chacun, 174 Ko au total), transferes au VPS par morceaux avec controle md5 de chaque
+  fichier. Les originaux ne sont pas dans le depot. index.astro : hero pleine largeur (telephone : image
+  en haut fondue dans le noir, puis texte ; ordinateur : image en fond, degrade a gauche), cartes 2:1,
+  bande matiere, bande personnalisation avec la gravure (image AU-DESSUS du texte sur telephone). Retires :
+  ProductImage et nomGranit dans l accueil, le masque CSS du motif d olivier, siteConfig.featured.homepageVitrine
+  (plus utilise ; reste featured.mobileMenu). Les alt disent "illustration" pour ne pas faire passer ces
+  rendus pour des photos. Mesure (poids-pages.py) : css 6838 o gz hors accueil, 8095 sur l accueil
+  (css de page), html accueil 4124 o gz. Build 60 pages, astro check 0 erreur, 62 tests, grep des mots
+  interdits vide. Verifie au navigateur en 1280 et 390 (capture pleine page). A REMPLACER par de vraies
+  photos des realisations quand elles existent (memes noms de fichiers, voir docs/DESIGN.md).
 - 26.10.2026, Claude : DESIGN DES MAQUETTES, PASSE 1 (jetons, en-tete, pied, accueil). Thomas a fourni
   les maquettes de l accueil (ordinateur + mobile : hero sombre, collection ivoire, matiere, personnalisation,
   appel). Reference : docs/DESIGN.md. Fait : src/styles.css (ivoire #f6f3ec, anthracite #1c1b19, bronze

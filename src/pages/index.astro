@@ -1,27 +1,14 @@
 ---
-import ProductImage from "@/components/ProductImage.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { adressePostaleJsonLd, entreprise, renseigne } from "@/config/entreprise";
 import { pageTitle, siteConfig } from "@/config/site";
-import { nomGranit } from "@/data/granits";
-import { familleUrl, getProducts, requireProduct } from "@/data/products";
+import { familleUrl } from "@/data/products";
 
 /* ACCUEIL, selon la maquette du 26.10.2026 (docs/DESIGN.md).
    Sections : hero sombre, collection (2 familles), matiere, personnalisation,
-   parcours en 4 etapes, appel final. Les modeles montres viennent de
-   siteConfig.featured.homepageVitrine : changer un modele = changer un slug
-   dans src/config/site.ts. */
-
-const products = await getProducts();
-const vitrine = siteConfig.featured.homepageVitrine;
-const modeleHero = requireProduct(products, vitrine.hero);
-const modeleFuneraire = requireProduct(products, vitrine.monument);
-const modeleCineraire = requireProduct(products, vitrine.cineraire);
-
-/* Matieres montrees : une sombre pour le hero et la famille funeraire, une
-   claire pour la famille cineraire. Identifiants de src/data/granits.json. */
-const matiereSombre = "bengal";
-const matiereClaire = "egipat";
+   parcours en 4 etapes, appel final. Les cinq visuels sont dans
+   public/images/accueil/ (images d illustration provisoires, a remplacer par
+   des photos des vraies realisations quand elles existent). */
 
 const siteUrl = (Astro.site ?? new URL(Astro.url.origin)).href;
 
@@ -76,6 +63,19 @@ const organizationSchema = {
   <main id="main-content">
     {/* ---------------------------------------------------------------- Hero */}
     <section class="nuit hero" aria-labelledby="hero-titre">
+      <div class="hero-fond">
+        <img
+          src="/images/accueil/hero-1200.webp"
+          srcset="/images/accueil/hero-700.webp 700w, /images/accueil/hero-1200.webp 1200w"
+          sizes="100vw"
+          width="1200"
+          height="675"
+          alt="Illustration d'un monument funéraire en granit sombre"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
       <div class="shell hero-grille">
         <div class="hero-texte">
           <p class="label">L'art du souvenir</p>
@@ -85,16 +85,6 @@ const organizationSchema = {
             Monuments funéraires et cinéraires en granit, pour les familles de Suisse romande.
           </p>
         </div>
-        <figure class="hero-visuel">
-          <ProductImage
-            product={modeleHero}
-            matiere={matiereSombre}
-            sizes="(min-width: 1024px) 40rem, 100vw"
-            loading="eager"
-            fetchpriority="high"
-            class="hero-img"
-          />
-        </figure>
         <div class="hero-cta">
           <a href={familleUrl("monument")} class="btn btn-outline">Découvrir les monuments</a>
         </div>
@@ -112,11 +102,14 @@ const organizationSchema = {
         <div class="collection-grille">
           <a href={familleUrl("monument")} class="carte">
             <div class="carte-image">
-              <ProductImage
-                product={modeleFuneraire}
-                matiere={matiereSombre}
-                sizes="(min-width: 768px) 40vw, 100vw"
+              <img
+                src="/images/accueil/collection-funeraire-720.webp"
+                width="720"
+                height="360"
+                alt="Illustration d'un monument funéraire en granit"
                 class="carte-img"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <h3 class="type-h3">Monuments funéraires</h3>
@@ -125,11 +118,14 @@ const organizationSchema = {
 
           <a href={familleUrl("cineraire")} class="carte">
             <div class="carte-image">
-              <ProductImage
-                product={modeleCineraire}
-                matiere={matiereClaire}
-                sizes="(min-width: 768px) 40vw, 100vw"
+              <img
+                src="/images/accueil/collection-cineraire-720.webp"
+                width="720"
+                height="360"
+                alt="Illustration d'un monument cinéraire en granit"
                 class="carte-img"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <h3 class="type-h3">Monuments cinéraires</h3>
@@ -143,12 +139,11 @@ const organizationSchema = {
     <section class="nuit bande matiere" aria-labelledby="matiere-titre">
       <div class="bande-visuel matiere-visuel">
         <img
-          src="/images/matieres/bengal-480.webp"
-          srcset="/images/matieres/bengal-160.webp 160w, /images/matieres/bengal-480.webp 480w"
+          src="/images/accueil/matiere-768.webp"
           sizes="(min-width: 1024px) 50vw, 100vw"
-          width="480"
-          height="480"
-          alt={`Granit ${nomGranit("bengal")}, surface polie vue de près`}
+          width="768"
+          height="512"
+          alt="Surface de granit poli, vue de près"
           loading="lazy"
           decoding="async"
         />
@@ -169,12 +164,16 @@ const organizationSchema = {
         <p class="type-lead">La matière, les mots, le dessin. Composez un monument à son image.</p>
         <a href={familleUrl("monument")} class="btn btn-outline">Personnaliser un monument</a>
       </div>
-      <div
-        class="bande-visuel detail-visuel"
-        role="img"
-        aria-label="Branche d'olivier gravée dans le granit : exemple de motif"
-      >
-        <span class="detail-motif" aria-hidden="true"></span>
+      <div class="bande-visuel detail-visuel">
+        <img
+          src="/images/accueil/gravure-900.webp"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          width="900"
+          height="450"
+          alt="Illustration d'une gravure sur granit"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </section>
 
@@ -231,12 +230,39 @@ const organizationSchema = {
   }
 
   /* ---- Hero ---------------------------------------------------------------
-     Telephone : texte, visuel, puis bouton. Ordinateur : texte et bouton a
-     gauche, visuel a droite sur deux rangees. */
+     Telephone : l'image en haut, fondue dans le fond sombre, puis le texte et
+     le bouton. Ordinateur : l'image occupe toute la largeur en fond, le texte
+     est a gauche sur un degrade. */
+  .hero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-fond {
+    position: relative;
+  }
+
+  .hero-fond img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .hero-fond::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 55%, var(--canvas));
+  }
+
   .hero-grille {
-    display: grid;
+    position: relative;
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
-    padding-block: 2.5rem 3.5rem;
+    padding-block: 0.5rem 3.5rem;
   }
 
   .hero-texte {
@@ -258,14 +284,6 @@ const organizationSchema = {
     color: var(--muted);
   }
 
-  .hero-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1;
-    object-fit: cover;
-  }
-
   .hero-cta .btn {
     width: 100%;
   }
@@ -277,33 +295,31 @@ const organizationSchema = {
   }
 
   @media (min-width: 1024px) {
+    .hero-fond {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-fond img {
+      height: 100%;
+      aspect-ratio: auto;
+      object-position: right center;
+    }
+
+    .hero-fond::after {
+      background: linear-gradient(to right, var(--canvas) 30%, transparent 70%);
+    }
+
     .hero-grille {
-      grid-template-columns: 5fr 7fr;
-      grid-template-areas:
-        "texte visuel"
-        "cta visuel";
-      grid-template-rows: auto auto;
-      align-content: center;
-      column-gap: 4rem;
-      row-gap: 2.5rem;
-      padding-block: 3rem 5rem;
+      min-height: 36rem;
+      justify-content: center;
+      gap: 2.5rem;
+      padding-block: 5rem;
     }
 
-    .hero-texte {
-      grid-area: texte;
-      align-self: end;
-    }
-
-    .hero-visuel {
-      grid-area: visuel;
-      justify-self: end;
-      width: 100%;
-      max-width: 40rem;
-    }
-
+    .hero-texte,
     .hero-cta {
-      grid-area: cta;
-      align-self: start;
+      max-width: 34rem;
     }
   }
 
@@ -341,7 +357,7 @@ const organizationSchema = {
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 5 / 4;
+    aspect-ratio: 2 / 1;
     object-fit: cover;
     transition: transform 900ms var(--ease-out-expo);
   }
@@ -439,7 +455,6 @@ const organizationSchema = {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.85);
   }
 
   /* Le granit se fond dans le fond sombre du texte. */
@@ -452,33 +467,34 @@ const organizationSchema = {
     }
   }
 
-  /* Personnalisation : sur telephone le visuel passe sous le texte comme sur la
-     maquette mobile ; sur ordinateur le texte est a gauche. */
+  /* Personnalisation : sur telephone l'image passe au-dessus du texte comme sur
+     la maquette mobile ; sur ordinateur le texte est a gauche. */
   .detail {
     background-color: var(--surface);
   }
 
   .detail-visuel {
-    background-color: #2a2724;
-    background-image:
-      linear-gradient(135deg, rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.5)), url("/images/matieres/royal-480.webp");
-    background-size: cover;
-    background-position: center;
+    order: -1;
   }
 
-  /* Motif en masque : le trace de public/motifs, vu comme une gravure. */
-  .detail-motif {
+  .detail-visuel img {
     position: absolute;
-    inset: 10%;
-    background-color: rgb(244 240 232 / 0.78);
-    -webkit-mask: url("/motifs/fleurs-olivier.svg") center / contain no-repeat;
-    mask: url("/motifs/fleurs-olivier.svg") center / contain no-repeat;
-    transform: rotate(-28deg);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   @media (min-width: 1024px) {
     .detail-visuel {
       order: 2;
+    }
+
+    .detail-visuel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--surface), transparent 40%);
     }
   }
 

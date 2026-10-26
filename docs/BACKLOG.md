@@ -54,6 +54,7 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - [ ] E6 : fonction Cloudflare /api/devis + Resend (spec docs/devis-contrat.md)
 - [ ] E7 : deploiement Cloudflare Pages, domaine, Search Console
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
+- [ ] Accueil : remplacer les 5 rendus IA (public/images/accueil/) par de vraies photos des realisations (hero sombre, gros plan matiere, gros plan gravure) - Thomas
 - [x] Images : audit du 26.10.2026 - Claude. Deja en place : noms de fichiers parlants
       (<modele>-<matiere>-<largeur>.webp), srcset 320/640/1200, width/height, lazy sauf premier
       ecran, alt genere sur les fiches et le catalogue, og:image par fiche. Ajoute : sitemap des

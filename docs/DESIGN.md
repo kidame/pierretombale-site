@@ -12,7 +12,7 @@ on recode, on ne reproduit pas leurs images.
   composant dans le fichier.
 - `src/pages/index.astro` : accueil, styles de page dans le fichier (sections hero, collection,
   matiere, personnalisation, parcours, appel).
-- `src/config/site.ts` : navigation, modeles montres sur l'accueil (`featured.homepageVitrine`).
+- `src/config/site.ts` : navigation, modele montre dans le menu mobile (`featured.mobileMenu`).
 
 ## Deux ambiances, un seul jeu de jetons
 - Ivoire (defaut) : `--canvas #f6f3ec`, `--ink #1c1b19`, `--muted #55524b`, `--accent #8a6a3c` (bronze).
@@ -43,8 +43,9 @@ on recode, on ne reproduit pas leurs images.
 - A FAIRE : il reste des legendes en mono minuscule dans les gabarits des fiches, du catalogue, des
   prix, des granits, de la FAQ et de l'a-propos (classes `mono text-[0.6875rem] uppercase`),
   a passer en `label` ; puis les gabarits de ces pages selon les maquettes quand elles existeront.
-- IMAGES DE L'ACCUEIL PROVISOIRES : nos rendus de catalogue sont sur fond gris clair, pas dans des
-  scenes sombres comme sur les maquettes. Hero, collection : rendus du catalogue ; matiere et
-  personnalisation : textures des matieres (480 px, agrandies) et motif d'olivier en masque CSS.
-  A remplacer par de vraies photos (hero sombre, gros plan de la matiere, gros plan d'une
-  gravure) : deposer les fichiers dans `public/images/accueil/` et changer les `src` de index.astro.
+- IMAGES DE L'ACCUEIL : cinq visuels fournis par le proprietaire (26.10.2026), ce sont des rendus
+  generes par IA, pas des photos de realisations. Ils sont dans `public/images/accueil/` en WebP :
+  `hero-700/1200`, `collection-funeraire-720`, `collection-cineraire-720`, `matiere-768`,
+  `gravure-900`. Les originaux ne sont pas dans le depot. Les `alt` disent "illustration" pour ne
+  pas presenter ces rendus comme des photos. A remplacer par de vraies photos des realisations
+  quand elles existent : changer les fichiers (memes noms) ou les `src` de index.astro.
