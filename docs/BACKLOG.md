@@ -50,8 +50,16 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - [ ] E6 : fonction Cloudflare /api/devis + Resend (spec docs/devis-contrat.md)
 - [ ] E7 : deploiement Cloudflare Pages, domaine, Search Console
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
-- [ ] Images : descriptions (alt et legendes) de toutes les images, noms de fichiers parlants,
-      poids et formats (demande de Thomas du 22.10.2026) - Claude
+- [x] Images : audit du 26.10.2026 - Claude. Deja en place : noms de fichiers parlants
+      (<modele>-<matiere>-<largeur>.webp), srcset 320/640/1200, width/height, lazy sauf premier
+      ecran, alt genere sur les fiches et le catalogue, og:image par fiche. Ajoute : sitemap des
+      images (/sitemap-images.xml, 280 images, annonce dans robots.txt), alt du modele mis en
+      avant sur l accueil, scripts/poids-images.py. Alt vides volontaires : cartes de /devis/
+      (le nom est dans l etiquette) et visuels provisoires des pages accueil / a-propos.
+- [ ] Images : poids des 1200 px (131 au-dela de 200 Ko ; qualite 68 = -22 % sans perte visible,
+      AVIF = -40 % mais encodage lourd) - a faire d un coup, quand les images seront definitives,
+      pour ne pas gonfler l historique git deux fois - Claude
+- [ ] Images : remplacer les visuels provisoires (accueil, a-propos) par de vraies photos avec alt
 - [ ] Design : appliquer la direction des maquettes au site entier
 
 ## Comment changer une chose courante
@@ -65,5 +73,6 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - Polices, hauteurs, finitions, motifs : src/data/personnalisation.ts.
 - Configurateur (calibration d'un modele, mise en page automatique, tailles, phrases proposees,
   nouvelle police, brouillon) : recettes de docs/CONFIGURATEUR.md, section 4.
+- Poids des images et premier ecran : `python3 scripts/poids-images.py` (apres un build).
 - Verifier le configurateur sur tous les modeles : scripts/verifie-configurateur.sh (section 5 du
   guide). Mesurer une police : scripts/mesure-polices.py.

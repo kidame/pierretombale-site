@@ -10,6 +10,7 @@ import {
   FAMILLE_LABELS,
   GAMMES,
   GAMME_LABELS,
+  altVisuel,
   familleUrl,
   getProducts,
   productUrl,
@@ -220,7 +221,7 @@ const organizationSchema = {
               <ProductImage
                 product={solo}
                 sizes="(min-width: 768px) 58vw, 100vw"
-                alt=""
+                alt={altVisuel(solo, solo.granitPresente)}
                 class="aspect-square w-full object-contain transition-transform duration-[1100ms] ease-out group-hover:scale-[1.04] md:aspect-[16/11]"
               />
             </div>

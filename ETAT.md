@@ -62,6 +62,11 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - [ ] E7. Deploiement Cloudflare Pages (acces a definir avant toute publication).
 
 ## Derniere session
+- 26.10.2026, Claude : IMAGES. Audit (607 img dans dist : 575 avec alt, 561 lazy, toutes avec
+  width/height et srcset sur les visuels). Ajoute : src/pages/sitemap-images.xml.ts (280 images
+  reliees a leur fiche ou a Nos granits, legende = alt), robots.txt l annonce ; alt du modele mis
+  en avant (accueil) ; scripts/poids-images.py. Mesure : 131 images 1200 px > 200 Ko, re-encodage
+  reporte (voir BACKLOG). Premier ecran : catalogue 219 Ko, fiche 65 Ko, configurateur 207 Ko.
 - 26.10.2026, Claude : PASSE E (sans l envoi). export.ts construit `SceneDevis` (cm, stele par
   texte, champs saisis, motifs, apercu JPEG 1200 px par `rendu.capture()`), deposee en
   sessionStorage ; « Demander un devis avec cette stele » mene a /devis/?modele=&scene=1.
