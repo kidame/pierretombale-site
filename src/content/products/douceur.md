@@ -11,6 +11,7 @@ motifs: []
 options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Stèle en bouclier aux flancs courbes, dalle entourée de rails arrondis.
+accroche: "Une courbe délicate. Une présence intemporelle."
 order: 10
 ---
 

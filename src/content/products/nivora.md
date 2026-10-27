@@ -11,6 +11,7 @@ motifs: [arbre, coeur]
 options: []
 granitPresente: bengal
 shortDescription: Arbre de vie ajouré en acier et petit coeur de pierre sur dalles étagées.
+accroche: "Un arbre ajouré, un coeur de pierre. Un hommage lumineux."
 order: 260
 ---
 

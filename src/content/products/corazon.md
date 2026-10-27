@@ -11,6 +11,7 @@ motifs: [coeur]
 options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Stèle en coeur posée sur une base aux plis sculptés.
+accroche: "Un coeur de pierre. Un hommage plein de tendresse."
 order: 100
 ---
 

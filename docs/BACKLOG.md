@@ -69,6 +69,8 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       [ ] Nettoyage tmp/apercu et apercu-extras uniquement apres accord de Thomas.
       E7 n est coche qu apres la recette. E6 (envoi du devis) reste a faire.
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
+- [x] Fiche produit au design des maquettes (passe 1, image unique) - Claude - 27.10.2026
+- [ ] Fiche produit : 2 images de plus par modele (autre angle, gros plan) si Thomas les produit, puis vignettes - Thomas
 - [ ] Accueil : remplacer les 5 rendus IA (public/images/accueil/) par de vraies photos des realisations (hero sombre, gros plan matiere, gros plan gravure) - Thomas
 - [x] Images : audit du 26.10.2026 - Claude. Deja en place : noms de fichiers parlants
       (<modele>-<matiere>-<largeur>.webp), srcset 320/640/1200, width/height, lazy sauf premier

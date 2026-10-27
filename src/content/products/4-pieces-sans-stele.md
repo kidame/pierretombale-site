@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Dalle étagée sans stèle, pour une tombe basse et discrète.
+accroche: "Une ligne basse. Une présence discrète."
 order: 50
 ---
 

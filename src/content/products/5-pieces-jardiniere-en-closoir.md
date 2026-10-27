@@ -11,6 +11,7 @@ motifs: []
 options: [jardiniere]
 granitPresente: bengal
 shortDescription: Stèle doucine et jardinière en closoir pour fleurir la tombe.
+accroche: "Une stèle sobre. Une place pour les fleurs."
 order: 40
 ---
 

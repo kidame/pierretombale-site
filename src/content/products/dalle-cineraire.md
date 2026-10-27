@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Dalle carrée pleine, sans stèle, pour cavurne.
+accroche: "Une dalle simple. L'essentiel, sans rien de plus."
 order: 270
 ---
 

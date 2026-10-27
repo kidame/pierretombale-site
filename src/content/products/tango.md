@@ -11,6 +11,7 @@ motifs: []
 options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Stèle double en deux matières, dalle noire polie à nervures.
+accroche: "Deux stèles, deux matières. Une présence à deux voix."
 order: 140
 ---
 

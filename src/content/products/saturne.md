@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Stèle rectangulaire à disque incrusté dans une seconde matière.
+accroche: "Un disque incrusté. Une ligne contemporaine."
 order: 250
 ---
 

@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Stèle en voile de bateau, dalle à vagues sculptées.
+accroche: "Une voile sur les vagues. Un horizon apaisé."
 order: 240
 ---
 

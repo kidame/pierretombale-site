@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Stèle en voile, bordée d'un pan sombre poli.
+accroche: "Une voile de pierre. Un contraste tout en douceur."
 order: 200
 ---
 

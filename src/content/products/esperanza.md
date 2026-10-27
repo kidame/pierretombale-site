@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Stèle en goutte sur base claire arrondie.
+accroche: "Une goutte de pierre. Une forme pleine de douceur."
 order: 190
 ---
 

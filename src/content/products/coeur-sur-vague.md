@@ -11,6 +11,7 @@ motifs: [coeur]
 options: []
 granitPresente: bengal
 shortDescription: Coeur droit sur dalle traversée d'une vague.
+accroche: "Un coeur sur la vague. Un attachement qui demeure."
 order: 160
 ---
 

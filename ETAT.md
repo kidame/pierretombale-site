@@ -52,6 +52,19 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 27.10.2026, Claude : FICHE PRODUIT AU DESIGN DES MAQUETTES (passe 1). FicheModele.astro reecrit (les 27
+  fiches, deux familles) : fil d Ariane sans majuscules (Accueil cache sur telephone), titre serif tres grand,
+  accroche, "Prix indicatif" + lien vers la page prix, image unique + "Voir en grand", tuiles carrees du granit
+  avec coche (le script met a jour image, alt, nom et lien "Voir en grand"), bouton principal "Personnaliser ce
+  modele" si calibre (22) sinon "Demander un devis" (5), lien "Demander un conseil", trois etapes "Un hommage a
+  votre image", accordeons <details> (description + caracteristiques ; pose et accompagnement, textes deja
+  valides de l accueil), "D'autres modeles a voir", bande sombre "Chaque detail compte" (image matiere-768),
+  barre fixe en bas sur telephone. Champ `accroche` ajoute au schema et aux 27 fiches. CSS de page, aucune
+  classe Tailwind ajoutee : css partage 6838 -> 6669 o gz, css fiche 8932 o gz, html fiche 6388 o gz.
+  Build, astro check 0 erreur, 62 tests, grep des mots interdits vide, canonique www et noindex de
+  /personnaliser/ inchanges. Verifie au navigateur : douceur, tombale-simple (non calibre), aquarius (cineraire),
+  1280 et 390, changement de matiere au clic, pas de debordement horizontal a 390 (corrige : grille des cartes).
+  Configurateur et devis non touches. Pousse sur main (previsualisation), PAS sur live.
 - 26.10.2026, Claude : ANALYSE DE LA FICHE PRODUIT selon les maquettes (ordinateur + mobile, modele Douceur).
   Aucun code touche. Ecarts, contraintes et decisions a prendre dans docs/DESIGN.md ("Fiche produit").
   Capture de la fiche actuelle : 1280 et 390 px. Prochaine etape : reponses de Thomas (prix, "D'autres

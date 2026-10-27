@@ -11,6 +11,7 @@ motifs: []
 options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Monument bas à dalle étagée, sans stèle, avec prie-Dieu.
+accroche: "Des lignes basses et droites. Un lieu pour se recueillir."
 order: 70
 ---
 

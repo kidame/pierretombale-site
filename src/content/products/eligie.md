@@ -11,6 +11,7 @@ motifs: []
 options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Stèle courbe en deux matières, dalle sur rails à retours.
+accroche: "Deux matières, une courbe. Un hommage singulier."
 order: 120
 ---
 

@@ -52,6 +52,8 @@ const products = defineCollection({
           message: `granit inconnu : utiliser des ids de src/data/granits.json, ou ["tous"]`,
         }),
       shortDescription: z.string(),
+      /** Accroche courte sous le titre de la fiche (deux phrases breves). Defaut : shortDescription. */
+      accroche: z.string().optional(),
       order: z.number().int().nonnegative().default(999),
     }),
 });

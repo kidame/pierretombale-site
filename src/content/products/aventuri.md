@@ -11,6 +11,7 @@ motifs: [frise]
 options: []
 granitPresente: bengal
 shortDescription: Stèle droite à frise sculptée, bandeau sombre sur la dalle.
+accroche: "Une frise sculptée. Une présence affirmée."
 order: 130
 ---
 

@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Stèle galbée à sommet arrondi, dalle sur rails droits.
+accroche: "Un arrondi paisible. Une tradition bien tenue."
 order: 20
 ---
 

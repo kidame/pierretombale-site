@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Stèle à sommet en ogive, cadre ouvert sur gravillons.
+accroche: "Un sommet en ogive. Une forme fidèle à la tradition."
 order: 80
 ---
 

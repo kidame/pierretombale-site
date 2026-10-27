@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Stèle ovale à sommet découpé, sur base et dalle carrées.
+accroche: "Un ovale découpé. Une forme simple et douce."
 order: 180
 ---
 

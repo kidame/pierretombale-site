@@ -11,6 +11,7 @@ motifs: []
 options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Stèle en vague échancrée sur dalle plate et large.
+accroche: "Une vague apaisée. Un lieu de calme."
 order: 110
 ---
 

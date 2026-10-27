@@ -50,7 +50,12 @@ on recode, on ne reproduit pas leurs images.
   pas presenter ces rendus comme des photos. A remplacer par de vraies photos des realisations
   quand elles existent : changer les fichiers (memes noms) ou les `src` de index.astro.
 
-## Fiche produit : maquettes du 26.10.2026 (ANALYSE, pas encore appliquee)
+## Fiche produit : maquettes du 26.10.2026 (APPLIQUEE le 27.10.2026, passe 1)
+Decisions de Thomas (27.10) : prix garde, en "Prix indicatif" ; "D'autres modeles a voir" garde ;
+accroches ecrites par Claude sans validation (champ `accroche` des fiches, repli sur shortDescription) ;
+une seule image par matiere (pas de vignettes), lien "Voir en grand" ; fond gris des rendus normal ;
+menu et configurateur inchanges. Description et tableau : dans l accordeon "Dimensions et possibilites".
+Analyse d origine :
 Maquettes ordinateur + mobile de la fiche Douceur fournies par Thomas. Gabarit concerne :
 `src/components/FicheModele.astro` (partage par les deux familles, 27 modeles, 10 matieres chacun).
 Ecarts maquette / fiche actuelle :

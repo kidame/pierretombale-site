@@ -17,12 +17,17 @@ import {
   type Product,
 } from "@/data/products";
 import { breadcrumbSchema } from "@/data/seo";
-import { MENTION_PRIX_PROVISOIRE, offreJsonLd, prixAffiche, prixEstProvisoire } from "@/data/tarifs";
+import { offreJsonLd, prixAffiche } from "@/data/tarifs";
 
 /**
  * La fiche d un modele, partagee par les deux familles : chaque page famille
  * n a plus qu a fournir le modele et ses voisins. L adresse de la fiche vient
  * toujours de `productUrl`.
+ *
+ * Mise en page : maquette du 26.10.2026 (docs/DESIGN.md, "Fiche produit").
+ * Ordinateur : image a gauche, colonne de choix a droite. Telephone : titre,
+ * image, choix du granit, boutons, puis une barre fixe en bas.
+ * Une seule image par matiere : pas de vignettes.
  */
 interface Props {
   product: Product;
@@ -39,12 +44,12 @@ const granitsPossibles = product.granitsPossibles.includes("tous")
   : product.granitsPossibles.map((id) => nomGranit(id)).join(", ");
 
 /* Le visuel presente et les matieres dans lesquelles ce modele existe en
-   image. La rangee de pastilles ne propose que celles-la : jamais une matiere
-   dont le visuel n existe pas. */
+   image. Les tuiles ne proposent que celles-la : jamais une matiere dont le
+   visuel n existe pas. */
 const visuel = visuelModele(product);
 
-/* Une matiere sans photo d echantillon n a pas de pastille : elle resterait
-   un bouton vide. `src/data/granits.json` et `public/images/matieres` doivent
+/* Une matiere sans photo d echantillon n a pas de tuile : elle resterait un
+   bouton vide. `src/data/granits.json` et `public/images/matieres` doivent
    donc rester en phase. */
 const matieres = imagesDuModele(product)
   .map((granit) => ({ granit, vignette: vignetteMatiere(granit) }))
@@ -54,14 +59,21 @@ const matieres = imagesDuModele(product)
 
 /* Racine des chemins de visuel de ce modele, pour le petit script de la page :
    il recompose `-320/-640/-1200.webp` au lieu de porter trois chemins par
-   pastille dans le HTML. */
+   tuile dans le HTML. */
 const racineVisuel = `/images/modeles/${product.modeleId}/${product.modeleId}`;
 
-/* Le lien vers le configurateur n apparait que si le modele a une calibration
-   dans `src/data/calibrations/` : sans elle, la page /personnaliser/<slug>/
-   n existe pas (voir `src/data/calibrations.ts`). Deposer un JSON de plus fait
-   apparaitre le lien tout seul. */
+/* Le bouton vers le configurateur n apparait que si le modele a une
+   calibration dans `src/data/calibrations/` : sans elle, la page
+   /personnaliser/<slug>/ n existe pas. Le modele non calibre garde
+   "Demander un devis" comme bouton principal. */
 const estCalibre = getCalibration(product.modeleId) !== undefined;
+const lienDevis = `/devis/?modele=${product.slug}`;
+const lienPrincipal = estCalibre ? `/personnaliser/${product.slug}/` : lienDevis;
+const textePrincipal = estCalibre ? "Personnaliser ce modèle" : "Demander un devis";
+const texteBarre = estCalibre ? "Personnaliser" : "Demander un devis";
+
+const typeModele = product.famille === "cineraire" ? "Monument cinéraire" : "Monument funéraire";
+const accroche = product.accroche ?? product.shortDescription;
 
 const specs: Array<[string, string]> = [
   ["Dimensions", product.dimensions],
@@ -77,6 +89,24 @@ const specs: Array<[string, string]> = [
   ["Granits possibles", granitsPossibles],
 ];
 
+const etapes = [
+  {
+    numero: "01",
+    titre: "La matière",
+    texte: "Choisissez le granit qui vous ressemble parmi une sélection de matières nobles.",
+  },
+  {
+    numero: "02",
+    titre: "Les mots",
+    texte: "Ajoutez une inscription qui traverse le temps.",
+  },
+  {
+    numero: "03",
+    titre: "Le motif",
+    texte: "Si vous le souhaitez, intégrez un dessin pour rendre ce monument encore plus personnel.",
+  },
+];
+
 /* Titre et meta description de la fiche. Le mot que les familles tapent passe
    avant le nom du modele : "pierre tombale" pour un monument funeraire,
    "monument cineraire" pour un cineraire (cf. la regle de vocabulaire dans
@@ -85,18 +115,17 @@ const nature = product.famille === "cineraire" ? "monument cinéraire" : "pierre
 const titre = titreFiche(product.name, nature);
 const metaDescription = tronque(`${product.shortDescription} Prix indicatif et devis gratuit.`, 155);
 
+/* Les prix affiches sont des estimations (decision du 13.10.2026) : la fiche
+   dit toujours "Prix indicatif". */
 const prix = prixAffiche(product.slug);
-const prixProvisoire = prixEstProvisoire(product.slug);
 
 /* Offre chiffree seulement si le modele a un vrai prix dans
    src/data/tarifs.json : tant que le prix affiche est provisoire, Google ne
-   doit rien apprendre de chiffre (le prix depend aussi du cimetiere, de la
-   gravure et de la pose). `offreJsonLd` retourne null dans ce cas. */
+   doit rien apprendre de chiffre. `offreJsonLd` retourne null dans ce cas. */
 const offre = offreJsonLd(product.slug);
 
 /* Une seule image dans les donnees structurees : la plus grande largeur du
-   visuel presente, en URL absolue (Google n accepte pas de chemin relatif).
-   Les autres matieres ne sont pas des produits differents. */
+   visuel presente, en URL absolue. */
 const imageJsonLd = new URL(`${racineVisuel}-${visuel.matiere}-1200.webp`, origin).href;
 
 const productSchema = {
@@ -121,202 +150,906 @@ const filAriane = breadcrumbSchema(
 );
 ---
 
-<BaseLayout title={titre} description={metaDescription} image={`${racineVisuel}-${visuel.matiere}-1200.webp`}>
-  <main id="main-content" class="shell">
-    <nav class="mono flex gap-2 py-6 text-[0.6875rem] uppercase tracking-[0.05em] text-muted" aria-label="Fil d'Ariane">
-      <a href="/" class="link">Accueil</a>
-      <span aria-hidden="true">/</span>
-      <a href={familleUrl(product.famille)} class="link">{FAMILLE_LABELS[product.famille]}</a>
-      <span aria-hidden="true">/</span>
-      <span class="text-ink" aria-current="page">{product.name}</span>
-    </nav>
+<BaseLayout
+  title={titre}
+  description={metaDescription}
+  image={`${racineVisuel}-${visuel.matiere}-1200.webp`}
+  footerJoint
+>
+  <main id="main-content" data-fiche data-racine={racineVisuel}>
+    <div class="shell">
+      <nav class="fil" aria-label="Fil d'Ariane">
+        <a href="/" class="fil-accueil">Accueil</a>
+        <span class="fil-accueil" aria-hidden="true">/</span>
+        <a href={familleUrl(product.famille)}>{FAMILLE_LABELS[product.famille]}</a>
+        <span aria-hidden="true">/</span>
+        <span class="fil-courant" aria-current="page">{product.name}</span>
+      </nav>
 
-    <div class="grid items-start gap-x-12 gap-y-10 border-t border-line pt-8 lg:grid-cols-12">
-      {/* ------------------------------------------------------------ Visuels */}
-      <section
-        class="lg:col-span-7"
-        aria-label={`Visuel de ${product.name}`}
-        data-visuel-modele
-        data-racine={racineVisuel}
-      >
-        {/* Le visuel est le plus grand element de la fiche : charge tot
-            (`eager`, `fetchpriority="high"`) et jamais en differe. */}
-        <div class="overflow-hidden bg-surface">
-          <ProductImage
-            product={product}
-            sizes="(min-width: 1024px) 58vw, 100vw"
-            loading="eager"
-            decoding="sync"
-            fetchpriority="high"
-            class="aspect-square w-full object-contain"
-          />
-        </div>
+      <div class="fiche-haut">
+        {/* ------------------------------------------------------- Titre */}
+        <header class="fiche-intro">
+          <p class="label">{typeModele}</p>
+          <h1 class="fiche-titre">{product.name}</h1>
+          <p class="fiche-accroche">{accroche}</p>
+          <p class="fiche-prix">
+            <span class="fiche-prix-label">Prix indicatif</span>
+            <span class="mono">{prix}</span>
+          </p>
+          <a href="/prix-pierre-tombale-suisse/" class="fiche-petit-lien">Comment est calculé le prix ?</a>
+        </header>
 
-        <p class="mono mt-3 text-[0.6875rem] uppercase tracking-[0.05em] text-muted">
-          Granit présenté : <span class="text-ink" data-matiere-nom>{visuel.nomMatiere}</span> — image de
-          présentation, la teinte se juge sur la pierre
-        </p>
+        {/* ------------------------------------------------------ Visuel */}
+        <section class="fiche-galerie" aria-label={`Visuel de ${product.name}`}>
+          {/* Le visuel est le plus grand element de la fiche : charge tot. */}
+          <div class="galerie-cadre" data-visuel-modele>
+            <ProductImage
+              product={product}
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              loading="eager"
+              decoding="sync"
+              fetchpriority="high"
+              class="galerie-img"
+            />
+          </div>
+          <p class="galerie-legende">
+            <span>Image de présentation, la teinte se juge sur la pierre.</span>
+            <a
+              href={`${racineVisuel}-${visuel.matiere}-1200.webp`}
+              class="fiche-petit-lien"
+              target="_blank"
+              rel="noopener"
+              data-agrandir
+            >
+              Voir en grand
+            </a>
+          </p>
+        </section>
 
-        {/* Changer de matiere : de vrais boutons, utiles au clavier. SANS
-            JAVASCRIPT la fiche reste complete (le visuel presente est deja la)
-            et chaque bouton ne fait rien : c est pourquoi la rangee n est pas
-            annoncee comme un choix obligatoire. */}
-        {
-          matieres.length > 1 && (
-            <div class="mt-6" role="group" aria-label={`Voir ${product.name} dans une autre matière`}>
-              <p class="label">Voir dans une autre matière</p>
-              <div class="mt-3 flex flex-wrap gap-2">
-                {matieres.map(({ granit, vignette }) => (
-                  <button
-                    type="button"
-                    class="pastille-matiere"
-                    data-matiere={granit.id}
-                    data-alt={altVisuel(product, granit.id)}
-                    data-nom={granit.nom}
-                    aria-pressed={granit.id === visuel.matiere ? "true" : "false"}
-                  >
-                    <img
-                      src={vignette}
-                      alt={granit.nom}
-                      width="160"
-                      height="160"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
-          )
-        }
-      </section>
-
-      {/* -------------------------------------------------------- Colonne devis */}
-      <div class="lg:sticky lg:top-28 lg:col-span-5">
-        <p class="label">{FAMILLE_LABELS[product.famille]} · {GAMME_LABELS[product.gamme]}</p>
-        <h1 class="type-h2 mt-5">{product.name}</h1>
-        <p class="mono mt-5 text-xl">{prix}</p>
-        {
-          prixProvisoire && (
-            <p class="mono mt-2 text-[0.6875rem] uppercase tracking-[0.05em] text-muted">
-              {MENTION_PRIX_PROVISOIRE}
-            </p>
-          )
-        }
-        <p class="mt-3">
-          <a href="/prix-pierre-tombale-suisse/" class="link link-mono text-[0.75rem] text-muted">
-            Comment est calculé le prix ?
-          </a>
-        </p>
-
-        <p class="type-body mt-8 max-w-[46ch]">{product.description}</p>
-
-        <dl class="mono mt-10 border-t border-line text-[0.8125rem]">
+        {/* ---------------------------------------------- Granit et boutons */}
+        <div class="fiche-choix">
           {
-            specs.map(([term, value]) => (
-              <div class="flex justify-between gap-6 border-b border-line py-3">
-                <dt class="text-muted">{term}</dt>
-                <dd class="text-right">{value}</dd>
+            matieres.length > 1 && (
+              <div class="granit" role="group" aria-labelledby="granit-titre">
+                <h2 id="granit-titre" class="granit-titre">Choisissez votre granit</h2>
+                <p class="granit-nom" data-matiere-nom aria-live="polite">
+                  {visuel.nomMatiere}
+                </p>
+                {/* De vrais boutons, utiles au clavier. Sans JavaScript la fiche
+                    reste complete (le visuel presente est deja la). */}
+                <div class="granit-tuiles">
+                  {matieres.map(({ granit, vignette }) => (
+                    <button
+                      type="button"
+                      class="tuile"
+                      data-matiere={granit.id}
+                      data-alt={altVisuel(product, granit.id)}
+                      data-nom={granit.nom}
+                      aria-pressed={granit.id === visuel.matiere ? "true" : "false"}
+                      aria-label={granit.nom}
+                    >
+                      <img src={vignette} alt="" width="160" height="160" loading="lazy" decoding="async" />
+                      <span class="tuile-coche" aria-hidden="true">
+                        <svg viewBox="0 0 16 16" width="14" height="14">
+                          <path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+                <div class="granit-pied">
+                  <a href="/nos-granits/" class="lien-fleche">
+                    Découvrir les granits
+                    <svg class="fleche" viewBox="0 0 20 10" width="20" height="10" aria-hidden="true">
+                      <path d="M0 5h18M14 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2" />
+                    </svg>
+                  </a>
+                  <p class="fiche-note">La teinte définitive se choisit sur un échantillon.</p>
+                </div>
               </div>
-            ))
-          }
-        </dl>
-
-        <div class="mt-10 flex flex-wrap items-stretch gap-3">
-          <a href={`/devis/?modele=${product.slug}`} class="btn btn-primary flex-1">Demander un devis</a>
-          {
-            estCalibre && (
-              <a href={`/personnaliser/${product.slug}/`} class="btn btn-outline flex-1">
-                Personnaliser ce modèle
-              </a>
             )
           }
-        </div>
 
-        <p class="mono mt-5 text-[0.6875rem] uppercase leading-relaxed tracking-[0.05em] text-muted">
-          Chaque monument est réalisé sur mesure · gravure et pose comprises dans le devis
-        </p>
+          <div class="appel-action">
+            <a href={lienPrincipal} class="btn btn-primary btn-large">
+              {textePrincipal}
+              <svg class="fleche" viewBox="0 0 20 10" width="20" height="10" aria-hidden="true">
+                <path d="M0 5h18M14 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2" />
+              </svg>
+            </a>
+            <p class="fiche-note-forte">
+              {
+                estCalibre
+                  ? "Ajoutez une inscription et un motif, à votre rythme."
+                  : "Nous vous conseillons sur le granit, l'inscription et le motif."
+              }
+            </p>
+            {
+              estCalibre && (
+                <div class="appel-second">
+                  <a href={lienDevis} class="lien-fleche">
+                    Demander un conseil
+                    <svg class="fleche" viewBox="0 0 20 10" width="20" height="10" aria-hidden="true">
+                      <path d="M0 5h18M14 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2" />
+                    </svg>
+                  </a>
+                  <p class="fiche-note">Devis gratuit, sans engagement.</p>
+                </div>
+              )
+            }
+            {!estCalibre && <p class="fiche-note">Devis gratuit, sans engagement.</p>}
+          </div>
+        </div>
       </div>
+
+      {/* ------------------------------------------------ Un hommage */}
+      <section class="hommage" aria-labelledby="hommage-titre">
+        <p class="label">Un accompagnement personnalisé</p>
+        <h2 id="hommage-titre" class="hommage-titre">Un hommage à votre image.</h2>
+        <ol class="hommage-etapes">
+          {
+            etapes.map((etape) => (
+              <li>
+                <span class="hommage-numero mono" aria-hidden="true">
+                  {etape.numero}
+                </span>
+                <h3 class="hommage-nom">{etape.titre}</h3>
+                <p class="hommage-texte">{etape.texte}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      {/* ------------------------------------------------ Accordeons */}
+      <div class="accordeons">
+        <details class="accordeon">
+          <summary>
+            <h2 class="accordeon-titre">Dimensions et possibilités</h2>
+            <span class="accordeon-signe" aria-hidden="true"></span>
+          </summary>
+          <div class="accordeon-corps">
+            <p class="accordeon-texte">{product.description}</p>
+            <dl class="specs">
+              {
+                specs.map(([term, value]) => (
+                  <div>
+                    <dt>{term}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))
+              }
+            </dl>
+          </div>
+        </details>
+
+        <details class="accordeon">
+          <summary>
+            <h2 class="accordeon-titre">Pose et accompagnement</h2>
+            <span class="accordeon-signe" aria-hidden="true"></span>
+          </summary>
+          <div class="accordeon-corps">
+            <ul class="accordeon-liste">
+              <li>Un rendez-vous pour parler de la sépulture et du règlement du cimetière.</li>
+              <li>Un devis écrit, poste par poste : le monument, le granit, la gravure, les accessoires et la pose.</li>
+              <li>Le texte, les dates et les motifs vous sont soumis en épreuve. Rien n'est gravé avant votre accord.</li>
+              <li>Nous posons le monument au cimetière, et nous restons joignables ensuite : inscription complémentaire, entretien.</li>
+            </ul>
+            <a href="/a-propos/" class="fiche-petit-lien">Qui sommes-nous</a>
+          </div>
+        </details>
+      </div>
+
+      {/* ------------------------------------------------ Autres modeles */}
+      <section class="autres" aria-labelledby="autres-titre">
+        <div class="autres-tete">
+          <h2 id="autres-titre" class="type-h2">D'autres modèles à voir</h2>
+          <a href={familleUrl(product.famille)} class="lien-fleche">
+            {FAMILLE_LABELS[product.famille]}
+            <svg class="fleche" viewBox="0 0 20 10" width="20" height="10" aria-hidden="true">
+              <path d="M0 5h18M14 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2" />
+            </svg>
+          </a>
+        </div>
+        <div class="autres-grille">
+          {related.map((item) => <ProductCard product={item} headingLevel="h3" />)}
+        </div>
+      </section>
     </div>
 
-    {/* ------------------------------------------------------ Autres modeles */}
-    <section class="mt-32 md:mt-44">
-      <div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-t border-line pt-8" data-reveal>
-        <h2 class="type-h2 max-w-[16ch]">D'autres modèles à voir</h2>
-        <a href={familleUrl(product.famille)} class="link link-mono pb-1.5 text-muted">
-          {FAMILLE_LABELS[product.famille]}
-        </a>
+    {/* ------------------------------------------------ Bande sombre */}
+    <section class="nuit detail" aria-labelledby="detail-titre">
+      <div class="detail-visuel">
+        <img
+          src="/images/accueil/matiere-768.webp"
+          width="768"
+          height="512"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
       </div>
-
-      <div class="mt-12 grid gap-x-8 gap-y-14 md:mt-14 md:grid-cols-3">
-        {
-          related.map((item, index) => (
-            <ProductCard product={item} headingLevel="h3" revealDelay={index * 110} />
-          ))
-        }
+      <div class="detail-texte">
+        <h2 id="detail-titre" class="type-h2">Chaque détail compte.</h2>
+        <p class="type-lead">Votre composition sera vérifiée avec vous avant toute gravure.</p>
+        <p class="detail-echange">Votre projet commence par un échange.</p>
+        <a href={lienDevis} class="btn btn-outline">Parlons de votre projet</a>
       </div>
     </section>
+
+    {/* Barre fixe du telephone : le nom et l action principale toujours a portee. */}
+    <div class="barre-mobile" data-barre-mobile>
+      <span class="barre-nom">{product.name}</span>
+      <a href={lienPrincipal} class="btn btn-primary barre-bouton">
+        {texteBarre}
+        <svg class="fleche" viewBox="0 0 20 10" width="20" height="10" aria-hidden="true">
+          <path d="M0 5h18M14 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2" />
+        </svg>
+      </a>
+    </div>
   </main>
 
-  {/* Habillage des pastilles ecrit ici, pas en utilitaires Tailwind : la
-      feuille Tailwind est unique et partagee par tout le site, alors que ce
-      bloc ne part qu avec les fiches. 48 px au moins, bordure epaisse sur la
-      matiere presentee (jamais la couleur seule). */}
+  {/* Habillage ecrit ici, pas en utilitaires Tailwind : la feuille Tailwind
+      est unique et partagee par tout le site, ce bloc ne part qu avec les fiches. */}
   <style>
-    .pastille-matiere {
-      display: block;
+    /* ---- Fil d Ariane ---------------------------------------------------- */
+    .fil {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-block: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .fil a {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      text-decoration: underline;
+      text-decoration-color: var(--line-strong);
+      text-underline-offset: 0.2em;
+    }
+
+    .fil span {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .fil-courant {
+      color: var(--ink);
+    }
+
+    @media (max-width: 639px) {
+      .fil-accueil {
+        display: none !important;
+      }
+    }
+
+    /* ---- Haut de fiche ----------------------------------------------------
+       Telephone : titre, image, choix. Ordinateur : image a gauche sur deux
+       rangees, titre puis choix a droite. */
+    .fiche-haut {
+      display: grid;
+      grid-template-areas:
+        "intro"
+        "galerie"
+        "choix";
+      gap: 1.75rem;
+    }
+
+    .fiche-intro {
+      grid-area: intro;
+    }
+
+    .fiche-galerie {
+      grid-area: galerie;
+    }
+
+    .fiche-choix {
+      grid-area: choix;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    @media (min-width: 1024px) {
+      .fiche-haut {
+        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+          "galerie intro"
+          "galerie choix";
+        column-gap: clamp(2.5rem, 4vw, 4rem);
+        row-gap: 2rem;
+      }
+
+      .fiche-galerie {
+        align-self: start;
+      }
+    }
+
+    .fiche-intro .label {
+      margin-bottom: 0.75rem;
+    }
+
+    .fiche-titre {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(3rem, 6vw, 4.75rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+
+    .fiche-accroche {
+      margin-top: 0.75rem;
+      font-family: var(--font-serif);
+      font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+      line-height: 1.25;
+    }
+
+    .fiche-prix {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.25rem 0.75rem;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line-strong);
+      font-size: 1.125rem;
+    }
+
+    .fiche-prix-label {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+
+    .fiche-petit-lien {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      font-size: 0.9375rem;
+      color: var(--muted);
+      text-decoration: underline;
+      text-decoration-color: var(--line-strong);
+      text-underline-offset: 0.2em;
+    }
+
+    .fiche-petit-lien:hover,
+    .fiche-petit-lien:focus-visible {
+      color: var(--ink);
+    }
+
+    /* ---- Visuel ----------------------------------------------------------- */
+    .galerie-cadre {
       overflow: hidden;
-      width: 3.5rem;
-      height: 3.5rem;
+      background-color: var(--surface);
+    }
+
+    /* L image vient de ProductImage (autre composant) : selecteur :global. */
+    .galerie-cadre :global(.galerie-img) {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: contain;
+    }
+
+    .galerie-legende {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0 1rem;
+      margin-top: 0.25rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* ---- Granit ----------------------------------------------------------- */
+    .granit-titre {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.625rem;
+      line-height: 1.2;
+    }
+
+    .granit-nom {
+      margin-top: 0.125rem;
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      color: var(--muted);
+    }
+
+    .granit-tuiles {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.625rem;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 1024px) {
+      .granit-tuiles {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+    }
+
+    /* Tuile : 48 px au moins, cadre epais ET coche sur la matiere choisie
+       (jamais la couleur seule). */
+    .tuile {
+      position: relative;
+      display: block;
+      aspect-ratio: 1;
+      min-width: 3rem;
+      padding: 0;
+      overflow: hidden;
       border: 1px solid var(--line-strong);
-      border-radius: 999px;
       background-color: var(--surface);
       cursor: pointer;
     }
 
-    .pastille-matiere img {
+    .tuile img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .pastille-matiere:hover {
+    .tuile:hover {
       border-color: var(--ink);
     }
 
-    .pastille-matiere:focus-visible {
+    .tuile:focus-visible {
       outline: 2px solid var(--ink);
       outline-offset: 3px;
     }
 
-    .pastille-matiere[aria-pressed="true"] {
-      border-width: 3px;
-      border-color: var(--ink);
+    .tuile[aria-pressed="true"] {
+      border: 2px solid var(--ink);
+      box-shadow: inset 0 0 0 2px var(--canvas);
+    }
+
+    .tuile-coche {
+      position: absolute;
+      top: 0.3rem;
+      right: 0.3rem;
+      display: none;
+      width: 1.375rem;
+      height: 1.375rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background-color: var(--canvas);
+      color: var(--ink);
+    }
+
+    .tuile[aria-pressed="true"] .tuile-coche {
+      display: flex;
+    }
+
+    .granit-pied {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .fiche-note {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .fiche-note-forte {
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    /* Lien avec fleche : 48 px de haut, souligne, fleche qui avance au survol. */
+    .lien-fleche {
+      display: inline-flex;
+      min-height: 3rem;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-serif);
+      font-size: 1.1875rem;
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-decoration-color: var(--line-strong);
+      text-underline-offset: 0.3em;
+    }
+
+    .fleche {
+      flex: none;
+      transition: transform 300ms var(--ease-out-expo);
+    }
+
+    .lien-fleche:hover .fleche,
+    .lien-fleche:focus-visible .fleche,
+    .btn:hover .fleche,
+    .btn:focus-visible .fleche {
+      transform: translateX(4px);
+    }
+
+    /* ---- Boutons ---------------------------------------------------------- */
+    .appel-action {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-large {
+      width: 100%;
+      min-height: 3.5rem;
+      gap: 0.875rem;
+    }
+
+    .appel-second {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--line-strong);
+    }
+
+    @media (max-width: 1023px) {
+      .appel-action {
+        text-align: center;
+      }
+
+      .appel-second {
+        flex-direction: column-reverse;
+      }
+    }
+
+    /* ---- Un hommage a votre image ---------------------------------------- */
+    .hommage {
+      margin-top: clamp(4rem, 8vw, 6rem);
+    }
+
+    .hommage-titre {
+      margin-top: 0.75rem;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+      line-height: 1.1;
+    }
+
+    .hommage-etapes {
+      display: grid;
+      gap: 1.75rem;
+      margin-top: 2.5rem;
+    }
+
+    .hommage-etapes li {
+      display: grid;
+      grid-template-columns: 4.5rem 1fr;
+      column-gap: 1rem;
+      row-gap: 0.25rem;
+    }
+
+    .hommage-numero {
+      grid-row: span 2;
+      padding-top: 0.5rem;
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+
+    .hommage-numero::after {
+      content: "";
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      margin-left: 0.625rem;
+      vertical-align: middle;
+      background-color: var(--line-strong);
+    }
+
+    .hommage-nom {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.625rem;
+      line-height: 1.2;
+    }
+
+    .hommage-texte {
+      max-width: 36ch;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    @media (min-width: 900px) {
+      .hommage-etapes {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0;
+      }
+
+      .hommage-etapes li {
+        padding-inline: 2rem;
+        border-left: 1px solid var(--line-strong);
+      }
+
+      .hommage-etapes li:first-child {
+        padding-left: 0;
+        border-left: 0;
+      }
+    }
+
+    /* ---- Accordeons : <details>, sans JavaScript --------------------------- */
+    .accordeons {
+      margin-top: clamp(3rem, 6vw, 4.5rem);
+      border-top: 1px solid var(--line-strong);
+    }
+
+    .accordeon {
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .accordeon summary {
+      display: flex;
+      min-height: 4rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .accordeon summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .accordeon summary:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+    }
+
+    .accordeon-titre {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.5rem;
+      line-height: 1.2;
+    }
+
+    /* Signe + qui devient - a l ouverture. */
+    .accordeon-signe {
+      position: relative;
+      flex: none;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .accordeon-signe::before,
+    .accordeon-signe::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background-color: var(--ink);
+      transition: transform 300ms var(--ease-out-expo);
+    }
+
+    .accordeon-signe::after {
+      transform: rotate(90deg);
+    }
+
+    .accordeon[open] .accordeon-signe::after {
+      transform: rotate(0deg);
+    }
+
+    .accordeon-corps {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding-bottom: 2rem;
+    }
+
+    .accordeon-texte {
+      max-width: 62ch;
+      font-size: 1.0625rem;
+      line-height: 1.65;
+    }
+
+    .specs {
+      width: 100%;
+      max-width: 40rem;
+      border-top: 1px solid var(--line);
+      font-size: 1rem;
+    }
+
+    .specs div {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding-block: 0.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .specs dt {
+      color: var(--muted);
+    }
+
+    .specs dd {
+      text-align: right;
+    }
+
+    .accordeon-liste {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 62ch;
+      padding-left: 1.25rem;
+      list-style: disc;
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+
+    /* ---- Autres modeles --------------------------------------------------- */
+    .autres {
+      margin-block: clamp(4.5rem, 9vw, 7rem);
+    }
+
+    .autres-tete {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 0.5rem 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+    }
+
+    /* minmax(0, 1fr) : sans lui, le prix des cartes (sans retour a la ligne)
+       elargit la colonne au-dela de l ecran du telephone. */
+    .autres-grille {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 3rem 2rem;
+      margin-top: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .autres-grille {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    /* ---- Bande sombre ----------------------------------------------------- */
+    .detail {
+      display: grid;
+    }
+
+    .detail-visuel {
+      position: relative;
+      min-height: 14rem;
+      overflow: hidden;
+    }
+
+    .detail-visuel img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-texte {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 3rem var(--gutter) 3.5rem;
+    }
+
+    .detail-texte .type-lead {
+      max-width: 30ch;
+      color: var(--ink);
+    }
+
+    .detail-echange {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 639px) {
+      .detail-texte .btn {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .detail {
+        grid-template-columns: 1fr 1fr;
+        min-height: 24rem;
+      }
+
+      .detail-visuel::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, transparent 55%, var(--canvas));
+      }
+
+      .detail-texte {
+        justify-content: center;
+        padding: 4rem clamp(3rem, 7vw, 7rem);
+      }
+    }
+
+    /* ---- Barre fixe du telephone ------------------------------------------ */
+    .barre-mobile {
+      position: fixed;
+      inset: auto 0 0 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.625rem var(--gutter) calc(0.625rem + env(safe-area-inset-bottom));
+      border-top: 1px solid var(--line-strong);
+      background-color: var(--canvas);
+    }
+
+    .barre-nom {
+      overflow: hidden;
+      font-family: var(--font-serif);
+      font-size: 1.375rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .barre-bouton {
+      flex: none;
+      gap: 0.75rem;
+    }
+
+    :global(body:has([data-barre-mobile])) {
+      padding-bottom: 4.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .barre-mobile {
+        display: none;
+      }
+
+      :global(body:has([data-barre-mobile])) {
+        padding-bottom: 0;
+      }
     }
   </style>
 
   <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
 
-  {/* Changement de matiere : on remplace src, srcset, alt et le nom affiche.
-      Les trois largeurs se recomposent depuis `data-racine`, comme
-      `visuelModele` les construit dans src/data/products.ts. */}
+  {/* Changement de matiere : on remplace src, srcset, alt, le nom affiche et
+      le lien "Voir en grand". Les trois largeurs se recomposent depuis
+      `data-racine`, comme `visuelModele` les construit dans src/data/products.ts. */}
   <script is:inline>
     (() => {
-      const vue = document.querySelector("[data-visuel-modele]");
-      const img = vue && vue.querySelector("img[srcset]");
-      const nom = vue && vue.querySelector("[data-matiere-nom]");
-      const choix = vue ? vue.querySelectorAll("[data-matiere]") : [];
+      const fiche = document.querySelector("[data-fiche]");
+      const img = fiche && fiche.querySelector("[data-visuel-modele] img[srcset]");
+      const nom = fiche && fiche.querySelector("[data-matiere-nom]");
+      const grand = fiche && fiche.querySelector("[data-agrandir]");
+      const choix = fiche ? fiche.querySelectorAll("[data-matiere]") : [];
       if (!img || !choix.length) return;
 
       choix.forEach((bouton) => {
         bouton.addEventListener("click", () => {
-          const base = vue.dataset.racine + "-" + bouton.dataset.matiere;
+          const base = fiche.dataset.racine + "-" + bouton.dataset.matiere;
           img.src = base + "-640.webp";
           img.srcset = base + "-320.webp 320w, " + base + "-640.webp 640w, " + base + "-1200.webp 1200w";
           img.alt = bouton.dataset.alt;
           if (nom) nom.textContent = bouton.dataset.nom;
+          if (grand) grand.href = base + "-1200.webp";
           choix.forEach((autre) => autre.setAttribute("aria-pressed", String(autre === bouton)));
         });
       });

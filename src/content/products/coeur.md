@@ -11,6 +11,7 @@ motifs: [coeur]
 options: []
 granitPresente: bengal
 shortDescription: Coeur incliné sur une base aux plis sculptés.
+accroche: "Un coeur incliné. Une tendresse gravée dans la pierre."
 order: 150
 ---
 

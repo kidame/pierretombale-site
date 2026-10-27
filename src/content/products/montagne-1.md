@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Stèle à sommet brut, taillée comme une crête, dalle plate.
+accroche: "Une crête taillée brute. La force de la montagne."
 order: 220
 ---
 

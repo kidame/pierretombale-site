@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Stèle droite sombre sur dalle claire à bords bruts.
+accroche: "Le sombre et le clair. Une composition franche."
 order: 210
 ---
 

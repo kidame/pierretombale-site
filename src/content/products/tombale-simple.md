@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Dalle pleine de 10 cm d'épaisseur sur semelle, sans stèle.
+accroche: "Une dalle pleine. La sobriété pour seule parure."
 order: 60
 ---
 

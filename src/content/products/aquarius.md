@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Stèle galbée à sommet mouvementé, dalle à l'avant arrondi.
+accroche: "Un sommet en mouvement. Une forme apaisée."
 order: 170
 ---
 

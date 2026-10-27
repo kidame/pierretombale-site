@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Stèle rectangulaire à sommet en doucine, sur base et dalle pleine.
+accroche: "Une forme classique. Une élégance sans détour."
 order: 30
 ---
 

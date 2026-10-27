@@ -11,6 +11,7 @@ motifs: []
 options: []
 granitPresente: bengal
 shortDescription: Stèle à sommet brut sur base et dalle claires.
+accroche: "Un sommet brut sur fond clair. La montagne, apaisée."
 order: 230
 ---
 

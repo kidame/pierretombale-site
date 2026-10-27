@@ -11,6 +11,7 @@ motifs: [arbre]
 options: [prie-dieu]
 granitPresente: bengal
 shortDescription: Stèle découpée en feuille, dalle sur rails à retours.
+accroche: "Une feuille taillée dans la pierre. Un signe de vie."
 order: 90
 ---
 
