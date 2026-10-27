@@ -52,6 +52,14 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 27.10.2026, Claude : MESSAGERIE ET ENVOI DU DEVIS (E6, preparation). Decisions de Thomas : envoi par Resend
+  (plan gratuit, 3000/mois, 100/jour), domaine d envoi prevu `mail.pierretombale.ch` (region eu-west-1),
+  expediteur `PierreTombale.ch <devis@mail.pierretombale.ch>`, Reply-To = la famille. Messagerie : Service Mail
+  Infomaniak, adresse info@pierretombale.ch (destinataire des devis, a mettre en variable Cloudflare, pas dans
+  le depot). Thomas a cree le MX `@ -> mta-gw.infomaniak.ch` prio 5 dans Cloudflare (verifie au dig). RESTE :
+  SPF racine encore `v=spf1 -all` (bloque tout envoi depuis info@) -> `v=spf1 include:spf.infomaniak.ch -all` ;
+  DKIM 20261022._domainkey present, a comparer avec celui affiche par Infomaniak ; DMARC p=reject en place.
+  Puis domaine Resend, cle "Sending access" en secret Cloudflare RESEND_API_KEY, fonction functions/api/devis.ts.
 - 27.10.2026, Claude : CONFIGURATEUR, LISIBILITE DU TEXTE (demande de Thomas, version sure). Sur granit clair
   (Viscount White, Jablanica...) la peinture blanche ou doree ne se voyait presque plus. rendu.ts : chaque
   lettre recoit un contour fin dessine sous la peinture et une ombre courte vers le bas (`ombreDeLettre`,
