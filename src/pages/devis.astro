@@ -143,7 +143,9 @@ const reglages = {
   /* L envoi s allume par environnement Cloudflare (variable de build
      PUBLIC_DEVIS_ENVOI = oui) : la previsualisation peut envoyer pendant que
      la production attend ses propres variables. */
-  envoiActif: devisConfig.envoiActif || import.meta.env.PUBLIC_DEVIS_ENVOI === "oui",
+  envoiActif:
+    devisConfig.envoiActif ||
+    String(import.meta.env.PUBLIC_DEVIS_ENVOI ?? "").trim().toLowerCase() === "oui",
   endpoint: devisConfig.endpoint,
   nombreMaxFichiers: fichiersDevis.nombreMax,
   tailleTotaleMaxOctets: fichiersDevis.tailleTotaleMaxOctets,
