@@ -294,15 +294,18 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
 
       for (const zone of etat.zones) {
         const noeud = noeudDeZone(zone.cle);
+        /* Les hauteurs de lettres sont en millimetres dans les donnees (c'est
+           l'unite du metier et celle du devis) ; le canvas travaille en cm.
+           ... et le metier mesure la MAJUSCULE : la taille de police est
+           donc la hauteur voulue divisee par la capitale de la police. */
+        const taille = echelle.cmVersPx(zone.hauteurMm / 10 / options.capitaleDePolice(zone.policeId));
+        const couleur = options.couleurDeFinition(zone.finitionId);
         noeud.setAttrs({
           text: zone.texte,
-          /* Les hauteurs de lettres sont en millimetres dans les donnees (c'est
-             l'unite du metier et celle du devis) ; le canvas travaille en cm. */
-          /* ... et le metier mesure la MAJUSCULE : la taille de police est
-             donc la hauteur voulue divisee par la capitale de la police. */
-          fontSize: echelle.cmVersPx(zone.hauteurMm / 10 / options.capitaleDePolice(zone.policeId)),
+          fontSize: taille,
           fontFamily: options.familleDePolice(zone.policeId),
-          fill: options.couleurDeFinition(zone.finitionId),
+          fill: couleur,
+          ...ombreDeLettre(couleur, taille),
         });
         /* Un texte vide laisserait une poignee invisible au milieu de la stele. */
         noeud.visible(zone.texte.trim().length > 0);
@@ -389,4 +392,45 @@ export function creeRendu(konva: ModuleKonva, options: OptionsRendu): Rendu {
       return bas;
     },
   };
+}
+
+/**
+ * LE CONTOUR ET L'OMBRE DES LETTRES (27.10.2026). Sans eux, une peinture
+ * blanche ou doree disparait sur un granit clair (Viscount White,
+ * Jablanica...). Un contour fin et une ombre courte, decalee vers le bas,
+ * detachent chaque lettre comme une gravure peu profonde, sur toutes les
+ * pierres. Foncee sous une couleur
+ * claire, claire sous une couleur foncee (une future peinture noire).
+ *
+ * Les valeurs sont des fractions de la taille de police : la couche du texte
+ * travaille en pixels de l'image servie et Konva applique son echelle a
+ * l'ombre, donc l'effet est le meme a toutes les tailles d'ecran. L'apercu
+ * envoye avec le devis (`stage.toDataURL`) porte la meme ombre.
+ */
+function ombreDeLettre(couleur: string, taille: number) {
+  const claire = luminance(couleur) > 0.5;
+  return {
+    /* Un contour fin, dessine SOUS la peinture (`fillAfterStrokeEnabled`) :
+       il borde la lettre sans l'amincir. */
+    stroke: claire ? "rgba(20, 17, 14, 0.6)" : "rgba(244, 241, 234, 0.5)",
+    strokeWidth: taille * 0.045,
+    fillAfterStrokeEnabled: true,
+    strokeScaleEnabled: true,
+    shadowEnabled: true,
+    shadowColor: claire ? "#14110e" : "#f4f1ea",
+    shadowOpacity: claire ? 0.75 : 0.5,
+    shadowBlur: taille * 0.06,
+    shadowOffset: { x: taille * 0.015, y: taille * 0.03 },
+  };
+}
+
+/** Luminance relative (0 = noir, 1 = blanc) d'une couleur "#rrggbb". */
+function luminance(hex: string): number {
+  const trouve = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
+  if (!trouve) return 1;
+  const n = Number.parseInt(trouve[1], 16);
+  const r = (n >> 16) & 255;
+  const v = (n >> 8) & 255;
+  const b = n & 255;
+  return (0.2126 * r + 0.7152 * v + 0.0722 * b) / 255;
 }

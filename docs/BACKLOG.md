@@ -69,6 +69,7 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       [ ] Nettoyage tmp/apercu et apercu-extras uniquement apres accord de Thomas.
       E7 n est coche qu apres la recette. E6 (envoi du devis) reste a faire.
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
+- [ ] Configurateur : gravure en V a l apercu + finitions pour pierres claires (peinture noire, gravure sans peinture) - attend la confirmation de l atelier (Thomas)
 - [x] Fiche produit au design des maquettes (passe 1, image unique) - Claude - 27.10.2026
 - [ ] Fiche produit : 2 images de plus par modele (autre angle, gros plan) si Thomas les produit, puis vignettes - Thomas
 - [ ] Accueil : remplacer les 5 rendus IA (public/images/accueil/) par de vraies photos des realisations (hero sombre, gros plan matiere, gros plan gravure) - Thomas

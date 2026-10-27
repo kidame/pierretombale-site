@@ -52,6 +52,14 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 27.10.2026, Claude : CONFIGURATEUR, LISIBILITE DU TEXTE (demande de Thomas, version sure). Sur granit clair
+  (Viscount White, Jablanica...) la peinture blanche ou doree ne se voyait presque plus. rendu.ts : chaque
+  lettre recoit un contour fin dessine sous la peinture et une ombre courte vers le bas (`ombreDeLettre`,
+  valeurs en fraction de la taille de police ; fonce sous une couleur claire, clair sous une couleur foncee).
+  L apercu JPEG envoye au devis porte le meme effet. Finitions proposees INCHANGEES. Verifie au navigateur
+  (Douceur, Viscount White / Jablanica / Bengal, avant-apres), build, astro check, 62 tests. A VOIR plus tard
+  (version audacieuse) : vraie gravure en V et finitions pour pierres claires (peinture noire, gravure sans
+  peinture), seulement si l atelier les propose (question posee a Thomas).
 - 27.10.2026, Claude : FICHE PRODUIT AU DESIGN DES MAQUETTES (passe 1). FicheModele.astro reecrit (les 27
   fiches, deux familles) : fil d Ariane sans majuscules (Accueil cache sur telephone), titre serif tres grand,
   accroche, "Prix indicatif" + lien vers la page prix, image unique + "Voir en grand", tuiles carrees du granit
