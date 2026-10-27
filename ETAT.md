@@ -52,6 +52,18 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 27.10.2026, Claude : E6, ENVOI DU DEVIS ECRIT (pas encore allume). functions/api/devis.ts (Pages Functions),
+  src/lib/devis-serveur.ts (logique pure), /devis/modeles.json (catalogue au build), 15 tests ajoutes (77 au
+  total). Envoi Resend vers DEVIS_DESTINATAIRE, Reply-To famille, pieces jointes (fichiers, apercu, composition
+  JSON), accuse de reception court a la famille, reference PT-AAAAMMJJ-xxxx, robots -> 200 sans envoi,
+  Turnstile facultatif (echec = "[A VERIFIER]", sans accuse). devis.astro : envoi allume par la variable de
+  build PUBLIC_DEVIS_ENVOI=oui (par environnement), widget Turnstile si PUBLIC_TURNSTILE_SITE_KEY, reset du
+  jeton apres un echec. Aucun champ du contrat change. Verifie : build, astro check, tsc strict sur la
+  fonction, bundle esbuild sans dependance Node, simulation complete avec un faux Resend (JS, sans JS, robot,
+  champ manquant, cle absente, Turnstile manquant). Domaine Resend mail.pierretombale.ch : DNS publies et
+  verifies au dig (statut Resend "Pending" au moment du commit). INCIDENT : Thomas a colle une cle Resend
+  dans le chat ; non utilisee, revocation demandee. Prochaine etape : Thomas pose les variables Preview, relance
+  le deploiement, test reel sur main.pierretombale-site.pages.dev/devis/ ; puis variables Production.
 - 27.10.2026, Claude : MESSAGERIE ET ENVOI DU DEVIS (E6, preparation). Decisions de Thomas : envoi par Resend
   (plan gratuit, 3000/mois, 100/jour), domaine d envoi prevu `mail.pierretombale.ch` (region eu-west-1),
   expediteur `PierreTombale.ch <devis@mail.pierretombale.ch>`, Reply-To = la famille. Messagerie : Service Mail

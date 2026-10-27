@@ -321,10 +321,35 @@ pas) ; le JSON est là pour l'atelier et pour relire les positions ; un JSON ill
 autre `version` se transmet tel quel et se signale, sans refuser la demande. Les quatre lignes ne
 portent que les quatre premières lignes de la composition : le reste est dans les précisions.
 
-## Ce qui reste à faire en E6
+## E6 : ce qui est en place (27.10.2026)
 
-- Écrire `functions/api/devis.ts` (Cloudflare Pages Functions).
-- Variables d'environnement : adresse de destination, clé API Resend, clés Turnstile.
-- Passer `envoiActif` à `true` dans `src/config/devis.ts`.
-- Ajouter le widget Turnstile à l'emplacement commenté de `src/pages/devis.astro`.
-- Essayer les deux chemins : avec et sans JavaScript.
+- `functions/api/devis.ts` (Cloudflare Pages Functions) : lit la requête, contrôle Turnstile s'il est
+  configuré, envoie par Resend, répond en JSON (`fetch`) ou par redirection 303 (sans JavaScript,
+  reconnu par `Sec-Fetch-Mode: navigate`).
+- `src/lib/devis-serveur.ts` : toute la logique pure (champs obligatoires, robots, fichiers,
+  référence `PT-AAAAMMJJ-xxxx`, texte des courriels), testée par `tests/devis-serveur.test.ts`.
+- `/devis/modeles.json` (généré au build) : nom et adresse de chaque modèle, pour que le courriel
+  écrive « Douceur » et un lien plutôt que le slug.
+- Courriel aux associés : objet `Devis <référence> - <nom> - <localité>`, `Reply-To` = la famille,
+  recontact et signalements en tête, pièces jointes = fichiers de la famille, aperçu JPEG et
+  composition JSON du configurateur. Clé d'idempotence = la référence.
+- Accusé de réception à la famille : court, avec la référence, SANS reprendre ce qu'elle a écrit
+  (hors son nom), `Reply-To` = l'adresse des associés. Pas d'accusé pour une demande suspecte.
+- Turnstile échoué : la demande part quand même, objet préfixé `[A VERIFIER]`, sans accusé.
+- Limite par adresse IP (`429`) : pas encore en place (rien n'est stocké côté site).
+
+Variables Cloudflare (Pages > Settings > Variables and Secrets), **par environnement** (Preview et
+Production), jamais dans le dépôt :
+
+| Nom | Type | Rôle |
+| --- | --- | --- |
+| `RESEND_API_KEY` | secret | Clé Resend « Sending access », domaine `mail.pierretombale.ch` |
+| `DEVIS_DESTINATAIRE` | texte | L'adresse qui reçoit les demandes |
+| `DEVIS_EXPEDITEUR` | texte, facultatif | Défaut `PierreTombale.ch <devis@mail.pierretombale.ch>` |
+| `PUBLIC_DEVIS_ENVOI` | texte (build) | `oui` allume l'envoi dans la page ; absent = « bientôt disponible » |
+| `PUBLIC_TURNSTILE_SITE_KEY` | texte (build), facultatif | Affiche le widget Turnstile |
+| `TURNSTILE_SECRET` | secret, facultatif | Active le contrôle Turnstile côté fonction |
+
+Les variables `PUBLIC_` sont lues AU BUILD : après les avoir changées, relancer un déploiement.
+`envoiActif` reste `false` dans `src/config/devis.ts` : c'est `PUBLIC_DEVIS_ENVOI` qui allume l'envoi,
+environnement par environnement (la prévisualisation peut envoyer avant la production).

@@ -136,8 +136,11 @@ Cache navigateur : /_astro/* un an et immutable (noms avec empreinte) ;
 Pour remplacer immediatement une image, lui donner un nouveau nom et corriger sa reference.
 Une purge du CDN ne vide pas le cache deja present dans les navigateurs.
 
-E6 est hors mission : envoiActif reste false.
-Futur endpoint : functions/api/devis.ts a la RACINE du depot, pas dans dist.
+E6 (27.10.2026) : functions/api/devis.ts existe. L envoi s allume par environnement avec la
+variable de build PUBLIC_DEVIS_ENVOI = oui (liste complete des variables : docs/devis-contrat.md,
+section E6). AVANT un push main:live, verifier que les variables PRODUCTION sont posees ; sinon
+laisser PUBLIC_DEVIS_ENVOI absent en production (le formulaire dit alors "bientot disponible").
+Endpoint : functions/api/devis.ts a la RACINE du depot, pas dans dist.
 L'integration Git Pages compile les Functions sans copie manuelle.
 _headers ne s'applique pas aux reponses generees par Functions : definir leurs en-tetes
 dans leurs Response. Prerequis E6 : compte Resend, verification SPF/DKIM du domaine,

@@ -52,7 +52,9 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - [!] Test de /devis/ avec un proche age sur telephone
 
 ## Ensuite
-- [ ] E6 : fonction Cloudflare /api/devis + Resend (spec docs/devis-contrat.md)
+- [>] E6 : fonction Cloudflare /api/devis + Resend - Claude - code fait le 27.10.2026 (77 tests) ;
+      reste : variables Cloudflare (Preview puis Production), test reel sur la previsualisation,
+      Turnstile (facultatif), limite par IP (429) - Thomas pour les variables
 - [>] E7 : EN PRODUCTION le 26.10.2026 sur https://www.pierretombale.ch (Cloudflare Pages,
       branche live) - Codex + Thomas
       [x] .node-version 22, _headers, guide docs/MISE-EN-LIGNE.md, premiers push main + live.

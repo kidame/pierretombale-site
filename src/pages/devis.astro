@@ -132,10 +132,18 @@ const filAriane = breadcrumbSchema(
   origin,
 );
 
+/* Cle de site Turnstile (publique, mais lue dans une variable Cloudflare :
+   aucune cle n entre dans le depot). Sans elle, pas de widget, et la
+   fonction ne controle pas Turnstile (TURNSTILE_SECRET absent). */
+const cleTurnstile: string = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
+
 /* Tout ce que le script a besoin de savoir, pris dans src/config/devis.ts :
    aucune de ces valeurs n est ecrite deux fois. */
 const reglages = {
-  envoiActif: devisConfig.envoiActif,
+  /* L envoi s allume par environnement Cloudflare (variable de build
+     PUBLIC_DEVIS_ENVOI = oui) : la previsualisation peut envoyer pendant que
+     la production attend ses propres variables. */
+  envoiActif: devisConfig.envoiActif || import.meta.env.PUBLIC_DEVIS_ENVOI === "oui",
   endpoint: devisConfig.endpoint,
   nombreMaxFichiers: fichiersDevis.nombreMax,
   tailleTotaleMaxOctets: fichiersDevis.tailleTotaleMaxOctets,
@@ -858,6 +866,18 @@ const classeTitreEtape = "label etape-titre";
               ici, juste avant le bouton. Sa cle de site, meme publique, sera
               lue dans une variable d environnement Cloudflare : aucune cle,
               publique ou secrete, n entre dans le depot. */}
+          {
+            cleTurnstile && (
+              <div
+                class="cf-turnstile"
+                style="margin-top: 2.5rem"
+                data-sitekey={cleTurnstile}
+                data-language="fr"
+                data-theme="light"
+              />
+            )
+          }
+          {cleTurnstile && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />}
 
           <div class="etape-nav" data-etape-nav hidden>
             <button type="button" class="btn btn-outline" data-retour>Retour</button>
@@ -2276,6 +2296,9 @@ const classeTitreEtape = "label etape-titre";
           annonce(reglages.messages.erreurReseau);
         }
 
+        /* Un jeton Turnstile ne sert qu une fois : on en redemande un avant
+           un nouvel essai. */
+        if (window.turnstile) window.turnstile.reset();
         bouton.disabled = false;
       }
 
