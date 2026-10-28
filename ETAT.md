@@ -52,6 +52,10 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026, Claude : ANALYSE DU CONFIGURATEUR selon les 8 maquettes de Thomas (4 etapes, ordinateur + mobile).
+  Aucun code touche. Ecarts et limites dans docs/DESIGN.md ("Configurateur"). Captures de l etat actuel 1280/390.
+  Prochaine etape : choix de Thomas (parcours en etapes ou page longue, prix au recapitulatif, pied compact,
+  "Agrandir l apercu" mobile), puis passes successives.
 - 27-28.10.2026, Claude : E6 EN PRODUCTION. Sur demande expresse de Thomas, push main:live (74f568d -> b4daadb) :
   fiches produits, images de l accueil, contour des lettres du configurateur et envoi du devis. Variables
   Production posees par Thomas (RESEND_API_KEY secret, DEVIS_DESTINATAIRE, PUBLIC_DEVIS_ENVOI ; valeur "Oui"

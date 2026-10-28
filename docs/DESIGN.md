@@ -81,3 +81,23 @@ Ecarts maquette / fiche actuelle :
   (gris moucheté). A trancher : quelle image est la reference.
 Contraintes a garder : configurateur et champs du devis intacts, canoniques www, JSON-LD Product et fil d Ariane,
 CSS de page (pas de nouvelle classe Tailwind), pas de JS decoratif, cibles tactiles 48 px.
+
+## Configurateur : maquettes du 28.10.2026 (ANALYSE, pas encore appliquee)
+8 maquettes (4 ordinateur, 4 mobile) : etapes 01 Matiere, 02 Inscription, 03 Motifs, 04 Votre devis.
+Aujourd hui : une seule longue page, les 4 sections visibles l une sous l autre, apercu a gauche sur fond clair.
+Ecarts :
+- Parcours en ETAPES : barre 01-04, une etape a la fois, Retour / Continuer (aujourd hui tout est visible).
+- Ecran partage : panneau sombre a gauche (nom du modele en grand, apercu, legende), panneau clair a droite.
+- Matiere : tuiles rectangulaires avec nom dessous, 3 colonnes (2 sur mobile), "Votre choix : Bengal".
+- Inscription : cartes illustrees pour la disposition, champs en 2 colonnes, phrase sur une ligne, finitions
+  en tuiles "Aa" sur pierre avec coche, lien "Placer le texte moi-meme" (mode libre garde).
+- Motifs : onglets de familles, grandes cartes avec coche, "Un motif a vous" en ligne, "Sur votre stele" +
+  Retirer, "Continuer sans motif". Mobile : "Agrandir l apercu" pour placer le motif (nouveau).
+- Etape 4 = recapitulatif (matiere, inscription, motif, chacun avec "Modifier"), encadre "Avant toute gravure",
+  bouton "Poursuivre vers le devis". La maquette ne montre pas le prix indicatif.
+- Bas de page : bandeau sombre "Votre projet est conserve sur cet appareil | Devis gratuit" au lieu du pied complet.
+- Mobile : apercu sombre en haut, repliable ; barre d action fixe Retour / Continuer + "Etape suivante : ...".
+- "Retour au modele" remplace le fil d Ariane (page en noindex).
+Limites : nos visuels sont des rendus sur fond gris (et la calibration depend de ces images) : sur le panneau
+sombre, la stele reste dans un cadre clair. Le menu de la maquette (Personnalisation) n est pas applique.
+
