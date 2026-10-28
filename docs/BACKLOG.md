@@ -72,7 +72,10 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
       [ ] Guides FAQ (analyses/2026-10-28-faq-seo-recherches.md), ordre : cineraire
           (columbarium/cavurne/jardin du souvenir), epitaphe, FAQ prix, delais et demarches,
-          entretien ; option audacieuse : pages cimetieres NE (Beauregard) - choix Thomas
+          entretien + pages cimetieres NE (Beauregard...) : option audacieuse CHOISIE par Thomas
+      [x] Etape 1 : releve des reglements -> docs/REGLEMENTS-CIMETIERES-NE.md - Claude - 28.10.2026
+      [ ] Etape 2 : redaction guides par Codex (kumo-run codex), a partir du releve uniquement
+      [ ] Manques : gabarits Beauregard (Office des cimetieres), tarifs communaux, loi cantonale a jour
 - [x] Configurateur au design des maquettes (4 etapes, ecran partage, mobile) - Claude - 28.10.2026,
       sur main (previsualisation), pas encore sur live
 - [ ] Configurateur : gravure en V a l apercu + finitions pour pierres claires (peinture noire, gravure sans peinture) - attend la confirmation de l atelier (Thomas)

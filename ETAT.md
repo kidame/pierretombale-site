@@ -52,6 +52,10 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026, Claude : etape 1 FAQ/guides faite. Reglements officiels releves (canton, Neuchatel ville
+  2023, La Chaux-de-Fonds, Le Locle, Boudry, Val-de-Travers) : docs/REGLEMENTS-CIMETIERES-NE.md.
+  Thomas a choisi l option audacieuse (guides + pages cimetieres) et veut Codex pour la redaction.
+  Prochaine etape : brief Codex (URLs, gabarit de page) a valider par Thomas, puis kumo-run codex.
 - 28.10.2026, Claude : analyse SEO des futures pages FAQ/guides (DataForSEO, CH et canton NE) :
   analyses/2026-10-28-faq-seo-recherches.md. Aucun code modifie. Decision attendue de Thomas :
   version securisee (5 guides) ou audacieuse (+ pages cimetieres NE). Ligne ajoutee au BACKLOG.
