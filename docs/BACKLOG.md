@@ -70,7 +70,7 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       [ ] Nettoyage tmp/apercu et apercu-extras uniquement apres accord de Thomas.
       E7 n est coche qu apres la recette. E6 (envoi du devis) fait le 27.10.2026.
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
-      [ ] Guides FAQ (analyses/2026-10-28-faq-seo-recherches.md), ordre : cineraire
+      [>] Guides FAQ (analyses/2026-10-28-faq-seo-recherches.md), ordre : cineraire
           (columbarium/cavurne/jardin du souvenir), epitaphe, FAQ prix, delais et demarches,
           entretien + pages cimetieres NE (Beauregard...) : option audacieuse CHOISIE par Thomas
       [x] Etape 1 : releve des reglements -> docs/REGLEMENTS-CIMETIERES-NE.md - Claude - 28.10.2026
@@ -78,7 +78,12 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
           (docs/REGLEMENTS-CIMETIERES-NE.md section 0) - decision Thomas + associes
       [ ] Demarches : marbrier reference Beauregard (plaques de niches), entreprise designee
           VdT (plaques jardin du souvenir et niches), format dalle "pas japonais" - Thomas
-      [ ] Etape 2 : lot 1 guides par Codex (docs/BRIEF-GUIDES-LOT1.md) - lance le 28.10.2026
+      [x] Etape 2 : lot 1 des guides ECRIT (docs/BRIEF-GUIDES-LOT1.md) - Claude - 28.10.2026.
+          /guides/ (index), /guides/quand-poser-une-pierre-tombale/,
+          /guides/columbarium-cavurne-jardin-du-souvenir/, /guides/epitaphe/ ; liste partagee
+          src/data/guides.ts, liens officiels src/data/cimetieres-ne.ts, lien au pied de page.
+          Build 64 pages et astro check verts ; RESTE : lancer `npm test` (pas executable dans la
+          session), relire au navigateur, puis pousser sur main.
       [ ] Etape 3 : lot 2 pages cimetieres + page dimensions (docs/DIMENSIONS-MONUMENTS.md)
       [ ] Manques : gabarits Beauregard (Office des cimetieres), tarifs communaux, loi cantonale a jour
 - [x] Configurateur au design des maquettes (4 etapes, ecran partage, mobile) - Claude - 28.10.2026,

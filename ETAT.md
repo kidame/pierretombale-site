@@ -52,6 +52,28 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026, Claude : LOT 1 DES GUIDES SEO ECRIT (docs/BRIEF-GUIDES-LOT1.md execute par Claude,
+  pas par Codex). Quatre pages : /guides/ (index), /guides/quand-poser-une-pierre-tombale/,
+  /guides/columbarium-cavurne-jardin-du-souvenir/, /guides/epitaphe/. SOURCES UNIQUES :
+  docs/REGLEMENTS-CIMETIERES-NE.md et docs/DIMENSIONS-MONUMENTS.md ; chaque regle porte sa commune,
+  son article et le lien officiel ; mention "verifiees le 28 octobre 2026" sur chaque page ; ce qui
+  est note "non verifie" dans le releve n est pas publie (ex. la plaque du jardin du souvenir VdT).
+  Partage : src/data/guides.ts (liste + mention), src/data/cimetieres-ne.ts (9 documents officiels),
+  src/components/MentionVerification.astro ; lien "Guides" ajoute au PIED DE PAGE
+  (src/config/site.ts, rubrique Informations), pas au menu principal. Un JSON-LD FAQPage par guide
+  (meme texte affiche et structure, comme faq.astro) + BreadcrumbList ; 1 h1 par page, title et
+  description uniques, aucune image, aucun JS. Les 30 epitaphes sont ECRITES POUR LE SITE (aucune
+  citation d auteur, de chanson ni de poeme). Aucun prix de l entreprise : seuls des tarifs
+  COMMUNAUX, dates et sources (arrete Ville de Neuchatel du 15.11.2021, reglement du Locle) ;
+  la page dit que le nouveau reglement des taxes du 17.11.2025 reste a controler. Jamais affirme
+  qu un modele du catalogue respecte un gabarit : "nous adaptons le monument au reglement et nous
+  verifions avant la pose". Verifie : npm run build 64 pages 0 erreur, npx astro check 0 erreur
+  (2 hints anciens), un seul h1 par page, 4 URL dans le sitemap, canoniques www, pas de tiret long
+  ni d apostrophe courbe dans le HTML produit, pas de mot interdit (fabrication).
+  NON FAIT : `npm test` N A PAS PU ETRE LANCE dans cette session (la commande n est pas dans
+  .claude/settings.json et aucune approbation n est possible en mode non interactif). Le nouveau
+  tests/guides.test.ts est ecrit mais NON EXECUTE : lancer `npm test` avant de pousser.
+  Pas de push (consigne de Thomas). Un commit par page, comme demande.
 - 28.10.2026, Claude : docs/DIMENSIONS-MONUMENTS.md (regles par commune, a completer) et
   docs/BRIEF-GUIDES-LOT1.md. Thomas : fabrication possible a l etranger, POSE faite par nous en
   Suisse. Lot 1 des guides confie a Codex via kumo-run ; Claude relit, verifie et pousse ensuite.
@@ -963,6 +985,10 @@ export vers le devis), 62 tests (`npm test`), migration de l'apercu Netlify vers
 dans l ordre, est dans `docs/BACKLOG.md` ; le configurateur se modifie avec `docs/CONFIGURATEUR.md`.
 
 DEBLOQUE, A FAIRE SANS ATTENDRE PERSONNE (au choix de Thomas) :
+- GUIDES, SUITE IMMEDIATE : lancer `npm test` (non lance le 28.10.2026, voir la derniere session),
+  relire les 4 pages au navigateur en 1280 et 390, puis push sur main pour la previsualisation.
+- Guides lot 2 : pages cimetieres (Beauregard d abord) et page des dimensions autorisees, a partir
+  de docs/DIMENSIONS-MONUMENTS.md ; memes regles que le lot 1 (commune, article, lien, date).
 - Design : appliquer la direction des maquettes a tout le site (seul le configurateur en profite).
 - SEO : pages par gamme, FAQ enrichie, maillage interne.
 - Fiches : reporter les cotes reelles (docs/references/geometrie-fournisseur.json) dans `dimensions:`.
