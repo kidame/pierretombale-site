@@ -13,7 +13,13 @@ Aperçu de travail : le dernier déploiement de `main` sur Cloudflare Pages (voi
 
 ## 1. Ce que voit la famille
 
-1. **La matière** : 10 pastilles, la stèle change de pierre.
+Depuis le 28.10.2026 (design des maquettes) : un **parcours en quatre étapes**, une seule
+affichée à la fois (barre 01-04, boutons Retour / Continuer), l'aperçu sur fond sombre à gauche
+(en haut sur téléphone, repliable, avec un plein écran pour placer un motif au doigt), les choix
+à droite. Sans JavaScript, les quatre étapes sont visibles à la suite et les boutons sont des
+ancres. La page n'a plus de pied de page complet : un bandeau sombre le remplace.
+
+1. **La matière** : 10 tuiles, la stèle change de pierre.
 2. **L'inscription**, en deux modes :
    - **guidé** (au chargement) : mise en page (Classique, Dédicace en haut, Deux personnes),
      prénom, nom, nom de jeune fille, naissance, décès, une phrase (avec des idées), police,
@@ -24,8 +30,9 @@ Aperçu de travail : le dernier déploiement de `main` sur Cloudflare Pages (voi
      (les réglages à la main sont alors remplacés).
 3. **Les motifs** : 10 dessins en 4 familles, posés sous le texte, déplaçables et
    redimensionnables partout sur la stèle ; ou « Un motif à vous » (description + photo).
-4. **Le devis** : « Demander un devis avec cette stèle » emporte la composition vers `/devis/`
-   (champs pré-remplis, aperçu, détail en cm dans les précisions). L'envoi réel attend E6.
+4. **Votre devis** : un récapitulatif (matière, inscription, motif, chacun avec « Modifier »),
+   le prix indicatif, puis « Poursuivre vers le devis » emporte la composition vers `/devis/`
+   (champs pré-remplis, aperçu, détail en cm dans les précisions). L'envoi est en place (E6).
 
 Tout est gardé sur l'appareil (brouillon, 90 jours) et repris à la visite suivante.
 
@@ -55,6 +62,7 @@ dans `src/scripts/configurateur/`. Corriger une donnée suffit à corriger l'ape
 | `index.ts` | Le chef d'orchestre (350 lignes) : lit le JSON de la page, crée l'état, branche la matière, appelle les quatre panneaux ci-dessous, charge Konva, envoie vers le devis | oui |
 | `panneau-zones.ts` | Le mode libre : onglets de zones, texte, police, taille, finition, recentrer, message de dépassement | oui |
 | `panneau-motifs.ts` | Les contrôles de l'étape 3 : familles, liste « Sur votre stèle », motif sur demande | oui |
+| `etapes.ts` | Le parcours : barre 01-04, une étape à la fois, Retour / Continuer, récapitulatif de l'étape 4, aperçu repliable et plein écran du téléphone. Étape en cours gardée en `sessionStorage` | oui |
 | `reprise.ts` | Le brouillon sur la page : reprise, message, « Tout effacer », sauvegarde, avertissement | oui |
 | `etat.ts` | Le magasin : l'état (matière, zones, motifs), `maj`, `abonner`, et `sceneEnCm()` pour l'export | non |
 | `formulaire.ts` | Le formulaire de l'inscription guidée, les deux modes, `restaure()` pour le brouillon | oui |

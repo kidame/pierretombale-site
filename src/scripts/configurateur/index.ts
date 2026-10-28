@@ -31,6 +31,7 @@ import { brancheInscription } from "./formulaire";
 import { branchePanneauMotifs } from "./panneau-motifs";
 import { branchePanneauZones } from "./panneau-zones";
 import { brancheBrouillon } from "./reprise";
+import { brancheEtapes } from "./etapes";
 import { creeMesureur } from "./mesure";
 import { attendPolices } from "./polices";
 import { creeRendu } from "./rendu";
@@ -48,11 +49,11 @@ export interface DonneesConfigurateur {
   /** Le modele de la page, pour le devis. */
   modele: { modeleId: string; slug: string; nom: string };
   /** Chemin du visuel 1200 px et nom de chaque matiere. */
-  matieres: Array<{ id: string; nom: string; image: string }>;
+  matieres: Array<{ id: string; nom: string; image: string; vignette: string }>;
   /** Pile CSS par police, dans l'ordre de `personnalisation.ts`. */
-  polices: Array<{ id: string; famille: string; capitale: number }>;
+  polices: Array<{ id: string; nom: string; famille: string; capitale: number }>;
   /** Couleur d'apercu et phrase d'aide par finition. */
-  finitions: Array<{ id: string; couleur: string; aide: string }>;
+  finitions: Array<{ id: string; nom: string; couleur: string; aide: string }>;
   /** La bibliotheque de motifs, geometrie des dessins comprise. */
   motifs: MotifCatalogue[];
   defauts: {
@@ -107,7 +108,7 @@ export async function demarre(): Promise<void> {
 
   const statique = document.querySelector<HTMLElement>("[data-apercu-statique]");
   const imageStatique = document.querySelector<HTMLImageElement>("[data-apercu-image]");
-  const nomMatiere = document.querySelector<HTMLElement>("[data-matiere-nom]");
+  const nomsMatiere = [...document.querySelectorAll<HTMLElement>("[data-matiere-nom]")];
 
   const boutonsMatiere = [...document.querySelectorAll<HTMLButtonElement>("[data-matiere]")];
 
@@ -124,7 +125,7 @@ export async function demarre(): Promise<void> {
       if (!matiere) return;
 
       allume(boutonsMatiere, bouton);
-      if (nomMatiere && bouton.dataset.nom) nomMatiere.textContent = bouton.dataset.nom;
+      if (bouton.dataset.nom) for (const nom of nomsMatiere) nom.textContent = bouton.dataset.nom;
 
       /* L'apercu statique est masque des que le canvas tourne, mais on le garde
          a jour : si Konva n'a pas pu demarrer, la page reste juste. */
@@ -196,6 +197,22 @@ export async function demarre(): Promise<void> {
     catalogue: catalogueMotifs,
     defautsZone,
   }).planifie;
+
+  /* ------------------------------------------- Les etapes (28.10.2026) */
+
+  /* La barre 01-04, Retour / Continuer, le recapitulatif, l'apercu repliable
+     du telephone : `etapes.ts`. Avant le canvas : la navigation marche meme
+     si Konva tarde ou echoue. */
+  brancheEtapes({
+    etat,
+    modeleId: donnees.calibration.modeleId,
+    nomMatiere: (id) => nomsParMatiere.get(id) ?? id,
+    vignetteMatiere: (id) => donnees.matieres.find((m) => m.id === id)?.vignette ?? "",
+    nomPolice: (id) => donnees.polices.find((p) => p.id === id)?.nom ?? id,
+    nomFinition: (id) => donnees.finitions.find((f) => f.id === id)?.nom ?? id,
+    nomMotif: (id) => catalogueMotifs.get(id)?.nom ?? id,
+    fichierMotif: (id) => catalogueMotifs.get(id)?.fichier ?? "",
+  });
 
   /* ------------------------------------------------------------ Le rendu */
 

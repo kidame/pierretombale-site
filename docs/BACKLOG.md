@@ -70,6 +70,8 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       [ ] Nettoyage tmp/apercu et apercu-extras uniquement apres accord de Thomas.
       E7 n est coche qu apres la recette. E6 (envoi du devis) fait le 27.10.2026.
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
+- [x] Configurateur au design des maquettes (4 etapes, ecran partage, mobile) - Claude - 28.10.2026,
+      sur main (previsualisation), pas encore sur live
 - [ ] Configurateur : gravure en V a l apercu + finitions pour pierres claires (peinture noire, gravure sans peinture) - attend la confirmation de l atelier (Thomas)
 - [x] Fiche produit au design des maquettes (passe 1, image unique) - Claude - 27.10.2026
 - [ ] Fiche produit : 2 images de plus par modele (autre angle, gros plan) si Thomas les produit, puis vignettes - Thomas

@@ -52,6 +52,25 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026, Claude : CONFIGURATEUR AU DESIGN DES MAQUETTES (version audacieuse choisie par Thomas).
+  src/pages/personnaliser/[slug].astro reecrit (22 pages) : parcours en 4 etapes avec barre 01-04 (collee en
+  haut sur ordinateur), ecran partage (apercu sur fond `.nuit` a gauche avec "Retour au modele", nom du modele
+  en grand, legende ; choix a droite), tuiles de granit avec coche + "Votre choix", cartes illustrees de
+  disposition (3 SVG inline), champs en 2 colonnes, phrase sur une ligne, finitions "Aa" sur pierre, cartes de
+  motifs + "Un motif a vous" en ligne + "Continuer sans motif", etape 4 = recapitulatif (matiere, inscription,
+  motif, Modifier) + prix indicatif + encadre "Avant toute gravure" + "Poursuivre vers le devis" ; bandeau
+  sombre a la place du pied (includeFooter=false). Telephone : apercu en haut colle (26vh), repliable, barre
+  Retour/Continuer collee en bas avec "Etape suivante", plein ecran "Agrandissez l apercu" pour placer le motif
+  (Echap ferme). Nouveau module src/scripts/configurateur/etapes.ts (ne touche ni etat ni canvas ; etape gardee
+  en sessionStorage par modele ; ancres #etape-N ; sans JS tout reste visible). index.ts : met a jour tous les
+  [data-matiere-nom], branche etapes.ts avant Konva ; donnees JSON enrichies des noms (polices, finitions) et
+  vignettes. Tous les data-* des autres scripts conserves, aucun champ du devis change. SEO inchange : noindex,
+  follow, canonique vers la fiche, hors sitemap, 1 h1 (nom du modele). Verifie au navigateur (douceur) en 1280
+  et 390 : parcours complet au clic, recapitulatif juste, replier/agrandir, rechargement = meme etape + brouillon,
+  export vers /devis/ (scene + apercu). Build 0 erreur, 77 tests. Poids : css page 11,1 Ko gz (etait 9,2).
+  LIMITES : les rendus restent sur fond gris dans un cadre clair (pas de scene sombre) ; la coche des cartes de
+  motifs ne s affiche que pour "Un motif a vous" (les motifs poses sont listes sous "Sur votre stele").
+  Pousse sur main (previsualisation), PAS sur live.
 - 28.10.2026, Claude : ANALYSE DU CONFIGURATEUR selon les 8 maquettes de Thomas (4 etapes, ordinateur + mobile).
   Aucun code touche. Ecarts et limites dans docs/DESIGN.md ("Configurateur"). Captures de l etat actuel 1280/390.
   Prochaine etape : choix de Thomas (parcours en etapes ou page longue, prix au recapitulatif, pied compact,

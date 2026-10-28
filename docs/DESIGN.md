@@ -82,7 +82,12 @@ Ecarts maquette / fiche actuelle :
 Contraintes a garder : configurateur et champs du devis intacts, canoniques www, JSON-LD Product et fil d Ariane,
 CSS de page (pas de nouvelle classe Tailwind), pas de JS decoratif, cibles tactiles 48 px.
 
-## Configurateur : maquettes du 28.10.2026 (ANALYSE, pas encore appliquee)
+## Configurateur : maquettes du 28.10.2026 (APPLIQUEES le 28.10.2026, version audacieuse)
+Fait : parcours en 4 etapes (etapes.ts), ecran partage, tuiles, cartes de disposition, finitions "Aa",
+cartes de motifs, recapitulatif avec Modifier, prix indicatif garde, bandeau sombre a la place du pied,
+"Retour au modele", mobile : apercu repliable, barre Retour/Continuer collee en bas, plein ecran pour le motif.
+Non fait (decision) : le menu "Personnalisation" ; la stele sur fond noir (nos rendus sont sur fond gris).
+Analyse d origine :
 8 maquettes (4 ordinateur, 4 mobile) : etapes 01 Matiere, 02 Inscription, 03 Motifs, 04 Votre devis.
 Aujourd hui : une seule longue page, les 4 sections visibles l une sous l autre, apercu a gauche sur fond clair.
 Ecarts :
