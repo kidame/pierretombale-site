@@ -366,12 +366,11 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
             <a href="/nos-granits/" class="cfg-lien">Voir toutes nos matières</a>
           </p>
 
-          <div class="cfg-choix-ligne">
-            <span class="cfg-choix-label">Votre choix :</span>
-            <span class="cfg-choix-valeur" data-matiere-nom>{visuel.nomMatiere}</span>
-          </div>
-
-          <div class="cfg-nav">
+          <div class="cfg-nav cfg-nav-choix">
+            <div class="cfg-choix-ligne">
+              <span class="cfg-choix-label">Votre choix :</span>
+              <span class="cfg-choix-valeur" data-matiere-nom>{visuel.nomMatiere}</span>
+            </div>
             <a href="#etape-2" class="btn btn-primary cfg-continuer" data-etape-vers="2">
               <span class="cfg-continuer-court">Continuer</span>
               <span class="cfg-continuer-long">Continuer vers l'inscription</span>
@@ -1087,6 +1086,7 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
       display: none;
     }
 
+
     .cfg-barre-item.est-courante .cfg-barre-lien {
       border-bottom-color: var(--ink);
       color: var(--ink);
@@ -1128,9 +1128,16 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
     }
 
     @media (min-width: 64rem) {
+      .cfg {
+        --cfg-bandeau: 4.25rem;
+      }
+
+      /* VUE APPLICATION (maquette) : barre + ecran + bandeau = une fenetre.
+         L en-tete du site defile au-dessus ; des qu il est passe, tout tient. */
       .cfg-ecran {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        align-items: start;
+        height: calc(100vh - var(--cfg-entete) - var(--cfg-bandeau));
+        min-height: 34rem;
       }
     }
 
@@ -1311,26 +1318,38 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
 
     @media (min-width: 64rem) {
       .cfg-apercu {
-        min-height: calc(100vh - var(--cfg-entete));
-        padding-bottom: 1.5rem;
+        position: static;
+        height: 100%;
+        min-height: 0;
+        overflow: hidden;
+        padding-bottom: 1rem;
       }
 
       .cfg-retour-modele {
-        margin: 1rem 0 0 0.5rem;
+        margin: 0.75rem 0 0 0.5rem;
       }
 
       .cfg-apercu-corps {
         justify-content: center;
-        padding: 1rem clamp(1.5rem, 4vw, 4rem) 2rem;
+        min-height: 0;
+        padding: 0.5rem clamp(1.5rem, 4vw, 4rem) 1rem;
       }
 
       .cfg-apercu-entete {
         display: block;
       }
 
+      /* La stele prend la hauteur qui reste : fenetre moins l en-tete, le
+         bandeau, le titre et la legende (environ 28 rem). */
       .cfg-cadre {
-        max-width: min(100%, calc(52vh * var(--cfg-ratio)));
-        margin-top: 1.5rem;
+        max-width: min(100%, calc((100vh - 28rem) * var(--cfg-ratio)));
+        margin-top: 1.25rem;
+      }
+
+      .cfg-panneau {
+        height: 100%;
+        overflow-y: auto;
+        overscroll-behavior: contain;
       }
 
       .cfg-mention {
@@ -1349,7 +1368,7 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
 
     @media (min-width: 64rem) {
       .cfg-panneau {
-        padding: 2.5rem clamp(2rem, 4.5vw, 4.5rem) 3rem;
+        padding: 2rem clamp(2rem, 4.5vw, 4.5rem) 0;
       }
     }
 
@@ -1554,14 +1573,13 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
     }
 
     .cfg-choix-ligne {
+      grid-area: choix;
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
       gap: 0.5rem 0.75rem;
-      margin-top: 1.5rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--line);
     }
+
 
     .cfg-choix-label {
       font-family: var(--font-serif);
@@ -2494,6 +2512,23 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
       }
     }
 
+    .cfg-nav-choix {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        "choix"
+        "continuer"
+        "note";
+    }
+
+    @media (min-width: 64rem) {
+      .cfg-nav-choix {
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-areas:
+          "choix continuer"
+          "note note";
+      }
+    }
+
     .cfg-nav-note {
       grid-area: note;
       font-size: 0.875rem;
@@ -2536,7 +2571,7 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
         display: none;
       }
 
-      .cfg-nav:not(:has(.cfg-retour)) {
+      .cfg-nav:not(:has(.cfg-retour)):not(.cfg-nav-choix) {
         grid-template-columns: minmax(0, 1fr);
         grid-template-areas:
           "continuer"
@@ -2568,7 +2603,12 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
 
     @media (min-width: 64rem) {
       .cfg-nav {
+        position: sticky;
+        bottom: 0;
+        z-index: 2;
         grid-template-columns: auto minmax(0, 1fr);
+        padding-bottom: 1.25rem;
+        background: var(--canvas);
       }
 
       .cfg-continuer {
@@ -2581,7 +2621,7 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
         text-align: right;
       }
 
-      .cfg-nav:not(:has(.cfg-retour)) .cfg-continuer {
+      .cfg-nav:not(:has(.cfg-retour)):not(.cfg-nav-choix) .cfg-continuer {
         grid-column: 1 / -1;
       }
     }
@@ -2620,7 +2660,7 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
       flex-wrap: wrap;
       align-items: center;
       gap: 0.75rem 2rem;
-      padding: 1.25rem var(--gutter);
+      padding: 1rem var(--gutter);
       background: var(--canvas);
       color: var(--ink);
     }
@@ -2656,6 +2696,14 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--muted);
+    }
+
+    @media (min-width: 64rem) {
+      .cfg-bandeau {
+        height: var(--cfg-bandeau);
+        flex-wrap: nowrap;
+        padding-block: 0;
+      }
     }
 
     @media (max-width: 39.999rem) {

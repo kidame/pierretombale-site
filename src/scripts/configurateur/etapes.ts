@@ -72,12 +72,21 @@ export function brancheEtapes(options: OptionsEtapes): Etapes {
 
     const section = sections[numero - 1];
     if (defile) {
-      /* Sur telephone, le panneau des choix est sous l'apercu : on y amene la
-         famille. Sur ordinateur, l'ecran est deja la ; on remonte seulement
-         si le haut de l'etape est sorti de la fenetre. */
-      const haut = section.getBoundingClientRect().top;
-      if (window.matchMedia(MOBILE).matches || haut < 0 || haut > window.innerHeight * 0.5) {
+      if (window.matchMedia(MOBILE).matches) {
+        /* Telephone : le panneau des choix est sous l'apercu, on y amene la
+           famille. */
         section.scrollIntoView({ block: "start", behavior: "smooth" });
+      } else {
+        /* Ordinateur : la vue application. La barre vient en haut de la
+           fenetre (l'en-tete du site passe au-dessus), et le panneau des
+           choix, qui defile seul, repart du haut. */
+        const nav = barre[0]?.closest("nav");
+        if (nav) {
+          const haut = nav.getBoundingClientRect().top + window.scrollY;
+          if (Math.abs(window.scrollY - haut) > 2) window.scrollTo({ top: haut, behavior: "smooth" });
+        }
+        const panneau = section.parentElement;
+        if (panneau) panneau.scrollTo({ top: 0, behavior: "smooth" });
       }
     }
     if (focus) {

@@ -52,6 +52,14 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026, Claude : configurateur en "vue application" sur ordinateur (>= 1024 px), suite a la photo de
+  l ecran de Thomas (la page ne tenait pas dans la fenetre comme la maquette). Barre 01-04 collee en haut,
+  ecran = hauteur de la fenetre (moins barre et bandeau), apercu sans defilement avec stele dimensionnee par
+  la hauteur disponible, panneau de droite qui defile seul avec Retour/Continuer colle en bas, bandeau sombre
+  toujours en bas ; "Votre choix : matiere" a gauche du bouton a l etape 1 ; traits entre les etapes retires.
+  Telephone inchange. Verifie au navigateur en 1920x1080, 1536x1024, 1280x800 et 1024x768 : bas du bandeau =
+  bas de la fenetre partout. Reste : l en-tete du site est visible au chargement au-dessus de la barre ; un
+  defilement (ou Continuer) le fait sortir et tout tient. Build 0 erreur, 77 tests.
 - 28.10.2026, Claude : configurateur, fidelite aux maquettes verifiee en 1536x1024 (taille des maquettes), 1280,
   1024 paysage et 820 portrait (= mise en page telephone). Ajuste : tuiles 7:3 + "Selectionne", boutons
   "Continuer vers l inscription / les motifs / le recapitulatif" sur ordinateur, "Besoin d aide ?" (FAQ),
