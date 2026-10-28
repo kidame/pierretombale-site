@@ -1,0 +1,375 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import MentionVerification from "@/components/MentionVerification.astro";
+import { pageTitle } from "@/config/site";
+import { getCalibration } from "@/data/calibrations";
+import { SOURCES, type SourceId } from "@/data/cimetieres-ne";
+import { GUIDES_URL, autresGuides, guideParSlug, guideUrl } from "@/data/guides";
+import { FAMILLE_LABELS, familleUrl, getProductsByFamille } from "@/data/products";
+import { breadcrumbSchema } from "@/data/seo";
+
+/* Guide "epitaphe".
+   Les regles citees viennent de docs/REGLEMENTS-CIMETIERES-NE.md et
+   docs/DIMENSIONS-MONUMENTS.md (releve du 28.10.2026), avec commune et
+   article. Le reste de la page est du conseil de metier, sans chiffre
+   invente.
+   LES TRENTE EXEMPLES SONT ECRITS POUR CE SITE. Ne jamais ajouter ici une
+   citation d auteur, de chanson ou de poeme : ces textes sont proteges et les
+   recopier exposerait le site et les familles. */
+
+const origin = Astro.site ?? new URL(Astro.url.origin);
+const guide = guideParSlug("epitaphe");
+const liens = autresGuides(guide.slug);
+
+/* Lien vers le configurateur : le premier modele funeraire calibre, pour
+   qu une calibration retiree ne laisse pas un lien mort. */
+const produitsFuneraires = await getProductsByFamille("monument");
+const modeleCalibre = produitsFuneraires.find((produit) => getCalibration(produit.modeleId) !== undefined);
+const lienConfigurateur = modeleCalibre ? `/personnaliser/${modeleCalibre.slug}/` : familleUrl("monument");
+
+interface Serie {
+  titre: string;
+  chapo: string;
+  textes: string[];
+}
+
+/* Trente phrases originales, cinq par famille de ton. Elles sont volontairement
+   courtes : sur une stele, chaque mot prend de la place et de la hauteur de
+   lettre. */
+const series: Serie[] = [
+  {
+    titre: "Sobres",
+    chapo: "Quand la famille veut peu de mots, et rien qui dépasse.",
+    textes: [
+      "Ta place reste la tienne.",
+      "Une vie simple et droite.",
+      "Le temps passe, l'affection demeure.",
+      "Merci, pour chaque jour.",
+      "Tu nous manques, c'est tout dire.",
+    ],
+  },
+  {
+    titre: "Croyants",
+    chapo: "Pour une sépulture qui dit une foi, sans long discours.",
+    textes: [
+      "Dans la paix de Dieu.",
+      "Que la lumière t'accompagne.",
+      "Confiée à plus grand que nous.",
+      "Veille sur nous d'où tu es.",
+      "Au revoir, et à un jour.",
+    ],
+  },
+  {
+    titre: "Nature et grand air",
+    chapo: "Pour celles et ceux dont la vie se passait dehors.",
+    textes: [
+      "Le lac, les crêtes, et toi.",
+      "Rendu au vent du Jura.",
+      "Il aimait partir tôt le matin.",
+      "Elle a semé, nous récoltons.",
+      "Sous les arbres qu'il a plantés.",
+    ],
+  },
+  {
+    titre: "Pour un parent",
+    chapo: "Ce que des enfants, même adultes, veulent souvent dire.",
+    textes: [
+      "Notre mère, notre maison.",
+      "Nos premiers pas sont les tiens.",
+      "Tu nous as appris à tenir debout.",
+      "L'odeur des dimanches chez toi.",
+      "Ton courage continue en nous.",
+    ],
+  },
+  {
+    titre: "Pour un enfant",
+    chapo: "Des phrases très brèves, qui tiennent sur une petite stèle.",
+    textes: [
+      "Si court, si grand.",
+      "Notre étoile du matin.",
+      "Tu as tout changé en peu de jours.",
+      "Dors, nous te tenons la main.",
+      "Aimé avant, aimé toujours.",
+    ],
+  },
+  {
+    titre: "Humour tendre",
+    chapo: "Parce que certains n'auraient pas voulu d'une phrase grave.",
+    textes: [
+      "Enfin le silence, disait-il.",
+      "Parti pêcher plus loin.",
+      "Il a gardé le dernier mot.",
+      "Elle range encore nos souvenirs.",
+      "À bientôt, mais pas trop vite.",
+    ],
+  },
+];
+
+interface Question {
+  question: string;
+  reponse: string;
+  lien?: { href: string; label: string };
+}
+
+const questions: Question[] = [
+  {
+    question: "Quelle longueur doit faire une épitaphe ?",
+    reponse:
+      "Une à deux lignes courtes. La place est limitée : à Beauregard, une stèle d'adulte fait au plus 70 cm de large et 120 cm de haut (gabarits du 9 octobre 1990), 60 x 80 cm pour une incinération, et au Locle 70 x 110 cm socle compris (art. 30). Les noms et les dates occupent déjà l'essentiel : plus la phrase est courte, plus les lettres peuvent rester grandes et lisibles.",
+    lien: {
+      href: guideUrl("quand-poser-une-pierre-tombale"),
+      label: "Les dimensions admises par commune",
+    },
+  },
+  {
+    question: "Peut-on graver une citation d'un livre ou d'une chanson ?",
+    reponse:
+      "Les trente phrases de ce guide ont été écrites pour ce site : vous pouvez les reprendre et les modifier librement, sans rien demander à personne. Pour une citation tirée d'un livre, d'un poème ou d'une chanson, dites-le nous : nous regardons ensemble ce qui est possible avant toute gravure.",
+  },
+  {
+    question: "Faut-il ajouter autre chose que le nom et les dates ?",
+    reponse:
+      "Certaines communes l'imposent. Au Locle, le nom du marbrier doit être inscrit lisiblement sur le monument, avec le numéro du jalon (art. 29 et 30). À La Chaux-de-Fonds, le numéro du jalon doit rester visible (art. 55), et au Val-de-Travers celui du piquet (art. 9.13). Ces mentions sont discrètes et prévues dès la composition, pour qu'elles ne gênent pas le texte.",
+  },
+  {
+    question: "Peut-on ajouter une épitaphe sur un monument déjà posé ?",
+    reponse:
+      "Oui, une inscription s'ajoute sur un monument en place : un nom, des dates, une phrase. Envoyez-nous une photo du monument et le texte souhaité. Comme pour toute gravure, rien n'est gravé avant que la famille ait validé le bon à tirer.",
+    lien: { href: "/devis/", label: "Demander un devis" },
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: questions.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.reponse },
+  })),
+};
+
+const sourcesCitees: SourceId[] = ["neuchatelGabarits", "chauxDeFonds", "leLocle", "valDeTravers"];
+
+const filAriane = breadcrumbSchema(
+  [
+    { name: "Accueil", path: "/" },
+    { name: "Guides", path: GUIDES_URL },
+    { name: guide.titreCourt, path: guideUrl(guide.slug) },
+  ],
+  origin,
+);
+---
+
+<BaseLayout
+  title={pageTitle("Épitaphe : idées de textes courts pour une pierre tombale")}
+  description="Qu'est-ce qu'une épitaphe, que grave-t-on sur une pierre tombale et combien de mots tiennent sur une stèle ? Trente exemples de phrases courtes, classées par ton."
+>
+  <main id="main-content">
+    <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
+      <p class="label">Guide</p>
+      <h1 class="type-h1 mt-4 max-w-[24ch]">{guide.titre}</h1>
+      <p class="type-lead mt-8 max-w-[58ch]">
+        Trouver la phrase est souvent la partie la plus difficile. Voici ce qu'on grave d'ordinaire sur un
+        monument, la place dont on dispose réellement, et trente exemples écrits pour ce guide, que vous
+        pouvez reprendre tels quels ou adapter.
+      </p>
+      <div class="mt-8">
+        <MentionVerification />
+      </div>
+    </section>
+
+    {/* ------------------------------------------------------- Ce que c est */}
+    <section class="shell mt-12 md:mt-16">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Ce qu'est une épitaphe</h2>
+      <div class="mt-6 max-w-[62ch] space-y-5">
+        <p class="type-body">
+          L'épitaphe est la phrase gravée sur une sépulture, en plus de l'identité du défunt. Elle n'est
+          obligatoire nulle part : beaucoup de monuments ne portent que des noms et des dates. Quand il y
+          en a une, elle tient en quelques mots, parce qu'elle doit rester lisible et parce que la surface
+          gravable d'une stèle est petite.
+        </p>
+        <p class="type-body">
+          Une inscription complète comprend d'ordinaire le prénom et le nom, les dates ou les seules
+          années de naissance et de décès, parfois le lien de famille, et la phrase. Un motif gravé peut
+          s'y ajouter. Chez nous, rien ne part à la gravure avant que la famille ait validé le bon à
+          tirer.
+        </p>
+      </div>
+    </section>
+
+    {/* ------------------------------------------------------------- Place */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[24ch]">Combien de mots tiennent sur une stèle</h2>
+      <div class="mt-6 max-w-[62ch] space-y-5">
+        <p class="type-body">
+          Moins qu'on ne l'imagine. Les communes fixent des maximums, et ils sont serrés : au cimetière de
+          Beauregard, à Neuchâtel, une stèle d'adulte fait au plus 70 cm de large sur 120 cm de haut, 60 x
+          80 cm pour une incinération et 50 x 70 cm pour un enfant (gabarits du 9 octobre 1990). Au Locle,
+          le maximum est de 70 cm sur 110 cm, socle compris (art. 30).
+        </p>
+        <p class="type-body">
+          Sur cette largeur, les noms et les dates prennent déjà la plus grande part. Trois conseils en
+          découlent : garder la phrase sur une ou deux lignes, préférer les mots courts à une période bien
+          tournée, et accepter que la hauteur des lettres compte autant que le texte, parce qu'une tombe se
+          lit debout, à un ou deux mètres, souvent par des visiteurs âgés.
+        </p>
+        <p class="type-body">
+          La finition joue aussi : sur un granit clair, une peinture blanche se voit mal, et l'inverse est
+          vrai sur une pierre sombre. Notre configurateur affiche le texte à l'échelle sur le modèle
+          choisi, avec sa police et sa finition : c'est le moyen le plus sûr de juger si la phrase tient.
+        </p>
+      </div>
+      <p class="mt-8">
+        <a href={lienConfigurateur} class="btn btn-outline">Voir votre texte sur un monument</a>
+      </p>
+    </section>
+
+    {/* --------------------------------------------------------- 30 exemples */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[24ch]">Trente phrases courtes</h2>
+      <p class="type-body mt-6 max-w-[58ch]">
+        Ces textes ont été écrits pour ce guide : reprenez-les, changez un mot, mélangez-les. Un prénom,
+        un métier ou un lieu familier suffit souvent à rendre une phrase juste.
+      </p>
+
+      <div class="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+        {
+          series.map((serie) => (
+            <section class="border-t border-line pt-6">
+              <h3 class="type-h3">{serie.titre}</h3>
+              <p class="type-body mt-3 text-[0.9375rem] text-muted">{serie.chapo}</p>
+              <ul class="type-body mt-5 space-y-3 text-[0.9375rem]">
+                {serie.textes.map((texte) => (
+                  <li>{texte}</li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+      </div>
+    </section>
+
+    {/* ------------------------------------------------- Mentions imposees */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[24ch]">Les mentions que certaines communes imposent</h2>
+      <p class="type-body mt-6 max-w-[58ch]">
+        Le texte de la famille n'est pas toujours seul sur la pierre. Plusieurs règlements neuchâtelois
+        exigent une marque d'identification du monument ou de l'emplacement.
+      </p>
+      <ul class="type-body mt-8 max-w-[64ch] space-y-4 pl-5 [list-style:disc]">
+        <li class="text-[0.9375rem]">
+          Le Locle : le nom du marbrier doit être inscrit lisiblement sur le monument (art. 29), avec le
+          numéro du jalon (art. 30).
+        </li>
+        <li class="text-[0.9375rem]">
+          La Chaux-de-Fonds : le numéro du jalon doit rester visible (art. 55), et le nom du marbrier
+          figure au dossier d'autorisation d'un monument de tombe cinéraire (art. 54).
+        </li>
+        <li class="text-[0.9375rem]">
+          Val-de-Travers : le numéro du piquet doit rester visible sur le monument (art. 9.13).
+        </li>
+      </ul>
+      <p class="type-body mt-6 max-w-[58ch] text-[0.9375rem] text-muted">
+        Ces mentions se placent discrètement, en pied de stèle ou sur le côté. Nous les prévoyons dès la
+        composition, pour qu'elles ne viennent pas bousculer l'inscription.
+      </p>
+    </section>
+
+    {/* ----------------------------------------------------------------- FAQ */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Questions des familles</h2>
+      <dl class="mt-8 border-t border-line">
+        {
+          questions.map((item) => (
+            <div class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-12">
+              <dt class="type-h3 max-w-[26ch] md:col-span-5">{item.question}</dt>
+              <dd class="md:col-span-7">
+                <p class="type-body max-w-[56ch] text-[0.9375rem]">{item.reponse}</p>
+                {item.lien && (
+                  <p class="mt-4">
+                    <a href={item.lien.href} class="link link-mono text-muted">
+                      {item.lien.label}
+                    </a>
+                  </p>
+                )}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    {/* ------------------------------------------------------------- Sources */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Les documents officiels</h2>
+      <ul class="mt-8 space-y-3">
+        {
+          sourcesCitees.map((id) => (
+            <li>
+              <a href={SOURCES[id].url} class="link link-mono text-muted" rel="noopener">
+                {SOURCES[id].libelle}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    {/* ------------------------------------------------------ Autres guides */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">À lire ensuite</h2>
+      <ul class="mt-8 border-t border-line">
+        {
+          liens.map((autre) => (
+            <li class="border-b border-line py-6">
+              <a href={guideUrl(autre.slug)} class="link type-h3">
+                {autre.titreCourt}
+              </a>
+              <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem]">{autre.resume}</p>
+            </li>
+          ))
+        }
+        <li class="border-b border-line py-6">
+          <a href="/faq/" class="link type-h3">
+            Questions fréquentes
+          </a>
+          <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem]">
+            Prix, granits, gravure d'un dessin fourni, inscription ajoutée sur un monument déjà posé.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    {/* --------------------------------------------------------------- Appel */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="grid items-end gap-8 md:grid-cols-12">
+        <div class="md:col-span-7">
+          <h2 class="type-h2 max-w-[20ch]">Votre texte, gravé comme il faut</h2>
+          <p class="type-body mt-6 max-w-[52ch]">
+            Composez l'inscription sur le modèle qui vous plaît, ou envoyez-la nous telle quelle. Nous
+            vérifions qu'elle tient sur la stèle et que le monument respecte le règlement du cimetière,
+            puis vous recevez un bon à tirer avant toute gravure.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
+          <a href="/devis/" class="btn btn-primary">Demander un devis</a>
+          <a href={lienConfigurateur} class="btn btn-outline">Composer une inscription</a>
+          <a href={familleUrl("monument")} class="btn btn-outline">
+            {FAMILLE_LABELS.monument}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
+</BaseLayout>
