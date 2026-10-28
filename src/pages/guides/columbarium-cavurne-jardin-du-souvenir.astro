@@ -1,0 +1,497 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import MentionVerification from "@/components/MentionVerification.astro";
+import { pageTitle } from "@/config/site";
+import { LOI_CANTONALE, SOURCES, type SourceId } from "@/data/cimetieres-ne";
+import { GUIDES_URL, autresGuides, guideParSlug, guideUrl } from "@/data/guides";
+import { FAMILLE_LABELS, familleUrl } from "@/data/products";
+import { breadcrumbSchema } from "@/data/seo";
+
+/* Guide "columbarium, cavurne, jardin du souvenir".
+   SOURCES UNIQUES : docs/REGLEMENTS-CIMETIERES-NE.md et
+   docs/DIMENSIONS-MONUMENTS.md (releve du 28.10.2026).
+   Les montants cites sont des TAXES COMMUNALES officielles, avec la date de
+   l arrete et le lien ; aucun prix de l entreprise (src/data/tarifs.json reste
+   la seule source de nos estimations). Un chiffre note "non verifie" dans le
+   releve n est pas publie (ex. la plaque du jardin du souvenir au
+   Val-de-Travers). "Non relevé" veut dire : absent des reglements lus. */
+
+const origin = Astro.site ?? new URL(Astro.url.origin);
+const guide = guideParSlug("columbarium-cavurne-jardin-du-souvenir");
+const liens = autresGuides(guide.slug);
+
+interface Definition {
+  terme: string;
+  texte: string;
+}
+
+const definitions: Definition[] = [
+  {
+    terme: "Columbarium, ou mur cinéraire",
+    texte:
+      "Un mur de niches fermées par une plaque, dans lequel l'urne est déposée. La niche se loue pour une durée limitée et renouvelable, et la plaque porte les noms. C'est la solution qui demande le moins d'entretien à la famille.",
+  },
+  {
+    terme: "Cavurne, ou tombe cinéraire",
+    texte:
+      "Un petit caveau ou une tombe de dimensions réduites, en pleine terre, destinée à une ou plusieurs urnes. Elle reçoit un monument, comme une tombe d'inhumation, mais sur une surface plus petite : de l'ordre de 60 x 100 cm à Beauregard, 100 x 60 cm au Val-de-Travers.",
+  },
+  {
+    terme: "Jardin du souvenir, ou tombe du souvenir",
+    texte:
+      "Un espace commun où les cendres sont déposées sans urne et, le plus souvent, sans nom. À la Ville de Neuchâtel, la Tombe du souvenir est anonyme (art. 19) ; au Val-de-Travers, le jardin du souvenir reçoit en revanche une plaque nominative (art. 9.21).",
+  },
+  {
+    terme: "Tombe semi-anonyme",
+    texte:
+      "Une formule intermédiaire : les cendres sont déposées dans un espace commun, mais une plaquette porte le prénom, le nom et les années. La Ville de Neuchâtel la prévoit pour dix ans (art. 20), dans le quartier des 4 saisons.",
+  },
+];
+
+interface LigneCommune {
+  commune: string;
+  niches: string;
+  tombe: string;
+  depot: string;
+}
+
+const lignes: LigneCommune[] = [
+  {
+    commune: "Neuchâtel, Beauregard",
+    niches: "10 ou 20 ans, renouvelables jusqu'à 40 ans (art. 22) ; 2 urnes, 4 dans les grandes niches",
+    tombe: "Surface de 60 x 100 cm (art. 38) ; 3 urnes au plus par tombe (art. 18)",
+    depot: "Tombe du souvenir anonyme (art. 19) ; jardin du souvenir sans urne ; quartier semi-anonyme, plaquette 10 ans (art. 20)",
+  },
+  {
+    commune: "Neuchâtel : Corcelles-Cormondrèche, Peseux, Valangin",
+    niches: "Columbarium de la chapelle à Corcelles et columbarium à Peseux : niche familiale de 3 urnes ou niche commune d'une urne",
+    tombe: "Surface de 60 x 100 cm (art. 38) ; bordures permises",
+    depot: "Tombe du souvenir votée à Valangin le 27 mars 2025 ; non relevé pour Corcelles et Peseux",
+  },
+  {
+    commune: "La Chaux-de-Fonds, Charrière",
+    niches: "Niches simples ou doubles, ouvertes ou fermées, mur Nord ; concessions de 20 ans renouvelables par 10 ou 20 ans (art. 40 à 42 et 47)",
+    tombe: "Terrain cinéraire à la suite (3 urnes) ou au choix ; jardin d'au moins 50 x 30 cm (art. 64 à 66)",
+    depot: "Tombe collective, notamment faute d'instruction de la famille (art. 39)",
+  },
+  {
+    commune: "Le Locle",
+    niches: "Mur cinéraire, 2 urnes, 20 ans ; plaque en marbre obligatoire, à la charge de la famille (art. 23 et 24)",
+    tombe: "Concession A de 1 x 0,80 m, 4 urnes, 20 ans ; concession B de 2 x 1,20 m, 12 urnes, 60 ans (art. 23 et 24)",
+    depot: "Non relevé",
+  },
+  {
+    commune: "Boudry",
+    niches: "Non relevé",
+    tombe: "Emplacement cinéraire de 100 x 70 cm ; urne possible à 70 cm sur la tombe d'un proche (art. 95)",
+    depot: "Fosse commune (art. 95)",
+  },
+  {
+    commune: "Val-de-Travers",
+    niches: "20 ans renouvelables par 10 ; 2 urnes au plus (art. 9.23) ; plaque avec noms, dates et photo, vase imposé (art. 9.26)",
+    tombe: "Tombe cinéraire de 100 x 60 cm, bordure comprise (art. 9.16)",
+    depot: "Jardin du souvenir avec plaque nominative, retrait possible après 20 ans (art. 9.21)",
+  },
+];
+
+interface Tarif {
+  prestation: string;
+  domicilie: string;
+  exterieur: string;
+}
+
+/* Ville de Neuchatel, arrete du Conseil communal du 15 novembre 2021, tarifs
+   en vigueur depuis le 1er janvier 2022. Un nouveau reglement des taxes a ete
+   adopte le 17.11.2025 : la page le dit et nous controlons avant chaque pose. */
+const tarifsNeuchatel: Tarif[] = [
+  { prestation: "Niche au columbarium de Beauregard, 10 ans", domicilie: "CHF 300.-", exterieur: "CHF 400.-" },
+  { prestation: "Niche au columbarium de Beauregard, 20 ans", domicilie: "CHF 510.-", exterieur: "CHF 750.-" },
+  {
+    prestation: "Corcelles, niche familiale de 3 urnes, plaques comprises",
+    domicilie: "CHF 4500.-",
+    exterieur: "CHF 13 500.-",
+  },
+  {
+    prestation: "Corcelles, niche commune d'une urne, plaques comprises",
+    domicilie: "CHF 1500.-",
+    exterieur: "CHF 4500.-",
+  },
+  {
+    prestation: "Peseux, niche familiale de 3 urnes, plaques comprises",
+    domicilie: "CHF 3170.10",
+    exterieur: "CHF 6340.20",
+  },
+  {
+    prestation: "Peseux, niche commune, plaques comprises",
+    domicilie: "CHF 1056.70",
+    exterieur: "CHF 2133.40",
+  },
+  { prestation: "Nouvelle tombe d'incinération", domicilie: "Gratuite", exterieur: "CHF 800.- (enfant CHF 300.-)" },
+  { prestation: "Tombe d'incinération existante", domicilie: "Non relevé", exterieur: "CHF 250.-" },
+  { prestation: "Urne supplémentaire", domicilie: "CHF 50.-", exterieur: "CHF 50.-" },
+  { prestation: "Tombe du Souvenir", domicilie: "Gratuite", exterieur: "CHF 250.-" },
+  { prestation: "Quartier des 4 saisons, semi-anonyme avec plaquette", domicilie: "CHF 500.-", exterieur: "CHF 750.-" },
+  { prestation: "Concession de famille pour cendres, 50 ans", domicilie: "CHF 800.- le m2", exterieur: "CHF 1300.- le m2" },
+  { prestation: "Scellage d'une urne", domicilie: "CHF 20.-", exterieur: "CHF 20.-" },
+  {
+    prestation: "Urne gardée au cimetière, au-delà de 3 mois gratuits",
+    domicilie: "CHF 70.-",
+    exterieur: "CHF 100.-",
+  },
+  { prestation: "Exhumation d'une urne", domicilie: "CHF 150.-", exterieur: "CHF 150.-" },
+];
+
+interface Question {
+  question: string;
+  reponse: string;
+  lien?: { href: string; label: string };
+}
+
+const questions: Question[] = [
+  {
+    question: "Quelle différence entre un columbarium et une cavurne ?",
+    reponse:
+      "Le columbarium est un mur de niches : l'urne est posée dans une niche fermée par une plaque gravée, pour une durée louée à la commune. La cavurne, ou tombe cinéraire, est une petite tombe en pleine terre qui reçoit une ou plusieurs urnes et un monument. La première demande une plaque, la seconde un monument complet.",
+    lien: { href: familleUrl("cineraire"), label: FAMILLE_LABELS.cineraire },
+  },
+  {
+    question: "Combien de temps garde-t-on une niche de columbarium ?",
+    reponse:
+      "À Beauregard, la niche se loue 10 ou 20 ans et se renouvelle jusqu'à 40 ans au plus (art. 22 du règlement de la Ville de Neuchâtel). Au Locle, le mur cinéraire se concède pour 20 ans (art. 23 et 24). Au Val-de-Travers, la niche dure 20 ans et se renouvelle par tranches de 10 ans (art. 9.23). À La Chaux-de-Fonds, les concessions cinéraires sont de 20 ans, renouvelables par 10 ou 20 ans (art. 40 à 42 et 47).",
+  },
+  {
+    question: "Peut-on garder l'urne chez soi dans le canton de Neuchâtel ?",
+    reponse: `Oui. La ${LOI_CANTONALE} prévoit que les cendres soient déposées dans un lieu de sépulture ou un columbarium, ou remises à la famille (art. 36). La Ville de Neuchâtel remet l'urne aux proches sur demande (art. 18) et Val-de-Travers le prévoit également (art. 8.17). Pour un transport à l'étranger, l'urne doit être scellée.`,
+  },
+  {
+    question: "Combien d'urnes peut-on déposer dans une même tombe ?",
+    reponse:
+      "Trois au plus dans une tombe de la Ville de Neuchâtel (art. 18). Au Locle, la concession A reçoit jusqu'à 4 urnes et la concession B jusqu'à 12 (art. 23 et 24). Dans les niches, le nombre est plus limité : 2 urnes au Locle et au Val-de-Travers, 2 à Beauregard et jusqu'à 4 dans les grandes niches.",
+  },
+  {
+    question: "Qui grave la plaque d'une niche de columbarium ?",
+    reponse:
+      "Cela dépend de la commune. La Ville de Neuchâtel indique pour Beauregard que la gravure de la plaque est confiée à un marbrier travaillant avec le cimetière, et son arrêté précise que les plaques de fermeture, leur dépose et repose et la gravure ne sont pas comprises dans la taxe de la niche. Au Val-de-Travers, les plaques des niches et du jardin du souvenir sont gravées par l'entreprise désignée par la commune (art. 9.21 et 9.26). Au Locle, la plaque en marbre du mur cinéraire est obligatoire et à la charge de la famille (art. 23 et 24).",
+  },
+  {
+    question: "Les urnes biodégradables sont-elles acceptées ?",
+    reponse:
+      "La Ville de Neuchâtel les favorise depuis 2017 et son règlement le prévoit : l'urne est déposée à 70 cm ou placée en niche (art. 17). Attention au cas inverse : une urne mise en terre sans caveau doit être d'un matériau durable à La Chaux-de-Fonds (art. 37 al. 3) et au Val-de-Travers (art. 8.17), faute de quoi les cendres ne pourront pas être reprises.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: questions.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.reponse },
+  })),
+};
+
+const sourcesCitees: SourceId[] = [
+  "neuchatelReglement",
+  "neuchatelTarifs",
+  "neuchatelBeauregard",
+  "chauxDeFonds",
+  "leLocle",
+  "leLocleApplication",
+  "boudry",
+  "valDeTravers",
+];
+
+const filAriane = breadcrumbSchema(
+  [
+    { name: "Accueil", path: "/" },
+    { name: "Guides", path: GUIDES_URL },
+    { name: guide.titreCourt, path: guideUrl(guide.slug) },
+  ],
+  origin,
+);
+---
+
+<BaseLayout
+  title={pageTitle("Columbarium, cavurne, jardin du souvenir à Neuchâtel")}
+  description="Columbarium, cavurne, tombe cinéraire ou jardin du souvenir : ce que chaque mot recouvre, ce que propose chaque commune neuchâteloise, les durées et les tarifs officiels."
+>
+  <main id="main-content">
+    <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
+      <p class="label">Guide</p>
+      <h1 class="type-h1 mt-4 max-w-[24ch]">{guide.titre}</h1>
+      <p class="type-lead mt-8 max-w-[58ch]">
+        Après une crémation, la famille choisit où reposent les cendres : une niche dans un mur, une petite
+        tombe, un espace commun, ou l'urne gardée chez soi. Les mots se ressemblent et les règles changent
+        d'une commune à l'autre. Voici ce que prévoient les règlements neuchâtelois relevés.
+      </p>
+      <div class="mt-8">
+        <MentionVerification />
+      </div>
+    </section>
+
+    {/* --------------------------------------------------------- Definitions */}
+    <section class="shell mt-12 md:mt-16">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Les mots, en clair</h2>
+      <dl class="mt-8 border-t border-line">
+        {
+          definitions.map((item) => (
+            <div class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-12">
+              <dt class="type-h3 max-w-[26ch] md:col-span-5">{item.terme}</dt>
+              <dd class="type-body max-w-[56ch] text-[0.9375rem] md:col-span-7">{item.texte}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    {/* ------------------------------------------------- Tableau par commune */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[24ch]">Ce qui existe dans chaque commune</h2>
+      <p class="type-body mt-6 max-w-[56ch]">
+        Les communes neuchâteloises dont nous avons relevé le règlement. « Non relevé » signifie que le
+        texte lu n'en parle pas : nous le demandons alors à l'office communal.
+      </p>
+
+      <div class="mt-12 overflow-x-auto">
+        <table class="w-full border-collapse text-left">
+          <thead>
+            <tr class="border-y border-line">
+              <th scope="col" class="label py-4 pr-6 font-normal">Commune</th>
+              <th scope="col" class="label py-4 pr-6 font-normal">Niches, columbarium</th>
+              <th scope="col" class="label py-4 pr-6 font-normal">Tombe cinéraire</th>
+              <th scope="col" class="label py-4 font-normal">Dépôt sans monument</th>
+            </tr>
+          </thead>
+          <tbody class="text-[0.9375rem]">
+            {
+              lignes.map((ligne) => (
+                <tr class="border-b border-line align-top">
+                  <th scope="row" class="min-w-[14ch] py-5 pr-6 font-normal">
+                    {ligne.commune}
+                  </th>
+                  <td class="py-5 pr-6">{ligne.niches}</td>
+                  <td class="py-5 pr-6">{ligne.tombe}</td>
+                  <td class="py-5 text-muted">{ligne.depot}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    {/* ------------------------------------------------------ Tarifs officiels */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[24ch]">Les tarifs officiels des communes</h2>
+      <p class="type-body mt-6 max-w-[58ch]">
+        Ce sont des taxes communales, dues à la commune, et non des prix de monument. À la Ville de
+        Neuchâtel, elles viennent de l'arrêté du Conseil communal du 15 novembre 2021, en vigueur depuis
+        le 1er janvier 2022. Un nouveau règlement des taxes a été adopté le 17 novembre 2025 : nous
+        contrôlons le montant en vigueur avant chaque démarche.
+      </p>
+
+      <div class="mt-12 overflow-x-auto">
+        <table class="w-full border-collapse text-left">
+          <caption class="label pb-4 text-left">
+            Ville de Neuchâtel, tarifs depuis le 1er janvier 2022
+          </caption>
+          <thead>
+            <tr class="border-y border-line">
+              <th scope="col" class="label py-4 pr-6 font-normal">Prestation</th>
+              <th scope="col" class="label py-4 pr-6 font-normal">Personne domiciliée</th>
+              <th scope="col" class="label py-4 font-normal">Personne de l'extérieur</th>
+            </tr>
+          </thead>
+          <tbody class="text-[0.9375rem]">
+            {
+              tarifsNeuchatel.map((tarif) => (
+                <tr class="border-b border-line align-top">
+                  <th scope="row" class="py-5 pr-6 font-normal">
+                    {tarif.prestation}
+                  </th>
+                  <td class="py-5 pr-6">{tarif.domicilie}</td>
+                  <td class="py-5 text-muted">{tarif.exterieur}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-8 max-w-[62ch] space-y-5">
+        <p class="type-body text-[0.9375rem]">
+          L'inhumation des cendres est gratuite pour les personnes domiciliées dans la commune (art. 24
+          al. 3). En revanche, les plaques de fermeture des niches, leur dépose et leur repose et la
+          gravure des inscriptions ne sont pas comprises dans ces taxes : le règlement renvoie au tarif du
+          marbrier (art. 57).
+        </p>
+        <p class="type-body text-[0.9375rem]">
+          Au Locle, le règlement du 4 juillet 2012 fixe lui-même les montants (art. 23 et 24) : concession
+          A, 1 x 0,80 m pour 4 urnes, CHF 200.- pour 20 ans et CHF 100.- par renouvellement de 10 ans ;
+          concession B, 2 x 1,20 m pour 12 urnes, CHF 1500.- pour 60 ans ; mur cinéraire, 2 urnes,
+          CHF 1200.- pour 20 ans, la plaque en marbre restant à la charge de la famille.
+        </p>
+      </div>
+    </section>
+
+    {/* ---------------------------------------------------- L urne a la famille */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[24ch]">Garder l'urne, ou attendre</h2>
+      <div class="mt-6 max-w-[62ch] space-y-5">
+        <p class="type-body">
+          La {LOI_CANTONALE} laisse trois possibilités aux cendres : un lieu de sépulture, un columbarium,
+          ou la remise à la famille (art. 36). Garder une urne chez soi est donc possible dans le canton.
+          La Ville de Neuchâtel remet l'urne aux proches sur demande (art. 18), et Val-de-Travers le
+          prévoit aussi (art. 8.17).
+        </p>
+        <p class="type-body">
+          Attendre a toutefois une limite. À la Ville de Neuchâtel, les cendres qui ne sont pas retirées
+          dans les deux ans sont déposées à la Tombe du souvenir, qui est anonyme (art. 19). À La
+          Chaux-de-Fonds, sans instruction un mois après la crémation, la commune écrit à la famille ;
+          sans réponse dans les 30 jours, les cendres vont à la tombe collective (art. 39). Une urne gardée
+          au cimetière de Beauregard l'est gratuitement trois mois, puis la taxe court.
+        </p>
+        <p class="type-body">
+          Une urne mise en terre sans caveau doit être d'un matériau durable à La Chaux-de-Fonds
+          (art. 37 al. 3) et au Val-de-Travers (art. 8.17) : à défaut, les cendres ne pourront pas être
+          reprises plus tard. À l'inverse, la Ville de Neuchâtel favorise les urnes biodégradables depuis
+          2017 et prévoit leur dépôt à 70 cm ou en niche (art. 17).
+        </p>
+      </div>
+    </section>
+
+    {/* -------------------------------------------------------- Nouvelles formes */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[24ch]">Ce qui se prépare à Neuchâtel</h2>
+      <p class="type-body mt-6 max-w-[58ch]">
+        Le rapport du Conseil communal 26-012 du 1er avril 2026, qui accompagne un crédit-cadre de
+        1,82 million de francs pour les cimetières de la Ville entre 2026 et 2030, annonce plusieurs
+        nouveautés. Elles répondent à une demande en hausse pour les tombes doubles, les sépultures
+        semi-anonymes et naturelles et les espaces pour les enfants.
+      </p>
+      <ul class="type-body mt-8 max-w-[64ch] space-y-4 pl-5 [list-style:disc]">
+        <li class="text-[0.9375rem]">
+          Beauregard, nouveau quartier cinéraire en 2027-2028 : les cendres y seront déposées dans un sac
+          de lin ou de coton, sans urne, et des dalles rectangulaires au nom du défunt seront posées dans
+          la pelouse, en « pas japonais ».
+        </li>
+        <li class="text-[0.9375rem]">
+          Beauregard, nouveau quartier pour les enfants en 2026.
+        </li>
+        <li class="text-[0.9375rem]">
+          Corcelles-Cormondrèche, quartier de tombes doubles en 2026-2027, concédées 50 ans et
+          renouvelables jusqu'à 99 ans.
+        </li>
+        <li class="text-[0.9375rem]">
+          Peseux, nouveau quartier M de 2200 m2, une centaine de tombes, ouvert dès l'automne 2026, avec
+          un accès prévu pour les marbriers.
+        </li>
+        <li class="text-[0.9375rem]">
+          Valangin, tombe du souvenir votée le 27 mars 2025 et projet de cimetière forestier, où les
+          cendres reposeraient au pied d'un arbre portant une plaquette.
+        </li>
+      </ul>
+      <p class="type-body mt-6 max-w-[58ch] text-[0.9375rem] text-muted">
+        Les formats exacts de ces nouvelles sépultures ne sont pas encore publiés. Nous les demandons à
+        l'Office des cimetières au moment du projet, puis nous adaptons le monument ou la dalle à ce que
+        la commune autorise.
+      </p>
+    </section>
+
+    {/* ----------------------------------------------------------------- FAQ */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Questions des familles</h2>
+      <dl class="mt-8 border-t border-line">
+        {
+          questions.map((item) => (
+            <div class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-12">
+              <dt class="type-h3 max-w-[26ch] md:col-span-5">{item.question}</dt>
+              <dd class="md:col-span-7">
+                <p class="type-body max-w-[56ch] text-[0.9375rem]">{item.reponse}</p>
+                {item.lien && (
+                  <p class="mt-4">
+                    <a href={item.lien.href} class="link link-mono text-muted">
+                      {item.lien.label}
+                    </a>
+                  </p>
+                )}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    {/* ------------------------------------------------------------- Sources */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Les documents officiels</h2>
+      <ul class="mt-8 space-y-3">
+        {
+          sourcesCitees.map((id) => (
+            <li>
+              <a href={SOURCES[id].url} class="link link-mono text-muted" rel="noopener">
+                {SOURCES[id].libelle}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    {/* ------------------------------------------------------ Autres guides */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">À lire ensuite</h2>
+      <ul class="mt-8 border-t border-line">
+        {
+          liens.map((autre) => (
+            <li class="border-b border-line py-6">
+              <a href={guideUrl(autre.slug)} class="link type-h3">
+                {autre.titreCourt}
+              </a>
+              <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem]">{autre.resume}</p>
+            </li>
+          ))
+        }
+        <li class="border-b border-line py-6">
+          <a href="/faq/" class="link type-h3">
+            Questions fréquentes
+          </a>
+          <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem]">
+            Prix, granits, gravure d'un dessin fourni, inscription ajoutée sur un monument déjà posé.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    {/* --------------------------------------------------------------- Appel */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="grid items-end gap-8 md:grid-cols-12">
+        <div class="md:col-span-7">
+          <h2 class="type-h2 max-w-[20ch]">Un monument cinéraire ou une plaque</h2>
+          <p class="type-body mt-6 max-w-[52ch]">
+            Dites-nous la commune, le cimetière et la formule retenue, niche ou tombe cinéraire : nous
+            vérifions le règlement, nous adaptons le monument ou la plaque à ce qu'il autorise, et nous
+            établissons un devis gratuit.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
+          <a href="/devis/" class="btn btn-primary">Demander un devis</a>
+          <a href={familleUrl("cineraire")} class="btn btn-outline">
+            {FAMILLE_LABELS.cineraire}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
+</BaseLayout>
