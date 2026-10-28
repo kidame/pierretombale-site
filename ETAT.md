@@ -52,6 +52,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026, Claude : analyse SEO des futures pages FAQ/guides (DataForSEO, CH et canton NE) :
+  analyses/2026-10-28-faq-seo-recherches.md. Aucun code modifie. Decision attendue de Thomas :
+  version securisee (5 guides) ou audacieuse (+ pages cimetieres NE). Ligne ajoutee au BACKLOG.
 - 28.10.2026, Claude : hero de l accueil = video (fournie par Thomas, 13 s, 1280x720) a la place de l image.
   Recompressee en mp4 H.264 sans audio (1 Mo, faststart) : public/videos/accueil/hero.mp4 ; affiche
   public/images/accueil/hero-video-poster-1200.webp (image finale, sert aussi de LCP, sans JS et en mouvement
