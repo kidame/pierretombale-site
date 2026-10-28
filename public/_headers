@@ -13,6 +13,10 @@
 /images/*
   Cache-Control: public, max-age=604800
 
+# Video de l'accueil sans empreinte : sept jours. Renommer le fichier si son contenu change.
+/videos/*
+  Cache-Control: public, max-age=604800
+
 # Ces deux regles ne correspondent JAMAIS au domaine personnalise.
 https://:project.pages.dev/*
   X-Robots-Tag: noindex
