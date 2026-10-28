@@ -52,6 +52,12 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026, Claude : accueil, hero recadre comme la maquette. Le monument n est plus coupe (object-fit:
+  contain, pose a droite, bords de l image fondus par des degrades, plus de token ajoute) ; sur ordinateur le
+  hero fait clamp(34rem, 40vw, 100vh - en-tete) avec marge interieure 6vw ; sur telephone le titre passe sur
+  deux lignes ("Ce qui / demeure."), l image deborde a droite sous le texte avec son bord haut fondu
+  (mask-image), bouton pleine largeur en bas. sizes de l image ajuste (150vw telephone). Verifie en 390, 820,
+  1280, 1536, 1920. Les autres bandes de l accueil correspondaient deja a la maquette.
 - 28.10.2026, Claude : configurateur en "vue application" sur ordinateur (>= 1024 px), suite a la photo de
   l ecran de Thomas (la page ne tenait pas dans la fenetre comme la maquette). Barre 01-04 collee en haut,
   ecran = hauteur de la fenetre (moins barre et bandeau), apercu sans defilement avec stele dimensionnee par

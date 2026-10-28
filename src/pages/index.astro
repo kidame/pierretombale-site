@@ -67,7 +67,7 @@ const organizationSchema = {
         <img
           src="/images/accueil/hero-1200.webp"
           srcset="/images/accueil/hero-700.webp 700w, /images/accueil/hero-1200.webp 1200w"
-          sizes="100vw"
+          sizes="(min-width: 1024px) 100vw, (min-width: 640px) 120vw, 150vw"
           width="1200"
           height="675"
           alt="Illustration d'un monument funéraire en granit sombre"
@@ -230,39 +230,51 @@ const organizationSchema = {
   }
 
   /* ---- Hero ---------------------------------------------------------------
-     Telephone : l'image en haut, fondue dans le fond sombre, puis le texte et
-     le bouton. Ordinateur : l'image occupe toute la largeur en fond, le texte
-     est a gauche sur un degrade. */
+     Maquette : le monument entier, jamais recadre (object-fit: contain), pose
+     a droite ; les bords de l'image (fond un peu plus noir que --canvas) sont
+     fondus par des degrades ; le texte a gauche, le bouton en bas. Telephone :
+     meme principe, l'image deborde a droite. */
   .hero {
     position: relative;
     overflow: hidden;
   }
 
   .hero-fond {
-    position: relative;
+    position: absolute;
+    inset: 0;
   }
 
   .hero-fond img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
     display: block;
-    width: 100%;
+    width: 150%;
+    max-width: none;
     height: auto;
     aspect-ratio: 16 / 9;
-    object-fit: cover;
+    /* Le bord haut de l'image (fond plus noir que --canvas) est fondu. */
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%);
+    mask-image: linear-gradient(to bottom, transparent, #000 22%);
   }
 
   .hero-fond::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 55%, var(--canvas));
+    background:
+      linear-gradient(to bottom, transparent 78%, var(--canvas) 100%),
+      linear-gradient(to right, var(--canvas) 8%, transparent 45%);
   }
 
   .hero-grille {
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 2rem;
-    padding-block: 0.5rem 3.5rem;
+    min-height: min(40rem, calc(100svh - 4.5rem));
+    padding-block: 1.5rem 2rem;
   }
 
   .hero-texte {
@@ -270,15 +282,16 @@ const organizationSchema = {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.25rem;
+    max-width: 15rem;
   }
 
   .hero-texte .type-lead {
-    max-width: 30ch;
+    max-width: 18ch;
     color: var(--ink);
   }
 
   .hero-precision {
-    max-width: 38ch;
+    max-width: 24ch;
     font-size: 1rem;
     line-height: 1.6;
     color: var(--muted);
@@ -292,32 +305,62 @@ const organizationSchema = {
     .hero-cta .btn {
       width: auto;
     }
+
+    .hero-fond img {
+      width: 120%;
+    }
+
+    .hero-texte {
+      max-width: 24rem;
+    }
+
+    .hero-texte .type-lead {
+      max-width: 26ch;
+    }
+
+    .hero-precision {
+      max-width: 34ch;
+    }
   }
 
   @media (min-width: 1024px) {
-    .hero-fond {
-      position: absolute;
-      inset: 0;
-    }
-
     .hero-fond img {
+      position: static;
+      width: 100%;
       height: 100%;
       aspect-ratio: auto;
-      object-position: right center;
+      object-fit: contain;
+      object-position: right 55%;
+      -webkit-mask-image: none;
+      mask-image: none;
     }
 
     .hero-fond::after {
-      background: linear-gradient(to right, var(--canvas) 30%, transparent 70%);
+      background:
+        linear-gradient(to bottom, var(--canvas) 0%, transparent 16%, transparent 78%, var(--canvas) 100%),
+        linear-gradient(to right, var(--canvas) 32%, transparent 62%);
     }
 
     .hero-grille {
-      min-height: 36rem;
       justify-content: center;
       gap: 2.5rem;
-      padding-block: 5rem;
+      min-height: clamp(34rem, 40vw, calc(100vh - 9.75rem));
+      padding-block: 4rem;
+      padding-inline: clamp(2.5rem, 6vw, 7rem);
     }
 
-    .hero-texte,
+    .hero-texte {
+      max-width: 30rem;
+    }
+
+    .hero-texte .type-lead {
+      max-width: 30ch;
+    }
+
+    .hero-precision {
+      max-width: 38ch;
+    }
+
     .hero-cta {
       max-width: 34rem;
     }
