@@ -52,6 +52,11 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026, Claude : configurateur, fidelite aux maquettes verifiee en 1536x1024 (taille des maquettes), 1280,
+  1024 paysage et 820 portrait (= mise en page telephone). Ajuste : tuiles 7:3 + "Selectionne", boutons
+  "Continuer vers l inscription / les motifs / le recapitulatif" sur ordinateur, "Besoin d aide ?" (FAQ),
+  legende "Apercu de la stele · matiere" sur ordinateur, titres a 46 px, bloc du brouillon compact et affiche
+  seulement s il y a un brouillon (reprise.ts), pas de filet au-dessus de l etape visible.
 - 28.10.2026, Claude : CONFIGURATEUR AU DESIGN DES MAQUETTES (version audacieuse choisie par Thomas).
   src/pages/personnaliser/[slug].astro reecrit (22 pages) : parcours en 4 etapes avec barre 01-04 (collee en
   haut sur ordinateur), ecran partage (apercu sur fond `.nuit` a gauche avec "Retour au modele", nom du modele

@@ -87,7 +87,9 @@ export function brancheBrouillon(options: OptionsBrouillon): BrouillonPage {
           "tout a été repris là où vous l'aviez laissé."
         : "Ce que vous saisissez est gardé sur cet appareil, pour que vous puissiez revenir " +
           "plus tard. Rien n'est envoyé tant que vous ne demandez pas de devis.";
-    blocBrouillon.hidden = false;
+    /* Le bandeau de la page dit deja que tout est garde sur l'appareil : le
+       bloc n'apparait que s'il y a un brouillon (repris, ou en cours). */
+    blocBrouillon.hidden = !(repris && reprend);
   }
 
   function brouillonCourant(): Brouillon {
@@ -132,6 +134,7 @@ export function brancheBrouillon(options: OptionsBrouillon): BrouillonPage {
       sauvegardeOk = ecritBrouillon(brouillon);
     }
     if (boutonEffacer) boutonEffacer.hidden = vide;
+    if (blocBrouillon) blocBrouillon.hidden = vide;
   }
 
   const planifie = () => {
