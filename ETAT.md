@@ -74,6 +74,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   .claude/settings.json et aucune approbation n est possible en mode non interactif). Le nouveau
   tests/guides.test.ts est ecrit mais NON EXECUTE : lancer `npm test` avant de pousser.
   Pas de push (consigne de Thomas). Un commit par page, comme demande.
+  RELECTURE Claude (chat) le 28.10.2026 a 17h : npm test 84/84 vert, build 64 pages vert ; 3 references
+  d articles non sourcees retirees (Le Locle : jalon et delai "terrain stabilise" sans numero d article,
+  concession A/B reformulee en taille de monument). Pousse sur main (previsualisation), PAS sur live.
 - 28.10.2026, Claude : docs/DIMENSIONS-MONUMENTS.md (regles par commune, a completer) et
   docs/BRIEF-GUIDES-LOT1.md. Thomas : fabrication possible a l etranger, POSE faite par nous en
   Suisse. Lot 1 des guides confie a Codex via kumo-run ; Claude relit, verifie et pousse ensuite.
@@ -985,7 +988,7 @@ export vers le devis), 62 tests (`npm test`), migration de l'apercu Netlify vers
 dans l ordre, est dans `docs/BACKLOG.md` ; le configurateur se modifie avec `docs/CONFIGURATEUR.md`.
 
 DEBLOQUE, A FAIRE SANS ATTENDRE PERSONNE (au choix de Thomas) :
-- GUIDES, SUITE IMMEDIATE : lancer `npm test` (non lance le 28.10.2026, voir la derniere session),
+- GUIDES, SUITE IMMEDIATE : tests et build verts, pousse sur main le 28.10.2026 ;
   relire les 4 pages au navigateur en 1280 et 390, puis push sur main pour la previsualisation.
 - Guides lot 2 : pages cimetieres (Beauregard d abord) et page des dimensions autorisees, a partir
   de docs/DIMENSIONS-MONUMENTS.md ; memes regles que le lot 1 (commune, article, lien, date).

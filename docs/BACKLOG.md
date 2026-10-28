@@ -82,8 +82,8 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
           /guides/ (index), /guides/quand-poser-une-pierre-tombale/,
           /guides/columbarium-cavurne-jardin-du-souvenir/, /guides/epitaphe/ ; liste partagee
           src/data/guides.ts, liens officiels src/data/cimetieres-ne.ts, lien au pied de page.
-          Build 64 pages et astro check verts ; RESTE : lancer `npm test` (pas executable dans la
-          session), relire au navigateur, puis pousser sur main.
+          Build 64 pages et astro check verts ; npm test 84/84 vert (relu par Claude le 28.10.2026), pousse sur main ;
+          RESTE : relecture au navigateur 1280/390, puis mise en ligne (live) sur demande de Thomas.
       [ ] Etape 3 : lot 2 pages cimetieres + page dimensions (docs/DIMENSIONS-MONUMENTS.md)
       [ ] Manques : gabarits Beauregard (Office des cimetieres), tarifs communaux, loi cantonale a jour
 - [x] Configurateur au design des maquettes (4 etapes, ecran partage, mobile) - Claude - 28.10.2026,
