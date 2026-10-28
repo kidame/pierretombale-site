@@ -1,0 +1,414 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import MentionVerification from "@/components/MentionVerification.astro";
+import { pageTitle } from "@/config/site";
+import { LOI_CANTONALE, SOURCES, type SourceId } from "@/data/cimetieres-ne";
+import { GUIDES_URL, autresGuides, guideParSlug, guideUrl } from "@/data/guides";
+import { FAMILLE_LABELS, familleUrl } from "@/data/products";
+import { breadcrumbSchema } from "@/data/seo";
+
+/* Guide "quand poser une pierre tombale".
+   SOURCES UNIQUES : docs/REGLEMENTS-CIMETIERES-NE.md et
+   docs/DIMENSIONS-MONUMENTS.md (releve du 28.10.2026). Chaque regle porte sa
+   commune et son article ; le lien officiel est donne au bas de la section de
+   la commune. Rien qui ne figure pas dans ces deux fichiers.
+   Deux regles du projet s appliquent ici : aucun prix de l entreprise (les
+   montants cites sont des taxes COMMUNALES, datees et sourcees), et on
+   n affirme jamais qu un modele du catalogue respecte un gabarit : on dit que
+   nous adaptons le monument au reglement et que nous verifions avant la pose. */
+
+const origin = Astro.site ?? new URL(Astro.url.origin);
+const guide = guideParSlug("quand-poser-une-pierre-tombale");
+const liens = autresGuides(guide.slug);
+
+interface Ligne {
+  commune: string;
+  delai: string;
+  interdiction: string;
+  reouverture: string;
+}
+
+/* Tableau de synthese. "Aucune" veut dire : aucune periode d interdiction
+   dans le reglement releve, pas "jamais d interruption" (meteo et etat du
+   terrain restent decides avec le cimetiere). */
+const lignes: Ligne[] = [
+  {
+    commune: "Neuchâtel (Beauregard, Peseux, Corcelles-Cormondrèche, Valangin)",
+    delai: "1 an au plus tôt après l'inhumation",
+    interdiction: "Aucune au règlement",
+    reouverture: "40 ans au moins",
+  },
+  {
+    commune: "La Chaux-de-Fonds (Charrière)",
+    delai: "6 mois au plus tôt",
+    interdiction: "Du 1er novembre au 30 avril",
+    reouverture: "30 ans au moins",
+  },
+  {
+    commune: "Le Locle",
+    delai: "Fosse comblée, nivelée, terrain stabilisé",
+    interdiction: "Aucune au règlement",
+    reouverture: "60 ans au moins",
+  },
+  {
+    commune: "Boudry",
+    delai: "6 mois au plus tôt, tombe nivelée",
+    interdiction: "Aucune au règlement",
+    reouverture: "30 ans au moins (loi cantonale)",
+  },
+  {
+    commune: "Val-de-Travers (Couvet, Fleurier, Travers, Môtiers, Buttes...)",
+    delai: "15 mois au plus tôt, tombe nivelée",
+    interdiction: "Aucune au règlement",
+    reouverture: "30 ans au moins",
+  },
+];
+
+interface Section {
+  id: string;
+  titre: string;
+  chapo: string;
+  points: string[];
+  sources: SourceId[];
+  contact?: string;
+}
+
+const sections: Section[] = [
+  {
+    id: "neuchatel",
+    titre: "Ville de Neuchâtel : Beauregard, Peseux, Corcelles-Cormondrèche et Valangin",
+    chapo:
+      "Un seul règlement couvre les quatre cimetières de la commune, mais les monuments admis n'y sont pas les mêmes.",
+    points: [
+      "Délai : le monument se pose au plus tôt un an après l'inhumation, et les plans doivent être approuvés par l'Office des cimetières, qui délivre le permis de pose (art. 39).",
+      "Responsabilité : l'entrepreneur répond seul de la conformité du monument, et un monument non conforme est enlevé à ses frais (art. 40). Le Conseil communal peut accorder des dérogations (art. 41).",
+      "Beauregard : les monuments sont posés à même le sol, sans bordure ni entourage, et suivent les gabarits communaux (art. 31). La surface disponible, monument et fleurs compris, est de 70 x 130 cm pour une inhumation et de 60 x 100 cm pour une crémation ou un enfant (art. 38).",
+      "Gabarits de Beauregard, maximums des plans du 9 octobre 1990 : stèle adulte 70 cm de large sur 120 cm de haut pour une inhumation, 60 x 80 cm pour une incinération, 50 x 70 cm pour un enfant ; dalle couchée 70 x 130 cm ; croix 69 cm sur 140 cm.",
+      "Peseux, Corcelles-Cormondrèche et Valangin : les bordures sont permises, et la hauteur maximale socle compris est de 150 cm à Peseux, 160 cm à Corcelles et à Valangin pour une inhumation, 110 cm pour une incinération et 70 cm pour un enfant (art. 34 à 36). Le règlement demande en plus de ne pas dépareiller avec les monuments déjà en place.",
+      "Matériaux : pierre du pays (roc, pierre jaune, granit) ou pierre analogue, marbre, métal, bois et béton ; les tons extrêmes du polissage du marbre sont soumis à autorisation (art. 31).",
+      "Taxe communale de pose : CHF 60.- par mètre de pourtour du monument augmenté de sa hauteur, selon l'arrêté du 15 novembre 2021 en vigueur depuis le 1er janvier 2022. La Ville a adopté un nouveau règlement des taxes le 17 novembre 2025 : nous contrôlons le montant en vigueur avant chaque pose.",
+      "Réouverture : les tombes sont rouvertes après 40 ans au moins ; les proches peuvent reprendre le monument dans le délai publié, faute de quoi il revient à l'Office (art. 44 à 46).",
+    ],
+    sources: ["neuchatelReglement", "neuchatelGabarits", "neuchatelTarifs", "neuchatelBeauregard"],
+    contact: "Office des cimetières, av. Edouard-Dubois 28, Neuchâtel, 032 717 72 47.",
+  },
+  {
+    id: "la-chaux-de-fonds",
+    titre: "La Chaux-de-Fonds : cimetière de la Charrière",
+    chapo: "C'est la seule commune relevée qui ferme le chantier des monuments tout l'hiver.",
+    points: [
+      "Délai : pas de pose avant six mois après l'inhumation, et pose interdite du 1er novembre au 30 avril (art. 56). Une demande déposée en automne se réalise donc au printemps suivant.",
+      "Autorisation : elle est écrite et donne lieu à un émolument. Pour un monument de tombe cinéraire, le dossier comprend un plan au 1:10 de face avec l'inscription et de profil, le matériau, les dimensions, la bordure, le nom du marbrier et le numéro de concession ; une maquette peut être exigée (art. 54).",
+      "Matériaux et marques : la pierre artificielle est interdite et le numéro du jalon doit rester visible (art. 55).",
+      "Tombes d'inhumation : les bordures et les haies sont obligatoires, posées par la commune et facturées aux familles (art. 23).",
+      "Tombes cinéraires : le jardin mesure au moins 50 x 30 cm, sans gravier ni dallage complet (art. 64 à 66).",
+      "Entretien : un monument non conforme ou laissé sans entretien est enlevé après trois mois (art. 60) ; les couvercles de protection sont tolérés du 1er novembre au 31 mars (art. 58).",
+      "Réouverture : désaffectation après 30 ans, avec six mois pour enlever monuments et plantations (art. 25).",
+      "Les dimensions maximales ne sont pas publiées : elles figurent sur les plans de l'administration, que nous demandons pour chaque emplacement.",
+    ],
+    sources: ["chauxDeFonds"],
+    contact: "Cimetière et Centre funéraire, rue de la Charrière 102, La Chaux-de-Fonds, 032 967 64 57.",
+  },
+  {
+    id: "le-locle",
+    titre: "Le Locle",
+    chapo:
+      "Le règlement ne compte pas en mois : il attend que le terrain soit prêt, et impose un support communal.",
+    points: [
+      "Délai : le monument se pose quand la fosse est comblée, nivelée et que le terrain est stabilisé.",
+      "Support : le monument repose sur un sommier communal, dont la taxe de pose est de CHF 200.- ; un jardinet de 50 cm de diamètre est prévu devant, et les bordures comme le gravillon sont interdits (art. 30).",
+      "Dimensions d'une tombe d'inhumation, socle compris : adulte 70 cm de large sur 110 cm de haut (130 cm pour une croix) ; enfant de 3 à 10 ans 60 x 80 cm (100 cm) ; enfant de moins de 3 ans 50 x 60 cm (80 cm) (art. 30).",
+      "Concessions cinéraires : la concession A mesure au plus 60 x 80 cm et la concession B 95 x 140 cm (art. 30).",
+      "Matériaux et marques : pierre, bronze et inox ; les monuments couchés, les plaques émaillées et le fer forgé sont interdits ; le nom du marbrier doit être inscrit lisiblement sur le monument (art. 29), avec le numéro du jalon.",
+      "Entretien : les produits chimiques sont interdits et les protections sont tolérées de novembre à fin avril (art. 31).",
+      "Réouverture : les fosses sont rouvertes après 60 ans au moins (art. 32), le délai le plus long du canton parmi les communes relevées.",
+    ],
+    sources: ["leLocle", "leLocleApplication"],
+  },
+  {
+    id: "boudry",
+    titre: "Boudry",
+    chapo: "Les règles du cimetière figurent dans le règlement général de police, au chapitre V.",
+    points: [
+      "Délai : pas de pose avant six mois, sur une tombe nivelée, avec des fondations proportionnées au poids du monument (art. 93).",
+      "Dimensions de la tombe, bordure comprise : adulte 170 x 80 cm ; enfant de 3 à 10 ans 120 x 60 cm ; enfant de moins de 3 ans 80 x 50 cm (art. 93). La hauteur maximale n'est pas chiffrée dans le texte.",
+      "Emplacement cinéraire : 100 x 70 cm ; une urne peut aussi être déposée à 70 cm de profondeur sur la tombe d'un proche (art. 95).",
+      "Matériaux : le signe funéraire est en bois, en métal ou en pierre (art. 92). Il n'existe pas de concession perpétuelle (art. 87).",
+      "Entretien : les tombes abandonnées sont nivelées (art. 96).",
+      "Le texte date de 1987 : nous confirmons la version en vigueur auprès de la commune avant de déposer une demande.",
+    ],
+    sources: ["boudry"],
+  },
+  {
+    id: "val-de-travers",
+    titre: "Val-de-Travers : Couvet, Fleurier, Travers, Môtiers, Buttes, Boveresse",
+    chapo: "Le délai d'attente y est le plus long du canton parmi les communes relevées.",
+    points: [
+      "Délai : ni monument ni bordure avant 15 mois après l'inhumation ou le dépôt des cendres, sur une tombe nivelée (art. 9.17).",
+      "Dimensions de la tombe, bordure comprise : adulte et enfant dès 3 ans 180 x 80 cm ; enfant de moins de 3 ans 100 x 60 cm ; tombe cinéraire 100 x 60 cm (art. 9.16). Les hauteurs ne sont pas chiffrées : elles suivent les plans du Conseil communal.",
+      "Marques : le numéro du piquet doit rester visible sur le monument (art. 9.13).",
+      "Entretien : le nettoyage aux solvants est interdit (art. 9.10).",
+      "Plaques des niches et du jardin du souvenir : elles sont gravées par l'entreprise désignée par la commune (art. 9.21 et 9.26).",
+      "Réouverture : désaffectation après 30 ans, avec trois mois pour reprendre le monument (art. 9.19).",
+    ],
+    sources: ["valDeTravers"],
+  },
+];
+
+interface Question {
+  question: string;
+  reponse: string;
+  lien?: { href: string; label: string };
+}
+
+/* Meme texte affiche et envoye dans le JSON-LD FAQPage : les liens vivent
+   dans `lien`, a part, pour que les deux versions restent identiques. */
+const questions: Question[] = [
+  {
+    question: "Pourquoi faut-il attendre avant de poser un monument funéraire ?",
+    reponse:
+      "Après une inhumation, la terre se tasse et le terrain doit se stabiliser avant de recevoir le poids d'un monument. C'est la raison du délai d'un an de la Ville de Neuchâtel (art. 39) et de la règle du Locle, qui attend que la fosse soit comblée, nivelée et le terrain stabilisé (art. 30).",
+  },
+  {
+    question: "Combien de temps après le décès peut-on poser la pierre tombale à Neuchâtel ?",
+    reponse:
+      "Un an au plus tôt après l'inhumation, dans les quatre cimetières de la Ville de Neuchâtel (Beauregard, Peseux, Corcelles-Cormondrèche et Valangin), selon l'art. 39 du règlement du 26 juin 2023. Ailleurs dans le canton, le délai va de six mois (La Chaux-de-Fonds, Boudry) à quinze mois (Val-de-Travers).",
+  },
+  {
+    question: "Peut-on poser une pierre tombale en hiver ?",
+    reponse:
+      "À La Chaux-de-Fonds, non : la pose est interdite du 1er novembre au 30 avril (art. 56). Les autres règlements relevés dans le canton ne fixent pas de période d'interdiction, mais la date se convient toujours avec le cimetière.",
+  },
+  {
+    question: "Qui demande l'autorisation de poser le monument ?",
+    reponse:
+      "C'est l'entreprise qui pose le monument. À Neuchâtel, les plans sont approuvés par l'Office des cimetières, qui délivre le permis de pose, et l'entrepreneur répond seul de la conformité (art. 39 et 40). À La Chaux-de-Fonds, l'autorisation est écrite et le dossier comprend un plan au 1:10 (art. 54). Nous nous chargeons de ces démarches pour la famille.",
+    lien: { href: "/devis/", label: "Nous confier la pose" },
+  },
+  {
+    question: "Y a-t-il une taxe communale pour poser une pierre tombale ?",
+    reponse:
+      "Oui dans certaines communes. La Ville de Neuchâtel facture CHF 60.- par mètre de pourtour du monument augmenté de sa hauteur (arrêté du 15 novembre 2021, en vigueur depuis le 1er janvier 2022) ; Le Locle facture CHF 200.- pour la pose sur le sommier communal (art. 30) ; La Chaux-de-Fonds perçoit un émolument avec l'autorisation (art. 54). Ces taxes ne sont pas comprises dans nos estimations.",
+    lien: { href: "/prix-pierre-tombale-suisse/", label: "Ce que comprend une estimation" },
+  },
+  {
+    question: "Que devient le monument quand la tombe est rendue ?",
+    reponse: `La ${LOI_CANTONALE} prévoit la réouverture des fosses après 30 ans au moins (art. 6), et les communes peuvent allonger ce délai : 40 ans à Neuchâtel (art. 44 à 46), 60 ans au Locle (art. 32), 30 ans à La Chaux-de-Fonds (art. 25) et à Val-de-Travers (art. 9.19). La famille peut en général reprendre le monument dans le délai publié par la commune.`,
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: questions.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.reponse },
+  })),
+};
+
+const filAriane = breadcrumbSchema(
+  [
+    { name: "Accueil", path: "/" },
+    { name: "Guides", path: GUIDES_URL },
+    { name: guide.titreCourt, path: guideUrl(guide.slug) },
+  ],
+  origin,
+);
+---
+
+<BaseLayout
+  title={pageTitle("Quand poser une pierre tombale dans le canton de Neuchâtel")}
+  description="Le délai avant la pose d'un monument commune par commune : 1 an à Neuchâtel, 6 mois à La Chaux-de-Fonds et à Boudry, 15 mois au Val-de-Travers. Démarches et taxes."
+>
+  <main id="main-content">
+    <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
+      <p class="label">Guide</p>
+      <h1 class="type-h1 mt-4 max-w-[24ch]">{guide.titre}</h1>
+      <p class="type-lead mt-8 max-w-[58ch]">
+        Il n'existe pas de délai valable pour tout le canton : c'est la commune qui fixe le moment où un
+        monument peut être posé sur une tombe, et les écarts vont de six à quinze mois. Voici ce que disent
+        les règlements des cimetières neuchâtelois relevés.
+      </p>
+      <div class="mt-8">
+        <MentionVerification />
+      </div>
+    </section>
+
+    {/* ------------------------------------------------------------ Principe */}
+    <section class="shell mt-12 md:mt-16">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Le principe : c'est la commune qui décide</h2>
+      <div class="mt-6 max-w-[62ch] space-y-5">
+        <p class="type-body">
+          La {LOI_CANTONALE} confie l'administration des cimetières aux communes et admet les monuments
+          funéraires « sous réserve des conditions que pourront déterminer les autorités communales »
+          (art. 9). Le canton ne fixe donc ni délai de pose, ni dimensions : il pose seulement une limite
+          de fond, la réouverture des fosses après 30 ans au moins (art. 6).
+        </p>
+        <p class="type-body">
+          Tout le reste se lit dans le règlement du cimetière : le délai avant la pose, la période où elle
+          est interdite, la surface de la tombe, la hauteur admise, la bordure, les matériaux, les
+          autorisations à déposer et la taxe à payer. Deux cimetières d'une même commune peuvent même
+          suivre des règles différentes, comme à Neuchâtel entre Beauregard et Corcelles-Cormondrèche.
+        </p>
+        <p class="type-body">
+          La raison du délai est toujours la même : après une inhumation, la terre se tasse. La Ville de
+          Neuchâtel demande d'attendre un an avant de s'adresser à un marbrier, et Le Locle attend que la
+          fosse soit comblée, nivelée et le terrain stabilisé.
+        </p>
+        <p class="type-body">
+          Nous adaptons le monument au règlement du cimetière concerné et nous le vérifions avant la pose.
+          Dites-nous la commune, le nom du cimetière et le type de sépulture : c'est ce qui détermine le
+          modèle possible.
+        </p>
+      </div>
+    </section>
+
+    {/* ------------------------------------------------------------- Tableau */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Délais par commune</h2>
+      <p class="type-body mt-6 max-w-[56ch]">
+        Les cinq communes neuchâteloises dont nous avons relevé le règlement. Le détail et les articles
+        figurent dans les sections qui suivent.
+      </p>
+
+      <div class="mt-12 overflow-x-auto">
+        <table class="w-full border-collapse text-left">
+          <thead>
+            <tr class="border-y border-line">
+              <th scope="col" class="label py-4 pr-6 font-normal">Commune</th>
+              <th scope="col" class="label py-4 pr-6 font-normal">Délai avant la pose</th>
+              <th scope="col" class="label py-4 pr-6 font-normal">Pose interdite</th>
+              <th scope="col" class="label py-4 font-normal">Réouverture de la tombe</th>
+            </tr>
+          </thead>
+          <tbody class="text-[0.9375rem]">
+            {
+              lignes.map((ligne) => (
+                <tr class="border-b border-line align-top">
+                  <th scope="row" class="max-w-[22ch] py-5 pr-6 font-normal">
+                    {ligne.commune}
+                  </th>
+                  <td class="py-5 pr-6">{ligne.delai}</td>
+                  <td class="py-5 pr-6 text-muted">{ligne.interdiction}</td>
+                  <td class="py-5 text-muted">{ligne.reouverture}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="type-body mt-6 max-w-[56ch] text-[0.9375rem] text-muted">
+        « Aucune au règlement » signifie qu'aucune période d'interdiction ne figure dans le texte relevé :
+        la date de la pose se convient malgré tout avec le cimetière.
+      </p>
+    </section>
+
+    {/* ---------------------------------------------- Une section par commune */}
+    {
+      sections.map((section) => (
+        <section class="shell mt-20 md:mt-28" id={section.id}>
+          <div class="rule" />
+          <h2 class="type-h2 mt-8 max-w-[24ch]">{section.titre}</h2>
+          <p class="type-body mt-6 max-w-[56ch]">{section.chapo}</p>
+
+          <ul class="type-body mt-8 max-w-[64ch] space-y-4 pl-5 [list-style:disc]">
+            {section.points.map((point) => (
+              <li class="text-[0.9375rem]">{point}</li>
+            ))}
+          </ul>
+
+          {section.contact && (
+            <p class="type-body mt-6 max-w-[56ch] text-[0.9375rem] text-muted">{section.contact}</p>
+          )}
+
+          <ul class="mt-6 space-y-2">
+            {section.sources.map((id) => (
+              <li>
+                <a href={SOURCES[id].url} class="link link-mono text-muted" rel="noopener">
+                  {SOURCES[id].libelle}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+
+    {/* ----------------------------------------------------------------- FAQ */}
+    <section class="shell mt-24 md:mt-36">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Questions des familles</h2>
+      <dl class="mt-8 border-t border-line">
+        {
+          questions.map((item) => (
+            <div class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-12">
+              <dt class="type-h3 max-w-[26ch] md:col-span-5">{item.question}</dt>
+              <dd class="md:col-span-7">
+                <p class="type-body max-w-[56ch] text-[0.9375rem]">{item.reponse}</p>
+                {item.lien && (
+                  <p class="mt-4">
+                    <a href={item.lien.href} class="link link-mono text-muted">
+                      {item.lien.label}
+                    </a>
+                  </p>
+                )}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    {/* ------------------------------------------------------ Autres guides */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">À lire ensuite</h2>
+      <ul class="mt-8 border-t border-line">
+        {
+          liens.map((autre) => (
+            <li class="border-b border-line py-6">
+              <a href={guideUrl(autre.slug)} class="link type-h3">
+                {autre.titreCourt}
+              </a>
+              <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem]">{autre.resume}</p>
+            </li>
+          ))
+        }
+        <li class="border-b border-line py-6">
+          <a href="/faq/" class="link type-h3">
+            Questions fréquentes
+          </a>
+          <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem]">
+            Prix, granits, gravure d'un dessin fourni, inscription ajoutée sur un monument déjà posé.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    {/* --------------------------------------------------------------- Appel */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="grid items-end gap-8 md:grid-cols-12">
+        <div class="md:col-span-7">
+          <h2 class="type-h2 max-w-[20ch]">Votre cimetière, votre monument</h2>
+          <p class="type-body mt-6 max-w-[52ch]">
+            Donnez-nous la commune, le nom du cimetière et le type de sépulture : nous vérifions le
+            règlement, nous adaptons le monument à ce qu'il autorise, nous déposons la demande de pose et
+            nous établissons un devis gratuit.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
+          <a href="/devis/" class="btn btn-primary">Demander un devis</a>
+          <a href={familleUrl("monument")} class="btn btn-outline">
+            {FAMILLE_LABELS.monument}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
+</BaseLayout>
