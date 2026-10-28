@@ -84,6 +84,7 @@ export const siteConfig = {
       heading: "Informations",
       links: [
         { label: "Prix", href: "/prix-pierre-tombale-suisse/" },
+        { label: "Guides", href: "/guides/" },
         { label: "Questions fréquentes", href: "/faq/" },
         { label: "Qui sommes-nous", href: "/a-propos/" },
         { label: "Demander un devis", href: "/devis/" },

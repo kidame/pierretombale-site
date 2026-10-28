@@ -1,0 +1,19 @@
+---
+/* Mention obligatoire en tete de chaque guide : la date de verification des
+   reglements et ce que nous faisons avant une pose. Le texte vient de
+   src/data/guides.ts pour qu il soit identique d une page a l autre. */
+import { MENTION_VERIFICATION } from "@/data/guides";
+---
+
+<p class="mention-verification type-body">{MENTION_VERIFICATION}</p>
+
+<style>
+  .mention-verification {
+    max-width: 62ch;
+    padding: 1rem 1.25rem;
+    border-left: 2px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+    font-size: 0.9375rem;
+    color: var(--muted);
+  }
+</style>
