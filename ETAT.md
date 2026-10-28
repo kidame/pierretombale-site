@@ -52,6 +52,10 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026, Claude : relecture complete des documents a la demande de Thomas. Releve refait :
+  gabarits Beauregard (scan lu), tarifs Ville de Neuchatel 2022 (taxe de pose 60.-/m), Le Locle,
+  rapports CG 23-005 et 26-012 (tombes doubles, pas japonais, quartiers 2026-2028). ALERTE :
+  les modeles 100 x 200 du catalogue ne passent pas a Beauregard, Le Locle, Boudry, Val-de-Travers.
 - 28.10.2026, Claude : etape 1 FAQ/guides faite. Reglements officiels releves (canton, Neuchatel ville
   2023, La Chaux-de-Fonds, Le Locle, Boudry, Val-de-Travers) : docs/REGLEMENTS-CIMETIERES-NE.md.
   Thomas a choisi l option audacieuse (guides + pages cimetieres) et veut Codex pour la redaction.

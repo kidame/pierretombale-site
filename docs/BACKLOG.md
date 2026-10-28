@@ -74,6 +74,10 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
           (columbarium/cavurne/jardin du souvenir), epitaphe, FAQ prix, delais et demarches,
           entretien + pages cimetieres NE (Beauregard...) : option audacieuse CHOISIE par Thomas
       [x] Etape 1 : releve des reglements -> docs/REGLEMENTS-CIMETIERES-NE.md - Claude - 28.10.2026
+      [ ] PRIORITE : catalogue 100 x 200 incompatible avec Beauregard, Le Locle, Boudry, VdT
+          (docs/REGLEMENTS-CIMETIERES-NE.md section 0) - decision Thomas + associes
+      [ ] Demarches : marbrier reference Beauregard (plaques de niches), entreprise designee
+          VdT (plaques jardin du souvenir et niches), format dalle "pas japonais" - Thomas
       [ ] Etape 2 : redaction guides par Codex (kumo-run codex), a partir du releve uniquement
       [ ] Manques : gabarits Beauregard (Office des cimetieres), tarifs communaux, loi cantonale a jour
 - [x] Configurateur au design des maquettes (4 etapes, ecran partage, mobile) - Claude - 28.10.2026,
