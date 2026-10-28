@@ -18,13 +18,17 @@ Le catalogue funéraire du site est en 100 x 200 cm (monument complet avec entou
 Les cinéraires 60 x 60 cm rentrent dans les surfaces cinéraires (60 x 100 Beauregard,
 100 x 60 VdT, A 0,60 x 0,80 Le Locle) MAIS les hauteurs de stèle doivent être contrôlées
 (Beauregard cinéraire : stèle 80 cm max ; Le Locle A : 80 cm max).
+MISE A JOUR 28.10.2026 (24 communes relevées) : AUCUNE commune du canton ne publie une tombe
+d'adulte de plus de 80 cm de large ni de plus de 180 cm de long : le 100 x 200 ne passe nulle part
+où la règle est connue (détail : docs/DIMENSIONS-MONUMENTS.md, point 6).
 => À trancher avec Thomas et les associés : format "suisse" (stèle seule, sans entourage)
    par cimetière, sinon des familles commanderont un monument refusé (NE art. 40 :
    l'entrepreneur enlève à ses frais tout monument non conforme).
 
 ## 1. Canton : loi sur les sépultures (RSN 565.1, 10.07.1894)
-Version lue : tiré à part 31.05.2005 (lexfind). Version consolidée actuelle À VÉRIFIER
-(projet de loi 24.167 de 2024 sur l'art. 36, dépôt des cendres).
+Version vérifiée : consolidée, état au 27.05.2025 (https://rsn.ne.ch/DATA/program/books/rsne/pdf/565.1.pdf).
+Projet 24.167 (20.06.2024, forêt funéraire à l'art. 36) : aucune adoption trouvée au 28.10.2026.
+Seul texte d'exécution : arrêté RSN 565.12 (12.04.1995), finance d'inhumation des non-domiciliés 300.- à 1500.-.
 - Art. 6 : réouverture des fosses après 30 ans au moins.
 - Art. 9 : monuments permis aux conditions communales, enlevés au tour de rotation.
 - Art. 12-13 : SERVICE DES INHUMATIONS GRATUIT (vérification du décès, mise au cercueil et
@@ -91,7 +95,8 @@ Jardinière dans une dalle couchée : max 50 x 40 (inhumation), 40 x 40 (inciné
 
 ### 2.3 Tarifs communaux (arrêté du 15.11.2021, en vigueur 01.01.2022)
 PDF : https://www.neuchatelville.ch/fileadmin/sites/ne_ville/fichiers/Vivre_a_Neuchatel/Habitants/Arre__te___du_CC_du_15_novembre_2021_-_Tarifs_de__s_le_1er_janvier_2022.pdf
-(A RECONTRÔLER : nouveau règlement des taxes du 17.11.2025, l'arrêté 410.3 reste listé.)
+(TOUJOURS EN VIGUEUR : la table chronologique de mai 2026 liste l'arrêté 410.3 ; le règlement 410
+du 17.11.2025 ne fixe aucun montant de cimetière, art. 41 : taxes fixées par le Conseil communal.)
 - Inhumation : gratuit (domicilié) ; 1500 (non domicilié) ; 600 (enfant non domicilié).
 - TAXE DE POSE d'un monument (Art. 1) : CHF 60.- par mètre de pourtour du monument augmenté
   de sa hauteur. Exemple (mon calcul, interprétation à confirmer) : stèle 70 x 45, h 120 :
@@ -197,7 +202,8 @@ https://www.lelocle.ch/wp-content/uploads/2022/07/Reglement_CC_applic_Cimetiere_
   commune 80.- à 190.- par an.
 
 ## 5. Boudry
-Règlement général de police du 21.05.1987, chap. V (version en vigueur À VÉRIFIER).
+Règlement général de police du 21.05.1987, chap. V art. 81-99, toujours en vigueur (recueil 2026 ;
+aucun règlement de cimetière propre ; règlement des taxes 1994 sans montant de cimetière).
 https://www.boudry.ch/fileadmin/SICO/Boudry/Documents/2022/Reglements_communaux/Reglement_de_police.pdf
 - Art. 87 : pas de concession perpétuelle. Art. 89 : ensevelissement 48-72 h, jours ouvrables.
 - Art. 90 : transport au crématoire de Neuchâtel compris dans le service gratuit.
@@ -219,7 +225,7 @@ https://www.val-de-travers.ch/sites/default/files/reglements/113.1.pdf
   tombe cinéraire 1,00 x 0,60. Hauteurs non chiffrées (plans du Conseil communal).
 - Art. 9.17 : monuments et bordures pas avant 15 MOIS, tombe nivelée.
 - Art. 9.19 : désaffectation après 30 ans ; 3 mois pour reprendre le monument (ex. Buttes 2021).
-- Art. 9.21 : jardin du souvenir avec plaque nominative (80.- selon RTN 2024, non vérifié) ;
+- Art. 9.21 : jardin du souvenir avec plaque nominative (80.-, arrêté des taxes 020.3 art. 10.14a, plaquette 4 x 6 cm) ;
   gravure par une ENTREPRISE DÉSIGNÉE par la commune ; retrait possible après 20 ans.
 - Art. 9.23 : niches 20 ans renouvelables par 10, 2 urnes max.
 - Art. 9.26 : plaque de niche avec noms, dates et PHOTO ; vase imposé ; gravure par
@@ -244,8 +250,31 @@ https://www.val-de-travers.ch/sites/default/files/reglements/113.1.pdf
 - Tombe double, tombe semi-anonyme, pas japonais, cimetière forestier : les nouvelles sépultures à Neuchâtel.
 - Entretien d'une tombe : obligations (concession annulée si abandon) et prix des communes.
 
-## 9. Manques
-- Taxes 2025-2026 de la Ville de Neuchâtel (nouveau règlement du 17.11.2025).
-- Dimensions des monuments à La Chaux-de-Fonds et Val-de-Travers (plans non publiés).
-- Statut de l'art. 36 de la loi cantonale (projet 24.167).
-- Autres communes : Milvignes, Val-de-Ruz, La Grande Béroche, Hauterive, Saint-Blaise, La Tène...
+## 9. Manques (mis à jour le 28.10.2026)
+- Taxes de Neuchâtel : réglé (arrêté 2021 toujours en vigueur).
+- Hauteurs non publiées : La Chaux-de-Fonds, Val-de-Travers, Val-de-Ruz, Boudry, La Grande
+  Béroche (site web seulement), Cornaux, Cressier, Le Landeron, Lignières, Les Planchettes.
+- Règlements absents ou muets : Les Verrières, La Côte-aux-Fées, Le Cerneux-Péquignot,
+  La Chaux-du-Milieu (aucune dimension), Les Brenets (régime à confirmer).
+- Liste d'appels complète : docs/DIMENSIONS-MONUMENTS.md, point 8.
+
+## 10. Toutes les communes du canton (relevé web du 28.10.2026)
+Les règles de pose, dimensions, articles, liens et contacts des 24 communes sont dans
+docs/DIMENSIONS-MONUMENTS.md (tableau point 4, fiches point 5). Ce qui compte en plus pour
+l'entreprise :
+- Gravure des plaques de columbarium passée PAR LA COMMUNE, qui sous-traite à un marbrier :
+  Cornaux (art. 6.6, 25.- par lettre), Cortaillod (art. 8.18), Milvignes (art. 47, "frais
+  effectifs de la marbrerie"), La Grande Béroche (arrêté 2023, idem), La Chaux-de-Fonds
+  (26.- par caractère + déplacement du marbrier, fiche 2018), Val-de-Travers (entreprise
+  désignée, art. 9.21 et 9.26), Neuchâtel (marbrier conventionné). => démarche commerciale :
+  se faire référencer comme marbrier/graveur auprès de ces administrations.
+- Laténa : cimetière de Saint-Blaise géré par l'entreprise Bannwart ; entretien confié
+  exclusivement au jardinier du cimetière (art. 85).
+- Taxe de pose publiée seulement à Neuchâtel (60.- par mètre), La Chaux-de-Fonds (50.-,
+  règlement 41.101 art. 32) et Le Locle (200.-).
+- Contradiction légale : Cornaux (art. 5.3) et Cressier (art. 6.13) disent désaffectation après
+  20 ans, la loi cantonale dit 30 ans au moins (art. 6). Ne pas publier 20 ans.
+- Cressier : tombe adulte 1.40 m de long dans le texte (fosse 2.00 m) : probable erreur.
+- PDF téléchargés et lus : atelier/tmp/reglements (Cornaux, Cressier, Ponts, La Sagne,
+  La Brévine, La Chaux-du-Milieu, Val-de-Travers, Val-de-Ruz, Rochefort, Laténa, Landeron,
+  Lignières, Planchettes, Milvignes, Cortaillod, La Grande Béroche, loi cantonale).

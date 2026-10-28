@@ -52,6 +52,15 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026 (soir), Claude : RELEVE DES 24 COMMUNES DU CANTON (demande de Thomas : verifier sur le
+  net toutes les conditions des communes, tailles, etc.). 4 recherches web paralleles + lecture par
+  Claude des textes officiels (PDF texte, scans dechiffres sur le VPS). Resultat :
+  docs/DIMENSIONS-MONUMENTS.md reecrit (synthese point 4, fiches point 5, compatibilite point 6,
+  liste d appels point 8) et docs/REGLEMENTS-CIMETIERES-NE.md complete (sections 9 et 10).
+  CONSTAT MAJEUR : aucune commune ne publie une tombe d adulte de plus de 80 x 180 cm ; le format
+  100 x 200 des fiches ne passe nulle part ou la regle est connue. Tarifs 2021 de Neuchatel
+  toujours en vigueur. Taxe de pose : seulement Neuchatel, La Chaux-de-Fonds (50.-) et Le Locle.
+  Pas de modification du site dans cette etape.
 - 28.10.2026, Claude : LOT 1 DES GUIDES SEO ECRIT (docs/BRIEF-GUIDES-LOT1.md execute par Claude,
   pas par Codex). Quatre pages : /guides/ (index), /guides/quand-poser-une-pierre-tombale/,
   /guides/columbarium-cavurne-jardin-du-souvenir/, /guides/epitaphe/. SOURCES UNIQUES :

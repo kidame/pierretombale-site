@@ -278,8 +278,12 @@ Lecture rapide :
   publiée dans le canton. Un monument complet de 100 x 200 ne passe donc dans AUCUN
   cimetière neuchâtelois dont on connaît les règles. Il faut un format "neuchâtelois" :
   entourage 160 à 180 x 80 au plus, ou stèle seule de 70 de large sur 110 à 130 de haut.
-  A vérifier : la cote "100 x 200" des fiches est-elle la vraie cote fournisseur ?
-  (docs/references/geometrie-fournisseur.json).
+  Vérifié : 100 x 200 est bien l'encombrement fournisseur (docs/references/
+  2026-10-23-dimensions-steles-fournisseur.md, soubassement 5 pièces de 15 de haut).
+  Les stèles du fournisseur font 65 à 95 de large : au-delà de 70 (Beauregard, Le Locle,
+  secteurs remaniés des Ponts) pour la plupart, et au-delà de 80 pour Corazon, Arques,
+  4 pièces doucine, Quiétude, Arbre de vie, 5 pièces jardinière (90 à 95). Les modèles à
+  stèle de 65 (Musulman 4, Aventuri) sont les plus faciles à adapter.
 - Sans bordure obligatoire : Beauregard et Le Locle (bordure INTERDITE), secteurs remaniés
   des Ponts-de-Martel, tombes cinéraires de Milvignes. A La Chaux-de-Fonds, c'est l'inverse :
   la commune pose elle-même bordures et haies.
