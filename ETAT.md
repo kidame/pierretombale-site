@@ -52,6 +52,14 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026, Claude : hero de l accueil = video (fournie par Thomas, 13 s, 1280x720) a la place de l image.
+  Recompressee en mp4 H.264 sans audio (1 Mo, faststart) : public/videos/accueil/hero.mp4 ; affiche
+  public/images/accueil/hero-video-poster-1200.webp (image finale, sert aussi de LCP, sans JS et en mouvement
+  reduit). Lecture auto muette, UNE fois (pas de boucle), puis reste sur l image finale. Pas de lecture auto si
+  prefers-reduced-motion ou economie de donnees. Bouton pause/lecture (WCAG 2.2.2) masque a la fin. Memes
+  regles CSS que l ancienne image (contain, droite, fondus). _headers : /videos/* 7 jours. Verifie au navigateur
+  en 1536 et 390 (lecture ok, pas d erreur). Non teste : Safari/iPhone reels. Poids accueil : +1 Mo de video,
+  charge apres l affiche. Les anciens hero-700/1200.webp ne sont plus utilises (a supprimer plus tard).
 - 28.10.2026, Claude : passe visuelle de toutes les pages (1536 et 390) avant presentation aux associes.
   Corrige : a-propos n affiche plus les deux visuels provisoires gris (gravure-900 en bandeau, matiere-768 en
   portrait, legendes neutres) ; accents retablis dans les descriptions de src/data/granits.json ; configurateur

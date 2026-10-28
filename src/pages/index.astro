@@ -64,18 +64,31 @@ const organizationSchema = {
     {/* ---------------------------------------------------------------- Hero */}
     <section class="nuit hero" aria-labelledby="hero-titre">
       <div class="hero-fond">
-        <img
-          src="/images/accueil/hero-1200.webp"
-          srcset="/images/accueil/hero-700.webp 700w, /images/accueil/hero-1200.webp 1200w"
-          sizes="(min-width: 1024px) 100vw, (min-width: 640px) 120vw, 150vw"
-          width="1200"
-          height="675"
-          alt="Illustration d'un monument funéraire en granit sombre"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
+        <video
+          data-hero-video
+          poster="/images/accueil/hero-video-poster-1200.webp"
+          width="1280"
+          height="720"
+          autoplay
+          muted
+          playsinline
+          preload="auto"
+          disablepictureinpicture
+          disableRemotePlayback
+          role="img"
+          aria-label="Un monument funéraire en granit sombre sort peu à peu de l'ombre"
+        >
+          <source src="/videos/accueil/hero.mp4" type="video/mp4" />
+        </video>
       </div>
+      <button type="button" class="hero-pause" data-hero-pause aria-label="Mettre l'animation en pause" hidden>
+        <svg class="hero-pause-ico" data-ico-pause viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <svg class="hero-pause-ico" data-ico-lire viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" style="display:none">
+          <path d="M8 5l11 7-11 7z" fill="currentColor" />
+        </svg>
+      </button>
       <div class="shell hero-grille">
         <div class="hero-texte">
           <p class="label">L'art du souvenir</p>
@@ -211,6 +224,40 @@ const organizationSchema = {
     </section>
   </main>
 
+  <script>
+    /* Hero : la video joue une fois (pas de boucle) puis reste sur l'image finale.
+       Mouvement reduit ou economie de donnees : pas de lecture automatique.
+       Bouton pause/lecture pour toute animation de plus de 5 secondes. */
+    const video = document.querySelector<HTMLVideoElement>("[data-hero-video]");
+    const bouton = document.querySelector<HTMLButtonElement>("[data-hero-pause]");
+    if (video && bouton) {
+      const icoPause = bouton.querySelector<SVGElement>("[data-ico-pause]")!;
+      const icoLire = bouton.querySelector<SVGElement>("[data-ico-lire]")!;
+      const majBouton = () => {
+        const enPause = video.paused;
+        icoPause.style.display = enPause ? "none" : "";
+        icoLire.style.display = enPause ? "" : "none";
+        bouton.setAttribute("aria-label", enPause ? "Lire l'animation" : "Mettre l'animation en pause");
+      };
+      const connexion = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+      const sobre = window.matchMedia("(prefers-reduced-motion: reduce)").matches || connexion?.saveData === true;
+      if (sobre) {
+        video.removeAttribute("autoplay");
+        video.pause();
+      }
+      bouton.hidden = false;
+      majBouton();
+      bouton.addEventListener("click", () => {
+        if (video.paused) void video.play();
+        else video.pause();
+      });
+      video.addEventListener("play", majBouton);
+      video.addEventListener("pause", majBouton);
+      video.addEventListener("ended", () => {
+        bouton.hidden = true;
+      });
+    }
+  </script>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)}></script>
 </BaseLayout>
 
@@ -244,7 +291,7 @@ const organizationSchema = {
     inset: 0;
   }
 
-  .hero-fond img {
+  .hero-fond video {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -256,6 +303,44 @@ const organizationSchema = {
     /* Le bord haut de l'image (fond plus noir que --canvas) est fondu. */
     -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%);
     mask-image: linear-gradient(to bottom, transparent, #000 22%);
+  }
+
+  .hero-pause {
+    position: absolute;
+    z-index: 2;
+    top: 0.75rem;
+    right: var(--gutter, 1.5rem);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    background: color-mix(in oklab, var(--canvas) 55%, transparent);
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .hero-pause:hover {
+    border-color: var(--ink);
+  }
+
+  .hero-pause:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .hero-pause[hidden],
+  .hero-pause-ico[hidden] {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-pause {
+      top: auto;
+      bottom: 1.5rem;
+    }
   }
 
   .hero-fond::after {
@@ -306,7 +391,7 @@ const organizationSchema = {
       width: auto;
     }
 
-    .hero-fond img {
+    .hero-fond video {
       width: 120%;
     }
 
@@ -324,7 +409,7 @@ const organizationSchema = {
   }
 
   @media (min-width: 1024px) {
-    .hero-fond img {
+    .hero-fond video {
       position: static;
       width: 100%;
       height: 100%;
