@@ -52,6 +52,12 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026, Claude : passe visuelle de toutes les pages (1536 et 390) avant presentation aux associes.
+  Corrige : a-propos n affiche plus les deux visuels provisoires gris (gravure-900 en bandeau, matiere-768 en
+  portrait, legendes neutres) ; accents retablis dans les descriptions de src/data/granits.json ; configurateur
+  telephone, "Votre choix" retire de la barre collee en bas (la tuile dit deja Selectionne). RAS sur accueil,
+  catalogues, fiches, granits, prix, FAQ, devis, merci. Reste visible : meme fourchette de prix sur tous les
+  modeles (grille de prix a fournir par Thomas), pas de vraies photos.
 - 28.10.2026, Claude : accueil, hero recadre comme la maquette. Le monument n est plus coupe (object-fit:
   contain, pose a droite, bords de l image fondus par des degrades, plus de token ajoute) ; sur ordinateur le
   hero fait clamp(34rem, 40vw, 100vh - en-tete) avec marge interieure 6vw ; sur telephone le titre passe sur

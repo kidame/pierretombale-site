@@ -1,12 +1,12 @@
 [
-  { "id": "bengal", "nom": "Bengal", "teinte": "noir", "disponible": true, "photo": "/images/matieres/bengal-480.webp", "description": "Fond anthracite profond, grain fin et regulier, pique de points clairs." },
-  { "id": "royal", "nom": "Royal", "teinte": "noir", "disponible": true, "photo": "/images/matieres/royal-480.webp", "description": "Noir et gris en grain moyen, tres contraste, aspect classique." },
-  { "id": "jablanica", "nom": "Jablanica", "teinte": "gris", "disponible": true, "photo": "/images/matieres/jablanica-480.webp", "description": "Gris fonce a gros grain, fond sombre nuance de gris clair." },
+  { "id": "bengal", "nom": "Bengal", "teinte": "noir", "disponible": true, "photo": "/images/matieres/bengal-480.webp", "description": "Fond anthracite profond, grain fin et régulier, piqué de points clairs." },
+  { "id": "royal", "nom": "Royal", "teinte": "noir", "disponible": true, "photo": "/images/matieres/royal-480.webp", "description": "Noir et gris en grain moyen, très contrasté, aspect classique." },
+  { "id": "jablanica", "nom": "Jablanica", "teinte": "gris", "disponible": true, "photo": "/images/matieres/jablanica-480.webp", "description": "Gris foncé à gros grain, fond sombre nuancé de gris clair." },
   { "id": "egipat", "nom": "Egipat", "teinte": "gris", "disponible": true, "photo": "/images/matieres/egipat-480.webp", "description": "Gris clair moucheté de noir, grain franc et lumineux." },
-  { "id": "viscount-white", "nom": "Viscount White", "teinte": "blanc", "disponible": true, "photo": "/images/matieres/viscount-white-480.webp", "description": "Blanc casse a veines grises fines, grain serre." },
-  { "id": "marmara", "nom": "Marmara", "teinte": "blanc", "disponible": true, "photo": "/images/matieres/marmara-480.webp", "description": "Blanc a larges veines grises paralleles, surface douce." },
-  { "id": "vizag-blue", "nom": "Vizag Blue", "teinte": "bleu", "disponible": true, "photo": "/images/matieres/vizag-blue-480.webp", "description": "Bleu violace a mouvements sombres, veinage marque." },
-  { "id": "paradiso", "nom": "Paradiso", "teinte": "gris", "disponible": true, "photo": "/images/matieres/paradiso-480.webp", "description": "Gris veine de rose et de brun, mouvements ondules." },
-  { "id": "rozabeta", "nom": "Rozabeta", "teinte": "rose", "disponible": true, "photo": "/images/matieres/rozabeta-480.webp", "description": "Rose clair a grain moyen, pique de gris et de noir." },
-  { "id": "rosso-porrino", "nom": "Rosso Porrino", "teinte": "rose", "disponible": true, "photo": "/images/matieres/rosso-porrino-480.webp", "description": "Rose soutenu a gros grain, taches noires et grises." }
+  { "id": "viscount-white", "nom": "Viscount White", "teinte": "blanc", "disponible": true, "photo": "/images/matieres/viscount-white-480.webp", "description": "Blanc cassé à veines grises fines, grain serré." },
+  { "id": "marmara", "nom": "Marmara", "teinte": "blanc", "disponible": true, "photo": "/images/matieres/marmara-480.webp", "description": "Blanc à larges veines grises parallèles, surface douce." },
+  { "id": "vizag-blue", "nom": "Vizag Blue", "teinte": "bleu", "disponible": true, "photo": "/images/matieres/vizag-blue-480.webp", "description": "Bleu violacé à mouvements sombres, veinage marqué." },
+  { "id": "paradiso", "nom": "Paradiso", "teinte": "gris", "disponible": true, "photo": "/images/matieres/paradiso-480.webp", "description": "Gris veiné de rose et de brun, mouvements ondulés." },
+  { "id": "rozabeta", "nom": "Rozabeta", "teinte": "rose", "disponible": true, "photo": "/images/matieres/rozabeta-480.webp", "description": "Rose clair à grain moyen, piqué de gris et de noir." },
+  { "id": "rosso-porrino", "nom": "Rosso Porrino", "teinte": "rose", "disponible": true, "photo": "/images/matieres/rosso-porrino-480.webp", "description": "Rose soutenu à gros grain, taches noires et grises." }
 ]

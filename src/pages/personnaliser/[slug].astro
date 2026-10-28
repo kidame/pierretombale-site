@@ -2512,12 +2512,17 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
       }
     }
 
+    /* Telephone : la barre collee en bas reste basse ; le choix se lit deja
+       sur la tuile ("Selectionne") et dans la legende de l'apercu. */
     .cfg-nav-choix {
       grid-template-columns: minmax(0, 1fr);
       grid-template-areas:
-        "choix"
         "continuer"
         "note";
+    }
+
+    .cfg-nav-choix .cfg-choix-ligne {
+      display: none;
     }
 
     @media (min-width: 64rem) {
@@ -2526,6 +2531,10 @@ const finitionDefaut = finitions.find((finition) => finition.id === FINITION_APE
         grid-template-areas:
           "choix continuer"
           "note note";
+      }
+
+      .cfg-nav-choix .cfg-choix-ligne {
+        display: flex;
       }
     }
 

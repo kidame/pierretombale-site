@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import visuelProvisoire from "@/assets/visuel-provisoire.svg";
 import { pageTitle } from "@/config/site";
 import { familleUrl } from "@/data/products";
 
@@ -67,10 +66,10 @@ const reperes = [
     <figure class="hero-in" style="--reveal-delay:260ms">
       <div class="overflow-hidden bg-surface">
         <img
-          src={visuelProvisoire.src}
-          alt=""
-          width={1920}
-          height={1080}
+          src="/images/accueil/gravure-900.webp"
+          alt="Rameau gravé en creux dans un granit sombre"
+          width={900}
+          height={450}
           loading="eager"
           decoding="sync"
           class="h-[40vh] w-full object-cover md:h-[56vh]"
@@ -79,8 +78,8 @@ const reperes = [
       <figcaption
         class="shell mono mt-3 flex justify-between gap-4 text-[0.625rem] uppercase tracking-[0.05em] text-muted"
       >
-        <span>Visuel provisoire</span>
-        <span>Photographies de nos réalisations à venir</span>
+        <span>Gravure en creux</span>
+        <span>Illustration</span>
       </figcaption>
     </figure>
 
@@ -132,17 +131,17 @@ const reperes = [
         <div class="overflow-hidden bg-surface" data-reveal="mask">
           <div>
             <img
-              src={visuelProvisoire.src}
-              alt=""
-              width={1080}
-              height={1440}
+              src="/images/accueil/matiere-768.webp"
+              alt="Arête polie d'un bloc de granit sombre"
+              width={768}
+              height={512}
               loading="lazy"
               decoding="async"
-              class="aspect-[3/4] w-full object-cover"
+              class="aspect-[3/4] w-full object-cover object-[35%_50%]"
             />
           </div>
         </div>
-        <p class="mono mt-3 text-[0.625rem] uppercase tracking-[0.05em] text-muted">Visuel provisoire</p>
+        <p class="mono mt-3 text-[0.625rem] uppercase tracking-[0.05em] text-muted">Granit massif, arête polie</p>
       </div>
 
       <div class="md:col-span-6 md:col-start-7" data-reveal style="--reveal-delay:140ms">
