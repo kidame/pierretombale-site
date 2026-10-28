@@ -52,6 +52,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 27-28.10.2026, Claude : E6 EN PRODUCTION. Sur demande expresse de Thomas, push main:live (74f568d -> b4daadb) :
+  fiches produits, images de l accueil, contour des lettres du configurateur et envoi du devis. Variables
+  Production posees par Thomas (RESEND_API_KEY secret, DEVIS_DESTINATAIRE, PUBLIC_DEVIS_ENVOI ; valeur "Oui"
+  corrigee en "oui" puis Retry deployment). Verifie depuis le VPS : envoiActif true, /api/devis repond
+  (requete robot ecartee sans envoi), /devis/modeles.json present. TEST REEL OK selon Thomas (fiche et accuse
+  recus). Le commit 73ce46a (PUBLIC_DEVIS_ENVOI tolerant a la casse) est sur main, pas encore sur live.
+  La previsualisation n a pas les variables : elle n envoie pas (normal). Reste E6 : Turnstile, limite par IP.
 - 27.10.2026, Claude : E6, ENVOI DU DEVIS ECRIT (pas encore allume). functions/api/devis.ts (Pages Functions),
   src/lib/devis-serveur.ts (logique pure), /devis/modeles.json (catalogue au build), 15 tests ajoutes (77 au
   total). Envoi Resend vers DEVIS_DESTINATAIRE, Reply-To famille, pieces jointes (fichiers, apercu, composition

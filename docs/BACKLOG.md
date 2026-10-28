@@ -46,15 +46,14 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
 - [!] Nature des matieres : Marmara granit ou marbre -> vocabulaire "granits" ou "matieres"
 - [ ] Dimensions reelles par modele (`dimensions:` par fiche) : les cotes de toutes les pieces sont
       dans docs/references/geometrie-fournisseur.json, a reporter dans les fiches - Claude
-- [!] E6 envoi du devis : domaine confirme (pierretombale.ch) ; restent compte Resend,
-      verification DNS SPF/DKIM, adresse de destination et Turnstile. Hors mission E7.
 - [!] Relecture des 27 descriptions par un associe avant mise en ligne
 - [!] Test de /devis/ avec un proche age sur telephone
 
 ## Ensuite
-- [>] E6 : fonction Cloudflare /api/devis + Resend - Claude - code fait le 27.10.2026 (77 tests) ;
-      reste : variables Cloudflare (Preview puis Production), test reel sur la previsualisation,
-      Turnstile (facultatif), limite par IP (429) - Thomas pour les variables
+- [x] E6 : envoi du devis EN PRODUCTION et teste par Thomas le 27.10.2026 (fiche sur info@, accuse a la
+      famille). Variables posees en Production seulement : la previsualisation n envoie pas.
+- [ ] E6 suite : Turnstile (cles a creer par Thomas, puis PUBLIC_TURNSTILE_SITE_KEY + TURNSTILE_SECRET),
+      limite par IP (429) - Claude + Thomas
 - [>] E7 : EN PRODUCTION le 26.10.2026 sur https://www.pierretombale.ch (Cloudflare Pages,
       branche live) - Codex + Thomas
       [x] .node-version 22, _headers, guide docs/MISE-EN-LIGNE.md, premiers push main + live.
@@ -69,7 +68,7 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
           navigateur (canvas, polices, brouillon, export devis), Lighthouse mobile, SEO final
           (indexation Google a confirmer dans Search Console).
       [ ] Nettoyage tmp/apercu et apercu-extras uniquement apres accord de Thomas.
-      E7 n est coche qu apres la recette. E6 (envoi du devis) reste a faire.
+      E7 n est coche qu apres la recette. E6 (envoi du devis) fait le 27.10.2026.
 - [ ] SEO : pages gammes, FAQ enrichie, maillage, image sitemap
 - [ ] Configurateur : gravure en V a l apercu + finitions pour pierres claires (peinture noire, gravure sans peinture) - attend la confirmation de l atelier (Thomas)
 - [x] Fiche produit au design des maquettes (passe 1, image unique) - Claude - 27.10.2026
