@@ -78,7 +78,8 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
           (docs/REGLEMENTS-CIMETIERES-NE.md section 0) - decision Thomas + associes
       [ ] Demarches : marbrier reference Beauregard (plaques de niches), entreprise designee
           VdT (plaques jardin du souvenir et niches), format dalle "pas japonais" - Thomas
-      [ ] Etape 2 : redaction guides par Codex (kumo-run codex), a partir du releve uniquement
+      [ ] Etape 2 : lot 1 guides par Codex (docs/BRIEF-GUIDES-LOT1.md) - lance le 28.10.2026
+      [ ] Etape 3 : lot 2 pages cimetieres + page dimensions (docs/DIMENSIONS-MONUMENTS.md)
       [ ] Manques : gabarits Beauregard (Office des cimetieres), tarifs communaux, loi cantonale a jour
 - [x] Configurateur au design des maquettes (4 etapes, ecran partage, mobile) - Claude - 28.10.2026,
       sur main (previsualisation), pas encore sur live

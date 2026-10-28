@@ -52,6 +52,9 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 28.10.2026, Claude : docs/DIMENSIONS-MONUMENTS.md (regles par commune, a completer) et
+  docs/BRIEF-GUIDES-LOT1.md. Thomas : fabrication possible a l etranger, POSE faite par nous en
+  Suisse. Lot 1 des guides confie a Codex via kumo-run ; Claude relit, verifie et pousse ensuite.
 - 28.10.2026, Claude : relecture complete des documents a la demande de Thomas. Releve refait :
   gabarits Beauregard (scan lu), tarifs Ville de Neuchatel 2022 (taxe de pose 60.-/m), Le Locle,
   rapports CG 23-005 et 26-012 (tombes doubles, pas japonais, quartiers 2026-2028). ALERTE :
