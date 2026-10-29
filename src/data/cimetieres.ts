@@ -910,8 +910,8 @@ export const CIMETIERES: Cimetiere[] = [
       "Le règlement relevé ne publie ni columbarium, ni durée de niche, ni tarif : ces points sont à demander à l'administration communale.",
     ],
     duree: [
-      "Les documents relevés au Landeron ne fixent pas de durée propre : c'est la loi cantonale qui s'applique, avec une réouverture des fosses après trente ans au moins (art. 6).",
-      "Le délai pour reprendre le monument après la désaffectation n'est pas publié : il est à demander à l'administration communale.",
+      "Un massif est désaffecté après trente ans au moins : la commune l'annonce par voie de presse et fixe un délai de trois mois pour enlever les monuments et les plantations (art. 89).",
+      "La loi cantonale fixe elle aussi la réouverture des fosses à trente ans au moins (art. 6).",
     ],
     faq: [
       {
@@ -1080,7 +1080,7 @@ export const CIMETIERES: Cimetiere[] = [
     },
     equipements: [
       "Une chambre mortuaire, dans un pavillon.",
-      "Un columbarium, dont la niche est concédée pour trente ans.",
+      "Un columbarium, dont la niche est louée pour trente ans.",
       "Un jardin du souvenir.",
     ],
     regles: {
@@ -1135,15 +1135,14 @@ export const CIMETIERES: Cimetiere[] = [
       hauteurMax: "130 cm (stèle), 140 cm (croix)",
     },
     cineraire: [
-      "Les niches du columbarium sont concédées pour trente ans (art. 8.18).",
+      "Les emplacements cinéraires sont loués pour trente ans, sans réservation possible avant le décès (art. 8.14).",
       "La plaque de la niche suit un modèle imposé et sa gravure passe par l'Administration communale (art. 8.18).",
       "Une tombe d'incinération mesure 100 x 70 cm (art. 8.8) ; le monument y est limité comme ailleurs dans le cimetière, à 130 cm pour une stèle et 140 cm pour une croix (art. 8.9).",
       "Le cimetière a un jardin du souvenir.",
     ],
     duree: [
-      "Les niches du columbarium sont concédées pour trente ans (art. 8.18).",
-      "La loi cantonale fixe la réouverture des fosses à trente ans au moins (art. 6) ; le règlement communal relevé ne publie pas de durée plus longue.",
-      "Le délai pour reprendre le monument à la désaffectation n'est pas publié : il est à demander à l'Administration communale.",
+      "Les emplacements cinéraires sont loués pour trente ans (art. 8.14).",
+      "Les fosses sont rouvertes après trente ans au moins : la commune l'annonce par affichage et dans la Feuille officielle, et fixe un délai de trois mois pour enlever les monuments et les bordures (art. 8.10).",
     ],
     entretien: [
       "L'eau du cimetière est coupée d'octobre à mars, selon la page officielle de la commune : les plantations se choisissent en conséquence.",
@@ -1172,7 +1171,7 @@ export const CIMETIERES: Cimetiere[] = [
       {
         question: "Combien de temps dure une niche au columbarium de Cortaillod ?",
         reponse:
-          "Trente ans (art. 8.18). Le montant de la concession ne figure pas dans les documents que nous avons relevés : il est à demander à l'Administration communale, 032 886 51 00.",
+          "Trente ans, sans réservation possible avant le décès (art. 8.14). Le montant de la concession ne figure pas dans les documents que nous avons relevés : il est à demander à l'Administration communale, 032 886 51 00.",
       },
       {
         question: "Y a-t-il de l'eau au cimetière en hiver ?",
@@ -1209,7 +1208,7 @@ export const CIMETIERES: Cimetiere[] = [
       "Un jardin du souvenir, anonyme.",
       "Un secteur des enfants.",
       "Un sous-secteur 9-B, dont les lignes sont réservées aux communautés islamiques (art. 2 du règlement d'application).",
-      "Un centre funéraire communal, à l'hôpital du Locle : une salle de 25 places et trois salles de visite, ouvertes en 2011.",
+      "Un centre funéraire communal, à l'hôpital du Locle : une salle de cérémonie de 25 places et trois salles de visite (présentation de la commune, 2011).",
       "Des inhumations du lundi au vendredi, de 10 h à 11 h et de 14 h à 15 h de mai au passage à l'heure d'hiver, puis de 10 h à 11 h en hiver.",
       "Des dépôts de cendres de mai à octobre, le mercredi et le vendredi de 14 h à 17 h.",
     ],
@@ -1336,7 +1335,7 @@ export const CIMETIERES: Cimetiere[] = [
   /* -------------------------------------------------- Val-de-Travers ----- */
   {
     slug: "val-de-travers",
-    nom: "Cimetière de Val-de-Travers",
+    nom: "Cimetières de Val-de-Travers",
     nomCourt: "Val-de-Travers",
     commune: "Val-de-Travers",
     localites: ["Couvet", "Fleurier", "Travers", "Môtiers", "Buttes", "Boveresse"],
@@ -1344,7 +1343,7 @@ export const CIMETIERES: Cimetiere[] = [
     description:
       "Cimetières de Val-de-Travers : délai de quinze mois avant la pose, dimensions des tombes, niches du columbarium et plaquette du jardin du souvenir.",
     chapo:
-      "Val-de-Travers administre les cimetières de Couvet, Fleurier, Travers, Môtiers, Buttes et Boveresse sous un seul règlement de police. Le monument y est posé quinze mois au plus tôt après l'inhumation ou le dépôt des cendres, sur une tombe de 180 x 80 cm au plus, bordure comprise.",
+      "Val-de-Travers administre les cimetières de ses villages, dont Couvet, Fleurier, Travers, Môtiers, Buttes et Boveresse, sous un seul règlement de police. Le monument y est posé quinze mois au plus tôt après l'inhumation ou le dépôt des cendres, sur une tombe de 180 x 80 cm au plus, bordure comprise.",
     contact: {
       service: "Contrôle des habitants de Val-de-Travers",
       adresse: "rue du Temple 8, 2114 Fleurier",

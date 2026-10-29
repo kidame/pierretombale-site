@@ -139,6 +139,8 @@ Lecture rapide :
 - Maximums hors sol (art. 8.9), inhumation et incinération : dalle = taille de la tombe,
   ép. 20 ; stèle ou obélisque : largeur de la tombe, haut. 130 (enfant 70), ép. 45 (35) ;
   croix : haut. 140 (enfant 70), ép. 30.
+- Désaffectation après 30 ans au moins, affichage et Feuille officielle, 3 mois pour enlever
+  (art. 8.10) ; emplacements cinéraires loués 30 ans, sans réservation (art. 8.14).
 - Columbarium 30 ans ; plaque à modèle imposé, gravée "par l'intermédiaire de
   l'Administration communale" (art. 8.18). Contact : ch. des Draizes 2, 032 886 51 00.
 
@@ -180,6 +182,7 @@ Lecture rapide :
 ### Le Landeron (règlement de police 1110, état 21.03.2024, art. 78-122)
 - Délai 6 mois (art. 90). Tombe adulte 180 x 80 ; enfant jusqu'à 3 ans 100 x 60 ;
   incinération 100 x 70, bordures comprises (art. 90). Hauteur, matériaux : non fixés.
+- Désaffectation après 30 ans au moins, avis par voie de presse, 3 mois pour enlever (art. 89).
 - Contact : rue du Centre 6, 2525 Le Landeron, 032 886 48 60.
 
 ### Lignières (règlement de police 30.06.2022)
