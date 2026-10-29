@@ -52,6 +52,11 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 29.10.2026 (14h15), Claude : erreur Search Console "Il faut indiquer offers, review ou aggregateRating"
+  (Extraits de produits). Cause : JSON-LD Product des 27 fiches sans offers (prix provisoires, offreJsonLd null).
+  Corrige : le Product n est publie que si une offre chiffree existe ; fil d Ariane conserve. Thomas doit cliquer
+  "Valider la correction" dans la Search Console. Pour un resultat enrichi produit plus tard : publier de vrais
+  prix dans src/data/tarifs.json (decision Thomas + associes).
 - 29.10.2026 (14h05), Claude : SEO ON-PAGE, option audacieuse choisie par Thomas. Accueil : h1 = "Pierres
   tombales sur mesure en Suisse romande" (ancien "Ce qui demeure." passe en sous-titre), title aligne, bloc de
   texte de reference (h2 + 2 h3, liens vers /cimetieres/ et les guides) : 180 -> 429 mots. Monuments funeraires,

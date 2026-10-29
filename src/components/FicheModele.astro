@@ -1052,7 +1052,11 @@ const filAriane = breadcrumbSchema(
     }
   </style>
 
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  {/* Google refuse un Product sans offers, review ni aggregateRating (erreur
+      "Extraits de produits" de la Search Console, 28.10.2026). Tant qu aucun
+      prix reel n est publie (offreJsonLd null), on ne publie pas de Product :
+      la page reste indexee normalement, sans resultat enrichi. */}
+  {offre && <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />}
   <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
 
   {/* Changement de matiere : on remplace src, srcset, alt, le nom affiche et
