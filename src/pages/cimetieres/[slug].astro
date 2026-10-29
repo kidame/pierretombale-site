@@ -38,9 +38,35 @@ interface Props {
   cimetiere: Cimetiere;
 }
 
-const { cimetiere } = Astro.props;
+/**
+ * Espaces insecables dans les guillemets francais : « Neuchatel, Cimetiere »
+ * ne doit pas se couper entre le guillemet et le mot sur un ecran etroit.
+ * Le remplacement se fait AU RENDU : les donnees de src/data/cimetieres.ts
+ * gardent des espaces ordinaires, plus simples a relire et a corriger.
+ */
+/** L espace insecable U+00A0 : elle ne se coupe pas en fin de ligne. */
+const INSECABLE = " ";
+
+function espacesFines<T>(valeur: T): T {
+  if (typeof valeur === "string") {
+    return valeur.replace(/«[ \t]/g, `«${INSECABLE}`).replace(/[ \t]»/g, `${INSECABLE}»`) as unknown as T;
+  }
+  if (Array.isArray(valeur)) {
+    return valeur.map((element) => espacesFines(element)) as unknown as T;
+  }
+  if (valeur !== null && typeof valeur === "object") {
+    const copie: Record<string, unknown> = {};
+    for (const [cle, element] of Object.entries(valeur)) copie[cle] = espacesFines(element);
+    return copie as unknown as T;
+  }
+  return valeur;
+}
+
+/* `donnees` sert aux liens (devis, itineraire), `cimetiere` a l affichage. */
+const { cimetiere: donnees } = Astro.props;
+const cimetiere = espacesFines(donnees);
 const origin = Astro.site ?? new URL(Astro.url.origin);
-const autres = autresCimetieres(cimetiere.slug);
+const autres = espacesFines(autresCimetieres(donnees.slug));
 
 /* Sommaire : les sections reellement presentes sur cette page. */
 const sommaire = [
@@ -116,24 +142,6 @@ const filAriane = breadcrumbSchema(
       <p class="label mt-8">{cimetiere.commune}</p>
       <h1 class="type-h1 mt-4 max-w-[24ch]">{cimetiere.nom}</h1>
       <p class="type-lead mt-8 max-w-[58ch]">{cimetiere.chapo}</p>
-
-      <div class="mt-8">
-        <MentionVerification texte={mentionVerification(cimetiere.verifieLe)} />
-      </div>
-
-      <p class="note-independance">
-        Page d'information indépendante, rédigée par PierreTombale.ch. Pour les démarches officielles :
-        {" "}
-        {
-          cimetiere.contact.url ? (
-            <a href={cimetiere.contact.url} class="link" rel="noopener">
-              {cimetiere.contact.service}
-            </a>
-          ) : (
-            <span>{cimetiere.contact.service}</span>
-          )
-        }.
-      </p>
     </section>
 
     {/* ---------------------------------------------------- L essentiel */}
@@ -148,7 +156,7 @@ const filAriane = breadcrumbSchema(
                 <dt>Adresse</dt>
                 <dd>
                   {cimetiere.adresse}
-                  <a href={itineraireUrl(cimetiere)} class="link link-mono" rel="noopener nofollow">
+                  <a href={itineraireUrl(donnees)} class="link link-mono" rel="noopener nofollow">
                     Itinéraire
                   </a>
                 </dd>
@@ -214,6 +222,27 @@ const filAriane = breadcrumbSchema(
           </li>
         </ul>
       </div>
+
+      {/* La mention de verification vient APRES « L'essentiel » : sur
+          telephone, l adresse et les trois chiffres restent visibles sans
+          defilement. */}
+      <div class="mt-8">
+        <MentionVerification texte={mentionVerification(cimetiere.verifieLe)} />
+      </div>
+
+      <p class="note-independance">
+        Page d'information indépendante, rédigée par PierreTombale.ch. Pour les démarches officielles :
+        {" "}
+        {
+          cimetiere.contact.url ? (
+            <a href={cimetiere.contact.url} class="link" rel="noopener">
+              {cimetiere.contact.service}
+            </a>
+          ) : (
+            <span>{cimetiere.contact.service}</span>
+          )
+        }.
+      </p>
 
       {
         sommaire.length > 4 && (
@@ -467,7 +496,7 @@ const filAriane = breadcrumbSchema(
           </p>
         </div>
         <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
-          <a href={devisUrl(cimetiere)} class="btn btn-primary">Demander un devis</a>
+          <a href={devisUrl(donnees)} class="btn btn-primary">Demander un devis</a>
           <a href={familleUrl("monument")} class="btn btn-outline">{FAMILLE_LABELS.monument}</a>
         </div>
       </div>
