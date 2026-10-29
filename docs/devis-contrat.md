@@ -59,6 +59,11 @@ Renommer un champ se fait des deux côtés à la fois : ici et dans `src/pages/d
 | Nom | Type | Obligatoire | Valeurs |
 | --- | --- | --- | --- |
 | `typeDemande` | choix unique | **oui** | `nouveau`, `inscription`, `autre` |
+
+> 29.10.2026 : le formulaire ne propose plus `inscription` (inscription sur un monument
+> existant, service non offert, decision de Thomas). Le serveur accepte encore la valeur pour ne
+> pas rejeter une ancienne page restee ouverte ; elle n'arrive plus en pratique.
+
 | `cimetiere` | texte | non | Nom du cimetière. |
 | `communeCimetiere` | texte | non | Commune du cimetière (son règlement s'applique). |
 | `datePoseSouhaitee` | date | non | `AAAA-MM-JJ` (`input type="date"`), ou vide |

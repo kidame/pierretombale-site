@@ -86,19 +86,16 @@ const etapes = [
 const titreEtape = (numero: number) =>
   `${numero}. ${etapes.find((etape) => etape.numero === numero)?.titre ?? ""}`;
 
-/* Les trois types de demande, en grandes cartes : chacune porte une phrase, car
+/* Les types de demande, en grandes cartes : chacune porte une phrase, car
    « Autre demande » seul n apprend rien a qui lit vite. Les valeurs sont celles
-   du contrat (`nouveau`, `inscription`, `autre`). */
+   du contrat (`nouveau`, `autre`). La valeur `inscription` (inscription sur un
+   monument existant) n est plus proposee depuis le 29.10.2026 (decision de
+   Thomas : service non offert) ; le serveur l accepte encore, sans effet. */
 const typesDemande = [
   {
     valeur: "nouveau",
     label: "Un nouveau monument",
     phrase: "Une pierre tombale ou un monument cinéraire à créer.",
-  },
-  {
-    valeur: "inscription",
-    label: "Une inscription sur un monument existant",
-    phrase: "Ajouter un nom, des dates, sur une tombe déjà posée.",
   },
   {
     valeur: "autre",

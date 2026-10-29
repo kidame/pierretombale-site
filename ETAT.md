@@ -52,6 +52,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 29.10.2026, Claude : INSCRIPTION SUR MONUMENT EXISTANT RETIREE PARTOUT (service non offert, decision de
+  Thomas). Devis : la carte "Une inscription sur un monument existant" n'est plus proposee (restent
+  "Un nouveau monument" et "Autre demande") ; le script et le serveur gardent la valeur `inscription`
+  (sans effet, compatibilite), contrat mis a jour. FAQ et guide epitaphe : question "ajouter une
+  inscription/epitaphe sur un monument deja pose" retiree (JSON-LD FAQPage suit). Accueil, fiches,
+  a-propos : "inscription complementaire" retiree du suivi apres pose. Resume de la FAQ dans 3 guides
+  reecrit. Build 0 erreur, tests verts.
 - 29.10.2026, Claude : PRIX D'APPEL PAR FAMILLE (decision de Thomas : plus de "De 1'400 a 6'000 CHF").
   Funeraire "Des 2'200 CHF", cineraire "Des 1'400 CHF", toujours indicatifs (mention "Prix indicatif",
   aucune offre dans les donnees Google). Version audacieuse choisie : nouvelle cle "parFamille" dans
