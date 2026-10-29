@@ -204,6 +204,59 @@ const classeRadio = "grav-radio mt-1 size-4 shrink-0 accent-[var(--ink)]";
 const classeChoix = "grav-choix flex items-start gap-3 text-[0.9375rem]";
 const classeAide = "grav-aide type-body mt-2 text-[0.8125rem] text-muted";
 const classeTitreEtape = "label etape-titre";
+
+/* Localites du canton de Neuchatel proposees dans le champ commune (simple aide
+   a la saisie, toute valeur reste acceptee). */
+const COMMUNES_SUGGEREES = [
+  "Neuchâtel",
+  "Peseux",
+  "Corcelles-Cormondrèche",
+  "Valangin",
+  "Auvernier",
+  "Colombier",
+  "Bôle",
+  "Boudry",
+  "Cortaillod",
+  "Bevaix",
+  "Gorgier",
+  "Saint-Aubin-Sauges",
+  "Vaumarcus",
+  "Saint-Blaise",
+  "Hauterive",
+  "Marin-Epagnier",
+  "Cornaux",
+  "Cressier",
+  "Le Landeron",
+  "Lignières",
+  "La Chaux-de-Fonds",
+  "Le Locle",
+  "Les Brenets",
+  "Les Ponts-de-Martel",
+  "La Sagne",
+  "Les Planchettes",
+  "La Brévine",
+  "La Chaux-du-Milieu",
+  "Le Cerneux-Péquignot",
+  "Couvet",
+  "Fleurier",
+  "Travers",
+  "Môtiers",
+  "Buttes",
+  "Noiraigue",
+  "Saint-Sulpice",
+  "Les Bayards",
+  "Boveresse",
+  "Les Verrières",
+  "La Côte-aux-Fées",
+  "Cernier",
+  "Fontainemelon",
+  "Les Geneveys-sur-Coffrane",
+  "Dombresson",
+  "Savagnier",
+  "Coffrane",
+  "Rochefort",
+];
+
 ---
 
 <BaseLayout
@@ -303,7 +356,16 @@ const classeTitreEtape = "label etape-titre";
             <p class={classeErreur} id="typeDemande-erreur" data-erreur="typeDemande"></p>
           </fieldset>
 
-          <div class="mt-10 grid gap-8 md:grid-cols-2">
+          {/* Le cimetiere decide des dimensions autorisees (largeur, hauteur,
+              bordure) : le monument est realise sur mesure a sa taille. Les
+              suggestions sont les localites du canton de Neuchatel (releve
+              docs/DIMENSIONS-MONUMENTS.md) ; toute autre commune reste possible. */}
+          <p class="type-body mt-10 max-w-[58ch]">
+            Où sera posé le monument ? Chaque cimetière fixe ses propres dimensions : nous réalisons le
+            monument sur mesure, à la taille autorisée par son règlement.
+          </p>
+
+          <div class="mt-6 grid gap-8 md:grid-cols-2">
             <div>
               <label class="field-label" for="communeCimetiere">Commune du cimetière (facultatif)</label>
               <input
@@ -312,10 +374,14 @@ const classeTitreEtape = "label etape-titre";
                 name="communeCimetiere"
                 type="text"
                 autocomplete="off"
+                list="communes-cimetiere"
                 aria-describedby="communeCimetiere-aide"
               />
+              <datalist id="communes-cimetiere">
+                {COMMUNES_SUGGEREES.map((commune) => <option value={commune} />)}
+              </datalist>
               <p class={classeAide} id="communeCimetiere-aide">
-                Chaque commune a son règlement : nous le vérifions pour vous.
+                Nous vérifions le règlement de ce cimetière et nous adaptons le monument à ses dimensions.
               </p>
             </div>
 
