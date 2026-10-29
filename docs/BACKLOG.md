@@ -121,7 +121,7 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
   docs/images-configurateur/matieres, puis `python3 scripts/images-modeles.py`).
 - Nouvelle image d'un modele : deposer le PNG dans docs/images-configurateur/pilotes/.../v1/,
   lancer `python3 scripts/images-modeles.py`, rebuild.
-- Prix d'un modele : src/data/tarifs.json.
+- Prix d'un modele : src/data/tarifs.json ("modeles") ; prix d'appel d'une famille : "parFamille".
 - Polices, hauteurs, finitions, motifs : src/data/personnalisation.ts.
 - Configurateur (calibration d'un modele, mise en page automatique, tailles, phrases proposees,
   nouvelle police, brouillon) : recettes de docs/CONFIGURATEUR.md, section 4.

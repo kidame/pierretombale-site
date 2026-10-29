@@ -1,9 +1,18 @@
 {
   "devise": "CHF",
   "fourchetteParDefaut": {
-    "min": 1400,
-    "max": 6000,
+    "des": 1400,
     "provisoire": true
+  },
+  "parFamille": {
+    "monument": {
+      "des": 2200,
+      "provisoire": true
+    },
+    "cineraire": {
+      "des": 1400,
+      "provisoire": true
+    }
   },
   "modeles": {
     "4-pieces-sans-stele": null,

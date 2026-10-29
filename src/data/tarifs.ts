@@ -10,16 +10,27 @@
  *
  *   "devise"               Toujours "CHF" aujourd'hui.
  *
- *   "fourchetteParDefaut"  Le prix affiché pour tout modèle qui n'a pas encore
- *                          le sien. Décision de Thomas du 13.10.2026 :
- *                          { "min": 1400, "max": 6000, "provisoire": true },
- *                          soit « De 1'400 à 6'000 CHF » en attendant les vrais
- *                          prix. Mettre `"provisoire": false` quand la
- *                          fourchette est validée, ou `null` à la place de tout
- *                          l'objet pour revenir à « Prix sur demande ».
+ *   "parFamille"           Le prix d'une famille entière, pour tout modèle de
+ *                          cette famille qui n'a pas le sien. Clés : "monument"
+ *                          (funéraire) et "cineraire". Décision de Thomas du
+ *                          29.10.2026 : { "des": 2200, "provisoire": true } pour
+ *                          "monument" et { "des": 1400, "provisoire": true } pour
+ *                          "cineraire", soit « Dès 2'200 CHF » et « Dès 1'400
+ *                          CHF ». C'est ici qu'on corrige le prix d'appel d'une
+ *                          famille : tous ses modèles suivent, y compris ceux
+ *                          ajoutés plus tard. `null` pour une famille = elle
+ *                          prend la fourchette par défaut.
+ *
+ *   "fourchetteParDefaut"  Le filet de sécurité : le prix d'un modèle sans prix
+ *                          propre dont la famille n'a pas de prix dans
+ *                          "parFamille". Aujourd'hui { "des": 1400,
+ *                          "provisoire": true } (le plus bas des deux familles).
+ *                          `null` pour afficher « Prix sur demande ».
+ *                          (Jusqu'au 28.10.2026 : « De 1'400 à 6'000 CHF » pour
+ *                          tous les modèles.)
  *
  *   "modeles"              Une entrée par fiche de src/content/products.
- *                          `null`                    = fourchette par défaut.
+ *                          `null`                    = prix de sa famille.
  *                          { "des": 2400 }           = « Dès 2'400 CHF ».
  *                          { "min": 2400,
  *                            "max": 3100 }           = « De 2'400 à 3'100 CHF ».
@@ -32,9 +43,12 @@
  *                          traite comme indicatif (mention affichée, aucune
  *                          offre publiée).
  *
- * Un slug de "modeles" qui ne correspond à aucune fiche fait échouer le build
- * (faute de frappe) ; une fiche absente de "modeles" prend simplement la
- * fourchette par défaut.
+ * Ordre de priorité pour un modèle : son prix dans "modeles", sinon le prix de
+ * sa famille dans "parFamille", sinon "fourchetteParDefaut".
+ *
+ * Un slug de "modeles" ou une clé de "parFamille" qui ne correspond à rien
+ * fait échouer le build (faute de frappe) ; une fiche absente de "modeles"
+ * prend simplement le prix de sa famille.
  */
 import tarifsData from "./tarifs.json";
 
@@ -46,6 +60,7 @@ type PrixOuProvisoire = Prix & { provisoire?: boolean };
 interface FichierTarifs {
   devise: string;
   fourchetteParDefaut: PrixOuProvisoire | null;
+  parFamille?: Record<string, PrixOuProvisoire | null>;
   modeles: Record<string, PrixOuProvisoire | null>;
 }
 
@@ -102,10 +117,39 @@ function lireTarifs() {
     modeles.set(slug, lirePrix(valeur, `le modèle "${slug}"`));
   }
 
-  return { fourchetteParDefaut, modeles };
+  const parFamille = new Map<string, PrixOuProvisoire | null>();
+  for (const [famille, valeur] of Object.entries(fichier.parFamille ?? {})) {
+    parFamille.set(famille, lirePrix(valeur, `la famille "${famille}"`));
+  }
+
+  return { fourchetteParDefaut, parFamille, modeles };
 }
 
 const tarifs = lireTarifs();
+
+/* La famille de chaque modèle, fournie par `getProducts` (src/data/products.ts)
+   au premier chargement du catalogue : ce module ne lit pas les fiches lui-même,
+   pour rester testable sans Astro. */
+const famillesDesModeles = new Map<string, string>();
+
+/**
+ * Donne à ce module la famille de chaque fiche. Appelé une fois par
+ * `getProducts`. Une clé de "parFamille" qui ne correspond à aucune famille du
+ * catalogue arrête le build (faute de frappe).
+ */
+export function enregistreFamilles(entrees: ReadonlyArray<readonly [slug: string, famille: string]>): void {
+  for (const [slug, famille] of entrees) famillesDesModeles.set(slug, famille);
+
+  const connues = new Set(entrees.map(([, famille]) => famille));
+  const inconnues = [...tarifs.parFamille.keys()].filter((famille) => !connues.has(famille));
+  if (inconnues.length > 0) {
+    erreur(
+      `famille${inconnues.length > 1 ? "s" : ""} inconnue${inconnues.length > 1 ? "s" : ""} dans "parFamille" : ` +
+        `${inconnues.map((famille) => `"${famille}"`).join(", ")}. ` +
+        `Familles du catalogue : ${[...connues].map((famille) => `"${famille}"`).join(", ")}.`,
+    );
+  }
+}
 
 /**
  * Format suisse des milliers, apostrophe droite : 1400 devient 1'400.
@@ -125,12 +169,29 @@ function texte(prix: Prix): string {
 }
 
 /**
- * Le prix retenu pour un modèle : le sien s'il en a un, sinon la fourchette par
- * défaut, sinon rien. Un prix hérité de la fourchette par défaut garde son
+ * Le prix retenu pour un modèle : le sien s'il en a un, sinon celui de sa
+ * famille, sinon la fourchette par défaut, sinon rien. Un prix hérité garde son
  * caractère provisoire.
  */
 function prixRetenu(slug: string): PrixOuProvisoire | null {
-  return tarifs.modeles.get(slug) ?? tarifs.fourchetteParDefaut;
+  const propre = tarifs.modeles.get(slug);
+  if (propre) return propre;
+
+  if (tarifs.parFamille.size > 0) {
+    const famille = famillesDesModeles.get(slug);
+    /* Sans famille connue, on afficherait en silence la fourchette par défaut :
+       mieux vaut arrêter le build. */
+    if (famille === undefined) {
+      erreur(
+        `prix demandé pour "${slug}" avant que sa famille soit connue : ` +
+          `passer par getProducts() (src/data/products.ts) avant prixAffiche().`,
+      );
+    }
+    const prixFamille = tarifs.parFamille.get(famille);
+    if (prixFamille) return prixFamille;
+  }
+
+  return tarifs.fourchetteParDefaut;
 }
 
 /** Le texte à afficher pour un modèle. Jamais vide. */

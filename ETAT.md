@@ -52,6 +52,15 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 29.10.2026, Claude : PRIX D'APPEL PAR FAMILLE (decision de Thomas : plus de "De 1'400 a 6'000 CHF").
+  Funeraire "Des 2'200 CHF", cineraire "Des 1'400 CHF", toujours indicatifs (mention "Prix indicatif",
+  aucune offre dans les donnees Google). Version audacieuse choisie : nouvelle cle "parFamille" dans
+  src/data/tarifs.json (monument / cineraire), priorite modele > famille > fourchetteParDefaut (passee a
+  Des 1'400, filet de securite). tarifs.ts : enregistreFamilles() appele par getProducts ; un prix demande
+  avant que la famille soit connue, ou une famille inconnue dans parFamille, arrete le build. Nouveau
+  tests/tarifs.test.ts (6 tests, montants lus dans le JSON). Page prix : deux phrases qui parlaient de
+  "fourchette" reecrites. Verifie dans dist/ : 14 fiches a 2'200, 13 a 1'400, plus aucun 6'000, pas
+  d'Offer JSON-LD ; captures fiche 390 et page prix 1536. Build 0 erreur, 90 tests.
 - 28.10.2026 (soir), Claude : RELEVE DES 24 COMMUNES DU CANTON (demande de Thomas : verifier sur le
   net toutes les conditions des communes, tailles, etc.). 4 recherches web paralleles + lecture par
   Claude des textes officiels (PDF texte, scans dechiffres sur le VPS). Resultat :

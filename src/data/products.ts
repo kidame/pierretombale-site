@@ -1,7 +1,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import { granitsDisponibles, nomGranit, type Granit } from "@/data/granits";
 import imagesModeles from "@/data/images-modeles.json";
-import { prixAffiche, verifieSlugsTarifs } from "@/data/tarifs";
+import { enregistreFamilles, prixAffiche, verifieSlugsTarifs } from "@/data/tarifs";
 
 type ProductEntry = CollectionEntry<"products">;
 export type Product = ProductEntry["data"] & { slug: string; description: string };
@@ -76,6 +76,7 @@ export async function getProducts(): Promise<Product[]> {
 
   if (!tarifsVerifies) {
     verifieSlugsTarifs(products.map((product) => product.slug));
+    enregistreFamilles(products.map((product) => [product.slug, product.famille] as const));
     tarifsVerifies = true;
   }
 
