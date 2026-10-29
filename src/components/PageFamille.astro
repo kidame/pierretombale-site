@@ -43,6 +43,19 @@ const filAriane = breadcrumbSchema(
     </section>
 
     <ListeModeles products={products} />
+
+    {/* Texte de reference sous la liste (slot "apres") : il ne repousse pas
+        les modeles vers le bas de la page. */}
+    {
+      Astro.slots.has("apres") && (
+        <section class="shell mt-20 md:mt-28">
+          <div class="rule" />
+          <div class="mt-8 max-w-[62ch] space-y-5">
+            <slot name="apres" />
+          </div>
+        </section>
+      )
+    }
   </main>
 
   <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />

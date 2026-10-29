@@ -27,8 +27,35 @@ const products = await getProductsByFamille("cineraire");
   products={products}
 >
   <p>
-    En Suisse, la grande majorité des défunts sont aujourd'hui incinérés. L'offre cinéraire n'est donc pas un
-    complément : c'est le cœur de notre activité. Nous réalisons des monuments cinéraires, des cavurnes et des
+    Dans les cimetières de la Ville de Neuchâtel, l'incinération est aujourd'hui majoritaire. L'offre cinéraire
+    n'est donc pas un complément : c'est le cœur de notre activité. Nous réalisons des monuments cinéraires, des cavurnes et des
     plaques de columbarium conformes aux règlements des cimetières de Suisse romande.
   </p>
+
+  <Fragment slot="apres">
+    <h2 class="type-h2 max-w-[26ch]">Un monument cinéraire à la taille de chaque cimetière</h2>
+    <p class="type-body">
+      Une tombe cinéraire n'a pas la même surface partout : 60 x 100 cm dans les cimetières de la Ville de
+      Neuchâtel, 100 x 60 cm au Val-de-Travers, 100 x 70 cm à Boudry et au Landeron. La hauteur change aussi :
+      80 cm pour une stèle à Beauregard, 110 cm à Peseux et à Corcelles-Cormondrèche, 120 cm à Milvignes. Nos
+      monuments cinéraires sont réalisés sur mesure, aux dimensions autorisées dans le cimetière concerné.
+    </p>
+    <h3 class="type-h3">Plaques de columbarium</h3>
+    <p class="type-body">
+      Dans plusieurs communes, la plaque d'une niche suit un modèle imposé et sa gravure passe par la commune ou
+      par une entreprise qu'elle désigne : c'est le cas à Cortaillod, à Milvignes et au Val-de-Travers. Au Locle,
+      la plaque du mur cinéraire est en marbre et reste à la charge de la famille. Nous vous disons, cimetière par
+      cimetière, ce que nous pouvons réaliser.
+    </p>
+    <h3 class="type-h3">Urne dans une tombe existante, ou gardée chez soi</h3>
+    <p class="type-body">
+      Une urne peut souvent être déposée à 70 cm de profondeur dans la tombe d'un proche, par exemple dans la
+      commune de Neuchâtel, à Boudry ou au Val-de-Travers.
+      La loi neuchâteloise permet aussi de remettre les cendres à la famille.
+    </p>
+    <ul class="type-body list-disc space-y-2 pl-5">
+      <li><a href="/guides/columbarium-cavurne-jardin-du-souvenir/" class="link">Columbarium, cavurne et jardin du souvenir : le guide</a></li>
+      <li><a href="/cimetieres/" class="link">Les règles des cimetières, commune par commune</a></li>
+    </ul>
+  </Fragment>
 </PageFamille>
