@@ -5,12 +5,14 @@
  * commune, l article et le lien vers le texte officiel. Les adresses vivent
  * ici pour qu une URL qui bouge ne se corrige qu une fois.
  *
- * Releve et lecture : docs/REGLEMENTS-CIMETIERES-NE.md (28.10.2026). Ne rien
- * ajouter ici qui ne figure pas dans ce fichier avec sa source.
+ * Releve et lecture : docs/REGLEMENTS-CIMETIERES-NE.md (28.10.2026) et
+ * docs/CIMETIERES-PRATIQUE.md (29.10.2026). Ne rien ajouter ici qui ne figure
+ * pas dans ces fichiers avec sa source.
  *
- * La loi cantonale (loi sur les sepultures du 10 juillet 1894, RSN 565.1) n a
- * pas d adresse relevee : elle est citee par son nom et son article, sans
- * lien, plutot qu avec une URL inventee.
+ * Des textes cites par les pages n ont AUCUNE adresse dans le releve : le
+ * reglement des taxes de La Chaux-de-Fonds (41.101) et les rapports du Conseil
+ * communal de Neuchatel. Ils sont cites par leur nom et leur date dans le
+ * texte, sans lien, plutot qu avec une URL inventee.
  */
 
 export interface SourceOfficielle {
@@ -21,6 +23,11 @@ export interface SourceOfficielle {
 }
 
 export const SOURCES = {
+  loiSepultures: {
+    libelle:
+      "Loi neuchâteloise sur les sépultures du 10 juillet 1894 (RSN 565.1), état au 27 mai 2025",
+    url: "https://rsn.ne.ch/DATA/program/books/rsne/pdf/565.1.pdf",
+  },
   neuchatelReglement: {
     libelle: "Règlement des cimetières de la Ville de Neuchâtel du 26 juin 2023",
     url: "https://www.neuchatelville.ch/fileadmin/sites/ne_ville/fichiers/votre_commune/CG_NEO/CG_NEO_arretes_avispub/Public_230626_avec_arretes.pdf",
@@ -38,9 +45,21 @@ export const SOURCES = {
     libelle: "Page du cimetière de Beauregard, Ville de Neuchâtel",
     url: "https://www.neuchatelville.ch/vivre-a-neuchatel/habitant-e-s/cimetieres/cimetiere-de-beauregard",
   },
+  neuchatelPeseuxPage: {
+    libelle: "Page du cimetière de Peseux, Ville de Neuchâtel",
+    url: "https://www.neuchatelville.ch/vivre-a-neuchatel/habitant-e-s/cimetieres/cimetiere-de-peseux",
+  },
+  neuchatelCorcellesPage: {
+    libelle: "Page du cimetière de Corcelles-Cormondrèche, Ville de Neuchâtel",
+    url: "https://www.neuchatelville.ch/vivre-a-neuchatel/habitant-e-s/cimetieres/cimetiere-de-corcelles-cormondreche",
+  },
   chauxDeFonds: {
     libelle: "Règlement du cimetière de La Chaux-de-Fonds du 23 janvier 1995, état au 1er juillet 2010",
     url: "https://www.chaux-de-fonds.ch/demarches-officielles/cimetiere-et-centre-funeraire/Documents/ReglementCommunalCimetiere.pdf",
+  },
+  chauxDeFondsPage: {
+    libelle: "Page du cimetière et du centre funéraire de La Chaux-de-Fonds",
+    url: "https://www.chaux-de-fonds.ch/demarches-officielles/cimetiere-et-centre-funeraire",
   },
   leLocle: {
     libelle: "Règlement du cimetière du Locle du 4 juillet 2012",
