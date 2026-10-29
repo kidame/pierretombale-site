@@ -57,7 +57,8 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   exigee par le reglement de votre cimetiere, verifie au devis" (accordeon Dimensions) + puce dans
   "Pose et accompagnement". Devis etape 1 : phrase "Ou sera pose le monument ?", aide du champ commune
   reformulee, suggestions (datalist) des localites NE, saisie libre conservee. Build 64 pages et
-  90 tests verts. Pousse sur main (previsualisation), PAS sur live. A relire au navigateur.
+  90 tests verts. MIS EN LIGNE le 29.10.2026 a la demande de Thomas (push main:live a442c77,
+  verifie sur www.pierretombale.ch : devis et fiches a jour, guides en ligne).
 - 29.10.2026, Claude : INSCRIPTION SUR MONUMENT EXISTANT RETIREE PARTOUT (service non offert, decision de
   Thomas). Devis : la carte "Une inscription sur un monument existant" n'est plus proposee (restent
   "Un nouveau monument" et "Autre demande") ; le script et le serveur gardent la valeur `inscription`
