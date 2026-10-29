@@ -273,6 +273,11 @@ Lecture rapide :
   (art. 8.8). Contact : 032 855 11 19.
 
 ## 6. Compatibilité du catalogue actuel (au 28.10.2026)
+- PRÉCISION DE THOMAS (29.10.2026) : les monuments sont FABRIQUÉS SUR MESURE. Chaque modèle
+  peut être produit à la taille exigée par le cimetière : la fabrication n'est donc PAS un
+  problème. Le seul enjeu est l'information du client (le site affiche 100 x 200) et la
+  vérification du règlement avant la commande. Les constats ci-dessous servent à adapter
+  les cotes au devis, pas à exclure des modèles.
 - Monuments funéraires annoncés 100 x 200 avec entourage : la largeur maximale publiée
   d'une tombe d'adulte est de 80 cm et la longueur de 180 cm au plus, PARTOUT où elle est
   publiée dans le canton. Un monument complet de 100 x 200 ne passe donc dans AUCUN

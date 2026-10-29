@@ -6,6 +6,8 @@ Lecture intégrale faite par Claude (règlements, arrêtés de tarifs, rapports 
 général, page officielle Beauregard, gabarits scannés). PDF locaux : atelier/tmp/reglements.
 
 ## 0. ALERTE BUSINESS : le catalogue ne passe pas dans plusieurs cimetières
+RÉSOLU CÔTÉ FABRICATION (Thomas, 29.10.2026) : fabrication sur mesure, chaque modèle est produit
+à la taille du règlement. Reste à informer le client sur le site et au devis.
 Le catalogue funéraire du site est en 100 x 200 cm (monument complet avec entourage).
 | Cimetière | Surface / gabarit max | Bordure | 100 x 200 passe ? |
 |---|---|---|---|

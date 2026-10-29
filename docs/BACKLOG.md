@@ -87,8 +87,9 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       [x] Releve des 24 communes NE (dimensions, delais, taxes, contacts) -> docs/DIMENSIONS-MONUMENTS.md
           - Claude - 28.10.2026. Constat : 100 x 200 ne passe dans aucun cimetiere connu.
       [ ] Appels aux offices (liste : docs/DIMENSIONS-MONUMENTS.md point 8) - Thomas
-      [ ] Avertissement dimensions sur les fiches produit + champ commune/cimetiere du devis
-          (option 1 securisee ou option 2 src/data/cimetieres.json) - decision Thomas
+      [ ] Fiches produit : dimensions "indicatives, fabrique sur mesure a la taille du reglement
+          de votre cimetiere" + champ commune/cimetiere du devis plus visible - attente feu vert Thomas
+          (fabrication sur mesure confirmee par Thomas le 29.10.2026 : pas de probleme de format)
       [ ] Etape 3 : lot 2 pages cimetieres + page dimensions (docs/DIMENSIONS-MONUMENTS.md)
       [ ] Manques : gabarits Beauregard (Office des cimetieres), tarifs communaux, loi cantonale a jour
 - [x] Configurateur au design des maquettes (4 etapes, ecran partage, mobile) - Claude - 28.10.2026,
