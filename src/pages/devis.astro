@@ -2241,6 +2241,19 @@ const COMMUNES_SUGGEREES = [
         if (familleDesCartes) familleDesCartes.value = familleDemandee;
       }
 
+      /* Pre-remplissage depuis /devis/?commune=&cimetiere=, pose par les pages
+         cimetiere (src/data/cimetieres.ts, devisUrl()). On n ECRASE JAMAIS une
+         saisie : si le brouillon de la veille portait deja une commune, elle
+         reste. Les valeurs sont des textes libres, comme les champs. */
+      const parametres = new URLSearchParams(window.location.search);
+      const prerempli = (nom, valeur) => {
+        if (!valeur) return;
+        const cible = champ(nom);
+        if (cible && !cible.value) cible.value = valeur.slice(0, 120);
+      };
+      prerempli("communeCimetiere", parametres.get("commune"));
+      prerempli("cimetiere", parametres.get("cimetiere"));
+
       // L apercu n est cache que pour le cas sans JavaScript.
       if (apercuPret) apercu.hidden = false;
 
