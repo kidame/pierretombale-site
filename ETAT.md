@@ -52,6 +52,15 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 29.10.2026 (13h50), Claude : LOT 2 PAGES CIMETIERES MIS EN LIGNE a la demande de Thomas (hub /cimetieres/ +
+  9 pages). AUDIT INDEXATION du site en ligne : sitemap-index -> sitemap-0 (50 URL, toutes en 200, canonique =
+  URL, aucune noindex) + sitemap-images (28 pages, 280 images, echantillon en 200) ; robots.txt Allow + 2 sitemaps ;
+  pierretombale.ch et http -> 301 www https ; sans barre finale -> 308 ; 404 propre ; pierretombale-site.pages.dev
+  en X-Robots-Tag noindex ; main protege par Access. Googlebot, Bingbot, GPTBot, OAI-SearchBot, ClaudeBot,
+  PerplexityBot : 200 (seul le client Python-urllib est bloque par Cloudflare, normal). Dist : 74 pages, 1 h1,
+  lang fr, JSON-LD valide, aucun lien interne casse, aucun titre ni description en double. Corrige : pageTitle
+  retire " | PierreTombale.ch" au-dela de 65 signes ; titre du hub et description du guide cineraire raccourcis.
+  Script d audit : /tmp/ka/audit.py (dist) et /tmp/ka/live.py (en ligne), non versionnes.
 - 29.10.2026, Claude : LOT 2 DES PAGES CIMETIERES, PASSE B (docs/BRIEF-CIMETIERES-LOT2.md
   section 8). CINQ FICHES DE PLUS dans src/data/cimetieres.ts, au format des 4 premieres :
   /cimetieres/{le-landeron, boudry, cortaillod, le-locle, val-de-travers}/. Le fichier de
