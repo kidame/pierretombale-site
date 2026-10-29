@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import MentionVerification from "@/components/MentionVerification.astro";
 import { pageTitle } from "@/config/site";
 import { LOI_CANTONALE, SOURCES, type SourceId } from "@/data/cimetieres-ne";
+import { CIMETIERES_URL, cimetiereParSlug, cimetiereUrl } from "@/data/cimetieres";
 import { GUIDES_URL, autresGuides, guideParSlug, guideUrl } from "@/data/guides";
 import { FAMILLE_LABELS, familleUrl } from "@/data/products";
 import { breadcrumbSchema } from "@/data/seo";
@@ -26,6 +27,8 @@ interface Ligne {
   delai: string;
   interdiction: string;
   reouverture: string;
+  /** Slugs des pages cimetiere de cette commune, quand elles existent. */
+  pages?: string[];
 }
 
 /* Tableau de synthese. "Aucune" veut dire : aucune periode d interdiction
@@ -37,12 +40,14 @@ const lignes: Ligne[] = [
     delai: "1 an au plus tôt après l'inhumation",
     interdiction: "Aucune au règlement",
     reouverture: "40 ans au moins",
+    pages: ["beauregard-neuchatel", "peseux", "corcelles-cormondreche"],
   },
   {
     commune: "La Chaux-de-Fonds (Charrière)",
     delai: "6 mois au plus tôt",
     interdiction: "Du 1er novembre au 30 avril",
     reouverture: "30 ans au moins",
+    pages: ["la-chaux-de-fonds"],
   },
   {
     commune: "Le Locle",
@@ -290,6 +295,15 @@ const filAriane = breadcrumbSchema(
                 <tr class="border-b border-line align-top">
                   <th scope="row" class="max-w-[22ch] py-5 pr-6 font-normal">
                     {ligne.commune}
+                    {ligne.pages && (
+                      <span class="mt-2 block space-x-3">
+                        {ligne.pages.map((slug) => (
+                          <a href={cimetiereUrl(slug)} class="link link-mono text-muted">
+                            {cimetiereParSlug(slug).nomCourt}
+                          </a>
+                        ))}
+                      </span>
+                    )}
                   </th>
                   <td class="py-5 pr-6">{ligne.delai}</td>
                   <td class="py-5 pr-6 text-muted">{ligne.interdiction}</td>
@@ -302,7 +316,8 @@ const filAriane = breadcrumbSchema(
       </div>
       <p class="type-body mt-6 max-w-[56ch] text-[0.9375rem] text-muted">
         « Aucune au règlement » signifie qu'aucune période d'interdiction ne figure dans le texte relevé :
-        la date de la pose se convient malgré tout avec le cimetière.
+        la date de la pose se convient malgré tout avec le cimetière. Les liens sous le nom d'une commune
+        mènent à la page du cimetière concerné : accès, horaires, équipements et dimensions autorisées.
       </p>
     </section>
 
@@ -377,6 +392,15 @@ const filAriane = breadcrumbSchema(
             </li>
           ))
         }
+        <li class="border-b border-line py-6">
+          <a href={CIMETIERES_URL} class="link type-h3">
+            Les cimetières du canton de Neuchâtel
+          </a>
+          <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem]">
+            Le tableau des 24 communes (délai, dimensions, hauteur, bordure) et une page par cimetière :
+            accès, horaires, équipements et règles de pose.
+          </p>
+        </li>
         <li class="border-b border-line py-6">
           <a href="/faq/" class="link type-h3">
             Questions fréquentes

@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import MentionVerification from "@/components/MentionVerification.astro";
 import { pageTitle } from "@/config/site";
+import { CIMETIERES_URL } from "@/data/cimetieres";
 import { GUIDES, GUIDES_URL, guideUrl } from "@/data/guides";
 import { breadcrumbSchema } from "@/data/seo";
 
@@ -59,6 +60,22 @@ const filAriane = breadcrumbSchema(
             </li>
           ))
         }
+        {/* Les pages cimetiere ne sont pas des guides (elles ont leur propre
+            hub), mais c est ici qu on les cherche : une ligne les annonce. */}
+        <li class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-12">
+          <h2 class="type-h3 max-w-[26ch] md:col-span-5">
+            <a href={CIMETIERES_URL} class="link">Les cimetières du canton</a>
+          </h2>
+          <div class="md:col-span-7">
+            <p class="type-body max-w-[56ch] text-[0.9375rem]">
+              Le tableau des 24 communes du canton (délai avant la pose, dimensions d'une tombe, hauteur,
+              bordure) et une page par cimetière : accès, horaires, équipements et règles de pose.
+            </p>
+            <p class="mt-4">
+              <a href={CIMETIERES_URL} class="link link-mono text-muted">Voir les cimetières</a>
+            </p>
+          </div>
+        </li>
       </ul>
     </section>
 
