@@ -52,6 +52,12 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 29.10.2026, Claude : Thomas precise que les monuments sont FABRIQUES SUR MESURE (le 100 x 200 n est
+  pas un blocage). Fiches modele : "Dimensions indicatives" + note "realise sur mesure, a la taille
+  exigee par le reglement de votre cimetiere, verifie au devis" (accordeon Dimensions) + puce dans
+  "Pose et accompagnement". Devis etape 1 : phrase "Ou sera pose le monument ?", aide du champ commune
+  reformulee, suggestions (datalist) des localites NE, saisie libre conservee. Build 64 pages et
+  90 tests verts. Pousse sur main (previsualisation), PAS sur live. A relire au navigateur.
 - 29.10.2026, Claude : INSCRIPTION SUR MONUMENT EXISTANT RETIREE PARTOUT (service non offert, decision de
   Thomas). Devis : la carte "Une inscription sur un monument existant" n'est plus proposee (restent
   "Un nouveau monument" et "Autre demande") ; le script et le serveur gardent la valeur `inscription`
