@@ -52,6 +52,13 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 29.10.2026 (14h05), Claude : SEO ON-PAGE, option audacieuse choisie par Thomas. Accueil : h1 = "Pierres
+  tombales sur mesure en Suisse romande" (ancien "Ce qui demeure." passe en sous-titre), title aligne, bloc de
+  texte de reference (h2 + 2 h3, liens vers /cimetieres/ et les guides) : 180 -> 429 mots. Monuments funeraires,
+  cineraires (slot "apres" de PageFamille, sous la liste) et Nos granits : texte de reference avec les regles
+  communales sourcees. Cineraires : statistique "grande majorite incineres en Suisse" remplacee par la Ville de
+  Neuchatel (rapport 26-012). Cimetieres : h1 Beauregard avec la localite, h2 FAQ sans minuscule forcee. Audit :
+  hierarchie h1-h3 sans saut sur toutes les pages, 1 h1, alt presents. Mis en ligne a la demande de Thomas.
 - 29.10.2026 (13h50), Claude : LOT 2 PAGES CIMETIERES MIS EN LIGNE a la demande de Thomas (hub /cimetieres/ +
   9 pages). AUDIT INDEXATION du site en ligne : sitemap-index -> sitemap-0 (50 URL, toutes en 200, canonique =
   URL, aucune noindex) + sitemap-images (28 pages, 280 images, echantillon en 200) ; robots.txt Allow + 2 sitemaps ;
