@@ -1,0 +1,645 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import MentionVerification from "@/components/MentionVerification.astro";
+import { pageTitle } from "@/config/site";
+import { LOI_CANTONALE, SOURCES } from "@/data/cimetieres-ne";
+import {
+  CIMETIERES,
+  CIMETIERES_URL,
+  PHRASE_SUR_MESURE,
+  autresCimetieres,
+  cimetiereUrl,
+  devisUrl,
+  itineraireUrl,
+  mentionVerification,
+  type Cimetiere,
+} from "@/data/cimetieres";
+import { guideUrl } from "@/data/guides";
+import { FAMILLE_LABELS, familleUrl } from "@/data/products";
+import { breadcrumbSchema } from "@/data/seo";
+
+/* Une page par cimetiere. UNE SEULE mise en page pour toutes : tout le contenu
+   vient de src/data/cimetieres.ts (sources : docs/DIMENSIONS-MONUMENTS.md,
+   docs/REGLEMENTS-CIMETIERES-NE.md, docs/CIMETIERES-PRATIQUE.md).
+   Une valeur absente n est pas affichee : chaque bloc est conditionnel.
+   Deux regles tenues ici : la page dit qu elle est independante de la commune
+   (on ne se presente jamais comme l administration), et on n affirme jamais
+   qu un modele du catalogue respecte un gabarit : le monument est realise sur
+   mesure et nous verifions le reglement avant la pose. */
+
+export function getStaticPaths() {
+  return CIMETIERES.map((cimetiere) => ({
+    params: { slug: cimetiere.slug },
+    props: { cimetiere },
+  }));
+}
+
+interface Props {
+  cimetiere: Cimetiere;
+}
+
+const { cimetiere } = Astro.props;
+const origin = Astro.site ?? new URL(Astro.url.origin);
+const autres = autresCimetieres(cimetiere.slug);
+
+/* Sommaire : les sections reellement presentes sur cette page. */
+const sommaire = [
+  { id: "sur-place", titre: "Sur place" },
+  { id: "poser-un-monument", titre: "Poser un monument" },
+  { id: "cendres", titre: "Urnes, columbarium et jardin du souvenir" },
+  { id: "duree", titre: "Durée de la tombe" },
+  { id: "questions", titre: "Questions fréquentes" },
+].filter((entree) => {
+  if (entree.id === "sur-place") return cimetiere.equipements.length > 0;
+  if (entree.id === "cendres") return cimetiere.cineraire.length > 0;
+  return true;
+});
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: cimetiere.faq.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.reponse },
+  })),
+};
+
+/* WebPage + about Cemetery : la page parle du cimetiere, elle n est pas la
+   page de la commune. Aucune note, aucun avis, aucune coordonnee inventee :
+   l adresse postale n est emise que si elle est connue. */
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: cimetiere.titreSeo,
+  description: cimetiere.description,
+  url: new URL(cimetiereUrl(cimetiere.slug), origin).href,
+  about: {
+    "@type": "Cemetery",
+    name: cimetiere.nom,
+    ...(cimetiere.adresse
+      ? {
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: cimetiere.adresse,
+            addressLocality: cimetiere.localites[0] ?? cimetiere.commune,
+            addressRegion: "NE",
+            addressCountry: "CH",
+          },
+        }
+      : {}),
+  },
+};
+
+const filAriane = breadcrumbSchema(
+  [
+    { name: "Accueil", path: "/" },
+    { name: "Cimetières", path: CIMETIERES_URL },
+    { name: cimetiere.nom, path: cimetiereUrl(cimetiere.slug) },
+  ],
+  origin,
+);
+---
+
+<BaseLayout title={pageTitle(cimetiere.titreSeo)} description={cimetiere.description}>
+  <main id="main-content">
+    {/* --------------------------------------------------------- En-tete */}
+    <section class="shell pb-10 pt-10 md:pb-12 md:pt-16">
+      <nav class="fil-cim" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">/</span>
+        <a href={CIMETIERES_URL}>Cimetières</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{cimetiere.nom}</span>
+      </nav>
+
+      <p class="label mt-8">{cimetiere.commune}</p>
+      <h1 class="type-h1 mt-4 max-w-[24ch]">{cimetiere.nom}</h1>
+      <p class="type-lead mt-8 max-w-[58ch]">{cimetiere.chapo}</p>
+
+      <div class="mt-8">
+        <MentionVerification texte={mentionVerification(cimetiere.verifieLe)} />
+      </div>
+
+      <p class="note-independance">
+        Page d'information indépendante, rédigée par PierreTombale.ch. Pour les démarches officielles :
+        {" "}
+        {
+          cimetiere.contact.url ? (
+            <a href={cimetiere.contact.url} class="link" rel="noopener">
+              {cimetiere.contact.service}
+            </a>
+          ) : (
+            <span>{cimetiere.contact.service}</span>
+          )
+        }.
+      </p>
+    </section>
+
+    {/* ---------------------------------------------------- L essentiel */}
+    <section class="shell">
+      <div class="essentiel">
+        <h2 class="type-h3">L'essentiel</h2>
+
+        <dl class="essentiel-liste">
+          {
+            cimetiere.adresse && (
+              <div>
+                <dt>Adresse</dt>
+                <dd>
+                  {cimetiere.adresse}
+                  <a href={itineraireUrl(cimetiere)} class="link link-mono" rel="noopener nofollow">
+                    Itinéraire
+                  </a>
+                </dd>
+              </div>
+            )
+          }
+          {
+            cimetiere.horaires && (
+              <div>
+                <dt>Horaires du cimetière</dt>
+                <dd>{cimetiere.horaires}</dd>
+              </div>
+            )
+          }
+          <div>
+            <dt>{cimetiere.contact.service}</dt>
+            <dd>
+              {cimetiere.contact.adresse && <span>{cimetiere.contact.adresse}</span>}
+              {
+                cimetiere.contact.telephone && (
+                  <a href={`tel:+41${cimetiere.contact.telephone.replace(/\D/g, "").slice(1)}`} class="link">
+                    {cimetiere.contact.telephone}
+                  </a>
+                )
+              }
+              {cimetiere.contact.telephoneSecondaire && <span>{cimetiere.contact.telephoneSecondaire}</span>}
+              {
+                cimetiere.contact.email && (
+                  <a href={`mailto:${cimetiere.contact.email}`} class="link">
+                    {cimetiere.contact.email}
+                  </a>
+                )
+              }
+              {cimetiere.contact.horaires && <span>{cimetiere.contact.horaires}</span>}
+            </dd>
+          </div>
+          {
+            cimetiere.acces && cimetiere.acces.length > 0 && (
+              <div>
+                <dt>Accès</dt>
+                <dd>
+                  {cimetiere.acces.map((ligne) => (
+                    <span>{ligne}</span>
+                  ))}
+                </dd>
+              </div>
+            )
+          }
+        </dl>
+
+        <ul class="chiffres">
+          <li>
+            <span class="chiffre-label">Délai avant la pose</span>
+            <span class="chiffre-valeur">{cimetiere.chiffres.delai}</span>
+          </li>
+          <li>
+            <span class="chiffre-label">Tombe d'adulte</span>
+            <span class="chiffre-valeur">{cimetiere.chiffres.tombeAdulte}</span>
+          </li>
+          <li>
+            <span class="chiffre-label">Hauteur maximale</span>
+            <span class="chiffre-valeur">{cimetiere.chiffres.hauteurMax}</span>
+          </li>
+        </ul>
+      </div>
+
+      {
+        sommaire.length > 4 && (
+          <nav class="sommaire" aria-label="Sommaire">
+            {sommaire.map((entree) => (
+              <a href={`#${entree.id}`} class="link link-mono">
+                {entree.titre}
+              </a>
+            ))}
+          </nav>
+        )
+      }
+    </section>
+
+    {/* -------------------------------------------------------- Sur place */}
+    {
+      cimetiere.equipements.length > 0 && (
+        <section class="shell mt-16 md:mt-24" id="sur-place">
+          <div class="rule" />
+          <h2 class="type-h2 mt-8 max-w-[22ch]">Sur place</h2>
+          <ul class="type-body mt-8 max-w-[64ch] space-y-4 pl-5 [list-style:disc]">
+            {cimetiere.equipements.map((ligne) => (
+              <li class="text-[0.9375rem]">{ligne}</li>
+            ))}
+          </ul>
+
+          {cimetiere.projets && cimetiere.projets.length > 0 && (
+            <>
+              <h3 class="type-h3 mt-12 max-w-[26ch]">Ce qui change bientôt</h3>
+              <div class="mt-5 max-w-[62ch] space-y-4">
+                {cimetiere.projets.map((ligne) => (
+                  <p class="type-body text-[0.9375rem]">{ligne}</p>
+                ))}
+              </div>
+            </>
+          )}
+
+          {cimetiere.histoire && cimetiere.histoire.length > 0 && (
+            <>
+              <h3 class="type-h3 mt-12 max-w-[26ch]">Histoire et patrimoine</h3>
+              <div class="mt-5 max-w-[62ch] space-y-4">
+                {cimetiere.histoire.map((ligne) => (
+                  <p class="type-body text-[0.9375rem]">{ligne}</p>
+                ))}
+              </div>
+            </>
+          )}
+        </section>
+      )
+    }
+
+    {/* ------------------------------------------------ Poser un monument */}
+    <section class="shell mt-20 md:mt-28" id="poser-un-monument">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Poser un monument</h2>
+
+      <div class="mt-8 max-w-[62ch] space-y-5">
+        <p class="type-body">
+          <strong>Délai avant la pose.</strong>{" "}{cimetiere.regles.delaiPose}
+        </p>
+        {
+          cimetiere.regles.periodeInterdite && (
+            <p class="type-body">
+              <strong>Période où la pose est interdite.</strong> {cimetiere.regles.periodeInterdite}
+            </p>
+          )
+        }
+        <p class="type-body">
+          <strong>Bordure et entourage.</strong>{" "}{cimetiere.regles.bordure}
+        </p>
+        {
+          cimetiere.regles.materiaux && (
+            <p class="type-body">
+              <strong>Matériaux.</strong> {cimetiere.regles.materiaux}
+            </p>
+          )
+        }
+        {
+          cimetiere.regles.autorisation && (
+            <p class="type-body">
+              <strong>Autorisation.</strong> {cimetiere.regles.autorisation}
+            </p>
+          )
+        }
+        {
+          cimetiere.regles.taxePose && (
+            <p class="type-body">
+              <strong>Taxe communale de pose.</strong> {cimetiere.regles.taxePose}
+            </p>
+          )
+        }
+      </div>
+
+      <h3 class="type-h3 mt-12 max-w-[26ch]">Dimensions autorisées</h3>
+      <div class="mt-6 overflow-x-auto">
+        <table class="w-full border-collapse text-left">
+          <thead>
+            <tr class="border-y border-line">
+              <th scope="col" class="label py-4 pr-6 font-normal">Type</th>
+              <th scope="col" class="label py-4 pr-6 font-normal">Dimensions</th>
+              <th scope="col" class="label py-4 pr-6 font-normal">Hauteur maximale</th>
+              <th scope="col" class="label py-4 font-normal">Article</th>
+            </tr>
+          </thead>
+          <tbody class="text-[0.9375rem]">
+            {
+              cimetiere.regles.tombes.map((tombe) => (
+                <tr class="border-b border-line align-top">
+                  <th scope="row" class="max-w-[24ch] py-5 pr-6 font-normal">
+                    {tombe.type}
+                  </th>
+                  <td class="py-5 pr-6">{tombe.dimensions}</td>
+                  <td class="py-5 pr-6 text-muted">{tombe.hauteurMax ?? "Non publiée"}</td>
+                  <td class="py-5 text-muted">{tombe.article}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      {
+        cimetiere.regles.obligations.length > 0 && (
+          <>
+            <h3 class="type-h3 mt-12 max-w-[26ch]">Ce que le règlement impose en plus</h3>
+            <ul class="type-body mt-6 max-w-[64ch] space-y-4 pl-5 [list-style:disc]">
+              {cimetiere.regles.obligations.map((ligne) => (
+                <li class="text-[0.9375rem]">{ligne}</li>
+              ))}
+            </ul>
+          </>
+        )
+      }
+
+      <p class="type-body mt-8 max-w-[58ch]">{PHRASE_SUR_MESURE}</p>
+    </section>
+
+    {/* ----------------------------------------- Urnes et columbarium */}
+    {
+      cimetiere.cineraire.length > 0 && (
+        <section class="shell mt-20 md:mt-28" id="cendres">
+          <div class="rule" />
+          <h2 class="type-h2 mt-8 max-w-[26ch]">Urnes, columbarium et jardin du souvenir</h2>
+          <ul class="type-body mt-8 max-w-[64ch] space-y-4 pl-5 [list-style:disc]">
+            {cimetiere.cineraire.map((ligne) => (
+              <li class="text-[0.9375rem]">{ligne}</li>
+            ))}
+          </ul>
+
+          {cimetiere.tarifs && (
+            <>
+              <h3 class="type-h3 mt-12 max-w-[30ch]">Tarifs officiels de la commune</h3>
+              <p class="type-body mt-4 max-w-[58ch] text-[0.9375rem] text-muted">
+                Ce sont des taxes communales, pas des prix de monument. Source : {cimetiere.tarifs.date}.
+              </p>
+              <div class="mt-6 overflow-x-auto">
+                <table class="w-full border-collapse text-left">
+                  <thead>
+                    <tr class="border-y border-line">
+                      <th scope="col" class="label py-4 pr-6 font-normal">
+                        Prestation
+                      </th>
+                      <th scope="col" class="label py-4 pr-6 font-normal">
+                        Domicilié
+                      </th>
+                      <th scope="col" class="label py-4 font-normal">
+                        Extérieur
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-[0.9375rem]">
+                    {cimetiere.tarifs.lignes.map((ligne) => (
+                      <tr class="border-b border-line align-top">
+                        <th scope="row" class="max-w-[30ch] py-5 pr-6 font-normal">
+                          {ligne.prestation}
+                        </th>
+                        <td class="py-5 pr-6">{ligne.domicilie}</td>
+                        <td class="py-5 text-muted">{ligne.exterieur ?? "Non publié"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {cimetiere.tarifs.note && (
+                <p class="type-body mt-6 max-w-[58ch] text-[0.9375rem] text-muted">{cimetiere.tarifs.note}</p>
+              )}
+              <p class="mt-4">
+                {cimetiere.tarifs.source ? (
+                  <a href={SOURCES[cimetiere.tarifs.source].url} class="link link-mono text-muted" rel="noopener">
+                    {SOURCES[cimetiere.tarifs.source].libelle}
+                  </a>
+                ) : (
+                  <span class="type-body text-[0.9375rem] text-muted">{cimetiere.tarifs.sourceLibelle}</span>
+                )}
+              </p>
+            </>
+          )}
+        </section>
+      )
+    }
+
+    {/* ------------------------------------ Duree de la tombe, entretien */}
+    <section class="shell mt-20 md:mt-28" id="duree">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[26ch]">Durée de la tombe et reprise du monument</h2>
+      <ul class="type-body mt-8 max-w-[64ch] space-y-4 pl-5 [list-style:disc]">
+        {cimetiere.duree.map((ligne) => <li class="text-[0.9375rem]">{ligne}</li>)}
+      </ul>
+
+      {
+        cimetiere.entretien && cimetiere.entretien.length > 0 && (
+          <>
+            <h3 class="type-h3 mt-12 max-w-[26ch]">Entretien</h3>
+            <ul class="type-body mt-6 max-w-[64ch] space-y-4 pl-5 [list-style:disc]">
+              {cimetiere.entretien.map((ligne) => (
+                <li class="text-[0.9375rem]">{ligne}</li>
+              ))}
+            </ul>
+          </>
+        )
+      }
+    </section>
+
+    {/* ----------------------------------------------------------- FAQ */}
+    <section class="shell mt-20 md:mt-28" id="questions">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[26ch]">Questions sur le {cimetiere.nom.toLowerCase()}</h2>
+      <dl class="mt-8 border-t border-line">
+        {
+          cimetiere.faq.map((item) => (
+            <div class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-12">
+              <dt class="type-h3 max-w-[26ch] md:col-span-5">{item.question}</dt>
+              <dd class="md:col-span-7">
+                <p class="type-body max-w-[56ch] text-[0.9375rem]">{item.reponse}</p>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    {/* --------------------------------------------------------- Appel */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="grid items-end gap-8 md:grid-cols-12">
+        <div class="md:col-span-7">
+          <h2 class="type-h2 max-w-[22ch]">Un monument pour ce cimetière</h2>
+          <p class="type-body mt-6 max-w-[52ch]">
+            Dites-nous le type de sépulture et, si vous le connaissez, le numéro de la tombe. Nous vérifions
+            le règlement, nous adaptons le monument aux dimensions autorisées, nous déposons la demande de
+            pose et nous établissons un devis gratuit.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
+          <a href={devisUrl(cimetiere)} class="btn btn-primary">Demander un devis</a>
+          <a href={familleUrl("monument")} class="btn btn-outline">{FAMILLE_LABELS.monument}</a>
+        </div>
+      </div>
+    </section>
+
+    {/* --------------------------------------------- Documents officiels */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Documents officiels</h2>
+      <p class="type-body mt-6 max-w-[58ch] text-[0.9375rem] text-muted">
+        Les textes d'où viennent les règles de cette page. La {LOI_CANTONALE} laisse les monuments aux
+        conditions fixées par la commune (art. 9).
+      </p>
+      <ul class="mt-6 space-y-2">
+        {
+          cimetiere.sources.map((id) => (
+            <li>
+              <a href={SOURCES[id].url} class="link link-mono text-muted" rel="noopener">
+                {SOURCES[id].libelle}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    {/* ------------------------------------------- Autres cimetieres */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Autres cimetières</h2>
+      <ul class="mt-8 border-t border-line">
+        {
+          autres.map((autre) => (
+            <li class="border-b border-line py-6">
+              <a href={cimetiereUrl(autre.slug)} class="link type-h3">
+                {autre.nom}
+              </a>
+              <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem] text-muted">
+                {autre.commune} · délai de pose : {autre.chiffres.delai.toLowerCase()}
+              </p>
+            </li>
+          ))
+        }
+        <li class="border-b border-line py-6">
+          <a href={CIMETIERES_URL} class="link type-h3">
+            Tous les cimetières du canton
+          </a>
+          <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem] text-muted">
+            Le tableau des 24 communes : délai, dimensions, hauteur et bordure.
+          </p>
+        </li>
+        <li class="border-b border-line py-6">
+          <a href={guideUrl("quand-poser-une-pierre-tombale")} class="link type-h3">
+            Quand poser une pierre tombale
+          </a>
+          <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem] text-muted">
+            Les délais, les autorisations et les taxes communales, commune par commune.
+          </p>
+        </li>
+        <li class="border-b border-line py-6">
+          <a href={guideUrl("columbarium-cavurne-jardin-du-souvenir")} class="link type-h3">
+            Columbarium, cavurne et jardin du souvenir
+          </a>
+          <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem] text-muted">
+            Ce que recouvre chaque mot, les durées, le nombre d'urnes et les tarifs officiels.
+          </p>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
+</BaseLayout>
+
+<style>
+  /* Fil d Ariane : discret, et l accueil disparait sur telephone (comme sur
+     les fiches modele) pour que le nom du cimetiere reste lisible. */
+  .fil-cim {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+  .fil-cim a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .fil-cim a:hover {
+    color: var(--ink);
+  }
+
+  .note-independance {
+    max-width: 62ch;
+    margin-top: 1.25rem;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* L essentiel : la carte que l on lit en arrivant, sur telephone d abord. */
+  .essentiel {
+    border: 1px solid var(--line);
+    padding: 1.5rem 1.25rem;
+  }
+  @media (min-width: 48rem) {
+    .essentiel {
+      padding: 2rem 2.25rem;
+    }
+  }
+
+  .essentiel-liste {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 1.25rem;
+  }
+  @media (min-width: 48rem) {
+    .essentiel-liste {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem 2.5rem;
+    }
+  }
+  .essentiel-liste dt {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .essentiel-liste dd {
+    margin-top: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .chiffres {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.5rem;
+  }
+  @media (min-width: 48rem) {
+    .chiffres {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2.5rem;
+    }
+  }
+  .chiffre-label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .chiffre-valeur {
+    display: block;
+    margin-top: 0.35rem;
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    line-height: 1.3;
+  }
+
+  .sommaire {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+</style>

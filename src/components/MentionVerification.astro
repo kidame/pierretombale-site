@@ -1,11 +1,21 @@
 ---
-/* Mention obligatoire en tete de chaque guide : la date de verification des
-   reglements et ce que nous faisons avant une pose. Le texte vient de
-   src/data/guides.ts pour qu il soit identique d une page a l autre. */
+/* Mention obligatoire en tete de chaque guide et de chaque page cimetiere : la
+   date de verification des reglements et ce que nous faisons avant une pose.
+   Sans prop, c est le texte des guides (src/data/guides.ts) : il reste ainsi
+   identique d un guide a l autre. Les pages cimetiere passent leur propre
+   texte, construit par `mentionVerification()` dans src/data/cimetieres.ts,
+   parce qu elles ont leur propre date de relecture. */
 import { MENTION_VERIFICATION } from "@/data/guides";
+
+interface Props {
+  /** Texte a afficher, quand ce n est pas celui des guides. */
+  texte?: string;
+}
+
+const { texte = MENTION_VERIFICATION } = Astro.props;
 ---
 
-<p class="mention-verification type-body">{MENTION_VERIFICATION}</p>
+<p class="mention-verification type-body">{texte}</p>
 
 <style>
   .mention-verification {
