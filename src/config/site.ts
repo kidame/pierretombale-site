@@ -120,7 +120,10 @@ export type SiteConfig = typeof siteConfig;
  * séparateur ici change tous les titres d'un coup.
  */
 export function pageTitle(page: string): string {
-  return `${page} | ${siteConfig.name}`;
+  /* Google coupe un titre vers 60 signes : au-dela de 65 avec le nom du site,
+     on garde le titre seul pour que les mots utiles restent visibles. */
+  const complet = `${page} | ${siteConfig.name}`;
+  return complet.length <= 65 ? complet : page;
 }
 
 /**
