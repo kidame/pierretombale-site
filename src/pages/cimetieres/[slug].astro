@@ -65,6 +65,15 @@ function espacesFines<T>(valeur: T): T {
 /* `donnees` sert aux liens (devis, itineraire), `cimetiere` a l affichage. */
 const { cimetiere: donnees } = Astro.props;
 const cimetiere = espacesFines(donnees);
+
+/* h1 : le nom du cimetiere, complete par la localite quand le nom ne la
+   contient pas (ex. « Cimetiere de Beauregard a Neuchatel »), pour que le
+   titre principal porte le lieu que les gens tapent dans Google. */
+const localitePrincipale = cimetiere.localites[0] ?? cimetiere.commune;
+const motsLocalite = `${localitePrincipale} ${cimetiere.commune}`.split(/[\s-]+/).filter((mot) => mot.length >= 5);
+const titrePrincipal = motsLocalite.some((mot) => cimetiere.nom.includes(mot))
+  ? cimetiere.nom
+  : `${cimetiere.nom} à ${localitePrincipale}`;
 const origin = Astro.site ?? new URL(Astro.url.origin);
 const autres = espacesFines(autresCimetieres(donnees.slug));
 
@@ -140,7 +149,7 @@ const filAriane = breadcrumbSchema(
       </nav>
 
       <p class="label mt-8">{cimetiere.commune}</p>
-      <h1 class="type-h1 mt-4 max-w-[24ch]">{cimetiere.nom}</h1>
+      <h1 class="type-h1 mt-4 max-w-[24ch]">{titrePrincipal}</h1>
       <p class="type-lead mt-8 max-w-[58ch]">{cimetiere.chapo}</p>
     </section>
 
@@ -469,7 +478,7 @@ const filAriane = breadcrumbSchema(
     {/* ----------------------------------------------------------- FAQ */}
     <section class="shell mt-20 md:mt-28" id="questions">
       <div class="rule"></div>
-      <h2 class="type-h2 mt-8 max-w-[26ch]">Questions sur le {cimetiere.nom.toLowerCase()}</h2>
+      <h2 class="type-h2 mt-8 max-w-[26ch]">Questions fréquentes : {cimetiere.nom}</h2>
       <dl class="mt-8 border-t border-line">
         {
           cimetiere.faq.map((item) => (
