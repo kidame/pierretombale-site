@@ -76,7 +76,7 @@ const typeModele = product.famille === "cineraire" ? "Monument cinéraire" : "Mo
 const accroche = product.accroche ?? product.shortDescription;
 
 const specs: Array<[string, string]> = [
-  ["Dimensions", product.dimensions],
+  ["Dimensions indicatives", product.dimensions],
   ["Famille", FAMILLE_LABELS[product.famille]],
   ["Gamme", GAMME_LABELS[product.gamme]],
   ["Stèle", product.stele ? "Avec stèle" : "Sans stèle"],
@@ -320,6 +320,17 @@ const filAriane = breadcrumbSchema(
                 ))
               }
             </dl>
+            {/* Les cotes du catalogue sont celles du modele de base. Chaque
+                cimetiere impose ses propres maximums (souvent 80 cm de large et
+                120 a 160 cm de haut dans le canton de Neuchatel) : le monument
+                est realise sur mesure a la taille du reglement, verifie au devis.
+                Detail par commune : docs/DIMENSIONS-MONUMENTS.md. */}
+            <p class="specs-note">
+              Chaque monument est réalisé sur mesure, à la taille exigée par le règlement de votre
+              cimetière : largeur, hauteur, avec ou sans bordure. Nous vérifions ce règlement pour vous
+              lors du devis et nous adaptons le modèle.
+              <a href="/guides/quand-poser-une-pierre-tombale/" class="fiche-petit-lien">Les règles des cimetières neuchâtelois</a>
+            </p>
           </div>
         </details>
 
@@ -331,6 +342,7 @@ const filAriane = breadcrumbSchema(
           <div class="accordeon-corps">
             <ul class="accordeon-liste">
               <li>Un rendez-vous pour parler de la sépulture et du règlement du cimetière.</li>
+              <li>Un monument réalisé sur mesure, aux dimensions autorisées dans votre cimetière.</li>
               <li>Un devis écrit, poste par poste : le monument, le granit, la gravure, les accessoires et la pose.</li>
               <li>Le texte, les dates et les motifs vous sont soumis en épreuve. Rien n'est gravé avant votre accord.</li>
               <li>Nous posons le monument au cimetière, et nous restons joignables ensuite pour l'entretien.</li>
@@ -879,6 +891,19 @@ const filAriane = breadcrumbSchema(
 
     .specs dd {
       text-align: right;
+    }
+
+    .specs-note {
+      max-width: 40rem;
+      margin-top: 1.25rem;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .specs-note a {
+      display: inline-block;
+      margin-top: 0.5rem;
     }
 
     .accordeon-liste {
