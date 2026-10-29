@@ -56,7 +56,7 @@ const organizationSchema = {
 ---
 
 <BaseLayout
-  title={pageTitle("Monuments funéraires et cinéraires")}
+  title={pageTitle("Pierres tombales sur mesure en Suisse romande")}
   description="Monuments funéraires et monuments cinéraires en granit massif, réalisés sur mesure pour la Suisse romande. Conseil, gravure et pose compris dans le devis."
   footerJoint
 >
@@ -92,8 +92,8 @@ const organizationSchema = {
       <div class="shell hero-grille">
         <div class="hero-texte">
           <p class="label">L'art du souvenir</p>
-          <h1 id="hero-titre" class="type-hero">Ce qui demeure.</h1>
-          <p class="type-lead">Un hommage façonné pour traverser le temps.</p>
+          <h1 id="hero-titre" class="type-hero hero-h1">Pierres tombales sur mesure en Suisse romande</h1>
+          <p class="type-lead">Ce qui demeure. Un hommage façonné pour traverser le temps.</p>
           <p class="hero-precision">
             Monuments funéraires et cinéraires en granit, pour les familles de Suisse romande.
           </p>
@@ -211,6 +211,49 @@ const organizationSchema = {
       </div>
     </section>
 
+
+    {/* ------------------------------------------------- Texte de reference
+        Bloc de texte pour les familles et pour Google (le reste de la page est
+        surtout visuel). Chiffres tires de docs/DIMENSIONS-MONUMENTS.md : ne
+        rien ajouter qui n y figure pas. */}
+    <section class="reference" aria-labelledby="reference-titre">
+      <div class="shell">
+        <div class="reference-grille">
+          <h2 id="reference-titre" class="type-h2">Des pierres tombales sur mesure, du Val-de-Travers à toute la Suisse romande</h2>
+          <div class="reference-texte">
+            <p class="type-body">
+              Nous réalisons des monuments funéraires et des monuments cinéraires en granit massif pour les
+              familles du canton de Neuchâtel et de Suisse romande : stèles, tombales, cavurnes et plaques de
+              columbarium. Chaque monument est réalisé sur mesure, d'après un modèle du catalogue ou votre propre
+              idée, dans le granit et avec la gravure que vous choisissez.
+            </p>
+            <h3 class="type-h3">Aux dimensions de votre cimetière</h3>
+            <p class="type-body">
+              En Suisse, ce sont les communes qui fixent la taille des monuments, et les règles changent d'un
+              cimetière à l'autre. À Beauregard, à Neuchâtel, les bordures sont interdites et la stèle d'un adulte
+              mesure au plus 70 cm de large sur 120 cm de haut. Au Val-de-Travers, la tombe d'un adulte fait
+              180 x 80 cm bordure comprise, et le monument se pose quinze mois au plus tôt après l'inhumation.
+              Nous vérifions le règlement du cimetière concerné avant chaque commande, et nous adaptons le
+              monument à ce qu'il autorise.
+            </p>
+            <h3 class="type-h3">Un seul interlocuteur, de la première visite à la pose</h3>
+            <p class="type-body">
+              Un rendez-vous pour parler de la sépulture, un devis écrit poste par poste, une épreuve de la
+              gravure à valider avant tout travail, la demande de pose déposée auprès de la commune, puis la pose
+              au cimetière par nos soins. Nous restons joignables ensuite pour l'entretien.
+            </p>
+            <ul class="reference-liens">
+              <li><a href="/cimetieres/" class="link">Les règles des cimetières du canton de Neuchâtel, commune par commune</a></li>
+              <li><a href="/guides/quand-poser-une-pierre-tombale/" class="link">Quand poser une pierre tombale</a></li>
+              <li><a href="/guides/columbarium-cavurne-jardin-du-souvenir/" class="link">Columbarium, cavurne et jardin du souvenir</a></li>
+              <li><a href="/guides/epitaphe/" class="link">Idées d'épitaphes</a></li>
+              <li><a href="/prix-pierre-tombale-suisse/" class="link">Comment est calculé le prix d'une pierre tombale</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     {/* --------------------------------------------------------- Appel final */}
     <section class="nuit appel" aria-labelledby="appel-titre">
       <div class="shell">
@@ -262,6 +305,44 @@ const organizationSchema = {
 </BaseLayout>
 
 <style>
+  /* ---- Texte de reference ------------------------------------------------ */
+  .reference {
+    padding-block: clamp(4rem, 9vw, 7rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .reference-grille {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 64rem) {
+    .reference-grille {
+      grid-template-columns: 5fr 7fr;
+      gap: 4rem;
+    }
+  }
+
+  .reference-texte {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 62ch;
+  }
+
+  .reference-texte h3 {
+    margin-top: 1rem;
+  }
+
+  .reference-liens {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+
   /* Rythme vertical commun des sections claires. */
   .collection,
   .etapes {
@@ -367,7 +448,15 @@ const organizationSchema = {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.25rem;
-    max-width: 15rem;
+    max-width: 19rem;
+  }
+
+  /* Le h1 porte les mots cherches (pierres tombales, sur mesure, Suisse
+     romande) : plus long que l ancien "Ce qui demeure.", donc un peu plus
+     petit que .type-hero. */
+  .hero-h1 {
+    font-size: clamp(2.1rem, 5.4vw, 4.25rem);
+    line-height: 1.04;
   }
 
   .hero-texte .type-lead {
