@@ -175,7 +175,7 @@ export const CIMETIERES: Cimetiere[] = [
     description:
       "Cimetière de Beauregard à Neuchâtel : adresse, horaires, bus, crématoire, columbarium, dimensions des monuments autorisées et taxes communales.",
     chapo:
-      "Le cimetière de Beauregard est le plus grand du canton et le seul de la ville de Neuchâtel à recevoir encore des inhumations. Voici ce qu'il faut savoir pour s'y rendre, organiser une cérémonie et y poser un monument.",
+      "Le cimetière de Beauregard, à Neuchâtel, réunit le crématoire, la chapelle et l'Office des cimetières de la Ville. Voici ce qu'il faut savoir pour s'y rendre, organiser une cérémonie et y poser un monument.",
     adresse: "avenue Edouard-Dubois 28, 2000 Neuchâtel",
     horaires: "Ouvert 24 h sur 24.",
     contact: {
@@ -286,7 +286,7 @@ export const CIMETIERES: Cimetiere[] = [
       obligations: [
         "L'entrepreneur répond seul de la conformité du monument, et un monument non conforme est enlevé à ses frais (art. 40).",
         "Les ornements provisoires sont enlevés à la pose du monument (art. 32) et les décorations de Noël ou de Pâques deux mois après les fêtes (art. 33).",
-        "La publicité est interdite dans le cimetière et dans la zone de verdure qui l'entoure (art. 51) : aucun nom d'entreprise n'est apposé sur nos monuments ici.",
+        "La publicité est interdite dans le cimetière et dans la zone de verdure qui l'entoure (art. 51).",
       ],
     },
     chiffres: {
@@ -488,7 +488,7 @@ export const CIMETIERES: Cimetiere[] = [
     entretien: [
       "Un monument laissé sans entretien est enlevé après trois mois (art. 60).",
       "Les couvercles de protection sont tolérés du 1er novembre au 31 mars (art. 58).",
-      "Le nettoyage de la pierre aux acides est interdit (art. 59) : nous utilisons des produits neutres.",
+      "Le nettoyage de la pierre aux acides est interdit (art. 59).",
     ],
     faq: [
       {
@@ -614,7 +614,7 @@ export const CIMETIERES: Cimetiere[] = [
       hauteurMax: "150 cm, socle compris",
     },
     cineraire: [
-      "Les niches du columbarium de Peseux se prennent pour 10 ou 20 ans, renouvelables jusqu'à 40 ans au total, et reçoivent deux urnes, ou quatre dans les grandes niches (art. 22). À Peseux, la plaque est comprise dans le tarif communal.",
+      "Les niches du columbarium de Peseux se prennent pour 10 ou 20 ans, renouvelables jusqu'à 40 ans au total (art. 22). À Peseux, la plaque est comprise dans le tarif communal.",
       "Une niche familiale de trois urnes coûte CHF 3170.10 pour une personne domiciliée dans la commune et CHF 6340.20 pour une personne de l'extérieur ; une niche commune CHF 1056.70 et CHF 2133.40 (arrêté du 15 novembre 2021).",
       "Le jardin du souvenir reçoit les cendres sans urne.",
       "Une urne peut aussi être déposée dans une tombe, à 70 cm de profondeur ; une tombe reçoit trois urnes au plus et les urnes biodégradables sont favorisées (art. 17 et 18).",
@@ -696,7 +696,7 @@ export const CIMETIERES: Cimetiere[] = [
     description:
       "Cimetière de Corcelles-Cormondrèche, aux Niclaudes : accès, columbarium de la chapelle, hauteur des monuments autorisée et tarifs communaux des niches.",
     chapo:
-      "Le cimetière de Corcelles-Cormondrèche se trouve aux Niclaudes et dépend de la commune de Neuchâtel depuis la fusion de 2021. C'est le cimetière de la Ville où les monuments peuvent être les plus hauts.",
+      "Le cimetière de Corcelles-Cormondrèche se trouve aux Niclaudes et dépend de la commune de Neuchâtel depuis la fusion de 2021. Avec Valangin, c'est le cimetière de la Ville où les monuments peuvent être les plus hauts.",
     adresse: "Aux Niclaudes, 2036 Cormondrèche",
     horaires: "Ouvert 24 h sur 24.",
     contact: {
@@ -817,7 +817,7 @@ export const CIMETIERES: Cimetiere[] = [
       {
         question: "Quelle hauteur de monument est autorisée à Corcelles-Cormondrèche ?",
         reponse:
-          "160 cm socle compris pour une tombe d'inhumation, 110 cm pour une tombe d'incinération et 70 cm pour un enfant (art. 34 à 36 du règlement du 26 juin 2023). C'est la hauteur la plus généreuse des quatre cimetières de la commune de Neuchâtel. La largeur n'est pas chiffrée dans le texte.",
+          "160 cm socle compris pour une tombe d'inhumation, 110 cm pour une tombe d'incinération et 70 cm pour un enfant (art. 34 à 36 du règlement du 26 juin 2023). Avec Valangin, c'est la hauteur la plus généreuse des quatre cimetières de la commune de Neuchâtel. La largeur n'est pas chiffrée dans le texte.",
       },
       {
         question: "Faut-il un entourage autour de la tombe ?",
