@@ -90,7 +90,21 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       [x] Fiches produit : dimensions indicatives + note sur mesure ; devis : bloc commune/cimetiere
           avec suggestions NE - Claude - 29.10.2026 (main ; relecture navigateur et live : Thomas)
           (fabrication sur mesure confirmee par Thomas le 29.10.2026 : pas de probleme de format)
-      [ ] Etape 3 : lot 2 pages cimetieres + page dimensions (docs/DIMENSIONS-MONUMENTS.md)
+      [>] Etape 3 : lot 2 pages cimetieres (analyses/2026-10-29-seo-pages-cimetieres.md,
+          docs/BRIEF-CIMETIERES-LOT2.md)
+          [x] PASSE A - Claude - 29.10.2026 : src/data/cimetieres.ts (type, 24 communes,
+              4 fiches : Beauregard, La Chaux-de-Fonds, Peseux, Corcelles-Cormondreche),
+              /cimetieres/ (hub) et /cimetieres/<slug>/, devis pre-rempli
+              (?commune=&cimetiere=), maillage (pied de page, fiches, guides),
+              tests/cimetieres.test.ts. Build 69 pages et astro check verts.
+              NON FAIT : npm test (hors allowlist, pas d approbation en mode non
+              interactif) et relecture au navigateur 1280/390.
+          [ ] PASSE B : fiches Le Landeron, Boudry, Cortaillod, Le Locle, Val-de-Travers
+              dans src/data/cimetieres.ts, au format des 4 premieres (brief point 8)
+          [ ] Lot 3 (idee) : Milvignes (Auvernier, Colombier, Bole), Bevaix, Saint-Blaise,
+              Val-de-Ruz
+      [ ] Relecture des pages cimetieres tous les 6 mois (horaires et tarifs communaux
+          changent ; prochaine : avril 2027) et mise a jour de VERIFIE_LE
       [ ] Manques : gabarits Beauregard (Office des cimetieres), tarifs communaux, loi cantonale a jour
 - [x] Configurateur au design des maquettes (4 etapes, ecran partage, mobile) - Claude - 28.10.2026,
       sur main (previsualisation), pas encore sur live

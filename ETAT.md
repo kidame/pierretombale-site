@@ -52,6 +52,49 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 29.10.2026, Claude : LOT 2 DES PAGES CIMETIERES, PASSE A (docs/BRIEF-CIMETIERES-LOT2.md
+  section 8, analyse analyses/2026-10-29-seo-pages-cimetieres.md). Cinq pages nouvelles :
+  /cimetieres/ (hub) et /cimetieres/{beauregard-neuchatel, la-chaux-de-fonds, peseux,
+  corcelles-cormondreche}/. SOURCES UNIQUES : docs/DIMENSIONS-MONUMENTS.md,
+  docs/REGLEMENTS-CIMETIERES-NE.md, docs/CIMETIERES-PRATIQUE.md ; rien d invente, une valeur
+  absente n est pas affichee (ex. horaires du cimetiere de La Chaux-de-Fonds : la page dit de
+  les demander a l office ; infos marquees "(tiers)" ou "lecture indirecte" non publiees).
+  Nouveau src/data/cimetieres.ts = SEULE SOURCE : type Cimetiere (contact, acces, equipements,
+  projets, histoire, regles avec l article de chaque dimension, cineraire, tarifs communaux
+  dates, duree, entretien, faq, sources, verifieLe), COMMUNES_NE (26 lignes pour les
+  24 communes du canton : Neuchatel en 3 lignes, Brot-Plamboz rattache aux Ponts-de-Martel),
+  devisUrl() et itineraireUrl(). `valide()` est appele au chargement du module : titre > 65
+  signes, description hors 120-160, moins de 4 questions, aucune source ou slug en double
+  ARRETENT LE BUILD (les tests ne tournent pas toujours, voir plus bas).
+  Mise en page unique src/pages/cimetieres/[slug].astro : fil d Ariane, h1, chapo,
+  MentionVerification (nouvelle prop `texte` ; les guides gardent le leur), ligne "page
+  d information independante, pour les demarches officielles : <service>" (on ne se presente
+  jamais comme la commune), carte "L essentiel" (adresse + lien Itineraire Google Maps,
+  horaires, telephone en tel:, acces, 3 chiffres cles), sommaire, "Sur place", "Poser un
+  monument" (tableau des dimensions + phrase fixe sur mesure), "Urnes, columbarium et jardin
+  du souvenir" + tarifs officiels, "Duree de la tombe", "Entretien", FAQ, appel au devis
+  pre-rempli, "Documents officiels", "Autres cimetieres". JSON-LD : BreadcrumbList, FAQPage
+  (meme texte qu affiche, modele des guides) et WebPage about Cemetery (adresse seulement si
+  connue, aucun avis). Aucune image, aucun JS sur ces pages.
+  Hub : chapo (pas de regle nationale, 30 ans de la loi cantonale), cartes des 4 pages,
+  tableau des 24 communes (liste de cartes sur telephone), "Les constantes du canton",
+  FAQ de 5 questions, documents officiels, liens vers les guides.
+  Devis : /devis/?commune=&cimetiere= remplit communeCimetiere et cimetiere SANS ecraser une
+  saisie ni un brouillon (aucun champ du contrat change). Maillage : "Cimetieres" au pied de
+  page (rubrique Informations), note des fiches modele pointee sur /cimetieres/, noms de
+  communes du guide "quand poser" relies a leur page, ligne /cimetieres/ dans l index des
+  guides. Sources ajoutees a src/data/cimetieres-ne.ts : loi sur les sepultures (PDF rsn.ne.ch),
+  pages officielles de Peseux, de Corcelles-Cormondreche et de La Chaux-de-Fonds.
+  VERIFIE : npm run build 69 pages 0 erreur (etait 64), npx astro check 0 erreur (2 hints
+  anciens), un seul h1 par page, 5 URL ajoutees au sitemap, canoniques www, titres et
+  descriptions uniques, aucun tiret long ni apostrophe courbe ni "fabri" dans dist/cimetieres,
+  liens tel: et ?commune=/?cimetiere= controles dans le HTML produit.
+  NON FAIT : `npm test` N A PAS PU ETRE LANCE (commande hors .claude/settings.json, aucune
+  approbation possible en mode non interactif) : tests/cimetieres.test.ts est ECRIT mais NON
+  EXECUTE ; lancer `npm test` avant de pousser. Pas de relecture au navigateur (1280 et 390)
+  ni de capture : a faire avant la mise en ligne. Pas de push (consigne de Thomas).
+  PROCHAINE ETAPE : PASSE B du brief (fiches Le Landeron, Boudry, Cortaillod, Le Locle,
+  Val-de-Travers dans le meme fichier, au format des 4 premieres).
 - 29.10.2026, Claude : Thomas precise que les monuments sont FABRIQUES SUR MESURE (le 100 x 200 n est
   pas un blocage). Fiches modele : "Dimensions indicatives" + note "realise sur mesure, a la taille
   exigee par le reglement de votre cimetiere, verifie au devis" (accordeon Dimensions) + puce dans
@@ -1022,8 +1065,10 @@ dans l ordre, est dans `docs/BACKLOG.md` ; le configurateur se modifie avec `doc
 DEBLOQUE, A FAIRE SANS ATTENDRE PERSONNE (au choix de Thomas) :
 - GUIDES, SUITE IMMEDIATE : tests et build verts, pousse sur main le 28.10.2026 ;
   relire les 4 pages au navigateur en 1280 et 390, puis push sur main pour la previsualisation.
-- Guides lot 2 : pages cimetieres (Beauregard d abord) et page des dimensions autorisees, a partir
-  de docs/DIMENSIONS-MONUMENTS.md ; memes regles que le lot 1 (commune, article, lien, date).
+- Guides lot 2, PASSE A FAITE le 29.10.2026 (hub + Beauregard, La Chaux-de-Fonds, Peseux,
+  Corcelles-Cormondreche). SUITE : lancer `npm test`, relire au navigateur, puis PASSE B
+  (Le Landeron, Boudry, Cortaillod, Le Locle, Val-de-Travers) selon
+  docs/BRIEF-CIMETIERES-LOT2.md section 8 ; memes regles (commune, article, lien, date).
 - Design : appliquer la direction des maquettes a tout le site (seul le configurateur en profite).
 - SEO : pages par gamme, FAQ enrichie, maillage interne.
 - Fiches : reporter les cotes reelles (docs/references/geometrie-fournisseur.json) dans `dimensions:`.
