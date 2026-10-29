@@ -1,0 +1,401 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import MentionVerification from "@/components/MentionVerification.astro";
+import { pageTitle } from "@/config/site";
+import { LOI_CANTONALE, SOURCES } from "@/data/cimetieres-ne";
+import {
+  CIMETIERES,
+  CIMETIERES_URL,
+  COMMUNES_NE,
+  VERIFIE_LE,
+  cimetiereUrl,
+  mentionVerification,
+} from "@/data/cimetieres";
+import { guideUrl } from "@/data/guides";
+import { FAMILLE_LABELS, familleUrl } from "@/data/products";
+import { breadcrumbSchema } from "@/data/seo";
+
+/* Hub des pages cimetiere. Deux contenus : les pages ecrites, et le tableau
+   des 24 communes du canton (src/data/cimetieres.ts, releve du 28.10.2026).
+   Sur telephone le tableau devient une liste de cartes : un tableau de sept
+   colonnes deborderait. Les deux vues lisent la MEME liste.
+   Rien ici qui ne figure pas dans docs/DIMENSIONS-MONUMENTS.md,
+   docs/REGLEMENTS-CIMETIERES-NE.md ou docs/CIMETIERES-PRATIQUE.md. */
+
+const origin = Astro.site ?? new URL(Astro.url.origin);
+
+interface Question {
+  question: string;
+  reponse: string;
+}
+
+const questions: Question[] = [
+  {
+    question: "Quelle est la taille maximale d'une pierre tombale dans le canton de Neuchâtel ?",
+    reponse:
+      "Il n'y a pas de réponse cantonale : chaque commune fixe ses dimensions. Dans les 24 communes relevées, aucune tombe d'adulte publiée ne dépasse 80 cm de large ni 180 cm de long, et les hauteurs connues vont de 110 cm au Locle à 160 cm à Corcelles-Cormondrèche et à Valangin. La valeur la plus fréquente est 120 cm. À Beauregard, le monument suit des gabarits communaux : stèle de 70 cm de large sur 120 cm de haut au plus.",
+  },
+  {
+    question: "Faut-il une autorisation pour poser un monument funéraire ?",
+    reponse:
+      "Presque partout, oui. La Ville de Neuchâtel délivre un permis de pose après avoir approuvé les plans (art. 39) ; La Chaux-de-Fonds demande une autorisation écrite et, pour une tombe cinéraire, un plan au 1:10 (art. 54) ; plusieurs communes exigent l'autorisation écrite du Conseil communal. C'est l'entreprise qui dépose la demande, et à Neuchâtel elle répond seule de la conformité du monument (art. 40).",
+  },
+  {
+    question: "Quel délai faut-il attendre avant de poser une pierre tombale ?",
+    reponse:
+      "De quatre mois à quinze mois selon la commune : quatre mois à Laténa, six mois à La Chaux-de-Fonds, à Boudry et dans plusieurs communes, un an dans les quatre cimetières de la Ville de Neuchâtel, douze mois à Cortaillod, quinze mois au Val-de-Travers. Le Locle et Rochefort attendent que le terrain soit stabilisé. La Chaux-de-Fonds est la seule commune relevée qui interdit la pose en hiver, du 1er novembre au 30 avril.",
+  },
+  {
+    question: "Qui vérifie que le monument respecte les dimensions du cimetière ?",
+    reponse:
+      "L'entreprise qui pose le monument. À Neuchâtel, un monument non conforme est enlevé à ses frais (art. 40) ; à La Chaux-de-Fonds, il est enlevé après trois mois (art. 60). Nous lisons le règlement du cimetière concerné, nous adaptons le monument aux dimensions autorisées et nous déposons la demande de pose.",
+  },
+  {
+    question: "Les règles sont-elles les mêmes dans toute la Suisse ?",
+    reponse:
+      "Non. Il n'existe pas de norme fédérale sur la taille d'un monument funéraire. Les cantons légifèrent sur les sépultures et les communes fixent les règles des monuments. Dans le canton de Neuchâtel, la loi sur les sépultures admet les monuments « sous réserve des conditions que pourront déterminer les autorités communales » (art. 9) et fixe la réouverture des fosses à trente ans au moins (art. 6).",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: questions.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.reponse },
+  })),
+};
+
+const filAriane = breadcrumbSchema(
+  [
+    { name: "Accueil", path: "/" },
+    { name: "Cimetières", path: CIMETIERES_URL },
+  ],
+  origin,
+);
+
+/** Les constantes du canton (point 2 de docs/DIMENSIONS-MONUMENTS.md). */
+const constantes: string[] = [
+  "La réouverture des fosses a lieu après trente ans au moins (loi cantonale, art. 6). Des communes vont plus loin : quarante ans à Neuchâtel, soixante ans au Locle et pour le massif de longue durée de La Chaux-de-Fonds.",
+  "Le monument est enlevé à la réouverture de la tombe, et la famille dispose d'un délai pour le reprendre : de deux à douze mois selon la commune.",
+  "La tombe doit être nivelée avant la pose, et les fondations proportionnées au poids du monument.",
+  "La pose se fait selon les indications du jardinier ou du personnel communal.",
+  "Le numéro du jalon, ou du piquet, doit rester visible : il est interdit de l'enlever.",
+  "La publicité est interdite dans le cimetière et aux abords : aucun nom d'entreprise n'est apposé sur un monument là où le règlement l'exclut.",
+  "Un monument non conforme est enlevé après deux ou trois mois, aux frais de l'entreprise qui l'a posé.",
+  "Une taxe communale de pose n'existe que dans trois communes : Neuchâtel (CHF 60.- par mètre de pourtour augmenté de la hauteur), La Chaux-de-Fonds (CHF 50.-) et Le Locle (CHF 200.- pour la pose sur le sommier communal).",
+];
+---
+
+<BaseLayout
+  title={pageTitle("Cimetières du canton de Neuchâtel : dimensions des tombes et règles de pose")}
+  description="Les règles des cimetières neuchâtelois, commune par commune : délai avant la pose, dimensions d'une tombe d'adulte, hauteur, bordure et autorisation."
+>
+  <main id="main-content">
+    {/* --------------------------------------------------------- En-tete */}
+    <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
+      <p class="label">Informations</p>
+      <h1 class="type-h1 mt-4 max-w-[26ch]">
+        Cimetières du canton de Neuchâtel : dimensions des tombes et règles de pose
+      </h1>
+      <p class="type-lead mt-8 max-w-[58ch]">
+        Il n'existe aucune règle nationale sur la taille d'un monument funéraire : c'est la commune qui
+        décide, parfois cimetière par cimetière. La {LOI_CANTONALE} se borne à admettre les monuments
+        « sous réserve des conditions que pourront déterminer les autorités communales » (art. 9) et à
+        fixer la réouverture des fosses à trente ans au moins (art. 6).
+      </p>
+      <p class="type-body mt-6 max-w-[58ch]">
+        Nous avons relevé les règlements des 24 communes du canton. Voici ce qu'ils autorisent, avec
+        l'article et le document officiel pour chaque commune.
+      </p>
+      <div class="mt-8">
+        <MentionVerification texte={mentionVerification(VERIFIE_LE)} />
+      </div>
+    </section>
+
+    {/* ------------------------------------------------- Pages cimetiere */}
+    <section class="shell mt-8 md:mt-12">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Nos pages par cimetière</h2>
+      <ul class="mt-8 border-t border-line">
+        {
+          CIMETIERES.map((fiche) => (
+            <li class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-12">
+              <h3 class="type-h3 max-w-[26ch] md:col-span-5">
+                <a href={cimetiereUrl(fiche.slug)} class="link">
+                  {fiche.nom}
+                </a>
+              </h3>
+              <div class="md:col-span-7">
+                <p class="type-body max-w-[56ch] text-[0.9375rem]">{fiche.chapo}</p>
+                <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem] text-muted">
+                  Délai de pose : {fiche.chiffres.delai.toLowerCase()} · tombe d'adulte :{" "}
+                  {fiche.chiffres.tombeAdulte.toLowerCase()} · hauteur : {fiche.chiffres.hauteurMax.toLowerCase()}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="type-body mt-6 max-w-[58ch] text-[0.9375rem] text-muted">
+        D'autres cimetières du canton auront leur page. En attendant, le tableau ci-dessous donne les règles
+        relevées pour chaque commune, et nous répondons volontiers par téléphone ou par le devis.
+      </p>
+    </section>
+
+    {/* ---------------------------------------------- Tableau du canton */}
+    <section class="shell mt-20 md:mt-28" id="communes">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[24ch]">Les 24 communes du canton</h2>
+      <p class="type-body mt-6 max-w-[58ch]">
+        Dimensions en centimètres, longueur par largeur, bordure comprise sauf mention contraire.
+        « Non publiée » signifie que la valeur ne figure pas dans le texte officiel : elle est à demander à
+        la commune, et nous le faisons avant la commande. La commune de Neuchâtel occupe trois lignes :
+        ses quatre cimetières n'ont pas les mêmes maximums.
+      </p>
+
+      {/* Ordinateur : un vrai tableau. */}
+      <div class="mt-12 hidden overflow-x-auto md:block">
+        <table class="w-full border-collapse text-left">
+          <thead>
+            <tr class="border-y border-line">
+              <th scope="col" class="label py-4 pr-5 font-normal">Commune</th>
+              <th scope="col" class="label py-4 pr-5 font-normal">Délai</th>
+              <th scope="col" class="label py-4 pr-5 font-normal">Tombe d'adulte</th>
+              <th scope="col" class="label py-4 pr-5 font-normal">Hauteur max.</th>
+              <th scope="col" class="label py-4 pr-5 font-normal">Bordure</th>
+              <th scope="col" class="label py-4 pr-5 font-normal">Tombe cinéraire</th>
+              <th scope="col" class="label py-4 font-normal">Texte officiel</th>
+            </tr>
+          </thead>
+          <tbody class="text-[0.875rem]">
+            {
+              COMMUNES_NE.map((commune) => (
+                <tr class="border-b border-line align-top">
+                  <th scope="row" class="max-w-[18ch] py-5 pr-5 font-normal">
+                    {commune.slug ? (
+                      <a href={cimetiereUrl(commune.slug)} class="link">
+                        {commune.commune}
+                      </a>
+                    ) : (
+                      commune.commune
+                    )}
+                    {commune.cimetiere && <span class="block text-muted">{commune.cimetiere}</span>}
+                  </th>
+                  <td class="py-5 pr-5">{commune.delai}</td>
+                  <td class="py-5 pr-5">{commune.tombeAdulte}</td>
+                  <td class="py-5 pr-5 text-muted">{commune.hauteurMax}</td>
+                  <td class="py-5 pr-5 text-muted">{commune.bordure}</td>
+                  <td class="py-5 pr-5 text-muted">{commune.cineraire}</td>
+                  <td class="py-5 text-muted">
+                    {commune.texte.url ? (
+                      <a href={commune.texte.url} class="link" rel="noopener">
+                        {commune.texte.titre}
+                      </a>
+                    ) : (
+                      commune.texte.titre
+                    )}
+                    <span class="block">{commune.texte.date}</span>
+                    {commune.note && <span class="block mt-2">{commune.note}</span>}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      {/* Telephone : une carte par commune, pas de defilement horizontal. */}
+      <ul class="mt-10 space-y-6 md:hidden">
+        {
+          COMMUNES_NE.map((commune) => (
+            <li class="carte-commune">
+              <h3 class="type-h3">
+                {commune.slug ? (
+                  <a href={cimetiereUrl(commune.slug)} class="link">
+                    {commune.commune}
+                  </a>
+                ) : (
+                  commune.commune
+                )}
+              </h3>
+              {commune.cimetiere && <p class="carte-sous-titre">{commune.cimetiere}</p>}
+              <dl class="carte-liste">
+                <div>
+                  <dt>Délai</dt>
+                  <dd>{commune.delai}</dd>
+                </div>
+                <div>
+                  <dt>Tombe d'adulte</dt>
+                  <dd>{commune.tombeAdulte}</dd>
+                </div>
+                <div>
+                  <dt>Hauteur maximale</dt>
+                  <dd>{commune.hauteurMax}</dd>
+                </div>
+                <div>
+                  <dt>Bordure</dt>
+                  <dd>{commune.bordure}</dd>
+                </div>
+                <div>
+                  <dt>Tombe cinéraire</dt>
+                  <dd>{commune.cineraire}</dd>
+                </div>
+                <div>
+                  <dt>Texte officiel</dt>
+                  <dd>
+                    {commune.texte.url ? (
+                      <a href={commune.texte.url} class="link" rel="noopener">
+                        {commune.texte.titre}
+                      </a>
+                    ) : (
+                      commune.texte.titre
+                    )}
+                    <span class="block">{commune.texte.date}</span>
+                  </dd>
+                </div>
+                {commune.note && (
+                  <div>
+                    <dt>À savoir</dt>
+                    <dd>{commune.note}</dd>
+                  </div>
+                )}
+              </dl>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    {/* ------------------------------------------ Constantes du canton */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[24ch]">Les constantes du canton</h2>
+      <p class="type-body mt-6 max-w-[58ch]">
+        Ce qui revient dans presque tous les règlements relevés, quelle que soit la commune.
+      </p>
+      <ul class="type-body mt-8 max-w-[64ch] space-y-4 pl-5 [list-style:disc]">
+        {constantes.map((ligne) => <li class="text-[0.9375rem]">{ligne}</li>)}
+      </ul>
+      <p class="type-body mt-8 max-w-[58ch] text-[0.9375rem] text-muted">
+        Deux communes, Cornaux et Cressier, écrivent « vingt ans au moins » pour la réouverture des fosses,
+        en contradiction avec la loi cantonale qui en demande trente : nous le faisons confirmer par la
+        commune avant toute commande.
+      </p>
+    </section>
+
+    {/* ----------------------------------------------------------- FAQ */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Questions fréquentes</h2>
+      <dl class="mt-8 border-t border-line">
+        {
+          questions.map((item) => (
+            <div class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-12">
+              <dt class="type-h3 max-w-[26ch] md:col-span-5">{item.question}</dt>
+              <dd class="md:col-span-7">
+                <p class="type-body max-w-[56ch] text-[0.9375rem]">{item.reponse}</p>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    {/* --------------------------------------------- Documents officiels */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">Documents officiels</h2>
+      <ul class="mt-8 space-y-2">
+        {
+          Object.entries(SOURCES).map(([, source]) => (
+            <li>
+              <a href={source.url} class="link link-mono text-muted" rel="noopener">
+                {source.libelle}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="type-body mt-6 max-w-[58ch] text-[0.9375rem] text-muted">
+        Les règlements des autres communes ne sont pas tous en ligne : leur nom et leur date figurent dans
+        le tableau ci-dessus.
+      </p>
+    </section>
+
+    {/* ------------------------------------------------- A lire ensuite */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="rule"></div>
+      <h2 class="type-h2 mt-8 max-w-[22ch]">À lire ensuite</h2>
+      <ul class="mt-8 border-t border-line">
+        <li class="border-b border-line py-6">
+          <a href={guideUrl("quand-poser-une-pierre-tombale")} class="link type-h3">
+            Quand poser une pierre tombale
+          </a>
+          <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem]">
+            Le délai commune par commune, les périodes où la pose est interdite, les autorisations et les
+            taxes communales.
+          </p>
+        </li>
+        <li class="border-b border-line py-6">
+          <a href={guideUrl("columbarium-cavurne-jardin-du-souvenir")} class="link type-h3">
+            Columbarium, cavurne et jardin du souvenir
+          </a>
+          <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem]">
+            Ce que recouvre chaque mot, ce que propose chaque commune, les durées et les tarifs officiels.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    {/* --------------------------------------------------------- Appel */}
+    <section class="shell mt-20 md:mt-28">
+      <div class="grid items-end gap-8 md:grid-cols-12">
+        <div class="md:col-span-7">
+          <h2 class="type-h2 max-w-[20ch]">Votre cimetière, votre monument</h2>
+          <p class="type-body mt-6 max-w-[52ch]">
+            Donnez-nous la commune, le nom du cimetière et le type de sépulture : nous vérifions le
+            règlement, nous réalisons le monument sur mesure aux dimensions autorisées, nous déposons la
+            demande de pose et nous établissons un devis gratuit.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
+          <a href="/devis/" class="btn btn-primary">Demander un devis</a>
+          <a href={familleUrl("monument")} class="btn btn-outline">{FAMILLE_LABELS.monument}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(filAriane)} />
+</BaseLayout>
+
+<style>
+  .carte-commune {
+    border: 1px solid var(--line);
+    padding: 1.25rem;
+  }
+  .carte-sous-titre {
+    margin-top: 0.35rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+  .carte-liste {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.85rem;
+  }
+  .carte-liste dt {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .carte-liste dd {
+    margin-top: 0.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+</style>
