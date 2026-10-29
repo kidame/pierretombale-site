@@ -10,9 +10,11 @@
  * pas dans ces fichiers avec sa source.
  *
  * Des textes cites par les pages n ont AUCUNE adresse dans le releve : le
- * reglement des taxes de La Chaux-de-Fonds (41.101) et les rapports du Conseil
- * communal de Neuchatel. Ils sont cites par leur nom et leur date dans le
- * texte, sans lien, plutot qu avec une URL inventee.
+ * reglement des taxes de La Chaux-de-Fonds (41.101), les rapports du Conseil
+ * communal de Neuchatel, le reglement de police du Landeron (1110), celui de
+ * Cortaillod et l arrete des taxes de Val-de-Travers (020.3). Ils sont cites
+ * par leur nom et leur date dans le texte, sans lien, plutot qu avec une URL
+ * inventee.
  */
 
 export interface SourceOfficielle {
@@ -73,9 +75,21 @@ export const SOURCES = {
     libelle: "Règlement général de police de Boudry du 21 mai 1987, chapitre V",
     url: "https://www.boudry.ch/fileadmin/SICO/Boudry/Documents/2022/Reglements_communaux/Reglement_de_police.pdf",
   },
+  boudryPage: {
+    libelle: "Page du cimetière de Boudry, commune de Boudry",
+    url: "https://www.boudry.ch/demarches-administratives/cimetiere",
+  },
+  cortaillodPage: {
+    libelle: "Page du cimetière de Cortaillod, commune de Cortaillod",
+    url: "https://www.cortaillod.ch/demarches-administratives/etat-civil/deces/cimetiere",
+  },
   valDeTravers: {
     libelle: "Règlement de police de Val-de-Travers du 30 septembre 2019 (RSVDT 113.1), chapitres 8 et 9",
     url: "https://www.val-de-travers.ch/sites/default/files/reglements/113.1.pdf",
+  },
+  valDeTraversPage: {
+    libelle: "Portail des décès de la commune de Val-de-Travers",
+    url: "https://www.val-de-travers.ch/portail-virtuel/deces",
   },
 } satisfies Record<string, SourceOfficielle>;
 

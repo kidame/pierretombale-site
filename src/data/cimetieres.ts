@@ -843,6 +843,631 @@ export const CIMETIERES: Cimetiere[] = [
     sources: ["neuchatelReglement", "neuchatelTarifs", "neuchatelCorcellesPage", "loiSepultures"],
     verifieLe: VERIFIE_LE,
   },
+
+  /* ----------------------------------------------------- Le Landeron ----- */
+  {
+    slug: "le-landeron",
+    nom: "Cimetière du Landeron",
+    nomCourt: "Le Landeron",
+    commune: "Le Landeron",
+    localites: ["Le Landeron"],
+    titreSeo: "Cimetière du Landeron : démarches, délais et monuments",
+    description:
+      "Cimetière du Landeron : administration communale, délai de six mois avant la pose, dimensions des tombes autorisées et chapelle du Scapulaire.",
+    chapo:
+      "Le cimetière du Landeron est administré par la commune, rue du Centre 6. Les tombes y mesurent 180 x 80 cm au plus, bordure comprise, et le monument se pose six mois après l'inhumation.",
+    contact: {
+      service: "Administration communale du Landeron",
+      adresse: "rue du Centre 6, 2525 Le Landeron",
+      telephone: "032 886 48 60",
+      horaires:
+        "Guichet : lundi et mercredi 9 h-12 h et 14 h-16 h 30, mardi 9 h-12 h, jeudi 15 h-19 h, vendredi 7 h 30-13 h 30.",
+    },
+    equipements: ["Une tombe du souvenir, prévue par le règlement de police (art. 97)."],
+    histoire: [
+      "La chapelle du Scapulaire, au Landeron, est le dernier vestige de l'église Saint-Maurice de Nugerol, démolie en 1828, selon un communiqué de l'Etat de Neuchâtel.",
+      "Sa clé de voûte porte la date de 1674 et un décor peint de 1683 y a été redécouvert en 2025. Elle a servi de chapelle funéraire jusqu'en 1922.",
+    ],
+    regles: {
+      delaiPose:
+        "Six mois au plus tôt après l'inhumation (art. 90 du règlement de police 1110, état au 21 mars 2024).",
+      tombes: [
+        {
+          type: "Tombe d'adulte, bordure comprise",
+          dimensions: "180 x 80 cm",
+          article: "art. 90",
+        },
+        {
+          type: "Tombe d'enfant jusqu'à 3 ans, bordure comprise",
+          dimensions: "100 x 60 cm",
+          article: "art. 90",
+        },
+        {
+          type: "Tombe d'incinération, bordure comprise",
+          dimensions: "100 x 70 cm",
+          article: "art. 90",
+        },
+      ],
+      bordure:
+        "Permise, et comptée dans les dimensions : les 180 x 80 cm d'une tombe d'adulte comprennent la bordure (art. 90).",
+      autorisation:
+        "Le règlement relevé ne décrit pas de procédure d'autorisation écrite. Nous annonçons la pose à l'administration communale, rue du Centre 6 (032 886 48 60), et nous faisons confirmer les cotes avant la commande.",
+      taxePose:
+        "Aucune taxe de pose n'est publiée au Landeron. Dans le canton, seules Neuchâtel, La Chaux-de-Fonds et Le Locle en publient une.",
+      obligations: [
+        "La hauteur du monument et les matériaux ne sont pas fixés par le règlement : nous les faisons confirmer par la commune avant la commande.",
+        "Les dimensions de l'article 90 comprennent la bordure : un entourage se compte dans la surface autorisée.",
+      ],
+    },
+    chiffres: {
+      delai: "6 mois après l'inhumation",
+      tombeAdulte: "180 x 80 cm, bordure comprise",
+      hauteurMax: "Non publiée, à demander à la commune",
+    },
+    cineraire: [
+      "Une tombe d'incinération mesure 100 x 70 cm, bordure comprise (art. 90).",
+      "Le règlement de police prévoit une tombe du souvenir (art. 97).",
+      "Le règlement relevé ne publie ni columbarium, ni durée de niche, ni tarif : ces points sont à demander à l'administration communale.",
+    ],
+    duree: [
+      "Les documents relevés au Landeron ne fixent pas de durée propre : c'est la loi cantonale qui s'applique, avec une réouverture des fosses après trente ans au moins (art. 6).",
+      "Le délai pour reprendre le monument après la désaffectation n'est pas publié : il est à demander à l'administration communale.",
+    ],
+    faq: [
+      {
+        question: "À qui s'adresser pour le cimetière du Landeron ?",
+        reponse:
+          "À l'administration communale, rue du Centre 6 à 2525 Le Landeron, 032 886 48 60. Le guichet est ouvert le lundi et le mercredi de 9 h à 12 h et de 14 h à 16 h 30, le mardi de 9 h à 12 h, le jeudi de 15 h à 19 h et le vendredi de 7 h 30 à 13 h 30. L'adresse postale du cimetière ne figure pas dans les documents que nous avons relevés.",
+      },
+      {
+        question: "Quelle taille de pierre tombale est autorisée au Landeron ?",
+        reponse:
+          "Une tombe d'adulte mesure 180 x 80 cm au plus, bordure comprise ; une tombe d'enfant jusqu'à trois ans 100 x 60 cm et une tombe d'incinération 100 x 70 cm (art. 90 du règlement de police 1110, état au 21 mars 2024). La hauteur n'est pas chiffrée dans le texte : nous la faisons confirmer par la commune.",
+      },
+      {
+        question: "Quand peut-on poser le monument au Landeron ?",
+        reponse:
+          "Six mois au plus tôt après l'inhumation (art. 90). Nous annonçons la pose à l'administration communale et nous contrôlons les cotes de la tombe avant de lancer la commande.",
+      },
+      {
+        question: "Y a-t-il une taxe communale de pose au Landeron ?",
+        reponse:
+          "Aucune taxe de pose n'est publiée par la commune. Dans le canton de Neuchâtel, seules Neuchâtel, La Chaux-de-Fonds et Le Locle en publient une.",
+      },
+      {
+        question: "Que peut-on faire des cendres au Landeron ?",
+        reponse:
+          "Le règlement de police prévoit une tombe du souvenir (art. 97) et une tombe d'incinération de 100 x 70 cm, bordure comprise (art. 90). Les niches, leur durée et leur tarif ne figurent pas dans les documents relevés : ils sont à demander à l'administration communale.",
+      },
+    ],
+    sources: ["loiSepultures"],
+    verifieLe: VERIFIE_LE,
+  },
+
+  /* ---------------------------------------------------------- Boudry ----- */
+  {
+    slug: "boudry",
+    nom: "Cimetière de Boudry",
+    nomCourt: "Boudry",
+    commune: "Boudry",
+    localites: ["Boudry"],
+    titreSeo: "Cimetière de Boudry : accès, délais et monuments",
+    description:
+      "Cimetière de Boudry, route de Grandson : stationnement, délai de six mois avant la pose, dimensions des tombes et emplacement cinéraire autorisés.",
+    chapo:
+      "Le cimetière de Boudry se trouve à la route de Grandson. Ses règles viennent du chapitre V du règlement général de police de 1987, toujours en vigueur : tombe d'adulte de 170 x 80 cm bordure comprise, et pose six mois après l'inhumation.",
+    adresse: "route de Grandson, Boudry",
+    contact: {
+      service: "Contrôle des habitants de Boudry",
+      adresse: "route des Addoz 68, 2017 Boudry",
+      telephone: "032 886 47 20",
+      telephoneSecondaire: "079 204 19 23 (urgences des travaux publics)",
+      horaires:
+        "Guichet : lundi et mercredi 13 h 30-16 h, mardi 8 h-11 h 30 et 13 h 30-17 h, jeudi 8 h-11 h 30 et 13 h 30-16 h, vendredi 8 h-11 h 30.",
+      url: "https://www.boudry.ch/demarches-administratives/cimetiere",
+    },
+    acces: [
+      "Quelques places de stationnement se trouvent à droite de l'entrée principale ; le parking du Château est une solution de repli.",
+    ],
+    equipements: [],
+    regles: {
+      delaiPose:
+        "Six mois au plus tôt après l'inhumation, la tombe nivelée, avec des fondations proportionnées au poids du monument (art. 93 du règlement général de police du 21 mai 1987).",
+      tombes: [
+        {
+          type: "Tombe d'adulte, bordure comprise",
+          dimensions: "170 x 80 cm",
+          article: "art. 93",
+        },
+        {
+          type: "Tombe d'enfant de 3 à 10 ans, bordure comprise",
+          dimensions: "120 x 60 cm",
+          article: "art. 93",
+        },
+        {
+          type: "Tombe d'enfant de moins de 3 ans, bordure comprise",
+          dimensions: "80 x 50 cm",
+          article: "art. 93",
+        },
+        {
+          type: "Emplacement cinéraire",
+          dimensions: "100 x 70 cm",
+          article: "art. 95",
+        },
+      ],
+      bordure:
+        "Permise, et comptée dans les dimensions : les 170 x 80 cm d'une tombe d'adulte comprennent la bordure (art. 93).",
+      materiaux: "Le signe funéraire est en bois, en métal ou en pierre (art. 92).",
+      taxePose:
+        "Aucune taxe de pose n'est publiée à Boudry : le règlement des taxes de 1994 ne fixe aucun montant de cimetière. Dans le canton, seules Neuchâtel, La Chaux-de-Fonds et Le Locle en publient une.",
+      obligations: [
+        "La hauteur du monument n'est pas fixée par le règlement : nous la faisons confirmer par la commune avant la commande.",
+        "Il n'y a pas de concession perpétuelle à Boudry (art. 87).",
+        "Les tombes abandonnées sont nivelées (art. 96).",
+      ],
+    },
+    chiffres: {
+      delai: "6 mois après l'inhumation",
+      tombeAdulte: "170 x 80 cm, bordure comprise",
+      hauteurMax: "Non publiée, à demander à la commune",
+    },
+    cineraire: [
+      "Une urne peut être déposée sur la tombe d'un proche, à 70 cm de profondeur (art. 95).",
+      "L'emplacement cinéraire mesure 100 x 70 cm (art. 95) ; le règlement prévoit aussi une fosse commune pour les cendres.",
+      "La crémation a lieu au crématoire de Neuchâtel, et le transport est compris dans le service gratuit de la commune (art. 90).",
+      "Le columbarium, sa durée et ses tarifs ne figurent pas dans les documents relevés : ils sont à demander au contrôle des habitants.",
+    ],
+    duree: [
+      "Il n'y a pas de concession perpétuelle à Boudry (art. 87), et les tombes abandonnées sont nivelées (art. 96).",
+      "La loi cantonale fixe la réouverture des fosses à trente ans au moins (art. 6) ; le règlement communal relevé ne publie pas de durée plus longue.",
+      "Le délai pour reprendre le monument à la désaffectation n'est pas publié : il est à demander au contrôle des habitants.",
+    ],
+    faq: [
+      {
+        question: "Où se trouve le cimetière de Boudry et où se garer ?",
+        reponse:
+          "À la route de Grandson, à Boudry. Quelques places de stationnement sont aménagées à droite de l'entrée principale, et le parking du Château est une solution de repli. Les horaires d'ouverture du cimetière ne figurent pas dans les documents que nous avons relevés.",
+      },
+      {
+        question: "Quelle taille de pierre tombale est autorisée à Boudry ?",
+        reponse:
+          "Une tombe d'adulte mesure 170 x 80 cm au plus, bordure comprise ; une tombe d'enfant de trois à dix ans 120 x 60 cm, et 80 x 50 cm avant trois ans (art. 93 du règlement général de police du 21 mai 1987). L'emplacement cinéraire mesure 100 x 70 cm (art. 95). La hauteur n'est pas chiffrée dans le texte.",
+      },
+      {
+        question: "Quand peut-on poser le monument à Boudry ?",
+        reponse:
+          "Six mois au plus tôt après l'inhumation, la tombe nivelée, avec des fondations proportionnées au poids du monument (art. 93).",
+      },
+      {
+        question: "Y a-t-il une taxe communale de pose à Boudry ?",
+        reponse:
+          "Non. Le règlement des taxes de 1994 ne fixe aucun montant de cimetière. Dans le canton de Neuchâtel, seules Neuchâtel, La Chaux-de-Fonds et Le Locle publient une taxe de pose.",
+      },
+      {
+        question: "Que peut-on faire des cendres à Boudry ?",
+        reponse:
+          "Une urne peut être déposée sur la tombe d'un proche, à 70 cm de profondeur, dans un emplacement cinéraire de 100 x 70 cm, ou dans la fosse commune (art. 95). La crémation a lieu au crématoire de Neuchâtel et le transport est compris dans le service gratuit de la commune (art. 90).",
+      },
+      {
+        question: "À qui s'adresser pour une tombe à Boudry ?",
+        reponse:
+          "Au contrôle des habitants, route des Addoz 68 à 2017 Boudry, 032 886 47 20. Le guichet est ouvert le lundi et le mercredi de 13 h 30 à 16 h, le mardi de 8 h à 11 h 30 et de 13 h 30 à 17 h, le jeudi de 8 h à 11 h 30 et de 13 h 30 à 16 h, et le vendredi de 8 h à 11 h 30. Les urgences des travaux publics répondent au 079 204 19 23.",
+      },
+    ],
+    sources: ["boudry", "boudryPage", "loiSepultures"],
+    verifieLe: VERIFIE_LE,
+  },
+
+  /* ------------------------------------------------------ Cortaillod ----- */
+  {
+    slug: "cortaillod",
+    nom: "Cimetière de Cortaillod",
+    nomCourt: "Cortaillod",
+    commune: "Cortaillod",
+    localites: ["Cortaillod"],
+    titreSeo: "Cimetière de Cortaillod : columbarium et monuments",
+    description:
+      "Cimetière de Cortaillod : chambre mortuaire, columbarium de trente ans, délai de douze mois avant la pose et dimensions des monuments autorisées.",
+    chapo:
+      "Le cimetière de Cortaillod se trouve à l'est du chemin des Pièces-Chaperon. Le règlement de police chiffre à la fois la tombe et le monument : stèle de 130 cm de haut au plus, croix de 140 cm, douze mois après l'inhumation.",
+    adresse: "à l'est du chemin des Pièces-Chaperon, Cortaillod",
+    contact: {
+      service: "Administration communale de Cortaillod",
+      adresse: "chemin des Draizes 2, 2016 Cortaillod",
+      telephone: "032 886 51 00",
+      horaires: "Guichet le matin : lundi à jeudi 8 h 30-12 h, vendredi 7 h 30-12 h.",
+      url: "https://www.cortaillod.ch/demarches-administratives/etat-civil/deces/cimetiere",
+    },
+    equipements: [
+      "Une chambre mortuaire, dans un pavillon.",
+      "Un columbarium, dont la niche est concédée pour trente ans.",
+      "Un jardin du souvenir.",
+    ],
+    regles: {
+      delaiPose:
+        "Douze mois au plus tôt après l'inhumation, la tombe nivelée et les cheminements aménagés (art. 8.9 du règlement de police du 25 avril 2017, état au 24 juin 2020).",
+      tombes: [
+        {
+          type: "Tombe d'adulte",
+          dimensions: "160 x 80 cm",
+          article: "art. 8.8",
+        },
+        {
+          type: "Tombe d'enfant de moins de 10 ans",
+          dimensions: "120 x 60 cm",
+          article: "art. 8.8",
+        },
+        {
+          type: "Tombe d'incinération",
+          dimensions: "100 x 70 cm",
+          article: "art. 8.8",
+        },
+        {
+          type: "Dalle",
+          dimensions: "À la taille de la tombe, épaisseur 20 cm",
+          article: "art. 8.9",
+        },
+        {
+          type: "Stèle ou obélisque",
+          dimensions: "À la largeur de la tombe, épaisseur 45 cm (35 cm pour un enfant)",
+          hauteurMax: "130 cm (70 cm pour un enfant)",
+          article: "art. 8.9",
+        },
+        {
+          type: "Croix",
+          dimensions: "Épaisseur 30 cm",
+          hauteurMax: "140 cm (70 cm pour un enfant)",
+          article: "art. 8.9",
+        },
+      ],
+      bordure:
+        "Permise. Le règlement chiffre en revanche les maximums hors sol du monument : dalle à la taille de la tombe, stèle et obélisque 130 cm de haut, croix 140 cm (art. 8.9).",
+      taxePose:
+        "Aucune taxe de pose n'est publiée à Cortaillod. Dans le canton, seules Neuchâtel, La Chaux-de-Fonds et Le Locle en publient une.",
+      obligations: [
+        "Le monument se pose une fois la tombe nivelée et les cheminements aménagés (art. 8.9).",
+        "La plaque du columbarium suit un modèle imposé et sa gravure passe par l'Administration communale (art. 8.18).",
+      ],
+    },
+    chiffres: {
+      delai: "12 mois après l'inhumation",
+      tombeAdulte: "160 x 80 cm",
+      hauteurMax: "130 cm (stèle), 140 cm (croix)",
+    },
+    cineraire: [
+      "Les niches du columbarium sont concédées pour trente ans (art. 8.18).",
+      "La plaque de la niche suit un modèle imposé et sa gravure passe par l'Administration communale (art. 8.18).",
+      "Une tombe d'incinération mesure 100 x 70 cm (art. 8.8) ; le monument y est limité comme ailleurs dans le cimetière, à 130 cm pour une stèle et 140 cm pour une croix (art. 8.9).",
+      "Le cimetière a un jardin du souvenir.",
+    ],
+    duree: [
+      "Les niches du columbarium sont concédées pour trente ans (art. 8.18).",
+      "La loi cantonale fixe la réouverture des fosses à trente ans au moins (art. 6) ; le règlement communal relevé ne publie pas de durée plus longue.",
+      "Le délai pour reprendre le monument à la désaffectation n'est pas publié : il est à demander à l'Administration communale.",
+    ],
+    entretien: [
+      "L'eau du cimetière est coupée d'octobre à mars, selon la page officielle de la commune : les plantations se choisissent en conséquence.",
+    ],
+    faq: [
+      {
+        question: "Où se trouve le cimetière de Cortaillod ?",
+        reponse:
+          "À l'est du chemin des Pièces-Chaperon, à Cortaillod. L'Administration communale se trouve au chemin des Draizes 2, 032 886 51 00, et son guichet est ouvert le matin, du lundi au jeudi de 8 h 30 à 12 h et le vendredi de 7 h 30 à 12 h. Les horaires d'ouverture du cimetière ne figurent pas dans les documents que nous avons relevés.",
+      },
+      {
+        question: "Quelles dimensions de monument sont autorisées à Cortaillod ?",
+        reponse:
+          "La tombe d'un adulte mesure 160 x 80 cm, celle d'un enfant de moins de dix ans 120 x 60 cm et une tombe d'incinération 100 x 70 cm (art. 8.8). Hors sol, la dalle reprend la taille de la tombe avec 20 cm d'épaisseur ; la stèle et l'obélisque font la largeur de la tombe et 130 cm de haut au plus (70 cm pour un enfant) ; la croix monte à 140 cm (art. 8.9).",
+      },
+      {
+        question: "Quand peut-on poser le monument à Cortaillod ?",
+        reponse:
+          "Douze mois au plus tôt après l'inhumation, la tombe nivelée et les cheminements aménagés (art. 8.9 du règlement de police du 25 avril 2017, état au 24 juin 2020).",
+      },
+      {
+        question: "Qui grave la plaque du columbarium de Cortaillod ?",
+        reponse:
+          "La plaque suit un modèle imposé et sa gravure passe par l'Administration communale (art. 8.18) : la commande ne se fait pas directement auprès du marbrier.",
+      },
+      {
+        question: "Combien de temps dure une niche au columbarium de Cortaillod ?",
+        reponse:
+          "Trente ans (art. 8.18). Le montant de la concession ne figure pas dans les documents que nous avons relevés : il est à demander à l'Administration communale, 032 886 51 00.",
+      },
+      {
+        question: "Y a-t-il de l'eau au cimetière en hiver ?",
+        reponse:
+          "Non : la page officielle de la commune indique que l'eau est coupée d'octobre à mars. C'est à prendre en compte pour les plantations et l'entretien de la tombe.",
+      },
+    ],
+    sources: ["cortaillodPage", "loiSepultures"],
+    verifieLe: VERIFIE_LE,
+  },
+
+  /* -------------------------------------------------------- Le Locle ----- */
+  {
+    slug: "le-locle",
+    nom: "Cimetière du Locle",
+    nomCourt: "Le Locle",
+    commune: "Le Locle",
+    localites: ["Le Locle", "Les Brenets"],
+    titreSeo: "Cimetière du Locle : murs cinéraires et monuments",
+    description:
+      "Cimetière du Locle : murs cinéraires, jardin du souvenir, stèles de 70 cm sur 110 cm, bordures interdites et taxes communales du cimetière.",
+    chapo:
+      "Le cimetière du Locle est administré avec celui des Brenets, depuis l'avenue de l'Hôtel-de-Ville 1. Les bordures et le gravillon y sont interdits : la stèle est posée sur un sommier communal et mesure 70 cm de large sur 110 cm de haut au plus, socle compris.",
+    horaires: "Accès libre en tout temps. Les commodités sont limitées de novembre à avril (art. 3).",
+    contact: {
+      service: "Administration des cimetières du Locle et des Brenets",
+      adresse: "avenue de l'Hôtel-de-Ville 1, 2400 Le Locle",
+      telephone: "032 933 84 61",
+      telephoneSecondaire: "032 933 84 62",
+      email: "cdh.lelocle@ne.ch",
+    },
+    equipements: [
+      "Des murs cinéraires : deux urnes par niche, avec une plaque en marbre obligatoire, à la charge de la famille.",
+      "Un jardin du souvenir, anonyme.",
+      "Un secteur des enfants.",
+      "Un sous-secteur 9-B, dont les lignes sont réservées aux communautés islamiques (art. 2 du règlement d'application).",
+      "Un centre funéraire communal, à l'hôpital du Locle : une salle de 25 places et trois salles de visite, ouvertes en 2011.",
+      "Des inhumations du lundi au vendredi, de 10 h à 11 h et de 14 h à 15 h de mai au passage à l'heure d'hiver, puis de 10 h à 11 h en hiver.",
+      "Des dépôts de cendres de mai à octobre, le mercredi et le vendredi de 14 h à 17 h.",
+    ],
+    regles: {
+      delaiPose:
+        "Lorsque la fosse est comblée, nivelée et le terrain stabilisé (règlement du cimetière du Locle du 4 juillet 2012 et son règlement d'application, état au 22 juin 2022). Il n'y a pas de nombre de mois dans le texte : la date se fixe avec l'administration.",
+      tombes: [
+        {
+          type: "Stèle d'adulte, socle compris",
+          dimensions: "70 cm de large",
+          hauteurMax: "110 cm (130 cm pour une croix)",
+          article: "art. 30",
+        },
+        {
+          type: "Stèle d'enfant de 3 à 10 ans, socle compris",
+          dimensions: "60 cm de large",
+          hauteurMax: "80 cm (100 cm pour une croix)",
+          article: "art. 30",
+        },
+        {
+          type: "Stèle d'enfant de moins de 3 ans, socle compris",
+          dimensions: "50 cm de large",
+          hauteurMax: "60 cm (80 cm pour une croix)",
+          article: "art. 30",
+        },
+        {
+          type: "Monument d'une concession cinéraire A",
+          dimensions: "60 x 80 cm",
+          article: "art. 30",
+        },
+        {
+          type: "Monument d'une concession cinéraire B",
+          dimensions: "95 x 140 cm",
+          article: "art. 30",
+        },
+      ],
+      bordure:
+        "Interdite, comme le gravillon. La stèle est posée sur un sommier communal et la tombe reçoit un jardinet de 50 cm de diamètre (art. 30).",
+      materiaux:
+        "Pierre, bronze ou inox. Les monuments couchés, les plaques émaillées et le fer forgé sont interdits (art. 29) ; le nettoyage aux produits chimiques l'est aussi (art. 31).",
+      taxePose: "CHF 200.- pour la pose du monument sur le sommier communal (art. 30).",
+      obligations: [
+        "Le nom du marbrier est inscrit lisiblement sur le monument (art. 29).",
+        "Les monuments couchés, les plaques émaillées et le fer forgé ne sont pas admis (art. 29).",
+        "Les protections sont tolérées de novembre à la fin du mois d'avril (art. 31).",
+      ],
+    },
+    chiffres: {
+      delai: "Quand le terrain est stabilisé",
+      tombeAdulte: "Stèle de 70 cm de large",
+      hauteurMax: "110 cm, socle compris",
+    },
+    cineraire: [
+      "Le mur cinéraire reçoit deux urnes par niche, pour vingt ans (CHF 1200.-) ; la plaque en marbre est obligatoire et à la charge de la famille (art. 23 et 24).",
+      "La concession cinéraire A mesure 1,00 x 0,80 m, reçoit quatre urnes et dure vingt ans (CHF 200.-, renouvelable dix ans pour CHF 100.-) ; la concession B mesure 2,00 x 1,20 m, reçoit douze urnes et dure soixante ans (CHF 1500.-) (art. 23 et 24).",
+      "Le monument d'une concession A ne dépasse pas 60 x 80 cm, celui d'une concession B 95 x 140 cm (art. 30).",
+      "Le jardin du souvenir est anonyme.",
+      "Les dépôts de cendres ont lieu du 1er mai au 31 octobre, le mercredi et le vendredi (art. 4 du règlement d'application) ; la commune indique des dépôts de 14 h à 17 h.",
+    ],
+    tarifs: {
+      date: "règlement du cimetière du Locle du 4 juillet 2012 et son règlement d'application, état au 22 juin 2022",
+      source: "leLocle",
+      lignes: [
+        { prestation: "Inhumation", domicilie: "gratuit", exterieur: "CHF 1200.-" },
+        { prestation: "Concession cinéraire A, 4 urnes, 20 ans", domicilie: "CHF 200.-" },
+        { prestation: "Renouvellement de la concession A, 10 ans", domicilie: "CHF 100.-" },
+        { prestation: "Concession cinéraire B, 12 urnes, 60 ans", domicilie: "CHF 1500.-" },
+        { prestation: "Niche du mur cinéraire, 2 urnes, 20 ans", domicilie: "CHF 1200.-" },
+        { prestation: "Taxe de pose d'un monument", domicilie: "CHF 200.-" },
+        { prestation: "Entretien de la tombe par la commune", domicilie: "CHF 80.- à 190.- par an" },
+      ],
+      note: "Ce sont des taxes communales, pas des prix de monument. La plaque en marbre du mur cinéraire et sa gravure restent à la charge de la famille.",
+    },
+    duree: [
+      "Les fosses sont rouvertes après soixante ans au moins au Locle, alors que la loi cantonale demande trente ans au moins (art. 32 du règlement, art. 6 de la loi).",
+      "La concession cinéraire A dure vingt ans, renouvelable par dix ans ; la concession B dure soixante ans (art. 23 et 24).",
+      "Le délai pour reprendre le monument à la réouverture n'est pas publié : il est à demander à l'administration des cimetières.",
+    ],
+    entretien: [
+      "L'entretien de la tombe peut être confié à la commune, de CHF 80.- à CHF 190.- par an.",
+      "Le nettoyage aux produits chimiques est interdit (art. 31) et les protections sont tolérées de novembre à la fin du mois d'avril.",
+    ],
+    faq: [
+      {
+        question: "À qui s'adresser pour le cimetière du Locle ?",
+        reponse:
+          "À l'administration des cimetières du Locle et des Brenets, avenue de l'Hôtel-de-Ville 1 à 2400 Le Locle, 032 933 84 61 ou 032 933 84 62, cdh.lelocle@ne.ch. L'adresse postale du cimetière ne figure pas dans les documents que nous avons relevés ; l'accès est libre en tout temps, avec des commodités limitées de novembre à avril (art. 3).",
+      },
+      {
+        question: "Quelle taille de pierre tombale est autorisée au Locle ?",
+        reponse:
+          "Une stèle d'adulte mesure 70 cm de large et 110 cm de haut au plus, socle compris, et une croix 130 cm. Pour un enfant de trois à dix ans : 60 cm de large sur 80 cm de haut (100 cm pour une croix) ; avant trois ans, 50 cm sur 60 cm (80 cm pour une croix). Le monument est posé sur un sommier communal (art. 30).",
+      },
+      {
+        question: "Les bordures sont-elles permises au cimetière du Locle ?",
+        reponse:
+          "Non. Les bordures et le gravillon sont interdits : la stèle est posée sur un sommier communal et la tombe reçoit un jardinet de 50 cm de diamètre (art. 30). Les monuments couchés, les plaques émaillées et le fer forgé ne sont pas admis non plus (art. 29).",
+      },
+      {
+        question: "Quand peut-on poser le monument au Locle ?",
+        reponse:
+          "Lorsque la fosse est comblée, nivelée et le terrain stabilisé : le règlement ne fixe pas de nombre de mois, la date se convient avec l'administration. La taxe communale de pose sur le sommier est de CHF 200.- (art. 30).",
+      },
+      {
+        question: "Combien coûte une niche au mur cinéraire du Locle ?",
+        reponse:
+          "CHF 1200.- pour vingt ans et deux urnes (art. 23 et 24). La plaque en marbre est obligatoire et reste à la charge de la famille. La concession cinéraire A, de 1,00 x 0,80 m et quatre urnes, coûte CHF 200.- pour vingt ans ; la concession B, de 2,00 x 1,20 m et douze urnes, CHF 1500.- pour soixante ans.",
+      },
+      {
+        question: "Y a-t-il un secteur confessionnel au cimetière du Locle ?",
+        reponse:
+          "Le sous-secteur 9-B comprend des lignes réservées aux communautés islamiques (art. 2 du règlement d'application, état au 22 juin 2022).",
+      },
+      {
+        question: "Le cimetière des Brenets suit-il les mêmes règles ?",
+        reponse:
+          "Les Brenets ont fusionné avec Le Locle en 2021 et les deux cimetières ont la même administration. Les documents que nous avons relevés ne confirment pas le régime appliqué aux Brenets : nous le demandons à l'administration des cimetières (032 933 84 61) avant toute commande.",
+      },
+    ],
+    sources: ["leLocle", "leLocleApplication", "loiSepultures"],
+    verifieLe: VERIFIE_LE,
+  },
+
+  /* -------------------------------------------------- Val-de-Travers ----- */
+  {
+    slug: "val-de-travers",
+    nom: "Cimetière de Val-de-Travers",
+    nomCourt: "Val-de-Travers",
+    commune: "Val-de-Travers",
+    localites: ["Couvet", "Fleurier", "Travers", "Môtiers", "Buttes", "Boveresse"],
+    titreSeo: "Cimetières de Val-de-Travers : délais et monuments",
+    description:
+      "Cimetières de Val-de-Travers : délai de quinze mois avant la pose, dimensions des tombes, niches du columbarium et plaquette du jardin du souvenir.",
+    chapo:
+      "Val-de-Travers administre les cimetières de Couvet, Fleurier, Travers, Môtiers, Buttes et Boveresse sous un seul règlement de police. Le monument y est posé quinze mois au plus tôt après l'inhumation ou le dépôt des cendres, sur une tombe de 180 x 80 cm au plus, bordure comprise.",
+    contact: {
+      service: "Contrôle des habitants de Val-de-Travers",
+      adresse: "rue du Temple 8, 2114 Fleurier",
+      telephone: "032 886 43 00",
+      telephoneSecondaire: "032 886 43 56 (travaux publics, rue des Moulins 28, Fleurier)",
+      horaires:
+        "Guichet : lundi, mercredi et jeudi 8 h 30-12 h et 13 h 30-17 h, mardi 13 h 30-17 h, vendredi 7 h 30-15 h.",
+      url: "https://www.val-de-travers.ch/portail-virtuel/deces",
+    },
+    equipements: [
+      "Des jardins du souvenir à Couvet, Fleurier, Môtiers et Travers ; une plaquette nominative y est possible depuis mai 2024.",
+      "Une chapelle, au cimetière de Fleurier.",
+      "Un columbarium : la niche reçoit deux urnes au plus, pour vingt ans renouvelables par dix ans (art. 9.23).",
+      "Des chambres mortuaires et une salle de cérémonie, gratuites pour les personnes domiciliées dans la commune, selon les disponibilités.",
+      "Des cérémonies du lundi au vendredi, de 9 h à 12 h et de 14 h à 17 h (arrêté du 19 mai 2021).",
+    ],
+    regles: {
+      delaiPose:
+        "Quinze mois au plus tôt après l'inhumation ou le dépôt des cendres, la tombe nivelée (art. 9.17 du règlement de police 113.1 du 30 septembre 2019, modifié jusqu'au 11 décembre 2023). Les bordures suivent le même délai que le monument.",
+      tombes: [
+        {
+          type: "Tombe d'adulte et d'enfant dès 3 ans, bordure comprise",
+          dimensions: "180 x 80 cm",
+          article: "art. 9.16",
+        },
+        {
+          type: "Tombe d'enfant de moins de 3 ans, bordure comprise",
+          dimensions: "100 x 60 cm",
+          article: "art. 9.16",
+        },
+        {
+          type: "Tombe cinéraire, bordure comprise",
+          dimensions: "100 x 60 cm",
+          article: "art. 9.16",
+        },
+        {
+          type: "Hauteur du monument",
+          dimensions:
+            "Aucun chiffre dans le règlement : la grandeur est fixée par le Conseil communal sur les plans d'aménagement, qui ne sont pas publiés",
+          article: "art. 9.12",
+        },
+      ],
+      bordure:
+        "Permise, et comptée dans les dimensions : les 180 x 80 cm d'une tombe d'adulte comprennent la bordure (art. 9.16). La bordure ne se pose pas avant quinze mois, comme le monument (art. 9.17).",
+      materiaux:
+        "Le règlement n'impose pas de matériau. Le nettoyage de la pierre aux solvants est interdit (art. 9.10).",
+      taxePose:
+        "Aucune taxe de pose n'est publiée à Val-de-Travers. Dans le canton, seules Neuchâtel, La Chaux-de-Fonds et Le Locle en publient une.",
+      obligations: [
+        "Le numéro du piquet reste visible sur la tombe (art. 9.13).",
+        "La hauteur du monument est fixée par le Conseil communal sur les plans d'aménagement, qui ne sont pas publiés (art. 9.12) : nous la faisons confirmer avant la commande.",
+        "Les plaques des niches et les plaquettes du jardin du souvenir sont gravées par une entreprise désignée par le Conseil communal (art. 9.21 et 9.26) ; son nom n'est pas publié.",
+        "La publicité est interdite dans l'enceinte du cimetière et aux abords, sauf autorisation (art. 9.4).",
+      ],
+    },
+    chiffres: {
+      delai: "15 mois après l'inhumation",
+      tombeAdulte: "180 x 80 cm, bordure comprise",
+      hauteurMax: "Fixée par le Conseil communal",
+    },
+    cineraire: [
+      "Une urne peut être déposée sur la tombe d'un proche, à 70 cm de profondeur, ou remise à la famille ; une urne mise en terre sans caveau doit être en matériau durable (art. 8.17).",
+      "Une tombe cinéraire mesure 100 x 60 cm, bordure comprise (art. 9.16).",
+      "Les niches du columbarium sont concédées pour vingt ans, renouvelables par dix ans, et reçoivent deux urnes au plus (art. 9.23). La plaque porte les noms, les dates et une photographie, avec un vase imposé (art. 9.26).",
+      "Les jardins du souvenir de Couvet, Fleurier, Môtiers et Travers acceptent une plaquette nominative de 4 x 6 cm depuis mai 2024, pour CHF 80.- ; elle peut être retirée après vingt ans (art. 9.21 du règlement, art. 10.14a de l'arrêté des taxes 020.3).",
+      "L'inhumation et le dépôt des cendres sont gratuits pour les personnes domiciliées dans la commune (art. 8.2 et 8.13).",
+    ],
+    tarifs: {
+      date: "arrêté des taxes 020.3 et page officielle de la commune, relevés le 29 octobre 2026",
+      sourceLibelle:
+        "Arrêté des taxes de Val-de-Travers 020.3, art. 10.14a (plaquette du jardin du souvenir) ; montant de la niche relevé sur la page officielle de la commune",
+      lignes: [
+        { prestation: "Inhumation", domicilie: "gratuit" },
+        { prestation: "Dépôt des cendres", domicilie: "gratuit" },
+        { prestation: "Niche du columbarium, 20 ans", domicilie: "CHF 1500.-" },
+        {
+          prestation: "Plaquette du jardin du souvenir, 4 x 6 cm, 20 ans",
+          domicilie: "CHF 80.-",
+        },
+      ],
+      note: "Ce sont des taxes communales, pas des prix de monument. Le tarif de gravure des plaques ne figure pas dans un document officiel à jour : il est à demander à la commune, qui désigne l'entreprise chargée des gravures.",
+    },
+    duree: [
+      "Les tombes sont désaffectées après trente ans, et les familles ont trois mois pour reprendre le monument (art. 9.19).",
+      "La loi cantonale fixe la réouverture des fosses à trente ans au moins (art. 6).",
+      "Les niches sont concédées pour vingt ans, renouvelables par dix ans (art. 9.23) ; la plaquette du jardin du souvenir peut être retirée après vingt ans (art. 9.21).",
+    ],
+    entretien: ["Le nettoyage de la pierre aux solvants est interdit (art. 9.10)."],
+    faq: [
+      {
+        question: "À qui s'adresser pour un cimetière de Val-de-Travers ?",
+        reponse:
+          "Au contrôle des habitants, rue du Temple 8 à 2114 Fleurier, 032 886 43 00, qui gère les cimetières de la commune ; les travaux publics répondent au 032 886 43 56, rue des Moulins 28 à Fleurier. Les adresses des cimetières des villages ne figurent pas dans les documents que nous avons relevés.",
+      },
+      {
+        question: "Quand peut-on poser une pierre tombale à Val-de-Travers ?",
+        reponse:
+          "Quinze mois au plus tôt après l'inhumation ou le dépôt des cendres, la tombe nivelée (art. 9.17). Les bordures suivent le même délai que le monument : une inhumation au printemps donne une pose l'été de l'année suivante.",
+      },
+      {
+        question: "Quelle taille de tombe est autorisée à Val-de-Travers ?",
+        reponse:
+          "180 x 80 cm pour un adulte et pour un enfant dès trois ans, 100 x 60 cm avant trois ans, 100 x 60 cm pour une tombe cinéraire, bordure comprise dans chaque cas (art. 9.16). La hauteur n'est pas chiffrée : elle est fixée par le Conseil communal sur les plans d'aménagement, qui ne sont pas publiés (art. 9.12).",
+      },
+      {
+        question: "Combien coûte une plaquette au jardin du souvenir ?",
+        reponse:
+          "CHF 80.- pour une plaquette de 4 x 6 cm, possible depuis mai 2024 dans les jardins du souvenir de Couvet, Fleurier, Môtiers et Travers ; elle peut être retirée après vingt ans (art. 9.21 du règlement, art. 10.14a de l'arrêté des taxes 020.3).",
+      },
+      {
+        question: "Qui grave les plaques du columbarium à Val-de-Travers ?",
+        reponse:
+          "Une entreprise désignée par le Conseil communal (art. 9.21 et 9.26) ; son nom n'est pas publié. La plaque porte les noms, les dates et une photographie, avec un vase imposé. La niche est concédée pour vingt ans, renouvelables par dix ans, et reçoit deux urnes au plus (art. 9.23).",
+      },
+      {
+        question: "Combien de temps dure une tombe à Val-de-Travers ?",
+        reponse:
+          "Trente ans : la tombe est ensuite désaffectée et les familles ont trois mois pour reprendre le monument (art. 9.19). La loi cantonale demande au moins trente ans (art. 6).",
+      },
+    ],
+    sources: ["valDeTravers", "valDeTraversPage", "loiSepultures"],
+    verifieLe: VERIFIE_LE,
+  },
 ];
 
 /* ======================================================================== */
@@ -950,6 +1575,7 @@ export const COMMUNES_NE: CommuneNE[] = [
       date: "21 mai 1987",
       url: "https://www.boudry.ch/fileadmin/SICO/Boudry/Documents/2022/Reglements_communaux/Reglement_de_police.pdf",
     },
+    slug: "boudry",
   },
   {
     commune: "Cortaillod",
@@ -959,6 +1585,7 @@ export const COMMUNES_NE: CommuneNE[] = [
     bordure: "Permise",
     cineraire: "100 x 70 cm, monument 130 cm",
     texte: { titre: "Règlement de police de Cortaillod", date: "25 avril 2017, état au 24 juin 2020" },
+    slug: "cortaillod",
   },
   {
     commune: "La Grande Béroche",
@@ -1011,6 +1638,7 @@ export const COMMUNES_NE: CommuneNE[] = [
     bordure: "Permise",
     cineraire: "100 x 70 cm, bordures comprises",
     texte: { titre: "Règlement de police du Landeron 1110", date: "état au 21 mars 2024" },
+    slug: "le-landeron",
   },
   {
     commune: "Lignières",
@@ -1051,6 +1679,7 @@ export const COMMUNES_NE: CommuneNE[] = [
       url: "https://www.lelocle.ch/wp-content/uploads/2020/12/61.01_Reglement_cimetiere_20129704.pdf",
     },
     note: "Le monument est posé sur un sommier communal (taxe de pose CHF 200.-) et porte le nom du marbrier ; régime des Brenets à confirmer.",
+    slug: "le-locle",
   },
   {
     commune: "Les Ponts-de-Martel",
@@ -1136,6 +1765,7 @@ export const COMMUNES_NE: CommuneNE[] = [
       url: "https://www.val-de-travers.ch/sites/default/files/reglements/113.1.pdf",
     },
     note: "Les plaques des niches et du jardin du souvenir sont gravées par une entreprise désignée par la commune.",
+    slug: "val-de-travers",
   },
   {
     commune: "Les Verrières",
