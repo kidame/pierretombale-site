@@ -99,8 +99,19 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
               tests/cimetieres.test.ts. Build 69 pages et astro check verts.
               NON FAIT : npm test (hors allowlist, pas d approbation en mode non
               interactif) et relecture au navigateur 1280/390.
-          [ ] PASSE B : fiches Le Landeron, Boudry, Cortaillod, Le Locle, Val-de-Travers
-              dans src/data/cimetieres.ts, au format des 4 premieres (brief point 8)
+          [x] PASSE B - Claude - 29.10.2026 : 5 fiches de plus dans src/data/cimetieres.ts
+              (Le Landeron, Boudry, Cortaillod, Le Locle, Val-de-Travers), reliees par slug
+              dans COMMUNES_NE ; 3 sources ajoutees (pages officielles de Boudry, Cortaillod,
+              Val-de-Travers). Mise en page : « L essentiel » avant la mention de
+              verification, espaces insecables dans les guillemets au rendu. Maillage : le
+              guide « quand poser » renvoie aux pages Le Locle, Boudry et Val-de-Travers.
+              Build 74 pages et astro check verts. NON FAIT : npm test (hors allowlist) et
+              relecture au navigateur 1280/390.
+              A DEMANDER AUX COMMUNES (pour completer ces fiches) : hauteur max au Landeron,
+              a Boudry et a Val-de-Travers (plans du Conseil communal) ; adresse du cimetiere
+              du Landeron, du Locle et des villages de Val-de-Travers ; columbarium du
+              Landeron et de Boudry ; tarif de la niche de Cortaillod ; regime des Brenets ;
+              orthographe du lieu-dit du cimetiere du Landeron.
           [ ] Lot 3 (idee) : Milvignes (Auvernier, Colombier, Bole), Bevaix, Saint-Blaise,
               Val-de-Ruz
       [ ] Relecture des pages cimetieres tous les 6 mois (horaires et tarifs communaux

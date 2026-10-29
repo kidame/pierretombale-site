@@ -52,6 +52,45 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 29.10.2026, Claude : LOT 2 DES PAGES CIMETIERES, PASSE B (docs/BRIEF-CIMETIERES-LOT2.md
+  section 8). CINQ FICHES DE PLUS dans src/data/cimetieres.ts, au format des 4 premieres :
+  /cimetieres/{le-landeron, boudry, cortaillod, le-locle, val-de-travers}/. Le fichier de
+  donnees reste la seule source ; aucune page nouvelle a ecrire (getStaticPaths), le hub et
+  « Autres cimetieres » se remplissent tout seuls. SOURCES UNIQUES : docs/DIMENSIONS-MONUMENTS.md,
+  docs/REGLEMENTS-CIMETIERES-NE.md, docs/CIMETIERES-PRATIQUE.md.
+  CE QUI N EST PAS AFFICHE, FAUTE DE SOURCE : aucune adresse de cimetiere pour Val-de-Travers
+  et Le Locle (les documents ne la donnent pas) ni pour Le Landeron ; le nom du lieu-dit du
+  cimetiere du Landeron n est PAS ecrit (orthographe non confirmee) ; aucun horaire de
+  cimetiere la ou il n est pas publie (les pages disent de le demander a l office) ; la
+  chapelle et les chambres mortuaires du Landeron (source tierce pflv.ch) ; les tarifs de
+  gravure « lecture indirecte » de Val-de-Travers (CHF 23.- par caractere) et de
+  La Chaux-de-Fonds ; aucun superlatif (le « delai le plus long du canton » de Val-de-Travers
+  a ete retire a la relecture). Chaque regle porte son article ; la ou la hauteur n est pas
+  publiee (Landeron, Boudry, Val-de-Travers) la page le dit et renvoie a la commune.
+  Equipements vides pour Boudry (rien de publie) : la section « Sur place » ne s affiche pas.
+  Trois sources ajoutees a src/data/cimetieres-ne.ts : pages officielles de Boudry, de
+  Cortaillod et portail des deces de Val-de-Travers. Les reglements du Landeron (1110) et de
+  Cortaillod n ont AUCUNE adresse en ligne dans le releve : cites par leur nom et leur date,
+  sans lien (Le Landeron n a donc que la loi cantonale en « Documents officiels »).
+  DEUX RETOUCHES DE MISE EN PAGE (src/pages/cimetieres/[slug].astro) : (1) la
+  MentionVerification et la ligne « page d information independante » passent APRES le bloc
+  « L essentiel » (adresse, telephone et 3 chiffres cles visibles plus haut sur telephone) ;
+  (2) nouvelle fonction `espacesFines()` appliquee AU RENDU : l espace apres « et avant »
+  devient insecable (U+00A0), les donnees gardent des espaces ordinaires. `donnees` sert aux
+  liens (devisUrl, itineraireUrl), `cimetiere` a l affichage et au JSON-LD (meme texte).
+  Maillage : le guide « quand poser » relie les lignes Le Locle, Boudry et Val-de-Travers a
+  leur page ; COMMUNES_NE porte les 5 nouveaux slugs.
+  VERIFIE : npm run build 74 pages 0 erreur (etait 69), npx astro check 0 erreur (3 hints
+  anciens), un seul h1 par page, 9 URL /cimetieres/ dans le sitemap, canoniques www, titres
+  et descriptions uniques (valide() le controle au build), aucun « fabri », tiret long,
+  apostrophe courbe ni guillemet anglais dans dist/cimetieres, espaces insecables presentes
+  dans le HTML produit et absentes des donnees, liens /devis/?commune=&cimetiere= controles.
+  NON FAIT : `npm test` N A PAS PU ETRE LANCE (commande hors .claude/settings.json, aucune
+  approbation possible en mode non interactif) ; tests/cimetieres.test.ts est generique (il
+  ne compte pas les fiches) et devrait passer, mais le dire seulement apres l avoir lance.
+  Pas de relecture au navigateur (1280 et 390), pas de push (consigne de Thomas).
+  PROCHAINE ETAPE : relecture au navigateur des 5 nouvelles pages, puis `npm test` ; appels
+  aux communes pour les valeurs manquantes (liste dans docs/BACKLOG.md, etape 3 passe B).
 - 29.10.2026, Claude : LOT 2 DES PAGES CIMETIERES, PASSE A (docs/BRIEF-CIMETIERES-LOT2.md
   section 8, analyse analyses/2026-10-29-seo-pages-cimetieres.md). Cinq pages nouvelles :
   /cimetieres/ (hub) et /cimetieres/{beauregard-neuchatel, la-chaux-de-fonds, peseux,
@@ -1065,10 +1104,12 @@ dans l ordre, est dans `docs/BACKLOG.md` ; le configurateur se modifie avec `doc
 DEBLOQUE, A FAIRE SANS ATTENDRE PERSONNE (au choix de Thomas) :
 - GUIDES, SUITE IMMEDIATE : tests et build verts, pousse sur main le 28.10.2026 ;
   relire les 4 pages au navigateur en 1280 et 390, puis push sur main pour la previsualisation.
-- Guides lot 2, PASSE A FAITE le 29.10.2026 (hub + Beauregard, La Chaux-de-Fonds, Peseux,
-  Corcelles-Cormondreche). SUITE : lancer `npm test`, relire au navigateur, puis PASSE B
-  (Le Landeron, Boudry, Cortaillod, Le Locle, Val-de-Travers) selon
-  docs/BRIEF-CIMETIERES-LOT2.md section 8 ; memes regles (commune, article, lien, date).
+- Pages cimetieres lot 2 : PASSES A ET B FAITES le 29.10.2026, neuf pages en ligne locale
+  (hub + Beauregard, La Chaux-de-Fonds, Peseux, Corcelles-Cormondreche, Le Landeron, Boudry,
+  Cortaillod, Le Locle, Val-de-Travers), build 74 pages vert. SUITE : lancer `npm test`,
+  relire les pages au navigateur en 1280 et 390, puis appeler les communes pour les valeurs
+  manquantes (hauteurs, adresses, columbariums : liste dans docs/BACKLOG.md). Lot 3 possible :
+  Milvignes, Bevaix, Saint-Blaise, Val-de-Ruz, memes regles (commune, article, lien, date).
 - Design : appliquer la direction des maquettes a tout le site (seul le configurateur en profite).
 - SEO : pages par gamme, FAQ enrichie, maillage interne.
 - Fiches : reporter les cotes reelles (docs/references/geometrie-fournisseur.json) dans `dimensions:`.
