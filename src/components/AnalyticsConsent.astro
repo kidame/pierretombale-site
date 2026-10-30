@@ -1,0 +1,196 @@
+---
+---
+
+<aside id="ga4-consentement" class="ga4-consentement" aria-label="Choix de mesure d'audience" hidden>
+  <div class="ga4-contenu">
+    <p class="ga4-texte">
+      Avec votre accord, Google Analytics nous aide &agrave; comprendre les visites du site.
+      Aucun suivi d'audience n'est activ&eacute; sans votre consentement.
+      <a href="/protection-des-donnees/">En savoir plus</a>.
+    </p>
+    <div class="ga4-actions">
+      <button type="button" data-ga-refuser>Refuser</button>
+      <button type="button" data-ga-autoriser>Autoriser</button>
+    </div>
+  </div>
+</aside>
+
+<script>
+  // Consentement explicite. Aucun script Google n'est charge avant l'accord.
+  const GA4_ID = "G-RLD8E8SGES";
+  const CLE = "pt-ga4-consentement-v1";
+  const SIX_MOIS = 180 * 24 * 60 * 60 * 1000;
+  type Choix = "oui" | "non";
+  const bandeau = document.querySelector<HTMLElement>("#ga4-consentement");
+
+  if (bandeau) {
+    let actif = false;
+    const fenetreGA = window as Window & { dataLayer?: unknown[][] };
+
+    function lireChoix(): Choix | null {
+      try {
+        const valeur = localStorage.getItem(CLE);
+        if (!valeur) return null;
+        const donnees = JSON.parse(valeur) as { choix?: string; date?: number };
+        if (
+          (donnees.choix === "oui" || donnees.choix === "non") &&
+          typeof donnees.date === "number" &&
+          Date.now() - donnees.date >= 0 &&
+          Date.now() - donnees.date < SIX_MOIS
+        ) {
+          return donnees.choix;
+        }
+      } catch {
+        // Le navigateur peut interdire le stockage, donc pas de consentement suppose.
+      }
+      return null;
+    }
+
+    function enregistrer(choix: Choix): void {
+      try {
+        localStorage.setItem(CLE, JSON.stringify({ choix, date: Date.now() }));
+      } catch {
+        // Le choix reste applique sur cette page, sans persistance garantie.
+      }
+    }
+
+    function activer(): void {
+      if (actif) return;
+      // Pas de suivi sur les pages de saisie de donnees personnelles ou de gravure.
+      const chemin = location.pathname;
+      if (/^\/personnaliser(\/|$)/.test(chemin) || /^\/devis\/?$/.test(chemin)) return;
+      actif = true;
+
+      fenetreGA.dataLayer = fenetreGA.dataLayer || [];
+      const gtag = (...args: unknown[]): void => {
+        fenetreGA.dataLayer?.push(args);
+      };
+      gtag("consent", "default", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+      });
+      gtag("js", new Date());
+      gtag("consent", "update", { analytics_storage: "granted" });
+      gtag("config", GA4_ID, {
+        send_page_view: false,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
+      });
+      // Aucun parametre d'URL ou fragment n'est transmis au traceur.
+      gtag("event", "page_view", {
+        page_location: location.origin + location.pathname,
+        page_title: document.title,
+      });
+
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + GA4_ID;
+      document.head.appendChild(script);
+    }
+
+    function effacerCookiesGA(): void {
+      const noms = document.cookie
+        .split(";")
+        .map((cookie) => cookie.trim().split("=")[0])
+        .filter((nom) => nom === "_ga" || nom.startsWith("_ga_"));
+      const domaines = ["", location.hostname, "." + location.hostname, "." + location.hostname.replace(/^www\./, "")];
+      for (const nom of noms) {
+        for (const domaine of domaines) {
+          document.cookie =
+            nom + "=; Max-Age=0; path=/; SameSite=Lax" + (domaine ? "; domain=" + domaine : "");
+        }
+      }
+    }
+
+    bandeau.querySelector<HTMLButtonElement>("[data-ga-autoriser]")?.addEventListener("click", () => {
+      enregistrer("oui");
+      bandeau.hidden = true;
+      activer();
+    });
+    bandeau.querySelector<HTMLButtonElement>("[data-ga-refuser]")?.addEventListener("click", () => {
+      enregistrer("non");
+      bandeau.hidden = true;
+      if (actif) {
+        fenetreGA.dataLayer?.push(["consent", "update", { analytics_storage: "denied" }]);
+        effacerCookiesGA();
+        location.reload();
+      }
+    });
+
+    document.querySelectorAll<HTMLButtonElement>("[data-ga-preferences]").forEach((bouton) => {
+      bouton.hidden = false;
+      bouton.addEventListener("click", () => {
+        bandeau.hidden = false;
+        bandeau.querySelector<HTMLButtonElement>("[data-ga-refuser]")?.focus();
+      });
+    });
+
+    const choix = lireChoix();
+    if (choix === "oui") activer();
+    else if (choix === null) bandeau.hidden = false;
+  }
+</script>
+
+<style>
+  .ga4-consentement {
+    position: fixed;
+    z-index: 120;
+    inset: auto 0 0;
+    padding: 1.2rem var(--gutter);
+    background: var(--canvas);
+    color: var(--ink);
+    border-top: 1px solid var(--line-strong);
+    box-shadow: 0 -12px 42px rgba(0, 0, 0, 0.12);
+    font-family: "Archivo", Helvetica, Arial, sans-serif;
+  }
+
+  .ga4-consentement[hidden] {
+    display: none;
+  }
+
+  .ga4-contenu {
+    max-width: 74rem;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+  }
+
+  .ga4-texte {
+    max-width: 66ch;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .ga4-texte a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .ga4-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .ga4-actions button {
+    min-height: 44px;
+    padding: 0.65rem 1.15rem;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.87rem;
+    cursor: pointer;
+  }
+
+  .ga4-actions button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+</style>

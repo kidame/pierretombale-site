@@ -84,6 +84,7 @@ const adresse = [
             </li>
           ))
         }
+        <li><button type="button" data-ga-preferences hidden>Choix des cookies</button></li>
       </ul>
     </div>
   </div>
@@ -146,7 +147,8 @@ const adresse = [
   }
 
   .pied-liens a,
-  .pied-legal a {
+  .pied-legal a,
+  .pied-legal button {
     display: inline-block;
     padding-block: 0.4rem;
     color: var(--muted);
@@ -154,8 +156,20 @@ const adresse = [
   }
 
   .pied-liens a:hover,
-  .pied-legal a:hover {
+  .pied-legal a:hover,
+  .pied-legal button:hover {
     color: var(--ink);
+  }
+
+  .pied-legal button {
+    border: 0;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .pied-legal button[hidden] {
+    display: none;
   }
 
   .pied-bas {

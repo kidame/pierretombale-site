@@ -5,6 +5,7 @@ import "@fontsource/eb-garamond/latin-400.css";
 import garamondLatin from "@fontsource/eb-garamond/files/eb-garamond-latin-400-normal.woff2?url";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
+import AnalyticsConsent from "@/components/AnalyticsConsent.astro";
 import { siteConfig } from "@/config/site";
 
 interface Props {
@@ -105,6 +106,7 @@ const ogImage = social ? new URL(social.src, origin).href : null;
     {includeHeader && <SiteHeader currentPath={Astro.url.pathname} />}
     <slot />
     {includeFooter && <SiteFooter joint={footerJoint} />}
+    <AnalyticsConsent />
 
   </body>
 </html>

@@ -52,6 +52,15 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+- 30.10.2026, ChatGPT : preparation GA4 pour PierreTombale.ch (ID de mesure G-RLD8E8SGES).
+  Composant AnalyticsConsent dans le layout : refus par defaut, Google charge uniquement
+  apres acceptation explicite, choix local 180 jours et modifiable dans le pied de page.
+  Exclusion du suivi sur /devis/ et /personnaliser/ pour limiter les risques de collecte
+  de donnees saisies ; page_view sans query ni hash ; mentions de confidentialite ajustees.
+  Validations locales : parsing Astro des 4 fichiers concernes et syntaxe TS OK ; simulation JS
+  initial / refus / accord / URL / revocation / exclusions / persistance OK. Pas de build complet.
+  Non publie (ni push main ni live). Restent : build, test visuel navigateur et GA4 Temps reel
+  apres deploiement autorise.
 - 29.10.2026 (14h15), Claude : erreur Search Console "Il faut indiquer offers, review ou aggregateRating"
   (Extraits de produits). Cause : JSON-LD Product des 27 fiches sans offers (prix provisoires, offreJsonLd null).
   Corrige : le Product n est publie que si une offre chiffree existe ; fil d Ariane conserve. Thomas doit cliquer
