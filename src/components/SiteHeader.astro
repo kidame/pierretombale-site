@@ -215,9 +215,12 @@ const featuredProduct = requireProduct(await getProducts(), siteConfig.featured.
       padding-bottom: 1.5rem;
     }
 
+    /* Six entrees centrees depuis l ajout de "Realisations" (02.11.2026) :
+       l ecart reste souple pour que "Votre projet"
+       garde sa place a droite sur les ecrans intermediaires. */
     .nav-bureau ul {
       display: flex;
-      gap: 2.75rem;
+      gap: clamp(1.25rem, 2.2vw, 2.75rem);
     }
 
     .nav-projet {

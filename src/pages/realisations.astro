@@ -1,0 +1,723 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { pageTitle, siteConfig } from "@/config/site";
+
+/* NOS REALISATIONS (maquette editoriale validee le 02.11.2026).
+   Une seule realisation, quatre photos fournies par le client et deja
+   preparees dans public/images/realisations/monument-coeur/ (3 largeurs,
+   ratio 3:4). Rien n est recadre ni re-encode ici.
+
+   Regles de la page (docs/REALISATIONS.md) :
+   - pas de fausse realisation, pas de filtre, pas de compteur, pas de
+     temoignage : le jour ou un deuxieme projet arrive, on duplique le bloc ;
+   - le nom et la date graves ne sont JAMAIS repris en texte, en alt, en
+     metadonnee ni en donnees structurees ;
+   - pas de dimension, de matiere exacte, de localisation ni de prix : seuls
+     les mots valides par le client sont affiches. */
+
+const BASE = "/images/realisations/monument-coeur";
+const LARGEURS = [480, 800, 1086] as const;
+
+/* Les photos sont des portraits 3:4 (800 x 1067 pour la taille moyenne). */
+const RATIO = { largeur: 800, hauteur: 1067 };
+
+const jeu = (id: string) => ({
+  src: `${BASE}/${id}-800.webp`,
+  srcset: LARGEURS.map((l) => `${BASE}/${id}-${l}.webp ${l}w`).join(", "),
+  /* Sans JavaScript, le lien mene au fichier le plus grand. */
+  max: `${BASE}/${id}-1086.webp`,
+});
+
+/* L ordre de ce tableau est celui de la galerie : " 1 / 4 " suit la page. */
+const photos = [
+  {
+    ...jeu("pose-vue-ensemble"),
+    legende: "Monument en forme de c\u0153ur.",
+    alt: "Monument en forme de c\u0153ur, en pierre blanche vein\u00e9e, pos\u00e9 au cimeti\u00e8re et vu de face.",
+  },
+  {
+    ...jeu("pose-vue-detail"),
+    legende: "Le monument pos\u00e9.",
+    alt: "Le monument en forme de c\u0153ur, pos\u00e9 au cimeti\u00e8re, vu en plong\u00e9e, le gazon derri\u00e8re.",
+  },
+  {
+    ...jeu("avant-pose-face"),
+    legende: "Vue de face",
+    alt: "Le monument en forme de c\u0153ur vu de face, avant la pose.",
+  },
+  {
+    ...jeu("avant-pose-trois-quarts"),
+    legende: "Vue de trois quarts",
+    alt: "Le monument en forme de c\u0153ur vu de trois quarts, avant la pose.",
+  },
+];
+
+const [heroPhoto, detailPhoto, facePhoto, troisQuartsPhoto] = photos;
+
+/* Les trois reperes sous la description : intitule / valeur, rien de plus. */
+const reperes = [
+  { intitule: "Forme", valeur: "C\u0153ur" },
+  { intitule: "Pierre", valeur: "Blanche vein\u00e9e" },
+  { intitule: "Personnalisation", valeur: "Gravures et motifs" },
+];
+
+const description =
+  "Un monument en forme de c\u0153ur, en pierre blanche vein\u00e9e : nos photos de la r\u00e9alisation, avant la pose et une fois pos\u00e9e au cimeti\u00e8re.";
+
+const siteUrl = (Astro.site ?? new URL(Astro.url.origin)).href;
+
+/* CollectionPage : la page et son titre, rien d autre. Aucune image ni aucune
+   mention de personne dans les donnees structurees (voir docs/REALISATIONS.md). */
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Nos r\u00e9alisations",
+  description,
+  url: new URL("/realisations/", siteUrl).href,
+  isPartOf: {
+    "@type": "WebSite",
+    name: siteConfig.name,
+    url: siteUrl,
+  },
+};
+---
+
+<BaseLayout title={pageTitle("Nos r\u00e9alisations")} description={description} footerJoint>
+  <main id="main-content">
+    {/* ---------------------------------------------------------------- Hero */}
+    <section class="nuit hero" aria-labelledby="hero-titre">
+      <div class="shell hero-grille">
+        <div class="hero-texte">
+          <p class="label">L'art du souvenir</p>
+          <h1 id="hero-titre" class="type-h1">Nos<br /> r&#xe9;alisations.</h1>
+          <p class="type-lead">Des monuments singuliers, r&#xe9;alis&#xe9;s avec attention.</p>
+          <a href="#realisation" class="ancre">
+            D&#xe9;couvrir la r&#xe9;alisation
+            <span class="trait" aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <figure class="hero-photo">
+          <a
+            href={heroPhoto.max}
+            class="photo"
+            data-photo="0"
+            data-legende={heroPhoto.legende}
+          >
+            <img
+              src={heroPhoto.src}
+              srcset={heroPhoto.srcset}
+              sizes="(min-width: 64rem) 30rem, (min-width: 40rem) 26rem, calc(100vw - 3rem)"
+              width={RATIO.largeur}
+              height={RATIO.hauteur}
+              alt={heroPhoto.alt}
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </a>
+          <figcaption>{heroPhoto.legende}</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    {/* -------------------------------------------------------- Presentation */}
+    <section class="presentation" id="realisation" aria-labelledby="presentation-titre">
+      <div class="shell presentation-grille">
+        <figure class="presentation-photo">
+          <a
+            href={detailPhoto.max}
+            class="photo"
+            data-photo="1"
+            data-legende={detailPhoto.legende}
+          >
+            <img
+              src={detailPhoto.src}
+              srcset={detailPhoto.srcset}
+              sizes="(min-width: 64rem) 32rem, (min-width: 40rem) 60vw, 100vw"
+              width={RATIO.largeur}
+              height={RATIO.hauteur}
+              alt={detailPhoto.alt}
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        </figure>
+
+        <div class="presentation-texte">
+          <p class="label">Une r&#xe9;alisation sur mesure</p>
+          <h2 id="presentation-titre" class="type-h2">Un monument en forme de c&#x153;ur.</h2>
+          <p class="type-body">
+            Une pierre blanche vein&#xe9;e, des lignes douces et des motifs personnalis&#xe9;s. Une composition
+            pens&#xe9;e dans chaque d&#xe9;tail.
+          </p>
+          <dl class="reperes">
+            {
+              reperes.map((repere) => (
+                <div class="repere">
+                  <dt>{repere.intitule}</dt>
+                  <dd>{repere.valeur}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    {/* ------------------------------------------------------- Avant la pose */}
+    <section class="avant" aria-labelledby="avant-titre">
+      <div class="shell">
+        <header class="avant-intro">
+          <h2 id="avant-titre" class="type-h2">Avant la pose.</h2>
+          <p class="type-lead">Deux regards sur le monument.</p>
+        </header>
+
+        <div class="avant-grille">
+          {
+            [facePhoto, troisQuartsPhoto].map((photo, index) => (
+              <figure class="avant-photo">
+                <a href={photo.max} class="photo" data-photo={String(index + 2)} data-legende={photo.legende}>
+                  <img
+                    src={photo.src}
+                    srcset={photo.srcset}
+                    sizes="(min-width: 72rem) 33rem, (min-width: 48rem) calc(50vw - 2.5rem), (min-width: 35rem) 32rem, calc(100vw - 3rem)"
+                    width={RATIO.largeur}
+                    height={RATIO.hauteur}
+                    alt={photo.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+                <figcaption>{photo.legende}</figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* ----------------------------------------------------------- Appel final */}
+    <section class="nuit appel" aria-labelledby="appel-titre">
+      <div class="shell">
+        <h2 id="appel-titre" class="type-h2">Votre projet commence par un &#xe9;change.</h2>
+        <a href="/devis/" class="btn btn-outline">Parlons de votre projet</a>
+      </div>
+    </section>
+
+    {/* ------------------------------------------------------------- Galerie
+        Amelioration progressive : sans JavaScript, chaque photo est un lien
+        vers le fichier le plus grand ; avec JavaScript, elle ouvre cette
+        boite. Aucune image n est chargee ici avant l ouverture. */}
+    <dialog class="nuit boite" data-galerie aria-label="Photos de la r&#xe9;alisation">
+      <div class="boite-interieur" data-interieur>
+        <div class="boite-haut">
+          <p class="label" data-position aria-live="polite"></p>
+          <button type="button" class="boite-bouton" data-fermer>
+            <span class="sr-only">Fermer</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+              <path d="M5 5l14 14"></path>
+              <path d="M19 5L5 19"></path>
+            </svg>
+          </button>
+        </div>
+
+        <figure class="boite-figure" data-figure>
+          <img data-image alt="" width={1086} height={1448} decoding="async" />
+          <figcaption class="boite-legende" data-legende></figcaption>
+        </figure>
+
+        <div class="boite-nav">
+          <button type="button" class="boite-bouton" data-precedent>
+            <span class="sr-only">Photo pr&#xe9;c&#xe9;dente</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+              <path d="M15 5l-7 7 7 7"></path>
+            </svg>
+          </button>
+          <button type="button" class="boite-bouton" data-suivant>
+            <span class="sr-only">Photo suivante</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+              <path d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </dialog>
+  </main>
+
+  <script>
+    /* Galerie : <dialog> natif, ouvert seulement si le navigateur le sait
+       faire. Echap et le retour du focus sur la photo d origine sont assures
+       par showModal() ; on ajoute les fleches, le clic sur le fond et le
+       balayage tactile. Les sources viennent des liens de la page : rien n est
+       duplique, et le fichier plein format n est demande qu a l ouverture. */
+    const boite = document.querySelector<HTMLDialogElement>("[data-galerie]");
+    const liens = Array.from(document.querySelectorAll<HTMLAnchorElement>("a[data-photo]"));
+
+    if (boite && liens.length > 0 && typeof boite.showModal === "function") {
+      const image = boite.querySelector<HTMLImageElement>("[data-image]")!;
+      const legende = boite.querySelector<HTMLElement>("[data-legende]")!;
+      const position = boite.querySelector<HTMLElement>("[data-position]")!;
+      const figure = boite.querySelector<HTMLElement>("[data-figure]")!;
+      const fermer = boite.querySelector<HTMLButtonElement>("[data-fermer]")!;
+      const precedent = boite.querySelector<HTMLButtonElement>("[data-precedent]")!;
+      const suivant = boite.querySelector<HTMLButtonElement>("[data-suivant]")!;
+
+      let courante = 0;
+      let source: HTMLAnchorElement | null = null;
+
+      function montre(index: number) {
+        courante = (index + liens.length) % liens.length;
+        const lien = liens[courante];
+        const vignette = lien.querySelector("img")!;
+        image.srcset = vignette.srcset;
+        image.sizes = "100vw";
+        image.src = lien.href;
+        image.alt = vignette.alt;
+        legende.textContent = lien.dataset.legende ?? "";
+        position.textContent = `${courante + 1} / ${liens.length}`;
+      }
+
+      liens.forEach((lien, index) => {
+        lien.setAttribute("aria-haspopup", "dialog");
+        lien.setAttribute("aria-label", "Agrandir : " + lien.querySelector("img")!.alt);
+        lien.addEventListener("click", (evenement) => {
+          /* Un clic avec une touche de modification (nouvel onglet) ou autre
+             qu un clic gauche garde le comportement du lien. */
+          if (evenement.defaultPrevented) return;
+          const souris = evenement as MouseEvent;
+          if (souris.metaKey || souris.ctrlKey || souris.shiftKey || souris.altKey || souris.button !== 0) return;
+          evenement.preventDefault();
+          montre(index);
+          source = lien;
+          document.documentElement.classList.add("realisations-modal-open");
+          boite.showModal();
+          fermer.focus({ preventScroll: true });
+        });
+      });
+
+      fermer.addEventListener("click", () => boite.close());
+      precedent.addEventListener("click", () => montre(courante - 1));
+      suivant.addEventListener("click", () => montre(courante + 1));
+
+      /* Clic sur le fond sombre : tout ce qui n est ni la photo, ni sa
+         legende, ni un bouton ferme la boite. */
+      boite.addEventListener("click", (evenement) => {
+        const cible = evenement.target;
+
+        if (
+          cible === boite ||
+          (cible instanceof HTMLElement &&
+            cible.matches(".boite-interieur, .boite-haut, .boite-nav, [data-figure]"))
+        ) boite.close();
+      });
+
+      boite.addEventListener("keydown", (evenement) => {
+        if (evenement.key === "ArrowLeft") {
+          evenement.preventDefault();
+          montre(courante - 1);
+        } else if (evenement.key === "ArrowRight") {
+          evenement.preventDefault();
+          montre(courante + 1);
+        }
+      });
+
+      /* Un geste horizontal seul change de photo. Le pincement et les
+         gestes verticaux conservent leur comportement natif. */
+      let depart: { x: number; y: number } | null = null;
+      figure.addEventListener("touchstart", (evenement) => {
+        const point = evenement.touches[0];
+        depart = evenement.touches.length === 1 && point
+          ? { x: point.clientX, y: point.clientY } : null;
+      }, { passive: true });
+      figure.addEventListener("touchend", (evenement) => {
+        const origine = depart;
+        depart = null;
+        const point = evenement.changedTouches[0];
+        if (!origine || !point || evenement.touches.length > 0) return;
+        const dx = point.clientX - origine.x;
+        const dy = point.clientY - origine.y;
+        if (Math.abs(dx) >= 48 && Math.abs(dx) > Math.abs(dy) * 1.3)
+          montre(dx < 0 ? courante + 1 : courante - 1);
+      }, { passive: true });
+      figure.addEventListener("touchcancel", () => { depart = null; });
+
+      /* Fermeture : on libere la source pour ne pas garder l image en memoire
+         d une ouverture a l autre. */
+      boite.addEventListener("close", () => {
+        document.documentElement.classList.remove("realisations-modal-open");
+        source?.focus({ preventScroll: true });
+        depart = null;
+        image.removeAttribute("src");
+        image.removeAttribute("srcset");
+      });
+    }
+  </script>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(collectionSchema)}></script>
+</BaseLayout>
+
+<style>
+  /* ---- Photos : bords nets, aucun cadre decoratif ------------------------- */
+  .photo {
+    display: block;
+    cursor: zoom-in;
+  }
+
+  .photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: opacity 320ms var(--ease-out-quart);
+  }
+
+  .photo:hover img,
+  .photo:focus-visible img {
+    opacity: 0.88;
+  }
+
+  figcaption {
+    margin-top: 0.875rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  /* ---- Hero ---------------------------------------------------------------
+     Texte a gauche, photo en portrait a droite. Sur telephone le texte passe
+     au-dessus de la photo. */
+  .hero-grille {
+    max-width: 75rem;
+    display: grid;
+    gap: 2.5rem;
+    padding-block: 3rem 3.5rem;
+  }
+
+  .hero-texte {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .hero-texte .type-h1 {
+    font-size: clamp(3.25rem, 6.5vw, 6.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+  }
+
+  .hero-texte .type-lead {
+    max-width: 28ch;
+    color: var(--ink);
+  }
+
+  .hero-photo {
+    width: 100%;
+    max-width: 24rem;
+  }
+
+  @media (min-width: 40rem) {
+    .hero-photo {
+      max-width: 26rem;
+      margin-inline: auto;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .hero-grille {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
+      align-items: center;
+      gap: clamp(3rem, 6vw, 6rem);
+      padding-block: 3.5rem 4rem;
+    }
+
+    .hero-photo {
+      max-width: 30rem;
+      margin-inline: 0;
+    }
+  }
+
+  /* Ancre du hero : meme vocabulaire que les liens a filet du site. */
+  .ancre {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: 0.875rem;
+    margin-top: 0.25rem;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: var(--accent);
+    transition: color 240ms ease;
+  }
+
+  .ancre:hover,
+  .ancre:focus-visible {
+    color: var(--accent);
+  }
+
+  .trait {
+    display: inline-block;
+    width: 2.75rem;
+    height: 1px;
+    background: currentColor;
+    transition: width 420ms var(--ease-out-expo);
+  }
+
+  .ancre:hover .trait {
+    width: 4rem;
+  }
+
+  /* ---- Presentation ------------------------------------------------------- */
+  .presentation {
+    scroll-margin-top: 6rem;
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+  }
+
+  .presentation-grille {
+    display: grid;
+    gap: 2.5rem;
+    max-width: 72rem;
+  }
+
+  .presentation-photo {
+    width: 100%;
+    max-width: 28rem;
+  }
+
+  .presentation-texte {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .presentation-texte .type-body {
+    max-width: 46ch;
+  }
+
+  @media (min-width: 64rem) {
+    .presentation-grille {
+      grid-template-columns: 32rem 1fr;
+      align-items: center;
+      gap: 4.5rem;
+      margin-inline: auto;
+    }
+
+    .presentation-photo {
+      max-width: 32rem;
+    }
+  }
+
+  /* Trois reperes discrets : intitule a gauche, valeur a droite. */
+  .reperes {
+    width: 100%;
+    max-width: 26rem;
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .repere {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .repere dt {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .repere dd {
+    font-size: 1.0625rem;
+    color: var(--ink);
+    text-align: right;
+  }
+
+  /* ---- Avant la pose ------------------------------------------------------ */
+  .avant {
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .avant-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 72rem;
+    margin-inline: auto;
+  }
+
+  .avant-grille {
+    display: grid;
+    gap: 2.5rem;
+    max-width: 72rem;
+    margin: 2.5rem auto 0;
+  }
+
+  @media (min-width: 48rem) {
+    .avant-grille {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+  }
+
+  .avant-photo {
+    width: 100%;
+    max-width: 32rem;
+    justify-self: center;
+  }
+
+  @media (min-width: 48rem) {
+    .avant-photo { max-width: none; }
+  }
+
+  @media (min-width: 40rem) and (max-width: 63.99rem) {
+    .presentation-photo { margin-inline: auto; }
+  }
+
+  /* ---- Appel final -------------------------------------------------------- */
+  .appel {
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+    text-align: center;
+  }
+
+  .appel .shell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .appel .type-h2 {
+    max-width: 22ch;
+  }
+
+  @media (max-width: 39.99rem) {
+    .appel .btn {
+      width: 100%;
+    }
+  }
+
+  /* ---- Galerie (dialogue natif) -------------------------------------------
+     Le dialogue occupe tout l ecran et porte lui-meme le fond sombre : le clic
+     " sur le fond " est donc un clic sur le dialogue, hors de son contenu. */
+  .boite {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: var(--ink);
+  }
+
+  .boite::backdrop {
+    background: var(--canvas);
+  }
+
+  .boite[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .boite-interieur {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 0;
+    padding: 0.75rem var(--gutter) 1.25rem;
+  }
+
+  .boite-haut {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .boite-figure {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 0;
+  }
+
+  .boite-figure img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    min-height: 0;
+    max-height: calc(100dvh - 13rem);
+    height: auto;
+    object-fit: contain;
+  }
+
+  .boite-legende {
+    flex-shrink: 0;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .boite-nav {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  /* Cibles tactiles de 48 px, comme partout sur le site. */
+  .boite-bouton {
+    display: inline-flex;
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--ink);
+    transition: border-color 240ms ease, color 240ms ease;
+  }
+
+  .boite-bouton:hover {
+    border-color: var(--ink);
+    color: var(--accent);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .boite[open] {
+      animation: boite-in 200ms var(--ease-out-quart) both;
+    }
+
+    @keyframes boite-in {
+      from {
+        opacity: 0;
+      }
+    }
+  }
+  :global(html) { scrollbar-gutter: stable; }
+
+  :global(html.realisations-modal-open) {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) { scroll-behavior: auto; }
+    .photo img, .ancre, .trait, .boite-bouton,
+    .appel .btn, .appel .btn::before { transition: none; }
+  }
+</style>

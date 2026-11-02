@@ -52,6 +52,32 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
   configurateur au navigateur, Lighthouse mobile, verification SEO finale.
 
 ## Derniere session
+
+- 02.11.2026, ChatGPT et Claude Code : page /realisations/ integree et verifiee.
+  Maquette editoriale validee par Thomas, puis integration autorisee. Hero sombre,
+  presentation ivoire, deux vues avant la pose et appel vers /devis/. Header/footer
+  existants conserves, lien Realisations ajoute dans les deux navigations.
+  Quatre JPEG retouches fournis par Thomas, redimensionnes et encodes en 12 WebP
+  (480/800/1086 px), sans nouvelle retouche de contenu ni recadrage. Transfert
+  verifie par SHA-256. Aucun nom ni date graves repris en texte/alt/metadonnees.
+  Galerie native dialog : photo entiere, boutons, clavier, Echap, clic fond,
+  balayage horizontal, retour du focus, verrouillage du fond et mouvement reduit.
+  Les liens directs vers les images restent utilisables sans JavaScript.
+  QA NAVIGATEUR LOCAL : 320, 390, 768, 1024, 1280 et 1440 px sans debordement ;
+  menu mobile et lien Realisations ; quatre images chargees ; galerie et clavier ;
+  balayage horizontal fonctionnel et geste vertical ignore ; reduction des
+  animations verifiee. Captures ordinateur/mobile lues. Aucune erreur JavaScript.
+  Axe : 0 violation detectee sur la page et le dialogue. Contraste du bouton
+  final controle separement (pseudo-element non analyse par axe) : 16,46:1.
+  BUILD FINAL : npm run build, 75 pages ; npx astro check, 81 fichiers, 0 erreur,
+  0 avertissement, 3 hints preexistants. npm test non lance (hors allowlist du
+  runner) : ne pas le considerer execute. Galerie verifiee fonctionnellement.
+  SEO : title/meta accents corrects, h1 unique, canonical www /realisations/,
+  page dans sitemap, CollectionPage sans donnees personnelles, carte OG generique.
+  Documents : docs/REALISATIONS.md, DESIGN.md, BACKLOG.md. Brief temporaire retire.
+  Livraison sur main pour apercu protege ; aucune mise en production (live).
+  Le commit Analytics preexistant 82b1af1 est preserve et accompagne cet apercu.
+  Production de reference : 642d4df. Publication live seulement si Thomas la demande.
 - 30.10.2026, ChatGPT : preparation GA4 pour PierreTombale.ch (ID de mesure G-RLD8E8SGES).
   Composant AnalyticsConsent dans le layout : refus par defaut, Google charge uniquement
   apres acceptation explicite, choix local 180 jours et modifiable dans le pied de page.

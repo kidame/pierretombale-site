@@ -106,3 +106,25 @@ Ecarts :
 Limites : nos visuels sont des rendus sur fond gris (et la calibration depend de ces images) : sur le panneau
 sombre, la stele reste dans un cadre clair. Le menu de la maquette (Personnalisation) n est pas applique.
 
+
+## Page Realisations : maquette du 02.11.2026 (APPLIQUEE le 02.11.2026)
+Une seule realisation, quatre photos fournies retouchees par le client (voir `docs/REALISATIONS.md`
+pour l origine des fichiers, les interdits et la recette d ajout d un projet).
+Gabarit `src/pages/realisations.astro`, BaseLayout avec `footerJoint`, CSS de page (aucune nouvelle
+classe Tailwind), jetons et polices existants.
+Structure retenue : hero sombre (`.nuit`, texte a gauche, photo principale en portrait a droite,
+legende sous la photo, ancre "Decouvrir la realisation") ; section ivoire de presentation (photo
+posee a gauche, label + h2 + texte a droite, trois reperes Forme / Pierre / Personnalisation en
+liste de definitions) ; section ivoire "Avant la pose." avec les deux photos restantes en deux
+colonnes et leurs legendes ; bandeau sombre "Votre projet commence par un echange." + bouton vers
+/devis/, colle au pied de page.
+Images : trois largeurs 480/800/1086 en srcset, `sizes` par section, dimensions explicites
+(800 x 1067), hero `eager` + `fetchpriority="high"`, les trois autres `lazy`. Bords nets, aucun
+cadre, aucun degrade, aucun recadrage (la photo entiere est obligatoire) ; au survol, seule
+l opacite bouge.
+Galerie : `<dialog>` natif en amelioration progressive, decrit dans `docs/REALISATIONS.md`.
+En-tete : la navigation passe a six entrees centrees ("Realisations" avant "La maison"), l ecart
+entre les liens devient `clamp(1.25rem, 2.2vw, 2.75rem)` pour que "Votre projet" garde sa place a
+droite entre 1024 et 1440 px. "Realisations" est aussi dans la colonne Catalogue du pied de page.
+Partage social : la carte generique `og-image.png` est conservee (une photo en metadonnee
+exposerait la gravure). Donnees structurees : CollectionPage seule, sans image.

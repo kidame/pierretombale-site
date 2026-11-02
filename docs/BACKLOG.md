@@ -139,6 +139,14 @@ Etats : [ ] a faire, [>] en cours, [x] fait, [!] bloque.
       [ ] gabarits de ces pages selon les maquettes (a fournir : fiche, catalogue, prix, granits) - Thomas
       [ ] vraies photos pour l accueil (hero sombre, gros plan matiere, gros plan gravure) - Thomas
       [ ] page /personnaliser/ (index des 22 modeles) + entree Personnalisation du menu - Thomas decide
+- [x] Page /realisations/ : premiere realisation (monument en forme de coeur, 4 photos fournies
+      retouchees par le client), entree de menu avant "La maison" et dans le pied de page, galerie
+      en <dialog> natif - 02.11.2026 (docs/REALISATIONS.md). QA ordinateur/mobile, clavier,
+      balayage et mouvement reduit passes. Apercu main ; production live non modifiee.
+- [ ] Realisations : deuxieme projet quand les photos existeront (recette dans
+      docs/REALISATIONS.md ; au-dela d un projet, sortir la liste dans src/data/) - Thomas + Claude
+- [ ] Realisations : ajouter les photos au sitemap des images (/sitemap-images.xml ne couvre
+      aujourd hui que les modeles et les matieres) - Claude
 
 ## Comment changer une chose courante
 - Renommer un modele : `name:` dans src/content/products/<slug>.md. Le slug (URL) ne change pas.
