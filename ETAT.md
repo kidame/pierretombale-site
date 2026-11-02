@@ -53,7 +53,49 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
-### 02.11.2026 - Signature Kumo : blocage de diffusion Cloudflare confirme
+### 02.11.2026 - Signature Kumo : presence publique reverifiee, aucune republication
+
+- Premiere verification HTTP a 17:20:45 UTC (18:20:45 en Suisse), avant toute
+  modification : lien https://kumo-seo.ch/ et classe pied-credit presents sur
+  / et /realisations/, pour www.pierretombale.ch, domaine nu apres redirection,
+  et pierretombale-site.pages.dev. Six reponses HTTP 200, vrais HTML du site.
+- Empreintes SHA256 identiques aux artefacts dist existants :
+  accueil 7902ec9e828ef32d9259f7d46a345f7248c1504c96a9964ff0d7c3189472816b ;
+  realisations 80e3c06a3e8e3403462a1112edba7caa850c31c1c3cab05e96bf46c9eeb43a96.
+  Les trois CSS publics references correspondent aussi exactement a dist.
+- Git verifie : main et live distants = 073562b9a433d5b0701b9e23deef524fe1b1fd57 ;
+  main local au depart = 6d8ab83, uniquement documentaire. Pull --ff-only OK.
+  Aucun ecart runtime. node scripts/verify-footer.mjs relance : OK.
+  Aucun nouveau build : controle des artefacts existants, pas une reconstruction.
+- Check GitHub Cloudflare relu : succes du commit 073562b, mais ce check concerne
+  la PREVIEW main 0d1a1629, pas une preuve du deploiement canonique de production.
+  ID canonique 61190029 et parametres Pages fournis par la session precedente,
+  non relus via API Cloudflare durant ce diagnostic exclusivement Vps-proxy.
+- Rattachement effectif observe : www et pages.dev servent les memes octets du
+  build attendu. DNS NS = gracie.ns.cloudflare.com et steven.ns.cloudflare.com ;
+  www retourne des IP Cloudflare, aucun CNAME public visible via le proxy DNS.
+- Affichage controle dans le navigateur autorise, uniquement localhost :
+  copie EXACTE des HTML publics, CSS verifies identiques, assets locaux dist.
+  Captures ordinateur 1280x900 et mobile 390x844 lues : signature visible apres
+  clic Refuser. Aucun script Google charge apres refus, aucun debordement mobile.
+  Cause visuelle reproduite : bandeau cookies fixe superpose au bas du footer
+  tant que le choix n'est pas fait. Ceci N'EXPLIQUE PAS l'ancien HTML sans lien.
+- Conclusion : livraison actuellement conforme et signature visible. L'incident
+  HTTP precedent n'est plus reproductible ; cause historique NON PROUVEE.
+  Retard de diffusion/cache possible, pas de panne Cloudflare demontree.
+  Aucun changement runtime, DNS, Access, protection, cache ou publication live.
+- Preuves HTTP/CSS et dernier controle : docs/diagnostics/signature-kumo-2026-11-02.json.
+  Captures brutes : /home/kumo/atelier/tmp/pt-footer-diagnostic-20261102/.
+  Suite : aucune republication utile. Si recurrence, conserver HTML, UTC,
+  URL finale et CF-Ray avant toute action. Si seule invisibilite visuelle,
+  verifier d'abord si le bandeau cookies est ouvert (Refuser suffit a le fermer).
+  Documentation poussee sur main avec prefixe [CF-Pages-Skip], sans push live.
+
+
+### 02.11.2026 - Historique : decalage de diffusion signale, cause non etablie
+
+Correction du diagnostic precedent : le mot "confirme" etait injustifie pour la cause.
+Les lignes ci-dessous sont les observations rapportees de cette ancienne session.
 
 - Commit 073562b pousse sur main et live : signature et controle scripts/verify-footer.mjs.
 - Build local et Cloudflare verts (75 pages). Les SHA256 des deux HTML sont identiques

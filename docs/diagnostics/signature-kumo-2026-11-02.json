@@ -1,0 +1,177 @@
+{
+  "observed_utc": "2026-11-02T17:26:48.713904+00:00",
+  "remote_main_at_start": "073562b9a433d5b0701b9e23deef524fe1b1fd57",
+  "remote_live": "073562b9a433d5b0701b9e23deef524fe1b1fd57",
+  "local_head_at_start": "6d8ab83",
+  "runtime_diff_from_remote_commit": false,
+  "fresh_build_run": false,
+  "footer_check_passed": true,
+  "public_http": [
+    {
+      "url": "https://pierretombale-site.pages.dev/",
+      "final": "https://pierretombale-site.pages.dev/",
+      "status": 200,
+      "bytes": 25862,
+      "sha256": "7902ec9e828ef32d9259f7d46a345f7248c1504c96a9964ff0d7c3189472816b",
+      "credit": true,
+      "link": true,
+      "headers": {
+        "Date": "Mon, 02 Nov 2026 17:20:46 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex",
+        "Server": "cloudflare",
+        "CF-RAY": "a544cfd19aa992e0-GVA"
+      }
+    },
+    {
+      "url": "https://pierretombale.ch/",
+      "final": "https://www.pierretombale.ch/",
+      "status": 200,
+      "bytes": 25862,
+      "sha256": "7902ec9e828ef32d9259f7d46a345f7248c1504c96a9964ff0d7c3189472816b",
+      "credit": true,
+      "link": true,
+      "headers": {
+        "Date": "Mon, 02 Nov 2026 17:20:46 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "Server": "cloudflare",
+        "cf-cache-status": "DYNAMIC",
+        "CF-RAY": "a544cfcfea0da756-ZRH"
+      }
+    },
+    {
+      "url": "https://www.pierretombale.ch/",
+      "final": "https://www.pierretombale.ch/",
+      "status": 200,
+      "bytes": 25862,
+      "sha256": "7902ec9e828ef32d9259f7d46a345f7248c1504c96a9964ff0d7c3189472816b",
+      "credit": true,
+      "link": true,
+      "headers": {
+        "Date": "Mon, 02 Nov 2026 17:20:45 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "Server": "cloudflare",
+        "cf-cache-status": "DYNAMIC",
+        "CF-RAY": "a544cfcd7ac8bb0e-ZRH"
+      }
+    },
+    {
+      "url": "https://pierretombale-site.pages.dev/realisations/",
+      "final": "https://pierretombale-site.pages.dev/realisations/",
+      "status": 200,
+      "bytes": 25070,
+      "sha256": "80e3c06a3e8e3403462a1112edba7caa850c31c1c3cab05e96bf46c9eeb43a96",
+      "credit": true,
+      "link": true,
+      "headers": {
+        "Date": "Mon, 02 Nov 2026 17:20:46 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "x-robots-tag": "noindex",
+        "Server": "cloudflare",
+        "CF-RAY": "a544cfd2098059fd-GVA"
+      }
+    },
+    {
+      "url": "https://pierretombale.ch/realisations/",
+      "final": "https://www.pierretombale.ch/realisations/",
+      "status": 200,
+      "bytes": 25070,
+      "sha256": "80e3c06a3e8e3403462a1112edba7caa850c31c1c3cab05e96bf46c9eeb43a96",
+      "credit": true,
+      "link": true,
+      "headers": {
+        "Date": "Mon, 02 Nov 2026 17:20:46 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "Server": "cloudflare",
+        "cf-cache-status": "DYNAMIC",
+        "CF-RAY": "a544cfd0ebf58b2c-ZRH"
+      }
+    },
+    {
+      "url": "https://www.pierretombale.ch/realisations/",
+      "final": "https://www.pierretombale.ch/realisations/",
+      "status": 200,
+      "bytes": 25070,
+      "sha256": "80e3c06a3e8e3403462a1112edba7caa850c31c1c3cab05e96bf46c9eeb43a96",
+      "credit": true,
+      "link": true,
+      "headers": {
+        "Date": "Mon, 02 Nov 2026 17:20:45 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "Server": "cloudflare",
+        "cf-cache-status": "DYNAMIC",
+        "CF-RAY": "a544cfcdfd4d03a5-ZRH"
+      }
+    }
+  ],
+  "css": [
+    {
+      "url": "https://www.pierretombale.ch/_astro/BaseLayout.CRMPg8BS.css",
+      "sha256": "cdc8119ff5b2f729da2e90c8e2c895eabb74bc2aa35a0df7542ba038684118ac",
+      "matches_dist": true,
+      "credit_css": true
+    },
+    {
+      "url": "https://www.pierretombale.ch/_astro/index.C91t65W8.css",
+      "sha256": "8af0a524080ab5ef84c3b501845122c875259394d35fd0a4e216ec8c9ffe7af0",
+      "matches_dist": true,
+      "credit_css": false
+    },
+    {
+      "url": "https://www.pierretombale.ch/_astro/BaseLayout.CRMPg8BS.css",
+      "sha256": "cdc8119ff5b2f729da2e90c8e2c895eabb74bc2aa35a0df7542ba038684118ac",
+      "matches_dist": true,
+      "credit_css": true
+    },
+    {
+      "url": "https://www.pierretombale.ch/_astro/realisations.Cd149-8s.css",
+      "sha256": "fb3f9a4041809d7fc9a6b9abcadce74b18b96a3ae6475ac8c2267c6004a00393",
+      "matches_dist": true,
+      "credit_css": false
+    }
+  ],
+  "final_http": [
+    {
+      "url": "https://www.pierretombale.ch/",
+      "status": 200,
+      "date": "Mon, 02 Nov 2026 17:26:48 GMT",
+      "cf_ray": "a544d8a9589d8443-ZRH",
+      "sha256": "7902ec9e828ef32d9259f7d46a345f7248c1504c96a9964ff0d7c3189472816b",
+      "credit": true,
+      "link": true
+    },
+    {
+      "url": "https://www.pierretombale.ch/realisations/",
+      "status": 200,
+      "date": "Mon, 02 Nov 2026 17:26:48 GMT",
+      "cf_ray": "a544d8a9fb1970cb-ZRH",
+      "sha256": "80e3c06a3e8e3403462a1112edba7caa850c31c1c3cab05e96bf46c9eeb43a96",
+      "credit": true,
+      "link": true
+    }
+  ],
+  "visual": {
+    "method": "Public HTML retrieved by HTTP, rendered on localhost with matching CSS and local dist assets. Browser restricted to localhost. Screenshots inspected.",
+    "desktop": "1280x900 home: signature visible after Refuser; banner overlays footer before consent choice.",
+    "mobile": "390x844 realisations: signature visible after Refuser; no horizontal overflow; banner overlays footer before consent choice.",
+    "external_google_script_after_refusal": false
+  },
+  "limits": [
+    "No direct production browser navigation: local-only browser rule.",
+    "Canonical production deployment ID and Pages control-plane settings not independently reread through Cloudflare API.",
+    "Previous missing HTML not reproduced. Historical delivery failure cause remains unproven."
+  ],
+  "changes": {
+    "runtime": false,
+    "dns": false,
+    "access": false,
+    "cache_purge": false,
+    "production_deploy": false
+  }
+}
