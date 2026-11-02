@@ -53,6 +53,11 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+- Controle publication signature : commit 0ceb7e9 pousse sur main et live.
+  Cloudflare annonce le succes, mais les GET publics depuis le VPS ne contiennent
+  toujours pas kumo-seo.ch. Purge ciblee accueil/realisations et retry effectues.
+  Ne pas declarer le lien visible en production sans nouvelle verification HTTP.
+
 - 02.11.2026 : signature demandee par Thomas dans le pied de page partage :
   Site web realise par kumo-seo.ch, lien HTML direct https://kumo-seo.ch/.
   Presentation discrete, soulignee, cible 48 px, sans JavaScript ajoute.
