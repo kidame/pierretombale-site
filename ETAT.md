@@ -53,6 +53,10 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+- 02.11.2026 : signature demandee par Thomas dans le pied de page partage :
+  Site web realise par kumo-seo.ch, lien HTML direct https://kumo-seo.ch/.
+  Presentation discrete, soulignee, cible 48 px, sans JavaScript ajoute.
+
 - 02.11.2026, publication autorisee par Thomas apres validation de l apercu.
   Push main:live du commit d119013. Cloudflare production reussie a 10:53 UTC.
   https://www.pierretombale.ch/realisations/ : HTTP 200, titre correct, galerie

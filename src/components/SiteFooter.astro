@@ -87,6 +87,9 @@ const adresse = [
         <li><button type="button" data-ga-preferences hidden>Choix des cookies</button></li>
       </ul>
     </div>
+    <p class="pied-credit">
+      <a href="https://kumo-seo.ch/">{"Site web r\u00e9alis\u00e9 par kumo-seo.ch"}</a>
+    </p>
   </div>
 </footer>
 
@@ -203,4 +206,19 @@ const adresse = [
       justify-content: flex-end;
     }
   }
+  .pied-credit {
+    margin-top: 0.75rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+  .pied-credit a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3rem;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    text-decoration-color: var(--line-strong);
+  }
+  .pied-credit a:hover { color: var(--ink); }
 </style>
