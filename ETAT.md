@@ -53,6 +53,23 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+### 02.11.2026 - Signature Kumo : blocage de diffusion Cloudflare confirme
+
+- Commit 073562b pousse sur main et live : signature et controle scripts/verify-footer.mjs.
+- Build local et Cloudflare verts (75 pages). Les SHA256 des deux HTML sont identiques
+  entre VPS et Cloudflare ; les logs footer-check confirment le lien dans les artefacts.
+- Production canonique : 61190029-366d-4a71-8e3b-dee70bd28c04, succes a 16:26:32 UTC.
+- Pourtant GET publics www et pages.dev, accueil et realisations, renvoient encore
+  l'ancien footer sans kumo-seo.ch, meme avec parametre unique et Cache-Control no-cache.
+- Purge complete du cache de zone effectuee : aucun effet constate.
+- Rollback vers 152e7376-d479-49d6-a90b-8f61fccb21de : HTTP 500 code 8000000,
+  Ray ID a54482dc4d11265d-WAW. Cloudflare demande de contacter son support.
+- Canonique reste 61190029. Tentative de reactivation de ce meme ID refusee normalement
+  (400 code 8000039 : deja en production). Aucun changement DNS ou Access.
+- A reprendre : verifier le domaine public avant toute annonce de succes ; si toujours
+  bloque, transmettre ces identifiants au support Cloudflare avec autorisation de Thomas.
+
+
 - Controle publication signature : commit 0ceb7e9 pousse sur main et live.
   Cloudflare annonce le succes, mais les GET publics depuis le VPS ne contiennent
   toujours pas kumo-seo.ch. Purge ciblee accueil/realisations et retry effectues.
