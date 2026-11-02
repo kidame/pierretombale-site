@@ -53,6 +53,12 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+- 02.11.2026, publication autorisee par Thomas apres validation de l apercu.
+  Push main:live du commit d119013. Cloudflare production reussie a 10:53 UTC.
+  https://www.pierretombale.ch/realisations/ : HTTP 200, titre correct, galerie
+  presente et quatre photos plein format en HTTP 200. La version inclut aussi
+  le commit GA4 avec consentement 82b1af1 present dans l apercu valide.
+
 - 02.11.2026, ChatGPT et Claude Code : page /realisations/ integree et verifiee.
   Maquette editoriale validee par Thomas, puis integration autorisee. Hero sombre,
   presentation ivoire, deux vues avant la pose et appel vers /devis/. Header/footer
