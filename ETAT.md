@@ -53,6 +53,34 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+### 03.11.2026 - Verification des positions Search Console
+
+- Lecture de sc-domain:pierretombale.ch via Windsor, sans modification du site.
+- Periode demandee : 26.10 au 02.11.2026 ; donnees finalisees renvoyees jusqu'au
+  01.11.2026. Total Web : 66 impressions, 10 clics ; Images : 151 impressions,
+  0 clic. Les requetes detaillees ne couvrent pas tout le total (confidentialite).
+- Web, Suisse : "pierre tombale" = 1 impression, position 2, ordinateur,
+  29.10, accueil. "une pierre tombale" = 1 impression, position 1, 28.10.
+- Web, Suisse, 01.11 : "cimetiere beauregard" = 1 impression mobile,
+  position 4 ; variante "cimetiere de beauregard" = 1 impression ordinateur,
+  position 6. Page : /cimetieres/beauregard-neuchatel/.
+- Lecture supplementaire include_fresh_data=true du 02 au 03.11 :
+  donnees PROVISOIRES disponibles uniquement au 02.11.
+  "cimetiere beauregard" : 3 impressions ordinateur a 5.3333 et 1 mobile a 7.
+  "cimetiere de beauregard" : 1 impression ordinateur a 8 et 2 mobiles a 9.
+  "cimetiere beauregard neuchatel" : 1 impression mobile a 8.
+  "epitaphe" sans accent : 10 impressions CH, moyenne ponderee 5.8 ;
+  avec accent : 4 impressions CH a 5. Aucun clic sur ces lignes.
+- Conclusion : premieres apparitions confirmees ; pas de top 2 stable demontre.
+  Position GSC = moyenne sur les impressions observees, pas rang garanti
+  lors d'une recherche actuelle. Lieu, appareil, date et presentation varient.
+  Aucune preuve pour attribuer ces impressions a Thomas ou a un test Google.
+- Limites : aucune SERP locale reproduite, pas d'inspection URL actuelle ;
+  les donnees du 02.11 peuvent encore changer. Ne pas conclure a une panne
+  ou a une desindexation a partir de l'absence lors d'une recherche manuelle.
+- Suite : comparer Web / Suisse / appareil / requete exacte sur plusieurs
+  jours ; surveiller impressions et clics. Aucun changement SEO ou publication.
+
 ### 02.11.2026 - Signature Kumo : presence publique reverifiee, aucune republication
 
 - Premiere verification HTTP a 17:20:45 UTC (18:20:45 en Suisse), avant toute
