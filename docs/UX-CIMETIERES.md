@@ -35,17 +35,17 @@ dans `[slug].astro`. Rien d'autre a toucher.
 1. **Hero asymetrique.** A gauche : fil d'Ariane, commune, h1 exact, chapo. A
    droite : panneau anthracite "Infos pratiques" (adresse, horaires du
    cimetiere, acces), deux actions (Itineraire, Appeler l'office) et un bloc
-   "Administration du cimetiere" qui nomme le service communal, ses
+   "Coordonnees du guichet" repliable qui nomme le service communal, ses
    coordonnees et dit explicitement que les demarches officielles passent par
    la commune, pas par nous. Sur telephone, le panneau remonte sous le h1 et
    ses deux boutons passent en tete du panneau (ordre CSS, DOM inchange) :
    les actions sont a 378 px du haut, dans le premier ecran.
-2. **Navigation par besoins.** Venir / Preparer un monument / Urnes et tarifs /
+2. **Navigation par besoins.** Acces et contact / Sur place / Preparer un monument / Urnes et tarifs /
    Duree et entretien / Questions. Un seul element de navigation : rail
    lateral colle (sticky) a partir de 1024 px, simple liste encadree sur
    telephone. Les ancres historiques sont conservees (`#sur-place`,
    `#poser-un-monument`, `#cendres`, `#duree`, `#questions`) ; `#sources` est
-   nouvelle. Le rail n'est jamais superpose au texte : il vit dans sa colonne.
+   nouvelle ; #infos-pratiques donne aussi acces au panneau. Le rail n'est jamais superpose au texte : il vit dans sa colonne.
 3. **Sur place.** Equipements sur deux colonnes en lecture large, encadre
    bronze "Ce qui change bientot" (projets annonces), repli "Histoire et
    patrimoine".
@@ -104,8 +104,9 @@ dans `[slug].astro`. Rien d'autre a toucher.
 - Les entrees de sommaire sont ecrites en besoins (Venir, Preparer un
   monument...) alors que les h2 gardent leurs formulations d'origine (Sur
   place, Poser un monument...), qui portent le vocabulaire cherche sur Google.
-- Deux libelles courts sont ajoutes : "Le numero est celui de l'administration
-  communale, pas le notre" et l'avertissement du schema.
+- Le nom du service communal sous le bouton d'appel identifie le destinataire.
+  Le guichet detaille les coordonnees dans un repli. L'avertissement du schema
+  evite de confondre cotes reglementaires et produit conforme.
 
 ## Ce qui a ete teste le 10.11.2026
 
@@ -119,8 +120,10 @@ dans `[slug].astro`. Rien d'autre a toucher.
   leurs cibles, liens, et surtout chaque texte de donnee de la baseline.
   Resultat : hub `/cimetieres/` identique au bit, 8 autres pages cimetiere
   identiques en contenu (meme texte, memes liens, memes schemas), page pilote
-  sans aucun texte de donnee perdu. Les deux seuls textes absents sont les
-  deux titres d'interface changes ci-dessus.
+  sans aucun texte de donnee perdu. Le controle par segments signale deux libelles d'interface :
+  "Delai avant la pose." (ponctuation) et "Un monument pour ce cimetiere"
+  (titre remplace). La contre-verification directe des 86 chaines de la fiche
+  dans le texte du main confirme 86 presentes et aucune absente.
 - Navigateur local (`/home/kumo/atelier/bin/browser`, serveur Python sur
   127.0.0.1) en 1440x1000, 768x1024, 390x844 et 320x800 : aucun debordement
   horizontal (scrollWidth = clientWidth partout), ancres qui tombent sous
@@ -166,3 +169,32 @@ dans `[slug].astro`. Rien d'autre a toucher.
    d'acces, pas de tarifs) et sur une fiche sans schema possible (hauteur ou
    surface non publiee : le schema ne se dessine pas, c'est prevu).
 3. Relancer `controle.py` entre la baseline et le nouveau build.
+
+## Relecture finale du chat
+
+- Hero sans espace excessif entre titre et introduction.
+- Actions au premier ecran mobile ; guichet repliable et nom du service visible.
+- Largeur du schema marquee "a confirmer", jamais "libre".
+- Export autonome corcelles-maquette.html : styles, polices et images inclus ;
+  script de mesure retire, noindex/nofollow dans cet export seulement.
+- Nouveau controle des 86 chaines de donnees apres le dernier build : aucune absente.
+
+## Repere Search Console, lecture du 10.11.2026
+
+Source : connecteur Windsor, propriete sc-domain:pierretombale.ch, lecture seule.
+Periode demandee : 26.10 au 08.11.2026, donnees finalisees (include_fresh_data non active).
+Filtre page contenant /cimetieres/. Les lignes recues sont datees uniquement du 01 au 03.11.
+14 impressions et 0 clic dans les lignes renvoyees, toutes sur Beauregard ; 12 impressions
+en Suisse, 1 en France, 1 en Espagne. Aucune ligne Corcelles dans ce retour.
+Le volume et la couverture du retour sont insuffisants pour conclure sur les performances
+recentes ou justifier une reecriture de titre. Ne pas presenter ces chiffres comme la preuve
+que ces pages ne recoivent aucune visite. La lecture UX reste la priorite de cette passe.
+Requetes visibles : variantes de cimetiere Beauregard et centre funeraire Beauregard Neuchatel.
+Avant publication, conserver une exportation GSC recente par page, pays, appareil et requete ;
+comparer apres publication sur une periode suffisamment longue, en tenant compte du faible
+volume et de la saisonnalite. Aucun changement Search Console ou sitemap pendant la maquette.
+
+## References SEO consultees
+- Google Search Central : https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing?hl=fr
+- Les accordeons conservent le meme contenu dans le HTML initial sur mobile et ordinateur.
+- Aucune promesse de gain de positions ni de resultat enrichi FAQ.

@@ -1347,8 +1347,8 @@ DEBLOQUE, A FAIRE SANS ATTENDRE PERSONNE (au choix de Thomas) :
 - GUIDES, SUITE IMMEDIATE : tests et build verts, pousse sur main le 28.10.2026 ;
   relire les 4 pages au navigateur en 1280 et 390, puis push sur main pour la previsualisation.
 - Pages cimetieres : PILOTE UX fait le 10.11.2026 sur Corcelles-Cormondreche
-  (composant GuideCimetiere, docs/UX-CIMETIERES.md). A faire : critique
-  visuelle, puis generalisation eventuelle aux autres cimetieres.
+  (composant GuideCimetiere, docs/UX-CIMETIERES.md). Relu au navigateur, controle des 86 faits et export HTML autonome prepares.
+  A faire : validation de Thomas avant generalisation ou publication. Aucun push.
 - Pages cimetieres lot 2 : PASSES A ET B FAITES le 29.10.2026, neuf pages en ligne locale
   (hub + Beauregard, La Chaux-de-Fonds, Peseux, Corcelles-Cormondreche, Le Landeron, Boudry,
   Cortaillod, Le Locle, Val-de-Travers), build 74 pages vert. SUITE : lancer `npm test`,
