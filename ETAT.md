@@ -53,6 +53,53 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+### 10.11.2026 - V2 generalisee aux neuf fiches cimetiere (maquette privee)
+
+- Thomas a VALIDE la V2 de Corcelles (commit 4cef302) et demande le meme
+  travail sur chaque page de commune existante. Fait le meme jour, en local :
+  la composition V2 est desormais la SEULE mise en page des neuf fiches.
+  Aucune commune ajoutee, aucun push, aucun deploiement : travail prive sur
+  main, le hub, l'accueil et les autres sections du site sont inchanges.
+- `src/pages/cimetieres/[slug].astro` : rendu d'origine et condition
+  `PILOTE_GUIDE` supprimes (706 -> 136 lignes). La page ne calcule plus que
+  l'adresse, le title, la meta, le canonical, le h1 et les trois objets
+  JSON-LD, puis appelle `GuideCimetiere`.
+- Composants adaptes aux donnees reelles, sans toucher a
+  `src/data/cimetieres.ts` : le schema ne dessine que ce que le reglement
+  chiffre (deux vues a Beauregard, Peseux, Corcelles et Cortaillod ; vue de
+  dessus seule au Landeron, a Boudry et a Val-de-Travers ; hauteur seule au
+  Locle ; aucune vue a La Chaux-de-Fonds, dont les cotes sont ecrites en mots
+  avec l'art. 51). La fosse 200 x 80 de La Chaux-de-Fonds n'est jamais
+  dessinee comme un monument, aucune hauteur non publiee n'est dessinee, et
+  chaque legende nomme sa forme (stele 120 / croix 140 a Beauregard,
+  stele 110 / croix 130 au Locle, stele 130 / croix 140 a Cortaillod).
+- Pas de section ni de navigation vide : Boudry n'a pas de "Sur place",
+  les trois communes sans tarif n'ont aucune table vide et disent "Urnes et
+  cendres", les titres de replis ne nomment que ce qu'ils contiennent.
+  Pas d'itineraire promis sans adresse (Le Landeron, Le Locle,
+  Val-de-Travers affichent les localites desservies et appellent le bon
+  service). Devis pre-rempli et liens telephone verifies sur les neuf.
+- Onglets des cendres : une ligne qui concerne plusieurs possibilites n'est
+  plus rangee de force dans la premiere reconnue ; un seul groupe ne cree pas
+  de faux onglets.
+- Verifie le 10.11.2026 : `npm run build` 75 pages vert ; `npx astro check`
+  0 erreur, 0 avertissement, 3 hints preexistants ; `npm test` 155 tests
+  verts. Controle independant du parent : 696 faits sur 696, 0 manquant,
+  title / meta / canonical / JSON-LD / h1 identiques a la baseline, aucun lien
+  ni ancre perdus, hub, accueil et sitemaps identiques, aucun noindex.
+- Recette au navigateur sur les neuf fiches en 320, 390, 768 et 1440 :
+  debordement 0 partout, aucun bloc vide, actions et reperes visibles.
+  Captures du hero et de la section monument des neuf (54 fichiers) dans
+  /home/kumo/atelier/tmp/cimgen-captures/, relues a l'ecran pour les
+  structures differentes. Clavier, replis, mouvement reduit et pages sans
+  JavaScript verifies sur les variantes. Corcelles retrouve exactement ses
+  mesures validees.
+- Lighthouse n'est pas installe sur la machine : performance NON MESUREE par
+  Lighthouse. Mesure a la place : poids gzip page par page (+5,7 Ko de script
+  inline, zero JS externe, zero requete externe ajoutee, zero erreur console).
+- Detail complet, fiche par fiche, preuves et limites :
+  docs/UX-CIMETIERES-GENERALISATION.md.
+
 ### 10.11.2026 - V2 Corcelles livree en maquette privee
 
 - Composition finale : reglement dans la colonne du delai, schema a droite
@@ -1468,12 +1515,13 @@ dans l ordre, est dans `docs/BACKLOG.md` ; le configurateur se modifie avec `doc
 DEBLOQUE, A FAIRE SANS ATTENDRE PERSONNE (au choix de Thomas) :
 - GUIDES, SUITE IMMEDIATE : tests et build verts, pousse sur main le 28.10.2026 ;
   relire les 4 pages au navigateur en 1280 et 390, puis push sur main pour la previsualisation.
-- Pages cimetieres : PILOTE UX V2 fait le 10.11.2026 sur Corcelles-Cormondreche
-  (composants src/components/guide/, docs/UX-CIMETIERES-V2.md), puis FINITION de la
-  section monument le meme jour (section 2 303 -> 1 255 px en 390, page 9 614 px).
-  Build et astro check verts, 86 faits sur 86 et regression au navigateur refaits ;
-  npm test non relance a la passe de finition.
-  A faire : relecture visuelle de Thomas avant generalisation ou publication. Aucun push.
+- Pages cimetieres : V2 VALIDEE par Thomas le 10.11.2026 (pilote Corcelles, commit
+  4cef302) puis GENERALISEE le meme jour aux NEUF fiches (docs/UX-CIMETIERES-GENERALISATION.md).
+  Le rendu d'origine de src/pages/cimetieres/[slug].astro est supprime : une seule
+  mise en page. Build 75 pages, astro check et npm test verts ; 696 faits sur 696,
+  SEO, hub, accueil et sitemaps identiques a la baseline ; recette navigateur des
+  neuf fiches en 320, 390, 768 et 1440. Maquette privee, aucun push, aucune donnee
+  changee. A faire : relecture visuelle de Thomas, puis decision de publication.
 - Pages cimetieres, V1 : PILOTE UX fait le 10.11.2026 sur Corcelles-Cormondreche
   (composant GuideCimetiere, docs/UX-CIMETIERES.md). Relu au navigateur, controle des 86 faits et export HTML autonome prepares.
   A faire : validation de Thomas avant generalisation ou publication. Aucun push.

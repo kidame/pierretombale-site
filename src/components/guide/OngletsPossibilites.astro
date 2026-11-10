@@ -11,6 +11,9 @@
    vers les panneaux. Le script pose les roles d onglets, le tabindex
    tournant et les fleches, puis n affiche qu un panneau a la fois.
 
+   Avec un seul groupe, la barre n est pas ecrite et le script ne s active
+   pas : un onglet unique serait un faux onglet.
+
    Fichier en ASCII : les libelles passent par des entites HTML. */
 
 interface Props {
@@ -23,23 +26,29 @@ const { groupes, prefixe = "urne" } = Astro.props;
 ---
 
 <div class="onglets" data-onglets>
-  <p class="label onglets-intro">Voir les possibilit&#xe9;s une par une</p>
+  {/* Une seule possibilite reconnue : pas de barre, pas de faux onglet. La
+      section se lit comme un seul ecrin, qui porte son titre. */}
+  {
+    groupes.length > 1 && (
+      <Fragment>
+        <p class="label onglets-intro">Voir les possibilit&#xe9;s une par une</p>
 
-  <div class="onglets-barre" data-onglets-barre aria-label="Possibilit&#xe9;s pour les cendres">
-    <span class="onglets-trait" data-onglets-trait aria-hidden="true"></span>
-    {
-      groupes.map((groupe, index) => (
-        <a
-          class="onglet"
-          id={`${prefixe}-onglet-${index}`}
-          href={`#${prefixe}-panneau-${index}`}
-          data-onglets-bouton={index}
-        >
-          {groupe.titre}
-        </a>
-      ))
-    }
-  </div>
+        <div class="onglets-barre" data-onglets-barre aria-label="Possibilit&#xe9;s pour les cendres">
+          <span class="onglets-trait" data-onglets-trait aria-hidden="true" />
+          {groupes.map((groupe, index) => (
+            <a
+              class="onglet"
+              id={`${prefixe}-onglet-${index}`}
+              href={`#${prefixe}-panneau-${index}`}
+              data-onglets-bouton={index}
+            >
+              {groupe.titre}
+            </a>
+          ))}
+        </div>
+      </Fragment>
+    )
+  }
 
   <div class="onglets-panneaux">
     {

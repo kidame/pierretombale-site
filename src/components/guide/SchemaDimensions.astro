@@ -1,109 +1,202 @@
 ---
-/* Les cotes du reglement, dessinees a l echelle.
+/* Les cotes du reglement, dessinees a l echelle quand elles sont chiffrees.
 
    Composant reutilisable : il recoit des nombres deja lus dans les lignes du
-   reglement (src/data/cimetieres.ts) et n invente rien. Les deux vues sont a
-   la meme echelle : 1 cm = --cm.
+   reglement (src/data/cimetieres.ts) et n invente rien. Les deux vues sont
+   independantes et a la meme echelle (1 cm = --cm) : une fiche peut n avoir
+   que la surface (hauteur non publiee), que la hauteur (pas de surface
+   publiee), ou aucune des deux. Ce qui n est pas chiffre est ecrit en mots
+   avec sa phrase source et son article : la carte n a jamais de trou.
 
-   Amelioration progressive. Dans le HTML initial, les deux vues sont
-   visibles l une sous l autre et les deux boutons portent l attribut
-   [hidden] : sans JavaScript, tout est lisible. Le script retire [hidden],
-   pose les roles d onglets et n affiche qu une vue a la fois.
+   Chaque vue dit de quelle forme elle parle (tombe, stele, croix, obelisque :
+   ce ne sont pas les memes cotes), et les autres formes chiffrees pour un
+   adulte sont nommees dans le repli.
+
+   Amelioration progressive. Dans le HTML initial, les vues presentes sont
+   visibles l une sous l autre et les boutons portent l attribut [hidden] :
+   sans JavaScript, tout est lisible. Le script retire [hidden], pose les
+   roles d onglets et n affiche qu une vue a la fois. Avec une seule vue, il
+   n y a pas de bouton : un onglet unique serait un faux onglet.
 
    Fichier en ASCII : les libelles passent par des entites HTML. */
 
 interface Props {
-  schema: {
+  /** Vue de dessus : la surface au sol, quand le reglement la chiffre. */
+  dessus: {
+    /** Les deux nombres dans l ordre du reglement, pour le grand chiffre. */
+    premierCm: number;
+    secondCm: number;
+    /** Le dessin : le plus petit en largeur, le plus grand en profondeur. */
     largeurCm: number;
     profondeurCm: number;
+    type: string;
+    article: string;
+  } | null;
+  /** Vue de hauteur, quand une forme d adulte est chiffree. */
+  hauteur: {
     hauteurCm: number;
-    surfaceType: string;
-    surfaceArticle: string;
+    /** Largeur dessinee seulement si le reglement l ecrit en clair. */
+    largeurCm: number | null;
+    /** La forme mesuree : « Stele, inhumation d adulte », etc. */
+    forme: string;
     hauteurTexte: string;
-    hauteurArticle: string;
+    article: string;
     largeurTexte: string;
-  };
+  } | null;
+  /** Les cotes que le reglement ne chiffre pas : sa phrase et son article. */
+  manques?: { intitule: string; texte: string; article: string }[];
+  /** Les autres formes chiffrees pour un adulte (croix, obelisque). */
+  autresFormes?: { type: string; hauteur: string; article: string }[];
 }
 
-const { schema } = Astro.props;
+const { dessus, hauteur, manques = [], autresFormes = [] } = Astro.props;
+
+const nombreVues = (dessus ? 1 : 0) + (hauteur ? 1 : 0);
+
+/* La largeur du monument : la phrase du reglement quand il la fixe, sinon la
+   mention « a confirmer » (le reglement ecrit alors « largeur non fixee »). */
+const largeurFixee = hauteur ? !/non fix/i.test(hauteur.largeurTexte) : false;
+
+/* La hauteur source porte parfois deja une parenthese (« 110 cm (130 cm pour
+   une croix) ») : l article se met alors apres une virgule, pas dans une
+   seconde parenthese. */
+const hauteurCitee = hauteur
+  ? /\)\s*$/.test(hauteur.hauteurTexte)
+    ? `${hauteur.hauteurTexte}, ${hauteur.article}`
+    : `${hauteur.hauteurTexte} (${hauteur.article})`
+  : "";
+
+/* Les variables d echelle ne sont posees que pour les vues dessinees. */
+const echelle = [
+  dessus ? `--cm-largeur:${dessus.largeurCm}` : null,
+  dessus ? `--cm-profondeur:${dessus.profondeurCm}` : null,
+  hauteur ? `--cm-hauteur:${hauteur.hauteurCm}` : null,
+  hauteur?.largeurCm ? `--cm-monument:${hauteur.largeurCm}` : null,
+]
+  .filter((regle): regle is string => regle !== null)
+  .join(";");
 ---
 
-<figure
-  class="schema"
-  data-schema
-  style={`--cm-largeur:${schema.largeurCm};--cm-profondeur:${schema.profondeurCm};--cm-hauteur:${schema.hauteurCm}`}
->
+<figure class="schema" data-schema style={echelle}>
   <figcaption class="schema-tete">
     <span class="label">Les cotes du r&#xe8;glement</span>
   </figcaption>
 
-  <div class="schema-choix" hidden data-schema-choix aria-label="Vue du sch&#xe9;ma">
-    <button type="button" class="choix" id="schema-onglet-dessus" data-schema-bouton="dessus">
-      Vue de dessus
-    </button>
-    <button type="button" class="choix" id="schema-onglet-hauteur" data-schema-bouton="hauteur">
-      Hauteur
-    </button>
-  </div>
+  {
+    nombreVues > 1 && (
+      <div class="schema-choix" hidden data-schema-choix aria-label="Vue du sch&#xe9;ma">
+        <button type="button" class="choix" id="schema-onglet-dessus" data-schema-bouton="dessus">
+          Vue de dessus
+        </button>
+        <button type="button" class="choix" id="schema-onglet-hauteur" data-schema-bouton="hauteur">
+          Hauteur
+        </button>
+      </div>
+    )
+  }
 
-  <div class="schema-vues">
-    <section class="vue" data-schema-vue="dessus" aria-labelledby="schema-titre-dessus">
-      <div class="vue-mots">
-        <h4 class="vue-titre" id="schema-titre-dessus">Vue de dessus</h4>
-        <p class="vue-chiffre" data-schema-chiffre>
-          <span class="mono">{schema.largeurCm}</span>
-          <span class="vue-signe" aria-hidden="true">&#xd7;</span>
-          <span class="sr-only">sur</span>
-          <span class="mono">{schema.profondeurCm}</span>
-          <span class="vue-unite">cm</span>
-        </p>
-        <p class="vue-legende">{schema.surfaceType}, {schema.surfaceArticle}.</p>
-      </div>
-      <div class="vue-dessin">
-        <div class="plan">
-          <div class="plan-colonne">
-            <span class="cote" data-schema-cote>{schema.largeurCm}&#xa0;cm</span>
-            <span class="guide guide-l" data-schema-guide="x" aria-hidden="true"></span>
-            <div class="plan-forme" data-schema-forme></div>
-          </div>
-          <div class="plan-cote">
-            <span class="guide guide-p" data-schema-guide="y" aria-hidden="true"></span>
-            <span class="cote" data-schema-cote>{schema.profondeurCm}&#xa0;cm</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="vue" data-schema-vue="hauteur" aria-labelledby="schema-titre-hauteur">
-      <div class="vue-mots">
-        <h4 class="vue-titre" id="schema-titre-hauteur">Hauteur</h4>
-        <p class="vue-chiffre" data-schema-chiffre>
-          <span class="mono">{schema.hauteurCm}</span>
-          <span class="vue-unite">cm</span>
-        </p>
-        <p class="vue-legende">
-          {schema.hauteurTexte} ({schema.hauteurArticle}). Largeur&#xa0;: &#xe0; confirmer aupr&#xe8;s
-          de la commune.
-        </p>
-      </div>
-      <div class="vue-dessin">
-        <div class="elevation">
-          <span class="cote" data-schema-cote>{schema.hauteurCm}&#xa0;cm</span>
-          <span class="guide guide-h" data-schema-guide="y" aria-hidden="true"></span>
-          <div class="elevation-boite">
-            <div class="elevation-enveloppe" data-schema-forme>
-              <span class="elevation-largeur">&#xe0; confirmer</span>
+  {
+    nombreVues > 0 && (
+      <div class="schema-vues">
+        {dessus && (
+          <section class="vue" data-schema-vue="dessus" aria-labelledby="schema-titre-dessus">
+            <div class="vue-mots">
+              <h4 class="vue-titre" id="schema-titre-dessus">
+                Vue de dessus
+              </h4>
+              <p class="vue-chiffre" data-schema-chiffre>
+                <span class="mono">{dessus.premierCm}</span>
+                <span class="vue-signe" aria-hidden="true">
+                  &#xd7;
+                </span>
+                <span class="sr-only">sur</span>
+                <span class="mono">{dessus.secondCm}</span>
+                <span class="vue-unite">cm</span>
+              </p>
+              <p class="vue-legende">
+                {dessus.type}, {dessus.article}.
+              </p>
             </div>
-            <span class="elevation-sol" aria-hidden="true"></span>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+            <div class="vue-dessin">
+              <div class="plan">
+                <div class="plan-colonne">
+                  <span class="cote" data-schema-cote>
+                    {dessus.largeurCm}&#xa0;cm
+                  </span>
+                  <span class="guide guide-l" data-schema-guide="x" aria-hidden="true" />
+                  <div class="plan-forme" data-schema-forme />
+                </div>
+                <div class="plan-cote">
+                  <span class="guide guide-p" data-schema-guide="y" aria-hidden="true" />
+                  <span class="cote" data-schema-cote>
+                    {dessus.profondeurCm}&#xa0;cm
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
-  {/* Les deux phrases de contexte sont repliees : le dessin et sa legende
-      tiennent alors dans un ecran de telephone. Rien n est retire du HTML, et
-      la classe repli-anime fait reutiliser le script d ouverture de la page. */}
+        {hauteur && (
+          <section class="vue" data-schema-vue="hauteur" aria-labelledby="schema-titre-hauteur">
+            <div class="vue-mots">
+              <h4 class="vue-titre" id="schema-titre-hauteur">
+                Hauteur
+              </h4>
+              <p class="vue-chiffre" data-schema-chiffre>
+                <span class="mono">{hauteur.hauteurCm}</span>
+                <span class="vue-unite">cm</span>
+              </p>
+              <p class="vue-legende">
+                {hauteur.forme}&#xa0;: {hauteurCitee}.{" "}
+                {largeurFixee ? (
+                  <span>{hauteur.largeurTexte}.</span>
+                ) : (
+                  <span>Largeur&#xa0;: &#xe0; confirmer aupr&#xe8;s de la commune.</span>
+                )}
+              </p>
+            </div>
+            <div class="vue-dessin">
+              <div class="elevation">
+                <span class="cote" data-schema-cote>
+                  {hauteur.hauteurCm}&#xa0;cm
+                </span>
+                <span class="guide guide-h" data-schema-guide="y" aria-hidden="true" />
+                <div class={hauteur.largeurCm ? "elevation-boite elevation-boite-cotee" : "elevation-boite"}>
+                  <div class="elevation-enveloppe" data-schema-forme>
+                    <span class="elevation-largeur">
+                      {hauteur.largeurCm ? `${hauteur.largeurCm} cm` : "\u00e0 confirmer"}
+                    </span>
+                  </div>
+                  <span class="elevation-sol" aria-hidden="true" />
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+      </div>
+    )
+  }
+
+  {/* Ce que le reglement ne chiffre pas : la cote reste lue, avec la phrase
+      du reglement et son article. Aucun dessin n est invente pour elle. */}
+  {
+    manques.length > 0 && (
+      <dl class={nombreVues > 0 ? "manques manques-suite" : "manques"}>
+        {manques.map((manque) => (
+          <div class="manque">
+            <dt>{manque.intitule}</dt>
+            <dd class="manque-valeur">{manque.texte}</dd>
+            <dd class="manque-precision">{manque.article}.</dd>
+          </div>
+        ))}
+      </dl>
+    )
+  }
+
+  {/* Les phrases de contexte sont repliees : le dessin et sa legende tiennent
+      alors dans un ecran de telephone. Rien n est retire du HTML, et la
+      classe repli-anime fait reutiliser le script d ouverture de la page. */}
   <details class="schema-detail repli-anime">
     <summary class="schema-resume">
       <span class="schema-resume-titre">Comprendre ces dimensions</span>
@@ -114,14 +207,57 @@ const { schema } = Astro.props;
     </summary>
     <div class="schema-detail-corps">
       <p class="schema-notes">
-        Vue de dessus&#xa0;: {schema.surfaceType}, {schema.surfaceArticle}. Hauteur&#xa0;:{" "}
-        {schema.hauteurTexte} ({schema.hauteurArticle}), {schema.largeurTexte.toLowerCase()}. Les
-        deux vues sont &#xe0; la m&#xea;me &#xe9;chelle.
+        {
+          dessus && (
+            <Fragment>
+              Vue de dessus&#xa0;: {dessus.type}, {dessus.article}.{" "}
+            </Fragment>
+          )
+        }
+        {
+          hauteur && (
+            <Fragment>
+              Hauteur&#xa0;: {hauteur.forme}, {hauteurCitee},{" "}
+              {hauteur.largeurTexte.charAt(0).toLowerCase() + hauteur.largeurTexte.slice(1)}.{" "}
+            </Fragment>
+          )
+        }
+        {nombreVues > 1 && <Fragment>Les deux vues sont &#xe0; la m&#xea;me &#xe9;chelle.</Fragment>}
+        {
+          nombreVues === 0 && (
+            <Fragment>
+              Le r&#xe8;glement de cette commune ne chiffre pas ces cotes&#xa0;: rien n'est dessin&#xe9;
+              ici, les phrases ci-dessus sont celles du r&#xe8;glement.
+            </Fragment>
+          )
+        }
       </p>
+      {
+        autresFormes.length > 0 && (
+          <Fragment>
+            <p class="schema-notes schema-notes-suite">
+              Autres formes chiffr&#xe9;es pour un adulte, &#xe0; ne pas confondre avec la
+              pr&#xe9;c&#xe9;dente&#xa0;:
+            </p>
+            <ul class="schema-formes">
+              {autresFormes.map((forme) => (
+                <li>
+                  {forme.type}&#xa0;:{" "}
+                  {/\)\s*$/.test(forme.hauteur)
+                    ? `${forme.hauteur}, ${forme.article}.`
+                    : `${forme.hauteur} (${forme.article}).`}
+                </li>
+              ))}
+            </ul>
+          </Fragment>
+        )
+      }
       <p class="schema-avertissement">
-        Dessin des cotes du r&#xe8;glement, pour se rep&#xe9;rer. Ce n'est pas un mod&#xe8;le du
-        catalogue, et aucun monument n'est annonc&#xe9; conforme sans v&#xe9;rification du
-        r&#xe8;glement.
+        {
+          nombreVues > 0
+            ? "Dessin des cotes du r\u00e8glement, pour se rep\u00e9rer. Ce n'est pas un mod\u00e8le du catalogue, et aucun monument n'est annonc\u00e9 conforme sans v\u00e9rification du r\u00e8glement."
+            : "Cotes du r\u00e8glement, pour se rep\u00e9rer. Aucun monument n'est annonc\u00e9 conforme sans v\u00e9rification du r\u00e8glement."
+        }
       </p>
     </div>
   </details>
@@ -326,6 +462,15 @@ const { schema } = Astro.props;
     width: 6.5rem;
     height: calc(var(--cm-hauteur) * var(--cm));
   }
+  /* Largeur fixee par le reglement : elle est dessinee a la meme echelle que
+     la hauteur, et non plus en largeur indicative. */
+  .elevation-boite-cotee {
+    width: calc(var(--cm-monument) * var(--cm));
+    min-width: 3.5rem;
+  }
+  .elevation-boite-cotee .elevation-enveloppe {
+    border-style: solid;
+  }
   .elevation-enveloppe {
     position: absolute;
     inset: 0;
@@ -349,6 +494,46 @@ const { schema } = Astro.props;
     bottom: 0;
     display: block;
     border-top: 2px solid var(--line-strong);
+  }
+
+  /* ------------------------------- Les cotes que le reglement ne chiffre pas
+     Meme carte, meme hierarchie : un intitule, la valeur en serif, la phrase
+     du reglement et son article. Sans dessin, la carte reste pleine. */
+  .manques {
+    display: grid;
+    gap: 1.25rem;
+    padding-top: 1.25rem;
+  }
+  .manques-suite {
+    margin-top: 0.25rem;
+    border-top: 1px solid var(--line);
+  }
+  .manque dt {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .manque-valeur {
+    margin-top: 0.4rem;
+    max-width: 46ch;
+    font-family: var(--font-serif);
+    font-size: 1.1875rem;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  @media (min-width: 48rem) {
+    .manque-valeur {
+      font-size: 1.3125rem;
+    }
+  }
+  .manque-precision {
+    margin-top: 0.5rem;
+    max-width: 52ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
   }
 
   /* ------------------------------------- Le repli de mise en contexte */
@@ -419,6 +604,31 @@ const { schema } = Astro.props;
     line-height: 1.6;
     color: var(--muted);
   }
+  .schema-notes-suite {
+    margin-top: 0.75rem;
+  }
+  .schema-formes {
+    margin-top: 0.5rem;
+    max-width: 62ch;
+    display: grid;
+    gap: 0.375rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .schema-formes li {
+    position: relative;
+    padding-left: 1.25rem;
+  }
+  .schema-formes li::before {
+    content: "";
+    position: absolute;
+    top: 0.8em;
+    left: 0;
+    width: 0.75rem;
+    height: 1px;
+    background: var(--accent);
+  }
   .schema-avertissement {
     margin-top: 0.75rem;
     max-width: 62ch;
@@ -449,24 +659,28 @@ const { schema } = Astro.props;
     var groupe = figure.querySelector("[data-schema-choix]");
     var boutons = [].slice.call(figure.querySelectorAll("[data-schema-bouton]"));
     var vues = [].slice.call(figure.querySelectorAll("[data-schema-vue]"));
-    if (!groupe || boutons.length !== vues.length || vues.length === 0) return;
+    /* Une seule vue (ou aucune) : pas d onglets du tout, un onglet unique
+       serait un faux onglet. La mise en evidence a l entree reste. */
+    var onglets = Boolean(groupe) && vues.length > 1 && boutons.length === vues.length;
 
     var doux = window.matchMedia("(prefers-reduced-motion: reduce)");
     var courbe = "cubic-bezier(0.25, 1, 0.5, 1)";
 
     /* Les roles n existent que si le script tourne : un lecteur d ecran sans
        JavaScript voit deux sections normales, pas des onglets sans pilote. */
-    groupe.removeAttribute("hidden");
-    groupe.setAttribute("role", "tablist");
-    boutons.forEach(function (bouton, index) {
-      var vue = vues[index];
-      bouton.setAttribute("role", "tab");
-      bouton.setAttribute("aria-controls", "schema-vue-" + bouton.getAttribute("data-schema-bouton"));
-      vue.id = "schema-vue-" + vue.getAttribute("data-schema-vue");
-      vue.setAttribute("role", "tabpanel");
-      vue.setAttribute("aria-labelledby", bouton.id);
-      vue.setAttribute("tabindex", "0");
-    });
+    if (onglets) {
+      groupe.removeAttribute("hidden");
+      groupe.setAttribute("role", "tablist");
+      boutons.forEach(function (bouton, index) {
+        var vue = vues[index];
+        bouton.setAttribute("role", "tab");
+        bouton.setAttribute("aria-controls", "schema-vue-" + bouton.getAttribute("data-schema-bouton"));
+        vue.id = "schema-vue-" + vue.getAttribute("data-schema-vue");
+        vue.setAttribute("role", "tabpanel");
+        vue.setAttribute("aria-labelledby", bouton.id);
+        vue.setAttribute("tabindex", "0");
+      });
+    }
 
     function evidence(vue) {
       if (doux.matches) return;
@@ -504,6 +718,7 @@ const { schema } = Astro.props;
     }
 
     function montre(index, deplaceFocus) {
+      if (!onglets) return;
       boutons.forEach(function (bouton, i) {
         var choisi = i === index;
         bouton.setAttribute("aria-selected", choisi ? "true" : "false");
@@ -515,7 +730,7 @@ const { schema } = Astro.props;
       evidence(vues[index]);
     }
 
-    boutons.forEach(function (bouton, index) {
+    if (onglets) boutons.forEach(function (bouton, index) {
       bouton.addEventListener("click", function () {
         montre(index, false);
       });
@@ -535,13 +750,14 @@ const { schema } = Astro.props;
 
     /* Premiere mise en evidence quand le schema entre dans l ecran, une fois. */
     montre(0, false);
-    if (!doux.matches && "IntersectionObserver" in window) {
+    if (!doux.matches && vues.length > 0 && "IntersectionObserver" in window) {
       var oeil = new IntersectionObserver(
         function (entrees) {
           entrees.forEach(function (entree) {
             if (!entree.isIntersecting) return;
             oeil.unobserve(entree.target);
-            evidence(figure.querySelector("[data-schema-vue]:not([hidden])"));
+            var visible = figure.querySelector("[data-schema-vue]:not([hidden])");
+            if (visible) evidence(visible);
           });
         },
         { threshold: 0.25 },

@@ -17,12 +17,17 @@ import {
 import { guideUrl } from "@/data/guides";
 import { FAMILLE_LABELS, familleUrl } from "@/data/products";
 
-/* Guide d un cimetiere, version 2 (10.11.2026) : hero compose et compact,
-   navigation par besoins avec etat actif, composant de dimensions, panneaux
-   depliables animes, onglets des possibilites, une passe de mouvement a
-   l entree des sections. Pilote sur une seule page, voir
-   src/pages/cimetieres/[slug].astro ; les autres pages gardent la mise en
-   page d origine.
+/* Guide d un cimetiere, version 2 (10.11.2026, generalise aux neuf fiches le
+   meme jour) : hero compose et compact, navigation par besoins avec etat
+   actif, composant de dimensions, panneaux depliables animes, onglets des
+   possibilites, une passe de mouvement a l entree des sections. C est la
+   SEULE mise en page des pages cimetiere (src/pages/cimetieres/[slug].astro).
+
+   Les neuf fiches ne publient pas les memes choses : chaque bloc est
+   conditionnel, et rien n est dessine qui ne soit chiffre dans le reglement.
+   Ce qui n est pas chiffre est ecrit en mots, avec sa phrase source et son
+   article. Voir docs/UX-CIMETIERES-GENERALISATION.md pour le detail fiche
+   par fiche.
 
    AUCUNE DONNEE ICI. Tout vient de src/data/cimetieres.ts, comme la mise en
    page d origine : chaque fait, chaque tarif, chaque source est celui de la
@@ -56,45 +61,151 @@ const aProjets = (cimetiere.projets?.length ?? 0) > 0;
 const aHistoire = (cimetiere.histoire?.length ?? 0) > 0;
 const aEntretien = (cimetiere.entretien?.length ?? 0) > 0;
 
+/* Une fiche sans adresse de cimetiere ne promet pas d itineraire : le lien
+   d itineraire est une recherche sur le nom du cimetiere, elle n a de sens
+   que si la fiche publie une adresse. Le Landeron, Le Locle et Val-de-Travers
+   n en publient pas ; a leur place, le panneau nomme les localites
+   desservies, qui sont dans les donnees. */
+const aAdresse = Boolean(cimetiere.adresse);
+
+/* Plusieurs cimetieres sous un seul reglement (Val-de-Travers) : les phrases
+   d interface se mettent au pluriel. Le h1, le titre SEO et les textes des
+   donnees ne sont pas touches. */
+const pluriel = /^Cimeti[\u00e8e]res\b/.test(cimetiere.nom);
+
 /* Navigation par besoins : les ancres historiques, des libelles qui disent ce
    que la personne cherche. Une entree n apparait que si sa section existe. */
 const BESOINS = [
   { id: "infos-pratiques", titre: "Acc\u00e8s et contact", present: true },
   { id: "sur-place", titre: "Sur place", present: cimetiere.equipements.length > 0 },
   { id: "poser-un-monument", titre: "Pr\u00e9parer un monument", present: true },
-  { id: "cendres", titre: "Urnes et tarifs", present: cimetiere.cineraire.length > 0 },
+  {
+    id: "cendres",
+    /* Trois communes ne publient aucun tarif : la navigation ne promet alors
+       pas de tarifs (Le Landeron, Boudry, Cortaillod). */
+    titre: cimetiere.tarifs ? "Urnes et tarifs" : "Urnes et cendres",
+    present: cimetiere.cineraire.length > 0,
+  },
   { id: "duree", titre: "Dur\u00e9e et entretien", present: true },
   { id: "questions", titre: "Questions", present: true },
 ].filter((besoin) => besoin.present);
 
-/* Le bouton d appel dit de qui est le numero : c est le guichet communal,
-   jamais le notre. Le libelle suit le nom du service des donnees. */
-const libelleAppel = /office/i.test(cimetiere.contact.service)
-  ? "Appeler l'office"
-  : "Appeler l'administration";
+/* Le bouton d appel dit de qui est le numero : c est le service communal de
+   la fiche, jamais le notre. Le libelle suit le nom du service des donnees
+   sans le rebaptiser : un office reste un office, un controle des habitants
+   garde son nom, et le cimetiere de La Chaux-de-Fonds n est pas une
+   administration. Le nom complet du service suit le bouton. */
+const SERVICES = [
+  { test: /office/i, libelle: "Appeler l'office" },
+  { test: /administration/i, libelle: "Appeler l'administration" },
+  { test: /contr\u00f4le des habitants/i, libelle: "Appeler le contr\u00f4le des habitants" },
+  { test: /cimeti/i, libelle: "Appeler le cimeti\u00e8re" },
+];
+const libelleAppel =
+  SERVICES.find((service) => service.test.test(cimetiere.contact.service))?.libelle ??
+  "Appeler le guichet communal";
 
-/* Le schema d echelle lit ses nombres dans le tableau des dimensions : la
-   surface de la tombe d adulte et la hauteur du monument d adulte. Si une
-   fiche ne publie pas ces deux lignes, le schema n est pas dessine. */
+/* ------------------------------------------- Les cotes du reglement
+   Le schema ne dessine QUE ce que le reglement chiffre explicitement, et il
+   dit toujours de quelle forme il parle : une tombe, une stele et une croix
+   n ont pas les memes cotes. Les deux vues sont independantes :
+   - surface et hauteur chiffrees : les deux vues (Beauregard, Peseux,
+     Corcelles-Cormondreche, Cortaillod) ;
+   - surface seule, hauteur non publiee : la vue de dessus, et la hauteur
+     ecrite en mots (Le Landeron, Boudry, Val-de-Travers) ;
+   - hauteur seule, pas de surface publiee : la vue de hauteur (Le Locle) ;
+   - rien de chiffre : aucun dessin, les deux cotes en mots avec leur
+     article (La Chaux-de-Fonds, dont le reglement renvoie aux plans de
+     l administration).
+   Une correction dans src/data/cimetieres.ts corrige donc aussi le dessin. */
+
+/** Types de sepulture qui ne sont pas celle d un adulte. */
+const SANS_ADULTE = /(cr[\u00e9e]mation|incin[\u00e9e]ration|cin[\u00e9e]raire)/i;
+const pourAdulte = (type: string) =>
+  !SANS_ADULTE.test(type) && (!/enfant/i.test(type) || /adulte/i.test(type));
+
+/* Vue de dessus : la surface au sol d une tombe d adulte. La fosse de
+   La Chaux-de-Fonds (200 x 80 cm, art. 21, publiee « pour memoire ») est une
+   fosse creusee, pas l emprise d un monument : elle est exclue. */
 const ligneSurface = cimetiere.regles.tombes.find(
-  (tombe) => /surface/i.test(tombe.type) && !/cr\u00e9mation/i.test(tombe.type),
+  (tombe) =>
+    /(surface de la tombe|tombe d'adulte)/i.test(tombe.type) &&
+    pourAdulte(tombe.type) &&
+    !/(fosse|m[\u00e9e]moire)/i.test(tombe.type) &&
+    /\d+\s*[x\u00d7]\s*\d+/.test(tombe.dimensions),
 );
-const ligneAdulte = cimetiere.regles.tombes.find((tombe) => /adulte/i.test(tombe.type));
 const mesuresSurface = ligneSurface?.dimensions.match(/(\d+)\s*[x\u00d7]\s*(\d+)/);
-const mesureHauteur = ligneAdulte?.hauteurMax?.match(/(\d+)/);
-const schema =
-  ligneSurface && ligneAdulte && mesuresSurface && mesureHauteur
+const vueDessus =
+  ligneSurface && mesuresSurface
     ? {
-        largeurCm: Number(mesuresSurface[1]),
-        profondeurCm: Number(mesuresSurface[2]),
-        hauteurCm: Number(mesureHauteur[1]),
-        surfaceType: ligneSurface.type,
-        surfaceArticle: ligneSurface.article,
-        hauteurTexte: ligneAdulte.hauteurMax as string,
-        hauteurArticle: ligneAdulte.article,
-        largeurTexte: ligneAdulte.dimensions,
+        /* Le grand chiffre garde l ordre du reglement (« 180 x 80 cm ») ; le
+           dessin, lui, met le plus petit nombre en largeur, comme une tombe
+           se presente quand on se tient a son pied. Pour Corcelles (70 x 130)
+           les deux coincident : le dessin valide ne change pas. */
+        premierCm: Number(mesuresSurface[1]),
+        secondCm: Number(mesuresSurface[2]),
+        largeurCm: Math.min(Number(mesuresSurface[1]), Number(mesuresSurface[2])),
+        profondeurCm: Math.max(Number(mesuresSurface[1]), Number(mesuresSurface[2])),
+        type: ligneSurface.type,
+        article: ligneSurface.article,
       }
     : null;
+
+/* Vue de hauteur : la premiere forme d adulte dont la hauteur est chiffree.
+   Les autres formes chiffrees (croix, obelisque) sont nommees sous le dessin :
+   a Beauregard la stele monte a 120 cm et la croix a 140 cm, ce n est pas la
+   meme cote. Les hauteurs d enfant et d incineration restent dans le tableau. */
+const lignesHauteur = cimetiere.regles.tombes.filter(
+  (tombe) => tombe.hauteurMax && /\d/.test(tombe.hauteurMax) && pourAdulte(tombe.type),
+);
+const ligneHauteur = lignesHauteur[0];
+const mesureHauteur = ligneHauteur?.hauteurMax?.match(/(\d+)/);
+/* Largeur dessinee seulement si le reglement l ecrit en clair (« 70 cm de
+   large ») ; sinon le dessin dit « a confirmer » et garde la phrase source. */
+const mesureLargeur = ligneHauteur?.dimensions.match(/(\d+)\s*cm de large/i);
+const vueHauteur =
+  ligneHauteur && mesureHauteur
+    ? {
+        hauteurCm: Number(mesureHauteur[1]),
+        largeurCm: mesureLargeur ? Number(mesureLargeur[1]) : null,
+        forme: ligneHauteur.type,
+        hauteurTexte: ligneHauteur.hauteurMax as string,
+        article: ligneHauteur.article,
+        largeurTexte: ligneHauteur.dimensions,
+      }
+    : null;
+const autresFormes = lignesHauteur.slice(1).map((tombe) => ({
+  type: tombe.type,
+  hauteur: tombe.hauteurMax as string,
+  article: tombe.article,
+}));
+
+/* Ce que le reglement ne chiffre pas reste ecrit, avec sa phrase source et
+   son article : une cote absente se lit, elle ne se devine pas. */
+const ligneHauteurMots = cimetiere.regles.tombes.find(
+  (tombe) => /hauteur/i.test(tombe.type) && !/\d+\s*[x\u00d7]\s*\d+/.test(tombe.dimensions),
+);
+const ligneMonumentMots = cimetiere.regles.tombes.find(
+  (tombe) => /monument/i.test(tombe.type) && !/\d/.test(tombe.dimensions),
+);
+/* La carte ne repete pas les valeurs des reperes (elles sont en clair juste a
+   cote quand le schema ne les dessine pas) : elle porte la phrase du
+   reglement qui explique pourquoi la cote n est pas chiffree. */
+const manques: { intitule: string; texte: string; article: string }[] = [];
+if (!vueDessus && ligneMonumentMots) {
+  manques.push({
+    intitule: "Dimensions du monument",
+    texte: ligneMonumentMots.dimensions,
+    article: ligneMonumentMots.article,
+  });
+}
+if (!vueHauteur && ligneHauteurMots) {
+  manques.push({
+    intitule: "Hauteur du monument",
+    texte: ligneHauteurMots.dimensions,
+    article: ligneHauteurMots.article,
+  });
+}
 
 /* Les trois reperes du monument, contextualises par la ligne de reglement
    d ou vient le chiffre. Aucun texte nouveau : le delai est la phrase du
@@ -104,47 +215,98 @@ const reperes = [
     intitule: "D\u00e9lai avant la pose",
     valeur: cimetiere.chiffres.delai,
     precision: cimetiere.regles.delaiPose,
+    /* Le delai reste toujours en clair : c est le seul des trois qui decide
+       d une date. */
+    dessine: false,
   },
   {
-    intitule: "Tombe d'adulte",
+    /* L intitule suit la valeur : Le Locle publie la largeur d une stele, pas
+       la surface d une tombe. Une stele n est pas une tombe. */
+    intitule: /^st[\u00e8e]le/i.test(cimetiere.chiffres.tombeAdulte)
+      ? "St\u00e8le d'adulte"
+      : /^monument/i.test(cimetiere.chiffres.tombeAdulte)
+        ? "Monument d'adulte"
+        : "Tombe d'adulte",
     valeur: cimetiere.chiffres.tombeAdulte,
     precision: ligneSurface ? `${ligneSurface.type}, ${ligneSurface.article}.` : undefined,
+    dessine: Boolean(vueDessus),
   },
   {
     intitule: "Hauteur maximale",
     valeur: cimetiere.chiffres.hauteurMax,
-    precision: ligneAdulte
-      ? `${ligneAdulte.type}, ${ligneAdulte.article}. ${ligneAdulte.dimensions}.`
+    precision: ligneHauteur
+      ? `${ligneHauteur.type}, ${ligneHauteur.article}. ${ligneHauteur.dimensions}.`
       : undefined,
+    dessine: Boolean(vueHauteur),
   },
 ];
-/* Le delai reste en clair : c est le seul des trois qui decide d une date.
-   Les deux autres sont les chiffres que le schema dessine deja en grand ;
-   leurs valeurs et leurs precisions sont gardees mot pour mot, mais rangees
-   dans le repli, pour ne pas ecrire deux fois le meme nombre en grand. */
-const repereDelai = reperes[0];
-const reperesSchema = reperes.slice(1);
+/* Un repere ne passe dans le repli que si le schema dessine deja son chiffre
+   en grand : l ecrire deux fois en gros le dedoublait. Sinon il reste en
+   clair, pour qu une cote essentielle ne soit jamais cachee : une hauteur non
+   publiee (Le Landeron, Boudry) se lit tout de suite. Les valeurs et les
+   precisions sont gardees mot pour mot dans les deux cas. */
+const reperesClairs = reperes.filter((repere) => !repere.dessine);
+const reperesReplies = reperes.filter((repere) => repere.dessine);
 
-/* Les cendres, rangees par possibilite. Chaque ligne de la fiche tombe dans
-   le premier groupe qui la reconnait, dans l ordre ci-dessous ; ce qui n est
-   reconnu par aucun groupe est garde a la fin. Rien n est retire. */
+/* Les titres des deux replis du reglement ne nomment que ce qu ils
+   contiennent : Boudry et Cortaillod ne publient pas d autorisation,
+   Le Landeron et Cortaillod ne publient pas de regle de materiaux. */
+function enumere(mots: string[]): string {
+  const titre = mots.length > 1 ? `${mots.slice(0, -1).join(", ")} et ${mots[mots.length - 1]}` : mots[0];
+  return titre.charAt(0).toUpperCase() + titre.slice(1);
+}
+const titreAutorisation = enumere(
+  [
+    cimetiere.regles.autorisation ? "autorisation" : null,
+    "bordure",
+    cimetiere.regles.taxePose ? "taxe de pose" : null,
+  ].filter((mot): mot is string => mot !== null),
+);
+const titreMateriaux = enumere(
+  [
+    cimetiere.regles.materiaux ? "mat\u00e9riaux" : null,
+    cimetiere.regles.obligations.length > 0 ? "obligations de l'entreprise" : null,
+  ].filter((mot): mot is string => mot !== null),
+);
+
+/* Les cendres, rangees par possibilite. Une ligne qui ne parle que d une
+   possibilite va dans son groupe. Une ligne qui en concerne PLUSIEURS (une
+   urne dans une tombe « ou » dans une niche) n est pas rangee de force dans
+   la premiere reconnue : elle va dans un groupe qui le dit. Ce que personne
+   ne reconnait est garde a la fin. Rien n est retire, rien n est reecrit. */
 const POSSIBILITES = [
-  { titre: "Au columbarium", test: /columbarium|niche/i },
+  { titre: "Au columbarium", test: /columbarium|niche|mur cin[\u00e9e]raire/i },
   { titre: "Au jardin du souvenir", test: /jardin du souvenir/i },
   { titre: "Dans une tombe", test: /tombe/i },
 ];
 const groupesCendres: { titre: string; lignes: string[] }[] = [];
 {
   const groupes = POSSIBILITES.map((possibilite) => ({ titre: possibilite.titre, lignes: [] as string[] }));
+  const plusieurs: string[] = [];
   const reste: string[] = [];
   for (const ligne of cimetiere.cineraire) {
-    const index = POSSIBILITES.findIndex((possibilite) => possibilite.test.test(ligne));
-    if (index === -1) reste.push(ligne);
-    else groupes[index].lignes.push(ligne);
+    const trouves = POSSIBILITES.map((possibilite, index) => (possibilite.test.test(ligne) ? index : -1)).filter(
+      (index) => index >= 0,
+    );
+    if (trouves.length === 1) groupes[trouves[0]].lignes.push(ligne);
+    else if (trouves.length > 1) plusieurs.push(ligne);
+    else reste.push(ligne);
   }
-  for (const groupe of groupes) if (groupe.lignes.length > 0) groupesCendres.push(groupe);
+  for (const groupe of groupes) {
+    if (groupe.lignes.length === 0) continue;
+    /* Le mot de la commune : Le Locle parle de mur cineraire, pas de
+       columbarium. On suit ses lignes plutot que le mot generique. */
+    if (groupe.titre === "Au columbarium" && !groupe.lignes.some((ligne) => /columbarium/i.test(ligne))) {
+      groupe.titre = groupe.lignes.some((ligne) => /mur cin[\u00e9e]raire/i.test(ligne))
+        ? "Au mur cin\u00e9raire"
+        : "Dans une niche";
+    }
+    groupesCendres.push(groupe);
+  }
+  if (plusieurs.length > 0) groupesCendres.push({ titre: "Plusieurs possibilit\u00e9s", lignes: plusieurs });
   if (reste.length > 0) groupesCendres.push({ titre: "\u00c0 savoir aussi", lignes: reste });
 }
+
 ---
 
 <div class="guide">
@@ -178,33 +340,47 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     >
       <p class="label panneau-titre" id="panneau-titre">Infos pratiques</p>
 
-      <div class="panneau-actions">
-        <div class="panneau-boutons">
-          <a href={itineraireUrl(donnees)} class="btn btn-primary" rel="noopener nofollow">
-            Itin&#xe9;raire
-          </a>
-          {
-            cimetiere.contact.telephone && (
-              <a href={telUrl(donnees.contact.telephone as string)} class="btn btn-outline">
-                {libelleAppel}
-                <span class="sr-only"> : {cimetiere.contact.service}</span>
-              </a>
-            )
-          }
-        </div>
-        {
-          cimetiere.contact.telephone && (
-            <p class="panneau-legende">{cimetiere.contact.service}</p>
-          )
-        }
-      </div>
+      {/* L itineraire n est propose que si la fiche publie une adresse : sans
+          adresse, le lien serait une recherche sur un nom qui couvre
+          plusieurs villages. Le premier bouton present porte l action
+          principale. */}
+      {
+        (aAdresse || cimetiere.contact.telephone) && (
+          <div class="panneau-actions">
+            <div class="panneau-boutons">
+              {aAdresse && (
+                <a href={itineraireUrl(donnees)} class="btn btn-primary" rel="noopener nofollow">
+                  Itin&#xe9;raire
+                </a>
+              )}
+              {cimetiere.contact.telephone && (
+                <a
+                  href={telUrl(donnees.contact.telephone as string)}
+                  class={aAdresse ? "btn btn-outline" : "btn btn-primary"}
+                >
+                  {libelleAppel}
+                  <span class="sr-only"> : {cimetiere.contact.service}</span>
+                </a>
+              )}
+            </div>
+            {cimetiere.contact.telephone && <p class="panneau-legende">{cimetiere.contact.service}</p>}
+          </div>
+        )
+      }
 
       <dl class="panneau-infos">
         {
-          cimetiere.adresse && (
+          cimetiere.adresse ? (
             <div>
               <dt>Adresse</dt>
               <dd>{cimetiere.adresse}</dd>
+            </div>
+          ) : (
+            /* Pas d adresse publiee : on dit ce que la fiche sait, les
+               localites desservies. Val-de-Travers en compte six. */
+            <div>
+              <dt>Localit&#xe9;s desservies</dt>
+              <dd>{cimetiere.localites.join(", ")}</dd>
             </div>
           )
         }
@@ -287,7 +463,7 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
             <h2 class="type-h2 bloc-titre" id="titre-sur-place">
               Sur place
             </h2>
-            <ul class="faits faits-colonnes">
+            <ul class={cimetiere.equipements.length >= 4 ? "faits faits-colonnes" : "faits"}>
               {cimetiere.equipements.map((ligne) => (
                 <li>{ligne}</li>
               ))}
@@ -329,8 +505,14 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
           <div class="monument-haut">
             <div class="reperes">
               <dl class="repere-cle">
-                <dt>{repereDelai.intitule}</dt>
-                <dd class="repere-valeur">{repereDelai.valeur}</dd>
+                {
+                  reperesClairs.map((repere) => (
+                    <div class="repere-cle-ligne">
+                      <dt>{repere.intitule}</dt>
+                      <dd class="repere-valeur">{repere.valeur}</dd>
+                    </div>
+                  ))
+                }
               </dl>
               <details class="repli repli-anime reperes-repli">
                 <summary>
@@ -341,9 +523,9 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
                   </span>
                 </summary>
                 <div class="repli-corps">
-                  {repereDelai.precision && <p>{repereDelai.precision}</p>}
+                  {reperes[0].precision && <p>{reperes[0].precision}</p>}
                   <dl class="reperes-liste">
-                    {reperesSchema.map((repere) => (
+                    {reperesReplies.map((repere) => (
                       <div class="repere-ligne">
                         <dt>{repere.intitule}</dt>
                         <dd class="repere-valeur-petite">{repere.valeur}</dd>
@@ -372,7 +554,7 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
                 <div class="replis">
                   <details class="repli repli-anime">
                     <summary>
-                      <span class="repli-titre">Autorisation, bordure et taxe de pose</span>
+                      <span class="repli-titre">{titreAutorisation}</span>
                       <span class="marque" aria-hidden="true">
                         <span class="marque-barre" />
                         <span class="marque-barre marque-barre-v" />
@@ -398,7 +580,7 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
                     (cimetiere.regles.materiaux || cimetiere.regles.obligations.length > 0) && (
                       <details class="repli repli-anime">
                         <summary>
-                          <span class="repli-titre">Mat&#xe9;riaux et obligations de l'entreprise</span>
+                          <span class="repli-titre">{titreMateriaux}</span>
                           <span class="marque" aria-hidden="true">
                             <span class="marque-barre" />
                             <span class="marque-barre marque-barre-v" />
@@ -473,7 +655,12 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
                 </div>
               </div>
             </div>
-            {schema && <SchemaDimensions schema={schema} />}
+            <SchemaDimensions
+              dessus={vueDessus}
+              hauteur={vueHauteur}
+              manques={manques}
+              autresFormes={autresFormes}
+            />
           </div>
         </div>
 
@@ -483,7 +670,9 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
       {/* ------------------------------------------- Appel commercial */}
       <section class="bloc projet nuit" aria-labelledby="titre-projet" data-entree>
         <p class="label">Votre projet</p>
-        <h2 class="type-h2 bloc-titre" id="titre-projet">Votre projet dans ce cimeti&#xe8;re</h2>
+        <h2 class="type-h2 bloc-titre" id="titre-projet">
+          {pluriel ? "Votre projet dans ces cimeti\u00e8res" : "Votre projet dans ce cimeti\u00e8re"}
+        </h2>
         <p class="projet-texte">
           Dites-nous le type de s&#xe9;pulture et, si vous le connaissez, le num&#xe9;ro de la
           tombe. Nous v&#xe9;rifions le r&#xe8;glement, nous adaptons le monument aux dimensions
@@ -515,7 +704,7 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
       {
         cimetiere.cineraire.length > 0 && (
           <section class="bloc" id="cendres" aria-labelledby="titre-cendres" data-entree>
-            <p class="label">Urnes et tarifs</p>
+            <p class="label">{cimetiere.tarifs ? "Urnes et tarifs" : "Urnes et cendres"}</p>
             <h2 class="type-h2 bloc-titre" id="titre-cendres">
               Urnes, columbarium et jardin du souvenir
             </h2>
@@ -1250,6 +1439,13 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     font-size: 1.4375rem;
     line-height: 1.25;
     color: var(--ink);
+  }
+  /* Deuxieme et troisieme reperes en clair (fiches sans schema complet) :
+     meme dessin, separes par un filet. */
+  .repere-cle-ligne + .repere-cle-ligne {
+    margin-top: 0.875rem;
+    border-top: 1px solid var(--line);
+    padding-top: 0.875rem;
   }
   .reperes-repli {
     margin-top: 0.875rem;
