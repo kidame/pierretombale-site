@@ -1,5 +1,10 @@
 # ETAT.md : relais entre sessions
 
+## Derniere session - hub cimetieres (10.11.2026)
+
+Refonte privee de /cimetieres/ terminee. Recherche, neuf cartes, reglements des 24 communes en accordions, contenu et SEO conserves. Build 75 pages et Lighthouse local mobile/desktop 100 dans les quatre categories. Export autonome cimetieres-accueil-maquette.html remis pour validation. Aucun push ni deploiement de ce hub. Voir docs/UX-HUB-CIMETIERES.md. Prochaine etape : retour visuel puis publication sur instruction.
+
+
 <!-- protocole-produit-10:debut -->
 ## Protocole de production actif
 

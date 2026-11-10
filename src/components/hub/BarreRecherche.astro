@@ -1,0 +1,270 @@
+---
+/* Recherche du hub /cimetieres/ : un champ, un compteur annonce, un bouton
+   pour effacer. Elle filtre les listes deja presentes dans la page, elle ne
+   charge rien et n invente aucun lieu.
+
+   CONTRAT AVEC LES LISTES (aucune dependance dans l autre sens) :
+   - un conteneur porte `data-recherche-groupe`, plus `data-libelle-un`,
+     `data-libelle-plus` et `data-libelle-zero` pour la phrase du compteur ;
+   - chaque entree filtrable porte `data-recherche-item` et `data-mots`, qui
+     ne contient QUE des noms venus de src/data/cimetieres.ts (nom du
+     cimetiere, commune, localites desservies). Aucune geographie ajoutee :
+     un village absent des donnees ne devient pas cherchable ;
+   - un message d etat vide porte `data-recherche-vide`.
+   Un bouton `data-recherche-vider`, ici ou dans un etat vide, remet tout a zero.
+
+   Sans JavaScript : le champ et les boutons portent `hidden` dans le HTML
+   initial, les neuf liens et les vingt-six communes restent tous visibles.
+   C est le script qui retire ces `hidden`, apres avoir trouve ses listes :
+   on ne montre jamais une commande qui ne marcherait pas.
+
+   Fichier en ASCII : les libelles francais passent par des echappements. */
+
+interface Props {
+  /** Identifiant du champ, cible du <label>. */
+  id: string;
+  /** Nombre d entrees de chaque groupe, pour la phrase par defaut. */
+  compteParDefaut: string;
+}
+
+const { id, compteParDefaut } = Astro.props;
+
+const LIBELLE = "Trouver un cimeti\u00e8re ou une commune";
+const INDICE =
+  "Tapez le nom d'un cimeti\u00e8re, d'une commune ou d'une localit\u00e9 " +
+  "desservie, par exemple Peseux, Milvignes ou Les Brenets. Les accents et les " +
+  "majuscules n'ont pas d'importance.";
+const EXEMPLE = "Cimeti\u00e8re, commune ou village";
+const EFFACER = "Effacer la recherche";
+---
+
+<div class="hub-recherche" role="search" data-recherche>
+  <label class="field-label hub-recherche-label" for={id}>{LIBELLE}</label>
+  <div class="hub-recherche-champ" hidden data-recherche-boite>
+    <input
+      class="field hub-recherche-saisie"
+      id={id}
+      type="search"
+      name="cimetiere"
+      autocomplete="off"
+      spellcheck="false"
+      enterkeyhint="search"
+      placeholder={EXEMPLE}
+      aria-describedby={`${id}-indice`}
+      data-recherche-saisie
+    />
+    <button class="chip hub-recherche-vider" type="button" hidden data-recherche-vider>
+      {EFFACER}
+    </button>
+  </div>
+  <p class="hub-recherche-indice" id={`${id}-indice`}>{INDICE}</p>
+  <p
+    class="hub-recherche-compte"
+    role="status"
+    data-recherche-compte
+    data-defaut={compteParDefaut}
+  >
+    {compteParDefaut}
+  </p>
+</div>
+
+<style>
+  .hub-recherche {
+    border: 1px solid var(--line-strong);
+    border-left: 2px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 5%, transparent);
+    padding: 1.5rem 1.375rem;
+  }
+  .hub-recherche-label {
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    line-height: 1.3;
+    font-weight: 400;
+  }
+  .hub-recherche-champ {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .hub-recherche-champ[hidden] {
+    display: none;
+  }
+  .hub-recherche-saisie {
+    flex: 1 1 14rem;
+    min-width: 0;
+    min-height: 3.25rem;
+  }
+  /* Le rond natif de Chrome sur un champ de recherche : garde, il est connu. */
+  .hub-recherche-vider[hidden] {
+    display: none;
+  }
+  .hub-recherche-vider {
+    flex: none;
+    transition:
+      color 220ms ease,
+      background-color 220ms ease,
+      box-shadow 220ms ease,
+      transform 160ms var(--ease-out-quart);
+  }
+  .hub-recherche-vider:active {
+    transform: translateY(1px);
+  }
+  .hub-recherche-indice {
+    margin-top: 0.875rem;
+    max-width: 52ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .hub-recherche-compte {
+    margin-top: 1rem;
+    padding-top: 0.875rem;
+    border-top: 1px solid var(--line);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hub-recherche-vider {
+      transition: none;
+    }
+    .hub-recherche-vider:active {
+      transform: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  /* Filtre des listes du hub. Autonome, sans dependance, sans reseau.
+     Il ne cache une entree que si la personne a tape quelque chose, et il
+     n affiche ses commandes qu apres avoir trouve au moins un groupe. */
+  (function () {
+    /* Le champ vit dans le hero, les listes sont plus bas dans la page : ce
+       script est donc execute AVANT que ses listes existent. On attend la fin
+       de l analyse du document. Tant qu on n a pas trouve de liste, le champ
+       reste `hidden` : on ne montre jamais une commande sans effet. */
+    /* Le champ est devoile TOUT DE SUITE, pendant l analyse du document et
+       donc avant la premiere peinture : le reveler plus tard decalerait toute
+       la page (Cumulative Layout Shift). Si, contre toute attente, aucune
+       liste n est trouvee, `demarre()` le remasque. */
+    var boiteTot = document.querySelector("[data-recherche-boite]");
+    if (boiteTot) boiteTot.hidden = false;
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", demarre);
+    } else {
+      demarre();
+    }
+
+    function demarre() {
+      var zone = document.querySelector("[data-recherche]");
+      if (!zone) return;
+      var saisie = zone.querySelector("[data-recherche-saisie]");
+      var boite = zone.querySelector("[data-recherche-boite]");
+      var compte = zone.querySelector("[data-recherche-compte]");
+      if (!saisie || !boite || !compte) return;
+
+      function nettoie(texte) {
+        var t = String(texte).toLowerCase();
+        if (t.normalize) t = t.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return t.replace(/[^a-z0-9]+/g, " ").trim();
+      }
+
+      var groupes = [].slice
+        .call(document.querySelectorAll("[data-recherche-groupe]"))
+        .map(function (noeud) {
+          return {
+            noeud: noeud,
+            un: noeud.getAttribute("data-libelle-un") || "",
+            plus: noeud.getAttribute("data-libelle-plus") || "",
+            zero: noeud.getAttribute("data-libelle-zero") || "",
+            vide: noeud.querySelector("[data-recherche-vide]"),
+            entrees: [].slice.call(noeud.querySelectorAll("[data-recherche-item]")).map(function (e) {
+              return { noeud: e, mots: nettoie(e.getAttribute("data-mots") || "") };
+            }),
+          };
+        })
+        .filter(function (g) {
+          return g.entrees.length > 0;
+        });
+      if (groupes.length === 0) {
+        boite.hidden = true;
+        return;
+      }
+
+      var defaut = compte.getAttribute("data-defaut") || compte.textContent;
+      var viderTous = [].slice.call(document.querySelectorAll("[data-recherche-vider]"));
+
+      function phrase(n, groupe) {
+        if (n === 0) return groupe.zero;
+        return n + " " + (n === 1 ? groupe.un : groupe.plus);
+      }
+
+      function applique() {
+        var brut = saisie.value;
+        var requete = nettoie(brut);
+        var mots = requete ? requete.split(" ") : [];
+        var morceaux = [];
+        var total = 0;
+
+        groupes.forEach(function (groupe) {
+          var trouves = 0;
+          groupe.entrees.forEach(function (entree) {
+            var garde =
+              mots.length === 0 ||
+              mots.every(function (mot) {
+                return entree.mots.indexOf(mot) !== -1;
+              });
+            if (garde) trouves += 1;
+            if (entree.noeud.hidden === !garde) return;
+            entree.noeud.hidden = !garde;
+          });
+          if (groupe.vide) groupe.vide.hidden = !(mots.length > 0 && trouves === 0);
+          morceaux.push(phrase(trouves, groupe));
+          total += trouves;
+        });
+
+        viderTous.forEach(function (bouton) {
+          bouton.hidden = mots.length === 0;
+        });
+
+        if (mots.length === 0) {
+          compte.textContent = defaut;
+          return;
+        }
+        var liste = morceaux.join(" et ");
+        /* Guillemets francais et espaces insecables, par echappement. */
+        var ouvre = " \u00ab\u00a0";
+        var ferme = "\u00a0\u00bb";
+        var annonce =
+          total === 0
+            ? "Aucun r\u00e9sultat pour" + ouvre + brut.trim() + ferme + " : " + liste + "."
+            : liste + " pour" + ouvre + brut.trim() + ferme + ".";
+        // La phrase commence parfois par "aucune ..." : majuscule initiale.
+        compte.textContent = annonce.charAt(0).toUpperCase() + annonce.slice(1);
+      }
+
+      function remet(rendLeFocus) {
+        saisie.value = "";
+        applique();
+        if (rendLeFocus) saisie.focus();
+      }
+
+      saisie.addEventListener("input", applique);
+      saisie.addEventListener("keydown", function (evenement) {
+        if (evenement.key === "Escape" && saisie.value !== "") {
+          evenement.preventDefault();
+          remet(true);
+        }
+      });
+      viderTous.forEach(function (bouton) {
+        bouton.addEventListener("click", function () {
+          remet(true);
+        });
+      });
+
+      applique();
+    }
+  })();
+</script>

@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import MentionVerification from "@/components/MentionVerification.astro";
+import BarreRecherche from "@/components/hub/BarreRecherche.astro";
+import ListeCimetieres from "@/components/hub/ListeCimetieres.astro";
+import ListeCommunes from "@/components/hub/ListeCommunes.astro";
+import Repli from "@/components/hub/Repli.astro";
 import { pageTitle } from "@/config/site";
 import { LOI_CANTONALE, SOURCES } from "@/data/cimetieres-ne";
 import {
@@ -8,17 +12,35 @@ import {
   CIMETIERES_URL,
   COMMUNES_NE,
   VERIFIE_LE,
-  cimetiereUrl,
   mentionVerification,
 } from "@/data/cimetieres";
 import { guideUrl } from "@/data/guides";
 import { FAMILLE_LABELS, familleUrl } from "@/data/products";
 import { breadcrumbSchema } from "@/data/seo";
 
-/* Hub des pages cimetiere. Deux contenus : les pages ecrites, et le tableau
-   des 24 communes du canton (src/data/cimetieres.ts, releve du 28.10.2026).
-   Sur telephone le tableau devient une liste de cartes : un tableau de sept
-   colonnes deborderait. Les deux vues lisent la MEME liste.
+/* Hub des pages cimetiere, version 2 (10.11.2026). Deux contenus, les memes
+   qu avant : les neuf pages ecrites, et le releve des 24 communes du canton
+   (src/data/cimetieres.ts, releve du 28.10.2026).
+
+   CE QUI CHANGE PAR RAPPORT A LA V1
+   - Entree compacte : le titre, le chapo et, tout de suite a cote, un champ
+     qui filtre les neuf pages ET les vingt-six lignes du releve. Les trente-
+     cinq entrees restent dans le HTML servi et visibles sans JavaScript ; la
+     recherche ne fait que masquer. Elle ne connait que les noms ecrits dans
+     les donnees : aucune geographie ajoutee, aucune carte.
+   - Le releve des communes n est plus ecrit DEUX FOIS (un tableau de sept
+     colonnes sur ordinateur, vingt-six cartes sur telephone) : un seul
+     balisage, vingt-six panneaux depliables natifs, chaque fait une seule
+     fois. Voir src/components/hub/ListeCommunes.astro.
+   - Les constantes, les questions frequentes et les documents officiels se
+     lisent en panneaux depliables, du meme dessin que ceux des neuf fiches.
+   - L appel final est une bande sombre collee au pied de page.
+
+   SEO : meme titre, meme description, meme canonique, meme h1, meme FAQPage,
+   meme fil d Ariane, memes liens, et l ancre #communes est conservee. Les
+   seuls ecarts de texte sont d habillage, listes dans
+   docs/UX-HUB-CIMETIERES.md.
+
    Rien ici qui ne figure pas dans docs/DIMENSIONS-MONUMENTS.md,
    docs/REGLEMENTS-CIMETIERES-NE.md ou docs/CIMETIERES-PRATIQUE.md. */
 
@@ -86,281 +108,178 @@ const constantes: string[] = [
   "Un monument non conforme est enlevé après deux ou trois mois, aux frais de l'entreprise qui l'a posé.",
   "Une taxe communale de pose n'existe que dans trois communes : Neuchâtel (CHF 60.- par mètre de pourtour augmenté de la hauteur), La Chaux-de-Fonds (CHF 50.-) et Le Locle (CHF 200.- pour la pose sur le sommier communal).",
 ];
+
+/* Les nombres annonces sont comptes dans les donnees, jamais ecrits a la main :
+   le releve a plus de lignes que de communes (Neuchâtel en occupe trois), et
+   nous avons moins de pages que de communes. La phrase du compteur le dit. */
+const nombreCommunes = new Set(COMMUNES_NE.map((commune) => commune.commune)).size;
+const nombreSources = Object.keys(SOURCES).length;
+const compteParDefaut =
+  `${CIMETIERES.length} pages de cimetière écrites, et ${COMMUNES_NE.length} lignes de ` +
+  `relevé qui couvrent les ${nombreCommunes} communes du canton.`;
+
+const videPages =
+  "Nous n'avons pas encore de page pour ce nom. Les règles de la commune " +
+  "peuvent se trouver dans les lignes du relevé, juste en dessous.";
+const videCommunes =
+  "Aucune ligne du relevé ne porte ce nom. Essayez le nom de la commune " +
+  "plutôt que celui du village, vérifiez l'orthographe, ou demandez-nous : " +
+  "nous lisons le règlement du cimetière concerné avant toute pose.";
 ---
 
 <BaseLayout
   title={pageTitle("Cimetières du canton de Neuchâtel : tombes et règles de pose")}
   description="Les règles des cimetières neuchâtelois, commune par commune : délai avant la pose, dimensions d'une tombe d'adulte, hauteur, bordure et autorisation."
+  footerJoint
 >
   <main id="main-content">
-    {/* --------------------------------------------------------- En-tete */}
-    <section class="shell pb-12 pt-12 md:pb-16 md:pt-20">
-      <p class="label">Informations</p>
-      <h1 class="type-h1 mt-4 max-w-[26ch]">
-        Cimetières du canton de Neuchâtel : dimensions des tombes et règles de pose
-      </h1>
-      <p class="type-lead mt-8 max-w-[58ch]">
-        Il n'existe aucune règle nationale sur la taille d'un monument funéraire : c'est la commune qui
-        décide, parfois cimetière par cimetière. La {LOI_CANTONALE} se borne à admettre les monuments
-        « sous réserve des conditions que pourront déterminer les autorités communales » (art. 9) et à
-        fixer la réouverture des fosses à trente ans au moins (art. 6).
-      </p>
-      <p class="type-body mt-6 max-w-[58ch]">
-        Nous avons relevé les règlements des 24 communes du canton. Voici ce qu'ils autorisent, avec
-        l'article et le document officiel pour chaque commune.
-      </p>
-      <div class="mt-8">
-        <MentionVerification texte={mentionVerification(VERIFIE_LE)} />
+    {/* ------------------------------------------------- Entree et recherche */}
+    <section class="shell hub-hero">
+      <div class="hub-hero-grille">
+        <div class="hub-hero-titre" data-entree>
+          <span class="hub-hero-trait" aria-hidden="true" data-hero-trait></span>
+          <p class="label">Informations</p>
+          <h1 class="type-h1 hub-hero-h1">
+            Cimetières du canton de Neuchâtel : dimensions des tombes et règles de pose
+          </h1>
+        </div>
+
+        <div class="hub-hero-outil" data-entree data-entree-decalage="60">
+          <BarreRecherche id="recherche-cimetiere" compteParDefaut={compteParDefaut} />
+        </div>
+
+        <div class="hub-hero-texte" data-entree data-entree-decalage="120">
+          <p class="type-lead">
+            Il n'existe aucune règle nationale sur la taille d'un monument funéraire : c'est la commune qui
+            décide, parfois cimetière par cimetière. La {LOI_CANTONALE} se borne à admettre les monuments
+            « sous réserve des conditions que pourront déterminer les autorités communales » (art. 9) et à
+            fixer la réouverture des fosses à trente ans au moins (art. 6).
+          </p>
+          <p class="type-body hub-hero-note">
+            Nous avons relevé les règlements des 24 communes du canton. Voici ce qu'ils autorisent, avec
+            l'article et le document officiel pour chaque commune.
+          </p>
+        </div>
+
+        <div class="hub-hero-mention" data-entree data-entree-decalage="120">
+          <MentionVerification texte={mentionVerification(VERIFIE_LE)} />
+        </div>
       </div>
     </section>
 
-    {/* ------------------------------------------------- Pages cimetiere */}
-    <section class="shell mt-8 md:mt-12">
-      <div class="rule"></div>
-      <h2 class="type-h2 mt-8 max-w-[22ch]">Nos pages par cimetière</h2>
-      <ul class="mt-8 border-t border-line">
-        {
-          CIMETIERES.map((fiche) => (
-            <li class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-12">
-              <h3 class="type-h3 max-w-[26ch] md:col-span-5">
-                <a href={cimetiereUrl(fiche.slug)} class="link">
-                  {fiche.nom}
-                </a>
-              </h3>
-              <div class="md:col-span-7">
-                <p class="type-body max-w-[56ch] text-[0.9375rem]">{fiche.chapo}</p>
-                <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem] text-muted">
-                  Délai de pose : {fiche.chiffres.delai.toLowerCase()} · tombe d'adulte :{" "}
-                  {fiche.chiffres.tombeAdulte.toLowerCase()} · hauteur : {fiche.chiffres.hauteurMax.toLowerCase()}
-                </p>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
-      <p class="type-body mt-6 max-w-[58ch] text-[0.9375rem] text-muted">
-        D'autres cimetières du canton auront leur page. En attendant, le tableau ci-dessous donne les règles
-        relevées pour chaque commune, et nous répondons volontiers par téléphone ou par le devis.
-      </p>
-    </section>
+    {/* --------------------------------------------------- Pages cimetiere */}
+    <div class="shell">
+      <ListeCimetieres fiches={CIMETIERES} texteVide={videPages}>
+        <Fragment slot="note">
+          D'autres cimetières du canton auront leur page. En attendant, la liste ci-dessous donne les règles
+          relevées pour chaque commune, et nous répondons volontiers par téléphone ou par le devis.
+        </Fragment>
+      </ListeCimetieres>
 
-    {/* ---------------------------------------------- Tableau du canton */}
-    <section class="shell mt-20 md:mt-28" id="communes">
-      <div class="rule"></div>
-      <h2 class="type-h2 mt-8 max-w-[24ch]">Les 24 communes du canton</h2>
-      <p class="type-body mt-6 max-w-[58ch]">
-        Dimensions en centimètres, longueur par largeur, bordure comprise sauf mention contraire.
-        « Non publiée » signifie que la valeur ne figure pas dans le texte officiel : elle est à demander à
-        la commune, et nous le faisons avant la commande. La commune de Neuchâtel occupe trois lignes :
-        ses quatre cimetières n'ont pas les mêmes maximums.
-      </p>
+      {/* ------------------------------------------------ Releve du canton */}
+      <ListeCommunes communes={COMMUNES_NE} fiches={CIMETIERES} texteVide={videCommunes} />
 
-      {/* Ordinateur : un vrai tableau. */}
-      <div class="mt-12 hidden overflow-x-auto md:block">
-        <table class="w-full border-collapse text-left">
-          <thead>
-            <tr class="border-y border-line">
-              <th scope="col" class="label py-4 pr-5 font-normal">Commune</th>
-              <th scope="col" class="label py-4 pr-5 font-normal">Délai</th>
-              <th scope="col" class="label py-4 pr-5 font-normal">Tombe d'adulte</th>
-              <th scope="col" class="label py-4 pr-5 font-normal">Hauteur max.</th>
-              <th scope="col" class="label py-4 pr-5 font-normal">Bordure</th>
-              <th scope="col" class="label py-4 pr-5 font-normal">Tombe cinéraire</th>
-              <th scope="col" class="label py-4 font-normal">Texte officiel</th>
-            </tr>
-          </thead>
-          <tbody class="text-[0.875rem]">
-            {
-              COMMUNES_NE.map((commune) => (
-                <tr class="border-b border-line align-top">
-                  <th scope="row" class="max-w-[18ch] py-5 pr-5 font-normal">
-                    {commune.slug ? (
-                      <a href={cimetiereUrl(commune.slug)} class="link">
-                        {commune.commune}
-                      </a>
-                    ) : (
-                      commune.commune
-                    )}
-                    {commune.cimetiere && <span class="block text-muted">{commune.cimetiere}</span>}
-                  </th>
-                  <td class="py-5 pr-5">{commune.delai}</td>
-                  <td class="py-5 pr-5">{commune.tombeAdulte}</td>
-                  <td class="py-5 pr-5 text-muted">{commune.hauteurMax}</td>
-                  <td class="py-5 pr-5 text-muted">{commune.bordure}</td>
-                  <td class="py-5 pr-5 text-muted">{commune.cineraire}</td>
-                  <td class="py-5 text-muted">
-                    {commune.texte.url ? (
-                      <a href={commune.texte.url} class="link" rel="noopener">
-                        {commune.texte.titre}
-                      </a>
-                    ) : (
-                      commune.texte.titre
-                    )}
-                    <span class="block">{commune.texte.date}</span>
-                    {commune.note && <span class="block mt-2">{commune.note}</span>}
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
+      {/* -------------------------------------------- Constantes du canton */}
+      <section class="hub-section" data-entree aria-labelledby="hub-constantes-titre">
+        <div class="rule"></div>
+        <h2 class="type-h2 hub-section-titre" id="hub-constantes-titre">Les constantes du canton</h2>
+        <p class="type-body hub-section-chapo">
+          Ce qui revient dans presque tous les règlements relevés, quelle que soit la commune.
+        </p>
+        <div class="hub-replis">
+          <Repli titre={`Les ${constantes.length} constantes relevées`} niveau="h3">
+            <ul class="hub-puces">
+              {constantes.map((ligne) => <li>{ligne}</li>)}
+            </ul>
+          </Repli>
+          <Repli titre="Une contradiction relevée avec la loi cantonale" niveau="h3">
+            <p>
+              Deux communes, Cornaux et Cressier, écrivent « vingt ans au moins » pour la réouverture des fosses,
+              en contradiction avec la loi cantonale qui en demande trente : nous le faisons confirmer par la
+              commune avant toute commande.
+            </p>
+          </Repli>
+        </div>
+      </section>
 
-      {/* Telephone : une carte par commune, pas de defilement horizontal. */}
-      <ul class="mt-10 space-y-6 md:hidden">
-        {
-          COMMUNES_NE.map((commune) => (
-            <li class="carte-commune">
-              <h3 class="type-h3">
-                {commune.slug ? (
-                  <a href={cimetiereUrl(commune.slug)} class="link">
-                    {commune.commune}
-                  </a>
-                ) : (
-                  commune.commune
-                )}
-              </h3>
-              {commune.cimetiere && <p class="carte-sous-titre">{commune.cimetiere}</p>}
-              <dl class="carte-liste">
-                <div>
-                  <dt>Délai</dt>
-                  <dd>{commune.delai}</dd>
-                </div>
-                <div>
-                  <dt>Tombe d'adulte</dt>
-                  <dd>{commune.tombeAdulte}</dd>
-                </div>
-                <div>
-                  <dt>Hauteur maximale</dt>
-                  <dd>{commune.hauteurMax}</dd>
-                </div>
-                <div>
-                  <dt>Bordure</dt>
-                  <dd>{commune.bordure}</dd>
-                </div>
-                <div>
-                  <dt>Tombe cinéraire</dt>
-                  <dd>{commune.cineraire}</dd>
-                </div>
-                <div>
-                  <dt>Texte officiel</dt>
-                  <dd>
-                    {commune.texte.url ? (
-                      <a href={commune.texte.url} class="link" rel="noopener">
-                        {commune.texte.titre}
-                      </a>
-                    ) : (
-                      commune.texte.titre
-                    )}
-                    <span class="block">{commune.texte.date}</span>
-                  </dd>
-                </div>
-                {commune.note && (
-                  <div>
-                    <dt>À savoir</dt>
-                    <dd>{commune.note}</dd>
-                  </div>
-                )}
-              </dl>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+      {/* ------------------------------------------------------------- FAQ */}
+      <section class="hub-section" data-entree aria-labelledby="hub-faq-titre">
+        <div class="rule"></div>
+        <h2 class="type-h2 hub-section-titre" id="hub-faq-titre">Questions fréquentes</h2>
+        <div class="hub-replis">
+          {
+            questions.map((item, index) => (
+              <Repli titre={item.question} niveau="h3" ouvert={index === 0}>
+                <p>{item.reponse}</p>
+              </Repli>
+            ))
+          }
+        </div>
+      </section>
 
-    {/* ------------------------------------------ Constantes du canton */}
-    <section class="shell mt-20 md:mt-28">
-      <div class="rule"></div>
-      <h2 class="type-h2 mt-8 max-w-[24ch]">Les constantes du canton</h2>
-      <p class="type-body mt-6 max-w-[58ch]">
-        Ce qui revient dans presque tous les règlements relevés, quelle que soit la commune.
-      </p>
-      <ul class="type-body mt-8 max-w-[64ch] space-y-4 pl-5 [list-style:disc]">
-        {constantes.map((ligne) => <li class="text-[0.9375rem]">{ligne}</li>)}
-      </ul>
-      <p class="type-body mt-8 max-w-[58ch] text-[0.9375rem] text-muted">
-        Deux communes, Cornaux et Cressier, écrivent « vingt ans au moins » pour la réouverture des fosses,
-        en contradiction avec la loi cantonale qui en demande trente : nous le faisons confirmer par la
-        commune avant toute commande.
-      </p>
-    </section>
+      {/* --------------------------------------------- Documents officiels */}
+      <section class="hub-section" data-entree aria-labelledby="hub-sources-titre">
+        <div class="rule"></div>
+        <h2 class="type-h2 hub-section-titre" id="hub-sources-titre">Documents officiels</h2>
+        <div class="hub-replis">
+          <Repli titre={`Les ${nombreSources} documents consultables en ligne`} niveau="h3">
+            <ul class="hub-sources">
+              {
+                Object.entries(SOURCES).map(([, source]) => (
+                  <li>
+                    <a href={source.url} class="link link-mono text-muted" rel="noopener">
+                      {source.libelle}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </Repli>
+        </div>
+        <p class="type-body hub-section-note">
+          Les règlements des autres communes ne sont pas tous en ligne : leur nom et leur date figurent dans
+          la liste ci-dessus.
+        </p>
+      </section>
 
-    {/* ----------------------------------------------------------- FAQ */}
-    <section class="shell mt-20 md:mt-28">
-      <div class="rule"></div>
-      <h2 class="type-h2 mt-8 max-w-[22ch]">Questions fréquentes</h2>
-      <dl class="mt-8 border-t border-line">
-        {
-          questions.map((item) => (
-            <div class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-12">
-              <dt class="type-h3 max-w-[26ch] md:col-span-5">{item.question}</dt>
-              <dd class="md:col-span-7">
-                <p class="type-body max-w-[56ch] text-[0.9375rem]">{item.reponse}</p>
-              </dd>
-            </div>
-          ))
-        }
-      </dl>
-    </section>
+      {/* --------------------------------------------------- A lire ensuite */}
+      <section class="hub-section" data-entree aria-labelledby="hub-suite-titre">
+        <div class="rule"></div>
+        <h2 class="type-h2 hub-section-titre" id="hub-suite-titre">À lire ensuite</h2>
+        <ul class="hub-suite">
+          <li>
+            <a href={guideUrl("quand-poser-une-pierre-tombale")} class="link type-h3 hub-suite-titre">
+              Quand poser une pierre tombale
+            </a>
+            <p class="type-body hub-suite-texte">
+              Le délai commune par commune, les périodes où la pose est interdite, les autorisations et les
+              taxes communales.
+            </p>
+          </li>
+          <li>
+            <a href={guideUrl("columbarium-cavurne-jardin-du-souvenir")} class="link type-h3 hub-suite-titre">
+              Columbarium, cavurne et jardin du souvenir
+            </a>
+            <p class="type-body hub-suite-texte">
+              Ce que recouvre chaque mot, ce que propose chaque commune, les durées et les tarifs officiels.
+            </p>
+          </li>
+        </ul>
+      </section>
+    </div>
 
-    {/* --------------------------------------------- Documents officiels */}
-    <section class="shell mt-20 md:mt-28">
-      <div class="rule"></div>
-      <h2 class="type-h2 mt-8 max-w-[22ch]">Documents officiels</h2>
-      <ul class="mt-8 space-y-2">
-        {
-          Object.entries(SOURCES).map(([, source]) => (
-            <li>
-              <a href={source.url} class="link link-mono text-muted" rel="noopener">
-                {source.libelle}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-      <p class="type-body mt-6 max-w-[58ch] text-[0.9375rem] text-muted">
-        Les règlements des autres communes ne sont pas tous en ligne : leur nom et leur date figurent dans
-        le tableau ci-dessus.
-      </p>
-    </section>
-
-    {/* ------------------------------------------------- A lire ensuite */}
-    <section class="shell mt-20 md:mt-28">
-      <div class="rule"></div>
-      <h2 class="type-h2 mt-8 max-w-[22ch]">À lire ensuite</h2>
-      <ul class="mt-8 border-t border-line">
-        <li class="border-b border-line py-6">
-          <a href={guideUrl("quand-poser-une-pierre-tombale")} class="link type-h3">
-            Quand poser une pierre tombale
-          </a>
-          <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem]">
-            Le délai commune par commune, les périodes où la pose est interdite, les autorisations et les
-            taxes communales.
-          </p>
-        </li>
-        <li class="border-b border-line py-6">
-          <a href={guideUrl("columbarium-cavurne-jardin-du-souvenir")} class="link type-h3">
-            Columbarium, cavurne et jardin du souvenir
-          </a>
-          <p class="type-body mt-3 max-w-[56ch] text-[0.9375rem]">
-            Ce que recouvre chaque mot, ce que propose chaque commune, les durées et les tarifs officiels.
-          </p>
-        </li>
-      </ul>
-    </section>
-
-    {/* --------------------------------------------------------- Appel */}
-    <section class="shell mt-20 md:mt-28">
-      <div class="grid items-end gap-8 md:grid-cols-12">
-        <div class="md:col-span-7">
-          <h2 class="type-h2 max-w-[20ch]">Votre cimetière, votre monument</h2>
-          <p class="type-body mt-6 max-w-[52ch]">
+    {/* ------------------------------------------------------------- Appel */}
+    <section class="nuit hub-appel" data-entree aria-labelledby="hub-appel-titre">
+      <div class="shell hub-appel-grille">
+        <div>
+          <h2 class="type-h2 hub-appel-titre" id="hub-appel-titre">Votre cimetière, votre monument</h2>
+          <p class="type-body hub-appel-texte">
             Donnez-nous la commune, le nom du cimetière et le type de sépulture : nous vérifions le
             règlement, nous réalisons le monument sur mesure aux dimensions autorisées, nous déposons la
             demande de pose et nous établissons un devis gratuit.
           </p>
         </div>
-        <div class="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
+        <div class="hub-appel-actions">
           <a href="/devis/" class="btn btn-primary">Demander un devis</a>
           <a href={familleUrl("monument")} class="btn btn-outline">{FAMILLE_LABELS.monument}</a>
         </div>
@@ -373,29 +292,291 @@ const constantes: string[] = [
 </BaseLayout>
 
 <style>
-  .carte-commune {
-    border: 1px solid var(--line);
-    padding: 1.25rem;
+  /* ------------------------------------------------- Entree et recherche
+     Deux colonnes des 64rem : le titre et le texte a gauche, la recherche a
+     droite sur toute la hauteur. Sur telephone, la recherche passe JUSTE
+     apres le titre : c est la premiere chose a portee de pouce, le chapo se
+     lit ensuite. Aucune hauteur forcee, aucun 100vh. */
+  .hub-hero {
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
   }
-  .carte-sous-titre {
-    margin-top: 0.35rem;
-    font-size: 0.875rem;
-    color: var(--muted);
-  }
-  .carte-liste {
-    margin-top: 1rem;
+  .hub-hero-grille {
     display: grid;
-    gap: 0.85rem;
+    gap: 2rem;
+    grid-template-areas:
+      "titre"
+      "outil"
+      "texte"
+      "mention";
   }
-  .carte-liste dt {
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .hub-hero-titre {
+    grid-area: titre;
+  }
+  .hub-hero-outil {
+    grid-area: outil;
+  }
+  .hub-hero-texte {
+    grid-area: texte;
+  }
+  .hub-hero-mention {
+    grid-area: mention;
+  }
+  /* Le seul trace decoratif de la page, comme sur les neuf fiches. */
+  .hub-hero-trait {
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    margin-bottom: 1.25rem;
+    background: var(--accent);
+    transform-origin: left center;
+  }
+  .hub-hero-h1 {
+    margin-top: 1rem;
+    max-width: 26ch;
+  }
+  .hub-hero-texte .type-lead {
+    max-width: 58ch;
+  }
+  .hub-hero-note {
+    margin-top: 1.25rem;
+    max-width: 58ch;
+    font-size: 1rem;
+  }
+
+  /* ------------------------------------------------- Sections de la suite */
+  .hub-section {
+    margin-top: 4rem;
+  }
+  .hub-section-titre {
+    margin-top: 2rem;
+    max-width: 24ch;
+  }
+  .hub-section-chapo {
+    margin-top: 1.5rem;
+    max-width: 62ch;
+  }
+  .hub-section-note {
+    margin-top: 1.75rem;
+    max-width: 62ch;
+    font-size: 1rem;
+  }
+  .hub-replis {
+    margin-top: 2rem;
+  }
+  /* Les constantes : une liste a puces dans son panneau. */
+  .hub-puces {
+    max-width: 70ch;
+    list-style: none;
+  }
+  .hub-puces li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 1.0625rem;
+    line-height: 1.7;
     color: var(--muted);
   }
-  .carte-liste dd {
-    margin-top: 0.25rem;
-    font-size: 0.9375rem;
-    line-height: 1.6;
+  .hub-puces li + li {
+    margin-top: 0.875rem;
+  }
+  .hub-puces li::before {
+    content: "";
+    position: absolute;
+    top: 0.85em;
+    left: 0;
+    width: 0.75rem;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hub-sources {
+    list-style: none;
+  }
+  .hub-sources li + li {
+    margin-top: 0.625rem;
+  }
+
+  /* --------------------------------------------------------- A lire ensuite */
+  .hub-suite {
+    margin-top: 2rem;
+    display: grid;
+    gap: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .hub-suite > li {
+    border-bottom: 1px solid var(--line);
+    padding-block: 1.75rem;
+  }
+  .hub-suite-titre {
+    font-size: 1.5rem;
+  }
+  .hub-suite-texte {
+    margin-top: 0.75rem;
+    max-width: 52ch;
+    font-size: 1rem;
+  }
+
+  /* ------------------------------------------------------------- Appel */
+  .hub-appel {
+    margin-top: 4.5rem;
+    padding-block: 3.5rem;
+  }
+  .hub-appel-grille {
+    display: grid;
+    gap: 2rem;
+  }
+  .hub-appel-titre {
+    max-width: 20ch;
+  }
+  .hub-appel-texte {
+    margin-top: 1.5rem;
+    max-width: 52ch;
+  }
+  .hub-appel-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 48rem) {
+    .hub-suite {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 3rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .hub-hero {
+      padding-top: 4rem;
+      padding-bottom: 1.5rem;
+    }
+    .hub-hero-grille {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      grid-template-areas:
+        "titre outil"
+        "texte mention";
+      column-gap: 4rem;
+      row-gap: 2.5rem;
+      align-items: start;
+    }
+    .hub-section {
+      margin-top: 5.5rem;
+    }
+    .hub-appel {
+      margin-top: 6rem;
+      padding-block: 5rem;
+    }
+    .hub-appel-grille {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      column-gap: 4rem;
+      align-items: end;
+    }
+    .hub-appel-actions {
+      justify-content: flex-end;
+    }
   }
 </style>
+
+<script is:inline>
+  /* Mouvement du hub : l ouverture des panneaux depliables, une seule passe
+     d entree par section, et le trace du filet bronze du titre. Autonome,
+     aucune dependance, aucun reseau. Meme script que celui des neuf fiches
+     (src/components/GuideCimetiere.astro), adapte aux classes du hub.
+
+     Regles tenues : rien n est jamais laisse a l opacite 0 (l animation part
+     de 0 et ne remplit pas son etat final, donc une section reste lisible
+     meme si le script casse) ; aucune boucle, aucun parallaxe, aucun
+     compteur ; les listes filtrees ne sont PAS animees, parce qu on les
+     refiltre a chaque frappe. Si la personne demande moins de mouvement,
+     tout est instantane. */
+  (function () {
+    var doux = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var courbe = "cubic-bezier(0.25, 1, 0.5, 1)";
+
+    /* ------------------------------------------- Panneaux depliables */
+    [].slice.call(document.querySelectorAll("details.hub-repli-anime")).forEach(function (repli) {
+      var resume = repli.querySelector("summary");
+      var corps = resume ? resume.nextElementSibling : null;
+      if (!resume || !corps) return;
+      var enCours = null;
+      var ouvertVoulu = repli.open;
+
+      function arrete() {
+        if (!enCours) return;
+        enCours.onfinish = null;
+        enCours.oncancel = null;
+        enCours.cancel();
+        enCours = null;
+        corps.style.height = "";
+      }
+
+      resume.addEventListener("click", function (evenement) {
+        // Le clavier et la reduction du mouvement gardent la bascule native.
+        if (doux.matches || evenement.detail === 0 || typeof corps.animate !== "function") {
+          if (enCours) {
+            arrete();
+            repli.open = ouvertVoulu;
+          }
+          return;
+        }
+        evenement.preventDefault();
+        var etat = enCours ? ouvertVoulu : repli.open;
+        var depart = repli.open ? corps.getBoundingClientRect().height : 0;
+        arrete();
+        ouvertVoulu = !etat;
+        repli.open = true;
+        var hauteur = corps.scrollHeight;
+        var arrivee = ouvertVoulu ? hauteur : 0;
+        corps.style.height = depart + "px";
+        var animation = corps.animate(
+          [
+            { height: depart + "px", opacity: etat ? 1 : 0 },
+            { height: arrivee + "px", opacity: ouvertVoulu ? 1 : 0 },
+          ],
+          { duration: 220, easing: courbe },
+        );
+        enCours = animation;
+        animation.onfinish = function () {
+          if (enCours !== animation) return;
+          repli.open = ouvertVoulu;
+          corps.style.height = "";
+          enCours = null;
+        };
+      });
+    });
+
+    if (doux.matches) return;
+
+    /* ----------------------------------------- Filet bronze du titre */
+    var trait = document.querySelector("[data-hero-trait]");
+    if (trait && typeof trait.animate === "function") {
+      trait.animate([{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }], {
+        duration: 420,
+        easing: courbe,
+      });
+    }
+
+    /* ------------------------------------------- Entree des sections */
+    if (!("IntersectionObserver" in window)) return;
+    var oeil = new IntersectionObserver(
+      function (entrees) {
+        entrees.forEach(function (entree) {
+          if (!entree.isIntersecting) return;
+          oeil.unobserve(entree.target);
+          var decalage = Number(entree.target.getAttribute("data-entree-decalage") || 0);
+          entree.target.animate(
+            [
+              { opacity: 0, transform: "translateY(12px)" },
+              { opacity: 1, transform: "none" },
+            ],
+            { duration: 340, delay: decalage, easing: courbe, fill: "none" },
+          );
+        });
+      },
+      { rootMargin: "0px 0px -6% 0px", threshold: 0.01 },
+    );
+    [].slice.call(document.querySelectorAll("[data-entree]")).forEach(function (cible) {
+      oeil.observe(cible);
+    });
+  })();
+</script>

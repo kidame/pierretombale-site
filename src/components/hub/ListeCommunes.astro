@@ -1,0 +1,211 @@
+---
+/* Les vingt-six lignes du releve des 24 communes, au bas du hub /cimetieres/.
+   Une ligne = un panneau depliable : le nom de la commune, les cimetieres
+   qu elle distingue et son delai sont lisibles SANS ouvrir le panneau (trois
+   lignes s appellent Neuchatel : sans le nom du cimetiere elles seraient
+   indiscernables). Le reste du reglement est dans le panneau.
+
+   POURQUOI PLUS DE TABLEAU. La version precedente ecrivait DEUX FOIS les
+   memes faits : un tableau de sept colonnes sur ordinateur, vingt-six cartes
+   sur telephone. Tout est ici une seule fois, dans un seul balisage servi aux
+   deux. Chaque fait du releve est conserve : delai, tombe d adulte, hauteur,
+   bordure, tombe cineraire, texte officiel avec sa date et son lien, et la
+   note quand il y en a une. Comparer se fait par le delai du resume et par la
+   recherche du hero.
+
+   Le lien vers une de nos neuf pages porte desormais le NOM DU CIMETIERE et
+   non celui de la commune : trois lignes s appellent Neuchatel et menent a
+   trois pages differentes. L adresse du lien est inchangee, et le nom de la
+   commune reste ecrit dans le resume du panneau.
+
+   Tout est dans le HTML servi : les `<details>` natifs s ouvrent sans
+   JavaScript, et la recherche ne fait que masquer les lignes hors sujet. */
+
+import Repli from "@/components/hub/Repli.astro";
+import { cimetiereUrl, type Cimetiere, type CommuneNE } from "@/data/cimetieres";
+
+interface Props {
+  communes: CommuneNE[];
+  /** Les neuf fiches, pour nommer le lien d une commune qui a sa page. */
+  fiches: Cimetiere[];
+  /** Phrase affichee quand la recherche ne trouve aucune commune. */
+  texteVide: string;
+}
+
+const { communes, fiches, texteVide } = Astro.props;
+
+const parSlug = new Map(fiches.map((fiche) => [fiche.slug, fiche]));
+
+/** Les mots sur lesquels une ligne repond : commune et cimetieres desservis. */
+function mots(commune: CommuneNE): string {
+  return [commune.commune, commune.cimetiere].filter(Boolean).join(" ");
+}
+---
+
+<section class="hub-bloc" id="communes" data-entree aria-labelledby="hub-communes-titre">
+  <div class="rule"></div>
+  <h2 class="type-h2 hub-bloc-titre" id="hub-communes-titre">Les 24 communes du canton</h2>
+  <p class="type-body hub-bloc-chapo">
+    Dimensions en centimètres, longueur par largeur, bordure comprise sauf mention contraire.
+    « Non publiée » signifie que la valeur ne figure pas dans le texte officiel : elle est à demander à
+    la commune, et nous le faisons avant la commande. La commune de Neuchâtel occupe trois lignes :
+    ses quatre cimetières n'ont pas les mêmes maximums.
+  </p>
+
+  <div
+    class="hub-communes"
+    data-recherche-groupe
+    data-libelle-un="ligne de commune"
+    data-libelle-plus="lignes de commune"
+    data-libelle-zero="aucune ligne de commune"
+  >
+    {
+      communes.map((commune) => {
+        const fiche = commune.slug ? parSlug.get(commune.slug) : undefined;
+        return (
+          <Repli
+            titre={commune.commune}
+            sousTitre={commune.cimetiere}
+            valeur={commune.delai}
+            valeurLibelle="Délai"
+            niveau="h3"
+            mots={mots(commune)}
+          >
+            <dl class="hub-commune-faits">
+              <div>
+                <dt>Tombe d'adulte</dt>
+                <dd>{commune.tombeAdulte}</dd>
+              </div>
+              <div>
+                <dt>Hauteur maximale</dt>
+                <dd>{commune.hauteurMax}</dd>
+              </div>
+              <div>
+                <dt>Bordure</dt>
+                <dd>{commune.bordure}</dd>
+              </div>
+              <div>
+                <dt>Tombe cinéraire</dt>
+                <dd>{commune.cineraire}</dd>
+              </div>
+              <div class="hub-commune-texte">
+                <dt>Texte officiel</dt>
+                <dd>
+                  {commune.texte.url ? (
+                    <a href={commune.texte.url} class="link" rel="noopener">
+                      {commune.texte.titre}
+                    </a>
+                  ) : (
+                    commune.texte.titre
+                  )}
+                  <span class="block">{commune.texte.date}</span>
+                </dd>
+              </div>
+              {commune.note && (
+                <div class="hub-commune-texte">
+                  <dt>À savoir</dt>
+                  <dd>{commune.note}</dd>
+                </div>
+              )}
+            </dl>
+            {fiche && (
+              <p class="hub-commune-lien">
+                Notre page :{" "}
+                <a href={cimetiereUrl(fiche.slug)} class="link">
+                  {fiche.nom}
+                </a>
+              </p>
+            )}
+          </Repli>
+        );
+      })
+    }
+    <div class="hub-vide" hidden data-recherche-vide>
+      <p>{texteVide}</p>
+      <button class="chip" type="button" data-recherche-vider>Effacer la recherche</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hub-bloc {
+    margin-top: 4rem;
+  }
+  .hub-bloc-titre {
+    margin-top: 2rem;
+    max-width: 24ch;
+  }
+  .hub-bloc-chapo {
+    margin-top: 1.5rem;
+    max-width: 62ch;
+  }
+  .hub-communes {
+    margin-top: 2.25rem;
+  }
+  .hub-commune-faits {
+    margin-top: 0.25rem;
+    display: grid;
+    gap: 1.125rem 2.5rem;
+  }
+  .hub-commune-faits dt {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hub-commune-faits dd {
+    margin-top: 0.3rem;
+    max-width: 46ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .hub-commune-faits .block {
+    display: block;
+    color: var(--muted);
+  }
+  .hub-commune-lien {
+    margin-top: 1.5rem;
+    padding-top: 1.125rem;
+    border-top: 1px solid var(--line);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .hub-vide {
+    padding-block: 2rem;
+  }
+  .hub-vide[hidden] {
+    display: none;
+  }
+  .hub-vide p {
+    max-width: 58ch;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .hub-vide .chip {
+    margin-top: 1.125rem;
+  }
+  @media (min-width: 48rem) {
+    .hub-commune-faits {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .hub-commune-texte {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (min-width: 64rem) {
+    .hub-bloc {
+      margin-top: 5.5rem;
+    }
+    .hub-commune-faits {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .hub-commune-texte {
+      grid-column: span 2;
+    }
+  }
+</style>
