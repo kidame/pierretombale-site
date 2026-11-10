@@ -1,0 +1,316 @@
+---
+/* Les possibilites, une par une, dans un grand ecrin editorial.
+
+   Composant reutilisable : il recoit des groupes {titre, lignes} deja
+   constitues a partir des donnees de la fiche. Aucune ligne n est reecrite
+   ni resumee.
+
+   Amelioration progressive. Dans le HTML initial, tous les panneaux sont
+   presents et visibles, chacun avec son titre : sans JavaScript, la section
+   se lit normalement, et les libelles de la barre sont de simples ancres
+   vers les panneaux. Le script pose les roles d onglets, le tabindex
+   tournant et les fleches, puis n affiche qu un panneau a la fois.
+
+   Fichier en ASCII : les libelles passent par des entites HTML. */
+
+interface Props {
+  groupes: { titre: string; lignes: string[] }[];
+  /** Prefixe des identifiants, si la page porte plusieurs jeux d onglets. */
+  prefixe?: string;
+}
+
+const { groupes, prefixe = "urne" } = Astro.props;
+---
+
+<div class="onglets" data-onglets>
+  <p class="label onglets-intro">Voir les possibilit&#xe9;s une par une</p>
+
+  <div class="onglets-barre" data-onglets-barre aria-label="Possibilit&#xe9;s pour les cendres">
+    <span class="onglets-trait" data-onglets-trait aria-hidden="true"></span>
+    {
+      groupes.map((groupe, index) => (
+        <a
+          class="onglet"
+          id={`${prefixe}-onglet-${index}`}
+          href={`#${prefixe}-panneau-${index}`}
+          data-onglets-bouton={index}
+        >
+          {groupe.titre}
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="onglets-panneaux">
+    {
+      groupes.map((groupe, index) => (
+        <article
+          class="ecrin"
+          id={`${prefixe}-panneau-${index}`}
+          data-onglets-panneau={index}
+          aria-labelledby={`${prefixe}-titre-${index}`}
+        >
+          <div class="ecrin-tete">
+            <span class="ecrin-index mono" aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <h3 class="ecrin-titre" id={`${prefixe}-titre-${index}`}>
+              {groupe.titre}
+            </h3>
+          </div>
+          <ul class="ecrin-lignes">
+            {groupe.lignes.map((ligne) => (
+              <li>{ligne}</li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .onglets {
+    margin-top: 1.75rem;
+  }
+  .onglets-intro {
+    color: var(--muted);
+  }
+
+  /* ------------------------------------------------------------- La barre */
+  .onglets-barre {
+    position: relative;
+    display: flex;
+    gap: 1.75rem;
+    margin-top: 0.875rem;
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  .onglets-barre::-webkit-scrollbar {
+    display: none;
+  }
+  .onglet {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3rem;
+    font-family: var(--font-serif);
+    font-size: 1.1875rem;
+    line-height: 1.3;
+    white-space: nowrap;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 200ms var(--ease-out-quart);
+  }
+  .onglet[aria-selected="true"] {
+    color: var(--ink);
+  }
+  .onglet:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .onglet:not([aria-selected="true"]):hover {
+      color: var(--accent);
+    }
+  }
+  .onglets-trait {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0;
+    transition:
+      transform 260ms var(--ease-out-quart),
+      width 260ms var(--ease-out-quart),
+      opacity 180ms linear;
+  }
+
+  /* ------------------------------------------------- L ecrin d un panneau */
+  .onglets-panneaux {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+  }
+  .ecrin {
+    display: grid;
+    gap: 1.25rem;
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--ink) 3%, transparent);
+    padding: 1.5rem 1.25rem;
+  }
+  .ecrin[hidden] {
+    display: none;
+  }
+  @media (min-width: 48rem) {
+    .ecrin {
+      grid-template-columns: 13rem minmax(0, 1fr);
+      column-gap: 3rem;
+      padding: 2rem 2.25rem;
+    }
+  }
+  .ecrin:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .ecrin-tete {
+    display: flex;
+    align-items: baseline;
+    gap: 0.875rem;
+  }
+  @media (min-width: 48rem) {
+    .ecrin-tete {
+      display: block;
+    }
+  }
+  .ecrin-index {
+    font-size: 2.25rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--accent);
+  }
+  .ecrin-titre {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  @media (min-width: 48rem) {
+    .ecrin-titre {
+      margin-top: 0.75rem;
+      max-width: 15ch;
+    }
+  }
+
+  .ecrin-lignes {
+    list-style: none;
+    max-width: 66ch;
+  }
+  .ecrin-lignes li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .ecrin-lignes li + li {
+    margin-top: 1.125rem;
+    padding-top: 1.125rem;
+    border-top: 1px solid var(--line);
+  }
+  .ecrin-lignes li::before {
+    content: "";
+    position: absolute;
+    top: 0.85em;
+    left: 0;
+    width: 0.75rem;
+    height: 1px;
+    background: var(--accent);
+  }
+  .ecrin-lignes li + li::before {
+    top: calc(1.125rem + 0.85em);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .onglet,
+    .onglets-trait {
+      transition: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  /* Onglets accessibles : roles poses seulement maintenant (JavaScript
+     actif), tabindex tournant, fleches, Home et Fin, focus qui reste sur
+     l onglet. Autonome, aucune dependance. */
+  (function () {
+    var bloc = document.querySelector("[data-onglets]");
+    if (!bloc) return;
+    var barre = bloc.querySelector("[data-onglets-barre]");
+    var trait = bloc.querySelector("[data-onglets-trait]");
+    var onglets = [].slice.call(bloc.querySelectorAll("[data-onglets-bouton]"));
+    var panneaux = [].slice.call(bloc.querySelectorAll("[data-onglets-panneau]"));
+    if (!barre || onglets.length < 2 || onglets.length !== panneaux.length) return;
+
+    var doux = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var courbe = "cubic-bezier(0.25, 1, 0.5, 1)";
+
+    barre.setAttribute("role", "tablist");
+    onglets.forEach(function (onglet, index) {
+      onglet.setAttribute("role", "tab");
+      onglet.setAttribute("aria-controls", panneaux[index].id);
+      panneaux[index].setAttribute("role", "tabpanel");
+      panneaux[index].setAttribute("aria-labelledby", onglet.id);
+      panneaux[index].setAttribute("tabindex", "0");
+    });
+
+    function place(onglet) {
+      if (!trait) return;
+      trait.style.width = onglet.offsetWidth + "px";
+      trait.style.transform = "translateX(" + onglet.offsetLeft + "px)";
+      trait.style.opacity = "1";
+      var marge = 24;
+      var gauche = onglet.offsetLeft - marge;
+      var droite = onglet.offsetLeft + onglet.offsetWidth + marge;
+      if (gauche < barre.scrollLeft) barre.scrollLeft = gauche;
+      else if (droite > barre.scrollLeft + barre.clientWidth) {
+        barre.scrollLeft = droite - barre.clientWidth;
+      }
+    }
+
+    function montre(index, deplaceFocus) {
+      onglets.forEach(function (onglet, i) {
+        var choisi = i === index;
+        onglet.setAttribute("aria-selected", choisi ? "true" : "false");
+        onglet.tabIndex = choisi ? 0 : -1;
+        if (choisi) panneaux[i].removeAttribute("hidden");
+        else panneaux[i].setAttribute("hidden", "");
+      });
+      place(onglets[index]);
+      if (deplaceFocus) onglets[index].focus();
+      if (!doux.matches) {
+        panneaux[index].animate(
+          [
+            { opacity: 0, transform: "translateY(8px)" },
+            { opacity: 1, transform: "none" },
+          ],
+          { duration: 280, easing: courbe },
+        );
+      }
+    }
+
+    onglets.forEach(function (onglet, index) {
+      onglet.addEventListener("click", function (evenement) {
+        /* Le lien reste natif sans script ; avec script, il change d onglet
+           sans deplacer la page ni l adresse. */
+        evenement.preventDefault();
+        montre(index, false);
+      });
+      onglet.addEventListener("keydown", function (evenement) {
+        var suivant = -1;
+        if (evenement.key === "ArrowRight" || evenement.key === "ArrowDown") {
+          suivant = (index + 1) % onglets.length;
+        } else if (evenement.key === "ArrowLeft" || evenement.key === "ArrowUp") {
+          suivant = (index - 1 + onglets.length) % onglets.length;
+        } else if (evenement.key === "Home") suivant = 0;
+        else if (evenement.key === "End") suivant = onglets.length - 1;
+        if (suivant < 0) return;
+        evenement.preventDefault();
+        montre(suivant, true);
+      });
+    });
+
+    montre(0, false);
+    addEventListener("resize", function () {
+      var choisi = onglets.filter(function (onglet) {
+        return onglet.getAttribute("aria-selected") === "true";
+      })[0];
+      if (choisi) place(choisi);
+    });
+  })();
+</script>

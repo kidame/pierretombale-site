@@ -53,6 +53,56 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+### 10.11.2026 - Pages cimetieres V2 : composants interactifs et mouvement (pilote Corcelles)
+
+- Travail autorise par Thomas, sur la SEULE page `/cimetieres/corcelles-cormondreche/`.
+  En local, sur `main`. AUCUN push, AUCUNE mise en ligne. Les huit autres pages
+  cimetiere et le reste du site ne changent pas de contenu.
+- Rapport complet, mesures par viewport et limites reelles : `docs/UX-CIMETIERES-V2.md`.
+  La V1 du 10.11.2026 reste decrite dans `docs/UX-CIMETIERES.md`.
+- Trois composants reutilisables, chacun avec sa feuille scoped et son script
+  `is:inline` autonome (aucune dependance, aucun CDN, rien d ajoute en mesure
+  d audience ; l export HTML autonome garde tous les comportements) :
+  `src/components/guide/NavBesoins.astro` (navigation par besoins, etat actif,
+  trait de progression ; barre collee sous 1024 px, rail colle au-dessus),
+  `src/components/guide/SchemaDimensions.astro` (les cotes du reglement, grands
+  reperes chiffres, selection Vue de dessus / Hauteur, mise en evidence animee),
+  `src/components/guide/OngletsPossibilites.astro` (les possibilites pour les
+  cendres, en grand ecrin editorial).
+  `src/components/GuideCimetiere.astro` recompose le hero, fractionne la section
+  monument en trois sous-sections titrees, anime les replis et pose la passe
+  d entree des sections. `src/pages/cimetieres/[slug].astro` est inchange.
+- Amelioration progressive partout : tous les panneaux, toutes les vues et les
+  deux tableaux sont dans le HTML initial et lisibles sans JavaScript ; les roles
+  d onglets ne sont poses que si le script tourne ; les liens de navigation sont
+  des ancres natives. `prefers-reduced-motion` : tout est instantane, y compris
+  le defilement pilote par les ancres.
+- Longueur de page : 14 177 -> 10 661 px en 390 (-25 %), 10 698 -> 8 392 px en 768,
+  9 151 -> 7 646 px en 1440 (-16 %), sans perdre un seul fait. Aucun debordement
+  horizontal en 320, 390, 768, 1366 et 1440. Hero termine a 621 px en 1440 et en
+  1366, en-tete de 155 px comprise ; sur telephone, itineraire a 350 px, appel a
+  cote, adresse a 508 px : les quatre infos pratiques sont dans le premier ecran.
+- Teste le 10.11.2026 : `npm run build` 75 pages vert ; `npx astro check` 0 erreur,
+  0 avertissement, 3 hints (les memes qu avant) ; `npm test` 155 tests, 6 fichiers,
+  vert. Navigateur local (`/home/kumo/atelier/bin/browser`, serveur sur
+  127.0.0.1:8731, dossier `dist`) : onglets au clavier (fleches, Home, Fin,
+  tabindex tournant, focus stable), replis (Entree, fermeture, double clic sans
+  empilement), les sept ancres a 15 px sous la barre collee, rendu sans JavaScript,
+  mouvement reduit. Captures dans `/home/kumo/atelier/tmp/cv2/`.
+- SEO invariants verifies : meme title, meme meta description, meme canonical, pas
+  de meta robots, un seul `<main>`, un seul `<h1>` au texte exact, memes types
+  JSON-LD, 20 liens sortants avant comme apres, toutes les ancres ont une cible,
+  ancres historiques conservees, date de verification inchangee, aucune donnee de
+  `src/data/cimetieres.ts` modifiee. `tmp/cimetieres-ux-20261110/controle.py`
+  (baseline `avant/` preservee, resultat `apres-v2/`, rapport `rapport-v2.md`) :
+  1 alerte, trois libelles d INTERFACE de la baseline reecrits ("Delai avant la
+  pose." avec son point, "Dimensions autorisees" devenu "Tableau complet des
+  dimensions autorisees", "Un monument pour ce cimetiere" deja remplace en V1).
+  `tmp/cimetieres-ux-20261110/controle-faits.py` : 86 faits presents sur 86,
+  exactement comme la baseline.
+- A FAIRE : relecture visuelle par Thomas, puis decision de generaliser ou non.
+  Ne rien publier avant cette decision.
+
 ### 10.11.2026 - Pages cimetieres : composant GuideCimetiere, pilote Corcelles
 
 - Direction audacieuse validee par Thomas le 10.11.2026. Implementee en local
@@ -1346,7 +1396,11 @@ dans l ordre, est dans `docs/BACKLOG.md` ; le configurateur se modifie avec `doc
 DEBLOQUE, A FAIRE SANS ATTENDRE PERSONNE (au choix de Thomas) :
 - GUIDES, SUITE IMMEDIATE : tests et build verts, pousse sur main le 28.10.2026 ;
   relire les 4 pages au navigateur en 1280 et 390, puis push sur main pour la previsualisation.
-- Pages cimetieres : PILOTE UX fait le 10.11.2026 sur Corcelles-Cormondreche
+- Pages cimetieres : PILOTE UX V2 fait le 10.11.2026 sur Corcelles-Cormondreche
+  (composants src/components/guide/, docs/UX-CIMETIERES-V2.md). Build, astro check
+  et 155 tests verts, controle des 86 faits et relecture au navigateur refaits.
+  A faire : relecture visuelle de Thomas avant generalisation ou publication. Aucun push.
+- Pages cimetieres, V1 : PILOTE UX fait le 10.11.2026 sur Corcelles-Cormondreche
   (composant GuideCimetiere, docs/UX-CIMETIERES.md). Relu au navigateur, controle des 86 faits et export HTML autonome prepares.
   A faire : validation de Thomas avant generalisation ou publication. Aucun push.
 - Pages cimetieres lot 2 : PASSES A ET B FAITES le 29.10.2026, neuf pages en ligne locale

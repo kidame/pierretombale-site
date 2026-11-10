@@ -1,0 +1,477 @@
+---
+/* Les cotes du reglement, dessinees a l echelle.
+
+   Composant reutilisable : il recoit des nombres deja lus dans les lignes du
+   reglement (src/data/cimetieres.ts) et n invente rien. Les deux vues sont a
+   la meme echelle : 1 cm = --cm.
+
+   Amelioration progressive. Dans le HTML initial, les deux vues sont
+   visibles l une sous l autre et les deux boutons portent l attribut
+   [hidden] : sans JavaScript, tout est lisible. Le script retire [hidden],
+   pose les roles d onglets et n affiche qu une vue a la fois.
+
+   Fichier en ASCII : les libelles passent par des entites HTML. */
+
+interface Props {
+  schema: {
+    largeurCm: number;
+    profondeurCm: number;
+    hauteurCm: number;
+    surfaceType: string;
+    surfaceArticle: string;
+    hauteurTexte: string;
+    hauteurArticle: string;
+    largeurTexte: string;
+  };
+}
+
+const { schema } = Astro.props;
+---
+
+<figure
+  class="schema"
+  data-schema
+  style={`--cm-largeur:${schema.largeurCm};--cm-profondeur:${schema.profondeurCm};--cm-hauteur:${schema.hauteurCm}`}
+>
+  <figcaption class="schema-tete">
+    <span class="label">Les cotes du r&#xe8;glement</span>
+  </figcaption>
+
+  <div class="schema-choix" hidden data-schema-choix aria-label="Vue du sch&#xe9;ma">
+    <button type="button" class="choix" id="schema-onglet-dessus" data-schema-bouton="dessus">
+      Vue de dessus
+    </button>
+    <button type="button" class="choix" id="schema-onglet-hauteur" data-schema-bouton="hauteur">
+      Hauteur
+    </button>
+  </div>
+
+  <div class="schema-vues">
+    <section class="vue" data-schema-vue="dessus" aria-labelledby="schema-titre-dessus">
+      <div class="vue-mots">
+        <h4 class="vue-titre" id="schema-titre-dessus">Vue de dessus</h4>
+        <p class="vue-chiffre" data-schema-chiffre>
+          <span class="mono">{schema.largeurCm}</span>
+          <span class="vue-signe" aria-hidden="true">&#xd7;</span>
+          <span class="sr-only">sur</span>
+          <span class="mono">{schema.profondeurCm}</span>
+          <span class="vue-unite">cm</span>
+        </p>
+        <p class="vue-legende">{schema.surfaceType}, {schema.surfaceArticle}.</p>
+      </div>
+      <div class="vue-dessin">
+        <div class="plan">
+          <div class="plan-colonne">
+            <span class="cote" data-schema-cote>{schema.largeurCm}&#xa0;cm</span>
+            <span class="guide guide-l" data-schema-guide="x" aria-hidden="true"></span>
+            <div class="plan-forme" data-schema-forme></div>
+          </div>
+          <div class="plan-cote">
+            <span class="guide guide-p" data-schema-guide="y" aria-hidden="true"></span>
+            <span class="cote" data-schema-cote>{schema.profondeurCm}&#xa0;cm</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="vue" data-schema-vue="hauteur" aria-labelledby="schema-titre-hauteur">
+      <div class="vue-mots">
+        <h4 class="vue-titre" id="schema-titre-hauteur">Hauteur</h4>
+        <p class="vue-chiffre" data-schema-chiffre>
+          <span class="mono">{schema.hauteurCm}</span>
+          <span class="vue-unite">cm</span>
+        </p>
+        <p class="vue-legende">
+          {schema.hauteurTexte} ({schema.hauteurArticle}). Largeur&#xa0;: &#xe0; confirmer aupr&#xe8;s
+          de la commune.
+        </p>
+      </div>
+      <div class="vue-dessin">
+        <div class="elevation">
+          <span class="cote" data-schema-cote>{schema.hauteurCm}&#xa0;cm</span>
+          <span class="guide guide-h" data-schema-guide="y" aria-hidden="true"></span>
+          <div class="elevation-boite">
+            <div class="elevation-enveloppe" data-schema-forme>
+              <span class="elevation-largeur">&#xe0; confirmer</span>
+            </div>
+            <span class="elevation-sol" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <p class="schema-notes">
+    Vue de dessus&#xa0;: {schema.surfaceType}, {schema.surfaceArticle}. Hauteur&#xa0;:{" "}
+    {schema.hauteurTexte} ({schema.hauteurArticle}), {schema.largeurTexte.toLowerCase()}. Les deux
+    vues sont &#xe0; la m&#xea;me &#xe9;chelle.
+  </p>
+  <p class="schema-avertissement">
+    Dessin des cotes du r&#xe8;glement, pour se rep&#xe9;rer. Ce n'est pas un mod&#xe8;le du
+    catalogue, et aucun monument n'est annonc&#xe9; conforme sans v&#xe9;rification du
+    r&#xe8;glement.
+  </p>
+</figure>
+
+<style>
+  /* 1 cm = --cm. Les deux vues partagent la meme valeur : les dessins sont
+     comparables, et une correction de donnee corrige le dessin. */
+  .schema {
+    --cm: 0.082rem;
+    margin-top: 1.75rem;
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--accent) 4%, transparent);
+    padding: 1.25rem;
+  }
+  @media (min-width: 48rem) {
+    .schema {
+      --cm: 0.1rem;
+      padding: 1.75rem 2rem;
+    }
+  }
+
+  .schema-tete {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.875rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* -------------------------------------------------- Selection des vues */
+  .schema-choix {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .schema-choix[hidden] {
+    display: none;
+  }
+  .choix {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 1.125rem;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--muted);
+    font-size: 1.0625rem;
+    line-height: 1.2;
+    cursor: pointer;
+    transition:
+      color 200ms var(--ease-out-quart),
+      border-color 200ms var(--ease-out-quart),
+      background-color 200ms var(--ease-out-quart);
+  }
+  .choix[aria-selected="true"] {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--canvas);
+  }
+  .choix:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .choix:not([aria-selected="true"]):hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+  }
+  .choix:active {
+    transform: translateY(1px);
+  }
+
+  /* ------------------------------------------------------------- Une vue */
+  .schema-vues {
+    display: grid;
+    gap: 2rem;
+  }
+  .vue {
+    display: grid;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+  }
+  .vue[hidden] {
+    display: none;
+  }
+  .vue + .vue {
+    border-top: 1px solid var(--line);
+  }
+  @media (min-width: 34rem) {
+    .vue {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      column-gap: 2.5rem;
+    }
+  }
+
+  .vue-titre {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  /* Le grand repere chiffre : c est lui qu on retient. */
+  .vue-chiffre {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    color: var(--ink);
+    font-size: clamp(2.5rem, 9vw, 3.75rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .vue-signe {
+    font-size: 0.42em;
+    color: var(--accent);
+  }
+  .vue-unite {
+    font-size: 0.3em;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .vue-legende {
+    margin-top: 0.875rem;
+    max-width: 42ch;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* ------------------------------------------------------- Le petit plan */
+  .vue-dessin {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .cote {
+    font-size: 0.8125rem;
+    line-height: 1.2;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .guide {
+    display: block;
+    background: var(--accent);
+  }
+
+  .plan {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.6rem;
+  }
+  .plan-colonne {
+    display: grid;
+    gap: 0.4rem;
+    width: calc(var(--cm-largeur) * var(--cm));
+  }
+  .plan-colonne .cote {
+    text-align: center;
+  }
+  .guide-l {
+    width: 100%;
+    height: 1px;
+    transform-origin: left center;
+  }
+  .plan-forme {
+    height: calc(var(--cm-profondeur) * var(--cm));
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--ink) 5%, transparent);
+  }
+  .plan-cote {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: calc(var(--cm-profondeur) * var(--cm));
+  }
+  .guide-p {
+    width: 1px;
+    height: 100%;
+    transform-origin: center top;
+  }
+
+  .elevation {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.125rem;
+  }
+  .guide-h {
+    width: 1px;
+    height: calc(var(--cm-hauteur) * var(--cm));
+    transform-origin: center bottom;
+  }
+  .elevation-boite {
+    position: relative;
+    width: 6.5rem;
+    height: calc(var(--cm-hauteur) * var(--cm));
+  }
+  .elevation-enveloppe {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    border: 1px dashed var(--line-strong);
+    border-bottom: 0;
+    border-top: 1px solid var(--accent);
+  }
+  .elevation-largeur {
+    font-size: 0.8125rem;
+    text-align: center;
+    color: var(--muted);
+  }
+  .elevation-sol {
+    position: absolute;
+    left: -1rem;
+    right: -1rem;
+    bottom: 0;
+    display: block;
+    border-top: 2px solid var(--line-strong);
+  }
+
+  .schema-notes {
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    max-width: 62ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .schema-avertissement {
+    margin-top: 0.75rem;
+    max-width: 62ch;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .choix {
+      transition: none;
+    }
+    .choix:active {
+      transform: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  /* Deux onglets pour les deux vues, et la mise en evidence des cotes.
+     Autonome : aucune dependance, rien a charger. Sans ce script, les deux
+     vues restent affichees et les boutons restent [hidden]. */
+  (function () {
+    var figure = document.querySelector("[data-schema]");
+    if (!figure) return;
+    var groupe = figure.querySelector("[data-schema-choix]");
+    var boutons = [].slice.call(figure.querySelectorAll("[data-schema-bouton]"));
+    var vues = [].slice.call(figure.querySelectorAll("[data-schema-vue]"));
+    if (!groupe || boutons.length !== vues.length || vues.length === 0) return;
+
+    var doux = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var courbe = "cubic-bezier(0.25, 1, 0.5, 1)";
+
+    /* Les roles n existent que si le script tourne : un lecteur d ecran sans
+       JavaScript voit deux sections normales, pas des onglets sans pilote. */
+    groupe.removeAttribute("hidden");
+    groupe.setAttribute("role", "tablist");
+    boutons.forEach(function (bouton, index) {
+      var vue = vues[index];
+      bouton.setAttribute("role", "tab");
+      bouton.setAttribute("aria-controls", "schema-vue-" + bouton.getAttribute("data-schema-bouton"));
+      vue.id = "schema-vue-" + vue.getAttribute("data-schema-vue");
+      vue.setAttribute("role", "tabpanel");
+      vue.setAttribute("aria-labelledby", bouton.id);
+      vue.setAttribute("tabindex", "0");
+    });
+
+    function evidence(vue) {
+      if (doux.matches) return;
+      var pas = 0;
+      var chiffre = vue.querySelector("[data-schema-chiffre]");
+      if (chiffre) {
+        chiffre.animate(
+          [
+            { opacity: 0, transform: "translateY(10px)" },
+            { opacity: 1, transform: "none" },
+          ],
+          { duration: 320, easing: courbe },
+        );
+      }
+      vue.querySelectorAll("[data-schema-guide]").forEach(function (guide) {
+        var axe = guide.getAttribute("data-schema-guide") === "x" ? "scaleX" : "scaleY";
+        guide.animate([{ transform: axe + "(0)" }, { transform: axe + "(1)" }], {
+          duration: 300,
+          delay: 60 + pas,
+          easing: courbe,
+        });
+        pas += 60;
+      });
+      vue.querySelectorAll("[data-schema-cote]").forEach(function (cote, index) {
+        cote.animate([{ opacity: 0 }, { opacity: 1 }], {
+          duration: 260,
+          delay: 140 + index * 60,
+          easing: "linear",
+        });
+      });
+      var forme = vue.querySelector("[data-schema-forme]");
+      if (forme) {
+        forme.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 280, delay: 80, easing: courbe });
+      }
+    }
+
+    function montre(index, deplaceFocus) {
+      boutons.forEach(function (bouton, i) {
+        var choisi = i === index;
+        bouton.setAttribute("aria-selected", choisi ? "true" : "false");
+        bouton.tabIndex = choisi ? 0 : -1;
+        if (choisi) vues[i].removeAttribute("hidden");
+        else vues[i].setAttribute("hidden", "");
+      });
+      if (deplaceFocus) boutons[index].focus();
+      evidence(vues[index]);
+    }
+
+    boutons.forEach(function (bouton, index) {
+      bouton.addEventListener("click", function () {
+        montre(index, false);
+      });
+      bouton.addEventListener("keydown", function (evenement) {
+        var suivant = -1;
+        if (evenement.key === "ArrowRight" || evenement.key === "ArrowDown") {
+          suivant = (index + 1) % boutons.length;
+        } else if (evenement.key === "ArrowLeft" || evenement.key === "ArrowUp") {
+          suivant = (index - 1 + boutons.length) % boutons.length;
+        } else if (evenement.key === "Home") suivant = 0;
+        else if (evenement.key === "End") suivant = boutons.length - 1;
+        if (suivant < 0) return;
+        evenement.preventDefault();
+        montre(suivant, true);
+      });
+    });
+
+    /* Premiere mise en evidence quand le schema entre dans l ecran, une fois. */
+    montre(0, false);
+    if (!doux.matches && "IntersectionObserver" in window) {
+      var oeil = new IntersectionObserver(
+        function (entrees) {
+          entrees.forEach(function (entree) {
+            if (!entree.isIntersecting) return;
+            oeil.unobserve(entree.target);
+            evidence(figure.querySelector("[data-schema-vue]:not([hidden])"));
+          });
+        },
+        { threshold: 0.25 },
+      );
+      oeil.observe(figure);
+    }
+  })();
+</script>

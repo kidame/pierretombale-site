@@ -1,0 +1,287 @@
+---
+/* Navigation par besoins, avec etat actif et trait de progression.
+
+   Composant reutilisable : il ne connait que des couples {id, titre}.
+   Les liens sont des ancres natives : sans JavaScript, la navigation
+   fonctionne, seul le trait de progression reste invisible.
+
+   Deux formes, une seule liste dans le DOM :
+   - sous 1024 px : barre collee sous l en-tete, qui se fait defiler
+     lateralement (l en-tete du site est colle a 0 et garde son z-index 50 ;
+     cette barre est a 30, elle ne le masque jamais) ;
+   - a partir de 1024 px : rail vertical colle dans sa colonne.
+
+   Fichier en ASCII : les libelles passent par des entites HTML. */
+
+interface Props {
+  /** Les sections proposees, dans l ordre de la page. */
+  besoins: { id: string; titre: string }[];
+  /** Id du titre de la navigation, pour aria-labelledby. */
+  titreId?: string;
+}
+
+const { besoins, titreId = "rail-titre" } = Astro.props;
+---
+
+<nav class="besoins" aria-labelledby={titreId} data-besoins>
+  <p class="label besoins-titre" id={titreId}>Que cherchez-vous&#xa0;?</p>
+  <div class="besoins-piste">
+    <span class="besoins-trait" data-besoins-trait aria-hidden="true"></span>
+    <ul class="besoins-liste">
+      {
+        besoins.map((besoin) => (
+          <li>
+            <a href={`#${besoin.id}`} data-besoins-lien={besoin.id}>
+              {besoin.titre}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<style>
+  /* ---------------------------------------------- Barre compacte (mobile) */
+  .besoins {
+    position: sticky;
+    top: 4.5rem;
+    z-index: 30;
+    /* Pleine largeur dans la gouttiere de .shell (1,5 rem), sans debordement. */
+    margin-inline: -1.5rem;
+    padding-inline: 1.5rem;
+    background: var(--canvas);
+    border-bottom: 1px solid var(--line);
+  }
+  .besoins-titre {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .besoins-piste {
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  .besoins-piste::-webkit-scrollbar {
+    display: none;
+  }
+  .besoins-liste {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    width: max-content;
+  }
+  .besoins-liste a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3rem;
+    font-size: 1.0625rem;
+    line-height: 1.3;
+    white-space: nowrap;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .besoins-liste a[aria-current="location"] {
+    color: var(--ink);
+  }
+  /* Le trait vit dans la zone qui defile : il suit la puce active. */
+  .besoins-trait {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0;
+    transform-origin: left center;
+    transition:
+      transform 260ms var(--ease-out-quart),
+      width 260ms var(--ease-out-quart),
+      opacity 200ms linear;
+  }
+
+  /* ------------------------------------------------- Rail sobre (1024 px) */
+  @media (min-width: 64rem) {
+    .besoins {
+      position: sticky;
+      top: 2.25rem;
+      z-index: auto;
+      margin-inline: 0;
+      padding-inline: 0;
+      background: none;
+      border-bottom: 0;
+    }
+    .besoins-titre {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      clip-path: none;
+      padding-bottom: 0.875rem;
+      border-bottom: 1px solid var(--line-strong);
+    }
+    .besoins-piste {
+      overflow: visible;
+      padding-left: 1rem;
+      margin-top: 0.75rem;
+    }
+    /* Le rail de reference : un filet continu, le trait bronze par-dessus. */
+    .besoins-piste::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 1px;
+      background: var(--line);
+    }
+    .besoins-liste {
+      display: grid;
+      gap: 0;
+      width: auto;
+    }
+    .besoins-liste a {
+      min-height: 2.5rem;
+      padding-block: 0.3rem;
+      font-size: 1.0625rem;
+    }
+    .besoins-trait {
+      bottom: auto;
+      top: 0;
+      width: 2px;
+      height: 0;
+      transform-origin: center top;
+      transition:
+        transform 280ms var(--ease-out-quart),
+        height 280ms var(--ease-out-quart),
+        opacity 200ms linear;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .besoins-liste a:hover {
+      color: var(--accent);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .besoins-trait {
+      transition: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  /* Etat actif + trait de progression. Autonome, sans dependance : la page
+     exportee en HTML garde ce comportement. Sans ce script, les ancres
+     fonctionnent et le trait reste invisible. */
+  function initBesoins() {
+    var nav = document.querySelector("[data-besoins]");
+    if (!nav) return;
+    var trait = nav.querySelector("[data-besoins-trait]");
+    var piste = trait ? trait.parentElement : null;
+    var liens = [].slice.call(nav.querySelectorAll("[data-besoins-lien]"));
+    if (!trait || !piste || liens.length === 0) return;
+
+    var doux = window.matchMedia("(prefers-reduced-motion: reduce)");
+    /* Le defilement pilote par les ancres suit la meme regle que le reste du
+       mouvement : instantane si la personne demande moins d animation. */
+    if (doux.matches) document.documentElement.style.scrollBehavior = "auto";
+
+    var cibles = liens
+      .map(function (lien) {
+        var id = lien.getAttribute("data-besoins-lien");
+        return { lien: lien, section: document.getElementById(id) };
+      })
+      .filter(function (paire) {
+        return paire.section;
+      });
+
+    var actif = null;
+
+    function ligneDeLecture() {
+      /* Quand la barre est collee, la ligne de lecture est son bas reel ;
+         dans le rail (en-tete non colle), un quart d ecran suffit. */
+      if (getComputedStyle(nav).position === "sticky" && window.innerWidth < 1024) {
+        return nav.getBoundingClientRect().bottom + 16;
+      }
+      return Math.min(180, window.innerHeight * 0.3);
+    }
+
+    function place(lien) {
+      var vertical = window.innerWidth >= 1024;
+      if (vertical) {
+        trait.style.height = lien.offsetHeight + "px";
+        trait.style.width = "";
+        trait.style.transform = "translateY(" + lien.offsetTop + "px)";
+      } else {
+        trait.style.width = lien.offsetWidth + "px";
+        trait.style.height = "";
+        trait.style.transform = "translateX(" + lien.offsetLeft + "px)";
+        /* La puce active reste visible sans jamais faire defiler la page. */
+        var marge = 24;
+        var gauche = lien.offsetLeft - marge;
+        var droite = lien.offsetLeft + lien.offsetWidth + marge;
+        if (gauche < piste.scrollLeft) piste.scrollLeft = gauche;
+        else if (droite > piste.scrollLeft + piste.clientWidth) {
+          piste.scrollLeft = droite - piste.clientWidth;
+        }
+      }
+      trait.style.opacity = "1";
+    }
+
+    function mesure() {
+      var ligne = ligneDeLecture();
+      var choix = null;
+      for (var i = 0; i < cibles.length; i += 1) {
+        if (cibles[i].section.getBoundingClientRect().top - ligne <= 0) choix = cibles[i];
+      }
+      /* Avant la premiere section, on marque quand meme la premiere entree :
+         le trait ne clignote pas en haut de page. */
+      if (!choix) choix = cibles[0];
+      /* En bas de page, la derniere section gagne. */
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+        choix = cibles[cibles.length - 1];
+      }
+      if (choix.lien !== actif) {
+        if (actif) actif.removeAttribute("aria-current");
+        actif = choix.lien;
+        actif.setAttribute("aria-current", "location");
+      }
+      place(actif);
+    }
+
+    var enAttente = false;
+    function planifie() {
+      if (enAttente) return;
+      enAttente = true;
+      requestAnimationFrame(function () {
+        enAttente = false;
+        mesure();
+      });
+    }
+
+    addEventListener("scroll", planifie, { passive: true });
+    addEventListener("resize", planifie);
+    addEventListener("hashchange", planifie);
+    /* Les replis et les onglets changent la hauteur des sections. */
+    document.addEventListener("toggle", planifie, true);
+    mesure();
+    if (document.fonts) document.fonts.ready.then(planifie);
+  }
+  // Les sections suivant le rail doivent exister avant le calcul des cibles.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBesoins, { once: true });
+  } else {
+    initBesoins();
+  }
+</script>

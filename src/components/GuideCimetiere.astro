@@ -1,5 +1,8 @@
 ---
 import MentionVerification from "@/components/MentionVerification.astro";
+import NavBesoins from "@/components/guide/NavBesoins.astro";
+import OngletsPossibilites from "@/components/guide/OngletsPossibilites.astro";
+import SchemaDimensions from "@/components/guide/SchemaDimensions.astro";
 import { LOI_CANTONALE, SOURCES } from "@/data/cimetieres-ne";
 import {
   CIMETIERES_URL,
@@ -14,9 +17,10 @@ import {
 import { guideUrl } from "@/data/guides";
 import { FAMILLE_LABELS, familleUrl } from "@/data/products";
 
-/* Guide d un cimetiere : la composition validee le 10.11.2026 (hero
-   asymetrique, panneau pratique, navigation par besoins, schema d echelle,
-   replis natifs). Pilote sur une seule page, voir
+/* Guide d un cimetiere, version 2 (10.11.2026) : hero compose et compact,
+   navigation par besoins avec etat actif, composant de dimensions, panneaux
+   depliables animes, onglets des possibilites, une passe de mouvement a
+   l entree des sections. Pilote sur une seule page, voir
    src/pages/cimetieres/[slug].astro ; les autres pages gardent la mise en
    page d origine.
 
@@ -24,6 +28,11 @@ import { FAMILLE_LABELS, familleUrl } from "@/data/products";
    page d origine : chaque fait, chaque tarif, chaque source est celui de la
    fiche. Les nombres du schema sont relus dans les lignes du reglement, pour
    qu une correction de donnee corrige aussi le dessin.
+
+   Trois composants portent les morceaux interactifs, chacun avec son style et
+   son script autonome (src/components/guide/) : NavBesoins, SchemaDimensions,
+   OngletsPossibilites. Tous les scripts sont is:inline et sans dependance :
+   l export HTML autonome de la page garde ses comportements.
 
    Ce fichier est ecrit en ASCII : les libelles d interface nouveaux passent
    par des entites HTML (&#xe9;, &#xe8;, ...) ou par des echappements \uXXXX.
@@ -135,7 +144,9 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
 <div class="guide">
   {/* ------------------------------------------------------------ Hero */}
   <section class="shell guide-hero" aria-labelledby="titre-cimetiere">
-    <div class="hero-titre">
+    <span class="hero-voile" aria-hidden="true"></span>
+
+    <div class="hero-titre" data-entree data-entree-decalage="0">
       <nav class="fil" aria-label="Fil d'Ariane">
         <a href="/">Accueil</a>
         <span aria-hidden="true">/</span>
@@ -143,14 +154,44 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
         <span aria-hidden="true">/</span>
         <span aria-current="page">{cimetiere.nom}</span>
       </nav>
-      <p class="label hero-commune">{cimetiere.commune}</p>
+      <p class="label hero-commune">
+        <span class="hero-trait" data-hero-trait aria-hidden="true"></span>
+        {cimetiere.commune}
+      </p>
       <h1 class="type-h1 hero-h1" id="titre-cimetiere">{titrePrincipal}</h1>
     </div>
 
-    <p class="type-lead hero-chapo">{cimetiere.chapo}</p>
+    <p class="type-lead hero-chapo" data-entree data-entree-decalage="120">{cimetiere.chapo}</p>
 
-    <aside class="panneau nuit" id="infos-pratiques" aria-labelledby="panneau-titre">
+    <aside
+      class="panneau nuit"
+      id="infos-pratiques"
+      aria-labelledby="panneau-titre"
+      data-entree
+      data-entree-decalage="60"
+    >
       <p class="label panneau-titre" id="panneau-titre">Infos pratiques</p>
+
+      <div class="panneau-actions">
+        <div class="panneau-boutons">
+          <a href={itineraireUrl(donnees)} class="btn btn-primary" rel="noopener nofollow">
+            Itin&#xe9;raire
+          </a>
+          {
+            cimetiere.contact.telephone && (
+              <a href={telUrl(donnees.contact.telephone as string)} class="btn btn-outline">
+                {libelleAppel}
+                <span class="sr-only"> : {cimetiere.contact.service}</span>
+              </a>
+            )
+          }
+        </div>
+        {
+          cimetiere.contact.telephone && (
+            <p class="panneau-legende">{cimetiere.contact.service}</p>
+          )
+        }
+      </div>
 
       <dl class="panneau-infos">
         {
@@ -169,104 +210,73 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
             </div>
           )
         }
-        {
-          aAcces && (
-            <div>
-              <dt>Acc&#xe8;s</dt>
-              <dd>
-                {cimetiere.acces?.map((ligne) => (
-                  <span>{ligne}</span>
-                ))}
-              </dd>
-            </div>
-          )
-        }
       </dl>
 
-      <div class="panneau-actions">
-        <div class="panneau-boutons">
-          <a href={itineraireUrl(donnees)} class="btn btn-primary" rel="noopener nofollow">
-            Itin&#xe9;raire
-          </a>
+      <details class="panneau-admin repli-anime">
+        <summary class="admin-summary">
+          <span>Acc&#xe8;s et coordonn&#xe9;es du guichet</span>
+          <span class="marque" aria-hidden="true">
+            <span class="marque-barre"></span>
+            <span class="marque-barre marque-barre-v"></span>
+          </span>
+        </summary>
+        <div class="repli-corps admin-corps">
           {
-            cimetiere.contact.telephone && (
-              <a href={telUrl(donnees.contact.telephone as string)} class="btn btn-outline">
-                {libelleAppel}
-                <span class="sr-only"> : {cimetiere.contact.service}</span>
-              </a>
+            aAcces && (
+              <ul class="admin-acces">
+                {cimetiere.acces?.map((ligne) => <li>{ligne}</li>)}
+              </ul>
             )
           }
+          <p class="admin-service">
+            {
+              cimetiere.contact.url ? (
+                <a href={cimetiere.contact.url} class="link" rel="noopener">
+                  {cimetiere.contact.service}
+                </a>
+              ) : (
+                <span>{cimetiere.contact.service}</span>
+              )
+            }
+          </p>
+          <ul class="admin-lignes">
+            {cimetiere.contact.adresse && <li>{cimetiere.contact.adresse}</li>}
+            {
+              cimetiere.contact.telephone && (
+                <li>
+                  <a href={telUrl(donnees.contact.telephone as string)} class="link">
+                    {cimetiere.contact.telephone}
+                  </a>
+                </li>
+              )
+            }
+            {cimetiere.contact.telephoneSecondaire && <li>{cimetiere.contact.telephoneSecondaire}</li>}
+            {
+              cimetiere.contact.email && (
+                <li>
+                  <a href={`mailto:${cimetiere.contact.email}`} class="link">
+                    {cimetiere.contact.email}
+                  </a>
+                </li>
+              )
+            }
+            {cimetiere.contact.horaires && <li>{cimetiere.contact.horaires}</li>}
+          </ul>
+          <p class="admin-note">Les demandes de concession et de permis de pose sont trait&#xe9;es par ce service communal.</p>
         </div>
-        {
-          cimetiere.contact.telephone && (
-            <p class="panneau-legende">
-              {cimetiere.contact.service}
-            </p>
-          )
-        }
-      </div>
-
-      <details class="panneau-admin">
-        <summary class="admin-summary">Coordonn&#xe9;es du guichet</summary>
-        <p class="admin-service">
-          {
-            cimetiere.contact.url ? (
-              <a href={cimetiere.contact.url} class="link" rel="noopener">
-                {cimetiere.contact.service}
-              </a>
-            ) : (
-              <span>{cimetiere.contact.service}</span>
-            )
-          }
-        </p>
-        <ul class="admin-lignes">
-          {cimetiere.contact.adresse && <li>{cimetiere.contact.adresse}</li>}
-          {
-            cimetiere.contact.telephone && (
-              <li>
-                <a href={telUrl(donnees.contact.telephone as string)} class="link">
-                  {cimetiere.contact.telephone}
-                </a>
-              </li>
-            )
-          }
-          {cimetiere.contact.telephoneSecondaire && <li>{cimetiere.contact.telephoneSecondaire}</li>}
-          {
-            cimetiere.contact.email && (
-              <li>
-                <a href={`mailto:${cimetiere.contact.email}`} class="link">
-                  {cimetiere.contact.email}
-                </a>
-              </li>
-            )
-          }
-          {cimetiere.contact.horaires && <li>{cimetiere.contact.horaires}</li>}
-        </ul>
-        <p class="admin-note">Les demandes de concession et de permis de pose sont trait&#xe9;es par ce service communal.</p>
       </details>
     </aside>
   </section>
 
   {/* ------------------------------------------- Rail de navigation + flux */}
   <div class="shell guide-corps">
-    <nav class="guide-rail" aria-labelledby="rail-titre">
-      <p class="label" id="rail-titre">Que cherchez-vous&#xa0;?</p>
-      <ul>
-        {
-          BESOINS.map((besoin) => (
-            <li>
-              <a href={`#${besoin.id}`}>{besoin.titre}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <NavBesoins besoins={BESOINS} />
 
     <div class="guide-flux">
       {/* ---------------------------------------------------- Sur place */}
       {
         cimetiere.equipements.length > 0 && (
-          <section class="bloc" id="sur-place" aria-labelledby="titre-sur-place">
+          <section class="bloc" id="sur-place" aria-labelledby="titre-sur-place" data-entree>
             <p class="label">Venir</p>
             <h2 class="type-h2 bloc-titre" id="titre-sur-place">
               Sur place
@@ -285,9 +295,13 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
             )}
 
             {aHistoire && (
-              <details class="repli">
+              <details class="repli repli-anime">
                 <summary>
                   <span class="repli-titre">Histoire et patrimoine</span>
+                  <span class="marque" aria-hidden="true">
+                    <span class="marque-barre" />
+                    <span class="marque-barre marque-barre-v" />
+                  </span>
                 </summary>
                 <div class="repli-corps">
                   {cimetiere.histoire?.map((ligne) => <p>{ligne}</p>)}
@@ -299,159 +313,147 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
       }
 
       {/* -------------------------------------------- Poser un monument */}
-      <section class="bloc" id="poser-un-monument" aria-labelledby="titre-monument">
+      <section class="bloc" id="poser-un-monument" aria-labelledby="titre-monument" data-entree>
         <p class="label">Pr&#xe9;parer un monument</p>
         <h2 class="type-h2 bloc-titre" id="titre-monument">Poser un monument</h2>
 
-        <div class="monument-haut">
-          <dl class="reperes">
-            {
-              reperes.map((repere) => (
-                <div class="repere">
-                  <dt>{repere.intitule}</dt>
-                  <dd class="repere-valeur">{repere.valeur}</dd>
-                  {repere.precision && <dd class="repere-precision">{repere.precision}</dd>}
-                </div>
-              ))
-            }
-          </dl>
-
-          {
-            schema && (
-              <figure
-                class="schema"
-                style={`--cm-largeur:${schema.largeurCm};--cm-profondeur:${schema.profondeurCm};--cm-hauteur:${schema.hauteurCm}`}
-              >
-                <figcaption class="label">Rep&#xe8;re d'&#xe9;chelle</figcaption>
-                <div class="schema-vues">
-                  <div class="vue">
-                    <p class="vue-titre">Vue de dessus</p>
-                    <div class="plan">
-                      <span class="cote cote-largeur">{schema.largeurCm}&#xa0;cm</span>
-                      <div class="plan-forme" />
-                      <span class="cote cote-profondeur">{schema.profondeurCm}&#xa0;cm</span>
-                    </div>
-                  </div>
-                  <div class="vue">
-                    <p class="vue-titre">Vue en &#xe9;l&#xe9;vation</p>
-                    <div class="elevation">
-                      <span class="cote cote-hauteur">{schema.hauteurCm}&#xa0;cm</span>
-                      <div class="elevation-enveloppe">
-                        <span class="elevation-largeur">&#xe0; confirmer</span>
-                      </div>
-                      <div class="elevation-sol" />
-                    </div>
-                  </div>
-                </div>
-                <p class="schema-notes">
-                  Vue de dessus : {schema.surfaceType}, {schema.surfaceArticle}. Vue en
-                  &#xe9;l&#xe9;vation : {schema.hauteurTexte} ({schema.hauteurArticle}),{" "}
-                  {schema.largeurTexte.toLowerCase()}. Les deux vues sont &#xe0; la m&#xea;me
-                  &#xe9;chelle.
-                </p>
-                <p class="schema-avertissement">
-                  Dessin des cotes du r&#xe8;glement, pour se rep&#xe9;rer. Ce n'est pas un
-                  mod&#xe8;le du catalogue, et aucun monument n'est annonc&#xe9; conforme sans
-                  v&#xe9;rification du r&#xe8;glement.
-                </p>
-              </figure>
-            )
-          }
-        </div>
-
-        <h3 class="type-h3 sous-titre">Ce que demande le r&#xe8;glement</h3>
-        <div class="prose">
-          {
-            cimetiere.regles.periodeInterdite && (
-              <p>
-                <strong>P&#xe9;riode o&#xf9; la pose est interdite.</strong>{" "}
-                {cimetiere.regles.periodeInterdite}
-              </p>
-            )
-          }
-          {
-            cimetiere.regles.autorisation && (
-              <p>
-                <strong>Autorisation.</strong> {cimetiere.regles.autorisation}
-              </p>
-            )
-          }
-          <p>
-            <strong>Bordure et entourage.</strong> {cimetiere.regles.bordure}
-          </p>
-          {
-            cimetiere.regles.taxePose && (
-              <p>
-                <strong>Taxe communale de pose.</strong> {cimetiere.regles.taxePose}
-              </p>
-            )
-          }
-        </div>
-
-        {
-          (cimetiere.regles.materiaux || cimetiere.regles.obligations.length > 0) && (
-            <details class="repli">
-              <summary>
-                <span class="repli-titre">Mat&#xe9;riaux et obligations de l'entreprise</span>
-              </summary>
-              <div class="repli-corps">
-                {cimetiere.regles.materiaux && (
-                  <p>
-                    <strong>Mat&#xe9;riaux.</strong> {cimetiere.regles.materiaux}
-                  </p>
-                )}
-                {cimetiere.regles.obligations.length > 0 && (
-                  <>
-                    <h4 class="repli-sous-titre">Ce que le r&#xe8;glement impose en plus</h4>
-                    <ul class="faits">
-                      {cimetiere.regles.obligations.map((ligne) => (
-                        <li>{ligne}</li>
-                      ))}
-                    </ul>
-                  </>
-                )}
-              </div>
-            </details>
-          )
-        }
-
-        <h3 class="type-h3 sous-titre" id="titre-dimensions">Dimensions autoris&#xe9;es</h3>
-        <p class="indice">
-          Tableau complet&#xa0;: sur t&#xe9;l&#xe9;phone, il se fait d&#xe9;filer
-          lat&#xe9;ralement.
-        </p>
-        <div class="tableau" role="region" aria-labelledby="titre-dimensions" tabindex="0">
-          <table class="tableau-grille">
-            <caption>
-              Dimensions et hauteurs autoris&#xe9;es par type de s&#xe9;pulture, avec l'article du
-              r&#xe8;glement.
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">Type</th>
-                <th scope="col">Dimensions</th>
-                <th scope="col">Hauteur maximale</th>
-                <th scope="col">Article</th>
-              </tr>
-            </thead>
-            <tbody>
+        {/* Sous-section 1 : les cotes. */}
+        <div class="sous-bloc">
+          <h3 class="sous-titre type-h3">Les cotes &#xe0; retenir</h3>
+          <div class="monument-haut">
+            <dl class="reperes">
               {
-                cimetiere.regles.tombes.map((tombe) => (
-                  <tr>
-                    <th scope="row">{tombe.type}</th>
-                    <td>{tombe.dimensions}</td>
-                    <td>{tombe.hauteurMax ?? "Non publi\u00e9e"}</td>
-                    <td>{tombe.article}</td>
-                  </tr>
+                reperes.map((repere) => (
+                  <div class="repere">
+                    <dt>{repere.intitule}</dt>
+                    <dd class="repere-valeur">{repere.valeur}</dd>
+                    {repere.precision && <dd class="repere-precision">{repere.precision}</dd>}
+                  </div>
                 ))
               }
-            </tbody>
-          </table>
+            </dl>
+            {schema && <SchemaDimensions schema={schema} />}
+          </div>
+        </div>
+
+        {/* Sous-section 2 : le reglement en clair. */}
+        <div class="sous-bloc">
+          <h3 class="sous-titre type-h3">Ce que demande le r&#xe8;glement</h3>
+          <div class="prose">
+            {
+              cimetiere.regles.periodeInterdite && (
+                <p>
+                  <strong>P&#xe9;riode o&#xf9; la pose est interdite.</strong>{" "}
+                  {cimetiere.regles.periodeInterdite}
+                </p>
+              )
+            }
+            {
+              cimetiere.regles.autorisation && (
+                <p>
+                  <strong>Autorisation.</strong> {cimetiere.regles.autorisation}
+                </p>
+              )
+            }
+            <p>
+              <strong>Bordure et entourage.</strong> {cimetiere.regles.bordure}
+            </p>
+            {
+              cimetiere.regles.taxePose && (
+                <p>
+                  <strong>Taxe communale de pose.</strong> {cimetiere.regles.taxePose}
+                </p>
+              )
+            }
+          </div>
+        </div>
+
+        {/* Sous-section 3 : les replis de detail, tableau compris. */}
+        <div class="sous-bloc">
+          <h3 class="sous-titre type-h3">Le d&#xe9;tail, si vous le voulez</h3>
+          <div class="replis">
+            {
+              (cimetiere.regles.materiaux || cimetiere.regles.obligations.length > 0) && (
+                <details class="repli repli-anime">
+                  <summary>
+                    <span class="repli-titre">Mat&#xe9;riaux et obligations de l'entreprise</span>
+                    <span class="marque" aria-hidden="true">
+                      <span class="marque-barre" />
+                      <span class="marque-barre marque-barre-v" />
+                    </span>
+                  </summary>
+                  <div class="repli-corps">
+                    {cimetiere.regles.materiaux && (
+                      <p>
+                        <strong>Mat&#xe9;riaux.</strong> {cimetiere.regles.materiaux}
+                      </p>
+                    )}
+                    {cimetiere.regles.obligations.length > 0 && (
+                      <>
+                        <h4 class="repli-sous-titre">Ce que le r&#xe8;glement impose en plus</h4>
+                        <ul class="faits">
+                          {cimetiere.regles.obligations.map((ligne) => (
+                            <li>{ligne}</li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+                  </div>
+                </details>
+              )
+            }
+
+            <details class="repli repli-anime">
+              <summary>
+                <span class="repli-titre" id="titre-dimensions">
+                  Tableau complet des dimensions autoris&#xe9;es
+                </span>
+                <span class="marque" aria-hidden="true">
+                  <span class="marque-barre" />
+                  <span class="marque-barre marque-barre-v" />
+                </span>
+              </summary>
+              <div class="repli-corps repli-large">
+                <p class="indice">
+                  Tableau complet&#xa0;: sur t&#xe9;l&#xe9;phone, il se fait d&#xe9;filer
+                  lat&#xe9;ralement.
+                </p>
+                <div class="tableau" role="region" aria-labelledby="titre-dimensions" tabindex="0">
+                  <table class="tableau-grille">
+                    <caption>
+                      Dimensions et hauteurs autoris&#xe9;es par type de s&#xe9;pulture, avec
+                      l'article du r&#xe8;glement.
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Dimensions</th>
+                        <th scope="col">Hauteur maximale</th>
+                        <th scope="col">Article</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        cimetiere.regles.tombes.map((tombe) => (
+                          <tr>
+                            <th scope="row">{tombe.type}</th>
+                            <td>{tombe.dimensions}</td>
+                            <td>{tombe.hauteurMax ?? "Non publi\u00e9e"}</td>
+                            <td>{tombe.article}</td>
+                          </tr>
+                        ))
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+          </div>
         </div>
       </section>
 
       {/* ------------------------------------------- Appel commercial */}
-      <section class="bloc projet nuit" aria-labelledby="titre-projet">
+      <section class="bloc projet nuit" aria-labelledby="titre-projet" data-entree>
         <p class="label">Votre projet</p>
         <h2 class="type-h2 bloc-titre" id="titre-projet">Votre projet dans ce cimeti&#xe8;re</h2>
         <p class="projet-texte">
@@ -484,80 +486,82 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
       {/* ------------------------------------ Urnes et jardin du souvenir */}
       {
         cimetiere.cineraire.length > 0 && (
-          <section class="bloc" id="cendres" aria-labelledby="titre-cendres">
+          <section class="bloc" id="cendres" aria-labelledby="titre-cendres" data-entree>
             <p class="label">Urnes et tarifs</p>
             <h2 class="type-h2 bloc-titre" id="titre-cendres">
               Urnes, columbarium et jardin du souvenir
             </h2>
 
-            <div class="possibilites">
-              {groupesCendres.map((groupe) => (
-                <article class="possibilite">
-                  <h3 class="possibilite-titre">{groupe.titre}</h3>
-                  <ul class="faits">
-                    {groupe.lignes.map((ligne) => (
-                      <li>{ligne}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
+            <OngletsPossibilites groupes={groupesCendres} />
 
             {cimetiere.tarifs && (
-              <>
-                <h3 class="type-h3 sous-titre" id="titre-tarifs">
-                  Tarifs officiels de la commune
-                </h3>
+              <div class="sous-bloc">
+                <h3 class="sous-titre type-h3">Tarifs officiels de la commune</h3>
                 <p class="prose-note">
                   Ce sont des taxes communales, pas des prix de monument. Source&#xa0;:{" "}
                   {cimetiere.tarifs.date}.
                 </p>
-                <p class="indice">
-                  Tableau complet&#xa0;: sur t&#xe9;l&#xe9;phone, il se fait d&#xe9;filer
-                  lat&#xe9;ralement.
-                </p>
-                <div class="tableau" role="region" aria-labelledby="titre-tarifs" tabindex="0">
-                  <table class="tableau-grille">
-                    <caption>
-                      Taxes communales par prestation, pour une personne domicili&#xe9;e dans la
-                      commune et pour une personne de l'ext&#xe9;rieur.
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">Prestation</th>
-                        <th scope="col">Domicili&#xe9;</th>
-                        <th scope="col">Ext&#xe9;rieur</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {cimetiere.tarifs.lignes.map((ligne) => (
-                        <tr>
-                          <th scope="row">{ligne.prestation}</th>
-                          <td>{ligne.domicilie}</td>
-                          <td>{ligne.exterieur ?? "Non publi\u00e9"}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div class="replis">
+                  <details class="repli repli-anime">
+                    <summary>
+                      <span class="repli-titre" id="titre-tarifs">
+                        Tableau des taxes communales
+                      </span>
+                      <span class="marque" aria-hidden="true">
+                        <span class="marque-barre" />
+                        <span class="marque-barre marque-barre-v" />
+                      </span>
+                    </summary>
+                    <div class="repli-corps repli-large">
+                      <p class="indice">
+                        Tableau complet&#xa0;: sur t&#xe9;l&#xe9;phone, il se fait d&#xe9;filer
+                        lat&#xe9;ralement.
+                      </p>
+                      <div class="tableau" role="region" aria-labelledby="titre-tarifs" tabindex="0">
+                        <table class="tableau-grille">
+                          <caption>
+                            Taxes communales par prestation, pour une personne domicili&#xe9;e dans
+                            la commune et pour une personne de l'ext&#xe9;rieur.
+                          </caption>
+                          <thead>
+                            <tr>
+                              <th scope="col">Prestation</th>
+                              <th scope="col">Domicili&#xe9;</th>
+                              <th scope="col">Ext&#xe9;rieur</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {cimetiere.tarifs.lignes.map((ligne) => (
+                              <tr>
+                                <th scope="row">{ligne.prestation}</th>
+                                <td>{ligne.domicilie}</td>
+                                <td>{ligne.exterieur ?? "Non publi\u00e9"}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                      {cimetiere.tarifs.note && <p class="prose-note">{cimetiere.tarifs.note}</p>}
+                      <p class="prose-note">
+                        {cimetiere.tarifs.source ? (
+                          <a href={SOURCES[cimetiere.tarifs.source].url} class="link" rel="noopener">
+                            {SOURCES[cimetiere.tarifs.source].libelle}
+                          </a>
+                        ) : (
+                          <span>{cimetiere.tarifs.sourceLibelle}</span>
+                        )}
+                      </p>
+                    </div>
+                  </details>
                 </div>
-                {cimetiere.tarifs.note && <p class="prose-note">{cimetiere.tarifs.note}</p>}
-                <p class="prose-note">
-                  {cimetiere.tarifs.source ? (
-                    <a href={SOURCES[cimetiere.tarifs.source].url} class="link" rel="noopener">
-                      {SOURCES[cimetiere.tarifs.source].libelle}
-                    </a>
-                  ) : (
-                    <span>{cimetiere.tarifs.sourceLibelle}</span>
-                  )}
-                </p>
-              </>
+              </div>
             )}
           </section>
         )
       }
 
       {/* ------------------------------------------ Duree et entretien */}
-      <section class="bloc" id="duree" aria-labelledby="titre-duree">
+      <section class="bloc" id="duree" aria-labelledby="titre-duree" data-entree>
         <p class="label">Dur&#xe9;e et entretien</p>
         <h2 class="type-h2 bloc-titre" id="titre-duree">
           Dur&#xe9;e de la tombe et reprise du monument
@@ -568,28 +572,32 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
 
         {
           aEntretien && (
-            <>
-              <h3 class="type-h3 sous-titre">Entretien</h3>
+            <div class="sous-bloc">
+              <h3 class="sous-titre type-h3">Entretien</h3>
               <ul class="faits">
                 {cimetiere.entretien?.map((ligne) => <li>{ligne}</li>)}
               </ul>
-            </>
+            </div>
           )
         }
       </section>
 
       {/* ------------------------------------------------------- Questions */}
-      <section class="bloc" id="questions" aria-labelledby="titre-questions">
+      <section class="bloc" id="questions" aria-labelledby="titre-questions" data-entree>
         <p class="label">Questions</p>
         <h2 class="type-h2 bloc-titre" id="titre-questions">
           Questions fr&#xe9;quentes&#xa0;: {cimetiere.nom}
         </h2>
-        <div class="faq">
+        <div class="faq replis">
           {
             cimetiere.faq.map((item, index) => (
-              <details class="repli" open={index === 0}>
+              <details class="repli repli-anime" open={index === 0}>
                 <summary>
                   <span class="repli-titre">{item.question}</span>
+                  <span class="marque" aria-hidden="true">
+                    <span class="marque-barre" />
+                    <span class="marque-barre marque-barre-v" />
+                  </span>
                 </summary>
                 <div class="repli-corps">
                   <p>{item.reponse}</p>
@@ -601,7 +609,7 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
       </section>
 
       {/* ------------------------------------------- Documents officiels */}
-      <section class="bloc" id="sources" aria-labelledby="titre-sources">
+      <section class="bloc" id="sources" aria-labelledby="titre-sources" data-entree>
         <p class="label">Sources</p>
         <h2 class="type-h2 bloc-titre" id="titre-sources">Documents officiels</h2>
         <p class="prose-note">
@@ -627,21 +635,40 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
   </div>
 
   {/* ------------------------------------------------- Autres cimetieres */}
-  <section class="shell guide-ailleurs" aria-labelledby="titre-ailleurs">
+  <section class="shell guide-ailleurs" aria-labelledby="titre-ailleurs" data-entree>
     <h2 class="type-h2" id="titre-ailleurs">Autres cimeti&#xe8;res</h2>
-    <ul class="ailleurs-liste">
-      {
-        autres.map((autre) => (
-          <li>
-            <a href={cimetiereUrl(autre.slug)} class="link ailleurs-lien">
-              {autre.nom}
-            </a>
-            <p>
-              {autre.commune} &#xb7; d&#xe9;lai de pose&#xa0;: {autre.chiffres.delai.toLowerCase()}
-            </p>
-          </li>
-        ))
-      }
+    <div class="replis ailleurs-replis">
+      <details class="repli repli-anime">
+        <summary>
+          <span class="repli-titre">
+            Les {autres.length} autres cimeti&#xe8;res de la liste
+          </span>
+          <span class="marque" aria-hidden="true">
+            <span class="marque-barre" />
+            <span class="marque-barre marque-barre-v" />
+          </span>
+        </summary>
+        <div class="repli-corps repli-large">
+          <ul class="ailleurs-liste">
+            {
+              autres.map((autre) => (
+                <li>
+                  <a href={cimetiereUrl(autre.slug)} class="link ailleurs-lien">
+                    {autre.nom}
+                  </a>
+                  <p>
+                    {autre.commune} &#xb7; d&#xe9;lai de pose&#xa0;:{" "}
+                    {autre.chiffres.delai.toLowerCase()}
+                  </p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <ul class="ailleurs-liste ailleurs-parcours">
       <li>
         <a href={CIMETIERES_URL} class="link ailleurs-lien">Tous les cimeti&#xe8;res du canton</a>
         <p>Le tableau des 24 communes&#xa0;: d&#xe9;lai, dimensions, hauteur et bordure.</p>
@@ -663,7 +690,8 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
 </div>
 
 <style>
-  /* Une seule feuille, portee par le composant. Rien ici ne code une couleur :
+  /* Une seule feuille, portee par le composant (les trois composants de
+     src/components/guide/ portent la leur). Rien ici ne code une couleur :
      tout passe par les jetons de src/styles.css (ivoire, anthracite, bronze).
      Corps a 17 px, lignes sous 75 caracteres, cibles tactiles 44 px au moins. */
 
@@ -672,18 +700,36 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
   }
 
   /* ---------------------------------------------------------------- Hero
-     Trois morceaux : le titre, le chapo, le panneau pratique. Sur telephone
-     le panneau remonte juste sous le titre, et ses boutons passent en tete du
-     panneau : les deux actions utiles sont a portee de pouce. */
+     Trois morceaux : le titre, le panneau pratique compact, le chapo. Sur
+     telephone le panneau remonte juste sous le titre, et ses deux actions
+     sont en tete du panneau : l adresse, les horaires, l itineraire et
+     l appel tiennent dans le premier ecran de 390 x 844. */
   .guide-hero {
+    position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 2rem;
-    padding-top: 1.75rem;
-    padding-bottom: 2.5rem;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
   }
-  /* Ordre a l ecran sur telephone : titre, panneau pratique, chapo. Les deux
-     actions sont ainsi dans le premier ecran, sous le h1. */
+  /* Voile bronze : une teinte, aucune animation, aucune image. */
+  .hero-voile {
+    position: absolute;
+    inset: -1rem 0 auto;
+    height: 22rem;
+    background: radial-gradient(
+      70% 100% at 18% 0%,
+      color-mix(in srgb, var(--accent) 9%, transparent),
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+  .hero-titre,
+  .hero-chapo,
+  .panneau {
+    position: relative;
+  }
+  /* Ordre a l ecran sur telephone : titre, panneau pratique, chapo. */
   .hero-titre {
     order: 1;
   }
@@ -705,14 +751,24 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }
-  .fil a:hover {
-    color: var(--ink);
-  }
   .hero-commune {
-    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+  /* Le seul trace decoratif de la page : un filet bronze qui se dessine une
+     fois au chargement, a cote de la commune. */
+  .hero-trait {
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    flex: none;
+    background: var(--accent);
+    transform-origin: left center;
   }
   .hero-h1 {
-    margin-top: 0.75rem;
+    margin-top: 0.625rem;
     max-width: 22ch;
   }
   .hero-chapo {
@@ -724,16 +780,13 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
       grid-template-areas:
         "titre panneau"
         "chapo panneau";
-      grid-template-columns: minmax(0, 1.3fr) minmax(21rem, 0.85fr);
-      grid-template-rows: auto 1fr;
-      /* Le panneau occupe les deux rangees : la seconde prend le reste de la
-         hauteur, sinon le chapo descendrait au milieu du vide. */
+      grid-template-columns: minmax(0, 1.35fr) minmax(20rem, 0.8fr);
       grid-template-rows: auto 1fr;
       align-items: start;
-      column-gap: 4.5rem;
-      row-gap: 1.75rem;
-      padding-top: 2.75rem;
-      padding-bottom: 3.5rem;
+      column-gap: 4rem;
+      row-gap: 1.5rem;
+      padding-top: 1.75rem;
+      padding-bottom: 2.5rem;
     }
     .hero-titre,
     .hero-chapo,
@@ -752,46 +805,43 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     }
   }
 
-  /* ------------------------------------------------- Panneau pratique */
+  /* --------------------------------------- Panneau pratique, compact */
   .panneau {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
     border: 1px solid var(--line-strong);
-    padding: 1.5rem 1.25rem;
+    padding: 1.25rem;
   }
   @media (min-width: 48rem) {
     .panneau {
-      padding: 2rem;
+      padding: 1.5rem 1.625rem;
     }
   }
-
-  /* Ordre a l ecran sur telephone : titre, boutons, informations, guichet.
-     Dans le HTML les informations precedent les boutons (lecture lineaire). */
   .panneau-titre {
-    order: 1;
+    color: var(--muted);
   }
-  .panneau-actions {
-    order: 2;
+  .panneau-boutons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
-  .panneau-infos {
-    order: 3;
+  .panneau-boutons .btn {
+    flex: 1 1 8rem;
   }
-  .panneau-admin {
-    order: 4;
-  }
-  @media (min-width: 64rem) {
-    .panneau-titre,
-    .panneau-actions,
-    .panneau-infos,
-    .panneau-admin {
-      order: 0;
-    }
+  .panneau-legende {
+    margin-top: 0.625rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--muted);
   }
 
+  /* Les deux informations qu on cherche en arrivant, en deux lignes serrees. */
   .panneau-infos {
     display: grid;
-    gap: 1.125rem;
+    gap: 0.875rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.125rem;
   }
   .panneau-infos dt {
     font-size: 0.8125rem;
@@ -800,69 +850,63 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     color: var(--muted);
   }
   .panneau-infos dd {
-    margin-top: 0.35rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
+    margin-top: 0.25rem;
     font-size: 1.0625rem;
-    line-height: 1.6;
-    max-width: 44ch;
-  }
-
-  .panneau-boutons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-  .panneau-boutons .btn {
-    flex: 1 1 11rem;
-  }
-  .panneau-legende {
-    margin-top: 0.75rem;
-    font-size: 0.9375rem;
     line-height: 1.5;
-    color: var(--muted);
+    max-width: 44ch;
   }
 
   .panneau-admin {
     border-top: 1px solid var(--line);
-    padding-top: 1.25rem;
   }
-
   .admin-summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    min-height: 44px;
+    min-height: 2.75rem;
+    padding-top: 0.75rem;
     cursor: pointer;
     list-style: none;
-    font-size: 1rem;
+    font-size: 1.0625rem;
     line-height: 1.4;
   }
-  .admin-summary::-webkit-details-marker { display: none; }
-  .admin-summary::after { content: "+"; font-size: 1.5rem; }
-  .panneau-admin[open] > .admin-summary::after { content: "-"; }
-  .admin-summary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
-  #infos-pratiques { scroll-margin-top: 1.5rem; }
-
-  .admin-service {
+  .admin-summary::-webkit-details-marker {
+    display: none;
+  }
+  .admin-summary:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+  .admin-corps {
+    padding-bottom: 0.25rem;
+  }
+  .admin-acces {
     margin-top: 0.75rem;
+    display: grid;
+    gap: 0.4rem;
+    list-style: none;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .admin-service {
+    margin-top: 0.875rem;
     font-family: var(--font-serif);
     font-size: 1.1875rem;
     line-height: 1.3;
   }
   .admin-lignes {
-    margin-top: 0.75rem;
+    margin-top: 0.625rem;
     display: grid;
-    gap: 0.5rem;
+    gap: 0.4rem;
     list-style: none;
     font-size: 1.0625rem;
     line-height: 1.6;
     color: var(--muted);
   }
   .admin-note {
-    margin-top: 1rem;
+    margin-top: 0.875rem;
     max-width: 44ch;
     font-size: 0.9375rem;
     line-height: 1.6;
@@ -876,96 +920,84 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
   .panneau a:focus-visible {
     outline-offset: 4px;
   }
+  #infos-pratiques {
+    scroll-margin-top: calc(4.5rem + 4rem);
+  }
+  @media (min-width: 64rem) {
+    #infos-pratiques {
+      scroll-margin-top: 1.5rem;
+    }
+  }
 
   /* --------------------------------------------- Rail et colonne de texte */
-  /* minmax(0, 1fr) et min-width: 0 : sans eux, la largeur minimale des
-     tableaux pousserait la colonne au-dela de l ecran du telephone. */
+  /* Sous 1024 px, mise en page en bloc : la barre de navigation collee a
+     besoin d un conteneur aussi haut que la page, ce qu une rangee de grille
+     ne lui donnerait pas. A partir de 1024 px, deux colonnes et le rail
+     colle dans la sienne (align-items: start). */
   .guide-corps {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2.5rem;
-    padding-bottom: 3rem;
+    padding-bottom: 2.5rem;
   }
-  .guide-rail,
   .guide-flux {
     min-width: 0;
-  }
-  /* La colonne de texte garde une largeur de lecture meme sur tres grand
-     ecran : les tableaux ne s etirent pas sur 1100 px. */
-  .guide-flux {
     max-width: 64rem;
   }
   @media (min-width: 64rem) {
     .guide-corps {
+      display: grid;
       grid-template-columns: var(--rail) minmax(0, 1fr);
       column-gap: 4.5rem;
       align-items: start;
-      padding-bottom: 4.5rem;
-    }
-  }
-
-  .guide-rail {
-    border: 1px solid var(--line);
-    padding: 1rem 1.25rem;
-  }
-  .guide-rail ul {
-    margin-top: 0.5rem;
-    display: grid;
-    list-style: none;
-  }
-  .guide-rail a {
-    display: flex;
-    align-items: center;
-    min-height: 2.75rem;
-    border-bottom: 1px solid var(--line);
-    font-size: 1.0625rem;
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .guide-rail li:last-child a {
-    border-bottom: 0;
-  }
-  .guide-rail a:hover {
-    color: var(--accent);
-  }
-  @media (min-width: 64rem) {
-    .guide-rail {
-      position: sticky;
-      top: 2.5rem;
-      border: 0;
-      border-top: 1px solid var(--line-strong);
-      padding: 1rem 0 0;
+      padding-bottom: 4rem;
     }
   }
 
   /* ---------------------------------------------------------- Sections */
+  /* L ancre tombe sous l en-tete colle (72 px) et sous la barre de
+     navigation (environ 56 px). */
   .bloc {
-    scroll-margin-top: 5.5rem;
+    scroll-margin-top: calc(4.5rem + 4rem);
   }
   .bloc + .bloc {
-    margin-top: 3rem;
+    margin-top: 2.5rem;
     border-top: 1px solid var(--line);
-    padding-top: 3rem;
+    padding-top: 2.5rem;
+  }
+  .guide-flux > .bloc:first-child {
+    margin-top: 1.75rem;
   }
   .bloc-titre {
-    margin-top: 0.75rem;
+    margin-top: 0.625rem;
     max-width: 24ch;
   }
   @media (min-width: 64rem) {
     .bloc {
       scroll-margin-top: 1.5rem;
     }
+    .guide-flux > .bloc:first-child {
+      margin-top: 0;
+    }
   }
 
+  /* Une section longue se lit en sous-sections visibles. */
+  .sous-bloc {
+    margin-top: 2.25rem;
+  }
   .sous-titre {
-    margin-top: 2.75rem;
     max-width: 26ch;
+  }
+  .sous-titre::after {
+    content: "";
+    display: block;
+    width: 2rem;
+    height: 1px;
+    margin-top: 0.75rem;
+    background: var(--accent);
   }
 
   /* Listes de faits : un filet bronze en guise de puce, jamais de petit texte
      en bronze. Les equipements passent sur deux colonnes sur grand ecran. */
   .faits {
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
     max-width: 70ch;
     list-style: none;
   }
@@ -977,7 +1009,7 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     color: var(--muted);
   }
   .faits li + li {
-    margin-top: 1rem;
+    margin-top: 0.875rem;
   }
   .faits li::before {
     content: "";
@@ -1006,7 +1038,7 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
   }
 
   .prose {
-    margin-top: 1.75rem;
+    margin-top: 1.25rem;
     max-width: 68ch;
   }
   .prose p {
@@ -1015,14 +1047,14 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     color: var(--muted);
   }
   .prose p + p {
-    margin-top: 1.25rem;
+    margin-top: 1.125rem;
   }
   .prose strong {
     color: var(--ink);
     font-weight: 500;
   }
   .prose-note {
-    margin-top: 1rem;
+    margin-top: 0.875rem;
     max-width: 66ch;
     font-size: 1rem;
     line-height: 1.6;
@@ -1030,11 +1062,11 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
   }
 
   .encadre {
-    margin-top: 2.5rem;
+    margin-top: 2rem;
     max-width: 68ch;
     border-left: 2px solid var(--accent);
     background: color-mix(in srgb, var(--accent) 6%, transparent);
-    padding: 1.25rem 1.5rem;
+    padding: 1.125rem 1.375rem;
   }
   .encadre-titre {
     font-family: var(--font-serif);
@@ -1043,22 +1075,28 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     color: var(--ink);
   }
   .encadre p {
-    margin-top: 0.75rem;
+    margin-top: 0.625rem;
     font-size: 1.0625rem;
     line-height: 1.7;
     color: var(--muted);
   }
 
-  /* ------------------------------------------------- Replis natifs */
+  /* ------------------------------------------- Panneaux depliables */
+  /* Marqueur plus / moins dessine : deux filets bronze, la barre verticale
+     disparait a l ouverture. Aucune hauteur n est fixee : le corps est
+     mesure par le script, et reste entierement dans le HTML initial. */
+  .replis {
+    margin-top: 1.25rem;
+  }
+  .bloc > .repli {
+    margin-top: 1.75rem;
+  }
   .repli {
-    margin-top: 2rem;
     max-width: 72ch;
     border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
   }
-  .repli + .repli {
-    margin-top: 0;
-    border-top: 0;
+  .repli:last-child {
+    border-bottom: 1px solid var(--line);
   }
   .repli > summary {
     display: flex;
@@ -1073,15 +1111,32 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
   .repli > summary::-webkit-details-marker {
     display: none;
   }
-  .repli > summary::after {
-    content: "+";
-    flex: none;
-    font-size: 1.375rem;
-    line-height: 1;
-    color: var(--accent);
+  .repli > summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
-  .repli[open] > summary::after {
-    content: "\2212";
+  .marque {
+    position: relative;
+    flex: none;
+    display: block;
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  .marque-barre {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    margin-top: -0.5px;
+    background: var(--accent);
+    transition: transform 220ms var(--ease-out-quart);
+  }
+  .marque-barre-v {
+    transform: rotate(90deg);
+  }
+  details[open] > summary .marque-barre-v {
+    transform: rotate(90deg) scaleX(0);
   }
   .repli-titre {
     font-family: var(--font-serif);
@@ -1089,16 +1144,18 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     line-height: 1.35;
     color: var(--ink);
   }
-  .repli > summary:hover .repli-titre {
-    color: var(--accent);
-  }
-  .repli > summary:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+  /* Le corps d un repli est enveloppe : le script mesure cette enveloppe. */
+  .repli-corps,
+  .admin-corps {
+    overflow: hidden;
   }
   .repli-corps {
     padding-bottom: 1.5rem;
     max-width: 68ch;
+  }
+  /* Un tableau a besoin de toute la largeur, pas de la largeur de lecture. */
+  .repli-large {
+    max-width: none;
   }
   .repli-corps p {
     font-size: 1.0625rem;
@@ -1109,10 +1166,10 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     margin-top: 1rem;
   }
   .repli-corps .faits {
-    margin-top: 1.25rem;
+    margin-top: 1.125rem;
   }
   .repli-sous-titre {
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
     font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: 0.16em;
@@ -1123,29 +1180,34 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     color: var(--ink);
     font-weight: 500;
   }
+  @media (hover: hover) and (pointer: fine) {
+    .repli > summary:hover .repli-titre {
+      color: var(--accent);
+    }
+  }
 
   /* ----------------------------------- Reperes et schema du monument */
   .monument-haut {
-    margin-top: 1.75rem;
+    margin-top: 1.25rem;
     display: grid;
-    gap: 2.5rem;
+    gap: 1.5rem;
   }
   @media (min-width: 64rem) {
     .monument-haut {
-      grid-template-columns: minmax(0, 1fr) auto;
-      column-gap: 3.5rem;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      column-gap: 3rem;
       align-items: start;
     }
   }
 
   .reperes {
     display: grid;
-    gap: 1.5rem;
+    gap: 1.125rem;
     max-width: 48ch;
   }
   .repere {
     border-top: 1px solid var(--line);
-    padding-top: 1rem;
+    padding-top: 0.875rem;
   }
   .repere dt {
     font-size: 0.8125rem;
@@ -1154,148 +1216,22 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     color: var(--muted);
   }
   .repere-valeur {
-    margin-top: 0.35rem;
+    margin-top: 0.3rem;
     font-family: var(--font-serif);
-    font-size: 1.5rem;
+    font-size: 1.4375rem;
     line-height: 1.25;
     color: var(--ink);
   }
   .repere-precision {
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
     font-size: 1rem;
-    line-height: 1.6;
-    color: var(--muted);
-  }
-
-  /* Schema : deux vues dessinees avec des filets, a la meme echelle
-     (--cm = la taille d un centimetre). Les cotes viennent des donnees via
-     --cm-largeur, --cm-profondeur et --cm-hauteur, posees sur la figure. */
-  .schema {
-    --cm: 0.082rem;
-    border: 1px solid var(--line);
-    padding: 1.25rem;
-  }
-  @media (min-width: 48rem) {
-    .schema {
-      --cm: 0.1rem;
-      padding: 1.5rem 1.75rem;
-    }
-  }
-  /* Les deux vues : titres alignes en haut, dessins poses sur la meme ligne
-     de sol en bas (margin-top: auto). */
-  .schema-vues {
-    margin-top: 1.25rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2.5rem;
-    align-items: stretch;
-  }
-  .vue {
-    display: flex;
-    flex-direction: column;
-  }
-  .plan,
-  .elevation {
-    margin-top: auto;
-  }
-  .vue-titre {
-    font-size: 0.8125rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .cote {
-    font-size: 0.8125rem;
-    line-height: 1.2;
-    color: var(--ink);
-    white-space: nowrap;
-  }
-
-  .plan {
-    position: relative;
-    padding-top: 1rem;
-    padding-right: 3.5rem;
-  }
-  .cote-largeur {
-    display: block;
-    width: calc(var(--cm-largeur) * var(--cm));
-    padding-bottom: 0.35rem;
-    text-align: center;
-    border-bottom: 1px solid var(--accent);
-  }
-  .plan-forme {
-    width: calc(var(--cm-largeur) * var(--cm));
-    height: calc(var(--cm-profondeur) * var(--cm));
-    margin-top: 0.35rem;
-    border: 1px solid var(--line-strong);
-    background: color-mix(in srgb, var(--ink) 4%, transparent);
-  }
-  .cote-profondeur {
-    position: absolute;
-    top: calc(1.75rem + 0.35rem);
-    left: calc(var(--cm-largeur) * var(--cm) + 0.5rem);
-    height: calc(var(--cm-profondeur) * var(--cm));
-    display: flex;
-    align-items: center;
-    padding-left: 0.5rem;
-    border-left: 1px solid var(--accent);
-  }
-
-  .elevation {
-    position: relative;
-    padding-top: 1rem;
-    padding-left: 4rem;
-  }
-  .cote-hauteur {
-    position: absolute;
-    left: 0;
-    bottom: 0.5rem;
-    height: calc(var(--cm-hauteur) * var(--cm));
-    display: flex;
-    align-items: center;
-    padding-left: 0.5rem;
-    border-left: 1px solid var(--accent);
-  }
-  .elevation-enveloppe {
-    width: 6.5rem;
-    height: calc(var(--cm-hauteur) * var(--cm));
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 0.5rem;
-    border: 1px dashed var(--line-strong);
-    border-bottom: 0;
-    border-top: 1px solid var(--accent);
-  }
-  .elevation-largeur {
-    font-size: 0.8125rem;
-    text-align: center;
-    color: var(--muted);
-  }
-  .elevation-sol {
-    width: calc(6.5rem + 2.5rem);
-    margin-left: -1.25rem;
-    border-top: 2px solid var(--line-strong);
-  }
-
-  .schema-notes {
-    margin-top: 1.5rem;
-    max-width: 56ch;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--muted);
-  }
-  .schema-avertissement {
-    margin-top: 0.75rem;
-    max-width: 56ch;
-    font-size: 0.9375rem;
     line-height: 1.6;
     color: var(--muted);
   }
 
   /* ------------------------------------------------------------ Tableaux */
   .indice {
-    margin-top: 0.75rem;
+    margin-top: 0.25rem;
     font-size: 0.9375rem;
     color: var(--muted);
   }
@@ -1305,7 +1241,7 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     }
   }
   .tableau {
-    margin-top: 1.25rem;
+    margin-top: 1rem;
     overflow-x: auto;
   }
   .tableau:focus-visible {
@@ -1325,7 +1261,7 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
   .tableau-grille caption {
     caption-side: top;
     max-width: 66ch;
-    padding-bottom: 1rem;
+    padding-bottom: 0.875rem;
     font-size: 1rem;
     line-height: 1.6;
     color: var(--muted);
@@ -1342,7 +1278,7 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
   }
   .tableau-grille th,
   .tableau-grille td {
-    padding: 1rem 1.5rem 1rem 0;
+    padding: 0.875rem 1.5rem 0.875rem 0;
     border-bottom: 1px solid var(--line);
     font-size: 1rem;
     line-height: 1.55;
@@ -1367,35 +1303,35 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
 
   /* ----------------------------------------- Appel commercial (sombre) */
   .projet {
-    padding: 2rem 1.5rem;
+    padding: 1.75rem 1.5rem;
   }
   .bloc + .projet {
     border-top: 0;
-    padding-top: 2rem;
+    padding-top: 1.75rem;
   }
   @media (min-width: 48rem) {
     .projet {
-      padding: 2.5rem;
+      padding: 2.25rem 2.5rem;
     }
     .bloc + .projet {
-      padding-top: 2.5rem;
+      padding-top: 2.25rem;
     }
   }
   .projet-texte {
-    margin-top: 1.25rem;
+    margin-top: 1rem;
     max-width: 60ch;
     font-size: 1.0625rem;
     line-height: 1.7;
     color: var(--muted);
   }
   .projet-actions {
-    margin-top: 1.75rem;
+    margin-top: 1.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
   }
   .projet-note {
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
     max-width: 62ch;
     font-size: 0.9375rem;
     line-height: 1.6;
@@ -1405,51 +1341,11 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     outline-offset: 4px;
   }
 
-  /* --------------------------------------------- Cendres : possibilites */
-  .possibilites {
-    margin-top: 1.75rem;
-    display: grid;
-    gap: 1.75rem;
-  }
-  @media (min-width: 60rem) {
-    .possibilites {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 2.5rem 3.5rem;
-    }
-    .possibilite:first-child {
-      grid-column: 1 / -1;
-    }
-    .possibilite:first-child .faits {
-      columns: 2;
-      column-gap: 3.5rem;
-      max-width: none;
-    }
-    .possibilite:first-child .faits li + li {
-      margin-top: 0;
-    }
-    .possibilite:first-child .faits li:not(:first-child) {
-      margin-top: 1rem;
-    }
-  }
-  .possibilite {
-    border-top: 1px solid var(--line-strong);
-    padding-top: 1.25rem;
-  }
-  .possibilite-titre {
-    font-family: var(--font-serif);
-    font-size: 1.375rem;
-    line-height: 1.3;
-    color: var(--ink);
-  }
-  .possibilite .faits {
-    margin-top: 1rem;
-  }
-
   /* -------------------------------------------- Sources et maillage */
   .sources-liste {
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
     display: grid;
-    gap: 0.875rem;
+    gap: 0.625rem;
     max-width: 70ch;
     list-style: none;
   }
@@ -1462,24 +1358,38 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     color: var(--muted);
   }
   .sources-mention {
-    margin-top: 1.75rem;
+    margin-top: 1.5rem;
   }
 
   .guide-ailleurs {
     border-top: 1px solid var(--line);
-    padding-top: 2.5rem;
-    padding-bottom: 3.5rem;
+    padding-top: 2.25rem;
+    padding-bottom: 3rem;
+  }
+  .ailleurs-replis {
+    margin-top: 1.5rem;
+    max-width: 72ch;
+  }
+  .ailleurs-parcours {
+    border-top: 1px solid var(--line);
+    padding-top: 1.5rem;
   }
   .ailleurs-liste {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     display: grid;
-    gap: 1.5rem 2.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1.125rem 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     list-style: none;
+  }
+  @media (min-width: 48rem) {
+    .ailleurs-liste {
+      gap: 1.25rem 2.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    }
   }
   .ailleurs-liste li {
     border-top: 1px solid var(--line);
-    padding-top: 0.5rem;
+    padding-top: 0.375rem;
   }
   /* Lien seul dans une liste : 44 px de haut au moins. Les liens poses dans
      une phrase gardent la taille du texte (exception WCAG 2.5.8). */
@@ -1492,22 +1402,132 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     line-height: 1.3;
   }
   .ailleurs-liste p {
-    margin-top: 0.5rem;
+    margin-top: 0.375rem;
     font-size: 1rem;
     line-height: 1.6;
     color: var(--muted);
   }
 
-  /* Aucune animation dans ce composant : seuls les survols des boutons et
-     des liens partages transitionnent. On les coupe quand la personne a
-     demande moins de mouvement. */
+  /* ------------------------------------------------------- Mouvement */
+  /* Retour tactile des boutons : une pression de 1 px, sans survol requis.
+     Les survols sont tous dans (hover: hover) and (pointer: fine). */
+  .guide .btn:active,
+  .guide .ailleurs-lien:active {
+    transform: translateY(1px);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .guide .btn,
     .guide .btn::before,
     .guide .link,
-    .guide-rail a,
+    .marque-barre,
     .repli > summary .repli-titre {
       transition: none;
     }
+    .guide .btn:active,
+    .guide .ailleurs-lien:active {
+      transform: none;
+    }
   }
 </style>
+
+<script is:inline>
+  /* Mouvement de la page : une seule passe d entree par section, l ouverture
+     des panneaux depliables, et le trace du filet du hero. Autonome, aucune
+     dependance : l export HTML de la page garde ces comportements.
+
+     Regles tenues : rien n est jamais laisse a opacity 0 (l animation part
+     de 0 et ne remplit pas l etat final, donc une section reste lisible meme
+     si le script casse) ; aucune boucle, aucun parallaxe, aucun compteur ;
+     si la personne demande moins de mouvement, tout est instantane. */
+  (function () {
+    var doux = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var courbe = "cubic-bezier(0.25, 1, 0.5, 1)";
+
+    /* ------------------------------------------- Panneaux depliables */
+    [].slice.call(document.querySelectorAll("details.repli-anime")).forEach(function (repli) {
+      var resume = repli.querySelector("summary");
+      var corps = resume ? resume.nextElementSibling : null;
+      if (!resume || !corps) return;
+      var enCours = null;
+      var ouvertVoulu = repli.open;
+
+      function arrete() {
+        if (!enCours) return;
+        enCours.onfinish = null;
+        enCours.oncancel = null;
+        enCours.cancel();
+        enCours = null;
+        corps.style.height = "";
+      }
+
+      resume.addEventListener("click", function (evenement) {
+        // Le clavier et la reduction du mouvement gardent la bascule native.
+        if (doux.matches || evenement.detail === 0 || typeof corps.animate !== "function") {
+          if (enCours) {
+            arrete();
+            repli.open = ouvertVoulu;
+          }
+          return;
+        }
+        evenement.preventDefault();
+        var etat = enCours ? ouvertVoulu : repli.open;
+        var depart = repli.open ? corps.getBoundingClientRect().height : 0;
+        arrete();
+        ouvertVoulu = !etat;
+        repli.open = true;
+        var hauteur = corps.scrollHeight;
+        var arrivee = ouvertVoulu ? hauteur : 0;
+        corps.style.height = depart + "px";
+        var animation = corps.animate(
+          [
+            { height: depart + "px", opacity: etat ? 1 : 0 },
+            { height: arrivee + "px", opacity: ouvertVoulu ? 1 : 0 },
+          ],
+          { duration: 220, easing: courbe },
+        );
+        enCours = animation;
+        animation.onfinish = function () {
+          if (enCours !== animation) return;
+          repli.open = ouvertVoulu;
+          corps.style.height = "";
+          enCours = null;
+        };
+      });
+    });
+
+    if (doux.matches) return;
+
+    /* ----------------------------------------- Filet bronze du hero */
+    var trait = document.querySelector("[data-hero-trait]");
+    if (trait) {
+      trait.animate([{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }], {
+        duration: 420,
+        easing: courbe,
+      });
+    }
+
+    /* ------------------------------------------- Entree des sections */
+    if (!("IntersectionObserver" in window)) return;
+    var oeil = new IntersectionObserver(
+      function (entrees) {
+        entrees.forEach(function (entree) {
+          if (!entree.isIntersecting) return;
+          oeil.unobserve(entree.target);
+          var decalage = Number(entree.target.getAttribute("data-entree-decalage") || 0);
+          entree.target.animate(
+            [
+              { opacity: 0, transform: "translateY(12px)" },
+              { opacity: 1, transform: "none" },
+            ],
+            { duration: 340, delay: decalage, easing: courbe, fill: "none" },
+          );
+        });
+      },
+      { rootMargin: "0px 0px -6% 0px", threshold: 0.01 },
+    );
+    [].slice.call(document.querySelectorAll("[data-entree]")).forEach(function (cible) {
+      oeil.observe(cible);
+    });
+  })();
+</script>
