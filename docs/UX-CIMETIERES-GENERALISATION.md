@@ -265,7 +265,9 @@ pilote) n'est plus du CSS inutilise : l'effet de bord signale comme limite de
 la V2 disparait.
 
 Lighthouse n'est pas installe sur cette machine et n'a pas ete installe :
-**performance non mesuree par Lighthouse**. Ce qui a ete mesure : poids gzip
+**performance non mesuree par Lighthouse**. (Leve le meme jour : Lighthouse
+13.6.0 a ete installe hors depot et les neuf fiches sont mesurees, voir
+`docs/AUDIT-CIMETIERES-2026-11-10.md`.) Ce qui a ete mesure : poids gzip
 par page (ci-dessus), zero requete externe ajoutee, zero erreur de console, et
 aucune animation en boucle (une seule passe d'entree par section, observateur
 qui cesse d'observer).

@@ -53,6 +53,54 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+### 10.11.2026 - Audit Lighthouse des neuf fiches cimetiere, pret a publier
+
+- Premiere mesure Lighthouse reelle du site sur le VPS. Lighthouse 13.6.0
+  installe HORS DEPOT dans `/home/kumo/atelier/outils/lighthouse` (aucune
+  dependance ajoutee au site) et connecte par port CDP au Chrome deja isole de
+  l'atelier (`chrome-headless-shell` 155, unite `kumo-browser` 850 Mo). Aucun
+  navigateur externe, aucun navigateur lance par Lighthouse.
+- Mesure sur le build de production reel (`SITE=https://www.pierretombale.ch`,
+  75 pages) servi par `astro preview` sur `http://127.0.0.1:8731`, PAS sur
+  l'apercu autonome `cimetieres-maquettes.html` (son `noindex` fausserait le
+  SEO). Ce rebuild a aussi retire l'export temporaire de `dist`.
+- **Neuf fiches en mobile et trois variantes en ordinateur (Corcelles,
+  Beauregard, Val-de-Travers) : 100 / 100 / 100 / 100 sur les douze mesures**,
+  CLS 0 et TBT 0 ms partout, LCP 0,91 a 1,66 s en mobile et 0,29 s en
+  ordinateur, 99 a 103 Kio par page, zero requete externe.
+- Un vrai defaut trouve et corrige : `label-content-name-mismatch`
+  (WCAG 2.5.3) sur trois liens du GABARIT GLOBAL, pas sur les composants
+  cimetiere. Logo d'en-tete et de pied : le texte visible rendu etait
+  "PierreTombale.chSuisse romande" (Astro collait les deux `span`) et ne
+  figurait pas dans l'`aria-label`. Credit de pied : texte visible
+  "kumo-seo.ch" contre `aria-label` "Kumo, conception du site web". Corriges
+  dans `src/components/SiteHeader.astro` et `src/components/SiteFooter.astro`
+  (aria-label alignes sur le texte visible + espace explicite entre les deux
+  `span`). Benefice sur les 75 pages.
+- **Aucun effet visuel** : une espace seule dans un conteneur flex n'est pas
+  rendue. Geometrie du logo identique au pixel avec et sans ce noeud, mesuree
+  a 390 et a 1280 ; capture relue.
+- Non corriges sciemment, avec la raison : CSS bloquant le rendu (12,3 Ko,
+  gain simule 70 a 300 ms, mais performance deja a 100 et risque de rendu non
+  style), chaine critique document -> CSS -> police, et l'audit LCP seul a
+  1,66 s sur deux fiches.
+- **Reserve** : le 100 en SEO est local. Les pages sont servies depuis
+  127.0.0.1 alors que leur canonical pointe vers www.pierretombale.ch, et le
+  `robots.txt` est celui du build. A reverifier sur la production apres
+  publication ; les quatre autres categories ne dependent pas de l'origine.
+- Controle independant des 696 faits relance APRES correction : 696/696, SEO
+  identique sur les neuf, hub, accueil et sitemaps identiques, aucun lien ni
+  ancre perdu. `npm run build` 75 pages vert, `npx astro check` 0 erreur
+  0 avertissement 3 hints, `npm test` 155 tests verts. Aucune donnee cimetiere
+  touchee.
+- Rapports bruts (24 mesures, JSON et HTML) et recapitulatif exploitable :
+  `/home/kumo/atelier/tmp/lighthouse-cimetieres-20261110/`
+  (`recap-lighthouse-cimetieres.json`). Detail dans
+  `docs/AUDIT-CIMETIERES-2026-11-10.md`.
+- Commit local sans `[CF-Pages-Skip]`, pour que la publication demandee par
+  Thomas ("vas y lighthouse ET met en ligne") soit faite par le parent. Cette
+  session n'a ni pousse ni deploye.
+
 ### 10.11.2026 - V2 generalisee aux neuf fiches cimetiere (maquette privee)
 
 - Livraison : `cimetieres-maquettes.html`, un fichier autonome avec selecteur
