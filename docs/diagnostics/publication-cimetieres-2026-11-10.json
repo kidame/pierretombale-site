@@ -1,0 +1,295 @@
+{
+  "normalisation": "Emails Cloudflare dechiffres pour comparaison semantique; protection deja presente avant publication",
+  "utc": "2026-11-10T13:50:01.695971+00:00",
+  "pages": [
+    {
+      "slug": "beauregard-neuchatel",
+      "status": 200,
+      "url": "https://www.pierretombale.ch/cimetieres/beauregard-neuchatel/",
+      "new_design": true,
+      "seo_before_same": true,
+      "seo_build_same": true,
+      "main_build_same": true,
+      "facts": 135,
+      "missing": [],
+      "h1": 1,
+      "mains": 1,
+      "h1_same": true,
+      "links_lost": [],
+      "anchors_lost": [],
+      "noindex": false,
+      "css": [
+        "/_astro/BaseLayout.D-b1an4W.css",
+        "/_astro/_slug_.Brpfr6d0.css"
+      ],
+      "sha256": "461b926d9455f1d20df5a3d840a30f3d42ab8e7baf63e6817e7635b4d965c82d"
+    },
+    {
+      "slug": "la-chaux-de-fonds",
+      "status": 200,
+      "url": "https://www.pierretombale.ch/cimetieres/la-chaux-de-fonds/",
+      "new_design": true,
+      "seo_before_same": true,
+      "seo_build_same": true,
+      "main_build_same": true,
+      "facts": 79,
+      "missing": [],
+      "h1": 1,
+      "mains": 1,
+      "h1_same": true,
+      "links_lost": [],
+      "anchors_lost": [],
+      "noindex": false,
+      "css": [
+        "/_astro/BaseLayout.D-b1an4W.css",
+        "/_astro/_slug_.Brpfr6d0.css"
+      ],
+      "sha256": "e7434ff58b772661cbd2de5443fae9b2bea246a10ff287ffb5b2f86de755f997"
+    },
+    {
+      "slug": "peseux",
+      "status": 200,
+      "url": "https://www.pierretombale.ch/cimetieres/peseux/",
+      "new_design": true,
+      "seo_before_same": true,
+      "seo_build_same": true,
+      "main_build_same": true,
+      "facts": 86,
+      "missing": [],
+      "h1": 1,
+      "mains": 1,
+      "h1_same": true,
+      "links_lost": [],
+      "anchors_lost": [],
+      "noindex": false,
+      "css": [
+        "/_astro/BaseLayout.D-b1an4W.css",
+        "/_astro/_slug_.Brpfr6d0.css"
+      ],
+      "sha256": "ab401b4c9ecd320d52721636abcac10b6d7abf30b71847e55cb9834c6c96fef4"
+    },
+    {
+      "slug": "corcelles-cormondreche",
+      "status": 200,
+      "url": "https://www.pierretombale.ch/cimetieres/corcelles-cormondreche/",
+      "new_design": true,
+      "seo_before_same": true,
+      "seo_build_same": true,
+      "main_build_same": true,
+      "facts": 86,
+      "missing": [],
+      "h1": 1,
+      "mains": 1,
+      "h1_same": true,
+      "links_lost": [],
+      "anchors_lost": [],
+      "noindex": false,
+      "css": [
+        "/_astro/BaseLayout.D-b1an4W.css",
+        "/_astro/_slug_.Brpfr6d0.css"
+      ],
+      "sha256": "dc7c392c08f0351ec6c4afaaeb14848dd2824eeea11688c4bf9fa597e4759666"
+    },
+    {
+      "slug": "le-landeron",
+      "status": 200,
+      "url": "https://www.pierretombale.ch/cimetieres/le-landeron/",
+      "new_design": true,
+      "seo_before_same": true,
+      "seo_build_same": true,
+      "main_build_same": true,
+      "facts": 44,
+      "missing": [],
+      "h1": 1,
+      "mains": 1,
+      "h1_same": true,
+      "links_lost": [],
+      "anchors_lost": [],
+      "noindex": false,
+      "css": [
+        "/_astro/BaseLayout.D-b1an4W.css",
+        "/_astro/_slug_.Brpfr6d0.css"
+      ],
+      "sha256": "8e460246811aa9359089d0619767c467c36ddb058938d96e720a5850112e9007"
+    },
+    {
+      "slug": "boudry",
+      "status": 200,
+      "url": "https://www.pierretombale.ch/cimetieres/boudry/",
+      "new_design": true,
+      "seo_before_same": true,
+      "seo_build_same": true,
+      "main_build_same": true,
+      "facts": 52,
+      "missing": [],
+      "h1": 1,
+      "mains": 1,
+      "h1_same": true,
+      "links_lost": [],
+      "anchors_lost": [],
+      "noindex": false,
+      "css": [
+        "/_astro/BaseLayout.D-b1an4W.css",
+        "/_astro/_slug_.Brpfr6d0.css"
+      ],
+      "sha256": "f255fa2fdd074f9389614084998181db0fcfe936a2291695cc790fe2dc2e1b57"
+    },
+    {
+      "slug": "cortaillod",
+      "status": 200,
+      "url": "https://www.pierretombale.ch/cimetieres/cortaillod/",
+      "new_design": true,
+      "seo_before_same": true,
+      "seo_build_same": true,
+      "main_build_same": true,
+      "facts": 59,
+      "missing": [],
+      "h1": 1,
+      "mains": 1,
+      "h1_same": true,
+      "links_lost": [],
+      "anchors_lost": [],
+      "noindex": false,
+      "css": [
+        "/_astro/BaseLayout.D-b1an4W.css",
+        "/_astro/_slug_.Brpfr6d0.css"
+      ],
+      "sha256": "60317df84ebf37ee1b92518a4f40e93652852c072d9a8905d82dc468b6b56f4b"
+    },
+    {
+      "slug": "le-locle",
+      "status": 200,
+      "url": "https://www.pierretombale.ch/cimetieres/le-locle/",
+      "new_design": true,
+      "seo_before_same": true,
+      "seo_build_same": true,
+      "main_build_same": true,
+      "facts": 86,
+      "missing": [],
+      "h1": 1,
+      "mains": 1,
+      "h1_same": true,
+      "links_lost": [],
+      "anchors_lost": [],
+      "noindex": false,
+      "css": [
+        "/_astro/BaseLayout.D-b1an4W.css",
+        "/_astro/_slug_.Brpfr6d0.css"
+      ],
+      "sha256": "099e5e14d8d9dc0785a8355b02a6c073687a0b58f6cdf4bf55b387171653890f"
+    },
+    {
+      "slug": "val-de-travers",
+      "status": 200,
+      "url": "https://www.pierretombale.ch/cimetieres/val-de-travers/",
+      "new_design": true,
+      "seo_before_same": true,
+      "seo_build_same": true,
+      "main_build_same": true,
+      "facts": 69,
+      "missing": [],
+      "h1": 1,
+      "mains": 1,
+      "h1_same": true,
+      "links_lost": [],
+      "anchors_lost": [],
+      "noindex": false,
+      "css": [
+        "/_astro/BaseLayout.D-b1an4W.css",
+        "/_astro/_slug_.Brpfr6d0.css"
+      ],
+      "sha256": "4af1111bf9902a7144191b5b6049d2adb54e73efa01b4ac21fcb964d0b7ebd15"
+    }
+  ],
+  "styles": [
+    {
+      "path": "/_astro/BaseLayout.D-b1an4W.css",
+      "status": 200,
+      "identical": true
+    },
+    {
+      "path": "/_astro/_slug_.Brpfr6d0.css",
+      "status": 200,
+      "identical": true
+    }
+  ],
+  "smoke": [
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 25901
+    },
+    {
+      "path": "/cimetieres/",
+      "status": 200,
+      "bytes": 102274
+    },
+    {
+      "path": "/realisations/",
+      "status": 200,
+      "bytes": 25109
+    },
+    {
+      "path": "/monuments-funeraires/douceur/",
+      "status": 200,
+      "bytes": 37539
+    },
+    {
+      "path": "/personnaliser/douceur/",
+      "status": 200,
+      "bytes": 75067
+    },
+    {
+      "path": "/devis/",
+      "status": 200,
+      "bytes": 123206
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "bytes": 137
+    },
+    {
+      "path": "/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+      "status": 200,
+      "bytes": 1239
+    },
+    {
+      "path": "/sitemap-index.xml",
+      "status": 200,
+      "bytes": 191
+    },
+    {
+      "path": "/sitemap-0.xml",
+      "status": 200,
+      "bytes": 4407
+    },
+    {
+      "path": "/sitemap-images.xml",
+      "status": 200,
+      "bytes": 89080
+    },
+    {
+      "path": "/verification-inexistante-kumo-20261110/",
+      "status": 404,
+      "bytes": 15380
+    },
+    {
+      "path": "/cimetieres-maquettes.html",
+      "status": 404,
+      "bytes": 15380
+    }
+  ],
+  "deployment": {
+    "id": "611ac765-4cfc-488e-bf05-c5e5b3a094eb",
+    "commit": "7f363eedd04d26a8a085427433b45d414c842cd2",
+    "branch": "live",
+    "status": "success",
+    "completed_utc": "2026-11-10T13:48:12.1272Z",
+    "canonical_confirmed": true
+  },
+  "pagespeed_api": {
+    "status": 429,
+    "scores_production_non_mesures": true
+  }
+}

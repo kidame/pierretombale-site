@@ -7,8 +7,8 @@ section performance disait : "Lighthouse n'est pas installe sur cette machine
 et n'a pas ete installe : performance non mesuree par Lighthouse". Cette
 limite est levee.
 
-Rien n'a ete pousse ni mis en ligne par cette session : tout est local, sur
-`main`.
+Les mesures ci-dessous ont ete faites sur le build local avant publication.
+La publication a ensuite ete verifiee sur le domaine reel (voir ci-dessous).
 
 ## Conditions de mesure
 
@@ -119,13 +119,13 @@ debordement horizontal. Capture relue :
   un gain simule, alors que la performance est deja a 100 et le LCP a 1,05 s.
   Non corrige, sciemment.
 - **`network-dependency-tree-insight`** : chaine critique document -> CSS ->
-  police. Meme raison. Un `preload` de police ne gagnerait rien de mesurable
-  ici (TBT 0, CLS 0) et toucherait le chargement de toutes les pages.
+  police. Meme raison. Le gain eventuel d'un `preload` de police n'a pas ete mesure ;
+  le chargement des polices reste inchange pour cette publication.
 - **LCP a 1,66 s** (Peseux et Val-de-Travers en mobile) : l'audit LCP seul
   passe sous 1 au-dela de 1,2 s, sans faire bouger le score de performance
   (100). L'element LCP est le chapeau du hero (`p.type-lead`), rendu sans
-  image ; l'ecart avec les 1,05 s des autres fiches vient de la mesure
-  simulee, pas d'un contenu different.
+  image ; des variations entre executions ont ete observees. La cause precise
+  de cet ecart n'a pas ete isolee.
 - `unused-css-rules` est a zero : l'effet de bord signale comme limite de la V2
   (CSS de route inutilise sur les huit autres fiches) a bien disparu avec la
   generalisation.
@@ -139,7 +139,9 @@ different, et le `robots.txt` servi est celui du build, pas celui que
 Cloudflare servira. Lighthouse n'a signale aucun probleme dans ces conditions
 (aucun `noindex` sur les neuf fiches, verifie aussi directement dans `dist`),
 mais le SEO devra etre reverifie sur `https://www.pierretombale.ch` apres la
-publication. Les quatre autres categories ne dependent pas de l'origine.
+publication. Tous ces scores restent des mesures de laboratoire sur localhost.
+La latence du domaine, le CDN et les en-tetes peuvent modifier les resultats
+en production.
 
 ## Preuves et autres controles
 
@@ -159,3 +161,25 @@ publication. Les quatre autres categories ne dependent pas de l'origine.
   155 tests, vert.
 - **Aucune donnee cimetiere touchee** : `src/data/cimetieres.ts` et les
   composants du guide sont inchanges par cette session.
+
+## Publication et verification du domaine reel
+
+Publication autorisee par Thomas et terminee le 10.11.2026 a 14:48:12
+(heure suisse). Commit `7f363ee`, production canonique Cloudflare
+`611ac765-4cfc-488e-bf05-c5e5b3a094eb`, branche `live`.
+
+Les neuf pages publiques ont ete comparees aux captures HTTP faites avant
+publication et au build audite : 696 faits conserves, memes balises SEO et
+JSON-LD, aucun lien ni ancre perdu, aucun noindex. Les CSS sont identiques
+octet pour octet au build. La protection Cloudflare des emails, deja active
+avant publication, a ete decodee pour la comparaison semantique ; aucune
+protection n'a ete changee. Le script public de restitution repond en 200.
+
+L'accueil, les realisations, la fiche Douceur, le configurateur, le devis,
+robots.txt et les sitemaps repondent en 200. Les URL inexistantes et le
+fichier d'apercu prive repondent en 404. Detail exact :
+`docs/diagnostics/publication-cimetieres-2026-11-10.json`.
+
+L'API Google PageSpeed a retourne HTTP 429 (quota). Les scores presentes
+dans ce rapport restent donc des scores Lighthouse locaux, pas une mesure
+Lighthouse du domaine public. Aucun score de classement Google n'est deduit.

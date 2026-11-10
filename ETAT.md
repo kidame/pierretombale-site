@@ -53,6 +53,34 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+### 10.11.2026 - Neuf fiches cimetiere publiees apres Lighthouse
+
+- Instruction explicite de Thomas : "vas y lighthouse ET met en ligne".
+- Commit publie : `7f363eedd04d26a8a085427433b45d414c842cd2`. Main pousse
+  normalement ; branche live avancee via le connecteur GitHub, sans force,
+  avec verification de son ancien SHA. Aucun hook modifie ni desactive.
+- Cloudflare production canonique : `611ac765-4cfc-488e-bf05-c5e5b3a094eb`,
+  succes le 10.11.2026 a 14:48:12 heure suisse (13:48:12 UTC).
+- Verification HTTP apres publication : les NEUF pages servent le nouveau
+  guide en 200, avec les 696 faits, memes title/meta/canonical/h1/JSON-LD
+  qu'avant publication, aucun lien ni ancre perdu et aucun noindex HTTP.
+  Texte principal identique au build audite et deux CSS publics identiques
+  octet pour octet. Emails Cloudflare normalises pour comparer : protection
+  deja presente avant, adresses conservees, script de restitution en 200.
+- Accueil, hub cimetieres, realisations, fiche Douceur, configurateur, devis,
+  robots et trois sitemaps : 200. URL inexistante et fichier prive
+  cimetieres-maquettes.html : vraies 404. Aucun formulaire envoye par ce test.
+- Lighthouse LOCAL final : neuf mobile + trois desktop, quatre categories
+  a 100 sur les douze mesures. Trois defauts de nom accessible corriges.
+  L'API PageSpeed Google a renvoye HTTP 429 : aucun score Lighthouse de
+  production revendique. Les scores locaux ne garantissent pas les scores
+  du domaine reel ni le classement Google.
+- Preuves : docs/AUDIT-CIMETIERES-2026-11-10.md et
+  docs/diagnostics/publication-cimetieres-2026-11-10.json.
+- Aucun changement DNS, Access, variable de production ni protection.
+  Ancien deploiement disponible pour rollback :
+  `61190029-366d-4a71-8e3b-dee70bd28c04` (commit 073562b).
+
 ### 10.11.2026 - Audit Lighthouse des neuf fiches cimetiere, pret a publier
 
 - Premiere mesure Lighthouse reelle du site sur le VPS. Lighthouse 13.6.0
@@ -87,7 +115,7 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 - **Reserve** : le 100 en SEO est local. Les pages sont servies depuis
   127.0.0.1 alors que leur canonical pointe vers www.pierretombale.ch, et le
   `robots.txt` est celui du build. A reverifier sur la production apres
-  publication ; les quatre autres categories ne dependent pas de l'origine.
+  publication. Tous les scores restent locaux et peuvent varier sur le domaine reel.
 - Controle independant des 696 faits relance APRES correction : 696/696, SEO
   identique sur les neuf, hub, accueil et sitemaps identiques, aucun lien ni
   ancre perdu. `npm run build` 75 pages vert, `npx astro check` 0 erreur
