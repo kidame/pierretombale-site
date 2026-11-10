@@ -301,3 +301,26 @@ qui cesse d'observer).
   Boudry et de Val-de-Travers, les tarifs des trois communes et les adresses
   manquantes restent a demander aux communes (liste dans `docs/BACKLOG.md`).
   Cette passe ne change aucune donnee.
+
+## Apercu autonome livre
+
+- Les neuf fiches sont reunies dans un seul fichier `cimetieres-maquettes.html`,
+  avec un selecteur natif de commune et un lien Pleine page. Les liens vers une
+  autre des neuf fiches restent dans cet apercu. Les autres liens ouvrent leur
+  destination habituelle.
+- Export du build du commit afbb11b, par
+  `/home/kumo/atelier/tmp/export-cimetieres-generalisation.py`. Fichier source :
+  `/home/kumo/atelier/tmp/cimetieres-generalisation-20261110/cimetieres-maquettes.html`.
+- 1 550 656 octets. SHA-256 :
+  `cfab993cb12fa52daaf117f74b22bcb59663be9505900d54ea0e639ee93d4c20`.
+- Polices, styles et images integres. Aucun chargement HTTP externe dans
+  l'apercu teste. Le suivi d'audience et son bandeau sont retires uniquement
+  de cet export ; `noindex,nofollow` est ajoute uniquement a l'export.
+- Verification propre a l'apercu : 9 fiches x 320/390/1440 px, aucun
+  debordement horizontal interne ou externe, les neuf bons h1, les neuf
+  nouveaux gabarits. Ancres, onglet de hauteur et onglets des cendres testes
+  dans l'iframe ; bascule Corcelles -> Peseux par lien interne verifiee.
+  Capture du fichier final en 390 px relue.
+- Controle independant des 696 faits relance apres le build final : toujours
+  aucun fait, lien ou ancre perdu et SEO identique.
+- Fichier remis a Thomas pour relecture. Aucun push ni deploiement.

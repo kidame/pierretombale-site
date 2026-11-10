@@ -55,6 +55,12 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ### 10.11.2026 - V2 generalisee aux neuf fiches cimetiere (maquette privee)
 
+- Livraison : `cimetieres-maquettes.html`, un fichier autonome avec selecteur
+  des neuf communes et lien Pleine page. Export teste en 320/390/1440 px sur
+  les neuf fiches, sans debordement ni chargement HTTP externe. Ancres,
+  onglets et liens entre communes verifies dans cet apercu. Detail et
+  empreinte dans docs/UX-CIMETIERES-GENERALISATION.md.
+
 - Thomas a VALIDE la V2 de Corcelles (commit 4cef302) et demande le meme
   travail sur chaque page de commune existante. Fait le meme jour, en local :
   la composition V2 est desormais la SEULE mise en page des neuf fiches.
