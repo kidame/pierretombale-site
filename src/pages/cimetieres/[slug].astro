@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import GuideCimetiere from "@/components/GuideCimetiere.astro";
 import MentionVerification from "@/components/MentionVerification.astro";
 import { pageTitle } from "@/config/site";
 import { LOI_CANTONALE, SOURCES } from "@/data/cimetieres-ne";
@@ -12,6 +13,7 @@ import {
   devisUrl,
   itineraireUrl,
   mentionVerification,
+  telUrl,
   type Cimetiere,
 } from "@/data/cimetieres";
 import { guideUrl } from "@/data/guides";
@@ -77,6 +79,14 @@ const titrePrincipal = motsLocalite.some((mot) => cimetiere.nom.includes(mot))
 const origin = Astro.site ?? new URL(Astro.url.origin);
 const autres = espacesFines(autresCimetieres(donnees.slug));
 
+/* Pilote de la nouvelle composition (direction validee le 10.11.2026) : une
+   seule page la rend, les autres gardent la mise en page d origine. Un seul
+   des deux rendus est dans le HTML : le DOM n est jamais double.
+   Adresse, titre, metadonnees, ancres et schemas sont les memes dans les deux
+   cas : ils sont calcules ici, au-dessus du rendu. */
+const PILOTE_GUIDE = "corcelles-cormondreche";
+const guideAudacieux = donnees.slug === PILOTE_GUIDE;
+
 /* Sommaire : les sections reellement presentes sur cette page. */
 const sommaire = [
   { id: "sur-place", titre: "Sur place" },
@@ -138,6 +148,16 @@ const filAriane = breadcrumbSchema(
 
 <BaseLayout title={pageTitle(cimetiere.titreSeo)} description={cimetiere.description}>
   <main id="main-content">
+    {
+      guideAudacieux ? (
+        <GuideCimetiere
+          cimetiere={cimetiere}
+          donnees={donnees}
+          titrePrincipal={titrePrincipal}
+          autres={autres}
+        />
+      ) : (
+        <Fragment>
     {/* --------------------------------------------------------- En-tete */}
     <section class="shell pb-10 pt-10 md:pb-12 md:pt-16">
       <nav class="fil-cim" aria-label="Fil d'Ariane">
@@ -186,7 +206,7 @@ const filAriane = breadcrumbSchema(
               {cimetiere.contact.adresse && <span>{cimetiere.contact.adresse}</span>}
               {
                 cimetiere.contact.telephone && (
-                  <a href={`tel:+41${cimetiere.contact.telephone.replace(/\D/g, "").slice(1)}`} class="link">
+                  <a href={telUrl(donnees.contact.telephone as string)} class="link">
                     {cimetiere.contact.telephone}
                   </a>
                 )
@@ -575,6 +595,9 @@ const filAriane = breadcrumbSchema(
         </li>
       </ul>
     </section>
+        </Fragment>
+      )
+    }
   </main>
 
   <script is:inline type="application/ld+json" set:html={JSON.stringify(pageSchema)} />

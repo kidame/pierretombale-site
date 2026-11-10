@@ -1852,6 +1852,14 @@ export function itineraireUrl(cimetiere: Cimetiere): string {
   return `https://www.google.com/maps/search/?api=1&query=${requete}`;
 }
 
+/**
+ * Lien d appel du guichet communal. Les numeros sont notes 032 717 72 47 :
+ * on garde les chiffres et on remplace le zero initial par l indicatif suisse.
+ */
+export function telUrl(telephone: string): string {
+  return `tel:+41${telephone.replace(/\D/g, "").slice(1)}`;
+}
+
 /* ======================================================================== */
 /* Garde-fou de build                                                        */
 /* ======================================================================== */

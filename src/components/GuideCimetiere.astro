@@ -1,0 +1,1513 @@
+---
+import MentionVerification from "@/components/MentionVerification.astro";
+import { LOI_CANTONALE, SOURCES } from "@/data/cimetieres-ne";
+import {
+  CIMETIERES_URL,
+  PHRASE_SUR_MESURE,
+  cimetiereUrl,
+  devisUrl,
+  itineraireUrl,
+  mentionVerification,
+  telUrl,
+  type Cimetiere,
+} from "@/data/cimetieres";
+import { guideUrl } from "@/data/guides";
+import { FAMILLE_LABELS, familleUrl } from "@/data/products";
+
+/* Guide d un cimetiere : la composition validee le 10.11.2026 (hero
+   asymetrique, panneau pratique, navigation par besoins, schema d echelle,
+   replis natifs). Pilote sur une seule page, voir
+   src/pages/cimetieres/[slug].astro ; les autres pages gardent la mise en
+   page d origine.
+
+   AUCUNE DONNEE ICI. Tout vient de src/data/cimetieres.ts, comme la mise en
+   page d origine : chaque fait, chaque tarif, chaque source est celui de la
+   fiche. Les nombres du schema sont relus dans les lignes du reglement, pour
+   qu une correction de donnee corrige aussi le dessin.
+
+   Ce fichier est ecrit en ASCII : les libelles d interface nouveaux passent
+   par des entites HTML (&#xe9;, &#xe8;, ...) ou par des echappements \uXXXX.
+   Le texte des familles vient des donnees et garde ses accents. */
+
+interface Props {
+  /** Fiche affichee, espaces insecables deja posees par la page. */
+  cimetiere: Cimetiere;
+  /** Meme fiche, valeurs brutes : seules les fonctions d URL l utilisent. */
+  donnees: Cimetiere;
+  /** Le h1 exact, calcule par la page. */
+  titrePrincipal: string;
+  /** Les autres fiches, pour le maillage de fin de page. */
+  autres: Cimetiere[];
+}
+
+const { cimetiere, donnees, titrePrincipal, autres } = Astro.props;
+
+const aAcces = (cimetiere.acces?.length ?? 0) > 0;
+const aProjets = (cimetiere.projets?.length ?? 0) > 0;
+const aHistoire = (cimetiere.histoire?.length ?? 0) > 0;
+const aEntretien = (cimetiere.entretien?.length ?? 0) > 0;
+
+/* Navigation par besoins : les ancres historiques, des libelles qui disent ce
+   que la personne cherche. Une entree n apparait que si sa section existe. */
+const BESOINS = [
+  { id: "infos-pratiques", titre: "Acc\u00e8s et contact", present: true },
+  { id: "sur-place", titre: "Sur place", present: cimetiere.equipements.length > 0 },
+  { id: "poser-un-monument", titre: "Pr\u00e9parer un monument", present: true },
+  { id: "cendres", titre: "Urnes et tarifs", present: cimetiere.cineraire.length > 0 },
+  { id: "duree", titre: "Dur\u00e9e et entretien", present: true },
+  { id: "questions", titre: "Questions", present: true },
+].filter((besoin) => besoin.present);
+
+/* Le bouton d appel dit de qui est le numero : c est le guichet communal,
+   jamais le notre. Le libelle suit le nom du service des donnees. */
+const libelleAppel = /office/i.test(cimetiere.contact.service)
+  ? "Appeler l'office"
+  : "Appeler l'administration";
+
+/* Le schema d echelle lit ses nombres dans le tableau des dimensions : la
+   surface de la tombe d adulte et la hauteur du monument d adulte. Si une
+   fiche ne publie pas ces deux lignes, le schema n est pas dessine. */
+const ligneSurface = cimetiere.regles.tombes.find(
+  (tombe) => /surface/i.test(tombe.type) && !/cr\u00e9mation/i.test(tombe.type),
+);
+const ligneAdulte = cimetiere.regles.tombes.find((tombe) => /adulte/i.test(tombe.type));
+const mesuresSurface = ligneSurface?.dimensions.match(/(\d+)\s*[x\u00d7]\s*(\d+)/);
+const mesureHauteur = ligneAdulte?.hauteurMax?.match(/(\d+)/);
+const schema =
+  ligneSurface && ligneAdulte && mesuresSurface && mesureHauteur
+    ? {
+        largeurCm: Number(mesuresSurface[1]),
+        profondeurCm: Number(mesuresSurface[2]),
+        hauteurCm: Number(mesureHauteur[1]),
+        surfaceType: ligneSurface.type,
+        surfaceArticle: ligneSurface.article,
+        hauteurTexte: ligneAdulte.hauteurMax as string,
+        hauteurArticle: ligneAdulte.article,
+        largeurTexte: ligneAdulte.dimensions,
+      }
+    : null;
+
+/* Les trois reperes du monument, contextualises par la ligne de reglement
+   d ou vient le chiffre. Aucun texte nouveau : le delai est la phrase du
+   reglement, les deux autres portent le type de sepulture et son article. */
+const reperes = [
+  {
+    intitule: "D\u00e9lai avant la pose",
+    valeur: cimetiere.chiffres.delai,
+    precision: cimetiere.regles.delaiPose,
+  },
+  {
+    intitule: "Tombe d'adulte",
+    valeur: cimetiere.chiffres.tombeAdulte,
+    precision: ligneSurface ? `${ligneSurface.type}, ${ligneSurface.article}.` : undefined,
+  },
+  {
+    intitule: "Hauteur maximale",
+    valeur: cimetiere.chiffres.hauteurMax,
+    precision: ligneAdulte
+      ? `${ligneAdulte.type}, ${ligneAdulte.article}. ${ligneAdulte.dimensions}.`
+      : undefined,
+  },
+];
+
+/* Les cendres, rangees par possibilite. Chaque ligne de la fiche tombe dans
+   le premier groupe qui la reconnait, dans l ordre ci-dessous ; ce qui n est
+   reconnu par aucun groupe est garde a la fin. Rien n est retire. */
+const POSSIBILITES = [
+  { titre: "Au columbarium", test: /columbarium|niche/i },
+  { titre: "Au jardin du souvenir", test: /jardin du souvenir/i },
+  { titre: "Dans une tombe", test: /tombe/i },
+];
+const groupesCendres: { titre: string; lignes: string[] }[] = [];
+{
+  const groupes = POSSIBILITES.map((possibilite) => ({ titre: possibilite.titre, lignes: [] as string[] }));
+  const reste: string[] = [];
+  for (const ligne of cimetiere.cineraire) {
+    const index = POSSIBILITES.findIndex((possibilite) => possibilite.test.test(ligne));
+    if (index === -1) reste.push(ligne);
+    else groupes[index].lignes.push(ligne);
+  }
+  for (const groupe of groupes) if (groupe.lignes.length > 0) groupesCendres.push(groupe);
+  if (reste.length > 0) groupesCendres.push({ titre: "\u00c0 savoir aussi", lignes: reste });
+}
+---
+
+<div class="guide">
+  {/* ------------------------------------------------------------ Hero */}
+  <section class="shell guide-hero" aria-labelledby="titre-cimetiere">
+    <div class="hero-titre">
+      <nav class="fil" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">/</span>
+        <a href={CIMETIERES_URL}>Cimeti&#xe8;res</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{cimetiere.nom}</span>
+      </nav>
+      <p class="label hero-commune">{cimetiere.commune}</p>
+      <h1 class="type-h1 hero-h1" id="titre-cimetiere">{titrePrincipal}</h1>
+    </div>
+
+    <p class="type-lead hero-chapo">{cimetiere.chapo}</p>
+
+    <aside class="panneau nuit" id="infos-pratiques" aria-labelledby="panneau-titre">
+      <p class="label panneau-titre" id="panneau-titre">Infos pratiques</p>
+
+      <dl class="panneau-infos">
+        {
+          cimetiere.adresse && (
+            <div>
+              <dt>Adresse</dt>
+              <dd>{cimetiere.adresse}</dd>
+            </div>
+          )
+        }
+        {
+          cimetiere.horaires && (
+            <div>
+              <dt>Horaires du cimeti&#xe8;re</dt>
+              <dd>{cimetiere.horaires}</dd>
+            </div>
+          )
+        }
+        {
+          aAcces && (
+            <div>
+              <dt>Acc&#xe8;s</dt>
+              <dd>
+                {cimetiere.acces?.map((ligne) => (
+                  <span>{ligne}</span>
+                ))}
+              </dd>
+            </div>
+          )
+        }
+      </dl>
+
+      <div class="panneau-actions">
+        <div class="panneau-boutons">
+          <a href={itineraireUrl(donnees)} class="btn btn-primary" rel="noopener nofollow">
+            Itin&#xe9;raire
+          </a>
+          {
+            cimetiere.contact.telephone && (
+              <a href={telUrl(donnees.contact.telephone as string)} class="btn btn-outline">
+                {libelleAppel}
+                <span class="sr-only"> : {cimetiere.contact.service}</span>
+              </a>
+            )
+          }
+        </div>
+        {
+          cimetiere.contact.telephone && (
+            <p class="panneau-legende">
+              {cimetiere.contact.service}
+            </p>
+          )
+        }
+      </div>
+
+      <details class="panneau-admin">
+        <summary class="admin-summary">Coordonn&#xe9;es du guichet</summary>
+        <p class="admin-service">
+          {
+            cimetiere.contact.url ? (
+              <a href={cimetiere.contact.url} class="link" rel="noopener">
+                {cimetiere.contact.service}
+              </a>
+            ) : (
+              <span>{cimetiere.contact.service}</span>
+            )
+          }
+        </p>
+        <ul class="admin-lignes">
+          {cimetiere.contact.adresse && <li>{cimetiere.contact.adresse}</li>}
+          {
+            cimetiere.contact.telephone && (
+              <li>
+                <a href={telUrl(donnees.contact.telephone as string)} class="link">
+                  {cimetiere.contact.telephone}
+                </a>
+              </li>
+            )
+          }
+          {cimetiere.contact.telephoneSecondaire && <li>{cimetiere.contact.telephoneSecondaire}</li>}
+          {
+            cimetiere.contact.email && (
+              <li>
+                <a href={`mailto:${cimetiere.contact.email}`} class="link">
+                  {cimetiere.contact.email}
+                </a>
+              </li>
+            )
+          }
+          {cimetiere.contact.horaires && <li>{cimetiere.contact.horaires}</li>}
+        </ul>
+        <p class="admin-note">Les demandes de concession et de permis de pose sont trait&#xe9;es par ce service communal.</p>
+      </details>
+    </aside>
+  </section>
+
+  {/* ------------------------------------------- Rail de navigation + flux */}
+  <div class="shell guide-corps">
+    <nav class="guide-rail" aria-labelledby="rail-titre">
+      <p class="label" id="rail-titre">Que cherchez-vous&#xa0;?</p>
+      <ul>
+        {
+          BESOINS.map((besoin) => (
+            <li>
+              <a href={`#${besoin.id}`}>{besoin.titre}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="guide-flux">
+      {/* ---------------------------------------------------- Sur place */}
+      {
+        cimetiere.equipements.length > 0 && (
+          <section class="bloc" id="sur-place" aria-labelledby="titre-sur-place">
+            <p class="label">Venir</p>
+            <h2 class="type-h2 bloc-titre" id="titre-sur-place">
+              Sur place
+            </h2>
+            <ul class="faits faits-colonnes">
+              {cimetiere.equipements.map((ligne) => (
+                <li>{ligne}</li>
+              ))}
+            </ul>
+
+            {aProjets && (
+              <aside class="encadre">
+                <h3 class="encadre-titre">Ce qui change bient&#xf4;t</h3>
+                {cimetiere.projets?.map((ligne) => <p>{ligne}</p>)}
+              </aside>
+            )}
+
+            {aHistoire && (
+              <details class="repli">
+                <summary>
+                  <span class="repli-titre">Histoire et patrimoine</span>
+                </summary>
+                <div class="repli-corps">
+                  {cimetiere.histoire?.map((ligne) => <p>{ligne}</p>)}
+                </div>
+              </details>
+            )}
+          </section>
+        )
+      }
+
+      {/* -------------------------------------------- Poser un monument */}
+      <section class="bloc" id="poser-un-monument" aria-labelledby="titre-monument">
+        <p class="label">Pr&#xe9;parer un monument</p>
+        <h2 class="type-h2 bloc-titre" id="titre-monument">Poser un monument</h2>
+
+        <div class="monument-haut">
+          <dl class="reperes">
+            {
+              reperes.map((repere) => (
+                <div class="repere">
+                  <dt>{repere.intitule}</dt>
+                  <dd class="repere-valeur">{repere.valeur}</dd>
+                  {repere.precision && <dd class="repere-precision">{repere.precision}</dd>}
+                </div>
+              ))
+            }
+          </dl>
+
+          {
+            schema && (
+              <figure
+                class="schema"
+                style={`--cm-largeur:${schema.largeurCm};--cm-profondeur:${schema.profondeurCm};--cm-hauteur:${schema.hauteurCm}`}
+              >
+                <figcaption class="label">Rep&#xe8;re d'&#xe9;chelle</figcaption>
+                <div class="schema-vues">
+                  <div class="vue">
+                    <p class="vue-titre">Vue de dessus</p>
+                    <div class="plan">
+                      <span class="cote cote-largeur">{schema.largeurCm}&#xa0;cm</span>
+                      <div class="plan-forme" />
+                      <span class="cote cote-profondeur">{schema.profondeurCm}&#xa0;cm</span>
+                    </div>
+                  </div>
+                  <div class="vue">
+                    <p class="vue-titre">Vue en &#xe9;l&#xe9;vation</p>
+                    <div class="elevation">
+                      <span class="cote cote-hauteur">{schema.hauteurCm}&#xa0;cm</span>
+                      <div class="elevation-enveloppe">
+                        <span class="elevation-largeur">&#xe0; confirmer</span>
+                      </div>
+                      <div class="elevation-sol" />
+                    </div>
+                  </div>
+                </div>
+                <p class="schema-notes">
+                  Vue de dessus : {schema.surfaceType}, {schema.surfaceArticle}. Vue en
+                  &#xe9;l&#xe9;vation : {schema.hauteurTexte} ({schema.hauteurArticle}),{" "}
+                  {schema.largeurTexte.toLowerCase()}. Les deux vues sont &#xe0; la m&#xea;me
+                  &#xe9;chelle.
+                </p>
+                <p class="schema-avertissement">
+                  Dessin des cotes du r&#xe8;glement, pour se rep&#xe9;rer. Ce n'est pas un
+                  mod&#xe8;le du catalogue, et aucun monument n'est annonc&#xe9; conforme sans
+                  v&#xe9;rification du r&#xe8;glement.
+                </p>
+              </figure>
+            )
+          }
+        </div>
+
+        <h3 class="type-h3 sous-titre">Ce que demande le r&#xe8;glement</h3>
+        <div class="prose">
+          {
+            cimetiere.regles.periodeInterdite && (
+              <p>
+                <strong>P&#xe9;riode o&#xf9; la pose est interdite.</strong>{" "}
+                {cimetiere.regles.periodeInterdite}
+              </p>
+            )
+          }
+          {
+            cimetiere.regles.autorisation && (
+              <p>
+                <strong>Autorisation.</strong> {cimetiere.regles.autorisation}
+              </p>
+            )
+          }
+          <p>
+            <strong>Bordure et entourage.</strong> {cimetiere.regles.bordure}
+          </p>
+          {
+            cimetiere.regles.taxePose && (
+              <p>
+                <strong>Taxe communale de pose.</strong> {cimetiere.regles.taxePose}
+              </p>
+            )
+          }
+        </div>
+
+        {
+          (cimetiere.regles.materiaux || cimetiere.regles.obligations.length > 0) && (
+            <details class="repli">
+              <summary>
+                <span class="repli-titre">Mat&#xe9;riaux et obligations de l'entreprise</span>
+              </summary>
+              <div class="repli-corps">
+                {cimetiere.regles.materiaux && (
+                  <p>
+                    <strong>Mat&#xe9;riaux.</strong> {cimetiere.regles.materiaux}
+                  </p>
+                )}
+                {cimetiere.regles.obligations.length > 0 && (
+                  <>
+                    <h4 class="repli-sous-titre">Ce que le r&#xe8;glement impose en plus</h4>
+                    <ul class="faits">
+                      {cimetiere.regles.obligations.map((ligne) => (
+                        <li>{ligne}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </div>
+            </details>
+          )
+        }
+
+        <h3 class="type-h3 sous-titre" id="titre-dimensions">Dimensions autoris&#xe9;es</h3>
+        <p class="indice">
+          Tableau complet&#xa0;: sur t&#xe9;l&#xe9;phone, il se fait d&#xe9;filer
+          lat&#xe9;ralement.
+        </p>
+        <div class="tableau" role="region" aria-labelledby="titre-dimensions" tabindex="0">
+          <table class="tableau-grille">
+            <caption>
+              Dimensions et hauteurs autoris&#xe9;es par type de s&#xe9;pulture, avec l'article du
+              r&#xe8;glement.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Dimensions</th>
+                <th scope="col">Hauteur maximale</th>
+                <th scope="col">Article</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                cimetiere.regles.tombes.map((tombe) => (
+                  <tr>
+                    <th scope="row">{tombe.type}</th>
+                    <td>{tombe.dimensions}</td>
+                    <td>{tombe.hauteurMax ?? "Non publi\u00e9e"}</td>
+                    <td>{tombe.article}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* ------------------------------------------- Appel commercial */}
+      <section class="bloc projet nuit" aria-labelledby="titre-projet">
+        <p class="label">Votre projet</p>
+        <h2 class="type-h2 bloc-titre" id="titre-projet">Votre projet dans ce cimeti&#xe8;re</h2>
+        <p class="projet-texte">
+          Dites-nous le type de s&#xe9;pulture et, si vous le connaissez, le num&#xe9;ro de la
+          tombe. Nous v&#xe9;rifions le r&#xe8;glement, nous adaptons le monument aux dimensions
+          autoris&#xe9;es, nous d&#xe9;posons la demande de pose et nous &#xe9;tablissons un devis
+          gratuit.
+        </p>
+        <p class="projet-texte">{PHRASE_SUR_MESURE}</p>
+        <div class="projet-actions">
+          <a href={devisUrl(donnees)} class="btn btn-primary">Demander un devis</a>
+          <a href={familleUrl("monument")} class="btn btn-outline">{FAMILLE_LABELS.monument}</a>
+        </div>
+        <p class="projet-note">
+          Page d'information ind&#xe9;pendante, r&#xe9;dig&#xe9;e par PierreTombale.ch. Pour les
+          d&#xe9;marches officielles&#xa0;:{" "}
+          {
+            cimetiere.contact.url ? (
+              <a href={cimetiere.contact.url} class="link" rel="noopener">
+                {cimetiere.contact.service}
+              </a>
+            ) : (
+              <span>{cimetiere.contact.service}</span>
+            )
+          }. Informations v&#xe9;rifi&#xe9;es le {cimetiere.verifieLe}&#xa0;:{" "}
+          <a href="#sources" class="link">voir les documents officiels</a>.
+        </p>
+      </section>
+
+      {/* ------------------------------------ Urnes et jardin du souvenir */}
+      {
+        cimetiere.cineraire.length > 0 && (
+          <section class="bloc" id="cendres" aria-labelledby="titre-cendres">
+            <p class="label">Urnes et tarifs</p>
+            <h2 class="type-h2 bloc-titre" id="titre-cendres">
+              Urnes, columbarium et jardin du souvenir
+            </h2>
+
+            <div class="possibilites">
+              {groupesCendres.map((groupe) => (
+                <article class="possibilite">
+                  <h3 class="possibilite-titre">{groupe.titre}</h3>
+                  <ul class="faits">
+                    {groupe.lignes.map((ligne) => (
+                      <li>{ligne}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+
+            {cimetiere.tarifs && (
+              <>
+                <h3 class="type-h3 sous-titre" id="titre-tarifs">
+                  Tarifs officiels de la commune
+                </h3>
+                <p class="prose-note">
+                  Ce sont des taxes communales, pas des prix de monument. Source&#xa0;:{" "}
+                  {cimetiere.tarifs.date}.
+                </p>
+                <p class="indice">
+                  Tableau complet&#xa0;: sur t&#xe9;l&#xe9;phone, il se fait d&#xe9;filer
+                  lat&#xe9;ralement.
+                </p>
+                <div class="tableau" role="region" aria-labelledby="titre-tarifs" tabindex="0">
+                  <table class="tableau-grille">
+                    <caption>
+                      Taxes communales par prestation, pour une personne domicili&#xe9;e dans la
+                      commune et pour une personne de l'ext&#xe9;rieur.
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Prestation</th>
+                        <th scope="col">Domicili&#xe9;</th>
+                        <th scope="col">Ext&#xe9;rieur</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {cimetiere.tarifs.lignes.map((ligne) => (
+                        <tr>
+                          <th scope="row">{ligne.prestation}</th>
+                          <td>{ligne.domicilie}</td>
+                          <td>{ligne.exterieur ?? "Non publi\u00e9"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {cimetiere.tarifs.note && <p class="prose-note">{cimetiere.tarifs.note}</p>}
+                <p class="prose-note">
+                  {cimetiere.tarifs.source ? (
+                    <a href={SOURCES[cimetiere.tarifs.source].url} class="link" rel="noopener">
+                      {SOURCES[cimetiere.tarifs.source].libelle}
+                    </a>
+                  ) : (
+                    <span>{cimetiere.tarifs.sourceLibelle}</span>
+                  )}
+                </p>
+              </>
+            )}
+          </section>
+        )
+      }
+
+      {/* ------------------------------------------ Duree et entretien */}
+      <section class="bloc" id="duree" aria-labelledby="titre-duree">
+        <p class="label">Dur&#xe9;e et entretien</p>
+        <h2 class="type-h2 bloc-titre" id="titre-duree">
+          Dur&#xe9;e de la tombe et reprise du monument
+        </h2>
+        <ul class="faits">
+          {cimetiere.duree.map((ligne) => <li>{ligne}</li>)}
+        </ul>
+
+        {
+          aEntretien && (
+            <>
+              <h3 class="type-h3 sous-titre">Entretien</h3>
+              <ul class="faits">
+                {cimetiere.entretien?.map((ligne) => <li>{ligne}</li>)}
+              </ul>
+            </>
+          )
+        }
+      </section>
+
+      {/* ------------------------------------------------------- Questions */}
+      <section class="bloc" id="questions" aria-labelledby="titre-questions">
+        <p class="label">Questions</p>
+        <h2 class="type-h2 bloc-titre" id="titre-questions">
+          Questions fr&#xe9;quentes&#xa0;: {cimetiere.nom}
+        </h2>
+        <div class="faq">
+          {
+            cimetiere.faq.map((item, index) => (
+              <details class="repli" open={index === 0}>
+                <summary>
+                  <span class="repli-titre">{item.question}</span>
+                </summary>
+                <div class="repli-corps">
+                  <p>{item.reponse}</p>
+                </div>
+              </details>
+            ))
+          }
+        </div>
+      </section>
+
+      {/* ------------------------------------------- Documents officiels */}
+      <section class="bloc" id="sources" aria-labelledby="titre-sources">
+        <p class="label">Sources</p>
+        <h2 class="type-h2 bloc-titre" id="titre-sources">Documents officiels</h2>
+        <p class="prose-note">
+          Les textes d'o&#xf9; viennent les r&#xe8;gles de cette page. La {LOI_CANTONALE} laisse
+          les monuments aux conditions fix&#xe9;es par la commune (art.&#xa0;9).
+        </p>
+        <ul class="sources-liste">
+          {
+            cimetiere.sources.map((id) => (
+              <li>
+                <a href={SOURCES[id].url} class="link" rel="noopener">
+                  {SOURCES[id].libelle}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="sources-mention">
+          <MentionVerification texte={mentionVerification(cimetiere.verifieLe)} />
+        </div>
+      </section>
+    </div>
+  </div>
+
+  {/* ------------------------------------------------- Autres cimetieres */}
+  <section class="shell guide-ailleurs" aria-labelledby="titre-ailleurs">
+    <h2 class="type-h2" id="titre-ailleurs">Autres cimeti&#xe8;res</h2>
+    <ul class="ailleurs-liste">
+      {
+        autres.map((autre) => (
+          <li>
+            <a href={cimetiereUrl(autre.slug)} class="link ailleurs-lien">
+              {autre.nom}
+            </a>
+            <p>
+              {autre.commune} &#xb7; d&#xe9;lai de pose&#xa0;: {autre.chiffres.delai.toLowerCase()}
+            </p>
+          </li>
+        ))
+      }
+      <li>
+        <a href={CIMETIERES_URL} class="link ailleurs-lien">Tous les cimeti&#xe8;res du canton</a>
+        <p>Le tableau des 24 communes&#xa0;: d&#xe9;lai, dimensions, hauteur et bordure.</p>
+      </li>
+      <li>
+        <a href={guideUrl("quand-poser-une-pierre-tombale")} class="link ailleurs-lien">
+          Quand poser une pierre tombale
+        </a>
+        <p>Les d&#xe9;lais, les autorisations et les taxes communales, commune par commune.</p>
+      </li>
+      <li>
+        <a href={guideUrl("columbarium-cavurne-jardin-du-souvenir")} class="link ailleurs-lien">
+          Columbarium, cavurne et jardin du souvenir
+        </a>
+        <p>Ce que recouvre chaque mot, les dur&#xe9;es, le nombre d'urnes et les tarifs officiels.</p>
+      </li>
+    </ul>
+  </section>
+</div>
+
+<style>
+  /* Une seule feuille, portee par le composant. Rien ici ne code une couleur :
+     tout passe par les jetons de src/styles.css (ivoire, anthracite, bronze).
+     Corps a 17 px, lignes sous 75 caracteres, cibles tactiles 44 px au moins. */
+
+  .guide {
+    --rail: 13.5rem;
+  }
+
+  /* ---------------------------------------------------------------- Hero
+     Trois morceaux : le titre, le chapo, le panneau pratique. Sur telephone
+     le panneau remonte juste sous le titre, et ses boutons passent en tete du
+     panneau : les deux actions utiles sont a portee de pouce. */
+  .guide-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    padding-top: 1.75rem;
+    padding-bottom: 2.5rem;
+  }
+  /* Ordre a l ecran sur telephone : titre, panneau pratique, chapo. Les deux
+     actions sont ainsi dans le premier ecran, sous le h1. */
+  .hero-titre {
+    order: 1;
+  }
+  .panneau {
+    order: 2;
+  }
+  .hero-chapo {
+    order: 3;
+  }
+  .fil {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+  .fil a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .fil a:hover {
+    color: var(--ink);
+  }
+  .hero-commune {
+    margin-top: 1.5rem;
+  }
+  .hero-h1 {
+    margin-top: 0.75rem;
+    max-width: 22ch;
+  }
+  .hero-chapo {
+    max-width: 58ch;
+  }
+
+  @media (min-width: 64rem) {
+    .guide-hero {
+      grid-template-areas:
+        "titre panneau"
+        "chapo panneau";
+      grid-template-columns: minmax(0, 1.3fr) minmax(21rem, 0.85fr);
+      grid-template-rows: auto 1fr;
+      /* Le panneau occupe les deux rangees : la seconde prend le reste de la
+         hauteur, sinon le chapo descendrait au milieu du vide. */
+      grid-template-rows: auto 1fr;
+      align-items: start;
+      column-gap: 4.5rem;
+      row-gap: 1.75rem;
+      padding-top: 2.75rem;
+      padding-bottom: 3.5rem;
+    }
+    .hero-titre,
+    .hero-chapo,
+    .panneau {
+      order: 0;
+    }
+    .hero-titre {
+      grid-area: titre;
+    }
+    .hero-chapo {
+      grid-area: chapo;
+      align-self: start;
+    }
+    .panneau {
+      grid-area: panneau;
+    }
+  }
+
+  /* ------------------------------------------------- Panneau pratique */
+  .panneau {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border: 1px solid var(--line-strong);
+    padding: 1.5rem 1.25rem;
+  }
+  @media (min-width: 48rem) {
+    .panneau {
+      padding: 2rem;
+    }
+  }
+
+  /* Ordre a l ecran sur telephone : titre, boutons, informations, guichet.
+     Dans le HTML les informations precedent les boutons (lecture lineaire). */
+  .panneau-titre {
+    order: 1;
+  }
+  .panneau-actions {
+    order: 2;
+  }
+  .panneau-infos {
+    order: 3;
+  }
+  .panneau-admin {
+    order: 4;
+  }
+  @media (min-width: 64rem) {
+    .panneau-titre,
+    .panneau-actions,
+    .panneau-infos,
+    .panneau-admin {
+      order: 0;
+    }
+  }
+
+  .panneau-infos {
+    display: grid;
+    gap: 1.125rem;
+  }
+  .panneau-infos dt {
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .panneau-infos dd {
+    margin-top: 0.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    max-width: 44ch;
+  }
+
+  .panneau-boutons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .panneau-boutons .btn {
+    flex: 1 1 11rem;
+  }
+  .panneau-legende {
+    margin-top: 0.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .panneau-admin {
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+  }
+
+  .admin-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 44px;
+    cursor: pointer;
+    list-style: none;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  .admin-summary::-webkit-details-marker { display: none; }
+  .admin-summary::after { content: "+"; font-size: 1.5rem; }
+  .panneau-admin[open] > .admin-summary::after { content: "-"; }
+  .admin-summary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  #infos-pratiques { scroll-margin-top: 1.5rem; }
+
+  .admin-service {
+    margin-top: 0.75rem;
+    font-family: var(--font-serif);
+    font-size: 1.1875rem;
+    line-height: 1.3;
+  }
+  .admin-lignes {
+    margin-top: 0.75rem;
+    display: grid;
+    gap: 0.5rem;
+    list-style: none;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .admin-note {
+    margin-top: 1rem;
+    max-width: 44ch;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .admin-lignes a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+  }
+  .panneau a:focus-visible {
+    outline-offset: 4px;
+  }
+
+  /* --------------------------------------------- Rail et colonne de texte */
+  /* minmax(0, 1fr) et min-width: 0 : sans eux, la largeur minimale des
+     tableaux pousserait la colonne au-dela de l ecran du telephone. */
+  .guide-corps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+  }
+  .guide-rail,
+  .guide-flux {
+    min-width: 0;
+  }
+  /* La colonne de texte garde une largeur de lecture meme sur tres grand
+     ecran : les tableaux ne s etirent pas sur 1100 px. */
+  .guide-flux {
+    max-width: 64rem;
+  }
+  @media (min-width: 64rem) {
+    .guide-corps {
+      grid-template-columns: var(--rail) minmax(0, 1fr);
+      column-gap: 4.5rem;
+      align-items: start;
+      padding-bottom: 4.5rem;
+    }
+  }
+
+  .guide-rail {
+    border: 1px solid var(--line);
+    padding: 1rem 1.25rem;
+  }
+  .guide-rail ul {
+    margin-top: 0.5rem;
+    display: grid;
+    list-style: none;
+  }
+  .guide-rail a {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 1.0625rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .guide-rail li:last-child a {
+    border-bottom: 0;
+  }
+  .guide-rail a:hover {
+    color: var(--accent);
+  }
+  @media (min-width: 64rem) {
+    .guide-rail {
+      position: sticky;
+      top: 2.5rem;
+      border: 0;
+      border-top: 1px solid var(--line-strong);
+      padding: 1rem 0 0;
+    }
+  }
+
+  /* ---------------------------------------------------------- Sections */
+  .bloc {
+    scroll-margin-top: 5.5rem;
+  }
+  .bloc + .bloc {
+    margin-top: 3rem;
+    border-top: 1px solid var(--line);
+    padding-top: 3rem;
+  }
+  .bloc-titre {
+    margin-top: 0.75rem;
+    max-width: 24ch;
+  }
+  @media (min-width: 64rem) {
+    .bloc {
+      scroll-margin-top: 1.5rem;
+    }
+  }
+
+  .sous-titre {
+    margin-top: 2.75rem;
+    max-width: 26ch;
+  }
+
+  /* Listes de faits : un filet bronze en guise de puce, jamais de petit texte
+     en bronze. Les equipements passent sur deux colonnes sur grand ecran. */
+  .faits {
+    margin-top: 1.5rem;
+    max-width: 70ch;
+    list-style: none;
+  }
+  .faits li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .faits li + li {
+    margin-top: 1rem;
+  }
+  .faits li::before {
+    content: "";
+    position: absolute;
+    top: 0.85em;
+    left: 0;
+    width: 0.75rem;
+    height: 1px;
+    background: var(--accent);
+  }
+  @media (min-width: 64rem) {
+    .faits-colonnes {
+      max-width: none;
+      columns: 2;
+      column-gap: 3.5rem;
+    }
+    .faits-colonnes li {
+      break-inside: avoid;
+    }
+    .faits-colonnes li + li {
+      margin-top: 0;
+    }
+    .faits-colonnes li:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
+
+  .prose {
+    margin-top: 1.75rem;
+    max-width: 68ch;
+  }
+  .prose p {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .prose p + p {
+    margin-top: 1.25rem;
+  }
+  .prose strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .prose-note {
+    margin-top: 1rem;
+    max-width: 66ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .encadre {
+    margin-top: 2.5rem;
+    max-width: 68ch;
+    border-left: 2px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+    padding: 1.25rem 1.5rem;
+  }
+  .encadre-titre {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .encadre p {
+    margin-top: 0.75rem;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* ------------------------------------------------- Replis natifs */
+  .repli {
+    margin-top: 2rem;
+    max-width: 72ch;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .repli + .repli {
+    margin-top: 0;
+    border-top: 0;
+  }
+  .repli > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 2.75rem;
+    padding: 0.875rem 0;
+    cursor: pointer;
+    list-style: none;
+  }
+  .repli > summary::-webkit-details-marker {
+    display: none;
+  }
+  .repli > summary::after {
+    content: "+";
+    flex: none;
+    font-size: 1.375rem;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .repli[open] > summary::after {
+    content: "\2212";
+  }
+  .repli-titre {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+  .repli > summary:hover .repli-titre {
+    color: var(--accent);
+  }
+  .repli > summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .repli-corps {
+    padding-bottom: 1.5rem;
+    max-width: 68ch;
+  }
+  .repli-corps p {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .repli-corps p + p {
+    margin-top: 1rem;
+  }
+  .repli-corps .faits {
+    margin-top: 1.25rem;
+  }
+  .repli-sous-titre {
+    margin-top: 1.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .repli-corps strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ----------------------------------- Reperes et schema du monument */
+  .monument-haut {
+    margin-top: 1.75rem;
+    display: grid;
+    gap: 2.5rem;
+  }
+  @media (min-width: 64rem) {
+    .monument-haut {
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 3.5rem;
+      align-items: start;
+    }
+  }
+
+  .reperes {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 48ch;
+  }
+  .repere {
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
+  }
+  .repere dt {
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .repere-valeur {
+    margin-top: 0.35rem;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  .repere-precision {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* Schema : deux vues dessinees avec des filets, a la meme echelle
+     (--cm = la taille d un centimetre). Les cotes viennent des donnees via
+     --cm-largeur, --cm-profondeur et --cm-hauteur, posees sur la figure. */
+  .schema {
+    --cm: 0.082rem;
+    border: 1px solid var(--line);
+    padding: 1.25rem;
+  }
+  @media (min-width: 48rem) {
+    .schema {
+      --cm: 0.1rem;
+      padding: 1.5rem 1.75rem;
+    }
+  }
+  /* Les deux vues : titres alignes en haut, dessins poses sur la meme ligne
+     de sol en bas (margin-top: auto). */
+  .schema-vues {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: stretch;
+  }
+  .vue {
+    display: flex;
+    flex-direction: column;
+  }
+  .plan,
+  .elevation {
+    margin-top: auto;
+  }
+  .vue-titre {
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .cote {
+    font-size: 0.8125rem;
+    line-height: 1.2;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .plan {
+    position: relative;
+    padding-top: 1rem;
+    padding-right: 3.5rem;
+  }
+  .cote-largeur {
+    display: block;
+    width: calc(var(--cm-largeur) * var(--cm));
+    padding-bottom: 0.35rem;
+    text-align: center;
+    border-bottom: 1px solid var(--accent);
+  }
+  .plan-forme {
+    width: calc(var(--cm-largeur) * var(--cm));
+    height: calc(var(--cm-profondeur) * var(--cm));
+    margin-top: 0.35rem;
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--ink) 4%, transparent);
+  }
+  .cote-profondeur {
+    position: absolute;
+    top: calc(1.75rem + 0.35rem);
+    left: calc(var(--cm-largeur) * var(--cm) + 0.5rem);
+    height: calc(var(--cm-profondeur) * var(--cm));
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+    border-left: 1px solid var(--accent);
+  }
+
+  .elevation {
+    position: relative;
+    padding-top: 1rem;
+    padding-left: 4rem;
+  }
+  .cote-hauteur {
+    position: absolute;
+    left: 0;
+    bottom: 0.5rem;
+    height: calc(var(--cm-hauteur) * var(--cm));
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+    border-left: 1px solid var(--accent);
+  }
+  .elevation-enveloppe {
+    width: 6.5rem;
+    height: calc(var(--cm-hauteur) * var(--cm));
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    border: 1px dashed var(--line-strong);
+    border-bottom: 0;
+    border-top: 1px solid var(--accent);
+  }
+  .elevation-largeur {
+    font-size: 0.8125rem;
+    text-align: center;
+    color: var(--muted);
+  }
+  .elevation-sol {
+    width: calc(6.5rem + 2.5rem);
+    margin-left: -1.25rem;
+    border-top: 2px solid var(--line-strong);
+  }
+
+  .schema-notes {
+    margin-top: 1.5rem;
+    max-width: 56ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .schema-avertissement {
+    margin-top: 0.75rem;
+    max-width: 56ch;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* ------------------------------------------------------------ Tableaux */
+  .indice {
+    margin-top: 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--muted);
+  }
+  @media (min-width: 48rem) {
+    .indice {
+      display: none;
+    }
+  }
+  .tableau {
+    margin-top: 1.25rem;
+    overflow-x: auto;
+  }
+  .tableau:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  /* Le tableau porte une classe plutot qu un selecteur d element nu : le nom
+     d element seul, ecrit ici, ferait naitre l utilitaire Tailwind homonyme
+     dans le CSS partage du site, dont l empreinte changerait pour les 75
+     pages. Meme raison pour ne pas l ecrire dans ce commentaire. */
+  .tableau-grille {
+    width: 100%;
+    min-width: 32rem;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  .tableau-grille caption {
+    caption-side: top;
+    max-width: 66ch;
+    padding-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+    text-align: left;
+  }
+  /* Le tableau est plus large que l ecran du telephone : sa legende reste
+     collee a gauche et se replie sur la largeur visible. */
+  @media (max-width: 47.99rem) {
+    .tableau-grille caption {
+      position: sticky;
+      left: 0;
+      width: calc(100vw - 3rem);
+    }
+  }
+  .tableau-grille th,
+  .tableau-grille td {
+    padding: 1rem 1.5rem 1rem 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 1rem;
+    line-height: 1.55;
+    vertical-align: top;
+  }
+  .tableau-grille thead th {
+    border-bottom: 1px solid var(--line-strong);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .tableau-grille tbody th {
+    max-width: 26ch;
+    font-weight: 400;
+    color: var(--ink);
+  }
+  .tableau-grille tbody td {
+    color: var(--muted);
+  }
+
+  /* ----------------------------------------- Appel commercial (sombre) */
+  .projet {
+    padding: 2rem 1.5rem;
+  }
+  .bloc + .projet {
+    border-top: 0;
+    padding-top: 2rem;
+  }
+  @media (min-width: 48rem) {
+    .projet {
+      padding: 2.5rem;
+    }
+    .bloc + .projet {
+      padding-top: 2.5rem;
+    }
+  }
+  .projet-texte {
+    margin-top: 1.25rem;
+    max-width: 60ch;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .projet-actions {
+    margin-top: 1.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .projet-note {
+    margin-top: 1.5rem;
+    max-width: 62ch;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .projet a:focus-visible {
+    outline-offset: 4px;
+  }
+
+  /* --------------------------------------------- Cendres : possibilites */
+  .possibilites {
+    margin-top: 1.75rem;
+    display: grid;
+    gap: 1.75rem;
+  }
+  @media (min-width: 60rem) {
+    .possibilites {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.5rem 3.5rem;
+    }
+    .possibilite:first-child {
+      grid-column: 1 / -1;
+    }
+    .possibilite:first-child .faits {
+      columns: 2;
+      column-gap: 3.5rem;
+      max-width: none;
+    }
+    .possibilite:first-child .faits li + li {
+      margin-top: 0;
+    }
+    .possibilite:first-child .faits li:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
+  .possibilite {
+    border-top: 1px solid var(--line-strong);
+    padding-top: 1.25rem;
+  }
+  .possibilite-titre {
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .possibilite .faits {
+    margin-top: 1rem;
+  }
+
+  /* -------------------------------------------- Sources et maillage */
+  .sources-liste {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 0.875rem;
+    max-width: 70ch;
+    list-style: none;
+  }
+  .sources-liste a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .sources-mention {
+    margin-top: 1.75rem;
+  }
+
+  .guide-ailleurs {
+    border-top: 1px solid var(--line);
+    padding-top: 2.5rem;
+    padding-bottom: 3.5rem;
+  }
+  .ailleurs-liste {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1.5rem 2.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    list-style: none;
+  }
+  .ailleurs-liste li {
+    border-top: 1px solid var(--line);
+    padding-top: 0.5rem;
+  }
+  /* Lien seul dans une liste : 44 px de haut au moins. Les liens poses dans
+     une phrase gardent la taille du texte (exception WCAG 2.5.8). */
+  .ailleurs-lien {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-family: var(--font-serif);
+    font-size: 1.1875rem;
+    line-height: 1.3;
+  }
+  .ailleurs-liste p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* Aucune animation dans ce composant : seuls les survols des boutons et
+     des liens partages transitionnent. On les coupe quand la personne a
+     demande moins de mouvement. */
+  @media (prefers-reduced-motion: reduce) {
+    .guide .btn,
+    .guide .btn::before,
+    .guide .link,
+    .guide-rail a,
+    .repli > summary .repli-titre {
+      transition: none;
+    }
+  }
+</style>

@@ -53,6 +53,52 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+### 10.11.2026 - Pages cimetieres : composant GuideCimetiere, pilote Corcelles
+
+- Direction audacieuse validee par Thomas le 10.11.2026. Implementee en local
+  uniquement : aucun push, aucun deploiement, DNS et Access inchanges.
+- Nouveau `src/components/GuideCimetiere.astro` (gabarit + CSS scoped, fichier
+  en ASCII avec entites HTML). Aucune donnee dedans : tout vient de
+  `src/data/cimetieres.ts` et des fonctions d URL existantes.
+- `src/pages/cimetieres/[slug].astro` : rendu conditionnel sur la constante
+  PILOTE_GUIDE = "corcelles-cormondreche". Un seul rendu dans le HTML, jamais
+  les deux. Titre, meta, canonical, JSON-LD et fil d Ariane calcules au-dessus
+  du rendu, donc identiques. `telUrl()` ajoute dans les donnees et utilise par
+  les deux mises en page (sortie identique).
+- Composition : hero asymetrique (h1 a gauche, panneau anthracite pratique a
+  droite, actions Itineraire + Appeler l office en haut sur telephone),
+  navigation par besoins (rail colle sur ordinateur, liste sur telephone,
+  ancres historiques conservees), schema d echelle du monument (vue de dessus
+  70 x 130 cm et vue en elevation 160 cm, largeur non fixee, meme echelle,
+  nombres relus dans les donnees), regles ouvertes puis replis natifs,
+  tableaux complets avec caption, urnes rangees par possibilite, CTA
+  commercial apres les regles, fin de page compactee.
+- Teste le 10.11.2026 : `npm run build` 75 pages vert, `npx astro check` 0
+  erreur 0 avertissement 3 hints (comme avant), `npm test` 155 tests verts.
+- Controle de regression HTML hors depot : `tmp/cimetieres-ux-20261110/`
+  (baseline `avant/`, resultat `apres/`, script `controle.py`, `rapport.md`).
+  Hub `/cimetieres/` identique au bit ; 8 autres pages cimetiere identiques en
+  contenu, liens et schemas ; page pilote sans aucun texte de donnee perdu
+  (seuls deux titres d interface changent : "L'essentiel" retire au profit du
+  panneau pratique, "Un monument pour ce cimetiere" devient "Votre projet dans
+  ce cimetiere").
+- Effet de bord assume : le CSS de la route cimetiere passe en feuille externe
+  partagee (Astro n inline que sous 4 Ko), soit environ 2 Ko gzip de CSS
+  inutilise sur les 8 autres pages tant que le pilote n est pas generalise.
+- Navigateur local seulement (127.0.0.1:8731, serveur python3 -m http.server
+  lance depuis dist, PID note dans tmp/cimetieres-ux-20261110/serveur.pid) :
+  1440x1000, 768x1024, 390x844, 320x800, aucun debordement horizontal, ancres
+  correctes sous l en-tete colle, replis au clavier, schema a l echelle.
+  Captures dans tmp/cimetieres-ux-20261110/captures/.
+- Hauteur de page : 10 345 -> 9 151 px en 1440 ; 13 583 -> 14 177 px en 390
+  (corps passe de 15 a 17 px et schema nouveau ; l ordre de lecture change).
+- Tout est decrit dans `docs/UX-CIMETIERES.md` (direction, fichiers, tests,
+  limites, quoi verifier avant de generaliser).
+- Suite : critique visuelle par le chat, puis decision de generaliser ou non
+  aux autres cimetieres (changer le rendu conditionnel suffit). Aucune
+  publication tant que Thomas ne la demande pas.
+
+
 ### 10.11.2026 - Etude UX des pages cimetieres, sans implementation
 
 - Demande : rendre les pages cimetieres plus digestes sans fragiliser le SEO.
@@ -1300,6 +1346,9 @@ dans l ordre, est dans `docs/BACKLOG.md` ; le configurateur se modifie avec `doc
 DEBLOQUE, A FAIRE SANS ATTENDRE PERSONNE (au choix de Thomas) :
 - GUIDES, SUITE IMMEDIATE : tests et build verts, pousse sur main le 28.10.2026 ;
   relire les 4 pages au navigateur en 1280 et 390, puis push sur main pour la previsualisation.
+- Pages cimetieres : PILOTE UX fait le 10.11.2026 sur Corcelles-Cormondreche
+  (composant GuideCimetiere, docs/UX-CIMETIERES.md). A faire : critique
+  visuelle, puis generalisation eventuelle aux autres cimetieres.
 - Pages cimetieres lot 2 : PASSES A ET B FAITES le 29.10.2026, neuf pages en ligne locale
   (hub + Beauregard, La Chaux-de-Fonds, Peseux, Corcelles-Cormondreche, Le Landeron, Boudry,
   Cortaillod, Le Locle, Val-de-Travers), build 74 pages vert. SUITE : lancer `npm test`,
