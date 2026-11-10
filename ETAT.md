@@ -53,6 +53,26 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+### 10.11.2026 - Etude UX des pages cimetieres, sans implementation
+
+- Demande : rendre les pages cimetieres plus digestes sans fragiliser le SEO.
+- Page publique de Corcelles-Cormondreche examinee au navigateur sur ordinateur,
+  avec lecture du gabarit src/pages/cimetieres/[slug].astro et de ses regles responsive.
+- Constat : sommaire sous le long bloc essentiel, besoins de visite et de monument
+  melanges, texte concentre a gauche, FAQ entierement ouverte, liens de fin tres longs.
+- Mesure dans le navigateur : hauteur totale 10419 px a 1363 x 936 ; bloc Autres
+  cimetieres 1543 px. Pas de recette visuelle sur appareil mobile dans cette session.
+- Proposition a soumettre : fiche pratique avec acces/actions des le debut,
+  navigation par besoin, mise en page en deux colonnes sur ordinateur, details
+  reglementaires et FAQ depliables, comparaisons lisibles sur telephone.
+- Conserver URL, metadonnees, contenu local, ancres, liens et schemas coherents ;
+  tous les textes presents dans le HTML initial, y compris les accordeons.
+- Source technique consultee : Google Search Central, bonnes pratiques mobile-first.
+- Pas de nouvelle mesure Search Console, pas de verification des reglements communaux.
+- Aucune direction validee a ce stade. Aucun runtime modifie, aucun build ni push.
+- Prochaine etape de ce sujet : choisir la direction, puis maquetter Corcelles avant
+  toute generalisation du gabarit aux autres cimetieres.
+
 ### 10.11.2026 - Creation de la fiche Google Business Profile
 
 - Creation autorisee par Thomas, y compris acceptation des conditions Google.
