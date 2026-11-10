@@ -1,0 +1,22 @@
+{
+  "status": 200,
+  "url": "https://www.pierretombale.ch/cimetieres/",
+  "search": true,
+  "seo_identical": true,
+  "content_identical": true,
+  "h1": 1,
+  "links_lost": [],
+  "noindex": false,
+  "styles": [
+    {
+      "path": "/_astro/BaseLayout.CNS6xqXW.css",
+      "status": 200,
+      "identical": true
+    },
+    {
+      "path": "/_astro/index.dCH5TwvB.css",
+      "status": 200,
+      "identical": true
+    }
+  ]
+}

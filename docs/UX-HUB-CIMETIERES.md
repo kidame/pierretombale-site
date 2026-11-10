@@ -25,3 +25,7 @@ Verification supplementaire de l export : chargement, absence de debordement, re
 ## Prochaine etape
 
 Validation visuelle par Thomas puis publication autorisee explicitement. Ne pas confondre cette maquette avec les neuf fiches deja publiees.
+
+## Publication du hub - 10.11.2026, 16:42 Europe/Zurich
+
+Publication autorisee par Thomas. Commit 0db4bf22ccdfa73457ea77c2e968f1c8f68b4632 sur live ; Cloudflare 519ca89b-2217-46d0-8d90-b6bc383fa7bc reussi. Controle public : HTTP 200, recherche presente, contenu et SEO identiques au build valide, un H1, aucun lien perdu ni noindex, deux feuilles CSS identiques. Preuve : docs/diagnostics/publication-hub-cimetieres-2026-11-10.json. La mention privee precedente est historique.
