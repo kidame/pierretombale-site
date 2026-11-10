@@ -96,8 +96,8 @@ jamais fixee ; un second clic pendant l'animation l'inverse au lieu de
 l'empiler : verifie, aucune animation ne reste en attente et aucune hauteur
 en ligne ne subsiste). Le marqueur est dessine : deux filets bronze, la barre
 verticale disparait a l'ouverture.
-"Poser un monument" tient en deux sous-sections visibles depuis la finition
-du 10.11.2026 :
+"Poser un monument" associe deux lectures complementaires. Le reglement
+se place sous le delai, a gauche du schema sur desktop :
 - **"Les cotes a retenir"** : un seul repere en clair, le delai ("Delai avant
   la pose : 1 an apres l'inhumation"), parce que c'est le seul des trois qui
   decide d'une date. Les deux autres chiffres sont ceux que le schema dessine
@@ -149,75 +149,60 @@ natif) et le script pose `scroll-behavior: auto` sur la page, ce qui rend
 instantane le defilement pilote par les ancres. Verifie au navigateur : zero
 animation en cours, toutes les sections a l'opacite 1.
 
-### 7. Composition et longueur
-Mesures au navigateur (`/home/kumo/atelier/bin/browser`, serveur local sur
-127.0.0.1:8731, build `dist`), page entiere :
+### 7. Composition finale et longueur
+Recette du build final et de son export autonome le 10.11.2026, apres
+placement du reglement dans la colonne du delai. Sur desktop, le schema
+occupe la colonne droite ; le delai et les replis remplissent la gauche.
+Sur mobile, ces deux ensembles se suivent dans le flux naturel.
 
-Chiffres a jour apres la finition du 10.11.2026 (colonne "V2 initiale" = le
-commit d678d73, avant cette finition) :
+| Viewport | Page finale | Page V1 | Hero, bas avec en-tete | Debordement horizontal |
+| --- | ---: | ---: | ---: | ---: |
+| 320 x 800 | 11 057 | - | 1 117 | 0 |
+| 390 x 844 | 9 613 | 14 177 | 905 | 0 |
+| 768 x 1024 | 7 603 | 10 698 | 824 | 0 |
+| 1366 x 768 | 6 825 | - | 621 | 0 |
+| 1440 x 900 | 6 851 | 9 151 | 621 | 0 |
 
-| Viewport  | Page V2 | V2 initiale | Page V1 | Hero (bas, en-tete comprise) | Debordement |
-|-----------|---------|-------------|---------|------------------------------|-------------|
-| 390 x 844 | 9 614   | 10 661      | 14 177  | 905                          | 0           |
-| 320 x 800 | 11 058  | 12 295      | -       | 1 117                        | 0           |
-| 768 x 1024| 7 604   | 8 392       | 10 698  | 824                          | 0           |
-| 1366 x 768| 7 099   | 7 621       | -       | 621                          | 0           |
-| 1440 x 900| 7 125   | 7 646       | 9 151   | 621                          | 0           |
+La page est environ 32 % plus courte en 390 et 25 % plus courte en 1440
+que la V1, avec les 86 informations de la fiche toujours presentes.
 
-Soit -32 % sur telephone (14 177 -> 9 614) et -22 % sur ordinateur
-(9 151 -> 7 125) par rapport a la V1, sans qu'aucun fait disparaisse. Aucun
-debordement horizontal a aucune largeur.
+| Viewport | Section monument | Composant dimensions |
+| --- | ---: | ---: |
+| 320 x 800 | 1 411 | 673 |
+| 390 x 844 | 1 254 | 570 |
+| 768 x 1024 | 1 135 | 478 |
+| 1366 x 768 | 731 | 478 |
+| 1440 x 900 | 731 | 478 |
 
-Hauteur des blocs en 390 et en 1440 :
+Le bloc monument tient dans un ecran desktop. Le composant de dimensions
+tient dans les ecrans mobiles testes. La section monument complete reste
+plus longue sur telephone : delai, reglement et schema se suivent, sans
+texte tronque ni hauteur 100vh forcee. Les developpements ouverts et les
+tableaux peuvent naturellement depasser l'ecran. Les tableaux gardent leur
+defilement horizontal interne.
 
-| Bloc                | 390   | 1440 | 390 (V2 initiale) | 1440 (V2 initiale) |
-|---------------------|-------|------|-------------------|--------------------|
-| hero                | 833   | 466  | 833               | 466                |
-| sur-place           | 811   | 527  | 811               | 527                |
-| poser-un-monument   | 1 255 | 1 005| 2 303             | 1 526              |
-| projet (appel)      | 823   | 532  | 823               | 532                |
-| cendres             | 1 109 | 856  | 1 109             | 856                |
-| duree               | 854   | 637  | 854               | 637                |
-| questions           | 870   | 701  | 870               | 701                |
-| sources             | 756   | 598  | 756               | 598                |
-| autres cimetieres   | 674   | 407  | 674               | 407                |
+Les autres sections denses (cendres et tarifs, certaines questions) peuvent
+egalement depasser un ecran mobile. Ce n'est pas une interface a diapositives :
+le contenu reste lisible a taille normale. Corps a 17 px ; notes et cotes
+a 15-16 px et petits libelles a 13 px, comme dans la V1.
 
-Detail de la section monument apres finition :
+Mesures conservees dans /home/kumo/atelier/tmp/corcelles-v2-final-mesures.json.
+Export teste separement : /home/kumo/atelier/tmp/corcelles-v2-export-mesures.json.
+Il masque le consentement et le bouton de preferences, d'ou de petits ecarts
+de hauteur du pied de page a certaines largeurs.
 
-| Mesure                                  | 390 | 320 | 768 | 1440 |
-|-----------------------------------------|-----|-----|-----|------|
-| section "poser-un-monument"             |1 255|1 412|1 136|1 005 |
-| sous-bloc "Les cotes a retenir"         | 815 | 918 | 723 | 567  |
-| sous-bloc "Ce que demande le reglement" | 258 | 312 | 231 | 238  |
-| composant de dimensions seul            | 570 | 673 | 478 | 478  |
-
-Blocs qui depassent un ecran, et pourquoi :
-- **poser-un-monument (1 255 px en 390, 1 005 px en 1440)** : -45 % sur
-  telephone et -34 % sur ordinateur par rapport a la V2 initiale, a faits
-  constants. La section tient maintenant en un ecran et demie sur telephone et
-  en un peu plus d'un ecran sur ordinateur (1 005 px pour 900 px de hauteur :
-  le titre et les cotes sont dans le premier ecran, les replis du reglement
-  juste dessous). Ses deux sous-blocs sont autonomes : 815 et 258 px en 390,
-  donc chacun sous un ecran de 844 px. A 320 x 800, le premier sous-bloc fait
-  918 px, soit 1,15 ecran : a cette largeur le dessin, sa legende et les deux
-  boutons de vue se replient sur plus de lignes. Le reduire plus loin
-  demanderait de rapetisser le dessin ou de descendre sous 17 px, deux choses
-  exclues.
-- **cendres (1 109 px en 390)** : un seul panneau d'onglet a la fois, plus le
-  titre, la sous-section des tarifs et son tableau replie. Incompressible sans
-  replier les tarifs eux-memes.
-- **duree, questions, sources, projet (750 a 870 px en 390)** : ces blocs
-  tiennent sensiblement dans un ecran de 844 px moins l'en-tete. "questions"
-  garde sa premiere reponse ouverte, comme en V1.
-- **autres cimetieres (674 px)** : les huit autres fiches sont passees dans un
-  repli explicite ("Les 8 autres cimetieres de la liste") et les quatre liens
-  de parcours restent ouverts. Tous les liens restent dans le HTML initial.
-  Ce bloc faisait 1 534 px avant ce repli.
-
-Aucune section n'est forcee a 100 vh, rien n'est coupe, et aucun texte n'a ete
-reduit : les tailles sont celles de la V1 (corps et faits a 17 px ; notes,
-legendes, cellules de tableau et cotes du dessin a 15-16 px, et libelles en
-capitales a 13 px, comme ailleurs sur le site).
+### 8. Recette de l'export autonome
+- Fichier de 419 800 octets, polices et CSS inclus, zero ressource HTTP chargee.
+- Onglets urnes et hauteur, panneaux, double clic rapide, bascule native,
+  ancres et legende du schema verifies dans le fichier exporte.
+- Aucun debordement aux cinq formats ci-dessus.
+- noindex,nofollow uniquement dans l'export prive ; le build source conserve
+  son indexabilite et ses metadonnees.
+- Build final : 75 pages, astro check 0 erreur, 0 avertissement, 3 hints
+  preexistants ; les 86 faits et les objets JSON-LD complets sont inchanges.
+- Les 155 tests avaient passe lors de l'integration V2. Les finitions de
+  composition ont ete verifiees par build, astro check, comparaison des faits
+  et recette navigateur ; pas de repetition sans changement de logique.
 
 ## SEO : ce qui n'a pas bouge
 

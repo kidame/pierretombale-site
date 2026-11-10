@@ -53,6 +53,23 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+### 10.11.2026 - V2 Corcelles livree en maquette privee
+
+- Composition finale : reglement dans la colonne du delai, schema a droite
+  sur desktop. Bloc monument 731 px en 1366 et 1440 ; composant dimensions
+  570 px en 390. Page mobile environ 32 % plus courte que la V1.
+- Recette finale sur 320, 390, 768, 1366 et 1440 px : aucun debordement.
+  Onglets, navigation et replis fonctionnels, y compris dans l'export autonome.
+- Build final 75 pages ; astro check 0 erreur, 0 avertissement, 3 hints
+  preexistants. Controle complet : 86 faits sur 86, H1, title, description,
+  canonical et objets JSON-LD identiques a la baseline.
+- Export /home/kumo/atelier/tmp/corcelles-maquette.html, 419800 octets,
+  remplace la maquette precedente. Aucun chargement externe dans cet export ;
+  noindex uniquement sur ce fichier prive.
+- Travail sur main, commits locaux uniquement. Aucun push ni deploiement.
+  Suite : retour visuel de Thomas avant toute generalisation ou publication.
+- Mesures et limites exactes : docs/UX-CIMETIERES-V2.md.
+
 ### 10.11.2026 - Finition ciblee de la section monument (pilote Corcelles, V2)
 
 - Suite directe du commit d678d73, meme cadre : page pilote
