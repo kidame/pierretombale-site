@@ -53,6 +53,24 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+### 10.11.2026 - Creation de la fiche Google Business Profile
+
+- Creation autorisee par Thomas, y compris acceptation des conditions Google.
+- Nom : PierreTombale.ch ; categorie principale : Fabricant de monuments.
+- Telephone actuel confirme : +41 79 629 65 06, temporaire avant numero dedie.
+- Site : https://www.pierretombale.ch/ ; zone selectionnee : canton de Neuchatel.
+- Adresse non publique, fiche de services de proximite en l'absence d'enseigne.
+- Accueil sur rendez-vous confirme ; reglage : Ouvert sans horaires standards.
+- Description enregistree (624 caracteres) : monuments, granit, gravure,
+  cimetieres, configurateur et accompagnement sur rendez-vous.
+- Etat observe dans le compte proprietaire : NON VISIBLE PUBLIQUEMENT.
+- Google propose uniquement une validation par video ; aucune video envoyee.
+  Verification differee pour permettre de terminer les informations.
+- A faire sur place : enregistrer la video depuis la fiche sur telephone,
+  avec localisation, materiel/produits et preuve de gestion de PierreTombale.
+- Photos et catalogue de produits non ajoutes. Pas de souscription Ads/Workspace.
+- Aucun fichier runtime du site, build ou deploiement modifie.
+
 ### 03.11.2026 - Verification des positions Search Console
 
 - Lecture de sc-domain:pierretombale.ch via Windsor, sans modification du site.
