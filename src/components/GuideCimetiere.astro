@@ -118,6 +118,12 @@ const reperes = [
       : undefined,
   },
 ];
+/* Le delai reste en clair : c est le seul des trois qui decide d une date.
+   Les deux autres sont les chiffres que le schema dessine deja en grand ;
+   leurs valeurs et leurs precisions sont gardees mot pour mot, mais rangees
+   dans le repli, pour ne pas ecrire deux fois le meme nombre en grand. */
+const repereDelai = reperes[0];
+const reperesSchema = reperes.slice(1);
 
 /* Les cendres, rangees par possibilite. Chaque ligne de la fiche tombe dans
    le premier groupe qui la reconnait, dans l ordre ci-dessous ; ce qui n est
@@ -321,135 +327,157 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
         <div class="sous-bloc">
           <h3 class="sous-titre type-h3">Les cotes &#xe0; retenir</h3>
           <div class="monument-haut">
-            <dl class="reperes">
-              {
-                reperes.map((repere) => (
-                  <div class="repere">
-                    <dt>{repere.intitule}</dt>
-                    <dd class="repere-valeur">{repere.valeur}</dd>
-                    {repere.precision && <dd class="repere-precision">{repere.precision}</dd>}
-                  </div>
-                ))
-              }
-            </dl>
+            <div class="reperes">
+              <dl class="repere-cle">
+                <dt>{repereDelai.intitule}</dt>
+                <dd class="repere-valeur">{repereDelai.valeur}</dd>
+              </dl>
+              <details class="repli repli-anime reperes-repli">
+                <summary>
+                  <span class="repli-titre">Les pr&#xe9;cisions du r&#xe8;glement</span>
+                  <span class="marque" aria-hidden="true">
+                    <span class="marque-barre" />
+                    <span class="marque-barre marque-barre-v" />
+                  </span>
+                </summary>
+                <div class="repli-corps">
+                  {repereDelai.precision && <p>{repereDelai.precision}</p>}
+                  <dl class="reperes-liste">
+                    {reperesSchema.map((repere) => (
+                      <div class="repere-ligne">
+                        <dt>{repere.intitule}</dt>
+                        <dd class="repere-valeur-petite">{repere.valeur}</dd>
+                        {repere.precision && <dd class="repere-precision">{repere.precision}</dd>}
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </details>
+              {/* Sous-section 2 : le reglement, en replis ranges l un sous l autre.
+                  Seule la periode d interdiction reste en clair : c est la seule
+                  regle qui peut deplacer une date. Les autres phrases sont dans le
+                  HTML, a l interieur de replis nommes. */}
+              <div class="sous-bloc">
+                <h3 class="sous-titre type-h3">Ce que demande le r&#xe8;glement</h3>
+                {
+                  cimetiere.regles.periodeInterdite && (
+                    <div class="prose">
+                      <p>
+                        <strong>P&#xe9;riode o&#xf9; la pose est interdite.</strong>{" "}
+                        {cimetiere.regles.periodeInterdite}
+                      </p>
+                    </div>
+                  )
+                }
+                <div class="replis">
+                  <details class="repli repli-anime">
+                    <summary>
+                      <span class="repli-titre">Autorisation, bordure et taxe de pose</span>
+                      <span class="marque" aria-hidden="true">
+                        <span class="marque-barre" />
+                        <span class="marque-barre marque-barre-v" />
+                      </span>
+                    </summary>
+                    <div class="repli-corps">
+                      {cimetiere.regles.autorisation && (
+                        <p>
+                          <strong>Autorisation.</strong> {cimetiere.regles.autorisation}
+                        </p>
+                      )}
+                      <p>
+                        <strong>Bordure et entourage.</strong> {cimetiere.regles.bordure}
+                      </p>
+                      {cimetiere.regles.taxePose && (
+                        <p>
+                          <strong>Taxe communale de pose.</strong> {cimetiere.regles.taxePose}
+                        </p>
+                      )}
+                    </div>
+                  </details>
+                  {
+                    (cimetiere.regles.materiaux || cimetiere.regles.obligations.length > 0) && (
+                      <details class="repli repli-anime">
+                        <summary>
+                          <span class="repli-titre">Mat&#xe9;riaux et obligations de l'entreprise</span>
+                          <span class="marque" aria-hidden="true">
+                            <span class="marque-barre" />
+                            <span class="marque-barre marque-barre-v" />
+                          </span>
+                        </summary>
+                        <div class="repli-corps">
+                          {cimetiere.regles.materiaux && (
+                            <p>
+                              <strong>Mat&#xe9;riaux.</strong> {cimetiere.regles.materiaux}
+                            </p>
+                          )}
+                          {cimetiere.regles.obligations.length > 0 && (
+                            <>
+                              <h4 class="repli-sous-titre">Ce que le r&#xe8;glement impose en plus</h4>
+                              <ul class="faits">
+                                {cimetiere.regles.obligations.map((ligne) => (
+                                  <li>{ligne}</li>
+                                ))}
+                              </ul>
+                            </>
+                          )}
+                        </div>
+                      </details>
+                    )
+                  }
+
+                  <details class="repli repli-anime">
+                    <summary>
+                      <span class="repli-titre" id="titre-dimensions">
+                        Tableau complet des dimensions autoris&#xe9;es
+                      </span>
+                      <span class="marque" aria-hidden="true">
+                        <span class="marque-barre" />
+                        <span class="marque-barre marque-barre-v" />
+                      </span>
+                    </summary>
+                    <div class="repli-corps repli-large">
+                      <p class="indice">
+                        Tableau complet&#xa0;: sur t&#xe9;l&#xe9;phone, il se fait d&#xe9;filer
+                        lat&#xe9;ralement.
+                      </p>
+                      <div class="tableau" role="region" aria-labelledby="titre-dimensions" tabindex="0">
+                        <table class="tableau-grille">
+                          <caption>
+                            Dimensions et hauteurs autoris&#xe9;es par type de s&#xe9;pulture, avec
+                            l'article du r&#xe8;glement.
+                          </caption>
+                          <thead>
+                            <tr>
+                              <th scope="col">Type</th>
+                              <th scope="col">Dimensions</th>
+                              <th scope="col">Hauteur maximale</th>
+                              <th scope="col">Article</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {
+                              cimetiere.regles.tombes.map((tombe) => (
+                                <tr>
+                                  <th scope="row">{tombe.type}</th>
+                                  <td>{tombe.dimensions}</td>
+                                  <td>{tombe.hauteurMax ?? "Non publi\u00e9e"}</td>
+                                  <td>{tombe.article}</td>
+                                </tr>
+                              ))
+                            }
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              </div>
+            </div>
             {schema && <SchemaDimensions schema={schema} />}
           </div>
         </div>
 
-        {/* Sous-section 2 : le reglement en clair. */}
-        <div class="sous-bloc">
-          <h3 class="sous-titre type-h3">Ce que demande le r&#xe8;glement</h3>
-          <div class="prose">
-            {
-              cimetiere.regles.periodeInterdite && (
-                <p>
-                  <strong>P&#xe9;riode o&#xf9; la pose est interdite.</strong>{" "}
-                  {cimetiere.regles.periodeInterdite}
-                </p>
-              )
-            }
-            {
-              cimetiere.regles.autorisation && (
-                <p>
-                  <strong>Autorisation.</strong> {cimetiere.regles.autorisation}
-                </p>
-              )
-            }
-            <p>
-              <strong>Bordure et entourage.</strong> {cimetiere.regles.bordure}
-            </p>
-            {
-              cimetiere.regles.taxePose && (
-                <p>
-                  <strong>Taxe communale de pose.</strong> {cimetiere.regles.taxePose}
-                </p>
-              )
-            }
-          </div>
-        </div>
 
-        {/* Sous-section 3 : les replis de detail, tableau compris. */}
-        <div class="sous-bloc">
-          <h3 class="sous-titre type-h3">Le d&#xe9;tail, si vous le voulez</h3>
-          <div class="replis">
-            {
-              (cimetiere.regles.materiaux || cimetiere.regles.obligations.length > 0) && (
-                <details class="repli repli-anime">
-                  <summary>
-                    <span class="repli-titre">Mat&#xe9;riaux et obligations de l'entreprise</span>
-                    <span class="marque" aria-hidden="true">
-                      <span class="marque-barre" />
-                      <span class="marque-barre marque-barre-v" />
-                    </span>
-                  </summary>
-                  <div class="repli-corps">
-                    {cimetiere.regles.materiaux && (
-                      <p>
-                        <strong>Mat&#xe9;riaux.</strong> {cimetiere.regles.materiaux}
-                      </p>
-                    )}
-                    {cimetiere.regles.obligations.length > 0 && (
-                      <>
-                        <h4 class="repli-sous-titre">Ce que le r&#xe8;glement impose en plus</h4>
-                        <ul class="faits">
-                          {cimetiere.regles.obligations.map((ligne) => (
-                            <li>{ligne}</li>
-                          ))}
-                        </ul>
-                      </>
-                    )}
-                  </div>
-                </details>
-              )
-            }
-
-            <details class="repli repli-anime">
-              <summary>
-                <span class="repli-titre" id="titre-dimensions">
-                  Tableau complet des dimensions autoris&#xe9;es
-                </span>
-                <span class="marque" aria-hidden="true">
-                  <span class="marque-barre" />
-                  <span class="marque-barre marque-barre-v" />
-                </span>
-              </summary>
-              <div class="repli-corps repli-large">
-                <p class="indice">
-                  Tableau complet&#xa0;: sur t&#xe9;l&#xe9;phone, il se fait d&#xe9;filer
-                  lat&#xe9;ralement.
-                </p>
-                <div class="tableau" role="region" aria-labelledby="titre-dimensions" tabindex="0">
-                  <table class="tableau-grille">
-                    <caption>
-                      Dimensions et hauteurs autoris&#xe9;es par type de s&#xe9;pulture, avec
-                      l'article du r&#xe8;glement.
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">Type</th>
-                        <th scope="col">Dimensions</th>
-                        <th scope="col">Hauteur maximale</th>
-                        <th scope="col">Article</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        cimetiere.regles.tombes.map((tombe) => (
-                          <tr>
-                            <th scope="row">{tombe.type}</th>
-                            <td>{tombe.dimensions}</td>
-                            <td>{tombe.hauteurMax ?? "Non publi\u00e9e"}</td>
-                            <td>{tombe.article}</td>
-                          </tr>
-                        ))
-                      }
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </details>
-          </div>
-        </div>
       </section>
 
       {/* ------------------------------------------- Appel commercial */}
@@ -1200,16 +1228,17 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     }
   }
 
+  /* Un seul repere en clair, le delai ; les deux autres chiffres sont ceux
+     que le schema dessine, et ils attendent dans le repli juste dessous. */
   .reperes {
-    display: grid;
-    gap: 1.125rem;
     max-width: 48ch;
   }
-  .repere {
+  .repere-cle {
     border-top: 1px solid var(--line);
     padding-top: 0.875rem;
   }
-  .repere dt {
+  .repere-cle dt,
+  .repere-ligne dt {
     font-size: 0.8125rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -1222,9 +1251,31 @@ const groupesCendres: { titre: string; lignes: string[] }[] = [];
     line-height: 1.25;
     color: var(--ink);
   }
+  .reperes-repli {
+    margin-top: 0.875rem;
+  }
+  .reperes-liste {
+    display: grid;
+    gap: 1.125rem;
+    margin-top: 1.125rem;
+  }
+  .reperes-liste:first-child {
+    margin-top: 0;
+  }
+  .repere-ligne + .repere-ligne {
+    border-top: 1px solid var(--line);
+    padding-top: 1.125rem;
+  }
+  .repere-valeur-petite {
+    margin-top: 0.25rem;
+    font-family: var(--font-serif);
+    font-size: 1.1875rem;
+    line-height: 1.3;
+    color: var(--ink);
+  }
   .repere-precision {
     margin-top: 0.4rem;
-    font-size: 1rem;
+    font-size: 1.0625rem;
     line-height: 1.6;
     color: var(--muted);
   }

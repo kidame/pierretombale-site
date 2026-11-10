@@ -101,16 +101,30 @@ const { schema } = Astro.props;
     </section>
   </div>
 
-  <p class="schema-notes">
-    Vue de dessus&#xa0;: {schema.surfaceType}, {schema.surfaceArticle}. Hauteur&#xa0;:{" "}
-    {schema.hauteurTexte} ({schema.hauteurArticle}), {schema.largeurTexte.toLowerCase()}. Les deux
-    vues sont &#xe0; la m&#xea;me &#xe9;chelle.
-  </p>
-  <p class="schema-avertissement">
-    Dessin des cotes du r&#xe8;glement, pour se rep&#xe9;rer. Ce n'est pas un mod&#xe8;le du
-    catalogue, et aucun monument n'est annonc&#xe9; conforme sans v&#xe9;rification du
-    r&#xe8;glement.
-  </p>
+  {/* Les deux phrases de contexte sont repliees : le dessin et sa legende
+      tiennent alors dans un ecran de telephone. Rien n est retire du HTML, et
+      la classe repli-anime fait reutiliser le script d ouverture de la page. */}
+  <details class="schema-detail repli-anime">
+    <summary class="schema-resume">
+      <span class="schema-resume-titre">Comprendre ces dimensions</span>
+      <span class="schema-marque" aria-hidden="true">
+        <span class="schema-marque-barre"></span>
+        <span class="schema-marque-barre schema-marque-barre-v"></span>
+      </span>
+    </summary>
+    <div class="schema-detail-corps">
+      <p class="schema-notes">
+        Vue de dessus&#xa0;: {schema.surfaceType}, {schema.surfaceArticle}. Hauteur&#xa0;:{" "}
+        {schema.hauteurTexte} ({schema.hauteurArticle}), {schema.largeurTexte.toLowerCase()}. Les
+        deux vues sont &#xe0; la m&#xea;me &#xe9;chelle.
+      </p>
+      <p class="schema-avertissement">
+        Dessin des cotes du r&#xe8;glement, pour se rep&#xe9;rer. Ce n'est pas un mod&#xe8;le du
+        catalogue, et aucun monument n'est annonc&#xe9; conforme sans v&#xe9;rification du
+        r&#xe8;glement.
+      </p>
+    </div>
+  </details>
 </figure>
 
 <style>
@@ -118,10 +132,10 @@ const { schema } = Astro.props;
      comparables, et une correction de donnee corrige le dessin. */
   .schema {
     --cm: 0.082rem;
-    margin-top: 1.75rem;
+    margin-top: 1.25rem;
     border: 1px solid var(--line-strong);
     background: color-mix(in srgb, var(--accent) 4%, transparent);
-    padding: 1.25rem;
+    padding: 1rem 1.125rem;
   }
   @media (min-width: 48rem) {
     .schema {
@@ -191,8 +205,8 @@ const { schema } = Astro.props;
   }
   .vue {
     display: grid;
-    gap: 1.5rem;
-    padding-top: 1.5rem;
+    gap: 1.25rem;
+    padding-top: 1.25rem;
   }
   .vue[hidden] {
     display: none;
@@ -238,7 +252,7 @@ const { schema } = Astro.props;
     color: var(--muted);
   }
   .vue-legende {
-    margin-top: 0.875rem;
+    margin-top: 0.75rem;
     max-width: 42ch;
     font-size: 1.0625rem;
     line-height: 1.6;
@@ -337,10 +351,69 @@ const { schema } = Astro.props;
     border-top: 2px solid var(--line-strong);
   }
 
-  .schema-notes {
-    margin-top: 1.75rem;
-    padding-top: 1.25rem;
+  /* ------------------------------------- Le repli de mise en contexte */
+  .schema-detail {
+    margin-top: 1.5rem;
     border-top: 1px solid var(--line);
+  }
+  .schema-resume {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 2.75rem;
+    padding: 0.75rem 0 0.625rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  .schema-resume::-webkit-details-marker {
+    display: none;
+  }
+  .schema-resume:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .schema-resume-titre {
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    color: var(--ink);
+    transition: color 200ms var(--ease-out-quart);
+  }
+  .schema-marque {
+    position: relative;
+    flex: none;
+    display: block;
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  .schema-marque-barre {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    margin-top: -0.5px;
+    background: var(--accent);
+    transition: transform 220ms var(--ease-out-quart);
+  }
+  .schema-marque-barre-v {
+    transform: rotate(90deg);
+  }
+  .schema-detail[open] .schema-marque-barre-v {
+    transform: rotate(90deg) scaleX(0);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .schema-resume:hover .schema-resume-titre {
+      color: var(--accent);
+    }
+  }
+  /* Le script mesure cette enveloppe : elle doit couper ce qui depasse. */
+  .schema-detail-corps {
+    overflow: hidden;
+    padding-bottom: 1.25rem;
+  }
+
+  .schema-notes {
     max-width: 62ch;
     font-size: 1rem;
     line-height: 1.6;
@@ -355,7 +428,9 @@ const { schema } = Astro.props;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .choix {
+    .choix,
+    .schema-marque-barre,
+    .schema-resume-titre {
       transition: none;
     }
     .choix:active {

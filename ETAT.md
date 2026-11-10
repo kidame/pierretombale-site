@@ -53,6 +53,61 @@ Acces : Claude et ChatGPT passent chacun par leur connecteur VPS, prefixe kumo, 
 
 ## Derniere session
 
+### 10.11.2026 - Finition ciblee de la section monument (pilote Corcelles, V2)
+
+- Suite directe du commit d678d73, meme cadre : page pilote
+  `/cimetieres/corcelles-cormondreche/` seule, en local sur `main`, AUCUN
+  push, AUCUN deploiement. Export HTML autonome non touche (Thomas le gere).
+- Objet : la section "Poser un monument" restait trop longue. Trois retouches
+  ciblees, aucune refonte :
+  1. `src/components/guide/SchemaDimensions.astro` : les deux phrases de
+     contexte (rappel des cotes et de leurs articles, avertissement "ce n est
+     pas un modele du catalogue") passent dans un `<details>` natif nomme
+     "Comprendre ces dimensions", avec sa feuille scoped (resume, marqueur
+     bronze, focus visible, survol, mouvement reduit). Le repli porte
+     `repli-anime` : il reutilise le script d ouverture de la page, zero
+     ligne de script en plus. Espacements du dessin resserres.
+  2. `src/components/GuideCimetiere.astro`, "Les cotes a retenir" : un seul
+     repere en clair, le delai de pose. Les deux autres chiffres sont ceux
+     que le schema dessine deja en grand ; leurs valeurs et leurs precisions
+     sont gardees mot pour mot dans un repli "Les precisions du reglement",
+     avec la phrase complete du delai (art. 39).
+  3. Meme fichier, "Ce que demande le reglement" : les paragraphes
+     autorisation / bordure / taxe de pose entrent dans un repli
+     "Autorisation, bordure et taxe de pose", pose a cote des deux autres
+     replis du reglement (materiaux et obligations, tableau des dimensions).
+     Les deux sous-sections 2 et 3 n en font plus qu une. Une periode
+     d interdiction de pose, si une fiche en publie une, reste en clair
+     au-dessus des replis (Corcelles n en publie pas).
+- Rien n est sorti du HTML : tous les `<details>` sont natifs, lisibles et
+  ouvrables sans JavaScript. Corps a 17 px partout, aucune image, aucune
+  dependance ajoutee. Les corrections de Thomas (`initBesoins` sur
+  `DOMContentLoaded`, `ouvertVoulu` dans l animation des replis) sont
+  conservees telles quelles.
+- Longueur : section monument 2 303 -> 1 255 px en 390 (-45 %) et
+  1 526 -> 1 005 px en 1440 (-34 %) ; page entiere 10 661 -> 9 614 px en 390,
+  12 295 -> 11 058 en 320, 8 392 -> 7 604 en 768, 7 646 -> 7 125 en 1440.
+  Sous-blocs autonomes : 815 et 258 px en 390 (sous un ecran de 844) ;
+  567 et 238 px en 1440. Composant de dimensions seul : 570 px en 390, donc
+  dessin + legende + repli dans un ecran de telephone. Limite assumee : a
+  320 x 800 le premier sous-bloc fait 918 px, soit 1,15 ecran.
+- Controles du 10.11.2026 : `npm run build` 75 pages vert ; `npx astro check`
+  0 erreur, 0 avertissement, 3 hints (les memes) ; `npm test` NON relance a
+  cette passe. `/home/kumo/atelier/tmp/corcelles-final-check.py` : 86 faits
+  sur 86, SEO identique, un `<main>`, un `<h1>`.
+  `tmp/cimetieres-ux-20261110/controle-faits.py` : 86 presentes, 0 absente.
+  `controle.py` (baseline `avant/`, resultat `apres-v2/`) : 1 alerte, les
+  trois memes libelles d INTERFACE qu avant la finition, aucun fait perdu.
+  Navigateur local (`/home/kumo/atelier/bin/browser`, 127.0.0.1:8731, dossier
+  `dist`) en 390x844, 320x800 et 1440x900 : aucun debordement horizontal, les
+  trois nouveaux replis s ouvrent et se ferment a la souris et au clavier,
+  aucune hauteur residuelle, aucune erreur de page, bascule native instantanee
+  en mouvement reduit. Captures : `/home/kumo/atelier/tmp/cv2-finition/`.
+- Mesures et descriptions mises a jour DANS `docs/UX-CIMETIERES-V2.md`
+  (sections 3, 4, 7, validation et limites), pas en addendum.
+- A FAIRE : inchange, relecture visuelle par Thomas puis decision de
+  generaliser. Ne rien publier avant.
+
 ### 10.11.2026 - Pages cimetieres V2 : composants interactifs et mouvement (pilote Corcelles)
 
 - Travail autorise par Thomas, sur la SEULE page `/cimetieres/corcelles-cormondreche/`.
@@ -1397,8 +1452,10 @@ DEBLOQUE, A FAIRE SANS ATTENDRE PERSONNE (au choix de Thomas) :
 - GUIDES, SUITE IMMEDIATE : tests et build verts, pousse sur main le 28.10.2026 ;
   relire les 4 pages au navigateur en 1280 et 390, puis push sur main pour la previsualisation.
 - Pages cimetieres : PILOTE UX V2 fait le 10.11.2026 sur Corcelles-Cormondreche
-  (composants src/components/guide/, docs/UX-CIMETIERES-V2.md). Build, astro check
-  et 155 tests verts, controle des 86 faits et relecture au navigateur refaits.
+  (composants src/components/guide/, docs/UX-CIMETIERES-V2.md), puis FINITION de la
+  section monument le meme jour (section 2 303 -> 1 255 px en 390, page 9 614 px).
+  Build et astro check verts, 86 faits sur 86 et regression au navigateur refaits ;
+  npm test non relance a la passe de finition.
   A faire : relecture visuelle de Thomas avant generalisation ou publication. Aucun push.
 - Pages cimetieres, V1 : PILOTE UX fait le 10.11.2026 sur Corcelles-Cormondreche
   (composant GuideCimetiere, docs/UX-CIMETIERES.md). Relu au navigateur, controle des 86 faits et export HTML autonome prepares.
